@@ -8,6 +8,7 @@
     "test": "mocha --reporter progress  --require ignore-styles ./test/testSetup.js \"test/*.spec.js\"",
     "dev": "webpack-dev-server --config ./webpack.config.dev.js -p -d ",
     "build": "webpack --config webpack.config.dev.js",
+    "clean": "rm -rf ./dist",
     "prod": "node prodServer.js"
   },
   "keywords": [],
@@ -19,6 +20,7 @@
     "express": "^4.16.2",
     "html-webpack-plugin": "^2.30.1",
     "open": "0.0.5",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-css-collapse": "^3.1.0",
