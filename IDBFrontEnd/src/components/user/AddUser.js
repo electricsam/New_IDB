@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Styles from './addUserStyle.css';
 
@@ -104,7 +105,9 @@ const AddUser = props => (
           </label>
         </div>
 
-        <div className={Styles.info}>Required fields are marked with <span className={Styles.required}>*</span></div>
+        <div className={Styles.info}>
+          Required fields are marked with <span className={Styles.required}>*</span>
+        </div>
 
         <input className={Styles.submit} onClick={props.handleSubmit} type="submit" />
 
@@ -113,5 +116,15 @@ const AddUser = props => (
 
   </div>
 );
+
+
+AddUser.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  femaleSelected: PropTypes.bool.isRequired,
+  maleSelected: PropTypes.bool.isRequired,
+  handleOptionChange: PropTypes.func.isRequired,
+};
+
 
 export default AddUser;
