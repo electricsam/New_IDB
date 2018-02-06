@@ -1,0 +1,5 @@
+ ### OSX template
+.DS_Store
+
+docker-compose.yml
+postgres-data/

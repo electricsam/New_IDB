@@ -1,0 +1,15 @@
+*.log
+
+.babelrc
+.idea
+
+gulpfile.js
+nightwatch.json
+nightwatch_tests/
+node_modules
+reports/
+selenium-server-standalone-3.8.1.jar
+server.js
+
+
+

@@ -1,0 +1,32 @@
+.container{
+    align-self: center;
+}
+
+.head{
+    background-color: #046b99;
+    height: 50px;
+}
+
+.head th{
+    color:white;
+}
+
+.tab{
+    border-collapse: collapse;
+}
+
+.odd{
+    background-color: white;
+    border-bottom: 1px solid black;
+}
+
+.even{
+    background-color: white;
+    border-bottom: 1px solid black;
+}
+
+.data {
+    text-align: center;
+    margin-left: 100px;
+}
+

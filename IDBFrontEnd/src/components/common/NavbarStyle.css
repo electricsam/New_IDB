@@ -1,0 +1,66 @@
+.container{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 8% .2% 8% 1% 15% 2% 25% 2% 25% 2% 10% 1.8%;
+    grid-template-rows: 5% ;
+    align-items: center;
+    margin-bottom: 1%;
+
+}
+
+.noaa{
+    max-width: 100%;
+    max-height: 100%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    align-self: center;
+    justify-self: end;
+}
+
+.noaa img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.noaaTitleLarge{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    font-size: 3vw;
+    font-weight: 400;
+}
+
+.noaaTitle{
+    grid-column-start: 5;
+    grid-column-end: 6;
+}
+
+.noaaTitle a{
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.noaaTitle a:first-child{
+    font-size: 1vw;
+    letter-spacing: .1vw;
+}
+
+
+.noaaTitle > a:active{
+    color:black;
+    box-shadow: inset;
+}
+
+.doc{
+    max-width: 100%;
+    max-height: 100%;
+    grid-column-start: 11;
+    grid-column-end: 12;
+    align-self: center;
+    justify-self: end;
+}
+
+.doc img{
+    max-width: 100%;
+    max-height: 100%;
+}
