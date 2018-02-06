@@ -94,7 +94,6 @@
     width:90%
 }
 
-
 .input{
     width:100%;
     line-height: 1rem;
@@ -109,7 +108,6 @@
     border-bottom: 1px solid #00a7ce;
     transition: border-bottom .5s linear;
 }
-
 
 .submit{
     width: 70%;
@@ -140,7 +138,6 @@
     box-shadow: 2px 6px 10px 0 rgba(0,0,0,0.225);
     cursor: pointer;
 }
-
 
 .info{
     grid-row-start: 5;

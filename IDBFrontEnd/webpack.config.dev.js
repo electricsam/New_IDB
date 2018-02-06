@@ -1,4 +1,6 @@
 const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -22,13 +24,23 @@ module.exports = {
     open:true,
     filename: 'index.js',
     overlay:{
-      errors: true,
-      warnings: true,
+      errors: false,
+      warnings: false,
     }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new UglifyJSPlugin({
+      test: /\.js($|\?)/i,
+      sourceMap:true,
+      uglifyOptions: {
+        compress: true
+      }
+    }),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    })
   ],
   module: {
     rules: [
