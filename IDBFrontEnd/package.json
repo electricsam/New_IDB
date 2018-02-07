@@ -7,7 +7,7 @@
     "start": "babel-node server.js",
     "test": "mocha --reporter progress  --require ignore-styles ./test/testSetup.js \"test/*.spec.js\"",
     "dev": "webpack-dev-server --config ./webpack.config.dev.js -p -d ",
-    "build": "webpack --config webpack.config.dev.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.prod.js ",
     "clean": "rm -rf ./dist",
     "prod": "node prodServer.js"
   },
