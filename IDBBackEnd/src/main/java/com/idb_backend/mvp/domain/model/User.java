@@ -8,8 +8,9 @@ public class User implements Serializable{
     private static final long serialVersionUID = 3678107792576131001L;
 
     @Id
-    @Column(name="id", columnDefinition = "serial")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+//    @Column(name="id", columnDefinition = "serial")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "first_name", length = 250)
