@@ -18,7 +18,7 @@ public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
 
     @Override
     public List<TsunamiEvent> getAllTsunamiEvents(){
-        List<TsunamiEvent> result = em.createQuery("FROM TSEVENT_ATWC").getResultList();
+        List<TsunamiEvent> result = em.createQuery("FROM TSEVENT_TSQP").getResultList();
         System.out.println("You have reached the getAllTsunamiEvents method");
         return result;
     }
