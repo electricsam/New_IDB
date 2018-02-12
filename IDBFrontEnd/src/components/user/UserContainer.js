@@ -54,7 +54,6 @@ class UserContainer extends React.Component {
   toggleForm(e) {
     e.preventDefault();
     this.setState({ ...this.state, formShow: !this.state.formShow });
-    console.log(this.state);
   }
 
   render() {
