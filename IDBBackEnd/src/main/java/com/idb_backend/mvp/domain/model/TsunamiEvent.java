@@ -1,7 +1,7 @@
 package com.idb_backend.mvp.domain.model;
 
-import com.vividsolutions.jts.geom.Point;
-import org.hibernate.annotations.Type;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.io.WKTWriter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -122,9 +122,21 @@ public class TsunamiEvent {
     @Column(name = "OBJECTID")
     private Long objectId;
 
-//    @Column(name = "SHAPE")
-//    @Type(type = "org.hibernate.spatial.GeometryType")
-//    private Point shape;
+    public String getShape() {
+        if(shape == null){
+            return null;
+        }else{
+            WKTWriter w = new WKTWriter();
+            return w.write(shape);
+        }
+    }
+
+    public void setShape(Geometry shape) {
+        this.shape = shape;
+    }
+
+    @Column(name = "SHAPE")
+    private Geometry shape;
 
     @Column(name = "DAMAGE_MILLIONS_DOLLARS_TOTAL")
     private Float damageMillionsDollarsTotal;
