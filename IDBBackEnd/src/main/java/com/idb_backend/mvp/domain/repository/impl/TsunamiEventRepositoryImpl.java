@@ -7,19 +7,33 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 @Transactional
 public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
 
-    @PersistenceContext
-    EntityManager em;
+  @PersistenceContext
+  EntityManager em;
 
-    @Override
-    public List<TsunamiEvent> getAllTsunamiEvents(){
-        List<TsunamiEvent> result = em.createQuery("FROM TSEVENT_TSQP").getResultList();
-        System.out.println("You have reached the getAllTsunamiEvents method");
-        return result;
+  @Override
+  public List<TsunamiEvent> getAllTsunamiEvents(){
+    try{
+      List<TsunamiEvent> result = em.createQuery("FROM TSEVENT_TSQP").getResultList();
+      return result;
+    }catch (Exception e){
+      throw e;
     }
+  }
+
+  @Override
+  public List<TsunamiEvent> getEventsByYear(int year) {
+    try{
+      List<TsunamiEvent> result = em.createQuery("FROM TSEVENT_TSQP WHERE YEAR=" + year).getResultList();
+      return result;
+    }catch (Exception e){
+      throw e;
+    }
+  }
 }

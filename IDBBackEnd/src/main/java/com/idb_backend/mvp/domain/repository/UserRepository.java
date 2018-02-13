@@ -5,8 +5,7 @@ import com.idb_backend.mvp.domain.model.User;
 import java.util.List;
 
 public interface UserRepository {
-    List<User> getAllUsers();
+  List<User> getAllUsers();
 
-    void addUser(User user);
-
+  void addUser(User user);
 }

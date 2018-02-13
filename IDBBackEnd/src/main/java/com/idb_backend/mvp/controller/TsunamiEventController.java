@@ -9,13 +9,22 @@ import java.util.List;
 
 @RestController
 public class TsunamiEventController {
-    @Autowired
-    TsunamiEventRepository tsunamiEventRepository;
+  @Autowired
+  TsunamiEventRepository tsunamiEventRepository;
 
-    @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
-    @RequestMapping(value = "/tsunamieventsatwc", method= RequestMethod.GET)
-    public @ResponseBody List<TsunamiEvent> list(){
-        System.out.println("you have reached the list method of the tsunamieventcontroller");
-        return tsunamiEventRepository.getAllTsunamiEvents();
-    }
+  //TODO: insert error handling for each of these endpoints
+  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
+  @RequestMapping(value = "/tsunamieventstsqp", method= RequestMethod.GET)
+  public @ResponseBody List<TsunamiEvent> getAllEvents(){
+    return tsunamiEventRepository.getAllTsunamiEvents();
+  }
+
+  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
+  @RequestMapping(value = "/tsunamieventstsqp/select", method= RequestMethod.GET)
+  public List<TsunamiEvent> getEventsByYear(@RequestParam("year") int year){
+    return tsunamiEventRepository.getEventsByYear(year);
+  }
+
+
+
 }

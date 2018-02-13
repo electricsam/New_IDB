@@ -49,3 +49,9 @@ task showDate{
 		println 'Current Date: ' + new Date()
 	}
 }
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+}

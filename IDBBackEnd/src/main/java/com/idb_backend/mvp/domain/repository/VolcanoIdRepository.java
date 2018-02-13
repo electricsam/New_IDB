@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface VolcanoIdRepository {
 
-    List<VolcanoId> getAllVolcanoId();
-
+  List<VolcanoId> getAllVolcanoId();
 
 }

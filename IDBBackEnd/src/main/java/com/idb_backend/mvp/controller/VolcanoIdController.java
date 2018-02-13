@@ -9,13 +9,14 @@ import java.util.List;
 
 @RestController
 public class VolcanoIdController {
-    @Autowired
-    VolcanoIdRepository volcanoIdRepository;
+  @Autowired
+  VolcanoIdRepository volcanoIdRepository;
 
-    @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
-    @RequestMapping(value = "/volcanoids", method = RequestMethod.GET)
-    public @ResponseBody List<VolcanoId> list(){
-        System.out.println("you got to the list method of VolcanoIdController");
-        return volcanoIdRepository.getAllVolcanoId();
-    }
+  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
+  @RequestMapping(value = "/volcanoids", method = RequestMethod.GET)
+  public @ResponseBody List<VolcanoId> list(){
+    System.out.println("you got to the list method of VolcanoIdController");
+    return volcanoIdRepository.getAllVolcanoId();
+  }
+
 }

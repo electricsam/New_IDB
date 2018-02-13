@@ -10,61 +10,62 @@ import java.io.Serializable;
 
 @Entity(name = "VOL_ID")
 public class VolcanoId implements Serializable {
-    private static final long serialVersionUID = 3678107792576131001L;
+  private static final long serialVersionUID = 3678107792576131001L;
 
-    @Id
-    @Column(name="ID")
-    private String id;
+  @Id
+  @Column(name="ID")
+  private String id;
 
-    @Column(name="NUM")
-    private String num;
+  @Column(name="NUM")
+  private String num;
 
-    @Column(name="NAME")
-    private String name;
+  @Column(name="NAME")
+  private String name;
 
-    @Column(name="PUBLISH")
-    private String publish;
+  @Column(name="PUBLISH")
+  private String publish;
 
-    @Column(name="PREVIOUS_STATE")
-    private String previousState;
+  @Column(name="PREVIOUS_STATE")
+  private String previousState;
 
-    public String getId() {
-        return id;
-    }
+  public String getId() {
+      return id;
+  }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  public void setId(String id) {
+      this.id = id;
+  }
 
-    public String getNum() {
-        return num;
-    }
+  public String getNum() {
+      return num;
+  }
 
-    public void setNum(String num) {
-        this.num = num;
-    }
+  public void setNum(String num) {
+      this.num = num;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+      return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+      this.name = name;
+  }
 
-    public String getPublish() {
-        return publish;
-    }
+  public String getPublish() {
+      return publish;
+  }
 
-    public void setPublish(String publish) {
-        this.publish = publish;
-    }
+  public void setPublish(String publish) {
+      this.publish = publish;
+  }
 
-    public String getPreviousState() {
-        return previousState;
-    }
+  public String getPreviousState() {
+      return previousState;
+  }
 
-    public void setPreviousState(String previousState) {
-        this.previousState = previousState;
-    }
+  public void setPreviousState(String previousState) {
+      this.previousState = previousState;
+  }
+
 }

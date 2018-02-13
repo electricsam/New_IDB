@@ -8,4 +8,6 @@ public interface TsunamiEventRepository {
 
     List<TsunamiEvent> getAllTsunamiEvents();
 
+
+    List<TsunamiEvent> getEventsByYear(int year);
 }

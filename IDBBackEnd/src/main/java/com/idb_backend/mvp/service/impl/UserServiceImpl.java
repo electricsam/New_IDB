@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    UserRepository userRepository;
+  @Autowired
+  UserRepository userRepository;
 
-    @Override
-    public void addUser(User user){
-        //TODO: add logic to check user for issues
-        userRepository.addUser(user);
-    }
+  @Override
+  public void addUser(User user){
+    //TODO: add logic to check user for issues
+    userRepository.addUser(user);
+  }
+
 
 }

@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static junit.framework.TestCase.assertTrue;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserControllerTest {
@@ -26,6 +28,6 @@ public class UserControllerTest {
     @Test
     public void testUserGet(){
         List<User> list = uc.list();
-
+        assertTrue(false == true);
     }
 }

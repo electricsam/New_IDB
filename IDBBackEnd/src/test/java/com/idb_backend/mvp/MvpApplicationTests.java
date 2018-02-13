@@ -18,9 +18,6 @@ public class MvpApplicationTests {
 		String result = uc.home();
 		assertEquals(result, "Hello World");
 
-
-
-
 	}
 
 }

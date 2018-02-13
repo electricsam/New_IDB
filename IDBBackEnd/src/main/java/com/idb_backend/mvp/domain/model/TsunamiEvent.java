@@ -10,707 +10,708 @@ import java.util.Date;
 
 @Entity(name = "TSEVENT_TSQP")
 public class TsunamiEvent {
-    @Id
-    @Column(name = "ID", nullable = false)
-    private int id;
+  @Id
+  @Column(name = "ID", nullable = false)
+  private int id;
 
-    @Column(name = "YEAR")
-    private Integer year;
+  @Column(name = "YEAR")
+  private Integer year;
 
-    @Column(name = "MONTH")
-    private Integer month;
+  @Column(name = "MONTH")
+  private Integer month;
 
-    @Column(name = "DAY")
-    private Integer day;
+  @Column(name = "DAY")
+  private Integer day;
 
-    @Column(name = "HOUR")
-    private Integer hour;
+  @Column(name = "HOUR")
+  private Integer hour;
 
-    @Column(name = "MINUTE")
-    private Integer minute;
+  @Column(name = "MINUTE")
+  private Integer minute;
 
-    @Column(name = "SECOND")
-    private Float second;
+  @Column(name = "SECOND")
+  private Float second;
 
-    @Column(name = "LATITUDE")
-    private Float latitude;
+  @Column(name = "LATITUDE")
+  private Float latitude;
 
-    @Column(name = "LONGITUDE")
-    private Float longitude;
+  @Column(name = "LONGITUDE")
+  private Float longitude;
 
-    @Column(name = "LOCATION_NAME")
-    private String locationName;
+  @Column(name = "LOCATION_NAME")
+  private String locationName;
 
-    @Column(name = "AREA")
-    private String area;
+  @Column(name = "AREA")
+  private String area;
 
-    @Column(name = "COUNTRY")
-    private String country;
+  @Column(name = "COUNTRY")
+  private String country;
 
-    @Column(name = "REGION_CODE")
-    private Integer regionCode;
+  @Column(name = "REGION_CODE")
+  private Integer regionCode;
 
-    @Column(name = "CAUSE_CODE")
-    private Integer causeCode;
+  @Column(name = "CAUSE_CODE")
+  private Integer causeCode;
 
-    @Column(name = "EVENT_VALIDITY")
-    private Integer eventValidity;
+  @Column(name = "EVENT_VALIDITY")
+  private Integer eventValidity;
 
-    @Column(name = "EQ_MAG_UNK")
-    private Float eqMagUnk;
+  @Column(name = "EQ_MAG_UNK")
+  private Float eqMagUnk;
 
-    @Column(name = "EQ_MAG_MB")
-    private Float eqMagMb;
+  @Column(name = "EQ_MAG_MB")
+  private Float eqMagMb;
 
-    @Column(name = "EQ_MAG_MS")
-    private Float eqMagMs;
+  @Column(name = "EQ_MAG_MS")
+  private Float eqMagMs;
 
-    @Column(name = "EQ_MAG_MW")
-    private Float eqMagMw;
+  @Column(name = "EQ_MAG_MW")
+  private Float eqMagMw;
 
-    @Column(name = "EQ_DEPTH")
-    private Integer eqDepth;
+  @Column(name = "EQ_DEPTH")
+  private Integer eqDepth;
 
-    @Column(name = "MAX_EVENT_RUNUP")
-    private Float maxEventRunup;
+  @Column(name = "MAX_EVENT_RUNUP")
+  private Float maxEventRunup;
 
-    @Column(name = "TS_MT_ABE")
-    private Float tsMtAbe;
+  @Column(name = "TS_MT_ABE")
+  private Float tsMtAbe;
 
-    @Column(name = "TS_MT_II")
-    private Float tsMtIi;
+  @Column(name = "TS_MT_II")
+  private Float tsMtIi;
 
-    @Column(name = "TS_INTENSITY")
-    private Float tsIntensity;
+  @Column(name = "TS_INTENSITY")
+  private Float tsIntensity;
 
-    @Column(name = "DAMAGE_MILLIONS_DOLLARS")
-    private Float damageMillionsDollars;
+  @Column(name = "DAMAGE_MILLIONS_DOLLARS")
+  private Float damageMillionsDollars;
 
-    @Column(name = "DAMAGE_AMOUNT_ORDER")
-    private Integer damageAmountOrder;
+  @Column(name = "DAMAGE_AMOUNT_ORDER")
+  private Integer damageAmountOrder;
 
-    @Column(name = "HOUSES_DESTROYED")
-    private Integer housesDestroyed;
+  @Column(name = "HOUSES_DESTROYED")
+  private Integer housesDestroyed;
 
-    @Column(name = "HOUSES_AMOUNT_ORDER")
-    private Integer housesAmountOrder;
+  @Column(name = "HOUSES_AMOUNT_ORDER")
+  private Integer housesAmountOrder;
 
-    @Column(name = "DEATHS")
-    private Integer deaths;
+  @Column(name = "DEATHS")
+  private Integer deaths;
 
-    @Column(name = "DEATHS_AMOUNT_ORDER")
-    private Integer deathsAmountOrder;
+  @Column(name = "DEATHS_AMOUNT_ORDER")
+  private Integer deathsAmountOrder;
 
-    @Column(name = "INJURIES")
-    private Integer injuries;
+  @Column(name = "INJURIES")
+  private Integer injuries;
 
-    @Column(name = "INJURIES_AMOUNT_ORDER")
-    private Integer injuriesAmountOrder;
+  @Column(name = "INJURIES_AMOUNT_ORDER")
+  private Integer injuriesAmountOrder;
 
-    @Column(name = "WARNING_STATUS_ID")
-    private Integer warningStatusId;
+  @Column(name = "WARNING_STATUS_ID")
+  private Integer warningStatusId;
 
-    @Column(name = "COMMENTS")
-    private String comments;
-
-    @Column(name = "NGDC_DATE")
-    private Date ngdcDate;
-
-    @Column(name = "TEMPORAL_ACCURACY")
-    private Integer temporalAccuracy;
-
-    @Column(name = "OBJECTID")
-    private Long objectId;
-
-    public String getShape() {
-        if(shape == null){
-            return null;
-        }else{
-            WKTWriter w = new WKTWriter();
-            return w.write(shape);
-        }
-    }
+  @Column(name = "COMMENTS")
+  private String comments;
+
+  @Column(name = "NGDC_DATE")
+  private Date ngdcDate;
+
+  @Column(name = "TEMPORAL_ACCURACY")
+  private Integer temporalAccuracy;
+
+  @Column(name = "OBJECTID")
+  private Long objectId;
 
-    public void setShape(Geometry shape) {
-        this.shape = shape;
+  public String getShape() {
+    if(shape == null){
+      return null;
+    }else{
+      WKTWriter w = new WKTWriter();
+      return w.write(shape);
     }
+  }
 
-    @Column(name = "SHAPE")
-    private Geometry shape;
+  public void setShape(Geometry shape) {
+    this.shape = shape;
+  }
 
-    @Column(name = "DAMAGE_MILLIONS_DOLLARS_TOTAL")
-    private Float damageMillionsDollarsTotal;
+  @Column(name = "SHAPE")
+  private Geometry shape;
 
-    @Column(name = "DAMAGE_AMOUNT_ORDER_TOTAL")
-    private Integer damageAmountOrderTotal;
+  @Column(name = "DAMAGE_MILLIONS_DOLLARS_TOTAL")
+  private Float damageMillionsDollarsTotal;
 
-    @Column(name = "HOUSES_DESTROYED_TOTAL")
-    private Integer housesDestroyedTotal;
+  @Column(name = "DAMAGE_AMOUNT_ORDER_TOTAL")
+  private Integer damageAmountOrderTotal;
 
-    @Column(name = "HOUSES_AMOUNT_ORDER_TOTAL")
-    private Integer housesAmountOrderTotal;
+  @Column(name = "HOUSES_DESTROYED_TOTAL")
+  private Integer housesDestroyedTotal;
 
-    @Column(name = "DEATHS_TOTAL")
-    private Integer deathsTotal;
+  @Column(name = "HOUSES_AMOUNT_ORDER_TOTAL")
+  private Integer housesAmountOrderTotal;
 
-    @Column(name = "DEATHS_AMOUNT_ORDER_TOTAL")
-    private Integer deathsAmountOrderTotal;
+  @Column(name = "DEATHS_TOTAL")
+  private Integer deathsTotal;
 
-    @Column(name = "INJURIES_TOTAL")
-    private Integer injuriesTotal;
+  @Column(name = "DEATHS_AMOUNT_ORDER_TOTAL")
+  private Integer deathsAmountOrderTotal;
 
-    @Column(name = "INJURIES_AMOUNT_ORDER_TOTAL")
-    private Integer injuriesAmountOrderTotal;
+  @Column(name = "INJURIES_TOTAL")
+  private Integer injuriesTotal;
 
-    @Column(name = "LAST_UPDATE")
-    private Date lastUpdate;
+  @Column(name = "INJURIES_AMOUNT_ORDER_TOTAL")
+  private Integer injuriesAmountOrderTotal;
 
-    //TODO: Default null
-    @Column(name = "MISSING")
-    private Integer missing;
+  @Column(name = "LAST_UPDATE")
+  private Date lastUpdate;
 
-    //TODO: Default null
-    @Column(name = "MISSING_AMOUNT_ORDER")
-    private Integer missingAmountOrder;
+  //TODO: Default null
+  @Column(name = "MISSING")
+  private Integer missing;
 
-    //TODO: Default null
-    @Column(name = "MISSING_TOTAL")
-    private Integer missingTotal;
+  //TODO: Default null
+  @Column(name = "MISSING_AMOUNT_ORDER")
+  private Integer missingAmountOrder;
 
-    //TODO: Default null
-    @Column(name = "MISSING_AMOUNT_ORDER_TOTAL")
-    private Integer missingAmountOrderTotal;
+  //TODO: Default null
+  @Column(name = "MISSING_TOTAL")
+  private Integer missingTotal;
 
-    @Column(name = "EQ_MAG_ML")
-    private Float eqMagMl;
+  //TODO: Default null
+  @Column(name = "MISSING_AMOUNT_ORDER_TOTAL")
+  private Integer missingAmountOrderTotal;
 
-    @Column(name = "EQ_MAG_MFA")
-    private Float eqMagMfa;
+  @Column(name = "EQ_MAG_ML")
+  private Float eqMagMl;
 
-    @Column(name = "FLAG_LOC_TIME_CHK")
-    private Character flagLocTimeChk;
+  @Column(name = "EQ_MAG_MFA")
+  private Float eqMagMfa;
 
-    @Column(name = "FLAG_EFFECTS_CHK")
-    private Character flagEffectsChk;
+  @Column(name = "FLAG_LOC_TIME_CHK")
+  private Character flagLocTimeChk;
 
-    @Column(name = "FLAG_MAX_RUNUP_CHK")
-    private Character flagMaxRunupChk;
+  @Column(name = "FLAG_EFFECTS_CHK")
+  private Character flagEffectsChk;
 
-    @Column(name = "FLAG_EDIT_NATWC")
-    private String flagEditNatwc;
+  @Column(name = "FLAG_MAX_RUNUP_CHK")
+  private Character flagMaxRunupChk;
 
-    @Column(name = "HOUSES_DAMAGED")
-    private Integer housesDamaged;
+  @Column(name = "FLAG_EDIT_NATWC")
+  private String flagEditNatwc;
 
-    @Column(name = "HOUSES_DAMAGED_TOTAL")
-    private Integer housesDamagedTotal;
+  @Column(name = "HOUSES_DAMAGED")
+  private Integer housesDamaged;
 
-    @Column(name = "HOUSES_DAMAGED_AMOUNT_ORDER")
-    private Integer housesDamagedAmountOrder;
+  @Column(name = "HOUSES_DAMAGED_TOTAL")
+  private Integer housesDamagedTotal;
 
-    @Column(name = "HOUSES_DAM_AMOUNT_ORDER_TOTAL")
-    private Integer housesDamAmountOrderTotal;
+  @Column(name = "HOUSES_DAMAGED_AMOUNT_ORDER")
+  private Integer housesDamagedAmountOrder;
 
-    @Column(name = "PUBLISH")
-    private String publish;
+  @Column(name = "HOUSES_DAM_AMOUNT_ORDER_TOTAL")
+  private Integer housesDamAmountOrderTotal;
 
-    @Column(name = "PREVIOUS_STATE")
-    private String previousState;
+  @Column(name = "PUBLISH")
+  private String publish;
 
-    public int getId() {
-        return id;
-    }
+  @Column(name = "PREVIOUS_STATE")
+  private String previousState;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public Integer getYear() {
-        return year;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setYear(Integer year) {
-        this.year = year;
-    }
+  public Integer getYear() {
+    return year;
+  }
 
-    public Integer getMonth() {
-        return month;
-    }
+  public void setYear(Integer year) {
+    this.year = year;
+  }
 
-    public void setMonth(Integer month) {
-        this.month = month;
-    }
+  public Integer getMonth() {
+    return month;
+  }
 
-    public Integer getDay() {
-        return day;
-    }
+  public void setMonth(Integer month) {
+    this.month = month;
+  }
 
-    public void setDay(Integer day) {
-        this.day = day;
-    }
+  public Integer getDay() {
+    return day;
+  }
 
-    public Integer getHour() {
-        return hour;
-    }
+  public void setDay(Integer day) {
+    this.day = day;
+  }
 
-    public void setHour(Integer hour) {
-        this.hour = hour;
-    }
+  public Integer getHour() {
+    return hour;
+  }
 
-    public Integer getMinute() {
-        return minute;
-    }
+  public void setHour(Integer hour) {
+    this.hour = hour;
+  }
 
-    public void setMinute(Integer minute) {
-        this.minute = minute;
-    }
+  public Integer getMinute() {
+    return minute;
+  }
 
-    public Float getSecond() {
-        return second;
-    }
+  public void setMinute(Integer minute) {
+    this.minute = minute;
+  }
 
-    public void setSecond(Float second) {
-        this.second = second;
-    }
+  public Float getSecond() {
+    return second;
+  }
 
-    public Float getLatitude() {
-        return latitude;
-    }
+  public void setSecond(Float second) {
+    this.second = second;
+  }
 
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
-    }
+  public Float getLatitude() {
+    return latitude;
+  }
 
-    public Float getLongitude() {
-        return longitude;
-    }
+  public void setLatitude(Float latitude) {
+    this.latitude = latitude;
+  }
 
-    public void setLongitude(Float longitude) {
-        this.longitude = longitude;
-    }
+  public Float getLongitude() {
+    return longitude;
+  }
 
-    public String getLocationName() {
-        return locationName;
-    }
+  public void setLongitude(Float longitude) {
+    this.longitude = longitude;
+  }
 
-    public void setLocationName(String locationName) {
-        this.locationName = locationName;
-    }
+  public String getLocationName() {
+    return locationName;
+  }
 
-    public String getArea() {
-        return area;
-    }
+  public void setLocationName(String locationName) {
+    this.locationName = locationName;
+  }
 
-    public void setArea(String area) {
-        this.area = area;
-    }
+  public String getArea() {
+    return area;
+  }
 
-    public String getCountry() {
-        return country;
-    }
+  public void setArea(String area) {
+    this.area = area;
+  }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+  public String getCountry() {
+    return country;
+  }
 
-    public Integer getRegionCode() {
-        return regionCode;
-    }
+  public void setCountry(String country) {
+    this.country = country;
+  }
 
-    public void setRegionCode(Integer regionCode) {
-        this.regionCode = regionCode;
-    }
+  public Integer getRegionCode() {
+    return regionCode;
+  }
 
-    public Integer getCauseCode() {
-        return causeCode;
-    }
+  public void setRegionCode(Integer regionCode) {
+    this.regionCode = regionCode;
+  }
 
-    public void setCauseCode(Integer causeCode) {
-        this.causeCode = causeCode;
-    }
+  public Integer getCauseCode() {
+    return causeCode;
+  }
 
-    public Integer getEventValidity() {
-        return eventValidity;
-    }
+  public void setCauseCode(Integer causeCode) {
+    this.causeCode = causeCode;
+  }
 
-    public void setEventValidity(Integer eventValidity) {
-        this.eventValidity = eventValidity;
-    }
+  public Integer getEventValidity() {
+    return eventValidity;
+  }
 
-    public Float getEqMagUnk() {
-        return eqMagUnk;
-    }
+  public void setEventValidity(Integer eventValidity) {
+    this.eventValidity = eventValidity;
+  }
 
-    public void setEqMagUnk(Float eqMagUnk) {
-        this.eqMagUnk = eqMagUnk;
-    }
+  public Float getEqMagUnk() {
+    return eqMagUnk;
+  }
 
-    public Float getEqMagMb() {
-        return eqMagMb;
-    }
+  public void setEqMagUnk(Float eqMagUnk) {
+    this.eqMagUnk = eqMagUnk;
+  }
 
-    public void setEqMagMb(Float eqMagMb) {
-        this.eqMagMb = eqMagMb;
-    }
+  public Float getEqMagMb() {
+    return eqMagMb;
+  }
 
-    public Float getEqMagMs() {
-        return eqMagMs;
-    }
+  public void setEqMagMb(Float eqMagMb) {
+    this.eqMagMb = eqMagMb;
+  }
 
-    public void setEqMagMs(Float eqMagMs) {
-        this.eqMagMs = eqMagMs;
-    }
+  public Float getEqMagMs() {
+    return eqMagMs;
+  }
 
-    public Float getEqMagMw() {
-        return eqMagMw;
-    }
+  public void setEqMagMs(Float eqMagMs) {
+    this.eqMagMs = eqMagMs;
+  }
 
-    public void setEqMagMw(Float eqMagMw) {
-        this.eqMagMw = eqMagMw;
-    }
+  public Float getEqMagMw() {
+    return eqMagMw;
+  }
 
-    public Integer getEqDepth() {
-        return eqDepth;
-    }
+  public void setEqMagMw(Float eqMagMw) {
+    this.eqMagMw = eqMagMw;
+  }
 
-    public void setEqDepth(Integer eqDepth) {
-        this.eqDepth = eqDepth;
-    }
+  public Integer getEqDepth() {
+    return eqDepth;
+  }
 
-    public Float getMaxEventRunup() {
-        return maxEventRunup;
-    }
+  public void setEqDepth(Integer eqDepth) {
+    this.eqDepth = eqDepth;
+  }
 
-    public void setMaxEventRunup(Float maxEventRunup) {
-        this.maxEventRunup = maxEventRunup;
-    }
+  public Float getMaxEventRunup() {
+    return maxEventRunup;
+  }
 
-    public Float getTsMtAbe() {
-        return tsMtAbe;
-    }
+  public void setMaxEventRunup(Float maxEventRunup) {
+    this.maxEventRunup = maxEventRunup;
+  }
 
-    public void setTsMtAbe(Float tsMtAbe) {
-        this.tsMtAbe = tsMtAbe;
-    }
+  public Float getTsMtAbe() {
+    return tsMtAbe;
+  }
 
-    public Float getTsMtIi() {
-        return tsMtIi;
-    }
+  public void setTsMtAbe(Float tsMtAbe) {
+    this.tsMtAbe = tsMtAbe;
+  }
 
-    public void setTsMtIi(Float tsMtIi) {
-        this.tsMtIi = tsMtIi;
-    }
+  public Float getTsMtIi() {
+    return tsMtIi;
+  }
 
-    public Float getTsIntensity() {
-        return tsIntensity;
-    }
+  public void setTsMtIi(Float tsMtIi) {
+    this.tsMtIi = tsMtIi;
+  }
 
-    public void setTsIntensity(Float tsIntensity) {
-        this.tsIntensity = tsIntensity;
-    }
+  public Float getTsIntensity() {
+    return tsIntensity;
+  }
 
-    public Float getDamageMillionsDollars() {
-        return damageMillionsDollars;
-    }
+  public void setTsIntensity(Float tsIntensity) {
+    this.tsIntensity = tsIntensity;
+  }
 
-    public void setDamageMillionsDollars(Float damageMillionsDollars) {
-        this.damageMillionsDollars = damageMillionsDollars;
-    }
+  public Float getDamageMillionsDollars() {
+    return damageMillionsDollars;
+  }
 
-    public Integer getDamageAmountOrder() {
-        return damageAmountOrder;
-    }
+  public void setDamageMillionsDollars(Float damageMillionsDollars) {
+    this.damageMillionsDollars = damageMillionsDollars;
+  }
 
-    public void setDamageAmountOrder(Integer damageAmountOrder) {
-        this.damageAmountOrder = damageAmountOrder;
-    }
+  public Integer getDamageAmountOrder() {
+    return damageAmountOrder;
+  }
 
-    public Integer getHousesDestroyed() {
-        return housesDestroyed;
-    }
+  public void setDamageAmountOrder(Integer damageAmountOrder) {
+    this.damageAmountOrder = damageAmountOrder;
+  }
 
-    public void setHousesDestroyed(Integer housesDestroyed) {
-        this.housesDestroyed = housesDestroyed;
-    }
+  public Integer getHousesDestroyed() {
+    return housesDestroyed;
+  }
 
-    public Integer getHousesAmountOrder() {
-        return housesAmountOrder;
-    }
+  public void setHousesDestroyed(Integer housesDestroyed) {
+    this.housesDestroyed = housesDestroyed;
+  }
 
-    public void setHousesAmountOrder(Integer housesAmountOrder) {
-        this.housesAmountOrder = housesAmountOrder;
-    }
+  public Integer getHousesAmountOrder() {
+    return housesAmountOrder;
+  }
 
-    public Integer getDeaths() {
-        return deaths;
-    }
+  public void setHousesAmountOrder(Integer housesAmountOrder) {
+    this.housesAmountOrder = housesAmountOrder;
+  }
 
-    public void setDeaths(Integer deaths) {
-        this.deaths = deaths;
-    }
+  public Integer getDeaths() {
+    return deaths;
+  }
 
-    public Integer getDeathsAmountOrder() {
-        return deathsAmountOrder;
-    }
+  public void setDeaths(Integer deaths) {
+    this.deaths = deaths;
+  }
 
-    public void setDeathsAmountOrder(Integer deathsAmountOrder) {
-        this.deathsAmountOrder = deathsAmountOrder;
-    }
+  public Integer getDeathsAmountOrder() {
+    return deathsAmountOrder;
+  }
 
-    public Integer getInjuries() {
-        return injuries;
-    }
+  public void setDeathsAmountOrder(Integer deathsAmountOrder) {
+    this.deathsAmountOrder = deathsAmountOrder;
+  }
 
-    public void setInjuries(Integer injuries) {
-        this.injuries = injuries;
-    }
+  public Integer getInjuries() {
+    return injuries;
+  }
 
-    public Integer getInjuriesAmountOrder() {
-        return injuriesAmountOrder;
-    }
+  public void setInjuries(Integer injuries) {
+    this.injuries = injuries;
+  }
 
-    public void setInjuriesAmountOrder(Integer injuriesAmountOrder) {
-        this.injuriesAmountOrder = injuriesAmountOrder;
-    }
+  public Integer getInjuriesAmountOrder() {
+    return injuriesAmountOrder;
+  }
 
-    public Integer getWarningStatusId() {
-        return warningStatusId;
-    }
+  public void setInjuriesAmountOrder(Integer injuriesAmountOrder) {
+    this.injuriesAmountOrder = injuriesAmountOrder;
+  }
 
-    public void setWarningStatusId(Integer warningStatusId) {
-        this.warningStatusId = warningStatusId;
-    }
+  public Integer getWarningStatusId() {
+    return warningStatusId;
+  }
 
-    public String getComments() {
-        return comments;
-    }
+  public void setWarningStatusId(Integer warningStatusId) {
+    this.warningStatusId = warningStatusId;
+  }
 
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
+  public String getComments() {
+    return comments;
+  }
 
-    public Date getNgdcDateDate() {
-        return ngdcDate;
-    }
+  public void setComments(String comments) {
+    this.comments = comments;
+  }
 
-    public void setNgdcDateDate(Date date) {
-        this.ngdcDate = date;
-    }
+  public Date getNgdcDateDate() {
+    return ngdcDate;
+  }
 
-    public Integer getTemporalAccuracy() {
-        return temporalAccuracy;
-    }
+  public void setNgdcDateDate(Date date) {
+    this.ngdcDate = date;
+  }
 
-    public void setTemporalAccuracy(Integer temporalAccuracy) {
-        this.temporalAccuracy = temporalAccuracy;
-    }
+  public Integer getTemporalAccuracy() {
+    return temporalAccuracy;
+  }
 
-    public Long getObjectId() {
-        return objectId;
-    }
+  public void setTemporalAccuracy(Integer temporalAccuracy) {
+    this.temporalAccuracy = temporalAccuracy;
+  }
 
-    public void setObjectId(Long objectId) {
-        this.objectId = objectId;
-    }
+  public Long getObjectId() {
+    return objectId;
+  }
 
+  public void setObjectId(Long objectId) {
+    this.objectId = objectId;
+  }
 
-    public Float getDamageMillionsDollarsTotal() {
-        return damageMillionsDollarsTotal;
-    }
 
-    public void setDamageMillionsDollarsTotal(Float damageMillionsDollarsTotal) {
-        this.damageMillionsDollarsTotal = damageMillionsDollarsTotal;
-    }
+  public Float getDamageMillionsDollarsTotal() {
+    return damageMillionsDollarsTotal;
+  }
 
-    public Integer getDamageAmountOrderTotal() {
-        return damageAmountOrderTotal;
-    }
+  public void setDamageMillionsDollarsTotal(Float damageMillionsDollarsTotal) {
+    this.damageMillionsDollarsTotal = damageMillionsDollarsTotal;
+  }
 
-    public void setDamageAmountOrderTotal(Integer damageAmountOrderTotal) {
-        this.damageAmountOrderTotal = damageAmountOrderTotal;
-    }
+  public Integer getDamageAmountOrderTotal() {
+    return damageAmountOrderTotal;
+  }
 
-    public Integer getHousesDestroyedTotal() {
-        return housesDestroyedTotal;
-    }
+  public void setDamageAmountOrderTotal(Integer damageAmountOrderTotal) {
+    this.damageAmountOrderTotal = damageAmountOrderTotal;
+  }
 
-    public void setHousesDestroyedTotal(Integer housesDestroyedTotal) {
-        this.housesDestroyedTotal = housesDestroyedTotal;
-    }
+  public Integer getHousesDestroyedTotal() {
+    return housesDestroyedTotal;
+  }
 
-    public Integer getHousesAmountOrderTotal() {
-        return housesAmountOrderTotal;
-    }
+  public void setHousesDestroyedTotal(Integer housesDestroyedTotal) {
+    this.housesDestroyedTotal = housesDestroyedTotal;
+  }
 
-    public void setHousesAmountOrderTotal(Integer housesAmountOrderTotal) {
-        this.housesAmountOrderTotal = housesAmountOrderTotal;
-    }
+  public Integer getHousesAmountOrderTotal() {
+    return housesAmountOrderTotal;
+  }
 
-    public Integer getDeathsTotal() {
-        return deathsTotal;
-    }
+  public void setHousesAmountOrderTotal(Integer housesAmountOrderTotal) {
+    this.housesAmountOrderTotal = housesAmountOrderTotal;
+  }
 
-    public void setDeathsTotal(Integer deathsTotal) {
-        this.deathsTotal = deathsTotal;
-    }
+  public Integer getDeathsTotal() {
+    return deathsTotal;
+  }
 
-    public Integer getDeathsAmountOrderTotal() {
-        return deathsAmountOrderTotal;
-    }
+  public void setDeathsTotal(Integer deathsTotal) {
+    this.deathsTotal = deathsTotal;
+  }
 
-    public void setDeathsAmountOrderTotal(Integer deathsAmountOrderTotal) {
-        this.deathsAmountOrderTotal = deathsAmountOrderTotal;
-    }
+  public Integer getDeathsAmountOrderTotal() {
+    return deathsAmountOrderTotal;
+  }
 
-    public Integer getInjuriesTotal() {
-        return injuriesTotal;
-    }
+  public void setDeathsAmountOrderTotal(Integer deathsAmountOrderTotal) {
+    this.deathsAmountOrderTotal = deathsAmountOrderTotal;
+  }
 
-    public void setInjuriesTotal(Integer injuriesTotal) {
-        this.injuriesTotal = injuriesTotal;
-    }
+  public Integer getInjuriesTotal() {
+    return injuriesTotal;
+  }
 
-    public Integer getInjuriesAmountOrderTotal() {
-        return injuriesAmountOrderTotal;
-    }
+  public void setInjuriesTotal(Integer injuriesTotal) {
+    this.injuriesTotal = injuriesTotal;
+  }
 
-    public void setInjuriesAmountOrderTotal(Integer injuriesAmountOrderTotal) {
-        this.injuriesAmountOrderTotal = injuriesAmountOrderTotal;
-    }
+  public Integer getInjuriesAmountOrderTotal() {
+    return injuriesAmountOrderTotal;
+  }
 
-    public Date getLastUpdate() {
-        return lastUpdate;
-    }
+  public void setInjuriesAmountOrderTotal(Integer injuriesAmountOrderTotal) {
+    this.injuriesAmountOrderTotal = injuriesAmountOrderTotal;
+  }
 
-    public void setLastUpdate(Date lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
+  public Date getLastUpdate() {
+    return lastUpdate;
+  }
 
-    public Integer getMissing() {
-        return missing;
-    }
+  public void setLastUpdate(Date lastUpdate) {
+    this.lastUpdate = lastUpdate;
+  }
 
-    public void setMissing(Integer missing) {
-        this.missing = missing;
-    }
+  public Integer getMissing() {
+    return missing;
+  }
 
-    public Integer getMissingAmountOrder() {
-        return missingAmountOrder;
-    }
+  public void setMissing(Integer missing) {
+    this.missing = missing;
+  }
 
-    public void setMissingAmountOrder(Integer missingAmountOrder) {
-        this.missingAmountOrder = missingAmountOrder;
-    }
+  public Integer getMissingAmountOrder() {
+    return missingAmountOrder;
+  }
 
-    public Integer getMissingTotal() {
-        return missingTotal;
-    }
+  public void setMissingAmountOrder(Integer missingAmountOrder) {
+    this.missingAmountOrder = missingAmountOrder;
+  }
 
-    public void setMissingTotal(Integer missingTotal) {
-        this.missingTotal = missingTotal;
-    }
+  public Integer getMissingTotal() {
+    return missingTotal;
+  }
 
-    public Integer getMissingAmountOrderTotal() {
-        return missingAmountOrderTotal;
-    }
+  public void setMissingTotal(Integer missingTotal) {
+    this.missingTotal = missingTotal;
+  }
 
-    public void setMissingAmountOrderTotal(Integer missingAmountOrderTotal) {
-        this.missingAmountOrderTotal = missingAmountOrderTotal;
-    }
+  public Integer getMissingAmountOrderTotal() {
+    return missingAmountOrderTotal;
+  }
 
-    public Float getEqMagMl() {
-        return eqMagMl;
-    }
+  public void setMissingAmountOrderTotal(Integer missingAmountOrderTotal) {
+    this.missingAmountOrderTotal = missingAmountOrderTotal;
+  }
 
-    public void setEqMagMl(Float eqMagMl) {
-        this.eqMagMl = eqMagMl;
-    }
+  public Float getEqMagMl() {
+    return eqMagMl;
+  }
 
-    public Float getEqMagMfa() {
-        return eqMagMfa;
-    }
+  public void setEqMagMl(Float eqMagMl) {
+    this.eqMagMl = eqMagMl;
+  }
 
-    public void setEqMagMfa(Float eqMagMfa) {
-        this.eqMagMfa = eqMagMfa;
-    }
+  public Float getEqMagMfa() {
+    return eqMagMfa;
+  }
 
-    public Character getFlagLocTimeChk() {
-        return flagLocTimeChk;
-    }
+  public void setEqMagMfa(Float eqMagMfa) {
+    this.eqMagMfa = eqMagMfa;
+  }
 
-    public void setFlagLocTimeChk(Character flagLocTimeChk) {
-        this.flagLocTimeChk = flagLocTimeChk;
-    }
+  public Character getFlagLocTimeChk() {
+    return flagLocTimeChk;
+  }
 
-    public Character getFlagEffectsChk() {
-        return flagEffectsChk;
-    }
+  public void setFlagLocTimeChk(Character flagLocTimeChk) {
+    this.flagLocTimeChk = flagLocTimeChk;
+  }
 
-    public void setFlagEffectsChk(Character flagEffectsChk) {
-        this.flagEffectsChk = flagEffectsChk;
-    }
+  public Character getFlagEffectsChk() {
+    return flagEffectsChk;
+  }
 
-    public Character getFlagMaxRunupChk() {
-        return flagMaxRunupChk;
-    }
+  public void setFlagEffectsChk(Character flagEffectsChk) {
+    this.flagEffectsChk = flagEffectsChk;
+  }
 
-    public void setFlagMaxRunupChk(Character flagMaxRunupChk) {
-        this.flagMaxRunupChk = flagMaxRunupChk;
-    }
+  public Character getFlagMaxRunupChk() {
+    return flagMaxRunupChk;
+  }
 
-    public String getFlagEditNatwc() {
-        return flagEditNatwc;
-    }
+  public void setFlagMaxRunupChk(Character flagMaxRunupChk) {
+    this.flagMaxRunupChk = flagMaxRunupChk;
+  }
 
-    public void setFlagEditNatwc(String flagEditNatwc) {
-        this.flagEditNatwc = flagEditNatwc;
-    }
+  public String getFlagEditNatwc() {
+    return flagEditNatwc;
+  }
 
-    public Integer getHousesDamaged() {
-        return housesDamaged;
-    }
+  public void setFlagEditNatwc(String flagEditNatwc) {
+    this.flagEditNatwc = flagEditNatwc;
+  }
 
-    public void setHousesDamaged(Integer housesDamaged) {
-        this.housesDamaged = housesDamaged;
-    }
+  public Integer getHousesDamaged() {
+    return housesDamaged;
+  }
 
-    public Integer getHousesDamagedTotal() {
-        return housesDamagedTotal;
-    }
+  public void setHousesDamaged(Integer housesDamaged) {
+    this.housesDamaged = housesDamaged;
+  }
 
-    public void setHousesDamagedTotal(Integer housesDamagedTotal) {
-        this.housesDamagedTotal = housesDamagedTotal;
-    }
+  public Integer getHousesDamagedTotal() {
+    return housesDamagedTotal;
+  }
 
-    public Integer getHousesDamagedAmountOrder() {
-        return housesDamagedAmountOrder;
-    }
+  public void setHousesDamagedTotal(Integer housesDamagedTotal) {
+    this.housesDamagedTotal = housesDamagedTotal;
+  }
 
-    public void setHousesDamagedAmountOrder(Integer housesDamagedAmountOrder) {
-        this.housesDamagedAmountOrder = housesDamagedAmountOrder;
-    }
+  public Integer getHousesDamagedAmountOrder() {
+    return housesDamagedAmountOrder;
+  }
 
-    public Integer getHousesDamAmountOrderTotal() {
-        return housesDamAmountOrderTotal;
-    }
+  public void setHousesDamagedAmountOrder(Integer housesDamagedAmountOrder) {
+    this.housesDamagedAmountOrder = housesDamagedAmountOrder;
+  }
 
-    public void setHousesDamAmountOrderTotal(Integer housesDamAmountOrderTotal) {
-        this.housesDamAmountOrderTotal = housesDamAmountOrderTotal;
-    }
+  public Integer getHousesDamAmountOrderTotal() {
+    return housesDamAmountOrderTotal;
+  }
 
-    public String getPublish() {
-        return publish;
-    }
+  public void setHousesDamAmountOrderTotal(Integer housesDamAmountOrderTotal) {
+    this.housesDamAmountOrderTotal = housesDamAmountOrderTotal;
+  }
 
-    public void setPublish(String publish) {
-        this.publish = publish;
-    }
+  public String getPublish() {
+    return publish;
+  }
 
-    public String getPreviousState() {
-        return previousState;
-    }
+  public void setPublish(String publish) {
+    this.publish = publish;
+  }
 
-    public void setPreviousState(String previousState) {
-        this.previousState = previousState;
-    }
+  public String getPreviousState() {
+    return previousState;
+  }
+
+  public void setPreviousState(String previousState) {
+    this.previousState = previousState;
+    this.previousState = previousState;
+  }
 }
