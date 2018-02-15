@@ -1,6 +1,6 @@
 import Immutable from 'seamless-immutable';
 
-//TODO: clean up all commented out return statements once seamless-immutable is verified to work
+// TODO: clean up all commented out return statements once seamless-immutable is verified to work
 
 
 const initialState = Immutable({
@@ -24,16 +24,15 @@ const initialState = Immutable({
 export default function reducer(state = initialState, action) {
   switch (action.type) {
   case 'FETCH_USER': {
-
-    return Immutable.set(state, "fetchingUsers", true)
+    return Immutable.set(state, 'fetchingUsers', true);
     // return { ...state, fetchingUsers: true };
   }
   case 'FETCH_USER_REJECTED': {
-    return Immutable.merge(state, {fetchingUsers: false, error: action.payload})
+    return Immutable.merge(state, { fetchingUsers: false, error: action.payload });
     // return { ...state, fetchingUsers: false, error: action.payload };
   }
   case 'FETCH_USER_FULFILLED': {
-    return Immutable.merge(state, { fetchingUsers: false, fetchedUsers: true, users: action.payload })
+    return Immutable.merge(state, { fetchingUsers: false, fetchedUsers: true, users: action.payload });
 
     // return {
     //   ...state,
@@ -41,11 +40,9 @@ export default function reducer(state = initialState, action) {
     //   fetchedUsers: true,
     //   users: action.payload,
     // };
-
   }
   case 'ADD_USER_ATTRIBUTE': {
-
-    return Immutable.setIn(state, ["newUser", action.payload.key], action.payload.value)
+    return Immutable.setIn(state, ['newUser', action.payload.key], action.payload.value);
 
     // const tmp = { ...state.newUser };
     // tmp[action.payload.key] = action.payload.value;
@@ -56,8 +53,7 @@ export default function reducer(state = initialState, action) {
     // };
   }
   case 'UPDATE_USER_GENDER': {
-
-    return Immutable.setIn(state, ["newUser", "gender"], action.payload)
+    return Immutable.setIn(state, ['newUser', 'gender'], action.payload);
 
     // const tmp = { ...state.newUser };
     // tmp.gender = action.payload;
@@ -68,11 +64,11 @@ export default function reducer(state = initialState, action) {
     // };
   }
   case 'ADD_USER': {
-    return Immutable.set(state, "addingUser", true)
-    //return { ...state, addingUser: true };
+    return Immutable.set(state, 'addingUser', true);
+    // return { ...state, addingUser: true };
   }
   case 'ADDED_USER_FULFILLED': {
-    return Immutable.merge(state, { addingUser: false, newUser: initialState.newUser, addedUser: true})
+    return Immutable.merge(state, { addingUser: false, newUser: initialState.newUser, addedUser: true });
 
     // return {
     //   ...state,
@@ -82,9 +78,9 @@ export default function reducer(state = initialState, action) {
     // };
   }
   case 'ADD_USER_REJECTED': {
-    return Immutable.merge(state, { addingUser: false, error: action.payload })
+    return Immutable.merge(state, { addingUser: false, error: action.payload });
 
-    //return { ...state, addingUser: false, error: action.payload };
+    // return { ...state, addingUser: false, error: action.payload };
   }
   }
   return state;

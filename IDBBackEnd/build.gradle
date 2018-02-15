@@ -34,6 +34,7 @@ dependencies {
 	compile "org.springframework.boot:spring-boot-starter-security"
 	compile 'org.springframework.boot:spring-boot-starter-test'
     compile group: 'org.hibernate', name: 'hibernate-spatial', version: '5.2.13.Final'
+    compile "org.springframework.boot:spring-boot-configuration-processor"
     compile fileTree( dir: 'lib', include: '*.jar')
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.0'
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.5.9.RELEASE'

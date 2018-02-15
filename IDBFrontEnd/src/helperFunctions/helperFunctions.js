@@ -17,7 +17,21 @@ const camelToPascal = (string) => {
 };
 
 
+const mapToTable = (arr) => {
+  //TODO: check if object here before progressing
+
+  let accessors = Object.keys(arr[0]);
+  let result = [];
+  accessors.map(e => {
+    result.push({Header: camelToPascal(e), accessor: e})
+  });
+  return result;
+}
+
+
+
 module.exports = {
   oddEven,
   camelToPascal,
+  mapToTable,
 };
