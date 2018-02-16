@@ -5,6 +5,7 @@ const initialState = Immutable ({
   fetchedTsEvent: false,
   error: null,
   TsEvents: [],
+  headersAndAccessors: [],
 });
 
 
@@ -17,7 +18,15 @@ export default function reducer(state=initialState, action){
       return Immutable.merge(state, {fetchingTsEvent:false, error:action.payload});
     }
     case 'FETCH_TS_EVENT_FULFILLED': {
-      return Immutable.merge(state, { fetchingTsEvent:false, fetchedTsEvent: true, TsEvents: action.payload});
+      return Immutable.merge(state, {
+        fetchingTsEvent:false,
+        fetchedTsEvent: true,
+        TsEvents: action.payload.data,
+        headersAndAccessors: action.payload.formattedData
+      });
+    }
+    case 'REFORMAT_TS_DATA': {
+      return Immutable.merge(state, {headersAndAccessors: action.payload})
     }
   }
   return state;

@@ -6,7 +6,6 @@ import Styles from './FooterStyle.css'
 const inlineStyles = {
   color: 'white',
   textAlign: 'center',
-  marginTop: '40%',
 }
 
 const Footer = () => (
@@ -26,19 +25,27 @@ const Footer = () => (
 
     <div className={Styles.social}>
       <div className = {Styles.twitter}>
-        <i className="fab fa-twitter" style={inlineStyles}></i>
+        <a href="https://twitter.com/NOAA" target="_blank">
+          <i className="fab fa-twitter" style={inlineStyles}></i>
+        </a>
       </div>
 
       <div className={Styles.facebook}>
-        <i class="fab fa-facebook-f" style={inlineStyles}></i>
+        <a href="https://www.facebook.com/NOAA" target="_blank">
+          <i class="fab fa-facebook-f" style={inlineStyles}></i>
+        </a>
       </div>
 
       <div className={Styles.instagram}>
-        <i class="fab fa-instagram" style={inlineStyles}></i>
+        <a href="https://www.instagram.com/noaa/" target="_blank">
+          <i class="fab fa-instagram" style={inlineStyles}></i>
+        </a>
       </div>
 
       <div className={Styles.youtube}>
-        <i class="fab fa-youtube" style={inlineStyles}></i>
+        <a href="https://www.youtube.com/usnoaagov" target="_blank">
+          <i class="fab fa-youtube" style={inlineStyles}></i>
+        </a>
       </div>
     </div>
 

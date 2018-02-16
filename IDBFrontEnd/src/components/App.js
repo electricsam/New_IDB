@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Navbar from './navbar/Navbar';
 import Footer from './footer/Footer.jsx';
-import UserContainer from './tsunami/TsunamiContainer';
+import TsunamiContainer from './tsunami/TsunamiContainer';
 import AboutPage from './about/AboutPage';
 import Styles from './AppStyle.css';
 
@@ -13,7 +13,7 @@ class App extends React.Component {
       <div className={Styles.container}>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={UserContainer} />
+          <Route exact path="/" component={TsunamiContainer} />
           <Route exact path="/about" component={AboutPage} />
         </Switch>
         <Footer />

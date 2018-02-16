@@ -1,20 +1,15 @@
 import React from 'react';
-import Styles from './tableStyle.css';
-import Immutable from "seamless-immutable";
+import ReactTable from 'react-table'
+import Styles from './TableStyle.css';
 
 const Table = props => (
   <div className={Styles.container}>
 
-    <h1 className={Styles.header}>{props.title}</h1>
+    <h1>{props.title}</h1>
 
     <ReactTable
-      {/*
-        TODO: need to remove the Immutable.asMutable from here
-        TODO: need to make the data more generically titled
-        TODO: need to move the map to table out and data into store - try saga or thunk
-      */}
-      data={Immutable.asMutable(tsunami.TsEvents, {deep: true})}
-      columns={mapToTable(tsunami.TsEvents)}
+      data={props.data}
+      columns={props.columns}
       defaultPageSize={10}
       expanderDefaults={
         {
@@ -26,11 +21,12 @@ const Table = props => (
       }
       //The style height gives fixed header with scroll
       style={{
-        height: "400px", // This will force the table body to overflow and scroll, since there is not enough room
-        width: "1600px"
+        height: "50%", // This will force the table body to overflow and scroll, since there is not enough room
+        width: "95%"
       }}
       className="-striped -highlight"
-      defaultSorted={[{id: 'id', desc: true}]}
+      defaultSorted={[{id: 'id', desc: false}]}
+      loading={props.loading}
     />
 
   </div>
