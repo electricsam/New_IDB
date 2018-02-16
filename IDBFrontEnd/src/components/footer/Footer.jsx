@@ -44,7 +44,7 @@ const Footer = () => (
 
       <div className={Styles.youtube}>
         <a href="https://www.youtube.com/usnoaagov" target="_blank">
-          <i class="fab fa-youtube" style={inlineStyles}></i>
+          <i className="fab fa-youtube" style={inlineStyles}></i>
         </a>
       </div>
     </div>

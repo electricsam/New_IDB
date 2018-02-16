@@ -1,10 +1,12 @@
 .container{
+    color: black;
     display: grid;
     width: 100%;
     grid-template-columns: 8% .2% 8% 1% 15% 2% 25% 2% 25% 2% 10% 1.8%;
     grid-template-rows: 5% ;
     align-items: center;
     margin-bottom: 1%;
+    margin-top: 1%;
 }
 
 .noaa{

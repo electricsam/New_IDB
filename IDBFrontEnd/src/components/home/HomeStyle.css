@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.welcome{
+    /*flex: 1 0 auto*/
+}
+
+
+.title{
+    color: white;
+    text-align: center;
+}
+
+.link{
+    font-size: 2rem;
+    color: white;
+
+}
