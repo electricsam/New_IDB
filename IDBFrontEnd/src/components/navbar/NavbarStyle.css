@@ -1,12 +1,18 @@
+$noaaBlue: rgb(16, 51, 98);
+
+
 .container{
-    color: black;
+    color: white;
     display: grid;
     width: 100%;
     grid-template-columns: 8% .2% 8% 1% 15% 2% 25% 2% 25% 2% 10% 1.8%;
     grid-template-rows: 5% ;
     align-items: center;
-    margin-bottom: 1%;
-    margin-top: 1%;
+    /*margin-bottom: 1%;*/
+    /*margin-top: 1%;*/
+    background-color: $noaaBlue;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
 .noaa{
@@ -38,7 +44,7 @@
 .noaaTitle a{
     display: block;
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .noaaTitle a:first-child{
@@ -64,4 +70,33 @@
 .doc img{
     max-width: 100%;
     max-height: 100%;
+}
+
+
+@media screen and (max-width: 755px){
+    .noaaTitle{
+        display: none;
+    }
+    .noaa{
+        grid-column-start: 7;
+        grid-column-end: 8;
+        justify-self: end;
+        align-self: center;
+    }
+    .doc{
+        display: none;
+    }
+
+    .noaaTitleLarge{
+        grid-column-start: 8;
+        grid-column-end: 9;
+        justify-self: start;
+        margin-left: 1%;
+        align-self: center
+    }
+    .container{
+        justify-items: center;
+        grid-template-columns: 8% .2% 8% 1% 15% 2% 12.25% 12.25% 2% 25% 2% 10% 1.8%; ;
+        align-items: center;
+    }
 }

@@ -164,3 +164,23 @@ $noaaBlue: rgb(16, 51, 98);
     justify-self: end;
     color:white;
 }
+
+
+@media screen and (max-width: 555px){
+    .stayConnected{
+        grid-column-start: 7;
+        grid-column-end: 10;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+
+    .social{
+        grid-column-start: 9;
+        grid-column-end: 10;
+        grid-row-start: 2;
+        grid-row-end: 3;
+
+    }
+
+
+}
