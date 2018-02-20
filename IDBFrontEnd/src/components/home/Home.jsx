@@ -18,7 +18,7 @@ const Home = () => {
     <div className={Styles.container} style={inlineStyles}>
       <Navbar/>
       <div className={Styles.welcome}>
-        <h1 className={Styles.title}>Welcome to the IDB</h1>
+        <h1 id="hello" className={Styles.title}>Welcome to the IDB</h1>
         <Link className={Styles.link} to='/home/tsunamis'>Tsunamis</Link>
         <p className={Styles.placeholder}>PlaceHolder</p>
       </div>

@@ -44,9 +44,6 @@
 }
 
 @media screen and (max-width: 650px){
-    /*.welcome{*/
-        /*grid-template-rows: 5% 5% 5%;*/
-    /*}*/
     .link{
         grid-column-start: 1;
         grid-column-end: 5;
