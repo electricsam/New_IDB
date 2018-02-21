@@ -1,6 +1,5 @@
 package com.idb_backend.mvp.controller;
 
-import com.idb_backend.mvp.YAMLConfig;
 import com.idb_backend.mvp.domain.model.TsunamiEvent;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +13,11 @@ public class TsunamiEventController {
   @Autowired
   TsunamiEventRepository tsunamiEventRepository;
 
-  @Autowired
-  private YAMLConfig myConfig;
-
-
   //TODO: insert error handling for each of these endpoints
 
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents", method= RequestMethod.GET)
   public @ResponseBody List<TsunamiEvent> getAllEvents(){
-
-    //successful test of reading YAML file
-    System.out.println(myConfig.getCorsAllowed());
-
     return tsunamiEventRepository.getAllTsunamiEvents();
   }
 

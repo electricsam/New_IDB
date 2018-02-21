@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import Immutable from 'seamless-immutable';
-import ReactTable from 'react-table';
 
 import store from '../../store';
 import Loading from '../loadbar/Loading';
@@ -10,7 +8,7 @@ import Table from "../table/Table";
 
 const action = type => store.dispatch({type});
 
-class UserContainer extends React.Component {
+class TsunamiContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +17,7 @@ class UserContainer extends React.Component {
   }
 
   componentDidMount() {
-    action('FETCH_TS_EVENT_REQUESTED')
+    action('FETCH_TS_EVENT_REQUESTED');
   }
 
   render() {
@@ -42,4 +40,5 @@ class UserContainer extends React.Component {
 
 const mapStateToProps = state => ({ tsunami: state.tsunami });
 
-export default connect(mapStateToProps)(UserContainer);
+export default connect(mapStateToProps)(TsunamiContainer);
+

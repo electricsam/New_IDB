@@ -32,13 +32,13 @@ const Footer = () => (
 
       <div className={Styles.facebook}>
         <a href="https://www.facebook.com/NOAA" target="_blank">
-          <i class="fab fa-facebook-f" style={inlineStyles}></i>
+          <i className="fab fa-facebook-f" style={inlineStyles}></i>
         </a>
       </div>
 
       <div className={Styles.instagram}>
         <a href="https://www.instagram.com/noaa/" target="_blank">
-          <i class="fab fa-instagram" style={inlineStyles}></i>
+          <i className="fab fa-instagram" style={inlineStyles}></i>
         </a>
       </div>
 
