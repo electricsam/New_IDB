@@ -6,10 +6,6 @@ import doc_logo from '../../assets/doc_logo.png';
 import Styles from './NavbarStyle.css';
 
 class Navbar extends React.Component {
-  componentDidMount() {
-    console.log('coming from navbar: ', Styles.noaa);
-  }
-
   render() {
     return (
       <div className={Styles.container}>
@@ -20,7 +16,7 @@ class Navbar extends React.Component {
         </div>
 
         <div className={Styles.noaaTitleLarge}>
-          NOAA
+          <p>NOAA</p>
         </div>
 
         <div className={Styles.noaaTitle}>
