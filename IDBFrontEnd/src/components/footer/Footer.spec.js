@@ -8,7 +8,7 @@ import Adapter from 'enzyme-adapter-react-16'
 enzyme.configure({adapter: new Adapter()})
 
 describe("footer component test", ()=>{
-  it("should contain a container div", ()=>{
+  it("should contain a single container div", ()=>{
     let wrapper = enzyme.shallow(<Footer/>)
     expect(wrapper).to.have.length(1);
   })
@@ -22,7 +22,6 @@ describe("footer component test", ()=>{
     let wrapper = enzyme.shallow(<Footer/>);
     expect(wrapper.find('div')).to.have.length(7)
   })
-
 
 
 })
