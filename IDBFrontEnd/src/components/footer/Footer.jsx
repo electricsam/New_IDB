@@ -9,7 +9,7 @@ const inlineStyles = {
 }
 
 const Footer = () => (
-  <div className={Styles.container}>
+  <div id="helloworld" className={Styles.container}>
     <p className={Styles.about}>About Us</p>
     <p className={Styles.work}>Our Work</p>
     <div className={Styles.logo}>
