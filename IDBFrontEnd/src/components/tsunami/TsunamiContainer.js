@@ -4,9 +4,11 @@ import {bindActionCreators} from 'redux';
 import Immutable from 'seamless-immutable';
 import ReactTable from 'react-table';
 
+import store from '../../store';
 import Loading from '../loadbar/Loading';
-import * as tsunamiActions from '../../actions/tsunamiActions';
 import Table from "../table/Table";
+
+const action = type => store.dispatch({type});
 
 class UserContainer extends React.Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class UserContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllTsunamis();
+    action('FETCH_TS_EVENT_REQUESTED')
   }
 
   render() {
@@ -40,9 +42,4 @@ class UserContainer extends React.Component {
 
 const mapStateToProps = state => ({ tsunami: state.tsunami });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  getAllTsunamis: tsunamiActions.getAllTsunamis,
-  reformatTsData: tsunamiActions.reformatTsData,
-}, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
+export default connect(mapStateToProps)(UserContainer);

@@ -11,7 +11,7 @@ const initialState = Immutable ({
 
 export default function reducer(state=initialState, action){
   switch (action.type){
-    case 'FETCH_TS_EVENT': {
+    case 'FETCH_TS_EVENT_REQUESTED': {
       return Immutable.set(state, 'fetchingTSEvent', true);
     }
     case 'FETCH_TS_EVENT_REJECTED': {
