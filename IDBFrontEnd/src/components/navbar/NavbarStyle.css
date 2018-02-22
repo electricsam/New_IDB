@@ -38,6 +38,9 @@ $noaaBlue: rgb(16, 51, 98);
     align-items: center;
 
 }
+.noaaTitleLarge p{
+    margin: 0;
+}
 
 .noaaTitle{
     grid-column-start: 5;

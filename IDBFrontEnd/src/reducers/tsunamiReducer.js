@@ -1,6 +1,6 @@
 import Immutable from 'seamless-immutable';
 
-const initialState = Immutable ({
+export const initialState = Immutable ({
   fetchingTsEvent: false,
   fetchedTsEvent: false,
   error: null,
@@ -12,7 +12,7 @@ const initialState = Immutable ({
 export default function reducer(state=initialState, action){
   switch (action.type){
     case 'FETCH_TS_EVENT_REQUESTED': {
-      return Immutable.set(state, 'fetchingTSEvent', true);
+      return Immutable.set(state, 'fetchingTsEvent', true);
     }
     case 'FETCH_TS_EVENT_REJECTED': {
       return Immutable.merge(state, {fetchingTsEvent:false, error:action.payload});
@@ -25,9 +25,7 @@ export default function reducer(state=initialState, action){
         headersAndAccessors: action.payload.formattedData
       });
     }
-    case 'REFORMAT_TS_DATA': {
-      return Immutable.merge(state, {headersAndAccessors: action.payload})
-    }
+    default:
+      return state
   }
-  return state;
 }

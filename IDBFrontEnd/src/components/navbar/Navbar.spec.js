@@ -45,15 +45,13 @@ describe("Navbar component test", ()=>{
       .find('.NavbarStyle__noaaTitle')
       .childAt(1)
       .containsMatchingElement(<a href="https://www.commerce.gov/" target="_blank">U.S. Department of Commerce</a>)
-    ).to.equal(true)
+    ).to.equal(true);
   })
   it("should contain an image linking to department of commerce", ()=>{
     expect(wrapper
       .find('.NavbarStyle__doc')
       .childAt(0)
       .containsMatchingElement(<a href="http://www.commerce.gov/" target="_blank"><img/></a>)
-    ).to.equal(true)
+    ).to.equal(true);
   })
-
-
 })
