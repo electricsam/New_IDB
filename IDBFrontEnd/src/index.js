@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-
 import Routes from './Routes';
 import store from './store';
 
@@ -12,7 +11,8 @@ app.setAttribute('id', 'app');
 app.style.height = '100vh';
 document.body.appendChild(app);
 
-ReactDOM.render(<Provider store={store}>
-  <Routes />
-</Provider>, app);
-
+ReactDOM.render(
+  <Provider store={store}>
+    <Routes />
+  </Provider>, app
+);
