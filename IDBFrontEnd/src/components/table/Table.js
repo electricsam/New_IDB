@@ -2,10 +2,7 @@ import React from 'react';
 import ReactTable from 'react-table'
 import PropTypes from 'prop-types';
 
-
 import Styles from './TableStyle.css';
-
-
 
 const Table = props => (
   <div className={Styles.container}>

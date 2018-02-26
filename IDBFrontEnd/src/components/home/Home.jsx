@@ -16,13 +16,11 @@ const inlineStyles = {
 const Home = () => {
   return (
     <div className={Styles.container} style={inlineStyles}>
-      <Navbar/>
       <div className={Styles.welcome}>
         <h1 id="hello" className={Styles.title}>Welcome to the IDB</h1>
-        <Link className={Styles.link} to='/home/tsunamis'>Tsunamis</Link>
+        <Link className={Styles.link} to='/tsunamis'>Tsunamis</Link>
         <p className={Styles.placeholder}>PlaceHolder</p>
       </div>
-      <Footer/>
     </div>
   );
 }

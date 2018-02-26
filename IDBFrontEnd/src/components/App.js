@@ -9,6 +9,7 @@ import AboutPage from './about/AboutPage';
 import Styles from './AppStyle.css';
 import Home from './home/Home.jsx';
 import { history } from '../store';
+import FourZeroFour from "./FourZeroFour/FourZeroFour";
 
 class App extends React.Component {
   render() {
@@ -16,20 +17,19 @@ class App extends React.Component {
       <ConnectedRouter history={history}>
         <div className={Styles.container}>
           <Route exact path = '/' render={()=>(<Redirect to="/home"/>)}/>
-          <Route path = "/home/*" component={Navbar}/>
+          <Route path = "/*" component={Navbar}/>
           <Switch>
             <Route exact path="/home" component={Home}/>
-            <Route exact path="/home/tsunamis" component={TsunamiContainer} />
-            <Route exact path="/home/about" component={AboutPage} />
+            <Route exact path="/tsunamis" component={TsunamiContainer} />
+            <Route exact path="/about" component={AboutPage} />
+            {/*Must have 404 component listed last*/}
+            <Route path ="*" component={FourZeroFour}/>
           </Switch>
-          <Route path = "/home/*" component={Footer}/>
+          <Route path = "/*" component={Footer}/>
         </div>
       </ConnectedRouter>
-
-
     );
   }
 }
-
 
 export default App;

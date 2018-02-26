@@ -25,6 +25,10 @@ describe("Navbar component test", ()=>{
     expect(wrapper.props().title).to.be.a('string');
   });
 
+  it("should contain a title", ()=>{
+    expect(wrapper.find('h1')).to.have.length(1);
+  })
+
   it('should contain a ReactTable component', ()=>{
     expect(wrapper
       .find('.TableStyle__container')
