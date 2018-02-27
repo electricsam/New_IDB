@@ -74,6 +74,7 @@ $noaaBlue: rgb(16, 51, 98);
     justify-self: end;
     align-self: center;
     max-width: 100%;
+    max-height: 100%;
 }
 
 

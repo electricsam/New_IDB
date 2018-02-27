@@ -50,11 +50,11 @@ const NewNavbar = () => (
 
               <ul className={Styles.nestedUl}>
 
-                <li> under test 1</li>
+                <li className={Styles.nestedLi}><Link to="/tsunami/events">EVENTS</Link></li>
 
-                <li> under test 2</li>
+                <li className={Styles.nestedLi}><Link to="/tsunami/runups"> RUNUPS</Link> </li>
 
-                <li> under test 3</li>
+                <li className={Styles.nestedLi}><Link to="/tsunami/deposits"> DEPOSITS</Link></li>
 
               </ul>
 

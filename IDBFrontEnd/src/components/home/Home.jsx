@@ -17,9 +17,8 @@ const Home = () => {
   return (
     <div className={Styles.container} style={inlineStyles}>
       <div className={Styles.welcome}>
-        <h1 id="hello" className={Styles.title}>Welcome to the IDB</h1>
-        <Link className={Styles.link} to='/tsunamis'>Tsunamis</Link>
-        <p className={Styles.placeholder}>PlaceHolder</p>
+        <h1 id="hello" className={Styles.title}>Natural Hazards Data</h1>
+
       </div>
     </div>
   );
