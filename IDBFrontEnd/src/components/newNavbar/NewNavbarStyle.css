@@ -9,6 +9,7 @@ $menuTextColor: rgb(102,102,102);
     display:grid;
     grid-template-columns: 20% 60% 20%;
     grid-template-rows: 100%;
+    border-bottom: 1px solid rgb(108,109,109);
 }
 
 .logoContainer{
@@ -41,7 +42,9 @@ $menuTextColor: rgb(102,102,102);
 .imgContianer img{
     display:block;
     max-height:100%;
+    max-width: 100%;
     justify-self: end;
+    align-self: center;
 }
 
 .mainMenuUl{
@@ -99,9 +102,10 @@ $menuTextColor: rgb(102,102,102);
 }
 
 .hazLink i{
-     height: 100%;
-     vertical-align: middle;
- }
+    height: 100%;
+    vertical-align: middle;
+    margin-left: 1%;
+}
 
 .tsunamiLnk i{
     height: 100%;

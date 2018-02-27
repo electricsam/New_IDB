@@ -7,7 +7,7 @@ import Styles from './TableStyle.css';
 const Table = props => (
   <div className={Styles.container}>
 
-    <h1>{props.title}</h1>
+    <h1 className={Styles.title}>{props.title}</h1>
 
     <ReactTable
       data={props.data}
