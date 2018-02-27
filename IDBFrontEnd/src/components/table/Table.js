@@ -12,7 +12,7 @@ const Table = props => (
     <ReactTable
       data={props.data}
       columns={props.columns}
-      defaultPageSize={10}
+      defaultPageSize={20}
       expanderDefaults={
         {
           sortable: false,

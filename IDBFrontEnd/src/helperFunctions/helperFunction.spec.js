@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { oddEven, camelToPascal } from '../src/helperFunctions/helperFunctions'
+import { oddEven, camelToPascal, encodeQueryString, decodeQueryString } from './helperFunctions'
 
 describe("oddEven() helper function", ()=>{
   it("should return a string", ()=>{
@@ -21,7 +21,7 @@ describe("oddEven() helper function", ()=>{
   })
 })
 
-describe("camelToPascal", ()=>{
+describe("camelToPascal()", ()=>{
   it("should, when given a camel cased string, return the same string in Pascal Case", ()=>{
     expect(camelToPascal('firstName')).to.deep.equal('First Name');
   })
@@ -30,5 +30,21 @@ describe("camelToPascal", ()=>{
   })
   it("should throw a new error when invalid input is given", ()=>{
         expect(camelToPascal(4)).to.deep.equal('whoops');
+  })
+})
+
+describe("encodeQueryString() and decodeQueryString() functions", () => {
+  it("should hash and encode query string then decode it", () => {
+    let message = 'testing 123';
+    let encoded = encodeQueryString(message);
+    let decoded = decodeQueryString(encoded);
+    expect(decoded).to.equal(message);
+  })
+
+  it("should hash, endcode, and decode queryString that is a JS Object", () => {
+    let message = {test: 123};
+    let encoded = encodeQueryString(JSON.stringify(message));
+    let decoded = decodeQueryString(encoded);
+    expect(JSON.parse(decoded)).to.deep.equal(message);
   })
 })

@@ -1,3 +1,5 @@
+const CryptoJS = require('crypto-js');
+const hashPass = 'lockunlock';
 
 const oddEven = (num) => {
   // TODO: need to properly throw error and update test file accordingly
@@ -8,7 +10,6 @@ const oddEven = (num) => {
   return 'odd';
 };
 
-
 const camelToPascal = (string) => {
   if (typeof string !== 'string') return 'whoops';
   return string.split(/(?=[A-Z])/).map((e, i, a) => (
@@ -16,9 +17,7 @@ const camelToPascal = (string) => {
   )).join(' ');
 };
 
-
 const mapToTable = (arr) => {
-  //TODO: check if object here before progressing
   let result = [];
   if(arr.length){
     let accessors = Object.keys(arr[0]);
@@ -29,10 +28,18 @@ const mapToTable = (arr) => {
   return result;
 }
 
+const encodeQueryString = (query) => {
+  return CryptoJS.AES.encrypt(query, hashPass).toString();
+}
 
+const decodeQueryString = (query) => {
+  return CryptoJS.AES.decrypt(query, hashPass).toString(CryptoJS.enc.Utf8);
+}
 
 module.exports = {
   oddEven,
   camelToPascal,
   mapToTable,
+  decodeQueryString,
+  encodeQueryString,
 };

@@ -36,7 +36,7 @@ describe("Navbar component test", ()=>{
       .containsMatchingElement(<ReactTable
         data={['test']}
         columns={[{test:'test'}]}
-        defaultPageSize={10}
+        defaultPageSize={20}
         expanderDefaults={
           {
             sortable: false,

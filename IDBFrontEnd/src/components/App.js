@@ -3,6 +3,7 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 
 import Navbar from './navbar/Navbar';
+import NewNavbar from './newNavbar/NewNavbar';
 import Footer from './footer/Footer.jsx';
 import TsunamiContainer from './tsunami/TsunamiContainer';
 import AboutPage from './about/AboutPage';
@@ -17,7 +18,7 @@ class App extends React.Component {
       <ConnectedRouter history={history}>
         <div className={Styles.container}>
           <Route exact path = '/' render={()=>(<Redirect to="/home"/>)}/>
-          <Route path = "/*" component={Navbar}/>
+          <Route path = "/*" component={NewNavbar}/>
           <Switch>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/tsunamis" component={TsunamiContainer} />
