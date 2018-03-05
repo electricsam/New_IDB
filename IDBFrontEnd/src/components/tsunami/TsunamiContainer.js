@@ -17,7 +17,7 @@ class TsunamiContainer extends React.Component {
   }
 
   componentDidMount() {
-    action('FETCH_TS_EVENT_REQUESTED');
+    action('FETCH_ALL_TS_EVENTS_REQUESTED');
   }
 
   render() {

@@ -11,13 +11,13 @@ export const initialState = Immutable ({
 
 export default function reducer(state=initialState, action){
   switch (action.type){
-    case 'FETCH_TS_EVENT_REQUESTED': {
+    case 'FETCH_ALL_TS_EVENTS_REQUESTED': {
       return Immutable.set(state, 'fetchingTsEvent', true);
     }
-    case 'FETCH_TS_EVENT_REJECTED': {
+    case 'FETCH_ALL_TS_EVENTS_REJECTED': {
       return Immutable.merge(state, {fetchingTsEvent:false, error:action.payload});
     }
-    case 'FETCH_TS_EVENT_FULFILLED': {
+    case 'FETCH_ALL_TS_EVENTS_FULFILLED': {
       return Immutable.merge(state, {
         fetchingTsEvent:false,
         fetchedTsEvent: true,
@@ -29,3 +29,4 @@ export default function reducer(state=initialState, action){
       return state
   }
 }
+

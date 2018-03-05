@@ -36,6 +36,12 @@ const decodeQueryString = (query) => {
   return CryptoJS.AES.decrypt(query, hashPass).toString(CryptoJS.enc.Utf8);
 }
 
+
+const createApiQueryString = (obj) => {
+
+}
+
+
 module.exports = {
   oddEven,
   camelToPascal,

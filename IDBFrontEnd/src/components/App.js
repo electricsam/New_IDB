@@ -1,16 +1,17 @@
 import React, {PropTypes} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
+import {ConnectedRouter} from 'react-router-redux';
 
-import Navbar from './navbar/Navbar';
 import NewNavbar from './newNavbar/NewNavbar';
 import Footer from './footer/Footer.jsx';
 import TsunamiContainer from './tsunami/TsunamiContainer';
 import AboutPage from './about/AboutPage';
 import Styles from './AppStyle.css';
 import Home from './home/Home.jsx';
-import { history } from '../store';
+import {history} from '../store';
 import FourZeroFour from "./FourZeroFour/FourZeroFour";
+import TsunamiSearchContainer from "./tsunamiSearch/TsunamiSearchContainer.jsx";
+import UserDisplay from "./user/UserDisplay";
 
 class App extends React.Component {
   render() {
@@ -23,6 +24,8 @@ class App extends React.Component {
             <Route exact path="/home" component={Home}/>
             <Route exact path="/tsunamis" component={TsunamiContainer} />
             <Route exact path="/about" component={AboutPage} />
+            <Route exact path="/form" component={TsunamiSearchContainer}/>
+            <Route exact path={'/userdisplay'} component={UserDisplay}/>
             {/*Must have 404 component listed last*/}
             <Route path ="*" component={FourZeroFour}/>
           </Switch>
