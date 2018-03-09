@@ -1,13 +1,7 @@
-import { combineForms, createForms } from 'react-redux-form';
+import { combineForms } from 'react-redux-form/immutable';
 
-import tform from './tsunamiFormReducer';
-
-const initialState = {
-  name: '',
-  age: '',
-  height: '',
-}
+import tsunamiReducer from './tsunamiReducer';
 
 export default combineForms({
-  user: tform
-}, 'deep')
+  tsunami: tsunamiReducer
+}, 'deep');

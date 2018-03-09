@@ -11,6 +11,8 @@ public interface TsunamiService {
 
   Criterion checkMinMax(Integer min, Integer max, String colName);
 
+  Criterion checkMinMax(Float min, Float max, String colName);
+
   List<TsunamiEvent> getEventsByQuery(DetachedCriteria query);
 
   List<TsunamiEvent> generateCriteria(Map<String, String> map, DetachedCriteria query);
@@ -24,4 +26,14 @@ public interface TsunamiService {
   Criterion checkTsunamiCause(Map<String,String> map);
 
   Criterion checkRegionCode (Map<String,String> map);
+
+  Criterion checkAreaParam(Map<String, String> map);
+
+  Criterion checkLatParams(Map<String,String> map);
+
+  Criterion checkLongParams(Map<String,String> map);
+
+  Criterion checkEQMagParam(Map<String,String> map);
+
+  Criterion checkLocationParam(Map<String, String> map);
 }

@@ -13,11 +13,7 @@ const initialState = {
 }
 
 export default combineReducers({
-  tsunami,
+  // tsunami,
   router: routerReducer,
   deep: rootFormReducer
-  // ...createForms({
-  //   user: initialState
-  // })
-  // forms: rootFormReducer,
 });

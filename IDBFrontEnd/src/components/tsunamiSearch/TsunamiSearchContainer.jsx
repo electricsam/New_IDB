@@ -1,51 +1,80 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Control, Form, actions } from 'react-redux-form';
+import { Control, Form, Errors, actions } from 'react-redux-form/immutable';
 
-import { encodeQueryString } from '../../helperFunctions/helperFunctions'
+import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
+import { countries, states, canadianProvince, validationConstants, regions } from './constants'
+import MinMax from '../searchFormPartials/MinMax';
+import Styles from './TsunamiSearchContainerStyle.css';
+import DropDown from "../searchFormPartials/DropDown.jsx";
 
-const action = obj => store.dispatch(obj)
+import TsunamiSourceParameters from './TsunamiSourceParameters';
+import TsunamiRunupByPlace from './TsunamiRunupByPlace';
+
+const errorStyles = {
+  color: 'red',
+  display: 'block'
+}
+
+//TODO: Remove const from action
+
+const action = obj => store.dispatch(obj);
 
 class TsunamiSearchContainer extends React.Component{
   constructor(props){
     super(props);
     this.state={
       formApi: null,
+      showSourceForm: true
     }
   }
 
-
-  handleSubmit(val){
-    //First determine if key containing object to be turned into querystring for API exists
-    //if it does exist then send to fetchSpecifiedTsEvents
-    //if it does NOT exist then send to fetchAllTsEvents
-
-    console.log('VAL: ', val.user);
-
-    let encoded = encodeQueryString(JSON.stringify(val.user));
-
-    this.props.history.push(`/userdisplay?${encoded}`);
+  componentDidMount = () => {
+    //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
+    // - specifically for radio button toggle to location search
   }
 
+  handleSubmit(val){
+    val = val.tsunami.asMutable().toJS();
+    if(val.search){
+      let encoded = encodeQueryString(JSON.stringify(val.search));
+      let queryString = createApiQueryString(val.search);
+      action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});
+      //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
+      this.props.history.push(`/tsunamis?${encoded}`);
+    }else{
+      action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
+      this.props.history.push(`/tsunamis`)
+    }
+  }
+
+  toggleSourceForm = () => action({type: "TOGGLE_SOURCE_FORM"});
+
+  validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+
+  checkLocType = () => this.props.tsunami.get('locType');
+  checkRunupLocType = () => this.props.tsunami.get('runupLocType')
+
   render(){
+    const { tsunami } = this.props;
     return (
-      <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)}>
-        <label htmlFor=".user.name">First Name</label>
-        <Control.text model=".user.name" id=".user.name" placeholder="First Name"/>
+      <div className={Styles.container}>
+        <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
+          <TsunamiSourceParameters validateMinMax={this.validateMinMax} checkLocType={this.checkLocType}/>
 
-        <label htmlFor=".tsunami.query.year"></label>
+          <TsunamiRunupByPlace validateMinMax={this.validateMinMax} checkRunupLocType={this.checkRunupLocType}/>
 
-        <button type="submit">Submit</button>
-      </Form>
+        <button type="submit" >
+          Submit
+        </button> </Form>
+      </div>
     )
   }
 }
 
-
-const mapStateToProps = state => ({tsunami: state.tsunami});
-
+const mapStateToProps = state => ({tsunami: state.deep.tsunami});
 
 export default connect(mapStateToProps)(TsunamiSearchContainer);
 

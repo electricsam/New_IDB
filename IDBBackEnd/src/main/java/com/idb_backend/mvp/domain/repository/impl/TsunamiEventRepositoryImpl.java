@@ -24,10 +24,6 @@ import java.util.List;
 @Transactional
 public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
 
-
-  //  @Autowired
-//  EntityManagerFactory entityManagerFactory;
-
   @PersistenceContext
   EntityManager em;
 
@@ -44,7 +40,7 @@ public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
   @Override
   public List<TsunamiEvent> getEventsByQuery(DetachedCriteria query) {
 
-
+      //TODO: wrap in try/catch block - for now just throw error in your catch
       Session session = em.unwrap(Session.class);
 
         List<TsunamiEvent> result = query

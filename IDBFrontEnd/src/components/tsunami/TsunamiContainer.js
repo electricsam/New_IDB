@@ -1,10 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Immutable from 'seamless-immutable';
+import { get } from 'immutable';
 
 import store from '../../store';
 import Loading from '../loadbar/Loading';
 import Table from "../table/Table";
+
+import { decodeQueryString } from '../../helperFunctions/helperFunctions';
 
 const action = type => store.dispatch({type});
 
@@ -17,18 +19,25 @@ class TsunamiContainer extends React.Component {
   }
 
   componentDidMount() {
-    action('FETCH_ALL_TS_EVENTS_REQUESTED');
+    let { search } = this.props.location;
+    if(search.length){
+      search = search.split('?')[1];
+      let decoded = JSON.parse(decodeQueryString(search));
+      action('UPDATE_FETCHED_TS_EVENT');
+    }else{
+      action('FETCH_ALL_TS_EVENTS_REQUESTED');
+    }
   }
 
   render() {
     const { tsunami } = this.props;
 
-    if(tsunami.fetchedTsEvent){
+    if( tsunami.get('fetchedTsEvent')){
       return (
         <Table
-          loading={tsunami.fetchingTsEvent}
-          data={Immutable.asMutable(tsunami.TsEvents, {deep: true})}
-          columns={tsunami.headersAndAccessors}
+          loading={tsunami.get('fetchingTsEvent')}
+          data={tsunami.asMutable().getIn(['TsEvents']).toJS()}
+          columns={tsunami.getIn(['headersAndAccessors']).toJS()}
           title="Tsunami Data"
         />
       )
@@ -38,7 +47,7 @@ class TsunamiContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ tsunami: state.tsunami });
+const mapStateToProps = state => ({ tsunami: state.deep.tsunami });
 
 export default connect(mapStateToProps)(TsunamiContainer);
 

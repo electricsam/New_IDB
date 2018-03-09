@@ -38,7 +38,14 @@ const decodeQueryString = (query) => {
 
 
 const createApiQueryString = (obj) => {
-
+  let result = '';
+  for(let key in obj){
+    if(obj[key].length) {
+      result += (key+"="+obj[key]+"&");
+    }
+  }
+  console.log("result: ", result);
+  return result;
 }
 
 
@@ -48,4 +55,5 @@ module.exports = {
   mapToTable,
   decodeQueryString,
   encodeQueryString,
+  createApiQueryString
 };
