@@ -36,4 +36,6 @@ public interface TsunamiService {
   Criterion checkEQMagParam(Map<String,String> map);
 
   Criterion checkLocationParam(Map<String, String> map);
+
+  //Criterion checkRunupLocationParam(Map<String, String> map);
 }

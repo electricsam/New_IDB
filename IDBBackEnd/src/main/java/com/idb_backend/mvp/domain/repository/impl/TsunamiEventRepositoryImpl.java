@@ -48,6 +48,11 @@ public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
           .list();
       return result;
 
+
+      //This is a working join - need to emulate and implement for detached criteria - the DISTINCT on ID is important
+//    List<TsunamiEvent> result = em.createNativeQuery("SELECT DISTINCT TSEVENT_TSQP.ID, TSEVENT_TSQP.LATITUDE, TSEVENT_TSQP.COUNTRY FROM TSEVENT_TSQP JOIN TSRUNUP_TSQP ON TSEVENT_TSQP.ID = TSRUNUP_TSQP.TSEVENT_ID WHERE TSEVENT_TSQP.YEAR >= 2010 AND TSRUNUP_TSQP.COUNTRY = 'CANADA'").getResultList();
+//      return result;
+
     //works to return all - super slow though
 //    CriteriaBuilder builder = em.getCriteriaBuilder();
 //    CriteriaQuery<TsunamiEvent> criteria = builder.createQuery(TsunamiEvent.class);

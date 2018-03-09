@@ -3,10 +3,10 @@ package com.idb_backend.mvp.domain.model;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "TSEVENT_TSQP")
 public class TsunamiEvent {
@@ -216,6 +216,9 @@ public class TsunamiEvent {
 
   @Column(name = "PREVIOUS_STATE")
   private String previousState;
+
+  @OneToMany( mappedBy = "tsunamiEvent", cascade = CascadeType.ALL)
+  private List<TsunamiRunup> tsunamiRunups = new ArrayList<>();
 
   public int getId() {
     return id;
