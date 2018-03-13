@@ -2,19 +2,21 @@ package com.idb_backend.mvp.domain.model;
 
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
+import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "TSRUNUP_TSQP")
-public class TsunamiRunup {
+@Entity(name = "TSRUNUP_VSQP")
+@Immutable
+public class TsunamiRunupView {
   @Id
   @Column(name = "ID", nullable = false)
   private int id;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "TSEVENT_ID")
-  private TsunamiEvent tsunamiEvent;
+  private TsunamiEventView tsunamiEventView;
 
   @Column(name = "YEAR")
   private Integer year;
@@ -61,14 +63,6 @@ public class TsunamiRunup {
   @Column(name = "COUNTRY")
   private String country;
 
-  public String getCountry() {
-    return country;
-  }
-
-  public void setCountry(String country) {
-    this.country = country;
-  }
-
   @Column(name = "REGION_CODE")
   private Integer regionCode;
 
@@ -114,6 +108,30 @@ public class TsunamiRunup {
   @Column(name = "OBJECTID")
   private Long objectId;
 
+  @Column(name = "ID_REF")
+  private Integer idRef;
+
+  @Column(name = "TSDATE")
+  private String tsDate;
+
+  @Column(name = "HAS_EVENT")
+  private String hasEvent;
+
+  @Column(name = "COMMENTS")
+  private String comments;
+
+  @Column(name = "HAS_REF")
+  private String hasRef;
+
+  @Column(name = "DOUBTFUL")
+  private String doubtful;
+
+  @Column(name = "DIST_FROM_SOURCE")
+  private Integer distFromSource;
+
+  @Column(name = "SHAPE")
+  private Geometry shape;
+
   public String getShape() {
     if(shape == null){
       return null;
@@ -127,66 +145,11 @@ public class TsunamiRunup {
     this.shape = shape;
   }
 
-  @Column(name = "SHAPE")
-  private Geometry shape;
-
-  @Column(name = "COMMENTS")
-  private String comments;
-
-  @Column(name = "LAST_UPDATE")
-  private Date lastUpdate;
-
-  @Column(name = "MISSING")
-  private Integer missing;
-
-  //TODO: Default null
-  @Column(name = "MISSING_AMOUNT_ORDER")
-  private Integer missingAmountOrder;
-
-  @Column(name = "DOUBTFUL")
-  private String doubtful;
-
-  @Column(name = "FLAG_LOC_CHK")
-  private Character flagLocChk;
-
-  @Column(name = "FLAG_RUNUP_CHK")
-  private Character flagRunupChk;
-
-  @Column(name = "FLAG_ARRV_TRAV_TIME_CHK")
-  private Character flagArrvTravTimeChk;
-
-  @Column(name = "FLAG_EFFECTS_CHK")
-  private Character flagEffectsChk;
-
-  @Column(name = "TIDE_NETWORK")
-  private String tideNetwork;
-
-  @Column(name = "FLAG_EDIT_NATWC")
-  private String flagEditNatwc;
-
-  @Column(name = "WAVE_ARR_TRAV_HOURS_CALC")
-  private Integer waveArrTravHoursCalc;
-
-  @Column(name = "WAVE_ARR_TRAV_MINS_CALC")
-  private Integer waveArrTravMinsCalc;
-
-  @Column(name = "WAVE_ARR_HT")
-  private Integer waveArrHt;
-
-  @Column(name = "MAX_WAVE_ARR_DAY")
-  private Integer maxWaveArrDay;
-
-  @Column(name = "MAX_WAVE_ARR_HOUR")
-  private Integer maxWaveArrHour;
-
-  @Column(name = "MAX_WAVE_ARR_MIN")
-  private Integer getMaxWaveArrMin;
-
-  @Column(name = "MAX_WAVE_NUM")
-  private Integer maxWaveNum;
+  @Column(name = "EVENT_REGION_CODE")
+  private Integer eventRegionCode;
 
   @Column(name = "PRED_TRAV_HOURS")
-  private Float predTravHours;
+  private Integer predTravHours;
 
   @Column(name = "PRED_TRAV_MINS")
   private Integer predTravMins;
@@ -197,26 +160,12 @@ public class TsunamiRunup {
   @Column(name = "HOUSES_DAMAGED_AMOUNT_ORDER")
   private Integer housesDamagedAmountOrder;
 
-  @Column(name = "PUBLISH")
-  private String publish;
-
-  @Column(name = "PREVIOUS_STATE")
-  private String previousState;
-
   public int getId() {
     return id;
   }
 
   public void setId(int id) {
     this.id = id;
-  }
-
-  public TsunamiEvent getTsunamiEvent() {
-    return tsunamiEvent;
-  }
-
-  public void setTsunamiEvent(TsunamiEvent tsunamiEvent) {
-    this.tsunamiEvent = tsunamiEvent;
   }
 
   public Integer getYear() {
@@ -329,6 +278,14 @@ public class TsunamiRunup {
 
   public void setArea(String area) {
     this.area = area;
+  }
+
+  public String getCountry() {
+    return country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
   }
 
   public Integer getRegionCode() {
@@ -451,6 +408,30 @@ public class TsunamiRunup {
     this.objectId = objectId;
   }
 
+  public Integer getIdRef() {
+    return idRef;
+  }
+
+  public void setIdRef(Integer idRef) {
+    this.idRef = idRef;
+  }
+
+  public String getTsDate() {
+    return tsDate;
+  }
+
+  public void setTsDate(String tsDate) {
+    this.tsDate = tsDate;
+  }
+
+  public String getHasEvent() {
+    return hasEvent;
+  }
+
+  public void setHasEvent(String hasEvent) {
+    this.hasEvent = hasEvent;
+  }
+
   public String getComments() {
     return comments;
   }
@@ -459,28 +440,12 @@ public class TsunamiRunup {
     this.comments = comments;
   }
 
-  public Date getLastUpdate() {
-    return lastUpdate;
+  public String getHasRef() {
+    return hasRef;
   }
 
-  public void setLastUpdate(Date lastUpdate) {
-    this.lastUpdate = lastUpdate;
-  }
-
-  public Integer getMissing() {
-    return missing;
-  }
-
-  public void setMissing(Integer missing) {
-    this.missing = missing;
-  }
-
-  public Integer getMissingAmountOrder() {
-    return missingAmountOrder;
-  }
-
-  public void setMissingAmountOrder(Integer missingAmountOrder) {
-    this.missingAmountOrder = missingAmountOrder;
+  public void setHasRef(String hasRef) {
+    this.hasRef = hasRef;
   }
 
   public String getDoubtful() {
@@ -491,115 +456,27 @@ public class TsunamiRunup {
     this.doubtful = doubtful;
   }
 
-  public Character getFlagLocChk() {
-    return flagLocChk;
+  public Integer getDistFromSource() {
+    return distFromSource;
   }
 
-  public void setFlagLocChk(Character flagLocChk) {
-    this.flagLocChk = flagLocChk;
+  public void setDistFromSource(Integer distFromSource) {
+    this.distFromSource = distFromSource;
   }
 
-  public Character getFlagRunupChk() {
-    return flagRunupChk;
+  public Integer getEventRegionCode() {
+    return eventRegionCode;
   }
 
-  public void setFlagRunupChk(Character flagRunupChk) {
-    this.flagRunupChk = flagRunupChk;
+  public void setEventRegionCode(Integer eventRegionCode) {
+    this.eventRegionCode = eventRegionCode;
   }
 
-  public Character getFlagArrvTravTimeChk() {
-    return flagArrvTravTimeChk;
-  }
-
-  public void setFlagArrvTravTimeChk(Character flagArrvTravTimeChk) {
-    this.flagArrvTravTimeChk = flagArrvTravTimeChk;
-  }
-
-  public Character getFlagEffectsChk() {
-    return flagEffectsChk;
-  }
-
-  public void setFlagEffectsChk(Character flagEffectsChk) {
-    this.flagEffectsChk = flagEffectsChk;
-  }
-
-  public String getTideNetwork() {
-    return tideNetwork;
-  }
-
-  public void setTideNetwork(String tideNetwork) {
-    this.tideNetwork = tideNetwork;
-  }
-
-  public String getFlagEditNatwc() {
-    return flagEditNatwc;
-  }
-
-  public void setFlagEditNatwc(String flagEditNatwc) {
-    this.flagEditNatwc = flagEditNatwc;
-  }
-
-  public Integer getWaveArrTravHoursCalc() {
-    return waveArrTravHoursCalc;
-  }
-
-  public void setWaveArrTravHoursCalc(Integer waveArrTravHoursCalc) {
-    this.waveArrTravHoursCalc = waveArrTravHoursCalc;
-  }
-
-  public Integer getWaveArrTravMinsCalc() {
-    return waveArrTravMinsCalc;
-  }
-
-  public void setWaveArrTravMinsCalc(Integer waveArrTravMinsCalc) {
-    this.waveArrTravMinsCalc = waveArrTravMinsCalc;
-  }
-
-  public Integer getWaveArrHt() {
-    return waveArrHt;
-  }
-
-  public void setWaveArrHt(Integer waveArrHt) {
-    this.waveArrHt = waveArrHt;
-  }
-
-  public Integer getMaxWaveArrDay() {
-    return maxWaveArrDay;
-  }
-
-  public void setMaxWaveArrDay(Integer maxWaveArrDay) {
-    this.maxWaveArrDay = maxWaveArrDay;
-  }
-
-  public Integer getMaxWaveArrHour() {
-    return maxWaveArrHour;
-  }
-
-  public void setMaxWaveArrHour(Integer maxWaveArrHour) {
-    this.maxWaveArrHour = maxWaveArrHour;
-  }
-
-  public Integer getGetMaxWaveArrMin() {
-    return getMaxWaveArrMin;
-  }
-
-  public void setGetMaxWaveArrMin(Integer getMaxWaveArrMin) {
-    this.getMaxWaveArrMin = getMaxWaveArrMin;
-  }
-
-  public Integer getMaxWaveNum() {
-    return maxWaveNum;
-  }
-
-  public void setMaxWaveNum(Integer maxWaveNum) {
-    this.maxWaveNum = maxWaveNum;
-  }
-
-  public Float getPredTravHours() {
+  public Integer getPredTravHours() {
     return predTravHours;
   }
 
-  public void setPredTravHours(Float predTravHours) {
+  public void setPredTravHours(Integer predTravHours) {
     this.predTravHours = predTravHours;
   }
 
@@ -626,21 +503,4 @@ public class TsunamiRunup {
   public void setHousesDamagedAmountOrder(Integer housesDamagedAmountOrder) {
     this.housesDamagedAmountOrder = housesDamagedAmountOrder;
   }
-
-  public String getPublish() {
-    return publish;
-  }
-
-  public void setPublish(String publish) {
-    this.publish = publish;
-  }
-
-  public String getPreviousState() {
-    return previousState;
-  }
-
-  public void setPreviousState(String previousState) {
-    this.previousState = previousState;
-  }
 }
-

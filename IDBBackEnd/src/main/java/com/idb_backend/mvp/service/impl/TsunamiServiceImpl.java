@@ -4,6 +4,7 @@ import com.idb_backend.mvp.domain.model.TsunamiEvent;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.service.TsunamiService;
 import org.hibernate.criterion.*;
+import org.hibernate.sql.JoinType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,17 @@ public class TsunamiServiceImpl implements TsunamiService{
   TsunamiEventRepository tsunamiEventRepository;
 
   public List<TsunamiEvent> generateCriteria (Map<String, String> map, DetachedCriteria query){
+
+    query.createAlias("tsunamiRunupViews", "tsRunups", JoinType.INNER_JOIN);
+
+    ProjectionList projList = Projections.projectionList();
+    projList.add(Projections.distinct(Projections.property("id")));
+    projList.add(Projections.property("area"));
+    projList.add(Projections.property("country"));
+    projList.add(Projections.property("latitude"));
+    projList.add(Projections.property("longitude"));
+    query.setProjection(projList);
+
     Criterion year = checkYearParams(map);
     Criterion validity = checkValidityParams(map);
     Criterion country = checkCountryParam(map);
@@ -27,9 +39,19 @@ public class TsunamiServiceImpl implements TsunamiService{
     Criterion longitude = checkLongParams(map);
     Criterion eqMag = checkEQMagParam(map);
     Criterion loc = checkLocationParam(map);
+    Criterion runupRegion = checkRunupRegionParam(map);
+    Criterion runupCountry = checkRunupCountryParam(map);
+    Criterion runupArea = checkRunupAreaParam(map);
+    Criterion runupTravTime = checkRunupTravelTimeParams(map);
+    Criterion runupLocation = checkRunupLocationParam(map);
+//    Criterion numofRunups = checkNumRunupsParam(map);
+    Criterion waterHeight = checkWaterHeightParams(map);
+    Criterion numOfDeaths = checkNumberOfDeathsParams(map);
+    Criterion numOfInjuries = checkNumberOfInjuriesParams(map);
+    Criterion damageInMill = checkDamageMillionsParam(map);
+    Criterion numHousesDest = checkNumHousesDestroyedParams(map);
 
     Conjunction conjunction = Restrictions.conjunction();
-
 
     if(year != null){
       conjunction.add(year);
@@ -60,6 +82,40 @@ public class TsunamiServiceImpl implements TsunamiService{
     }
     if(loc != null){
       conjunction.add(loc);
+    }
+    if(runupRegion != null){
+      conjunction.add(runupRegion);
+    }
+    if(runupCountry != null){
+      conjunction.add(runupCountry);
+    }
+    if(runupArea != null){
+      conjunction.add(runupArea);
+    }
+    if(runupTravTime != null){
+      conjunction.add(runupTravTime);
+    }
+    if(runupLocation != null){
+      conjunction.add(runupLocation);
+    }
+//    if(numofRunups != null){
+//      query.setProjection(Projections.rowCount());
+//      query.add(Restrictions.eqProperty())
+//    }
+    if(waterHeight != null){
+      conjunction.add(waterHeight);
+    }
+    if(numOfDeaths != null){
+      conjunction.add(numOfDeaths);
+    }
+    if(numOfInjuries != null){
+      conjunction.add(numOfInjuries);
+    }
+    if(damageInMill != null){
+      conjunction.add(damageInMill);
+    }
+    if(numHousesDest != null){
+      conjunction.add(numHousesDest);
     }
 
     query.add(conjunction);
@@ -96,12 +152,16 @@ public class TsunamiServiceImpl implements TsunamiService{
       return null;
     }
   }
+  //TODO: exchange in all places necessary
+  public Integer generateInteger(Map<String, String> map, String key){
+    return map.get(key) != null? new Integer(Integer.parseInt(map.get(key))): null;
+  }
 
   @Override
   public Criterion checkYearParams(Map<String, String> map){
     //TODO: Must validate input min(-2000) max(present year)
-    Integer minYear = map.get("minyear") != null? new Integer(Integer.parseInt(map.get("minyear"))): null;
-    Integer maxYear = map.get("maxyear") != null? new Integer(Integer.parseInt(map.get("maxyear"))): null;
+    Integer minYear = generateInteger(map,  "minyear");
+    Integer maxYear = generateInteger(map, "maxyear");
     String colName = "year";
 
     return checkMinMax(minYear, maxYear, colName);
@@ -220,7 +280,143 @@ public class TsunamiServiceImpl implements TsunamiService{
     }
   }
 
+  @Override
+  public Criterion checkRunupRegionParam(Map<String, String> map) {
+    Integer regionCode = map.get("runupregion") != null? new Integer(Integer.parseInt(map.get("runupregion"))): null;
+    if(regionCode != null){
+      return Restrictions.eq("tsRunups.regionCode", regionCode);
+    }else{
+      return null;
+    }
+  }
+
+  @Override
+  public Criterion checkRunupCountryParam(Map<String, String> map) {
+    String country = map.get("runupcountry");
+    if(country != null){
+      return Restrictions.eq("tsRunups.country", country);
+    }else{
+      return null;
+    }
+  }
+
+  @Override
+  public Criterion checkRunupAreaParam(Map<String, String> map) {
+    String runupArea = map.get("runuparea");
+    if(runupArea != null){
+      return Restrictions.eq("tsRunups.area", runupArea);
+    }else{
+      return null;
+    }
+  }
+
+  @Override
+  public Criterion checkRunupTravelTimeParams(Map<String, String> map) {
+    Integer travelTimeMin = map.get("runuptraveltimemin") != null?
+        new Integer(Integer.parseInt(map.get("runuptraveltimemin"))): null;
+    Integer travelTimeMax = map.get("runuptraveltimemax") != null?
+        new Integer(Integer.parseInt(map.get("runuptraveltimemax"))): null;
+    String colName = "tsRunup.travHours";
+
+    return checkMinMax(travelTimeMin, travelTimeMax, colName);
+  }
+
+  @Override
+  public Criterion checkRunupLocationParam(Map<String, String> map) {
+    String locStart = map.get("runuplocstart");
+    String locEnd = map.get("runuplocend");
+    String locIncludes = map.get("runuplocincludes");
+    String locMatch = map.get("runuplocmatch");
+    String locNot = map.get("runuplocnot");
+
+    if(locStart != null){
+      Criterion rest =  Restrictions.ilike("tsRunup.locationName", locStart, MatchMode.START);
+      System.out.println(rest.toString());
+      return rest;
+    }else if(locEnd != null){
+      return Restrictions.ilike("tsRunup.locationName", locEnd, MatchMode.END);
+    }else if(locIncludes != null){
+      return Restrictions.ilike("tsRunup.locationName", locIncludes, MatchMode.ANYWHERE);
+    }else if(locMatch != null){
+      return Restrictions.ilike("tsRunup.locationName", locMatch, MatchMode.EXACT);
+    }else if(locNot != null){
+      return Restrictions.not(Restrictions.ilike("tsRunup.locationName", locNot, MatchMode.EXACT));
+    }else{
+      return null;
+    }
+  }
+
+  //  @Override
+//  public Criterion checkRunupDistance(Map<String, String> map) {
+//
+//  }
 
 
+//  @Override
+//  public Criterion checkNumRunupsParam(Map<String, String> map) {
+//    Integer min = map.get("numberofrunupsmin") != null?
+//        new Integer(Integer.parseInt(map.get("numberofrunupsmax"))): null;
+//    Integer max = map.get("numberofrunupsmin") != null?
+//        new Integer(Integer.parseInt(map.get("numberofrunupsmax"))): null;
+//    if(min != null && max != null){
+//      return Restrictions.sqlRestriction("HAVING COUNT(TSEVENT_TSQP.ID) BETWEEN " + min + " AND " + max);
+//    }else if(min != null){
+//      return null;
+//    }else if(max != null){
+//      return null;
+//    }else{
+//      return null;
+//    }
+//  }
 
+
+  @Override
+  public Criterion checkWaterHeightParams(Map<String, String> map) {
+    Float waterHeightMin = map.get("waterheightmin") != null?
+        new Float(Float.parseFloat(map.get("waterheightmin"))): null;
+    Float waterHeightMax = map.get("waterheightmax") != null?
+        new Float(Float.parseFloat(map.get("waterheightmax"))): null;
+    String colName = "maxEventRunup";
+    return checkMinMax(waterHeightMin, waterHeightMax, colName);
+  }
+
+  @Override
+  public Criterion checkNumberOfDeathsParams(Map<String, String> map) {
+    Integer numOfDeathsMin = map.get("numberofdeathsmin") != null?
+        new Integer(Integer.parseInt(map.get("numberofdeathsmin"))): null;
+    Integer numOfDeathsMax = map.get("numberofdeathsmax") != null?
+        new Integer(Integer.parseInt(map.get("numberofdeathsmax"))): null;
+    String colName = "deaths";
+    return checkMinMax(numOfDeathsMin, numOfDeathsMax, colName);
+  }
+
+  @Override
+  public Criterion checkNumberOfInjuriesParams(Map<String, String> map) {
+    Integer min = map.get("numberofinjuriesmin") != null?
+        new Integer(Integer.parseInt(map.get("numberofinjuriesmin"))): null;
+    Integer max = map.get("numberofinjuriesmax") != null?
+        new Integer(Integer.parseInt(map.get("numberofinjuriesmax"))): null;
+    String colName = "injuries";
+    return checkMinMax(min, max, colName);
+  }
+
+  @Override
+  public Criterion checkDamageMillionsParam(Map<String, String> map) {
+    Integer min = map.get("damageinmillionsmin") != null?
+        new Integer(Integer.parseInt(map.get("damageinmillionsmin"))): null;
+    Integer max = map.get("damageinmillionsmax") != null?
+        new Integer(Integer.parseInt(map.get("damageinmillionsmax"))): null;
+    String colName = "injuries";
+    return checkMinMax(min, max, colName);
+  }
+
+  @Override
+  public Criterion checkNumHousesDestroyedParams(Map<String, String> map) {
+    Integer min = map.get("numberofhousesdestroyedmin") != null?
+        new Integer(Integer.parseInt(map.get("numberofhousesdestroyedmin"))): null;
+    Integer max = map.get("numberofhousesdestroyedmax") != null?
+        new Integer(Integer.parseInt(map.get("numberofhousesdestroyedmax"))): null;
+    String colName = "injuries";
+    return checkMinMax(min, max, colName);
+  }
 }

@@ -1,6 +1,7 @@
 package com.idb_backend.mvp.service;
 
 import com.idb_backend.mvp.domain.model.TsunamiEvent;
+import com.sun.tools.corba.se.idl.StringGen;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.DetachedCriteria;
 
@@ -37,5 +38,29 @@ public interface TsunamiService {
 
   Criterion checkLocationParam(Map<String, String> map);
 
-  //Criterion checkRunupLocationParam(Map<String, String> map);
+  Criterion checkRunupLocationParam(Map<String, String> map);
+
+  Criterion checkRunupRegionParam(Map<String, String> map);
+
+  Criterion checkRunupCountryParam(Map<String, String> map);
+
+  Criterion checkRunupAreaParam(Map<String, String> map);
+
+  Criterion checkRunupTravelTimeParams(Map<String, String> map);
+
+//  Criterion checkRunupDistance(Map<String, String> map);
+
+//  Criterion checkNumRunupsParam(Map<String, String> map);
+
+  Criterion checkWaterHeightParams(Map<String, String> map);
+
+  Criterion checkNumberOfDeathsParams(Map<String,String> map);
+
+  Criterion checkNumberOfInjuriesParams(Map<String, String> map);
+
+  Criterion checkDamageMillionsParam(Map<String, String> map);
+
+  Criterion checkNumHousesDestroyedParams(Map<String, String> map);
+
+  Integer generateInteger(Map<String, String> map, String key);
 }
