@@ -44,12 +44,17 @@ public class TsunamiServiceImpl implements TsunamiService{
     Criterion runupArea = checkRunupAreaParam(map);
     Criterion runupTravTime = checkRunupTravelTimeParams(map);
     Criterion runupLocation = checkRunupLocationParam(map);
-//    Criterion numofRunups = checkNumRunupsParam(map);
+    Criterion runupDistance = checkRunupDistanceParams(map);
+    Criterion numofRunups = checkNumRunupsParam(map);
     Criterion waterHeight = checkWaterHeightParams(map);
     Criterion numOfDeaths = checkNumberOfDeathsParams(map);
     Criterion numOfInjuries = checkNumberOfInjuriesParams(map);
     Criterion damageInMill = checkDamageMillionsParam(map);
     Criterion numHousesDest = checkNumHousesDestroyedParams(map);
+    Criterion deathDescription = checkDeathDescriptionParams(map);
+    Criterion injuryDescription = checkInjuryDescriptionParams(map);
+    Criterion damageDescription = checkDamageDescriptionParam(map);
+    Criterion housesDescription = checkHousesDescriptionParam(map);
 
     Conjunction conjunction = Restrictions.conjunction();
 
@@ -98,10 +103,9 @@ public class TsunamiServiceImpl implements TsunamiService{
     if(runupLocation != null){
       conjunction.add(runupLocation);
     }
-//    if(numofRunups != null){
-//      query.setProjection(Projections.rowCount());
-//      query.add(Restrictions.eqProperty())
-//    }
+    if(numofRunups != null){
+      conjunction.add(numofRunups);
+    }
     if(waterHeight != null){
       conjunction.add(waterHeight);
     }
@@ -117,8 +121,25 @@ public class TsunamiServiceImpl implements TsunamiService{
     if(numHousesDest != null){
       conjunction.add(numHousesDest);
     }
+    if(runupDistance != null){
+      conjunction.add(runupDistance);
+    }
+    if(deathDescription != null){
+      conjunction.add(deathDescription);
+    }
+    if(injuryDescription != null){
+      conjunction.add(injuryDescription);
+    }
+    if(damageDescription != null){
+      conjunction.add(damageDescription);
+    }
+    if(housesDescription != null){
+      conjunction.add(housesDescription);
+    }
 
     query.add(conjunction);
+
+    System.out.println(query.toString());
 
     return getEventsByQuery(query);
   }
@@ -170,8 +191,8 @@ public class TsunamiServiceImpl implements TsunamiService{
   @Override
   public Criterion checkValidityParams(Map<String, String> map){
     //TODO: Must validate input min(-1) max(4)
-    Integer minValidity = map.get("minvalidity") != null? new Integer(Integer.parseInt(map.get("minvalidity"))): null;
-    Integer maxValidity = map.get("maxvalidity") != null? new Integer(Integer.parseInt(map.get("maxvalidity"))): null;
+    Integer minValidity = generateInteger(map, "minvalidity");
+    Integer maxValidity = generateInteger(map, "maxvalidity");
     String colName = "eventValidity";
 
     return checkMinMax(minValidity, maxValidity, colName);
@@ -192,8 +213,8 @@ public class TsunamiServiceImpl implements TsunamiService{
   @Override
   public Criterion checkTsunamiCause(Map<String, String> map) {
     //TODO: must validate input min(0) max(11)
-    Integer minCause = map.get("mincause") != null? new Integer(Integer.parseInt(map.get("mincause"))): null;
-    Integer maxCause = map.get("maxcause") != null? new Integer(Integer.parseInt(map.get("maxcause"))): null;
+    Integer minCause = generateInteger(map, "mincause");
+    Integer maxCause = generateInteger(map, "maxcause");
     String colName = "causeCode";
 
     return checkMinMax(minCause, maxCause, colName);
@@ -201,7 +222,7 @@ public class TsunamiServiceImpl implements TsunamiService{
 
   @Override
   public Criterion checkRegionCode(Map<String,String> map){
-    Integer regionCode = map.get("regioncode") != null? new Integer(Integer.parseInt(map.get("regioncode"))): null;
+    Integer regionCode = generateInteger(map, "regioncode");
     if(regionCode != null){
       return Restrictions.eq("regionCode", regionCode);
     }else{
@@ -282,7 +303,7 @@ public class TsunamiServiceImpl implements TsunamiService{
 
   @Override
   public Criterion checkRunupRegionParam(Map<String, String> map) {
-    Integer regionCode = map.get("runupregion") != null? new Integer(Integer.parseInt(map.get("runupregion"))): null;
+    Integer regionCode = generateInteger(map, "runupregion");
     if(regionCode != null){
       return Restrictions.eq("tsRunups.regionCode", regionCode);
     }else{
@@ -312,10 +333,8 @@ public class TsunamiServiceImpl implements TsunamiService{
 
   @Override
   public Criterion checkRunupTravelTimeParams(Map<String, String> map) {
-    Integer travelTimeMin = map.get("runuptraveltimemin") != null?
-        new Integer(Integer.parseInt(map.get("runuptraveltimemin"))): null;
-    Integer travelTimeMax = map.get("runuptraveltimemax") != null?
-        new Integer(Integer.parseInt(map.get("runuptraveltimemax"))): null;
+    Integer travelTimeMin = generateInteger(map, "runuptraveltimemin");
+    Integer travelTimeMax = generateInteger(map, "runuptraveltimemax");
     String colName = "tsRunup.travHours";
 
     return checkMinMax(travelTimeMin, travelTimeMax, colName);
@@ -346,29 +365,14 @@ public class TsunamiServiceImpl implements TsunamiService{
     }
   }
 
-  //  @Override
-//  public Criterion checkRunupDistance(Map<String, String> map) {
-//
-//  }
+  @Override
+  public Criterion checkNumRunupsParam(Map<String, String> map) {
+    Integer min = generateInteger(map, "numberofrunupsmin");
+    Integer max = generateInteger(map, "numberofrunupsmax");
+    String colName = "numRunup";
 
-
-//  @Override
-//  public Criterion checkNumRunupsParam(Map<String, String> map) {
-//    Integer min = map.get("numberofrunupsmin") != null?
-//        new Integer(Integer.parseInt(map.get("numberofrunupsmax"))): null;
-//    Integer max = map.get("numberofrunupsmin") != null?
-//        new Integer(Integer.parseInt(map.get("numberofrunupsmax"))): null;
-//    if(min != null && max != null){
-//      return Restrictions.sqlRestriction("HAVING COUNT(TSEVENT_TSQP.ID) BETWEEN " + min + " AND " + max);
-//    }else if(min != null){
-//      return null;
-//    }else if(max != null){
-//      return null;
-//    }else{
-//      return null;
-//    }
-//  }
-
+    return checkMinMax(min, max, colName);
+  }
 
   @Override
   public Criterion checkWaterHeightParams(Map<String, String> map) {
@@ -382,41 +386,78 @@ public class TsunamiServiceImpl implements TsunamiService{
 
   @Override
   public Criterion checkNumberOfDeathsParams(Map<String, String> map) {
-    Integer numOfDeathsMin = map.get("numberofdeathsmin") != null?
-        new Integer(Integer.parseInt(map.get("numberofdeathsmin"))): null;
-    Integer numOfDeathsMax = map.get("numberofdeathsmax") != null?
-        new Integer(Integer.parseInt(map.get("numberofdeathsmax"))): null;
+    Integer numOfDeathsMin = generateInteger(map, "numberofdeathsmin");
+    Integer numOfDeathsMax = generateInteger(map, "numberofdeathsmax");
     String colName = "deaths";
     return checkMinMax(numOfDeathsMin, numOfDeathsMax, colName);
   }
 
   @Override
   public Criterion checkNumberOfInjuriesParams(Map<String, String> map) {
-    Integer min = map.get("numberofinjuriesmin") != null?
-        new Integer(Integer.parseInt(map.get("numberofinjuriesmin"))): null;
-    Integer max = map.get("numberofinjuriesmax") != null?
-        new Integer(Integer.parseInt(map.get("numberofinjuriesmax"))): null;
+    Integer min = generateInteger(map, "numberofinjuriesmin");
+    Integer max = generateInteger(map, "numberofinjuriesmax");
     String colName = "injuries";
     return checkMinMax(min, max, colName);
   }
 
   @Override
   public Criterion checkDamageMillionsParam(Map<String, String> map) {
-    Integer min = map.get("damageinmillionsmin") != null?
-        new Integer(Integer.parseInt(map.get("damageinmillionsmin"))): null;
-    Integer max = map.get("damageinmillionsmax") != null?
-        new Integer(Integer.parseInt(map.get("damageinmillionsmax"))): null;
+    Integer min = generateInteger(map, "damageinmillionsmin");
+    Integer max = generateInteger(map, "damageinmillionsmax");
     String colName = "injuries";
     return checkMinMax(min, max, colName);
   }
 
   @Override
   public Criterion checkNumHousesDestroyedParams(Map<String, String> map) {
-    Integer min = map.get("numberofhousesdestroyedmin") != null?
-        new Integer(Integer.parseInt(map.get("numberofhousesdestroyedmin"))): null;
-    Integer max = map.get("numberofhousesdestroyedmax") != null?
-        new Integer(Integer.parseInt(map.get("numberofhousesdestroyedmax"))): null;
+    Integer min = generateInteger(map, "numberofhousesdestroyedmin");
+    Integer max = generateInteger(map, "numberofhousesdestroyedmax");
     String colName = "injuries";
+    return checkMinMax(min, max, colName);
+  }
+
+  @Override
+  public Criterion checkRunupDistanceParams(Map<String, String> map) {
+    Integer min = generateInteger(map, "runupdistancemin");
+    Integer max = generateInteger(map, "runupdistancemax");
+    String colName = "tsRunups.distFromSource";
+
+    return checkMinMax(min, max, colName);
+  }
+
+  @Override
+  public Criterion checkDeathDescriptionParams(Map<String, String> map) {
+    Integer min = generateInteger(map, "deathdescriptionmin");
+    Integer max = generateInteger(map, "deathdescriptionmax");
+    String colName = "deathsAmountOrder";
+
+    return checkMinMax(min, max, colName);
+  }
+
+  @Override
+  public Criterion checkInjuryDescriptionParams(Map<String, String> map) {
+    Integer min = generateInteger(map, "injurydescriptionmin");
+    Integer max = generateInteger(map, "injurydescriptionmax");
+    String colName = "injuriesAmountOrder";
+
+    return checkMinMax(min, max, colName);
+  }
+
+  @Override
+  public Criterion checkDamageDescriptionParam(Map<String, String> map) {
+    Integer min = generateInteger(map, "damagedescriptionmin");
+    Integer max = generateInteger(map, "damagedescriptionmax");
+    String colName = "damageAmountOrder";
+
+    return checkMinMax(min, max, colName);
+  }
+
+  @Override
+  public Criterion checkHousesDescriptionParam(Map<String, String> map) {
+    Integer min = generateInteger(map, "housesdestroyeddescriptionmin");
+    Integer max = generateInteger(map, "housesdestroyeddescriptionmax");
+    String colName = "housesAmountOrder";
+
     return checkMinMax(min, max, colName);
   }
 }

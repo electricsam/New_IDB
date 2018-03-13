@@ -48,19 +48,30 @@ public interface TsunamiService {
 
   Criterion checkRunupTravelTimeParams(Map<String, String> map);
 
-//  Criterion checkRunupDistance(Map<String, String> map);
+  Criterion checkRunupDistanceParams(Map<String, String> map);
 
-//  Criterion checkNumRunupsParam(Map<String, String> map);
+  Criterion checkNumRunupsParam(Map<String, String> map);
 
   Criterion checkWaterHeightParams(Map<String, String> map);
 
   Criterion checkNumberOfDeathsParams(Map<String,String> map);
 
+  Criterion checkDeathDescriptionParams(Map<String, String> map);
+
   Criterion checkNumberOfInjuriesParams(Map<String, String> map);
+
+  Criterion checkInjuryDescriptionParams(Map<String, String> map);
 
   Criterion checkDamageMillionsParam(Map<String, String> map);
 
+  Criterion checkDamageDescriptionParam(Map<String, String> map);
+
   Criterion checkNumHousesDestroyedParams(Map<String, String> map);
 
+  Criterion checkHousesDescriptionParam(Map<String, String> map);
+
   Integer generateInteger(Map<String, String> map, String key);
+
+
+
 }
