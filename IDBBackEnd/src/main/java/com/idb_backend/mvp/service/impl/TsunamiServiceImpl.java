@@ -50,19 +50,11 @@ public class TsunamiServiceImpl implements TsunamiService{
     Criterion numOfDeaths = genIntMinMax(map, "numberofdeathsmin", "numberofdeathsmax", "deaths");
     Criterion numOfInjuries = genIntMinMax(map, "numberofinjuriesmin", "numberofinjuriesmax", "injuries");
     Criterion damageInMill = genFloatMinMax(map, "damageinmillionsmin", "damageinmillionsmax", "damageMillionsDollars");
-    Criterion numHousesDest = genIntMinMax(
-        map, "numberofhousesdestroyedmin", "numberofhousesdestroyedmax", "housesDestroyed"
-    );
+    Criterion numHousesDest = genIntMinMax(map, "numhousesdestroyedmin", "numhousesdestroyedmax", "housesDestroyed");
     Criterion deathDescription = genIntMinMax(map, "deathdescriptionmin", "deathdescriptionmax", "deathsAmountOrder");
-    Criterion injuryDescription = genIntMinMax(
-        map, "injurydescriptionmin", "injurydescriptionmax", "injuryAmountOrder"
-    );
-    Criterion damageDescription = genIntMinMax(
-        map, "damagedescriptionmin", "damagedescriptionmax", "damageAmountOrder"
-    );
-    Criterion housesDescription = genIntMinMax(
-        map, "housesdestroyeddescriptionmin", "housesdestroyeddescriptionmax", "housesAmountOrder"
-    );
+    Criterion injuryDescription = genIntMinMax(map, "injurydescriptmin", "injurydescriptmax", "injuryAmountOrder");
+    Criterion damageDescription = genIntMinMax(map, "damagedescriptmin", "damagedescriptmax", "damageAmountOrder");
+    Criterion housesDescription = genIntMinMax(map, "housesdescriptmin", "housesdescriptmax", "housesAmountOrder");
 
     Conjunction conjunction = Restrictions.conjunction();
 
@@ -153,8 +145,6 @@ public class TsunamiServiceImpl implements TsunamiService{
   }
 
   public List<TsunamiEvent> getEventsByQuery(DetachedCriteria query){
-    System.out.println("you have reached the getEvents by Query");
-    System.out.println(query.toString());
     return tsunamiEventRepository.getEventsByQuery(query);
   }
 
