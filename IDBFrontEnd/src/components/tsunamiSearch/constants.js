@@ -556,7 +556,18 @@ const validationConstants = {
   longitude: {min: -180, max: 180},
   eqMag: {min: 0.0, max: 9.5},
   runupDistance: {min: 0, max: 2000},
-  travelTime: {min: 0, max: 60}
+  travelTime: {min: 0, max: 60},
+  numberOfRunups: {min: 0, max: 6200},
+  waterHeight: {min: 0, max: 525},
+  numberOfDeaths: {min: 0, max: 300000},
+  deathDescription: {min: 0, max: 4},
+  numberOfInjuries: {min: 0, max: 20000},
+  injuryDescription: {min: 0, max: 4},
+  damageInMillions: {min: 0, max: 10000},
+  damageDescription: {min: 0, max: 4},
+  numberOfHousesDestroyed:{min: 0, max: 32000},
+  housesDestroyedDescription: {min: 0, max: 4},
+
 }
 
 

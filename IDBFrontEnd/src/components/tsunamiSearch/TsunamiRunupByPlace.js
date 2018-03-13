@@ -162,3 +162,5 @@ const TsunamiRunupByPlace = props => (
 )
 
 export default TsunamiRunupByPlace
+
+//TODO: add propType constraints
