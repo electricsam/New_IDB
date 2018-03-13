@@ -33,17 +33,17 @@ public class TsunamiServiceImpl implements TsunamiService{
     Criterion validity = genIntMinMax(map, "minvalidity", "maxvalidity", "eventValidity");
     Criterion country = genEqRestriction(map, "country", "country");
     Criterion causeCode = genIntMinMax(map,  "mincause", "maxcause", "causeCode");
-    Criterion regionCode = genEqRestriction(map, "regioncode", "regionCode");
+    Criterion regionCode = checkRegionParams(map, "regioncode", "regionCode");
     Criterion area = genEqRestriction(map, "area", "area");
     Criterion latitude = genFloatMinMax(map, "latnorth", "latsouth", "latitude");
     Criterion longitude = genFloatMinMax(map, "longwest", "longeast", "longitude");
     Criterion eqMag = checkEQMagParam(map);
-    Criterion loc = checkLocationParam(map);
-    Criterion runupRegion = genEqRestriction(map, "runupregion", "tsRunups.regionCode");
+    Criterion loc = checkLocParams(map, "runuplocstart", "runuplocend", "runuplocincludes", "runuplocmatch", "runuplocnot", "tsRunup.locationName");
+    Criterion runupRegion = checkRegionParams(map, "runupregion", "tsRunups.regionCode");
     Criterion runupCountry = genEqRestriction(map, "runupcountry", "tsRunups.country");
     Criterion runupArea = genEqRestriction(map, "runuparea", "tsRunups.area");
     Criterion runupTravTime = genIntMinMax(map, "runuptraveltimemin", "runuptraveltimemax", "tsRunup.travHours");
-    Criterion runupLocation = checkRunupLocationParam(map);
+    Criterion runupLocation = checkLocParams(map, "locstart", "locend", "locincludes", "locmatch", "locnot", "locationName" );
     Criterion runupDistance = genIntMinMax(map, "runupdistancemin", "runupdistancemax", "tsRunups.distFromSource");
     Criterion numofRunups = genIntMinMax(map, "numberofrunupsmin", "numberofrunupsmax", "numRunup");
     Criterion waterHeight = genFloatMinMax(map, "waterheightmin", "waterheightmax", "maxEventRunup");
@@ -60,80 +60,55 @@ public class TsunamiServiceImpl implements TsunamiService{
 
     if(year != null){
       conjunction.add(year);
-    }
-    if(validity != null){
+    }if(validity != null){
       conjunction.add(validity);
-    }
-    if(country != null){
+    }if(country != null){
       conjunction.add(country);
-    }
-    if(causeCode != null){
+    }if(causeCode != null){
       conjunction.add(causeCode);
-    }
-    if(regionCode != null){
+    }if(regionCode != null){
       conjunction.add(regionCode);
-    }
-    if(area != null){
+    }if(area != null){
       conjunction.add(area);
-    }
-    if(latitude != null){
+    }if(latitude != null){
       conjunction.add(latitude);
-    }
-    if(longitude != null){
+    }if(longitude != null){
       conjunction.add(longitude);
-    }
-    if(eqMag != null){
+    }if(eqMag != null){
       conjunction.add(eqMag);
-    }
-    if(loc != null){
+    }if(loc != null){
       conjunction.add(loc);
-    }
-    if(runupRegion != null){
+    }if(runupRegion != null){
       conjunction.add(runupRegion);
-    }
-    if(runupCountry != null){
+    }if(runupCountry != null){
       conjunction.add(runupCountry);
-    }
-    if(runupArea != null){
+    }if(runupArea != null){
       conjunction.add(runupArea);
-    }
-    if(runupTravTime != null){
+    }if(runupTravTime != null){
       conjunction.add(runupTravTime);
-    }
-    if(runupLocation != null){
+    }if(runupLocation != null){
       conjunction.add(runupLocation);
-    }
-    if(numofRunups != null){
+    }if(numofRunups != null){
       conjunction.add(numofRunups);
-    }
-    if(waterHeight != null){
+    }if(waterHeight != null){
       conjunction.add(waterHeight);
-    }
-    if(numOfDeaths != null){
+    }if(numOfDeaths != null){
       conjunction.add(numOfDeaths);
-    }
-    if(numOfInjuries != null){
+    }if(numOfInjuries != null){
       conjunction.add(numOfInjuries);
-    }
-    if(damageInMill != null){
+    }if(damageInMill != null){
       conjunction.add(damageInMill);
-    }
-    if(numHousesDest != null){
+    }if(numHousesDest != null){
       conjunction.add(numHousesDest);
-    }
-    if(runupDistance != null){
+    }if(runupDistance != null){
       conjunction.add(runupDistance);
-    }
-    if(deathDescription != null){
+    }if(deathDescription != null){
       conjunction.add(deathDescription);
-    }
-    if(injuryDescription != null){
+    }if(injuryDescription != null){
       conjunction.add(injuryDescription);
-    }
-    if(damageDescription != null){
+    }if(damageDescription != null){
       conjunction.add(damageDescription);
-    }
-    if(housesDescription != null){
+    }if(housesDescription != null){
       conjunction.add(housesDescription);
     }
 
@@ -171,7 +146,8 @@ public class TsunamiServiceImpl implements TsunamiService{
       return null;
     }
   }
-  //TODO: exchange in all places necessary
+
+  @Override
   public Integer generateInteger(Map<String, String> map, String key){
     return map.get(key) != null? new Integer(Integer.parseInt(map.get(key))): null;
   }
@@ -215,30 +191,6 @@ public class TsunamiServiceImpl implements TsunamiService{
   }
 
   @Override
-  public Criterion checkLocationParam(Map<String, String> map) {
-    String locStart = map.get("locstart");
-    String locEnd = map.get("locend");
-    String locIncludes = map.get("locincludes");
-    String locMatch = map.get("locmatch");
-    String locNot = map.get("locnot");
-
-    if(locStart != null){
-      Criterion rest =  Restrictions.ilike("locationName", locStart, MatchMode.START);
-      System.out.println(rest.toString());
-      return rest;
-    }else if(locEnd != null){
-      return Restrictions.ilike("locationName", locEnd, MatchMode.END);
-    }else if(locIncludes != null){
-      return Restrictions.ilike("locationName", locIncludes, MatchMode.ANYWHERE);
-    }else if(locMatch != null){
-      return Restrictions.ilike("locationName", locMatch, MatchMode.EXACT);
-    }else if(locNot != null){
-      return Restrictions.not(Restrictions.ilike("locationName", locNot, MatchMode.EXACT));
-    }else{
-      return null;
-    }
-  }
-
   public Criterion genEqRestriction(Map<String, String> map, String key, String colName){
     String condition = map.get(key);
     if(condition != null){
@@ -249,27 +201,33 @@ public class TsunamiServiceImpl implements TsunamiService{
   }
 
   @Override
-  public Criterion checkRunupLocationParam(Map<String, String> map) {
-    String locStart = map.get("runuplocstart");
-    String locEnd = map.get("runuplocend");
-    String locIncludes = map.get("runuplocincludes");
-    String locMatch = map.get("runuplocmatch");
-    String locNot = map.get("runuplocnot");
-
-    if(locStart != null){
-      Criterion rest =  Restrictions.ilike("tsRunup.locationName", locStart, MatchMode.START);
-      System.out.println(rest.toString());
-      return rest;
-    }else if(locEnd != null){
-      return Restrictions.ilike("tsRunup.locationName", locEnd, MatchMode.END);
-    }else if(locIncludes != null){
-      return Restrictions.ilike("tsRunup.locationName", locIncludes, MatchMode.ANYWHERE);
-    }else if(locMatch != null){
-      return Restrictions.ilike("tsRunup.locationName", locMatch, MatchMode.EXACT);
-    }else if(locNot != null){
-      return Restrictions.not(Restrictions.ilike("tsRunup.locationName", locNot, MatchMode.EXACT));
+  public Criterion checkRegionParams(Map<String, String> map, String key, String colName){
+    Integer condition = generateInteger(map, key);
+    if(condition != null){
+      return Restrictions.eq(colName, condition);
     }else{
       return null;
     }
   }
+
+
+  @Override
+  public Criterion checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
+                           String not, String colName){
+
+    if(start != null){
+      return Restrictions.ilike(colName, start, MatchMode.START);
+    }else if(end != null){
+      return Restrictions.ilike(colName, end, MatchMode.END);
+    }else if(includes != null){
+      return Restrictions.ilike(colName, includes, MatchMode.ANYWHERE);
+    }else if(match != null){
+      return Restrictions.ilike(colName, match, MatchMode.EXACT);
+    }else if(not != null){
+      return Restrictions.not(Restrictions.ilike(colName, not, MatchMode.EXACT));
+    }else{
+      return null;
+    }
+  }
+
 }

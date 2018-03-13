@@ -24,13 +24,15 @@ public interface TsunamiService {
 
   Criterion checkEQMagParam(Map<String,String> map);
 
-  Criterion checkLocationParam(Map<String, String> map);
-
-  Criterion checkRunupLocationParam(Map<String, String> map);
-
   Integer generateInteger(Map<String, String> map, String key);
 
   Float generateFloat(Map<String, String> map, String key);
 
   Criterion genEqRestriction(Map<String, String> map, String key, String colName);
+
+  Criterion checkRegionParams(Map<String, String> map, String key, String colName);
+
+  Criterion checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
+                           String not, String colName);
+
 }
