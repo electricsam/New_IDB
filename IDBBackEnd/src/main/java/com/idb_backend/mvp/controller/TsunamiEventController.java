@@ -1,11 +1,9 @@
 package com.idb_backend.mvp.controller;
 
-import com.idb_backend.mvp.domain.model.TsunamiEvent;
 import com.idb_backend.mvp.domain.model.TsunamiEventView;
+import com.idb_backend.mvp.domain.model.TsunamiEventViewNonPersist;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.service.TsunamiService;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,16 +23,14 @@ public class TsunamiEventController {
 
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents", method= RequestMethod.GET)
-  public @ResponseBody List<TsunamiEvent> getAllEvents(){
+  public @ResponseBody List<TsunamiEventView> getAllEvents(){
     return tsunamiEventRepository.getAllTsunamiEvents();
   }
 
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents/select", method= RequestMethod.GET)
-  public List<TsunamiEvent> getEventsByYear(@RequestParam Map<String, String> allRequestParams){
-    DetachedCriteria query = DetachedCriteria.forClass(TsunamiEventView.class);
-    //testing setProjections to return distinct values on join;
-    return tsunamiService.generateCriteria(allRequestParams, query);
+  public List<TsunamiEventViewNonPersist> getEventsByYear(@RequestParam Map<String, String> allRequestParams){
+    return tsunamiService.generateCriteria(allRequestParams);
   }
 
 }

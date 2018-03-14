@@ -1,38 +1,58 @@
 package com.idb_backend.mvp.service;
 
-import com.idb_backend.mvp.domain.model.TsunamiEvent;
-import com.sun.tools.corba.se.idl.StringGen;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.DetachedCriteria;
+import com.idb_backend.mvp.domain.model.TsunamiEventView;
+import com.idb_backend.mvp.domain.model.TsunamiEventViewNonPersist;
+import com.idb_backend.mvp.domain.model.TsunamiRunupView;
 
+import javax.persistence.criteria.*;
 import java.util.List;
 import java.util.Map;
 
 public interface TsunamiService {
 
-  Criterion checkMinMax(Integer min, Integer max, String colName);
+  Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root);
 
-  Criterion checkMinMax(Float min, Float max, String colName);
+  Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder, Join<TsunamiEventView, TsunamiRunupView> join);
 
-  Criterion genIntMinMax(Map<String, String> map, String minKey, String maxKey, String colName);
+  Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root);
 
-  Criterion genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName);
+  Predicate genIntMinMax(
+      Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder,
+      Root<TsunamiEventView> root
+  );
 
-  List<TsunamiEvent> getEventsByQuery(DetachedCriteria query);
+  Predicate genIntMinMax(
+      Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder,
+      Join<TsunamiEventView, TsunamiRunupView> join
+  );
 
-  List<TsunamiEvent> generateCriteria(Map<String, String> map, DetachedCriteria query);
 
-  Criterion checkEQMagParam(Map<String,String> map);
+  Predicate genFloatMinMax(
+      Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder,
+      Root<TsunamiEventView> root
+  );
+
+  List<TsunamiEventViewNonPersist> getEventsByQuery(CriteriaQuery<TsunamiEventViewNonPersist> criteria);
+
+  List<TsunamiEventViewNonPersist> generateCriteria(Map<String, String> map);
 
   Integer generateInteger(Map<String, String> map, String key);
 
   Float generateFloat(Map<String, String> map, String key);
 
-  Criterion genEqRestriction(Map<String, String> map, String key, String colName);
+  Predicate genEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root);
 
-  Criterion checkRegionParams(Map<String, String> map, String key, String colName);
+  Predicate checkRegionParams(Map<String, String> map, String key, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root);
 
-  Criterion checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
-                           String not, String colName);
+  Predicate checkRegionParams(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
+                              Join<TsunamiEventView, TsunamiRunupView> join );
 
+  Predicate checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
+                           String not, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root);
+
+  Predicate checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
+                           String not, String colName, CriteriaBuilder builder, Join<TsunamiEventView, TsunamiRunupView> join);
+
+  Predicate genEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
+                             Join<TsunamiEventView, TsunamiRunupView> join);
 }

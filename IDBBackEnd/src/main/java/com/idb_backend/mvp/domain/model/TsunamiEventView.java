@@ -5,13 +5,16 @@ import com.vividsolutions.jts.io.WKTWriter;
 import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity(name = "TSEVENT_VSQP")
 @Immutable
-public class TsunamiEventView {
+public class TsunamiEventView implements Serializable{
+  private static final long serialVersionUID = 3678107792576131001L;
+
 
   @Id
   @Column(name = "ID", nullable = false)
@@ -26,8 +29,38 @@ public class TsunamiEventView {
   @Column(name = "DAY")
   private Integer day;
 
+  @Column(name = "HOUR")
+  private Integer hour;
+
+  public Integer getHour() {
+    return hour;
+  }
+
+  public void setHour(Integer hour) {
+    this.hour = hour;
+  }
+
+  public Integer getMinute() {
+    return minute;
+  }
+
+  public void setMinute(Integer minute) {
+    this.minute = minute;
+  }
+
+  @Column(name = "MINUTE")
+  private Integer minute;
+
   @Column(name = "SECOND")
-  private Float Second;
+  private Float second;
+
+  public Float getSecond() {
+    return second;
+  }
+
+  public void setSecond(Float second) {
+    this.second = second;
+  }
 
   @Column(name = "LATITUDE")
   private Float latitude;
@@ -253,13 +286,6 @@ public class TsunamiEventView {
     this.day = day;
   }
 
-  public Float getSecond() {
-    return Second;
-  }
-
-  public void setSecond(Float second) {
-    Second = second;
-  }
 
   public Float getLatitude() {
     return latitude;

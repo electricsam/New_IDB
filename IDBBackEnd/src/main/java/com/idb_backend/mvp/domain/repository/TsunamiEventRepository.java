@@ -1,19 +1,14 @@
 package com.idb_backend.mvp.domain.repository;
 
-import com.idb_backend.mvp.domain.model.TsunamiEvent;
-import org.hibernate.criterion.DetachedCriteria;
+import com.idb_backend.mvp.domain.model.TsunamiEventView;
+import com.idb_backend.mvp.domain.model.TsunamiEventViewNonPersist;
 
-import java.util.HashMap;
+import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
 public interface TsunamiEventRepository {
 
-    List<TsunamiEvent> getAllTsunamiEvents();
+    List<TsunamiEventView> getAllTsunamiEvents();
 
-
-//    List<TsunamiEvent> getEventsByQuery(Integer year, Integer month);
-
-//    List<TsunamiEvent> getEventsByQuery(String whereConditions);
-
-    List<TsunamiEvent> getEventsByQuery(DetachedCriteria query);
+    List<TsunamiEventViewNonPersist> getEventsByQuery(CriteriaQuery<TsunamiEventViewNonPersist> criteria);
 }
