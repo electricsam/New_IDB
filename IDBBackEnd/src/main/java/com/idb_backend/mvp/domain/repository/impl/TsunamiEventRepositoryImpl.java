@@ -22,7 +22,6 @@ public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
   public List<TsunamiEventView> getAllTsunamiEvents(){
     try{
       List<TsunamiEventView> result = em.createQuery("FROM TSEVENT_VSQP").getResultList();
-      System.out.println(result);
       return result;
     }catch (Exception e){
       throw e;

@@ -32,6 +32,8 @@ public class TsunamiServiceImpl implements TsunamiService{
     Join<TsunamiEventView, TsunamiRunupView> join = root.join("tsunamiRunupViews");
     List criteriaList = new ArrayList();
 
+    List<Predicate> predList = new ArrayList<>();
+
     criteria.multiselect(
         root.get("id"), root.get("year"), root.get("month"), root.get("day"), root.get("hour"), root.get("minute"),
         root.get("second"), root.get("country"), root.get("eventValidity"), root.get("causeCode"),
@@ -47,85 +49,56 @@ public class TsunamiServiceImpl implements TsunamiService{
         root.get("housesAmountOrderTotal"), root.get("housesDamagedTotal"), root.get("housesDamAmountOrderTotal")
     ).distinct(true);
 
-    Predicate year = genIntMinMax(map, "minyear", "maxyear", "year", builder, root);
-    Predicate validity = genIntMinMax(map, "minvalidity", "maxvalidity", "eventValidity", builder, root);
-    Predicate country = genEqRestriction(map, "country", "country", builder, root);
-    Predicate causeCode = genIntMinMax(map,  "mincause", "maxcause", "causeCode", builder, root);
-    Predicate regionCode = checkRegionParams(map, "regioncode", "regionCode", builder, root);
-    Predicate area = genEqRestriction(map, "area", "area", builder, root);
-    Predicate latitude = genFloatMinMax(map, "latnorth", "latsouth", "latitude", builder, root);
-    Predicate longitude = genFloatMinMax(map, "longwest", "longeast", "longitude", builder, root);
-    Predicate eqMag = genFloatMinMax(map, "eqmagmin", "eqmagmax", "eqMagnitude", builder, root);
-    Predicate runupLocation = checkLocParams(map, "runuplocstart", "runuplocend", "runuplocincludes", "runuplocmatch", "runuplocnot", "locationName", builder, join);
-    Predicate runupRegion = checkRegionParams(map, "runupregion", "tsRunups.regionCode", builder, join);
-    Predicate runupCountry = genEqRestriction(map, "runupcountry", "country", builder, join);
-    Predicate runupArea = genEqRestriction(map, "runuparea", "area", builder, join);
-    Predicate runupTravTime = genIntMinMax(map, "runuptraveltimemin", "runuptraveltimemax", "travHours", builder, join);
-    Predicate loc = checkLocParams(map, "locstart", "locend", "locincludes", "locmatch", "locnot", "locationName", builder, root );
-    Predicate runupDistance = genIntMinMax(map, "runupdistancemin", "runupdistancemax", "distFromSource", builder, root);
-    Predicate numofRunups = genIntMinMax(map, "numberofrunupsmin", "numberofrunupsmax", "numRunup", builder, root);
-    Predicate waterHeight = genFloatMinMax(map, "waterheightmin", "waterheightmax", "maxEventRunup", builder, root);
-    Predicate numOfDeaths = genIntMinMax(map, "numberofdeathsmin", "numberofdeathsmax", "deaths", builder, root);
-    Predicate numOfInjuries = genIntMinMax(map, "numberofinjuriesmin", "numberofinjuriesmax", "injuries", builder, root);
-    Predicate damageInMill = genFloatMinMax(map, "damageinmillionsmin", "damageinmillionsmax", "damageMillionsDollars", builder, root);
-    Predicate numHousesDest = genIntMinMax(map, "numhousesdestroyedmin", "numhousesdestroyedmax", "housesDestroyed", builder, root);
-    Predicate deathDescription = genIntMinMax(map, "deathdescriptionmin", "deathdescriptionmax", "deathsAmountOrder", builder, root);
-    Predicate injuryDescription = genIntMinMax(map, "injurydescriptmin", "injurydescriptmax", "injuryAmountOrder", builder, root);
-    Predicate damageDescription = genIntMinMax(map, "damagedescriptmin", "damagedescriptmax", "damageAmountOrder", builder, root);
-    Predicate housesDescription = genIntMinMax(map, "housesdescriptmin", "housesdescriptmax", "housesAmountOrder", builder, root);
+    predList.add(genIntMinMax(map, "minyear", "maxyear", "year", builder, root));
+    predList.add(genIntMinMax(map, "minvalidity", "maxvalidity", "eventValidity", builder, root));
+    predList.add(genEqRestriction(map, "country", "country", builder, root));
+    predList.add(genIntMinMax(map,  "mincause", "maxcause", "causeCode", builder, root));
+    predList.add(checkRegionParams(map, "regioncode", "regionCode", builder, root));
+    predList.add(genEqRestriction(map, "area", "area", builder, root));
+    predList.add(genFloatMinMax(map, "latnorth", "latsouth", "latitude", builder, root));
+    predList.add(genFloatMinMax(map, "longwest", "longeast", "longitude", builder, root));
+    predList.add(genFloatMinMax(map, "eqmagmin", "eqmagmax", "eqMagnitude", builder, root));
+    predList.add(checkRegionParams(map, "runupregion", "tsRunups.regionCode", builder, join));
+    predList.add(genEqRestriction(map, "runupcountry", "country", builder, join));
+    predList.add(genEqRestriction(map, "runuparea", "area", builder, join));
+    predList.add(genIntMinMax(map, "runuptraveltimemin", "runuptraveltimemax", "travHours", builder, join));
+    predList.add(genIntMinMax(map, "runupdistancemin", "runupdistancemax", "distFromSource", builder, root));
+    predList.add(genIntMinMax(map, "numberofrunupsmin", "numberofrunupsmax", "numRunup", builder, root));
+    predList.add(genFloatMinMax(map, "waterheightmin", "waterheightmax", "maxEventRunup", builder, root));
+    predList.add(genIntMinMax(map, "numberofdeathsmin", "numberofdeathsmax", "deaths", builder, root));
+    predList.add(genIntMinMax(map, "numberofinjuriesmin", "numberofinjuriesmax", "injuries", builder, root));
+    predList.add(genIntMinMax(map, "numhousesdestroyedmin", "numhousesdestroyedmax", "housesDestroyed", builder, root));
+    predList.add(genIntMinMax(map, "deathdescriptionmin", "deathdescriptionmax", "deathsAmountOrder", builder, root));
+    predList.add(genIntMinMax(map, "injurydescriptmin", "injurydescriptmax", "injuryAmountOrder", builder, root));
+    predList.add(genIntMinMax(map, "damagedescriptmin", "damagedescriptmax", "damageAmountOrder", builder, root));
+    predList.add(genIntMinMax(map, "housesdescriptmin", "housesdescriptmax", "housesAmountOrder", builder, root));
+    predList.add(genIntMinMax(map, "totaldeathsmin", "totaldeathsmax", "deathsTotal", builder, root));
+    predList.add(genEqRestriction(map, "rnpmeasuretype", "typeOfMeasurementId", builder, join));
+    predList.add(genFloatMinMax(map, "rnphtmin", "rnphtmax", "runuoHt", builder, join));
+    predList.add(genIntMinMax(map, "rnpdeathmin", "rnpdeathmax", "deaths", builder, join));
+    predList.add(genIntMinMax(map, "rnpdeathdescripmin", "rnpdeathdescripmax", "deathsAmountOrder", builder, join));
+    predList.add(genIntMinMax(map, "rnpinjurymin", "rnpinjurymax", "injuries", builder, join));
+    predList.add(genIntMinMax(map, "rnpinjurydescripmin", "rnpinjurydescripmax", "injuriesAmountOrder", builder, join));
+    predList.add(genFloatMinMax(map, "rnpdamagemin", "rnpdamagemax", "damageMillionsDollars", builder, join));
+    predList.add(genIntMinMax(map, "rnpdamagedescripmin", "rnpdamagedescripmax", "damageAmountOrder", builder, join));
+    predList.add(genIntMinMax(map, "rnphousesmin", "rnphousesmax", "housesDestroyed", builder, join));
+    predList.add(genIntMinMax(map, "rnphousesdescripmin", "rnphousesdescripmax", "housesAmountOrder", builder, join));
+    predList.add(checkLocParams(map, "runuplocstart", "runuplocend", "runuplocincludes", "runuplocmatch", "runuplocnot",
+        "locationName", builder, join
+    ));
+    predList.add(checkLocParams(map, "locstart", "locend", "locincludes", "locmatch", "locnot", "locationName", builder,
+        root
+    ));
+    predList.add(genIntMinMax(map, "totaldeathdescripmin", "totaldeathdescripmax", "deathsAmountOrderTotal", builder,
+        root));
+    predList.add(genFloatMinMax(map, "damageinmillionsmin", "damageinmillionsmax", "damageMillionsDollars", builder,
+        root
+    ));
 
-    if(year != null){
-      criteriaList.add(year);
-    }if(validity != null){
-      criteriaList.add(validity);
-    }if(country != null){
-      criteriaList.add(country);
-    }if(causeCode != null){
-      criteriaList.add(causeCode);
-    }if(regionCode != null){
-      criteriaList.add(regionCode);
-    }if(area != null){
-      criteriaList.add(area);
-    }if(latitude != null){
-      criteriaList.add(latitude);
-    }if(longitude != null){
-      criteriaList.add(longitude);
-    }if(eqMag != null){
-      criteriaList.add(eqMag);
-    }if(loc != null){
-      criteriaList.add(loc);
-    }if(runupRegion != null){
-      criteriaList.add(runupRegion);
-    }if(runupCountry != null){
-      criteriaList.add(runupCountry);
-    }if(runupArea != null){
-      criteriaList.add(runupArea);
-    }if(runupTravTime != null) {
-      criteriaList.add(runupTravTime);
-    }if(runupLocation != null){
-      criteriaList.add(runupLocation);
-    }if(numofRunups != null){
-      criteriaList.add(numofRunups);
-    }if(waterHeight != null){
-      criteriaList.add(waterHeight);
-    }if(numOfDeaths != null){
-      criteriaList.add(numOfDeaths);
-    }if(numOfInjuries != null){
-      criteriaList.add(numOfInjuries);
-    }if(damageInMill != null){
-      criteriaList.add(damageInMill);
-    }if(numHousesDest != null){
-      criteriaList.add(numHousesDest);
-    }if(runupDistance != null){
-      criteriaList.add(runupDistance);
-    }if(deathDescription != null){
-      criteriaList.add(deathDescription);
-    }if(injuryDescription != null){
-      criteriaList.add(injuryDescription);
-    }if(damageDescription != null){
-      criteriaList.add(damageDescription);
-    }if(housesDescription != null){
-      criteriaList.add(housesDescription);
+    for(int i = 0; i < predList.size(); i++){
+      if(predList.get(i) != null){
+        criteriaList.add(predList.get(i));
+      }
     }
 
     Predicate [] predArray = new Predicate[criteriaList.size()];
@@ -140,7 +113,8 @@ public class TsunamiServiceImpl implements TsunamiService{
   }
 
   @Override
-  public Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root){
+  public Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder,
+                               Root<TsunamiEventView> root){
     if(min != null && max != null){
       return builder.between(root.get(colName), min, max);
     }else if(min != null){
@@ -153,7 +127,8 @@ public class TsunamiServiceImpl implements TsunamiService{
   }
 
   @Override
-  public Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder, Join<TsunamiEventView, TsunamiRunupView> join){
+  public Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder,
+                               Join<TsunamiEventView, TsunamiRunupView> join){
     if(min != null && max != null){
       return builder.between(join.get(colName), min, max);
     }else if(min != null){
@@ -167,13 +142,27 @@ public class TsunamiServiceImpl implements TsunamiService{
 
 
   @Override
-  public Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root){
+  public Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder,
+                               Root<TsunamiEventView> root){
     if(min != null && max != null){
       return builder.between(root.get(colName), min, max);
     }else if(min != null){
       return builder.ge(root.get(colName), min);
     }else if(max != null){
       return builder.le(root.get(colName), max);
+    }else{
+      return null;
+    }
+  }
+
+  public Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder, Join<TsunamiEventView,
+      TsunamiRunupView> join){
+    if(min != null && max != null){
+      return builder.between(join.get(colName), min, max);
+    }else if(min != null){
+      return builder.ge(join.get(colName), min);
+    }else if(max != null){
+      return builder.le(join.get(colName), max);
     }else{
       return null;
     }
@@ -190,7 +179,8 @@ public class TsunamiServiceImpl implements TsunamiService{
   }
 
   @Override
-  public Predicate genIntMinMax(Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root) {
+  public Predicate genIntMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
+                                CriteriaBuilder builder, Root<TsunamiEventView> root) {
     //TODO: need to figure out validation
     Integer min = generateInteger(map, minKey);
     Integer max = generateInteger(map, maxKey);
@@ -208,11 +198,21 @@ public class TsunamiServiceImpl implements TsunamiService{
   }
 
   @Override
-  public Predicate genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root) {
+  public Predicate genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
+                                  CriteriaBuilder builder, Root<TsunamiEventView> root) {
     Float min = generateFloat(map, minKey);
     Float max = generateFloat(map, maxKey);
 
     return checkMinMax(min, max, colName, builder, root);
+  }
+
+  @Override
+  public Predicate genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
+                                  CriteriaBuilder builder, Join<TsunamiEventView, TsunamiRunupView> join) {
+    Float min = generateFloat(map, minKey);
+    Float max = generateFloat(map, maxKey);
+
+    return checkMinMax(min, max, colName, builder, join);
   }
 
   @Override
@@ -238,7 +238,8 @@ public class TsunamiServiceImpl implements TsunamiService{
   }
 
   @Override
-  public Predicate checkRegionParams(Map<String, String> map, String key, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root){
+  public Predicate checkRegionParams(Map<String, String> map, String key, String colName,
+                                     CriteriaBuilder builder, Root<TsunamiEventView> root){
     Integer condition = generateInteger(map, key);
     if(condition != null){
       return builder.equal(root.get(colName), condition);
@@ -280,7 +281,8 @@ public class TsunamiServiceImpl implements TsunamiService{
 
   @Override
   public Predicate checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
-                                  String not, String colName, CriteriaBuilder builder, Join<TsunamiEventView, TsunamiRunupView> join){
+                                  String not, String colName, CriteriaBuilder builder,
+                                  Join<TsunamiEventView, TsunamiRunupView> join){
     if(map.get(start) != null){
       return builder.like(join.get(colName), map.get(start) + "%");
     }else if(map.get(end) != null){
@@ -295,5 +297,7 @@ public class TsunamiServiceImpl implements TsunamiService{
       return null;
     }
   }
+
+
 
 }

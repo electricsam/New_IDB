@@ -12,9 +12,13 @@ public interface TsunamiService {
 
   Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root);
 
-  Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder, Join<TsunamiEventView, TsunamiRunupView> join);
+  Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder, Join<TsunamiEventView,
+      TsunamiRunupView> join);
 
   Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root);
+
+  Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder, Join<TsunamiEventView,
+      TsunamiRunupView> join);
 
   Predicate genIntMinMax(
       Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder,
@@ -30,6 +34,11 @@ public interface TsunamiService {
   Predicate genFloatMinMax(
       Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder,
       Root<TsunamiEventView> root
+  );
+
+  Predicate genFloatMinMax(
+      Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder,
+      Join<TsunamiEventView, TsunamiRunupView> join
   );
 
   List<TsunamiEventViewNonPersist> getEventsByQuery(CriteriaQuery<TsunamiEventViewNonPersist> criteria);
