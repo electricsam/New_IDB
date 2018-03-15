@@ -547,6 +547,26 @@ const regions = [
 
 ]
 
+const runupValidity = [
+  {
+    name: "Valid"
+  }
+]
+
+
+const rnpMeasureType = [
+  { name: "Eyewitness measurement", value: 1},
+  { name: "Tide-gauge measurement", value: 2},
+  { name: "Deep ocean gauge", value: 3},
+  { name: "Water Height, Post-tsunami survey measurement", value: 4},
+  { name: "Runup Height, Post-tsunami survey measurement", value: 5},
+  { name: "Atmospheric Pressure Wave", value: 6},
+  { name: "Seiche", value: 7},
+  { name: "Water Height in harbor, Post-tsunami survey measurement", value: 8},
+  { name: "Splash mark, Post-tsunami survey measurement", value: 9},
+  { name: "Flow Depth, Post-tsunami survey measurement", value: 10}
+
+]
 
 const validationConstants = {
   cause: {min: 0, max: 11},
@@ -570,6 +590,13 @@ const validationConstants = {
 
 }
 
-
-
-export { countries, states, canadianProvince, validationConstants, regions, indonesianProvince, japanesePrefecture }
+export {
+  countries,
+  states,
+  canadianProvince,
+  validationConstants,
+  regions,
+  indonesianProvince,
+  japanesePrefecture,
+  rnpMeasureType,
+}

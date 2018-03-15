@@ -104,14 +104,14 @@ const TotalTsunamiEffects = props => (
     <div>
       <div>Injuries Description</div>
       <MinMax
-        model=".tsunami.search.injurydescriptionmin"
+        model=".tsunami.search.injurydescriptmin"
         title="Min"
         min={validationConstants.injuryDescription.min}
         max={validationConstants.injuryDescription.max}
         validMinMax={props.validateMinMax}
       />
       <MinMax
-        model=".tsunami.search.injurtydescriptionmax"
+        model=".tsunami.search.injurydescriptmax"
         title="Max"
         min={validationConstants.injuryDescription.min}
         max={validationConstants.injuryDescription.max}
@@ -140,14 +140,14 @@ const TotalTsunamiEffects = props => (
     <div>
       <div>Damage Description</div>
       <MinMax
-        model=".tsunami.search.damagedescriptionmin"
+        model=".tsunami.search.damagedescriptmin"
         title="Min"
         min={validationConstants.damageDescription.min}
         max={validationConstants.damageDescription.max}
         validMinMax={props.validateMinMax}
       />
       <MinMax
-        model=".tsunami.search.damagedescriptionmax"
+        model=".tsunami.search.damagedescriptmax"
         title="Max"
         min={validationConstants.damageDescription.min}
         max={validationConstants.damageDescription.max}
@@ -158,14 +158,14 @@ const TotalTsunamiEffects = props => (
     <div>
       <div>Number of Houses Destroyed</div>
       <MinMax
-        model=".tsunami.search.numberofhousesdestoyedmin"
+        model=".tsunami.search.numhousesdestroyedmin"
         title="Min"
         min={validationConstants.numberOfHousesDestroyed.min}
         max={validationConstants.numberOfHousesDestroyed.max}
         validMinMax={props.validateMinMax}
       />
       <MinMax
-        model=".tsunami.search.numberofhousesdestroyedmax"
+        model=".tsunami.search.numhousesdestroyedmax"
         title="Max"
         min={validationConstants.numberOfHousesDestroyed.min}
         max={validationConstants.numberOfHousesDestroyed.max}
@@ -176,14 +176,14 @@ const TotalTsunamiEffects = props => (
     <div>
       <div>Houses Destroyed Description</div>
       <MinMax
-        model=".tsunami.search.housesdestroyeddescriptionmin"
+        model=".tsunami.search.housesdescriptmin"
         title="Min"
         min={validationConstants.housesDestroyedDescription.min}
         max={validationConstants.housesDestroyedDescription.max}
         validMinMax={props.validateMinMax}
       />
       <MinMax
-        model=".tsunami.search.housesdestroyeddescriptionmax"
+        model=".tsunami.search.housesdescriptmax"
         title="Max"
         min={validationConstants.housesDestroyedDescription.min}
         max={validationConstants.housesDestroyedDescription.max}

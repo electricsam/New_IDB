@@ -108,13 +108,24 @@ const TsunamiSourceParameters = props => (
         validMessage={{valid: "Invalid Cause"}}/>
     </div>
 
-    <MinMax
-      model=".tsunami.search.eqmag"
-      title="Earthquake Magnitude"
-      min={validationConstants.eqMag.min}
-      max={validationConstants.eqMag.max}
-      validMinMax={props.validateMinMax}
-      validMessage={{valid: "Invalid Earthquake Magnitude"}}/>
+    <div>
+      <div>Earthquake Magnitude</div>
+      <MinMax
+        model=".tsunami.search.eqmagmin"
+        title="Min"
+        min={validationConstants.eqMag.min}
+        max={validationConstants.eqMag.max}
+        validMinMax={props.validateMinMax}
+        validMessage={{valid: "Invalid Earthquake Magnitude"}}/>
+      <MinMax
+        model=".tsunami.search.eqmagmax"
+        title="Max"
+        min={validationConstants.eqMag.min}
+        max={validationConstants.eqMag.max}
+        validMinMax={props.validateMinMax}
+        validMessage={{valid: "Invalid Earthquake Magnitude"}}/>
+    </div>
+
 
     <div>
       <Control.radio

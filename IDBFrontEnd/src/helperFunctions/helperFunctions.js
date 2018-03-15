@@ -38,6 +38,7 @@ const decodeQueryString = (query) => {
 
 
 const createApiQueryString = (obj) => {
+  //TODO: insert a trim on strings to account for possiblility of spaces entred into boxes with no value
   let result = '';
   for(let key in obj){
     if(obj[key].length) {

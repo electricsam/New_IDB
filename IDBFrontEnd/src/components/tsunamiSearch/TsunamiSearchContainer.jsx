@@ -12,6 +12,7 @@ import DropDown from "../searchFormPartials/DropDown.jsx";
 import TsunamiSourceParameters from './TsunamiSourceParameters';
 import TsunamiRunupByPlace from './TsunamiRunupByPlace';
 import TotalTsunamiEffects from "./TotalTsunamiEffects";
+import TotalTsunamiandSourceEffects from "./TotalTsunamiandSourceEffects";
 
 const errorStyles = {
   color: 'red',
@@ -68,6 +69,8 @@ class TsunamiSearchContainer extends React.Component{
           <TsunamiRunupByPlace validateMinMax={this.validateMinMax} checkRunupLocType={this.checkRunupLocType}/>
 
           <TotalTsunamiEffects validateMinMax={this.validateMinMax}/>
+
+          <TotalTsunamiandSourceEffects validateMinMax={this.validateMinMax}/>
 
         <button type="submit" >
           Submit
