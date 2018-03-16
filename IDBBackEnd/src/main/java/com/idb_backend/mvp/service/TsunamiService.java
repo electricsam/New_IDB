@@ -1,5 +1,6 @@
 package com.idb_backend.mvp.service;
 
+import com.idb_backend.mvp.domain.model.TsunamiEvent;
 import com.idb_backend.mvp.domain.model.TsunamiEventView;
 import com.idb_backend.mvp.domain.model.TsunamiEventViewNonPersist;
 import com.idb_backend.mvp.domain.model.TsunamiRunupView;
@@ -64,4 +65,8 @@ public interface TsunamiService {
 
   Predicate genEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
                              Join<TsunamiEventView, TsunamiRunupView> join);
+
+  void addEvent(TsunamiEvent tsunamiEvent);
+
+  List<TsunamiEvent> checkMaxTsEventId();
 }

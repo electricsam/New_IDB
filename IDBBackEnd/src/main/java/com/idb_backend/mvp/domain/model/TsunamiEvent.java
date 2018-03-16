@@ -220,6 +220,9 @@ public class TsunamiEvent {
   @OneToMany( mappedBy = "tsunamiEvent", cascade = CascadeType.ALL)
   private List<TsunamiRunup> tsunamiRunups = new ArrayList<>();
 
+  @OneToMany( mappedBy = "tsEventId", cascade = CascadeType.ALL)
+  private List<TsunamiRefs> tsunamiRefs = new ArrayList<>();
+
   public int getId() {
     return id;
   }

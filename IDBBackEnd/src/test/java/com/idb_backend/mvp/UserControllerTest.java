@@ -1,8 +1,5 @@
 package com.idb_backend.mvp;
 
-import com.idb_backend.mvp.controller.UserController;
-import com.idb_backend.mvp.domain.model.User;
-import com.idb_backend.mvp.domain.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

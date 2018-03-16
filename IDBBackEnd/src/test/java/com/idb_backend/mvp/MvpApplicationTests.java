@@ -1,6 +1,5 @@
 package com.idb_backend.mvp;
 
-import com.idb_backend.mvp.controller.UserController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

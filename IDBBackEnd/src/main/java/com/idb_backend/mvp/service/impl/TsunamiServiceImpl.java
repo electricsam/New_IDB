@@ -1,5 +1,6 @@
 package com.idb_backend.mvp.service.impl;
 
+import com.idb_backend.mvp.domain.model.TsunamiEvent;
 import com.idb_backend.mvp.domain.model.TsunamiEventView;
 import com.idb_backend.mvp.domain.model.TsunamiEventViewNonPersist;
 import com.idb_backend.mvp.domain.model.TsunamiRunupView;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -250,7 +252,7 @@ public class TsunamiServiceImpl implements TsunamiService{
 
   @Override
   public Predicate checkRegionParams(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
-                              Join<TsunamiEventView, TsunamiRunupView> join ){
+                                     Join<TsunamiEventView, TsunamiRunupView> join ){
     Integer condition = generateInteger(map, key);
     if(condition != null){
       return builder.equal(join.get(colName), condition);
@@ -262,7 +264,7 @@ public class TsunamiServiceImpl implements TsunamiService{
 
   @Override
   public Predicate checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
-                           String not, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root){
+                                  String not, String colName, CriteriaBuilder builder, Root<TsunamiEventView> root){
 
     if(map.get(start) != null){
       return builder.like(root.get(colName), map.get(start) + "%");
@@ -298,6 +300,13 @@ public class TsunamiServiceImpl implements TsunamiService{
     }
   }
 
+  @Override
+  public void addEvent(TsunamiEvent tsunamiEvent){
+    tsunamiEventRepository.addEvent(tsunamiEvent);
+  }
 
-
+  @Override
+  public List<TsunamiEvent> checkMaxTsEventId() {
+    return tsunamiEventRepository.checkMaxTsEventId();
+  }
 }
