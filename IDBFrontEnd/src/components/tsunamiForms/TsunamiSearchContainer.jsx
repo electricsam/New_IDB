@@ -52,7 +52,7 @@ class TsunamiSearchContainer extends React.Component{
   }
 
   toggleSourceForm = () => action({type: "TOGGLE_SOURCE_FORM"});
-
+  
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
   checkLocType = () => this.props.tsunami.get('locType');

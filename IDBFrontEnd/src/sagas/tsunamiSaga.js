@@ -1,4 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import axios from 'axios';
 
 
@@ -41,3 +42,38 @@ export function* watchFetchSpecifiedTSEvents(){
   yield takeEvery('FETCH_SPECIFIED_TS_EVENTS_REQUESTED', fetchSpecifiedTSEvents)
 }
 
+export function* postTsEvent(action){
+  let tsEvent = action.payload;
+  console.log("postTSEVENT action.payload: ", tsEvent);
+  try{
+    const response = yield call(axios.post, "http://localhost:8080/tsunamievents", tsEvent);
+    yield put({
+      type:"POST_TS_EVENT_FULFILLED",
+      payload:{data: response.data}
+    });
+  }catch(error){
+    yield put({type: "POST_TS_EVENT_REJECTED", payload: error});
+  }
+}
+
+export function* watchPostTsEvent(){
+  yield takeEvery("POST_TS_EVENT_REQUESTED", postTsEvent)
+}
+
+export function* postRunup(action){
+  let runup = action.payload;
+  console.log("POST TS RUNUP action.payload: ", runup);
+  try{
+    const response = yield call(axios.post, "http://localhost:8080/tsunamirunups", runup);
+    yield put({
+      type:"POST_TS_RUNUP_FULFILLED",
+      payload:{data: response.data}
+    });
+  }catch(error){
+    yield put({type: "POST_TS_RUNUP_REJECTED", payload: error});
+  }
+}
+
+export function* watchPostRunup() {
+  yield takeEvery("POST_TS_RUNUP_REQUESTED", postRunup)
+}

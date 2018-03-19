@@ -1,4 +1,5 @@
 const countries = [
+  { name: "Select a Country", value: ""},
   { name:'ALBANIA', value: 'ALBANIA'},
   { name:'ALGERIA', value: 'ALGERIA'},
   { name:'ANTARCTICA', value: 'ANTARCTICA'},
@@ -112,6 +113,10 @@ const countries = [
 ]
 
 const states = [
+  {
+    name: "Select a State",
+    value: ""
+  },
   {
     name: "Alabama",
     value: "AL"
@@ -351,6 +356,10 @@ const states = [
 ]
 
 const canadianProvince = [
+  {
+    name: "Select a Province",
+    value: ""
+  },
   { name: "British Columbia",
     value: "BC"
   },
@@ -366,6 +375,7 @@ const canadianProvince = [
 
 
 const japanesePrefecture = [
+  {name: "Select a Prefecture", value: ""},
   { name: 'AICHI', value: 'AICHI'},
   { name: 'AKITA', value: 'AKITA'},
   { name: 'AOMORI', value: 'AOMORI'},
@@ -419,6 +429,7 @@ const japanesePrefecture = [
 ]
 
 const indonesianProvince = [
+  {name: "Select a Province", value: ""},
   {name: 'ACEH', value: 'ACEH'},
   {name: 'BALI', value: 'BALI'},
   {name: 'BANGKA-BELITUNG', value: 'BANGKA-BELITUNG'},
@@ -453,6 +464,10 @@ const indonesianProvince = [
 
 
 const regions = [
+  {
+    name: "Select a Region",
+    value: ""
+  },
   { name: "West coast of Africa",
     value: 77
   },
@@ -545,16 +560,39 @@ const regions = [
     value: 89
   }
 
-]
+];
+
+const effectDescriptions = [
+  {name: "None Selected", value: 0},
+  {name: "Few (1 to 50)", value: 1},
+  {name: "Some (51 to 100)", value: 2},
+  {name: "Many (101 to 1000)", value: 3},
+  {name: "Very Many (> 1000)", value: 4},
+];
+
+const damageMillions =[
+  {name: "None Selected", value: 0},
+  {name: "Limited (< $1 Million)", value: 1},
+  {name: "Moderate ($1 to $5 Million)", value: 2},
+  {name: "Severe (> $5 to $24 Million)", value: 3},
+  {name: "Extreme (> $24 Million)", value: 4},
+];
+
+const firstMotion = [
+  {name: "None Selected", value: ""},
+  {name: "Rise", value: "R"},
+  {name: "Fall", value: "F"}
+];
 
 const runupValidity = [
   {
     name: "Valid"
   }
-]
+];
 
 
 const rnpMeasureType = [
+  { name: "Select a Measurement Type", value: ""},
   { name: "Eyewitness measurement", value: 1},
   { name: "Tide-gauge measurement", value: 2},
   { name: "Deep ocean gauge", value: 3},
@@ -571,6 +609,12 @@ const rnpMeasureType = [
 const validationConstants = {
   cause: {min: 0, max: 11},
   year: {min: -2000, max: (new Date).getFullYear()},
+  month: {min: 1, max: 12},
+  //TODO: develope a function that validates num days based on the inputed month;
+  day: {min: 1, max: 31},
+  hour: {min: 0, max: 24},
+  minute: {min: 0, max: 60},
+  second: {min:0, max:60},
   validity: {min: -1, max: 4},
   latitude: {min: -90, max: 90},
   longitude: {min: -180, max: 180},
@@ -579,6 +623,7 @@ const validationConstants = {
   travelTime: {min: 0, max: 60},
   numberOfRunups: {min: 0, max: 6200},
   waterHeight: {min: 0, max: 525},
+  horizInnundation: {min: 0, max: 10000},
   numberOfDeaths: {min: 0, max: 300000},
   deathDescription: {min: 0, max: 4},
   numberOfInjuries: {min: 0, max: 20000},
@@ -587,7 +632,10 @@ const validationConstants = {
   damageDescription: {min: 0, max: 4},
   numberOfHousesDestroyed:{min: 0, max: 32000},
   housesDestroyedDescription: {min: 0, max: 4},
-
+  eqDepth: {min:0, max:800},
+  tsMag: {min: -20, max: -20},
+  warningStatus: {min: -1, max: 4},
+  period: {min: 0, max: 180},
 }
 
 export {
@@ -599,4 +647,8 @@ export {
   indonesianProvince,
   japanesePrefecture,
   rnpMeasureType,
+  firstMotion,
+  effectDescriptions,
+  damageMillions,
+
 }

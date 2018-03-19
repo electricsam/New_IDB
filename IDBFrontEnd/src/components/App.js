@@ -10,8 +10,10 @@ import Styles from './AppStyle.css';
 import Home from './home/Home.jsx';
 import {history} from '../store';
 import FourZeroFour from "./FourZeroFour/FourZeroFour";
-import TsunamiSearchContainer from "./tsunamiSearch/TsunamiSearchContainer.jsx";
+import TsunamiSearchContainer from "./tsunamiForms/TsunamiSearchContainer.jsx";
 import UserDisplay from "./user/UserDisplay";
+import TsunamiInsertContainer from "./tsunamiForms/TsunamiInsertContainer";
+import RunupInsertContainer from "./tsunamiForms/RunupInsertContainer";
 
 class App extends React.Component {
   render() {
@@ -26,6 +28,8 @@ class App extends React.Component {
             <Route exact path="/about" component={AboutPage} />
             <Route exact path="/form" component={TsunamiSearchContainer}/>
             <Route exact path={'/userdisplay'} component={UserDisplay}/>
+            <Route exact path="/tsunamis/insertevent" component={TsunamiInsertContainer}/>
+            <Route exact path="/tsunamis/insertrunup" component={RunupInsertContainer}/>
             {/*Must have 404 component listed last*/}
             <Route path ="*" component={FourZeroFour}/>
           </Switch>

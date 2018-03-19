@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 import Styles from '../tsunamiForms/TsunamiSearchContainerStyle.css';
 
-const MinMax = props => (
+const Text = props => (
   <div>
     <label htmlFor={props.model}>{props.title}</label>
     <Control.text
       model={props.model}
       id={props.model}
       validators={{
-        valid: val => props.validMinMax(val, props.min, props.max)
+        valid: val => props.validate(val, props.validArgs)
       }}
       validateOn="blur" required={false}>
     </Control.text>
@@ -24,12 +24,4 @@ const MinMax = props => (
   </div>
 );
 
-export default MinMax;
-
-MinMax.propTypes = {
-  model: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  validMinMax: PropTypes.func.isRequired,
-}
+export default Text;
