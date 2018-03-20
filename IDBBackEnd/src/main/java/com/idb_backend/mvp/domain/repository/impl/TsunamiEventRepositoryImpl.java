@@ -1,15 +1,12 @@
 package com.idb_backend.mvp.domain.repository.impl;
 
-import com.idb_backend.mvp.domain.model.TsunamiEvent;
-import com.idb_backend.mvp.domain.model.TsunamiEventView;
-import com.idb_backend.mvp.domain.model.TsunamiEventViewNonPersist;
+import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
@@ -44,5 +41,20 @@ public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
   @Override
   public List<TsunamiEvent> checkMaxTsEventId(){
     return em.createQuery("FROM TSEVENT_TSQP ORDER BY ID DESC").getResultList();
+  }
+
+  @Override
+  public List<TsunamiRunup> checkMaxRunupId(){
+    return em.createQuery("FROM TSRUNUP_TSQP ORDER BY ID DESC").getResultList();
+  }
+
+  @Override
+  public void addRunup(TsunamiRunup tsunamiRunup) {
+    em.persist(tsunamiRunup);
+  }
+
+  @Override
+  public List<TsunamiRunupViewNonPersist> getRunupsByQuery(CriteriaQuery<TsunamiRunupViewNonPersist> criteria){
+    return em.createQuery(criteria).getResultList();
   }
 }

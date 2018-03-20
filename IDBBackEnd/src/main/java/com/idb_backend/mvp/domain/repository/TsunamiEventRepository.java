@@ -1,8 +1,6 @@
 package com.idb_backend.mvp.domain.repository;
 
-import com.idb_backend.mvp.domain.model.TsunamiEvent;
-import com.idb_backend.mvp.domain.model.TsunamiEventView;
-import com.idb_backend.mvp.domain.model.TsunamiEventViewNonPersist;
+import com.idb_backend.mvp.domain.model.*;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
@@ -17,4 +15,10 @@ public interface TsunamiEventRepository {
     void addEvent(TsunamiEvent tsunamiEvent);
 
     List<TsunamiEvent> checkMaxTsEventId();
+
+    List<TsunamiRunup> checkMaxRunupId();
+
+    void addRunup(TsunamiRunup tsunamiRunup);
+
+    List<TsunamiRunupViewNonPersist> getRunupsByQuery(CriteriaQuery<TsunamiRunupViewNonPersist> criteria);
 }

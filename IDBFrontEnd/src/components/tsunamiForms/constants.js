@@ -636,6 +636,7 @@ const validationConstants = {
   tsMag: {min: -20, max: -20},
   warningStatus: {min: -1, max: 4},
   period: {min: 0, max: 180},
+  distanceRnpLoc:{min: 0, max: 20000},
 }
 
 export {
