@@ -61,6 +61,6 @@ public interface TsunamiEventService {
 
   List<TsunamiRunupViewNonPersist> generateRunupCriteria(Map<String, String> map);
 
-
+  void updateEvent(TsunamiEvent tsunamiEvent);
 
 }

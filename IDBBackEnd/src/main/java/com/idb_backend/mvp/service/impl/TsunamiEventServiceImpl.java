@@ -312,11 +312,10 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
     return tsunamiEventRepository.checkMaxRunupId();
   }
 
-
-/*
-  This Section is for TS RUNUP
- */
-
+  @Override
+  public void updateEvent(TsunamiEvent tsunamiEvent) {
+    tsunamiEventRepository.updateEvent(tsunamiEvent);
+  }
 
   @Override
   public List<TsunamiRunupViewNonPersist> generateRunupCriteria(Map<String, String> map) {
@@ -329,47 +328,16 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
     List<Predicate> predList = new ArrayList<>();
 
     criteria.multiselect(
-        root.get("id"),
-        join.get("year"),
-        join.get("month"),
-        join.get("day"),
-        join.get("hour"),
-        join.get("second"),
-        join.get("eventValidity"),
-        join.get("causeCode"),
-        join.get("eqMagnitude"),
-        root.get("country"),
-        root.get("area"),
-        root.get("locationName"),
-        root.get("latitude"),
-        root.get("longitude"),
-        root.get("distFromSource"),
-        root.get("arrDay"),
-        root.get("arrHour"),
-        root.get("arrMin"),
-        root.get("travHours"),
-        root.get("travMins"),
-        root.get("runupHt"),
-        root.get("runupHoriz"),
-        root.get("typeOfMeasurementId"),
-        root.get("period"),
-        root.get("firstMotion"),
-        root.get("deaths"),
-        root.get("deathsAmountOrder"),
-        root.get("injuries"),
-        root.get("injuriesAmountOrder"),
-        root.get("damageMillionsDollars"),
-        root.get("damageAmountOrder"),
-        root.get("housesDestroyed"),
-        root.get("housesAmountOrder"),
-        root.get("housesDamaged"),
-        root.get("housesDamagedAmountOrder")
+        root.get("id"), join.get("year"), join.get("month"), join.get("day"), join.get("hour"), join.get("second"),
+        join.get("eventValidity"), join.get("causeCode"), join.get("eqMagnitude"), root.get("country"),
+        root.get("area"), root.get("locationName"), root.get("latitude"), root.get("longitude"),
+        root.get("distFromSource"), root.get("arrDay"), root.get("arrHour"), root.get("arrMin"), root.get("travHours"),
+        root.get("travMins"), root.get("runupHt"), root.get("runupHoriz"), root.get("typeOfMeasurementId"),
+        root.get("period"), root.get("firstMotion"), root.get("deaths"), root.get("deathsAmountOrder"),
+        root.get("injuries"), root.get("injuriesAmountOrder"), root.get("damageMillionsDollars"),
+        root.get("damageAmountOrder"), root.get("housesDestroyed"), root.get("housesAmountOrder"),
+        root.get("housesDamaged"), root.get("housesDamagedAmountOrder")
     ).distinct(true);
-
-
-
-
-
 
     predList.add(genIntMinMax(map, "tsminyear", "tsmaxyear", "year", builder, join));
     predList.add(genEqRestriction(map, "tsregion", "regionCode", builder, join));
@@ -379,13 +347,13 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
     predList.add(genIntMinMax(map, "distancemin", "distancemax", "distFromSource", builder, root));
     predList.add(genFloatMinMax(map, "latnorth", "latsouth", "latitude", builder, root));
     predList.add(genFloatMinMax(map, "longwest", "longeast", "longitude", builder, root));
-    predList.add(checkLocParams(map, "locstart", "locend", "locincludes", "locmatch", "locnot", "locationName", builder,
-        root
-    ));
     predList.add(genFloatMinMax(map, "minwaterht", "maxwaterht", "runupHt", builder, root));
     predList.add(genEqRestriction(map, "typeofmeasure", "typeOfMeasurementId", builder, root));
     predList.add(genIntMinMax(map, "deathsmin", "deathsmax", "deaths", builder, root));
     predList.add(genIntMinMax(map, "damagemillioinsmin", "damagemillioinsmax", "damageMillionsDollars", builder, root));
+    predList.add(checkLocParams(map, "locstart", "locend", "locincludes", "locmatch", "locnot", "locationName", builder,
+        root
+    ));
 
     for(int i = 0; i < predList.size(); i++){
       if(predList.get(i) != null){
@@ -404,4 +372,8 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
   List<TsunamiRunupViewNonPersist> getRunupsByQuery(CriteriaQuery<TsunamiRunupViewNonPersist> criteria){
     return tsunamiEventRepository.getRunupsByQuery(criteria);
   }
+
+
+
+
 }

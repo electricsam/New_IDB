@@ -2,17 +2,23 @@ package com.idb_backend.mvp.domain.model;
 
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity(name = "TSEVENT_TSQP")
-public class TsunamiEvent {
+@Table(name = "TSEVENT_TSQP")
+@DynamicUpdate
+public class TsunamiEvent implements Serializable {
+  private static final long serialVersionUID = 1905162041950251407L;
+
   @Id
   @Column(name = "ID", nullable = false)
-  private int id;
+  private Integer id;
 
   @Column(name = "YEAR")
   private Integer year;
@@ -223,11 +229,11 @@ public class TsunamiEvent {
   @OneToMany( mappedBy = "tsEventId", cascade = CascadeType.ALL)
   private List<TsunamiRefs> tsunamiRefs = new ArrayList<>();
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
