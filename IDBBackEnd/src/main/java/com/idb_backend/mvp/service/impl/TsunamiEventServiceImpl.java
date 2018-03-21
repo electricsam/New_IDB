@@ -47,6 +47,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
         root.get("housesAmountOrderTotal"), root.get("housesDamagedTotal"), root.get("housesDamAmountOrderTotal")
     ).distinct(true);
 
+
     predList.add(genIntMinMax(map, "minyear", "maxyear", "year", builder, root));
     predList.add(genIntMinMax(map, "minvalidity", "maxvalidity", "eventValidity", builder, root));
     predList.add(genEqRestriction(map, "country", "country", builder, root));

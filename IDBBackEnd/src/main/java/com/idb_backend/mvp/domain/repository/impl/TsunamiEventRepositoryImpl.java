@@ -5,9 +5,7 @@ import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
 import java.util.List;
 
@@ -62,6 +60,10 @@ public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
   @Override
   public void updateEvent(TsunamiEvent tsunamiEvent) {
     System.out.println(tsunamiEvent.getId());
+
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory()
+
+
     TsunamiEvent tsunamiEvent1 = new TsunamiEvent();
     tsunamiEvent1.setId(5672);
     tsunamiEvent.setLongitude(new Float(30.22));
