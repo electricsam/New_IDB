@@ -23,4 +23,6 @@ public interface TsunamiEventRepository {
     List<TsunamiRunupViewNonPersist> getRunupsByQuery(CriteriaQuery<TsunamiRunupViewNonPersist> criteria);
 
     void updateEvent(TsunamiEvent tsunamiEvent);
+
+    TsunamiEvent getEventById(Integer id);
 }

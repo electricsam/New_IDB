@@ -30,14 +30,18 @@ public class TsunamiEventController {
   }
 
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
+  @RequestMapping(value = "/tsunamievent/{id}", method= RequestMethod.GET)
+  public @ResponseBody TsunamiEvent getEventById(@PathVariable("id") Integer id){
+    return tsunamiEventRepository.getEventById(id);
+  }
+
+
+  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents/{id}", method = RequestMethod.PATCH)
     public TsunamiEvent patchEvent( @PathVariable("id") Integer id,
     @RequestBody TsunamiEvent tsunamiEvent
     ){
-      System.out.println("THIS IS THE PATH VARIABLE: " + id);
-      System.out.println(tsunamiEvent.getLocationName());
       tsunamiEvent.setId(id);
-      System.out.println(tsunamiEvent.getId());
       tsunamiEventService.updateEvent(tsunamiEvent);
       return tsunamiEvent;
     }

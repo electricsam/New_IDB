@@ -2,6 +2,7 @@ package com.idb_backend.mvp.domain.repository.impl;
 
 import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,9 @@ public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
     return em.createQuery(criteria).getResultList();
   }
 
+  public TsunamiEvent getEventById(Integer id){
+    return em.find(TsunamiEvent.class, id);
+  }
 
   @Override
   public void addEvent(TsunamiEvent tsunamiEvent) {
@@ -58,19 +62,11 @@ public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
   }
 
   @Override
-  public void updateEvent(TsunamiEvent tsunamiEvent) {
-    System.out.println(tsunamiEvent.getId());
-
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory()
-
-
-    TsunamiEvent tsunamiEvent1 = new TsunamiEvent();
-    tsunamiEvent1.setId(5672);
-    tsunamiEvent.setLongitude(new Float(30.22));
-    em.merge(tsunamiEvent1);
-//    TsunamiEvent te = em.find(TsunamiEvent.class, tsunamiEvent.getId());
-//    te.setLocationName("SEANIEVILLEASELYISELISELIU");
-//    em.merge(tsunamiEvent);
-//      TsunamiEvent mergedEvent = (TsunamiEvent) em.merge(tsunamiEvent);
+  public void updateEvent(TsunamiEvent te) {
+    Session session = em.unwrap(Session.class);
+    session.saveOrUpdate(te);
+    session.close();
   }
+
+
 }

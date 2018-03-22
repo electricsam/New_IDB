@@ -22,6 +22,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
   @Autowired
   TsunamiEventRepository tsunamiEventRepository;
 
+
   public List<TsunamiEventViewNonPersist> generateCriteria (Map<String, String> map){
 
     CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -373,8 +374,5 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
   List<TsunamiRunupViewNonPersist> getRunupsByQuery(CriteriaQuery<TsunamiRunupViewNonPersist> criteria){
     return tsunamiEventRepository.getRunupsByQuery(criteria);
   }
-
-
-
 
 }

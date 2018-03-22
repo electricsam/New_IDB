@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity(name = "TSEVENT_TSQP")
+@Entity
+@DynamicUpdate(value = true)
 @Table(name = "TSEVENT_TSQP")
-@DynamicUpdate
 public class TsunamiEvent implements Serializable {
   private static final long serialVersionUID = 1905162041950251407L;
 
@@ -223,11 +223,11 @@ public class TsunamiEvent implements Serializable {
   @Column(name = "PREVIOUS_STATE")
   private String previousState;
 
-  @OneToMany( mappedBy = "tsunamiEvent", cascade = CascadeType.ALL)
-  private List<TsunamiRunup> tsunamiRunups = new ArrayList<>();
-
-  @OneToMany( mappedBy = "tsEventId", cascade = CascadeType.ALL)
-  private List<TsunamiRefs> tsunamiRefs = new ArrayList<>();
+//  @OneToMany( mappedBy = "tsunamiEvent", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+//  private List<TsunamiRunup> tsunamiRunups = new ArrayList<>();
+//
+//  @OneToMany( mappedBy = "tsEventId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//  private List<TsunamiRefs> tsunamiRefs = new ArrayList<>();
 
   public Integer getId() {
     return id;
