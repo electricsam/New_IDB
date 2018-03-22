@@ -12,6 +12,7 @@ export const initialState = fromJS({
   fetchedTsEvent: false,
   error: null,
   TsEvents: [],
+  tsEvent:{},
   headersAndAccessors: [],
   showSourceForm: true
 });
@@ -71,7 +72,15 @@ export default function reducer(state=initialState, action){
     case 'POST_TS_RUNUP_FULFILLED': {
       return state.merge(state, {postingRunup: false, postedRunup: true, postedRunupData: action.payload.data});
     }
-
+    case 'FETCH_TS_EVENT': {
+      return state.merge(state, {fetchingTsEvent: true});
+    }
+    case 'FETCH_TS_EVENT_FULFILLED': {
+      return state.merge(state, {fetchingTsEvent: false, fetchedTsEvent:true, tsEvent: action.payload});
+    }
+    case 'FETCH_TS_EVENT_REJECTED': {
+      return state.merge(state, {fetchingTsEvent: false, fetchedTsEvent: false, error: action.payload});
+    }
     default:
       return state;
   }

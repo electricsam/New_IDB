@@ -16,116 +16,120 @@ import MinMax from '../searchFormPartials/MinMax';
 import Styles from './TsunamiSearchContainerStyle.css';
 
 
-const InsertTsunami = props => (
+const UpdateTsunami = props => (
   <div>
-    <MinMax model=".tsunami.insert.year"
+    <MinMax model=".tsunami.tsEvent.year"
             title="Year"
             min={validationConstants.year.min}
             max={validationConstants.year.max}
             validMinMax={props.validateMinMax}/>
-    <MinMax model=".tsunami.insert.month"
+    <MinMax model=".tsunami.tsEvent.month"
             title="Month"
             min={validationConstants.month.min}
             max={validationConstants.month.max}
             validMinMax={props.validateMinMax}/>
-    <MinMax model=".tsunami.insert.day"
+    <MinMax model=".tsunami.tsEvent.day"
             title="Day"
             min={validationConstants.day.min}
             max={validationConstants.day.max}
             validMinMax={props.validateMinMax}/>
-    <MinMax model=".tsunami.insert.hour"
+    <MinMax model=".tsunami.tsEvent.hour"
             title="Hour"
             min={validationConstants.hour.min}
             max={validationConstants.hour.max}
             validMinMax={props.validateMinMax}/>
-    <MinMax model=".tsunami.insert.minute"
+    <MinMax model=".tsunami.tsEvent.minute"
             title="Minute"
             min={validationConstants.minute.min}
             max={validationConstants.minute.max}
             validMinMax={props.validateMinMax}/>
-    <MinMax model=".tsunami.insert.second"
+    <MinMax model=".tsunami.tsEvent.second"
             title="Second"
             min={validationConstants.second.min}
             max={validationConstants.second.max}
             validMinMax={props.validateMinMax}/>
-    <MinMax model=".tsunami.insert.latitude"
+    <Control.text
+      model=".tsunami.tsEvent.latitude"
+      id=".tsunami.tsEvent.latitude"
+    />
+    <MinMax model=".tsunami.tsEvent.latitude"
             title="Latitude"
             min={validationConstants.latitude.min}
             max={validationConstants.latitude.max}
             validMinMax={props.validateMinMax}/>
-    <MinMax model=".tsunami.insert.longitude"
+    <MinMax model=".tsunami.tsEvent.longitude"
             title="Longitude"
             min={validationConstants.longitude.min}
             max={validationConstants.longitude.max}
             validMinMax={props.validateMinMax}/>
-    <MinMax model=".tsunami.insert.eqDepth"
+    <MinMax model=".tsunami.tsEvent.eqDepth"
             title="Earthquake Depth"
             min={validationConstants.eqDepth.min}
             max={validationConstants.eqDepth.max}
             validMinMax={props.validateMinMax}/>
     <div>
-      <label htmlFor=".tsunami.insert.locationName">Location Name</label>
+      <label htmlFor=".tsunami.tsEvent.locationName">Location Name</label>
       <Control.text
-        model=".tsunami.insert.locationName"
-        id=".tsunami.insert.locationName"
+        model=".tsunami.tsEvent.locationName"
+        id=".tsunami.tsEvent.locationName"
       />
     </div>
-    <DropDown title="Country" model=".tsunami.insert.country" data={countries}/>
-    <DropDown title="Region" model=".tsunami.insert.region" data={regions}/>
+    <DropDown title="Country" model=".tsunami.tsEvent.country" data={countries}/>
+    <DropDown title="Region" model=".tsunami.tsEvent.regionCode" data={regions}/>
 
     <div>
       <div>Area</div>
-      <DropDown title="State" model=".tsunami.insert.area" data={states}/>
-      <DropDown title="Canadian Province" model=".tsunami.insert.area" data={canadianProvince}/>
-      <DropDown title="Japanese Prefecture" model=".tsunami.insert.area" data={japanesePrefecture}/>
-      <DropDown title="Indonesian Province" model=".tsunami.insert.area" data={indonesianProvince}/>
+      <DropDown title="State" model=".tsunami.tsEvent.area" data={states}/>
+      <DropDown title="Canadian Province" model=".tsunami.tsEvent.area" data={canadianProvince}/>
+      <DropDown title="Japanese Prefecture" model=".tsunami.tsEvent.area" data={japanesePrefecture}/>
+      <DropDown title="Indonesian Province" model=".tsunami.tsEvent.area" data={indonesianProvince}/>
     </div>
 
     <div>
       <div>Earthquake Magnitude</div>
-      <MinMax model=".tsunami.insert.eqMagUnk"
+      <MinMax model=".tsunami.tsEvent.eqMagUnk"
               title="UNK"
               min={validationConstants.eqMag.min}
               max={validationConstants.eqMag.max}
               validMinMax={props.validateMinMax}/>
-      <MinMax model=".tsunami.insert.eqMagMb"
+      <MinMax model=".tsunami.tsEvent.eqMagMb"
               title="MB"
               min={validationConstants.eqMag.min}
               max={validationConstants.eqMag.max}
               validMinMax={props.validateMinMax}/>
-      <MinMax model=".tsunami.insert.eqMagMs"
+      <MinMax model=".tsunami.tsEvent.eqMagMs"
               title="MS"
               min={validationConstants.eqMag.min}
               max={validationConstants.eqMag.max}
               validMinMax={props.validateMinMax}/>
-      <MinMax model=".tsunami.insert.eqMagMw"
+      <MinMax model=".tsunami.tsEvent.eqMagMw"
               title="MW"
               min={validationConstants.eqMag.min}
               max={validationConstants.eqMag.max}
               validMinMax={props.validateMinMax}/>
-      <MinMax model=".tsunami.insert.eqMagMfa"
+      <MinMax model=".tsunami.tsEvent.eqMagMfa"
               title="Mfa"
               min={validationConstants.eqMag.min}
               max={validationConstants.eqMag.max}
               validMinMax={props.validateMinMax}/>
-      <MinMax model=".tsunami.insert.eqMagMl"
+      <MinMax model=".tsunami.tsEvent.eqMagMl"
               title="ML"
               min={validationConstants.eqMag.min}
               max={validationConstants.eqMag.max}
               validMinMax={props.validateMinMax}/>
     </div>
 
-    <MinMax model=".tsunami.insert.causeCode"
+    <MinMax model=".tsunami.tsEvent.causeCode"
             title="Cause Code"
             min={validationConstants.cause.min}
             max={validationConstants.cause.max}
             validMinMax={props.validateMinMax}/>
-    <MinMax model=".tsunami.insert.eventValidity"
+    <MinMax model=".tsunami.tsEvent.eventValidity"
             title="Event Validity"
             min={validationConstants.validity.min}
             max={validationConstants.validity.max}
             validMinMax={props.validateMinMax}/>
-    <MinMax model=".tsunami.insert.maxEventRunup"
+    <MinMax model=".tsunami.tsEvent.maxEventRunup"
             title="Maximum Water Height (meters)"
             min={validationConstants.waterHeight.min}
             max={validationConstants.waterHeight.max}
@@ -133,25 +137,25 @@ const InsertTsunami = props => (
 
     <div>
       <div>Tsunami Magnitude</div>
-      <MinMax model=".tsunami.insert.eqMtAbe"
+      <MinMax model=".tsunami.tsEvent.tsMtAbe"
               title="Abe"
               min={validationConstants.tsMag.min}
               max={validationConstants.tsMag.max}
               validMinMax={props.validateMinMax}/>
-      <MinMax model=".tsunami.insert.eqMtII"
+      <MinMax model=".tsunami.tsEvent.tsMtII"
               title="Iida-Imamura"
               min={validationConstants.tsMag.min}
               max={validationConstants.tsMag.max}
               validMinMax={props.validateMinMax}/>
     </div>
 
-    <MinMax model=".tsunami.insert.tsIntensity"
+    <MinMax model=".tsunami.tsEvent.tsIntensity"
             title="Tsunami Intensity: Soloviev"
             min={validationConstants.tsMag.min}
             max={validationConstants.tsMag.max}
             validMinMax={props.validateMinMax}/>
 
-    <MinMax model=".tsunami.insert.warningStatusId"
+    <MinMax model=".tsunami.tsEvent.warningStatusId"
             title="Tsunami Warning Status"
             min={validationConstants.warningStatus.min}
             max={validationConstants.warningStatus.max}
@@ -160,14 +164,14 @@ const InsertTsunami = props => (
     <div>
       <div>Damage</div>
       <MinMax
-        model=".tsunami.insert.damageMillionsofDollars"
+        model=".tsunami.tsEvent.damageMillionsDollars"
         title="Damage in Millions of Dollars"
         min={validationConstants.damageInMillions.min}
         max={validationConstants.damageInMillions.max}
         validMinMax={props.validateMinMax}
       />
       <MinMax
-        model=".tsunami.insert.damageAmountOrder"
+        model=".tsunami.tsEvent.damageAmountOrder"
         title="Damage Description"
         min={validationConstants.damageDescription.min}
         max={validationConstants.damageDescription.max}
@@ -178,14 +182,14 @@ const InsertTsunami = props => (
     <div>
       <div>Houses Destoyed</div>
       <MinMax
-        model=".tsunami.insert.housesDestroyed"
+        model=".tsunami.tsEvent.housesDestroyed"
         title="Number of Houses Destroyed"
         min={validationConstants.numberOfHousesDestroyed.min}
         max={validationConstants.numberOfHousesDestroyed.max}
         validMinMax={props.validateMinMax}
       />
       <MinMax
-        model=".tsunami.insert.housesAmountOrder"
+        model=".tsunami.tsEvent.housesAmountOrder"
         title="Houses Destroyed Description"
         min={validationConstants.housesDestroyedDescription.min}
         max={validationConstants.housesDestroyedDescription.max}
@@ -196,14 +200,14 @@ const InsertTsunami = props => (
     <div>
       <div>Deaths</div>
       <MinMax
-        model=".tsunami.insert.deaths"
+        model=".tsunami.tsEvent.deaths"
         title="Number of Deaths"
         min={validationConstants.numberOfDeaths.min}
         max={validationConstants.numberOfDeaths.max}
         validMinMax={props.validateMinMax}
       />
       <MinMax
-        model=".tsunami.insert.deathsAmountOrder"
+        model=".tsunami.tsEvent.deathsAmountOrder"
         title="Death Description"
         min={validationConstants.deathDescription.min}
         max={validationConstants.deathDescription.max}
@@ -214,14 +218,14 @@ const InsertTsunami = props => (
     <div>
       <div>Injuries</div>
       <MinMax
-        model=".tsunami.insert.injuries"
+        model=".tsunami.tsEvent.injuries"
         title="Number of Injuries"
         min={validationConstants.numberOfInjuries.min}
         max={validationConstants.numberOfInjuries.max}
         validMinMax={props.validateMinMax}
       />
       <MinMax
-        model=".tsunami.insert.injuriesAmountOrder"
+        model=".tsunami.tsEvent.injuriesAmountOrder"
         title="Injury Description"
         min={validationConstants.injuryDescription.min}
         max={validationConstants.injuryDescription.max}
@@ -232,14 +236,14 @@ const InsertTsunami = props => (
     <div>
       <div>Missing</div>
       <MinMax
-        model=".tsunami.insert.missing"
+        model=".tsunami.tsEvent.missing"
         title="Number of Missing"
         min={validationConstants.numberOfDeaths.min}
         max={validationConstants.numberOfDeaths.max}
         validMinMax={props.validateMinMax}
       />
       <MinMax
-        model=".tsunami.insert.missingAmountOrder"
+        model=".tsunami.tsEvent.missingAmountOrder"
         title="Missing Description"
         min={validationConstants.deathDescription.min}
         max={validationConstants.deathDescription.max}
@@ -253,14 +257,14 @@ const InsertTsunami = props => (
       <div>
         <div>Damage in Millions of Dollars</div>
         <MinMax
-          model=".tsunami.insert.damageMillionsofDollarsTotal"
+          model=".tsunami.tsEvent.damageMillionsDollarsTotal"
           title="Damage in Millions of Dollars"
           min={validationConstants.damageInMillions.min}
           max={validationConstants.damageInMillions.max}
           validMinMax={props.validateMinMax}
         />
         <MinMax
-          model=".tsunami.insert.damageAmountOrderTotal"
+          model=".tsunami.tsEvent.damageAmountOrderTotal"
           title="Damage Description"
           min={validationConstants.damageDescription.min}
           max={validationConstants.damageDescription.max}
@@ -271,14 +275,14 @@ const InsertTsunami = props => (
       <div>
         <div>Houses Destoyed</div>
         <MinMax
-          model=".tsunami.insert.housesDestroyedTotal"
+          model=".tsunami.tsEvent.housesDestroyedTotal"
           title="Number of Houses Destroyed"
           min={validationConstants.numberOfHousesDestroyed.min}
           max={validationConstants.numberOfHousesDestroyed.max}
           validMinMax={props.validateMinMax}
         />
         <MinMax
-          model=".tsunami.insert.housesAmountOrderTotal"
+          model=".tsunami.tsEvent.housesAmountOrderTotal"
           title="Houses Destroyed Description"
           min={validationConstants.housesDestroyedDescription.min}
           max={validationConstants.housesDestroyedDescription.max}
@@ -289,14 +293,14 @@ const InsertTsunami = props => (
       <div>
         <div>Deaths</div>
         <MinMax
-          model=".tsunami.insert.deathsTotal"
+          model=".tsunami.tsEvent.deathsTotal"
           title="Number of Deaths"
           min={validationConstants.numberOfDeaths.min}
           max={validationConstants.numberOfDeaths.max}
           validMinMax={props.validateMinMax}
         />
         <MinMax
-          model=".tsunami.insert.deathsAmountOrderTotal"
+          model=".tsunami.tsEvent.deathsAmountOrderTotal"
           title="Death Description"
           min={validationConstants.deathDescription.min}
           max={validationConstants.deathDescription.max}
@@ -307,14 +311,14 @@ const InsertTsunami = props => (
       <div>
         <div>Injuries</div>
         <MinMax
-          model=".tsunami.insert.injuriesTotal"
+          model=".tsunami.tsEvent.injuriesTotal"
           title="Number of Injuries"
           min={validationConstants.numberOfInjuries.min}
           max={validationConstants.numberOfInjuries.max}
           validMinMax={props.validateMinMax}
         />
         <MinMax
-          model=".tsunami.insert.injuriesAmountOrderTotal"
+          model=".tsunami.tsEvent.injuriesAmountOrderTotal"
           title="Injury Description"
           min={validationConstants.injuryDescription.min}
           max={validationConstants.injuryDescription.max}
@@ -325,14 +329,14 @@ const InsertTsunami = props => (
       <div>
         <div>Missing</div>
         <MinMax
-          model=".tsunami.insert.missingTotal"
+          model=".tsunami.tsEvent.missingTotal"
           title="Number of Missing"
           min={validationConstants.numberOfDeaths.min}
           max={validationConstants.numberOfDeaths.max}
           validMinMax={props.validateMinMax}
         />
         <MinMax
-          model=".tsunami.insert.missingAmountOrderTotal"
+          model=".tsunami.tsEvent.missingAmountOrderTotal"
           title="Missing Description"
           min={validationConstants.deathDescription.min}
           max={validationConstants.deathDescription.max}
@@ -342,14 +346,14 @@ const InsertTsunami = props => (
     </div>
 
     <div>
-      <label htmlFor=".tsunami.insert.comments"></label>
+      <label htmlFor=".tsunami.tsEvent.comments">Comments</label>
       <Control.textarea
-        model=".tsunami.insert.comments"
-        id=".tsunami.insert.comments"
+        model=".tsunami.tsEvent.comments"
+        id=".tsunami.tsEvent.comments"
       />
     </div>
 
   </div>
 )
 
-export default InsertTsunami;
+export default UpdateTsunami;

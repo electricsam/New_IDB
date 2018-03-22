@@ -2,7 +2,7 @@ import { all } from 'redux-saga/effects';
 
 import {
   watchFetchAllTsEvents, fetchAllTsEvents, watchFetchSpecifiedTSEvents, fetchSpecifiedTSEvents,
-  watchPostTsEvent, watchPostRunup
+  watchPostTsEvent, watchPostRunup, watchFetchTsEventById
 } from './tsunamiSaga';
 
 export default function* rootSaga(){
@@ -12,5 +12,6 @@ export default function* rootSaga(){
     watchFetchSpecifiedTSEvents(),
     watchPostTsEvent(),
     watchPostRunup(),
+    watchFetchTsEventById(),
   ]);
 }
