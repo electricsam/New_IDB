@@ -1,6 +1,12 @@
 const CryptoJS = require('crypto-js');
 const hashPass = 'lockunlock';
 
+import React from 'react'
+
+import { push } from "react-router-redux";
+
+import store from "../store"
+
 const oddEven = (num) => {
   // TODO: need to properly throw error and update test file accordingly
   if (typeof num !== Number && !Number.isInteger(num)) {
@@ -22,8 +28,16 @@ const mapToTable = (arr) => {
   if(arr.length){
     let accessors = Object.keys(arr[0]);
     accessors.map(e => {
-      result.push({Header: camelToPascal(e), accessor: e})
+      result.push({Header: camelToPascal(e), accessor: e, })
     });
+    result.push({
+      Header: "Edit",
+      accessor: 'edit',
+      Cell: props => (
+        <button type="button" onClick={()=> store.dispatch(push(`/updatetsunami/${props.original.id}`))}>Edit</button>
+      )
+    })
+
   }
   return result;
 }

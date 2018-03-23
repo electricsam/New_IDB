@@ -4,10 +4,15 @@ import PropTypes from 'prop-types';
 
 import Styles from './TableStyle.css';
 
+
+
+
 const Table = props => (
   <div className={Styles.container}>
 
     <h1 className={Styles.title}>{props.title}</h1>
+
+    <button onClick={()=>props.handleEdit("helo")}>CLICK ME</button>
 
     <ReactTable
       data={props.data}
@@ -29,6 +34,7 @@ const Table = props => (
       className="-striped -highlight"
       defaultSorted={[{id: 'id', desc: false}]}
       loading={props.loading}
+      handleEdit={props.handleEdit}
     />
 
   </div>

@@ -38,7 +38,7 @@ class TsunamiInsertContainer extends React.Component{
 
 
     }else{
-      action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
+      // action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
       // this.props.history.push(`/tsunamis`)
     }
   }

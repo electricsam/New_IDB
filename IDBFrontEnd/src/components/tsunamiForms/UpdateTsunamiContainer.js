@@ -44,10 +44,11 @@ class UpdateTsunamiContainer extends React.Component{
       // this.props.history.push(`/tsunamis?${encoded}`);
 
 
-    }else{
-      action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
-      // this.props.history.push(`/tsunamis`)
     }
+    // else{
+    //   action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
+    //   // this.props.history.push(`/tsunamis`)
+    // }
   }
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;

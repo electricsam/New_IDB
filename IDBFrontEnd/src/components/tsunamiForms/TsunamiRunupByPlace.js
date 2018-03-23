@@ -20,17 +20,36 @@ const TsunamiRunupByPlace = props => (
 
   <div className={Styles.formSectionTwo}>
     <div className={Styles.header}>
-      <h3>Tsunami Source Parameters</h3>
+      <h3>Runup by Place</h3>
     </div>
 
-    <DropDown title="Runup Region Name " model=".tsunami.search.runupregion" data={regions}/>
-    <DropDown title="Runup Country " model=".tsunami.search.runupcountry" data={countries}/>
-    <DropDown title="Runup U.S. State / Territory " model=".tsunami.search.runuparea" data={states}/>
-    <DropDown title="Runup Canadian Province " model=".tsunami.search.runuparea" data={canadianProvince}/>
-    <DropDown title="Runup Indonesian Province" model=".tsunami.search.runuparea" data={indonesianProvince}/>
-    <DropDown title="Runup Japanese Prefecture" model=".tsunami.search.runuparea" data={japanesePrefecture}/>
+    <div className={Styles.rnpRegion}>
+      <DropDown title="Runup Region Name " model=".tsunami.search.runupregion" data={regions}/>
+    </div>
 
-    <div>
+    <div className={Styles.rnpCountries}>
+      <DropDown title="Runup Country " model=".tsunami.search.runupcountry" data={countries}/>
+    </div>
+
+    <div className={Styles.rnpStates}>
+      <DropDown title="Runup U.S. State / Territory " model=".tsunami.search.runuparea" data={states}/>
+    </div>
+
+    <div className={Styles.rnpProvince}>
+      <DropDown title="Runup Canadian Province " model=".tsunami.search.runuparea" data={canadianProvince}/>
+    </div>
+
+    <div className={Styles.rnpIndoProv}>
+      <DropDown title="Runup Indonesian Province" model=".tsunami.search.runuparea" data={indonesianProvince}/>
+    </div>
+
+    <div className={Styles.rnpJpPre}>
+      <DropDown title="Runup Japanese Prefecture" model=".tsunami.search.runuparea" data={japanesePrefecture}/>
+    </div>
+
+
+
+    <div className={Styles.rnpDistance}>
       <div>Distance of Runup Location</div>
       <MinMax
         model=".tsunami.search.runupdistancemin"
@@ -46,7 +65,7 @@ const TsunamiRunupByPlace = props => (
         validMinMax={props.validateMinMax}/>
     </div>
 
-    <div>
+    <div className={Styles.travHrs}>
       <div>Travel Time (Hours) </div>
       <MinMax
         model=".tsunami.search.runuptraveltimemin"
@@ -62,7 +81,7 @@ const TsunamiRunupByPlace = props => (
         validMinMax={props.validateMinMax}/>
     </div>
 
-    <div>
+    <div className={Styles.rnpLocType}>
       <Control.radio
         model=".tsunami.runupLocType"
         id=".tsunami.runupLocType"
@@ -104,7 +123,7 @@ const TsunamiRunupByPlace = props => (
       <label htmlFor=".tsunami.runupLocType"> or Does Not Match</label>
     </div>
 
-    <div>
+    <div className={Styles.rnpLoc}>
       {(()=>{
         let runupLocType = props.checkRunupLocType();
         if(runupLocType === 'locstart'){

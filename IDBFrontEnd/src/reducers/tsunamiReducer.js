@@ -35,6 +35,7 @@ export default function reducer(state=initialState, action){
       });
     }
     case 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED': {
+      console.log("you are in the reducer for specified ts event request")
       return state.set(state, 'fetchingTsEvent', true);
     }
     case 'FETCH_SPECIFIED_TS_EVENTS_REJECTED': {

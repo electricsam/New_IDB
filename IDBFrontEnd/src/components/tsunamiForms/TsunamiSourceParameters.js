@@ -33,15 +33,25 @@ const TsunamiSourceParameters = props => (
         validMinMax={props.validateMinMax}/>
     </div>
 
-    <DropDown title="Region" model=".tsunami.search.region" data={regions} className={Styles.region}/>
+    <div className={Styles.region}>
+      <DropDown title="Region" model=".tsunami.search.region" data={regions}/>
+    </div>
 
-    <DropDown title="Country" model=".tsunami.search.country" data={countries} className={Styles.country}/>
+    <div className={Styles.country}>
+      <DropDown title="Country" model=".tsunami.search.country" data={countries}/>
+    </div>
 
-    <DropDown title="U.S. State / Territory" model=".tsunami.search.area" data={states} className={Styles.state}/>
+    <div className={Styles.state}>
+      <DropDown title="U.S. State / Territory" model=".tsunami.search.area" data={states}/>
 
-    <DropDown title="Canadian Province" model=".tsunami.search.area" data={canadianProvince} className={Styles.province}/>
-    
-    <div className="Holder for Range of Coordinates">
+    </div>
+
+    <div className={Styles.province}>
+      <DropDown title="Canadian Province" model=".tsunami.search.area" data={canadianProvince}/>
+    </div>
+
+
+    <div className={Styles.latLong}>
       <MinMax
         model=".tsunami.search.latnorth"
         title="Northernmost Latitude"
@@ -72,7 +82,7 @@ const TsunamiSourceParameters = props => (
         validMessage={{valid: "Invalid Longitude"}}/>
     </div>
 
-    <div className="validity">
+    <div className={Styles.validity}>
       <div>Validity</div>
       <MinMax
         model=".tsunami.search.minvalidity"
@@ -90,7 +100,7 @@ const TsunamiSourceParameters = props => (
         validMessage={{valid: "Invalid Validity"}}/>
     </div>
 
-    <div className="Cause">
+    <div className={Styles.cause}>
       <div>Cause of Tsunami</div>
       <MinMax
         model=".tsunami.search.mincause"
@@ -108,7 +118,7 @@ const TsunamiSourceParameters = props => (
         validMessage={{valid: "Invalid Cause"}}/>
     </div>
 
-    <div>
+    <div className={Styles.eqMag}>
       <div>Earthquake Magnitude</div>
       <MinMax
         model=".tsunami.search.eqmagmin"
@@ -127,7 +137,7 @@ const TsunamiSourceParameters = props => (
     </div>
 
 
-    <div>
+    <div className={Styles.locType}>
       <Control.radio
         model=".tsunami.locType"
         id=".tsunami.locType"
@@ -170,7 +180,7 @@ const TsunamiSourceParameters = props => (
     </div>
 
 
-    <div>
+    <div className={Styles.loc}>
       {(()=>{
         let locType = props.checkLocType();
         if(locType === 'locstart'){

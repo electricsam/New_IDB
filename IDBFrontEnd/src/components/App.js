@@ -16,6 +16,7 @@ import TsunamiInsertContainer from "./tsunamiForms/TsunamiInsertContainer";
 import RunupInsertContainer from "./tsunamiForms/RunupInsertContainer";
 import RunupSearchContainer from "./tsunamiForms/RunupSearchContainer";
 import UpdateTsunamiContainer from "./tsunamiForms/UpdateTsunamiContainer";
+import TestContainer from "./testComponents/TestContainer";
 
 class App extends React.Component {
   render() {
@@ -27,13 +28,13 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/about" component={AboutPage} />
-            <Route exact path="/tsunamis/events" component={TsunamiSearchContainer}/>
+            <Route exact strict path="/tsunamisdata" component={TsunamiContainer} />
+            <Route exact path="/tsunamieventsearch" component={TsunamiSearchContainer}/>
+            <Route exact path="/inserttsunamievent" component={TsunamiInsertContainer}/>
+            <Route exact path="/inserttsunamirunup" component={RunupInsertContainer}/>
+            <Route exact path="/tsunamirunupsearch" component={RunupSearchContainer}/>
+            <Route exact path="/updatetsunami/:id" component={UpdateTsunamiContainer}/>
             <Route exact path={'/userdisplay'} component={UserDisplay}/>
-            <Route exact path="/tsunamis/insertevent" component={TsunamiInsertContainer}/>
-            <Route exact path="/tsunamis/insertrunup" component={RunupInsertContainer}/>
-            <Route exact path="/tsunamis/runups" component={RunupSearchContainer}/>
-            <Route exact path="/tsunamis/update/:id" component={UpdateTsunamiContainer}/>
-            <Route exact path="/tsunamis" component={TsunamiContainer} />
             {/*Must have 404 component listed last*/}
             <Route path ="*" component={FourZeroFour}/>
           </Switch>

@@ -6,9 +6,9 @@ import store from '../../store';
 import Loading from '../loadbar/Loading';
 import Table from "../table/Table";
 
-import { decodeQueryString } from '../../helperFunctions/helperFunctions';
+import { decodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions';
 
-const action = type => store.dispatch({type});
+const action = obj => store.dispatch(obj);
 
 class TsunamiContainer extends React.Component {
   constructor(props) {
@@ -22,10 +22,11 @@ class TsunamiContainer extends React.Component {
     let { search } = this.props.location;
     if(search.length){
       search = search.split('?')[1];
+      console.log("You are here in the decode sequence")
       let decoded = JSON.parse(decodeQueryString(search));
-      action('UPDATE_FETCHED_TS_EVENT');
-    }else{
-      action('FETCH_ALL_TS_EVENTS_REQUESTED');
+      let queryString = createApiQueryString(decoded)
+      console.log("queryString: ", queryString)
+      action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});
     }
   }
 

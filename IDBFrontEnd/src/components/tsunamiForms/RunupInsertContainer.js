@@ -33,7 +33,7 @@ class RunupInsertContainer extends React.Component{
       //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
       // this.props.history.push(`/tsunamis?${encoded}`);
     }else{
-      action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
+      // action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
       // this.props.history.push(`/tsunamis`)
     }
   }
