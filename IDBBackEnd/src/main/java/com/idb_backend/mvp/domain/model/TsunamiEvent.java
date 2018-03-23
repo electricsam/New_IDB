@@ -223,11 +223,11 @@ public class TsunamiEvent implements Serializable {
   @Column(name = "PREVIOUS_STATE")
   private String previousState;
 
-//  @OneToMany( mappedBy = "tsunamiEvent", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
-//  private List<TsunamiRunup> tsunamiRunups = new ArrayList<>();
-//
-//  @OneToMany( mappedBy = "tsEventId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//  private List<TsunamiRefs> tsunamiRefs = new ArrayList<>();
+  @OneToMany( mappedBy = "tsunamiEvent", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+  private List<TsunamiRunup> tsunamiRunups = new ArrayList<>();
+
+  @OneToMany( mappedBy = "tsEventId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<TsunamiRefs> tsunamiRefs = new ArrayList<>();
 
   public Integer getId() {
     return id;
