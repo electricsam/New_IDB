@@ -5,6 +5,7 @@ import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.service.TsunamiEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -375,4 +376,23 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
     return tsunamiEventRepository.getRunupsByQuery(criteria);
   }
 
+  @Override
+  public void updateRunup(TsunamiRunup tsunamiRunup){
+    tsunamiEventRepository.updateRunup(tsunamiRunup);
+  }
+
+  @Override
+  public void deleteRunup(Integer id){
+    tsunamiEventRepository.deleteRunup(id);
+  }
+
+  @Override
+  public TsunamiEvent getEventProxy(Integer id){
+    return tsunamiEventRepository.getEventProxy(id);
+  }
+
+  @Override
+  public void deleteEvent(Integer id){
+    tsunamiEventRepository.deleteEvent(id);
+  }
 }

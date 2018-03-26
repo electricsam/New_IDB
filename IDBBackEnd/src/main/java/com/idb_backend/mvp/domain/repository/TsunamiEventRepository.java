@@ -25,4 +25,13 @@ public interface TsunamiEventRepository {
     void updateEvent(TsunamiEvent tsunamiEvent);
 
     TsunamiEvent getEventById(Integer id);
+
+    void updateRunup(TsunamiRunup tsunamiRunup);
+
+    void deleteRunup(Integer id);
+
+    TsunamiEvent getEventProxy(Integer id);
+
+    void deleteEvent(Integer id);
+
 }

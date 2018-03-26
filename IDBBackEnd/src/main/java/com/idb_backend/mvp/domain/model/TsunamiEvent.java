@@ -6,11 +6,9 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-@Entity
+@Entity(name = "TSEVENT_TSQP")
 @DynamicUpdate(value = true)
 @Table(name = "TSEVENT_TSQP")
 public class TsunamiEvent implements Serializable {
@@ -226,8 +224,19 @@ public class TsunamiEvent implements Serializable {
   @OneToMany( mappedBy = "tsunamiEvent", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
   private List<TsunamiRunup> tsunamiRunups = new ArrayList<>();
 
-  @OneToMany( mappedBy = "tsEventId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<TsunamiRefs> tsunamiRefs = new ArrayList<>();
+//  @OneToMany( mappedBy = "tsEventId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//  private Set<TsunamiRefs> tsunamiRefs = new HashSet<>();
+
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(
+      name = "TSEVENT_REFS",
+      joinColumns = {@JoinColumn(name="TSEVENT_ID")},
+      inverseJoinColumns = {@JoinColumn(name= "TSREF_ID")}
+  )
+  Set<Reference> references = new HashSet<>();
+
+
 
   public Integer getId() {
     return id;

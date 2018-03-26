@@ -1,9 +1,7 @@
 package com.idb_backend.mvp.domain.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity(name = "REFERENCE")
 public class Reference {
@@ -45,8 +43,11 @@ public class Reference {
   @Column(name = "COMMENTS")
   private String Comments;
 
-  @OneToMany( mappedBy = "tsRefId", cascade = CascadeType.ALL)
-  private List<TsunamiRefs> tsunamiRefs = new ArrayList<>();
+//  @OneToMany( mappedBy = "tsRefId", cascade = CascadeType.ALL)
+//  private List<TsunamiRefs> tsunamiRefs = new ArrayList<>();
+
+  @ManyToMany(mappedBy = "references" )
+  private Set<TsunamiEvent> tsunamiEvents = new HashSet<>();
 
   public Integer getId() {
     return id;

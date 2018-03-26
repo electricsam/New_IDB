@@ -68,5 +68,26 @@ public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
     session.close();
   }
 
+  @Override
+  public void updateRunup(TsunamiRunup tsunamiRunup){
+    Session session = em.unwrap(Session.class);
+    session.saveOrUpdate(tsunamiRunup);
+    session.close();
+  }
 
+  @Override
+  public void deleteRunup(Integer id){
+    em.remove(em.getReference(TsunamiRunup.class, id));
+  }
+
+  @Override
+  public TsunamiEvent getEventProxy(Integer id){
+    return em.getReference(TsunamiEvent.class, id);
+  }
+
+  @Override
+  public void deleteEvent(Integer id){
+    List<TsunamiEvent> tsunamiEvents = em.createQuery("FROM TSEVENT_TSQP WHERE ID = "+ id).getResultList();
+    em.remove(tsunamiEvents.get(0));
+  }
 }

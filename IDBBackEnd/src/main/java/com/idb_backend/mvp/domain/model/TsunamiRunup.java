@@ -1,5 +1,7 @@
 package com.idb_backend.mvp.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
 
@@ -12,8 +14,9 @@ public class TsunamiRunup {
   @Column(name = "ID", nullable = false)
   private int id;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "TSEVENT_ID")
+  @JsonIgnore
   private TsunamiEvent tsunamiEvent;
 
   @Column(name = "YEAR")

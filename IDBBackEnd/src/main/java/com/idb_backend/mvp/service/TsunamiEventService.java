@@ -63,4 +63,12 @@ public interface TsunamiEventService {
 
   void updateEvent(TsunamiEvent tsunamiEvent);
 
+  void updateRunup(TsunamiRunup tsunamiRunup);
+
+  void deleteRunup(Integer id);
+
+  TsunamiEvent getEventProxy(Integer id);
+
+  void deleteEvent(Integer id);
+
 }

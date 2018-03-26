@@ -1,6 +1,7 @@
 package com.idb_backend.mvp.domain.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class TsunamiRefsPk implements Serializable{
   private TsunamiEvent tsEventId;
@@ -27,4 +28,23 @@ public class TsunamiRefsPk implements Serializable{
   public void setTsRefId(Reference tsRefId) {
     this.tsRefId = tsRefId;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if ( this == o ) {
+      return true;
+    }
+    if ( o == null || getClass() != o.getClass() ) {
+      return false;
+    }
+    TsunamiRefsPk pk = (TsunamiRefsPk) o;
+    return Objects.equals( tsEventId, pk.tsEventId) &&
+        Objects.equals( tsRefId, pk.tsRefId );
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash( tsEventId, tsRefId);
+  }
+
 }
