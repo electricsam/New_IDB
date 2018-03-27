@@ -16,7 +16,7 @@ const TotalTsunamiandSourceEffects = props => (
       <h3>Tsunami Source Parameters</h3>
     </div>
 
-    <div>
+    <div className={Styles.deathsTotal}>
       <div>Total Number of Deaths</div>
       <MinMax model=".tsunami.search.totaldeathsmin"
               title="Min"
@@ -30,7 +30,7 @@ const TotalTsunamiandSourceEffects = props => (
               validMinMax={props.validateMinMax}/>
     </div>
 
-    <div>
+    <div className={Styles.deathTotalDescrip}>
       <div>Total Death Description</div>
       <MinMax model=".tsunami.search.totaldeathdescripmin"
               title="Min"
@@ -44,13 +44,14 @@ const TotalTsunamiandSourceEffects = props => (
               validMinMax={props.validateMinMax}/>
     </div>
 
-    //TODO: add migration to DB to change "doubtful" column such that valid is not null - instead it reads "Valid" or some other number
-
     {/*<DropDown title="Validity of Runup" model=".tsunami.search.runupvalidity" data=/>*/}
 
-    <DropDown title="Type of Measurement" model=".tsunami.search.rnpmeasuretype" data={rnpMeasureType}/>
 
-    <div>
+    <div className={Styles.typeMeasure}>
+      <DropDown title="Type of Measurement" model=".tsunami.search.rnpmeasuretype" data={rnpMeasureType}/>
+    </div>
+
+    <div className={Styles.vertHt}>
       <div>Vertical Height at Runup Location</div>
       <MinMax model=".tsunami.search.rnphtmin"
               title="Min"
@@ -65,7 +66,7 @@ const TotalTsunamiandSourceEffects = props => (
     </div>
 
 
-    <div>
+    <div className={Styles.rnpDeaths}>
       <div>Number of Deaths at Runup Location</div>
       <MinMax model=".tsunami.search.rnpdeathmin"
               title="Min"
@@ -79,7 +80,7 @@ const TotalTsunamiandSourceEffects = props => (
               validMinMax={props.validateMinMax}/>
     </div>
 
-    <div>
+    <div className={Styles.rnpDeathDescrip}>
       <div>Death Description</div>
       <MinMax model=".tsunami.search.rnpdeathdescripmin"
               title="Min"
@@ -93,7 +94,7 @@ const TotalTsunamiandSourceEffects = props => (
               validMinMax={props.validateMinMax}/>
     </div>
 
-    <div>
+    <div className={Styles.rnpInjuries}>
       <div>Number of Injuries at Runup Location</div>
       <MinMax model=".tsunami.search.rnpinjurymin"
               title="Min"
@@ -107,7 +108,7 @@ const TotalTsunamiandSourceEffects = props => (
               validMinMax={props.validateMinMax}/>
     </div>
 
-    <div>
+    <div className={Styles.rnpInjuryDescrip}>
       <div>Injury Description</div>
       <MinMax model=".tsunami.search.rnpinjurydescripmin"
               title="Min"
@@ -121,7 +122,7 @@ const TotalTsunamiandSourceEffects = props => (
               validMinMax={props.validateMinMax}/>
     </div>
 
-    <div>
+    <div className={Styles.rnpDamage}>
       <div>Damage in Millions of Dollars</div>
       <MinMax model=".tsunami.search.rnpdamagemin"
               title="Min"
@@ -135,7 +136,7 @@ const TotalTsunamiandSourceEffects = props => (
               validMinMax={props.validateMinMax}/>
     </div>
 
-    <div>
+    <div className={Styles.rnpDamageDescrip}>
       <div>Damage Description</div>
       <MinMax model=".tsunami.search.rnpdamagedescripmin"
               title="Min"
@@ -149,7 +150,7 @@ const TotalTsunamiandSourceEffects = props => (
               validMinMax={props.validateMinMax}/>
     </div>
 
-    <div>
+    <div className={Styles.rnpHouses}>
       <div>Number of Houses Destroyed at Runup Location</div>
       <MinMax model=".tsunami.search.rnphousesmin"
               title="Min"
@@ -163,7 +164,7 @@ const TotalTsunamiandSourceEffects = props => (
               validMinMax={props.validateMinMax}/>
     </div>
 
-    <div>
+    <div className={Styles.rnpHousesDescrip}>
       <div>Houses Destoryed Description</div>
       <MinMax model=".tsunami.search.rnphousesdescripmin"
               title="Min"

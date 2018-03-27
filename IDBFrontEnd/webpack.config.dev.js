@@ -72,7 +72,12 @@ module.exports = {
             }
           },
           {
-            loader: 'postcss-loader'
+            loader: 'postcss-loader',
+            options: {
+              plugins: (loader) => [
+                require('postcss-advanced-variables')()
+              ]
+            }
           }
         ]
       },

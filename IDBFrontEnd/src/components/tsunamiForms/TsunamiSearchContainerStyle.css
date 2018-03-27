@@ -80,9 +80,21 @@
     grid-column: 1/2;
     grid-row: 3/4;
     display: grid;
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto ;
-    grid-template-columns: 100%;
-    justify-items: center;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: 2.5% 95% 2.5%;
+    justify-items: start;
+    align-items: center;
+    width: 100%;
+    height: auto
+}
+
+.formSectionFour{
+    grid-column: 1/2;
+    grid-row: 4/5;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: 2.5% 95% 2.5%;
+    justify-items: start;
     align-items: center;
     width: 100%;
     height: auto
@@ -217,4 +229,33 @@
 .rnpLoc{
     grid-column:2/3;
     grid-row: 11/12;
+}
+/*Total Tsunami Effects*/
+
+
+@each $effect $i in (numRunups, maxWater, numDeaths, deathDescrip, numInjuries,
+injuryDescrip, damage, damageDescrip, numHouses, housesDescrip
+){
+    .$effect{
+        grid-column: 2/3;
+        grid-row: calc($i + 2)/calc($i + 3);
+    }
+
+    .$effect div{
+        display: inline-block;
+    }
+}
+
+/*Total Tsunami and Source Effects*/
+
+@each $class $i in (deathsTotal, deathTotalDescrip, typeMeasure, vertHt, rnpDeaths, rnpDeathDescrip, rnpInjuries,
+                    rnpInjuryDescrip, rnpDamage, rnpDamageDescrip, rnpHouses, rnpHousesDescrip){
+    .$class{
+        grid-column: 2/3;
+        grid-row: calc($i + 2)/calc($i + 3);
+    }
+
+    .$class div{
+        display: inline-block;
+    }
 }
