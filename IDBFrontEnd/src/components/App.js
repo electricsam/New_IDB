@@ -17,6 +17,7 @@ import RunupInsertContainer from "./tsunamiForms/RunupInsertContainer";
 import RunupSearchContainer from "./tsunamiForms/RunupSearchContainer";
 import UpdateTsunamiContainer from "./tsunamiForms/UpdateTsunamiContainer";
 import TestContainer from "./testComponents/TestContainer";
+import UpdateRunupContainer from "./tsunamiForms/UpdateRunupContainer";
 
 class App extends React.Component {
   render() {
@@ -35,6 +36,7 @@ class App extends React.Component {
             <Route exact path="/tsunamirunupsearch" component={RunupSearchContainer}/>
             <Route exact path="/updatetsunami/:id" component={UpdateTsunamiContainer}/>
             <Route exact path={'/userdisplay'} component={UserDisplay}/>
+            <Route exact path='/updaterunup/:runupId/:eventId' component={UpdateRunupContainer}/>
             {/*Must have 404 component listed last*/}
             <Route path ="*" component={FourZeroFour}/>
           </Switch>

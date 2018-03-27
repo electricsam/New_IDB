@@ -637,6 +637,8 @@ const validationConstants = {
   warningStatus: {min: -1, max: 4},
   period: {min: 0, max: 180},
   distanceRnpLoc:{min: 0, max: 20000},
+  period: {min: 0, max: 180},
+  runupHt: {min: 0, max: 800},
 }
 
 export {

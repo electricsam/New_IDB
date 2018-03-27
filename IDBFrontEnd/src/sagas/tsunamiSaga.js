@@ -132,3 +132,39 @@ export function* postRunup(action){
 export function* watchPostRunup() {
   yield takeEvery("POST_TS_RUNUP_REQUESTED", postRunup)
 }
+
+export function* watchFetchRunup(){
+  yield takeEvery("FETCH_TS_RUNUP_REQUESTED", fetchRunup)
+}
+
+export function* fetchRunup(action){
+  let runupId = action.payload;
+  console.log("RunupId: ", runupId);
+  try{
+    const response = yield call(axios.get, `http://localhost:8080/tsunamirunups/${runupId}`);
+    yield put({
+      type: "FETCH_TS_RUNUP_FULFILLED",
+      payload: response.data
+    });
+  }catch(error){
+    yield put({type: "FETCH_TS_RUNUP_REJECTED", payload: error});
+  }
+}
+
+export function* watchUpdateRunup(){
+  yield takeEvery("UPDATE_TS_RUNUP_REQUESTED", updateRunup)
+}
+
+
+export function* updateRunup(action){
+  let runupId = action.payload.runupId;
+  let eventId = action.payload.eventId;
+  let runup = action.payload.runup;
+
+  try{
+    const response = yield call(axios.patch, `http://localhost808/tsunamirunups/${runupid}/${eventid}`, runup);
+    yield put({type: "UPDATE_TS_RUNUP_FULFILLED",payload: response.data});
+  }catch(error){
+    yield put({type: "UPDATE_TS_RUNUP_REJECTED", payload: error});
+  }
+}
