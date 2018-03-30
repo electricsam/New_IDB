@@ -33,7 +33,7 @@ public class TsunamiEventController {
 
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievent/{id}", method= RequestMethod.GET)
-  public @ResponseBody TsunamiEvent getEventById(@PathVariable("id") Integer id){
+  public @ResponseBody List<TsunamiEvent> getEventById(@PathVariable("id") Integer id){
 
     return tsunamiEventRepository.getEventById(id);
   }
@@ -79,6 +79,22 @@ public class TsunamiEventController {
 
     return tsunamiEventService.generateRunupCriteria(allRequestParams);
   }
+
+  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
+  @RequestMapping(value = "/tsunamirunups", method= RequestMethod.GET)
+  public List<TsunamiRunupViewNonPersist> getAllRunups(){
+
+    return tsunamiEventService.getAllRunups();
+  }
+
+
+  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
+  @RequestMapping(value = "/tsunamirunups/{id}", method= RequestMethod.GET)
+  public List<TsunamiRunup> getRunupById(@PathVariable("id") Integer id){
+
+    return tsunamiEventService.getRunupById(id);
+  }
+
 
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamirunups/{id}", method=RequestMethod.POST)

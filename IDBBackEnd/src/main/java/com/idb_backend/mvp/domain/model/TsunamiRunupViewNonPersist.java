@@ -11,60 +11,36 @@ public class TsunamiRunupViewNonPersist {
   private Integer day;
   private Integer hour;
   private Float second;
+  private Integer eventValidity;
+  private Integer causeCode;
+  private Float eqMagnitude;
+  private String country;
+  private String area;
+  private String locationName;
+  private Float latitude;
+  private Float longitude;
+  private Integer distFromSource;
   private Integer arrDay;
   private Integer arrHour;
   private Integer arrMin;
   private Integer travHours;
   private Integer travMins;
-  private Float period;
-  private String firstMotion;
-  private Float latitude;
-  private Float longitude;
-  private String locationName;
-  private String area;
-  private String country;
-  private Integer regionCode;
   private Float runupHt;
   private Float runupHoriz;
   private Integer typeOfMeasurementId;
-  private Float damageMillionsDollars;
-  private Integer damageAmountOrder;
-  private Integer housesDestroyed;
-  private Integer housesAmountOrder;
+  private Float period;
+  private String firstMotion;
   private Integer deaths;
   private Integer deathsAmountOrder;
   private Integer injuries;
   private Integer injuriesAmountOrder;
-  private Date ngdcDate;
-  private Integer temporalAccuracy;
-  private Long objectId;
-  private Geometry shape;
-  private String comments;
-  private Date lastUpdate;
-  private Integer missing;
-  private Integer missingAmountOrder;
-  private String doubtful;
-  private Character flagLocChk;
-  private Character flagRunupChk;
-  private Character flagArrvTravTimeChk;
-  private Character flagEffectsChk;
-  private String tideNetwork;
-  private String flagEditNatwc;
-  private Integer waveArrTravHoursCalc;
-  private Integer waveArrTravMinsCalc;
-  private Integer waveArrHt;
-  private Integer maxWaveArrDay;
-  private Integer maxWaveArrHour;
-  private Integer getMaxWaveArrMin;
-  private Integer maxWaveNum;
-  private Float predTravHours;
-  private Integer predTravMins;
+  private Float damageMillionsDollars;
+  private Integer damageAmountOrder;
+  private Integer housesDestroyed;
+  private Integer housesAmountOrder;
   private Integer housesDamaged;
   private Integer housesDamagedAmountOrder;
-  private Integer eventValidity;
-  private Integer causeCode;
-  private Float eqMagnitude;
-  private Integer distFromSource;
+  private Integer eventId;
 
   public TsunamiRunupViewNonPersist(
       int id,
@@ -101,7 +77,8 @@ public class TsunamiRunupViewNonPersist {
       Integer housesDestroyed,
       Integer housesAmountOrder,
       Integer housesDamaged,
-      Integer housesDamagedAmountOrder
+      Integer housesDamagedAmountOrder,
+      Integer eventId
   ){
     this.id = id;
     this.year = year;
@@ -138,6 +115,15 @@ public class TsunamiRunupViewNonPersist {
     this.housesAmountOrder = housesAmountOrder;
     this.housesDamaged = housesDamaged;
     this.housesDamagedAmountOrder = housesDamagedAmountOrder;
+    this.eventId = eventId;
+  }
+
+  public Integer getEventId() {
+    return eventId;
+  }
+
+  public void setEventId(Integer eventId) {
+    this.eventId = eventId;
   }
 
   public int getId() {
@@ -188,6 +174,78 @@ public class TsunamiRunupViewNonPersist {
     this.second = second;
   }
 
+  public Integer getEventValidity() {
+    return eventValidity;
+  }
+
+  public void setEventValidity(Integer eventValidity) {
+    this.eventValidity = eventValidity;
+  }
+
+  public Integer getCauseCode() {
+    return causeCode;
+  }
+
+  public void setCauseCode(Integer causeCode) {
+    this.causeCode = causeCode;
+  }
+
+  public Float getEqMagnitude() {
+    return eqMagnitude;
+  }
+
+  public void setEqMagnitude(Float eqMagnitude) {
+    this.eqMagnitude = eqMagnitude;
+  }
+
+  public String getCountry() {
+    return country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+  public String getArea() {
+    return area;
+  }
+
+  public void setArea(String area) {
+    this.area = area;
+  }
+
+  public String getLocationName() {
+    return locationName;
+  }
+
+  public void setLocationName(String locationName) {
+    this.locationName = locationName;
+  }
+
+  public Float getLatitude() {
+    return latitude;
+  }
+
+  public void setLatitude(Float latitude) {
+    this.latitude = latitude;
+  }
+
+  public Float getLongitude() {
+    return longitude;
+  }
+
+  public void setLongitude(Float longitude) {
+    this.longitude = longitude;
+  }
+
+  public Integer getDistFromSource() {
+    return distFromSource;
+  }
+
+  public void setDistFromSource(Integer distFromSource) {
+    this.distFromSource = distFromSource;
+  }
+
   public Integer getArrDay() {
     return arrDay;
   }
@@ -228,70 +286,6 @@ public class TsunamiRunupViewNonPersist {
     this.travMins = travMins;
   }
 
-  public Float getPeriod() {
-    return period;
-  }
-
-  public void setPeriod(Float period) {
-    this.period = period;
-  }
-
-  public String getFirstMotion() {
-    return firstMotion;
-  }
-
-  public void setFirstMotion(String firstMotion) {
-    this.firstMotion = firstMotion;
-  }
-
-  public Float getLatitude() {
-    return latitude;
-  }
-
-  public void setLatitude(Float latitude) {
-    this.latitude = latitude;
-  }
-
-  public Float getLongitude() {
-    return longitude;
-  }
-
-  public void setLongitude(Float longitude) {
-    this.longitude = longitude;
-  }
-
-  public String getLocationName() {
-    return locationName;
-  }
-
-  public void setLocationName(String locationName) {
-    this.locationName = locationName;
-  }
-
-  public String getArea() {
-    return area;
-  }
-
-  public void setArea(String area) {
-    this.area = area;
-  }
-
-  public String getCountry() {
-    return country;
-  }
-
-  public void setCountry(String country) {
-    this.country = country;
-  }
-
-  public Integer getRegionCode() {
-    return regionCode;
-  }
-
-  public void setRegionCode(Integer regionCode) {
-    this.regionCode = regionCode;
-  }
-
   public Float getRunupHt() {
     return runupHt;
   }
@@ -316,36 +310,20 @@ public class TsunamiRunupViewNonPersist {
     this.typeOfMeasurementId = typeOfMeasurementId;
   }
 
-  public Float getDamageMillionsDollars() {
-    return damageMillionsDollars;
+  public Float getPeriod() {
+    return period;
   }
 
-  public void setDamageMillionsDollars(Float damageMillionsDollars) {
-    this.damageMillionsDollars = damageMillionsDollars;
+  public void setPeriod(Float period) {
+    this.period = period;
   }
 
-  public Integer getDamageAmountOrder() {
-    return damageAmountOrder;
+  public String getFirstMotion() {
+    return firstMotion;
   }
 
-  public void setDamageAmountOrder(Integer damageAmountOrder) {
-    this.damageAmountOrder = damageAmountOrder;
-  }
-
-  public Integer getHousesDestroyed() {
-    return housesDestroyed;
-  }
-
-  public void setHousesDestroyed(Integer housesDestroyed) {
-    this.housesDestroyed = housesDestroyed;
-  }
-
-  public Integer getHousesAmountOrder() {
-    return housesAmountOrder;
-  }
-
-  public void setHousesAmountOrder(Integer housesAmountOrder) {
-    this.housesAmountOrder = housesAmountOrder;
+  public void setFirstMotion(String firstMotion) {
+    this.firstMotion = firstMotion;
   }
 
   public Integer getDeaths() {
@@ -380,196 +358,36 @@ public class TsunamiRunupViewNonPersist {
     this.injuriesAmountOrder = injuriesAmountOrder;
   }
 
-  public Date getNgdcDate() {
-    return ngdcDate;
+  public Float getDamageMillionsDollars() {
+    return damageMillionsDollars;
   }
 
-  public void setNgdcDate(Date ngdcDate) {
-    this.ngdcDate = ngdcDate;
+  public void setDamageMillionsDollars(Float damageMillionsDollars) {
+    this.damageMillionsDollars = damageMillionsDollars;
   }
 
-  public Integer getTemporalAccuracy() {
-    return temporalAccuracy;
+  public Integer getDamageAmountOrder() {
+    return damageAmountOrder;
   }
 
-  public void setTemporalAccuracy(Integer temporalAccuracy) {
-    this.temporalAccuracy = temporalAccuracy;
+  public void setDamageAmountOrder(Integer damageAmountOrder) {
+    this.damageAmountOrder = damageAmountOrder;
   }
 
-  public Long getObjectId() {
-    return objectId;
+  public Integer getHousesDestroyed() {
+    return housesDestroyed;
   }
 
-  public void setObjectId(Long objectId) {
-    this.objectId = objectId;
+  public void setHousesDestroyed(Integer housesDestroyed) {
+    this.housesDestroyed = housesDestroyed;
   }
 
-  public Geometry getShape() {
-    return shape;
+  public Integer getHousesAmountOrder() {
+    return housesAmountOrder;
   }
 
-  public void setShape(Geometry shape) {
-    this.shape = shape;
-  }
-
-  public String getComments() {
-    return comments;
-  }
-
-  public void setComments(String comments) {
-    this.comments = comments;
-  }
-
-  public Date getLastUpdate() {
-    return lastUpdate;
-  }
-
-  public void setLastUpdate(Date lastUpdate) {
-    this.lastUpdate = lastUpdate;
-  }
-
-  public Integer getMissing() {
-    return missing;
-  }
-
-  public void setMissing(Integer missing) {
-    this.missing = missing;
-  }
-
-  public Integer getMissingAmountOrder() {
-    return missingAmountOrder;
-  }
-
-  public void setMissingAmountOrder(Integer missingAmountOrder) {
-    this.missingAmountOrder = missingAmountOrder;
-  }
-
-  public String getDoubtful() {
-    return doubtful;
-  }
-
-  public void setDoubtful(String doubtful) {
-    this.doubtful = doubtful;
-  }
-
-  public Character getFlagLocChk() {
-    return flagLocChk;
-  }
-
-  public void setFlagLocChk(Character flagLocChk) {
-    this.flagLocChk = flagLocChk;
-  }
-
-  public Character getFlagRunupChk() {
-    return flagRunupChk;
-  }
-
-  public void setFlagRunupChk(Character flagRunupChk) {
-    this.flagRunupChk = flagRunupChk;
-  }
-
-  public Character getFlagArrvTravTimeChk() {
-    return flagArrvTravTimeChk;
-  }
-
-  public void setFlagArrvTravTimeChk(Character flagArrvTravTimeChk) {
-    this.flagArrvTravTimeChk = flagArrvTravTimeChk;
-  }
-
-  public Character getFlagEffectsChk() {
-    return flagEffectsChk;
-  }
-
-  public void setFlagEffectsChk(Character flagEffectsChk) {
-    this.flagEffectsChk = flagEffectsChk;
-  }
-
-  public String getTideNetwork() {
-    return tideNetwork;
-  }
-
-  public void setTideNetwork(String tideNetwork) {
-    this.tideNetwork = tideNetwork;
-  }
-
-  public String getFlagEditNatwc() {
-    return flagEditNatwc;
-  }
-
-  public void setFlagEditNatwc(String flagEditNatwc) {
-    this.flagEditNatwc = flagEditNatwc;
-  }
-
-  public Integer getWaveArrTravHoursCalc() {
-    return waveArrTravHoursCalc;
-  }
-
-  public void setWaveArrTravHoursCalc(Integer waveArrTravHoursCalc) {
-    this.waveArrTravHoursCalc = waveArrTravHoursCalc;
-  }
-
-  public Integer getWaveArrTravMinsCalc() {
-    return waveArrTravMinsCalc;
-  }
-
-  public void setWaveArrTravMinsCalc(Integer waveArrTravMinsCalc) {
-    this.waveArrTravMinsCalc = waveArrTravMinsCalc;
-  }
-
-  public Integer getWaveArrHt() {
-    return waveArrHt;
-  }
-
-  public void setWaveArrHt(Integer waveArrHt) {
-    this.waveArrHt = waveArrHt;
-  }
-
-  public Integer getMaxWaveArrDay() {
-    return maxWaveArrDay;
-  }
-
-  public void setMaxWaveArrDay(Integer maxWaveArrDay) {
-    this.maxWaveArrDay = maxWaveArrDay;
-  }
-
-  public Integer getMaxWaveArrHour() {
-    return maxWaveArrHour;
-  }
-
-  public void setMaxWaveArrHour(Integer maxWaveArrHour) {
-    this.maxWaveArrHour = maxWaveArrHour;
-  }
-
-  public Integer getGetMaxWaveArrMin() {
-    return getMaxWaveArrMin;
-  }
-
-  public void setGetMaxWaveArrMin(Integer getMaxWaveArrMin) {
-    this.getMaxWaveArrMin = getMaxWaveArrMin;
-  }
-
-  public Integer getMaxWaveNum() {
-    return maxWaveNum;
-  }
-
-  public void setMaxWaveNum(Integer maxWaveNum) {
-    this.maxWaveNum = maxWaveNum;
-  }
-
-  public Float getPredTravHours() {
-    return predTravHours;
-  }
-
-  public void setPredTravHours(Float predTravHours) {
-    this.predTravHours = predTravHours;
-  }
-
-  public Integer getPredTravMins() {
-    return predTravMins;
-  }
-
-  public void setPredTravMins(Integer predTravMins) {
-    this.predTravMins = predTravMins;
+  public void setHousesAmountOrder(Integer housesAmountOrder) {
+    this.housesAmountOrder = housesAmountOrder;
   }
 
   public Integer getHousesDamaged() {
@@ -586,37 +404,5 @@ public class TsunamiRunupViewNonPersist {
 
   public void setHousesDamagedAmountOrder(Integer housesDamagedAmountOrder) {
     this.housesDamagedAmountOrder = housesDamagedAmountOrder;
-  }
-
-  public Integer getEventValidity() {
-    return eventValidity;
-  }
-
-  public void setEventValidity(Integer eventValidity) {
-    this.eventValidity = eventValidity;
-  }
-
-  public Integer getCauseCode() {
-    return causeCode;
-  }
-
-  public void setCauseCode(Integer causeCode) {
-    this.causeCode = causeCode;
-  }
-
-  public Float getEqMagnitude() {
-    return eqMagnitude;
-  }
-
-  public void setEqMagnitude(Float eqMagnitude) {
-    this.eqMagnitude = eqMagnitude;
-  }
-
-  public Integer getDistFromSource() {
-    return distFromSource;
-  }
-
-  public void setDistFromSource(Integer distFromSource) {
-    this.distFromSource = distFromSource;
   }
 }

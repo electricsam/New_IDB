@@ -24,7 +24,7 @@ public interface TsunamiEventRepository {
 
     void updateEvent(TsunamiEvent tsunamiEvent);
 
-    TsunamiEvent getEventById(Integer id);
+    List<TsunamiEvent> getEventById(Integer id);
 
     void updateRunup(TsunamiRunup tsunamiRunup);
 
@@ -34,4 +34,7 @@ public interface TsunamiEventRepository {
 
     void deleteEvent(Integer id);
 
+    List<TsunamiRunup> getRunupById(Integer id);
+
+    List<TsunamiRunupView> getAllRunups();
 }

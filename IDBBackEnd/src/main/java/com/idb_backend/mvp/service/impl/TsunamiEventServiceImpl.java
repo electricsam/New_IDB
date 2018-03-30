@@ -339,7 +339,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
         root.get("period"), root.get("firstMotion"), root.get("deaths"), root.get("deathsAmountOrder"),
         root.get("injuries"), root.get("injuriesAmountOrder"), root.get("damageMillionsDollars"),
         root.get("damageAmountOrder"), root.get("housesDestroyed"), root.get("housesAmountOrder"),
-        root.get("housesDamaged"), root.get("housesDamagedAmountOrder")
+        root.get("housesDamaged"), root.get("housesDamagedAmountOrder"), join.get("id").alias("eventId")
     ).distinct(true);
 
     predList.add(genIntMinMax(map, "tsminyear", "tsmaxyear", "year", builder, join));
@@ -394,5 +394,45 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
   @Override
   public void deleteEvent(Integer id){
     tsunamiEventRepository.deleteEvent(id);
+  }
+
+  @Override
+  public List<TsunamiRunup> getRunupById(Integer id){
+    return tsunamiEventRepository.getRunupById(id);
+  }
+
+  @Override
+  public List<TsunamiRunupViewNonPersist> getAllRunups(){
+    CriteriaBuilder builder = em.getCriteriaBuilder();
+    CriteriaQuery<TsunamiRunupViewNonPersist> criteria = builder.createQuery( TsunamiRunupViewNonPersist.class );
+    Root<TsunamiRunupView> root = criteria.from( TsunamiRunupView.class );
+    Join<TsunamiRunupView, TsunamiEventView> join = root.join("tsunamiEventView");
+    List criteriaList = new ArrayList();
+
+    List<Predicate> predList = new ArrayList<>();
+
+    criteria.multiselect(
+        root.get("id"), join.get("year"), join.get("month"), join.get("day"), join.get("hour"), join.get("second"),
+        join.get("eventValidity"), join.get("causeCode"), join.get("eqMagnitude"), root.get("country"),
+        root.get("area"), root.get("locationName"), root.get("latitude"), root.get("longitude"),
+        root.get("distFromSource"), root.get("arrDay"), root.get("arrHour"), root.get("arrMin"), root.get("travHours"),
+        root.get("travMins"), root.get("runupHt"), root.get("runupHoriz"), root.get("typeOfMeasurementId"),
+        root.get("period"), root.get("firstMotion"), root.get("deaths"), root.get("deathsAmountOrder"),
+        root.get("injuries"), root.get("injuriesAmountOrder"), root.get("damageMillionsDollars"),
+        root.get("damageAmountOrder"), root.get("housesDestroyed"), root.get("housesAmountOrder"),
+        root.get("housesDamaged"), root.get("housesDamagedAmountOrder"), join.get("id").alias("eventId")
+    ).distinct(true);
+
+    for(int i = 0; i < predList.size(); i++){
+      if(predList.get(i) != null){
+        criteriaList.add(predList.get(i));
+      }
+    }
+
+    Predicate [] predArray = new Predicate[criteriaList.size()];
+    criteriaList.toArray(predArray);
+    criteria.where(predArray);
+
+    return getRunupsByQuery(criteria);
   }
 }

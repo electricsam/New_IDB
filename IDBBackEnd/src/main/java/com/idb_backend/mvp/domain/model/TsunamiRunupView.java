@@ -14,7 +14,7 @@ public class TsunamiRunupView {
   @Column(name = "ID", nullable = false)
   private int id;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "TSEVENT_ID")
   private TsunamiEventView tsunamiEventView;
 

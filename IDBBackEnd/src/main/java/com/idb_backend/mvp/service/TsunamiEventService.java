@@ -71,4 +71,7 @@ public interface TsunamiEventService {
 
   void deleteEvent(Integer id);
 
+  List<TsunamiRunup> getRunupById(Integer id);
+
+  List<TsunamiRunupViewNonPersist> getAllRunups();
 }

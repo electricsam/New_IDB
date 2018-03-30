@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -32,8 +33,11 @@ public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
     return em.createQuery(criteria).getResultList();
   }
 
-  public TsunamiEvent getEventById(Integer id){
-    return em.find(TsunamiEvent.class, id);
+  public List<TsunamiEvent> getEventById(Integer id){
+    TsunamiEvent te = em.find(TsunamiEvent.class, id);
+    List<TsunamiEvent> list = new ArrayList<>();
+    list.add(te);
+    return list;
   }
 
   @Override
@@ -89,5 +93,18 @@ public class TsunamiEventRepositoryImpl implements TsunamiEventRepository {
   public void deleteEvent(Integer id){
     List<TsunamiEvent> tsunamiEvents = em.createQuery("FROM TSEVENT_TSQP WHERE ID = "+ id).getResultList();
     em.remove(tsunamiEvents.get(0));
+  }
+
+  @Override
+  public List<TsunamiRunup> getRunupById(Integer id){
+    TsunamiRunup tr = em.find(TsunamiRunup.class, id);
+    List<TsunamiRunup> list = new ArrayList<>();
+    list.add(tr);
+    return list;
+  }
+
+  @Override
+  public List<TsunamiRunupView> getAllRunups(){
+    return em.createQuery("FROM TSRUNUP_VSQP").getResultList();
   }
 }
