@@ -37,6 +37,37 @@ const mapToTable = (arr) => {
         <button type="button" onClick={()=> store.dispatch(push(`/updatetsunami/${props.original.id}`))}>Edit</button>
       )
     })
+    result.push({
+      Header: "Add Runup",
+      accessor: 'addRunup',
+      Cell: props => (
+        <button type="button" onClick={()=> store.dispatch(push(`/inserttsunamirunup/${props.original.id}`))}>
+          Add Runup
+        </button>
+      )
+    })
+
+  }
+  return result;
+}
+
+const mapToRunupTable = (arr) => {
+  let result = [];
+  if(arr.length){
+    let accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      result.push({Header: camelToPascal(e), accessor: e, })
+    });
+    result.push({
+      Header: "Edit",
+      accessor: 'edit',
+      Cell: props => (
+        <button type="button"
+                onClick={()=> store.dispatch(push(`/updaterunup/${props.original.id}/${props.original.eventId}`))}>
+          Edit
+        </button>
+      )
+    })
 
   }
   return result;
@@ -70,5 +101,6 @@ module.exports = {
   mapToTable,
   decodeQueryString,
   encodeQueryString,
-  createApiQueryString
+  createApiQueryString,
+  mapToRunupTable,
 };

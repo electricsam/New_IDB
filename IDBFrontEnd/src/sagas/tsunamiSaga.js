@@ -2,20 +2,15 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import axios from 'axios';
 
-
-import { mapToTable } from '../helperFunctions/helperFunctions';
-
+import { mapToTable, mapToRunupTable } from '../helperFunctions/helperFunctions';
 
 export function* watchUpdateFetchedTsEvent(){
   yield takeEvery("UPDATE_FETCHED_TS_EVENT", fetch)
 }
 
-
-
 export function* fetchAllTsEvents(){
   try {
     const response = yield call(axios.get, 'http://localhost:8080/tsunamievents');
-    console.log("you are hitting the fetchAllTsEvents Function somehow")
     yield put({
       type: "FETCH_ALL_TS_EVENTS_FULFILLED",
       payload:{data: response.data, formattedData: mapToTable(response.data)}
@@ -25,12 +20,9 @@ export function* fetchAllTsEvents(){
   }
 }
 
-
 export function* watchFetchAllTsEvents(){
-  console.log("you are triggering the fetchall event")
   yield takeEvery("FETCH_ALL_TS_EVENTS_REQUESTED", fetchAllTsEvents);
 }
-
 
 export function* fetchTsEventById(action){
   let id = action.payload;
@@ -47,16 +39,13 @@ export function* fetchTsEventById(action){
 }
 
 export function* watchFetchTsEventById(){
-  console.log("you are triggering me as well")
   yield takeEvery("FETCH_TS_EVENT_REQUESTED", fetchTsEventById);
 }
 
 export function* fetchSpecifiedTSEvents(action){
   let queryString = action.payload;
   try{
-    console.log("action.payload: ", action.payload)
     const response = yield call(axios.get, `http://localhost:8080/tsunamievents/select?${queryString}`);
-    console.log("you are inside the specified event saga")
     yield put({
       type: "FETCH_SPECIFIED_TS_EVENTS_FULFILLED",
       payload:{data: response.data, formattedData: mapToTable(response.data)}
@@ -66,7 +55,6 @@ export function* fetchSpecifiedTSEvents(action){
   }
 }
 
-
 export function* watchFetchSpecifiedTSEvents(){
   yield takeEvery('FETCH_SPECIFIED_TS_EVENTS_REQUESTED', fetchSpecifiedTSEvents)
 }
@@ -75,7 +63,6 @@ export function* patchTsEvent(action){
   let id = action.payload.id;
   let tsEvent = action.payload.tsEvent;
   try{
-    console.log("hello from patch")
     const response = yield call(axios.patch, `http://localhost:8080/tsunamievents/${id}`, tsEvent);
     yield put({
       type: "PATCH_TS_EVENT_FULFILLED",
@@ -99,7 +86,6 @@ export function* watchPatchTsEvent(){
 
 export function* postTsEvent(action){
   let tsEvent = action.payload;
-  console.log("postTSEVENT action.payload: ", tsEvent);
   try{
     const response = yield call(axios.post, "http://localhost:8080/tsunamievents", tsEvent);
     yield put({
@@ -116,10 +102,9 @@ export function* watchPostTsEvent(){
 }
 
 export function* postRunup(action){
-  let runup = action.payload;
-  console.log("POST TS RUNUP action.payload: ", runup);
+  let { runup, id } = action.payload
   try{
-    const response = yield call(axios.post, "http://localhost:8080/tsunamirunups", runup);
+    const response = yield call(axios.post, `http://localhost:8080/tsunamirunups/${id}`, runup);
     yield put({
       type:"POST_TS_RUNUP_FULFILLED",
       payload:{data: response.data}
@@ -139,7 +124,6 @@ export function* watchFetchRunup(){
 
 export function* fetchRunup(action){
   let runupId = action.payload;
-  console.log("RunupId: ", runupId);
   try{
     const response = yield call(axios.get, `http://localhost:8080/tsunamirunups/${runupId}`);
     yield put({
@@ -155,7 +139,6 @@ export function* watchUpdateRunup(){
   yield takeEvery("UPDATE_TS_RUNUP_REQUESTED", updateRunup)
 }
 
-
 export function* updateRunup(action){
   let runupId = action.payload.runupId;
   let eventId = action.payload.eventId;
@@ -168,3 +151,41 @@ export function* updateRunup(action){
     yield put({type: "UPDATE_TS_RUNUP_REJECTED", payload: error});
   }
 }
+
+export function* fetchSpecifiedRunup(action){
+  let queryString = action.payload;
+  console.log(action.payload)
+
+  try{
+    const response = yield call(axios.get, `http://localhost:8080/tsunamirunups/select?${queryString}`);
+    console.log("you have at the very least reached this part of things")
+    yield  put({
+      type: "FETCH_SPECIFIED_RUNUP_FULFILLED",
+      payload:{data: response.data, formattedData: mapToRunupTable(response.data)}
+    });
+  }catch(error){
+    yield put({type: "FETCH_SPECIFIED_RUNUP_REJECTED", payload: error});
+  }
+}
+
+export function* watchFetchSpecifiedRunup() {
+  yield takeEvery("FETCH_SPECIFIED_RUNUP_REQUESTED", fetchSpecifiedRunup)
+}
+
+export function* fetchAllRunups(){
+  try {
+    const response = yield call(axios.get, 'http://localhost:8080/tsunamirunups');
+    yield put({
+      type: "FETCH_ALL_RUNUP_FULFILLED",
+      payload:{data: response.data, formattedData: mapToRunupTable(response.data)}
+    });
+  } catch(error) {
+    yield put({type: "FETCH_ALL_RUNUP_REJECTED", payload: error});
+  }
+}
+
+export function* watchFetchAllRunups(){
+  yield takeEvery("FETCH_ALL_RUNUP_REQUESTED", fetchAllRunups);
+}
+
+

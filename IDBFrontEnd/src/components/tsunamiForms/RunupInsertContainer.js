@@ -6,6 +6,7 @@ import { encodeQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
 import RunupInsert from "./RunupInsert"
 
+import Styles from "./RunupInsertStyle.css";
 
 const action = obj => store.dispatch(obj);
 
@@ -28,13 +29,8 @@ class RunupInsertContainer extends React.Component{
     val = val.tsunami.asMutable().toJS();
     if(val.rnpinsert){
       let encoded = encodeQueryString(JSON.stringify(val.rnpinsert));
-      console.log(val.rnpinsert)
-      action({type: "POST_TS_RUNUP_REQUESTED", payload: val.rnpinsert});
-      //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
-      // this.props.history.push(`/tsunamis?${encoded}`);
-    }else{
-      // action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
-      // this.props.history.push(`/tsunamis`)
+      console.log("This.props:", this.props)
+      action({type: "POST_TS_RUNUP_REQUESTED", payload: {runup: val.rnpinsert, id: this.props.match.params.eventId}});
     }
   }
 
@@ -43,8 +39,8 @@ class RunupInsertContainer extends React.Component{
   render(){
     const { tsunami } = this.props;
     return (
-      <div >
-        <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)}>
+      <div className={Styles.container}>
+        <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
           <RunupInsert validateMinMax={this.validateMinMax}/>
 

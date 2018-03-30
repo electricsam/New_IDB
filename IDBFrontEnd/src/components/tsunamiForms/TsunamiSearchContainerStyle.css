@@ -11,7 +11,7 @@
     display: flex;
     width: 100%;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-self: start;
     grid-column: 2/3;
     grid-row: 1/2;
@@ -19,6 +19,8 @@
 
 .header h3{
     margin: 0;
+    margin-top: 2%;
+    display: block;
 }
 
 .errors{
@@ -30,8 +32,9 @@
 }
 
 .expandCollapse{
-    width: 95%;
+    width: 10%;
     text-align: right;
+    align-self: flex-end;
 }
 
 .expandCollapse:hover i{
@@ -53,34 +56,89 @@
     width: 100%;
 }
 
+.minMaxTitle{
+    display: block;
+}
+
+/*TsunamiSourceParameters Form Section*/
 .formSectionOne{
     grid-column: 1/2;
     grid-row: 1/2;
     display: grid;
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto;
     grid-template-columns: 2.5% 95% 2.5%;
+    justify-items: start;
+    align-items: start;
+    width: 100%;
+    height: auto;
+}
+
+.formInnerSectionOne{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: 100%;
     justify-items: start;
     align-items: center;
     width: 100%;
     height: auto;
 }
 
+@each $tsource $i in (year, region, country, state, province, latLong, validity, cause, eqMag,
+locType, loc){
+    .$tsource{
+        grid-column: 1/2;
+        grid-row: calc($i + 2)/ calc($i + 3);
+    }
+
+    .$tsource div{
+        display: inline-block;
+    }
+}
+
+/*TsunamiRunupByPlace Form Section*/
 .formSectionTwo{
     grid-column: 1/2;
     grid-row: 2/3;
     display: grid;
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto;
     grid-template-columns: 2.5% 95% 2.5%;
     justify-items: start;
     align-items: center;
     width: 100%;
     height: auto
 }
+
+.formInnerSectionTwo{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: 100%;
+    justify-items: start;
+    align-items: center;
+    width: 100%;
+    height: auto
+}
+@each $place $j in (rnpRegion, rnpCountries, rnpStates, rnpProvince, rnpIndoProv, rnpJpPre, rnpDistance, travHrs,
+rnpLocType, rnpLoc){
+    .$place{
+        grid-column: 1/2;
+        grid-row: calc($j + 2)/ calc($j + 3);
+    }
+
+    .$place div{
+        display: inline-block;
+    }
+}
+
+/*Total Tsunami Effects*/
 .formSectionThree{
     grid-column: 1/2;
     grid-row: 3/4;
     display: grid;
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto;
     grid-template-columns: 2.5% 95% 2.5%;
     justify-items: start;
     align-items: center;
@@ -88,157 +146,23 @@
     height: auto
 }
 
-.formSectionFour{
-    grid-column: 1/2;
-    grid-row: 4/5;
+.formInnerSectionThree{
+    grid-column: 2/3;
+    grid-row: 2/3;
     display: grid;
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto;
-    grid-template-columns: 2.5% 95% 2.5%;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: 100%;
     justify-items: start;
     align-items: center;
     width: 100%;
     height: auto
 }
-
-.year{
-    align-self: left;
-    grid-column: 2/3;
-    grid-row: 2/3;
-    width: 100%;
-}
-
-.year div{
-    display: inline-block;
-}
-
-.region{
-    grid-column: 2/3;
-    grid-row: 3/4;
-}
-
-.minMaxTitle{
-    margin-right: 2%;
-}
-
-.country{
-    grid-column: 2/3;
-    grid-row: 4/5;
-    display: block;
-}
-
-.state{
-    grid-column: 2/3;
-    grid-row: 5/6;
-}
-
-.province{
-    grid-column: 2/3;
-    grid-row:6/7;
-}
-
-.latLong{
-    grid-column: 2/3;
-    grid-row: 7/8
-}
-
-.latLong div{
-    display: inline-block;
-}
-
-.validity{
-    grid-column: 2/3;
-    grid-row: 8/9
-}
-
-.cause{
-    grid-column: 2/3;
-    grid-row: 9/10
-}
-.cause div{
-    display: inline-block;
-}
-
-.eqMag{
-    grid-column: 2/3;
-    grid-row: 10/11;
-}
-
-.eqMag div{
-    display: inline-block;
-}
-
-.locType{
-    grid-column: 2/3;
-    grid-row: 11/12;
-}
-
-.locType div{
-    diplay: inline-block;
-}
-
-.loc{
-    grid-column: 2/3;
-    grid-row: 12/13
-}
-
-.rnpRegion{
-    grid-column:2/3;
-    grid-row: 2/3;
-}
-
-.rnpCountries{
-    grid-column:2/3;
-    grid-row: 3/4;
-}
-
-.rnpStates{
-    grid-column:2/3;
-    grid-row: 4/5;
-}
-
-.rnpProvince{
-    grid-column:2/3;
-    grid-row: 5/6;
-}
-
-.rnpIndoProv{
-    grid-column:2/3;
-    grid-row: 6/7;
-}
-
-.rnpJpPre{
-    grid-column:2/3;
-    grid-row: 7/8;
-}
-
-.rnpDistance{
-    grid-column:2/3;
-    grid-row: 8/9;
-}
-
-.travHrs{
-    grid-column:2/3;
-    grid-row: 9/10;
-}
-
-.rnpLocType{
-    grid-column:2/3;
-    grid-row: 10/11;
-}
-
-.rnpLoc{
-    grid-column:2/3;
-    grid-row: 11/12;
-}
-/*Total Tsunami Effects*/
-
-
-@each $effect $i in (numRunups, maxWater, numDeaths, deathDescrip, numInjuries,
+@each $effect $k in (numRunups, maxWater, numDeaths, deathDescrip, numInjuries,
 injuryDescrip, damage, damageDescrip, numHouses, housesDescrip
 ){
     .$effect{
-        grid-column: 2/3;
-        grid-row: calc($i + 2)/calc($i + 3);
+        grid-column: 1/2;
+        grid-row: calc($k + 2)/calc($k + 3);
     }
 
     .$effect div{
@@ -247,15 +171,60 @@ injuryDescrip, damage, damageDescrip, numHouses, housesDescrip
 }
 
 /*Total Tsunami and Source Effects*/
+.formSectionFour{
+    grid-column: 1/2;
+    grid-row: 4/5;
+    display: grid;
+    grid-template-rows: auto auto ;
+    grid-template-columns: 2.5% 95% 2.5%;
+    justify-items: start;
+    align-items: center;
+    width: 100%;
+    height: auto
+}
 
-@each $class $i in (deathsTotal, deathTotalDescrip, typeMeasure, vertHt, rnpDeaths, rnpDeathDescrip, rnpInjuries,
+.formInnerSectionFour{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: 100%;
+    justify-items: start;
+    align-items: center;
+    width: 100%;
+    height: auto
+}
+@each $class $l in (deathsTotal, deathTotalDescrip, typeMeasure, vertHt, rnpDeaths, rnpDeathDescrip, rnpInjuries,
                     rnpInjuryDescrip, rnpDamage, rnpDamageDescrip, rnpHouses, rnpHousesDescrip){
     .$class{
-        grid-column: 2/3;
-        grid-row: calc($i + 2)/calc($i + 3);
+        grid-column: 1/2;
+        grid-row: calc($l + 2)/calc($l + 3);
     }
 
     .$class div{
         display: inline-block;
     }
 }
+
+
+.searchButton{
+    margin: 2%;
+    padding: .5% 2% .5% 2%;
+    background-color: transparent;
+    color: rgb(102,102,102);
+    border: .5px solid rgb(102,102,102);
+    text-transform: uppercase;
+
+    outline: 0;
+}
+
+.searchButton:hover{
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.searchButton:focus{
+    outline: none;
+    box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.2)
+}
+

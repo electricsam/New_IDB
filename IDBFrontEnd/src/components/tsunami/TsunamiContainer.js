@@ -22,10 +22,8 @@ class TsunamiContainer extends React.Component {
     let { search } = this.props.location;
     if(search.length){
       search = search.split('?')[1];
-      console.log("You are here in the decode sequence")
       let decoded = JSON.parse(decodeQueryString(search));
       let queryString = createApiQueryString(decoded)
-      console.log("queryString: ", queryString)
       action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});
     }
   }

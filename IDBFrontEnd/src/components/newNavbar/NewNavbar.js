@@ -52,7 +52,7 @@ const NewNavbar = () => (
 
                 <li className={Styles.nestedLi}><Link to="/tsunamieventsearch">EVENTS</Link></li>
 
-                <li className={Styles.nestedLi}><Link to="/tsunamis/runups"> RUNUPS</Link> </li>
+                <li className={Styles.nestedLi}><Link to="/tsunamirunupsearch"> RUNUPS</Link> </li>
 
                 <li className={Styles.nestedLi}><Link to="/tsunamis/deposits"> DEPOSITS</Link></li>
 

@@ -93,7 +93,6 @@
     "jshint": "^2.9.5",
     "mocha": "^4.1.0",
     "nock": "^9.1.6",
-    "postcss-advanced-variables": "^2.3.3",
     "postcss-loader": "^2.0.10",
     "precss": "^3.0.0",
     "redux-logger": "^3.0.6",

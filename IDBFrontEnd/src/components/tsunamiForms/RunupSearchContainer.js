@@ -6,7 +6,7 @@ import { encodeQueryString, createApiQueryString } from '../../helperFunctions/h
 import store from '../../store';
 import { countries, states, canadianProvince, validationConstants, regions } from './constants'
 import MinMax from '../searchFormPartials/MinMax';
-import Styles from './TsunamiSearchContainerStyle.css';
+import Styles from './RunupSearchContainerStyle.css';
 import DropDown from "../searchFormPartials/DropDown.jsx";
 import RunupSourceInfo from "./RunupSourceInfo";
 import RunupLocationInfo from "./RunupLocationInfo";
@@ -42,16 +42,21 @@ class RunupSearchContainer extends React.Component{
     if(val.rnpsearch){
       let encoded = encodeQueryString(JSON.stringify(val.rnpsearch));
       let queryString = createApiQueryString(val.rnpsearch);
-      // action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});
+      // action({type: "FETCH_SPECIFIED_RUNUP_REQUESTED", payload: queryString});
+
       //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
-      // this.props.history.push(`/tsunamis?${encoded}`);
+      this.props.history.push(`/runupdata?${encoded}`);
     }else{
-      // action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
-      // this.props.history.push(`/tsunamis`)
+      action({type: "FETCH_ALL_RUNUPS_REQUESTED"});
+      this.props.history.push(`/runupdata`)
     }
   }
 
-  toggleSourceForm = () => action({type: "TOGGLE_SOURCE_FORM"});
+  toggleRunupSourceInfo = () => action({type: "TOGGLE_RUNUP_SOURCE_FORM"});
+
+  toggleRunupLocationInfo = () => action({type: "TOGGLE_RUNUPLOCATION_FORM"});
+
+  toggleParamsEffect = () => action({type: "TOGGLE_RUNUPPARAMS_FORM"});
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
@@ -63,13 +68,26 @@ class RunupSearchContainer extends React.Component{
       <div className={Styles.container}>
         <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
-          <RunupSourceInfo validateMinMax={this.validateMinMax}/>
+          <RunupSourceInfo
+          validateMinMax={this.validateMinMax}
+          showRunupSource={tsunami.get('showRunupSource')}
+          toggleShowRunupSource={this.toggleRunupSourceInfo}
+          />
 
-          <RunupLocationInfo validateMinMax={this.validateMinMax} checkLocType={this.checkRunupLocType}/>
+          <RunupLocationInfo
+            validateMinMax={this.validateMinMax}
+            checkLocType={this.checkRunupLocType}
+            showRunupLocation={tsunami.get('showRunupLocation')}
+            toggleShowRunupLocation={this.toggleRunupLocationInfo}
+          />
 
-          <RunupParamsEffects validateMinMax={this.validateMinMax}/>
+          <RunupParamsEffects
+            validateMinMax={this.validateMinMax}
+            showParamsEffect={tsunami.get('showRunupParams')}
+            toggleShowRunupParams={this.toggleParamsEffect}
+          />
 
-          <button type="submit" >
+          <button type="submit"  className={Styles.searchButton}>
             Submit
           </button> </Form>
       </div>

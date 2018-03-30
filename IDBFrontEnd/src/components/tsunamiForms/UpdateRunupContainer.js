@@ -36,12 +36,11 @@ class UpdateRunupContainer extends React.Component{
     val = val.tsunami.asMutable().toJS();
     let runupId = this.props.match.params.runupId;
     let eventId = this.props.match.params.eventId;
-    console.log(runupId, eventId, "YOOUASIDFOIUDFOIU")
     // if(val.runupData){
     //   action({
     //     type: "UPDATE_TS_RUNUP_REQUESTED",
     //     payload:{
-    //       runupData: val.runupData, runupId: runupId, eventId: eventId
+    //       runupData: val.runupData[0], runupId: runupId, eventId: eventId
     //     }
     //   });
     // }

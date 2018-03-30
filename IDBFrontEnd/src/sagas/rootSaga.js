@@ -8,6 +8,8 @@ import {
   watchFetchTsEventById,
   watchFetchRunup,
   watchUpdateRunup,
+  watchFetchSpecifiedRunup,
+  watchFetchAllRunups,
 } from './tsunamiSaga';
 
 export default function* rootSaga(){
@@ -19,5 +21,7 @@ export default function* rootSaga(){
     watchFetchTsEventById(),
     watchFetchRunup(),
     watchUpdateRunup(),
+    watchFetchSpecifiedRunup(),
+    watchFetchAllRunups()
   ]);
 }

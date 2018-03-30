@@ -42,8 +42,6 @@ class UpdateTsunamiContainer extends React.Component{
       action({type: "PATCH_TS_EVENT_REQUESTED", payload:{ tsEvent: val.tsEvent, id: id}});
       //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
       // this.props.history.push(`/tsunamis?${encoded}`);
-
-
     }
     // else{
     //   action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});

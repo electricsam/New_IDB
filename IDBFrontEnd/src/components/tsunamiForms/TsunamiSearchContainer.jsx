@@ -19,8 +19,6 @@ const errorStyles = {
   display: 'block'
 }
 
-//TODO: Remove const from action
-
 const action = obj => store.dispatch(obj);
 
 class TsunamiSearchContainer extends React.Component{
@@ -52,10 +50,17 @@ class TsunamiSearchContainer extends React.Component{
   }
 
   toggleSourceForm = () => action({type: "TOGGLE_SOURCE_FORM"});
-  
+
+  toggleRunupPlaceForm = () => action({type: "TOGGLE_RUNUPPLACE_FORM"});
+
+  toggleTsunamiEffectsForm = () => action({type: "TOGGLE_TSUNAMIEFFECTS_FORM"});
+
+  toggleTotalTsunamiSourceForm = () => action({type: "TOGGLE_TOTALTSUNAMISOURCE_FORM"});
+
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
   checkLocType = () => this.props.tsunami.get('locType');
+
   checkRunupLocType = () => this.props.tsunami.get('runupLocType')
 
   render(){
@@ -64,15 +69,33 @@ class TsunamiSearchContainer extends React.Component{
       <div className={Styles.container}>
         <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
-          <TsunamiSourceParameters validateMinMax={this.validateMinMax} checkLocType={this.checkLocType}/>
+          <TsunamiSourceParameters
+            validateMinMax={this.validateMinMax}
+            checkLocType={this.checkLocType}
+            showSourceForm = {tsunami.get('showSourceForm')}
+            toggleSourceForm = {this.toggleSourceForm}
+          />
 
-          <TsunamiRunupByPlace validateMinMax={this.validateMinMax} checkRunupLocType={this.checkRunupLocType}/>
+          <TsunamiRunupByPlace
+            validateMinMax={this.validateMinMax}
+            checkRunupLocType={this.checkRunupLocType}
+            showRunupPlaceForm={tsunami.get('showRunupPlaceForm')}
+            toggleRunupPlaceForm={this.toggleRunupPlaceForm}
+          />
 
-          <TotalTsunamiEffects validateMinMax={this.validateMinMax}/>
+          <TotalTsunamiEffects
+            validateMinMax={this.validateMinMax}
+            showTsunamiEffectsForm={tsunami.get('showTsunamiEffectsForm')}
+            toggleTsunamiEffectsForm={this.toggleTsunamiEffectsForm}
+          />
 
-          <TotalTsunamiandSourceEffects validateMinMax={this.validateMinMax}/>
+          <TotalTsunamiandSourceEffects
+            validateMinMax={this.validateMinMax}
+            showTotalTsunamiSourceForm={tsunami.get('showTotalTsunamiSourceForm')}
+            toggleTotalTsunamiSourceForm={this.toggleTotalTsunamiSourceForm}
+          />
 
-        <button type="submit" >
+        <button type="submit" className={Styles.searchButton}>
           Submit
         </button> </Form>
       </div>

@@ -18,6 +18,7 @@ import RunupSearchContainer from "./tsunamiForms/RunupSearchContainer";
 import UpdateTsunamiContainer from "./tsunamiForms/UpdateTsunamiContainer";
 import TestContainer from "./testComponents/TestContainer";
 import UpdateRunupContainer from "./tsunamiForms/UpdateRunupContainer";
+import RunupContainer from "./Runup/RunupContainer";
 
 class App extends React.Component {
   render() {
@@ -30,9 +31,10 @@ class App extends React.Component {
             <Route exact path="/home" component={Home}/>
             <Route exact path="/about" component={AboutPage} />
             <Route exact strict path="/tsunamisdata" component={TsunamiContainer} />
+            <Route exact path="/runupdata" component={RunupContainer}/>
             <Route exact path="/tsunamieventsearch" component={TsunamiSearchContainer}/>
             <Route exact path="/inserttsunamievent" component={TsunamiInsertContainer}/>
-            <Route exact path="/inserttsunamirunup" component={RunupInsertContainer}/>
+            <Route exact path="/inserttsunamirunup/:eventId" component={RunupInsertContainer}/>
             <Route exact path="/tsunamirunupsearch" component={RunupSearchContainer}/>
             <Route exact path="/updatetsunami/:id" component={UpdateTsunamiContainer}/>
             <Route exact path={'/userdisplay'} component={UserDisplay}/>

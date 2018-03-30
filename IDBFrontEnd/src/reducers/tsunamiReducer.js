@@ -15,11 +15,16 @@ export const initialState = fromJS({
   tsEvent:{},
   headersAndAccessors: [],
   showSourceForm: true,
+  showRunupPlaceForm: false,
+  showTsunamiEffectsForm: false,
+  showTotalTsunamiSourceForm: false,
+  showRunupSource: true,
+  showRunupLocation: true,
+  showRunupParams: true,
   fetchingRunup: false,
   fetchedRunup: false,
   runupData: [],
 });
-
 
 export default function reducer(state=initialState, action){
   switch (action.type){
@@ -38,7 +43,6 @@ export default function reducer(state=initialState, action){
       });
     }
     case 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED': {
-      console.log("you are in the reducer for specified ts event request")
       return state.set(state, 'fetchingTsEvent', true);
     }
     case 'FETCH_SPECIFIED_TS_EVENTS_REJECTED': {
@@ -93,6 +97,52 @@ export default function reducer(state=initialState, action){
     }
     case "FETCH_TS_RUNUP_REJECTED":{
       return state.merge(state, {fetchingRunup: false, error: action.payload});
+    }
+    case "TOGGLE_RUNUPPLACE_FORM": {
+      return state.merge(state, {showRunupPlaceForm: !state.get('showRunupPlaceForm')})
+    }
+    case "TOGGLE_TSUNAMIEFFECTS_FORM": {
+      return state.merge(state, {showTsunamiEffectsForm: !state.get('showTsunamiEffectsForm')})
+    }
+    case "TOGGLE_TOTALTSUNAMISOURCE_FORM": {
+      return state.merge(state, {showTotalTsunamiSourceForm: !state.get('showTotalTsunamiSourceForm')})
+    }
+    case "TOGGLE_RUNUP_SOURCE_FORM": {
+      return state.merge(state, {showRunupSource: !state.get('showRunupSource')});
+    }
+    case "TOGGLE_RUNUPLOCATION_FORM": {
+      return state.merge(state, {showRunupLocation: !state.get('showRunupLocation')});
+    }
+    case "TOGGLE_RUNUPPARAMS_FORM": {
+      return state.merge(state, {showRunupParams: !state.get('showRunupParams')});
+    }
+    case "FETCH_SPECIFIED_RUNUP_REQUESTED": {
+      return state.merge({fetchingRunup: true});
+    }
+    case "FETCH_SPECIFIED_RUNUP_REJECTED": {
+     return state.merge({fetchingRunup: false, error: action.payload})
+    }
+    case "FETCH_SPECIFIED_RUNUP_FULFILLED": {
+      return state.merge(state, {
+        fetchingRunup:false,
+        fetchedRunup: true,
+        runupData: action.payload.data,
+        headersAndAccessors: action.payload.formattedData
+      });
+    }
+    case "FETCH_ALL_RUNUP_REQUESTED": {
+      return state.merge({fetchingRunup: true});
+    }
+    case "FETCH_ALL_RUNUP_REJECTED": {
+      return state.merge({fetchingRunup: false, error: action.payload})
+    }
+    case "FETCH_ALL_RUNUP_FULFILLED": {
+      return state.merge(state, {
+        fetchingRunup:false,
+        fetchedRunup: true,
+        runupData: action.payload.data,
+        headersAndAccessors: action.payload.formattedData
+      });
     }
     default:
       return state;
