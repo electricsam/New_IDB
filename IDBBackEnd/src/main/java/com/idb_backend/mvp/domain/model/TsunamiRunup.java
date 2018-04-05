@@ -1,11 +1,14 @@
 package com.idb_backend.mvp.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity(name = "TSRUNUP_TSQP")
@@ -20,48 +23,100 @@ public class TsunamiRunup {
   private TsunamiEvent tsunamiEvent;
 
   @Column(name = "YEAR")
+  @Min(value = -2000)
   private Integer year;
 
   @Column(name = "MONTH")
+  @Min(value = 1)
+  @Max(value = 12)
   private Integer month;
 
   @Column(name = "DAY")
+  @Min(value = 1)
+  @Max(value = 31)
   private Integer day;
 
   @Column(name = "ARR_DAY")
+  @Min(value = 1)
+  @Max(value = 31)
   private Integer arrDay;
 
   @Column(name = "ARR_HOUR")
+  @Min(value = 0)
+  @Max(value = 23)
   private Integer arrHour;
 
   @Column(name = "ARR_MIN")
+  @Min(value = 0)
+  @Max(value = 59)
   private Integer arrMin;
 
   @Column(name = "TRAV_HOURS")
+  @Min(value = 0)
+  @Max(value = 60)
   private Integer travHours;
 
   @Column(name = "TRAV_MINS")
+  @Min(value = 0)
+  @Max(value = 59)
   private Integer travMins;
 
   @Column(name = "PERIOD")
+  @Min(value = 0)
+  @Max(value = 180)
   private Float period;
 
   @Column(name = "FIRST_MOTION")
+  @Size(min = 1, max = 1)
+  @InString(strs = {"F", "R"})
   private String firstMotion;
 
   @Column(name = "LATITUDE")
+  @Min(value = -90)
+  @Max(value = 90)
   private Float latitude;
 
   @Column(name = "LONGITUDE")
+  @Min(value = -180)
+  @Max(value = 180)
   private Float longitude;
 
   @Column(name = "LOCATION_NAME")
   private String locationName;
 
   @Column(name = "AREA")
+  @InString(strs = {"ACEH", "AICHI", "AK", "AKITA", "AL", "AOMORI", "AR", "AS", "AZ", "BALI", "BANGKA-BELITUNG", "BANTEN",
+      "BC", "BENGKULU", "BONIN IS, TOKYO", "CA", "CENTRAL JAVA", "CENTRAL SULAWESI", "CHIBA", "CO", "CT", "DC", "DE",
+      "EAST JAVA", "EAST NUSA TENGGARA", "EHIME", "FL", "FM", "FUKUI", "FUKUOKA", "FUKUSHIMA", "GA", "GIFU",
+      "GORONTALO", "GU", "GUMMA", "HI", "HIROSHIMA", "HOKKAIDO", "HYOGO", "IA", "IBARAKI", "ID", "IL", "IN", "ISHIKAWA",
+      "IWATE", "IZU-OSHIMA, TOKYO", "JAKARTA", "KAGAWA", "KAGOSHIMA", "KANAGAWA", "KOCHI", "KS", "KUMAMOTO", "KY",
+      "KYOTO", "LA", "LAMPUNG", "MA", "MALUKU", "MD", "ME", "MH", "MI", "MIE", "MIYAGI", "MIYAZAKI", "MN", "MO", "MP",
+      "MS", "MT", "NAGANO", "NAGASAKI", "NARA", "NC", "ND", "NE", "NH", "NIIGATA", "NJ", "NL", "NM", "NORTH MALUKU",
+      "NORTH SULAWESI", "NORTH SUMATRA", "NS", "NV", "NY", "OH", "OITA", "OK", "OKAYAMA", "OKINAWA",
+      "OKUSHIRI IS, HOKKAIDO", "OR", "OSAKA", "PA", "PAPUA", "PR", "PW", "RI", "RIAU", "SAGA", "SAITAMA", "SC", "SD",
+      "SHIGA", "SHIMANE", "SHIZUOKA", "SOUTH EAST SULAWESI", "SOUTH KALIMANTAN", "SOUTH SULAWESI", "SUNDA STRAIT", "TN",
+      "TOKUSHIMA", "TOKUSIMA", "TOKYO", "TOTTORI", "TOYAMA", "TSHIBA", "TX", "UT", "VA", "VI", "VT", "WA", "WAKAYAMA",
+      "WEST JAVA", "WEST KALIMANTAN", "WEST NUSA TENGGARA", "WEST PAPUA", "WEST SULAWESI", "WEST SUMATRA", "WESTJAVA",
+      "WI", "WV", "WY", "YAMAGATA", "YAMAGUCHI", "YOGYAKARTA"})
   private String area;
 
   @Column(name = "COUNTRY")
+  @InString(strs = {
+      "ALBANIA", "ALGERIA", "ANTARCTICA", "ANTIGUA AND BARBUDA", "ATLANTIC OCEAN", "AUSTRALIA","BALTIC SEA","BANGLADESH"
+      ,"BULGARIA","CANADA","CHILE","CHINA","COLOMBIA","CONGO","COOK ISLANDS", "COSTA RICA","CROATIA","CUBA","CYPRUS",
+      "CYPRUS ISLAND","DEAD SEA","DENMARK","DOMINICAN REPUBLIC","EAST CHINA SEA", "ECUADOR","EGYPT","EL SALVADOR",
+      "ERITREA","FIJI","FRANCE","FRENCH POLYNESIA","GEORGIA","GERMANY","GHANA","GREECE","GREENLAND",
+      "GUADELOUPE (FRENCH TERRITORY)","GUATEMALA","HAITI","HOLLAND","HONDURAS", "ICELAND","INDIA","INDONESIA","IRAN",
+      "IRELAND","IRISH SEA","ISRAEL","ITALY","JAMAICA","JAPAN","JORDAN","KENYA","KERMADEC ISLANDS","KOREA","LEBANON",
+      "MARSHALL ISLANDS, REP. OF","MARTINIQUE (FRENCH TERRITORY)","MEXICO","MICRONESIA, FED. STATES OF","MONTSERRAT",
+      "MOROCCO","MYANMAR (BURMA)","NAURU","NEPAL","NETHERLANDS","NEW CALEDONIA","NEW ZEALAND","NICARAGUA","NORTH KOREA",
+      "NORTH SEA","NORTHWEST PACIFIC OCEAN","NORWAY","PACIFIC OCEAN","PAKISTAN","PANAMA","PAPUA NEW GUINEA","PERU",
+      "PHILIPPINES", "PORTUGAL", "RUSSIA", "SAINT VINCENT AND THE GRENADINES", "SAMOA", "SCOTLAND",
+      "SERBIA AND MONTENEGRO", "SOLOMON ISLANDS", "SOUTH AFRICA", "SOUTH KOREA", "SPAIN", "SRI LANKA", "SUDAN",
+      "SWEDEN", "SWITZERLAND", "SYRIA", "TAIWAN", "TOGO", "TONGA", "TRINIDAD AND TOBAGO", "TUNISIA", "TURKEY",
+      "TURKMENISTAN", "UK", "UK TERRITORY", "UKRAINE", "URUGUAY", "USA", "USA TERRITORY", "VANUATU", "VENEZUELA",
+      "WALLIS AND FUTUNA (FRENCH TERRITORY)",
+  })
   private String country;
 
   public String getCountry() {
@@ -73,39 +128,54 @@ public class TsunamiRunup {
   }
 
   @Column(name = "REGION_CODE")
+  @In(nums = {30, 40, 50, 60, 70, 71, 72, 73, 74, 75, 76, 77, 78, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89})
   private Integer regionCode;
 
   @Column(name = "RUNUP_HT")
+  @Min(value = 0)
+  @Max(value = 800)
   private Float runupHt;
 
   @Column(name = "RUNUP_HORIZ")
+  @Min(value = 0)
+  @Max(value= 10000)
   private Float runupHoriz;
 
   @Column(name = "TYPE_OF_MEASUREMENT_ID")
+  @Min(value = -1)
+  @Max(value = 10)
   private Integer typeOfMeasurementId;
 
   @Column(name = "DAMAGE_MILLIONS_DOLLARS")
   private Float damageMillionsDollars;
 
   @Column(name = "DAMAGE_AMOUNT_ORDER")
+  @Min(value = 0)
+  @Max(value = 4)
   private Integer damageAmountOrder;
 
   @Column(name = "HOUSES_DESTROYED")
   private Integer housesDestroyed;
 
   @Column(name = "HOUSES_AMOUNT_ORDER")
+  @Min(value = 0)
+  @Max(value = 4)
   private Integer housesAmountOrder;
 
   @Column(name = "DEATHS")
   private Integer deaths;
 
   @Column(name = "DEATHS_AMOUNT_ORDER")
+  @Min(value = 0)
+  @Max(value = 4)
   private Integer deathsAmountOrder;
 
   @Column(name = "INJURIES")
   private Integer injuries;
 
   @Column(name = "INJURIES_AMOUNT_ORDER")
+  @Min(value = 0)
+  @Max(value = 4)
   private Integer injuriesAmountOrder;
 
   @Column(name = "NGDC_DATE")
@@ -144,9 +214,12 @@ public class TsunamiRunup {
 
   //TODO: Default null
   @Column(name = "MISSING_AMOUNT_ORDER")
+  @Min(value = 0)
+  @Max(value = 4)
   private Integer missingAmountOrder;
 
   @Column(name = "DOUBTFUL")
+//  Need to validate
   private String doubtful;
 
   @Column(name = "FLAG_LOC_CHK")
@@ -177,12 +250,18 @@ public class TsunamiRunup {
   private Integer waveArrHt;
 
   @Column(name = "MAX_WAVE_ARR_DAY")
+  @Min(value = 1)
+  @Max(value = 31)
   private Integer maxWaveArrDay;
 
   @Column(name = "MAX_WAVE_ARR_HOUR")
+  @Min(value = 0)
+  @Max(value = 23)
   private Integer maxWaveArrHour;
 
   @Column(name = "MAX_WAVE_ARR_MIN")
+  @Min(value = 0)
+  @Max(value = 59)
   private Integer getMaxWaveArrMin;
 
   @Column(name = "MAX_WAVE_NUM")
@@ -198,6 +277,8 @@ public class TsunamiRunup {
   private Integer housesDamaged;
 
   @Column(name = "HOUSES_DAMAGED_AMOUNT_ORDER")
+  @Min(value = 0)
+  @Max(value = 4)
   private Integer housesDamagedAmountOrder;
 
   @Column(name = "PUBLISH")

@@ -177,7 +177,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
 
   @Override
   public Predicate genIntMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
-                                CriteriaBuilder builder, Root root) {
+                                CriteriaBuilder builder, Root root) throws NumberFormatException{
     //TODO: need to figure out validation
     Integer min = generateInteger(map, minKey);
     Integer max = generateInteger(map, maxKey);
@@ -187,7 +187,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
 
   @Override
   public Predicate genIntMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
-                                CriteriaBuilder builder, Join join){
+                                CriteriaBuilder builder, Join join) throws NumberFormatException{
     Integer min = generateInteger(map, minKey);
     Integer max = generateInteger(map, maxKey);
 
@@ -196,7 +196,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
 
   @Override
   public Predicate genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
-                                  CriteriaBuilder builder, Root root) {
+                                  CriteriaBuilder builder, Root root) throws NumberFormatException{
     Float min = generateFloat(map, minKey);
     Float max = generateFloat(map, maxKey);
 
@@ -205,7 +205,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
 
   @Override
   public Predicate genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
-                                  CriteriaBuilder builder, Join join) {
+                                  CriteriaBuilder builder, Join join) throws NumberFormatException{
     Float min = generateFloat(map, minKey);
     Float max = generateFloat(map, maxKey);
 

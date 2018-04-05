@@ -16,18 +16,18 @@ public interface TsunamiEventService {
 
   Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder, Join join);
 
-  Predicate genIntMinMax(
-      Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder, Root root);
+  Predicate genIntMinMax (Map<String, String> map, String minKey, String maxKey, String colName,
+                          CriteriaBuilder builder, Root root) throws NumberFormatException;
 
-  Predicate genIntMinMax(
-      Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder, Join join);
+  Predicate genIntMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
+                         CriteriaBuilder builder, Join join) throws NumberFormatException;
 
 
-  Predicate genFloatMinMax(
-      Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder, Root root);
+  Predicate genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
+                           CriteriaBuilder builder, Root root) throws NumberFormatException;
 
-  Predicate genFloatMinMax(
-      Map<String, String> map, String minKey, String maxKey, String colName, CriteriaBuilder builder, Join join);
+  Predicate genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
+                           CriteriaBuilder builder, Join join) throws NumberFormatException;
 
   List<TsunamiEventViewNonPersist> getEventsByQuery(CriteriaQuery<TsunamiEventViewNonPersist> criteria);
 
