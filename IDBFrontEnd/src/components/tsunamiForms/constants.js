@@ -616,7 +616,7 @@ const validationConstants = {
   minute: {min: 0, max: 60},
   second: {min:0, max:60},
   validity: {min: -1, max: 4},
-  latitude: {min: -900, max: 900},
+  latitude: {min: -90, max: 90},
   longitude: {min: -1180, max: 1180},
   eqMag: {min: 0.0, max: 9.5},
   runupDistance: {min: 0, max: 2000},

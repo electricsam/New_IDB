@@ -76,6 +76,7 @@
 .formInnerSectionOne{
     grid-column: 2/3;
     grid-row: 2/3;
+    grid-row-gap: .5rem;
     display: grid;
     grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto;
     grid-template-columns: 100%;
