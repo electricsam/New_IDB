@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -114,9 +112,19 @@ public class TsunamiEventController {
   @RequestMapping(value = "/tsunamirunups/select", method= RequestMethod.GET)
   public ResponseEntity<List<TsunamiRunupViewNonPersist>> getRunupsByQuery(@RequestParam Map<String, String> allRequestParams){
     try{
+
+      boolean validParams = tsunamiEventService.validateParams(allRequestParams);
+
+
+
+      if(validParams == false){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+      }
+
       List<TsunamiRunupViewNonPersist> list = tsunamiEventService.generateRunupCriteria(allRequestParams);
 
       return new ResponseEntity<>(list, HttpStatus.OK);
+
     }catch (NumberFormatException e){
 
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
@@ -179,7 +187,6 @@ public class TsunamiEventController {
   public ResponseEntity patchRunup(@PathVariable("runupid") Integer runupId,
                                    @PathVariable("eventid") Integer eventId,
                                    @Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
-    System.out.println("you are getting here alkdjflkjsadflkjdlskjf lasldfkj lakskjslsl lskjslksj  thelkej ");
     try{
       if(errors.hasErrors()){
 //        Status err = new Status(errors.getFieldError("year").getField() + " " + errors.getFieldError("year").getDefaultMessage());
@@ -187,9 +194,6 @@ public class TsunamiEventController {
       }
 
       tsunamiRunup.setId(runupId);
-
-      System.out.println("tsunamiRunupId" + tsunamiRunup.getId());
-
       tsunamiRunup.setTsunamiEvent(tsunamiEventService.getEventProxy(eventId));
       tsunamiEventService.updateRunup(tsunamiRunup);
 

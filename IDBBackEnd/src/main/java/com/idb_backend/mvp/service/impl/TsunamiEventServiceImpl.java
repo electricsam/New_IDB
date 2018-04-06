@@ -435,4 +435,191 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
 
     return getRunupsByQuery(criteria);
   }
+
+  @Override
+  public boolean validateParams(Map<String, String> map){
+    boolean isValid = true;
+    for(String key: map.keySet()){
+      String value = map.get(key);
+      switch (key){
+        case "tsminyear":
+          Integer minyear  = Integer.parseInt(value);
+          if(minyear < -2000 || minyear > 3000){
+            isValid = false;
+          }
+          break;
+        case "tsmaxyear":
+          Integer maxyear = Integer.parseInt(value);
+          if(maxyear < -2000 || maxyear > 3000){
+            isValid = false;
+          }
+          break;
+        case "tsregion":
+          Integer tsRegion = Integer.parseInt(value);
+          int[] tsregions = {30, 40, 50, 60, 70, 71, 72, 73, 74, 75, 76, 77, 78, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89};
+          boolean tsregionTmp = false;
+          for(int i = 0; i < tsregions.length; i++){
+            if(tsregions[i] == tsRegion){
+              tsregionTmp = true;
+            }
+          }
+          isValid = tsregionTmp;
+          break;
+        case "tscountry":
+          String[] tscountries = {
+              "ALBANIA", "ALGERIA", "ANTARCTICA", "ANTIGUA AND BARBUDA", "ATLANTIC OCEAN", "AUSTRALIA","BALTIC SEA",
+              "BANGLADESH","BULGARIA","CANADA","CHILE","CHINA","COLOMBIA","CONGO","COOK ISLANDS", "COSTA RICA",
+              "CROATIA","CUBA","CYPRUS", "CYPRUS ISLAND","DEAD SEA","DENMARK","DOMINICAN REPUBLIC","EAST CHINA SEA",
+              "ECUADOR","EGYPT","EL SALVADOR", "ERITREA","FIJI","FRANCE","FRENCH POLYNESIA","GEORGIA","GERMANY","GHANA",
+              "GREECE","GREENLAND", "GUADELOUPE (FRENCH TERRITORY)","GUATEMALA","HAITI","HOLLAND","HONDURAS", "ICELAND",
+              "INDIA","INDONESIA","IRAN", "IRELAND","IRISH SEA","ISRAEL","ITALY","JAMAICA","JAPAN","JORDAN","KENYA",
+              "KERMADEC ISLANDS","KOREA","LEBANON", "MARSHALL ISLANDS, REP. OF","MARTINIQUE (FRENCH TERRITORY)",
+              "MEXICO","MICRONESIA, FED. STATES OF","MONTSERRAT", "MOROCCO","MYANMAR (BURMA)","NAURU","NEPAL",
+              "NETHERLANDS","NEW CALEDONIA","NEW ZEALAND","NICARAGUA","NORTH KOREA", "NORTH SEA",
+              "NORTHWEST PACIFIC OCEAN","NORWAY","PACIFIC OCEAN","PAKISTAN","PANAMA","PAPUA NEW GUINEA","PERU",
+              "PHILIPPINES", "PORTUGAL", "RUSSIA", "SAINT VINCENT AND THE GRENADINES", "SAMOA", "SCOTLAND",
+              "SERBIA AND MONTENEGRO", "SOLOMON ISLANDS", "SOUTH AFRICA", "SOUTH KOREA", "SPAIN", "SRI LANKA", "SUDAN",
+              "SWEDEN", "SWITZERLAND", "SYRIA", "TAIWAN", "TOGO", "TONGA", "TRINIDAD AND TOBAGO", "TUNISIA", "TURKEY",
+              "TURKMENISTAN", "UK", "UK TERRITORY", "UKRAINE", "URUGUAY", "USA", "USA TERRITORY", "VANUATU", "VENEZUELA",
+              "WALLIS AND FUTUNA (FRENCH TERRITORY)"
+          };
+          boolean tsCountryTmp = false;
+          for(int i = 0; i < tscountries.length; i++){
+            if(tscountries[i].equals(value)){
+              tsCountryTmp = true;
+            }
+          }
+          isValid = tsCountryTmp;
+          break;
+        case "region": {
+          Integer region = Integer.parseInt(value);
+          int[] regions = {30, 40, 50, 60, 70, 71, 72, 73, 74, 75, 76, 77, 78, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89};
+          boolean regionTmp = false;
+          for(int i = 0; i < regions.length; i++){
+            if(regions[i] == region){
+              regionTmp = true;
+            }
+          }
+          isValid = regionTmp;
+          break;
+        }
+        case "country":
+          String[] countries = {
+              "ALBANIA", "ALGERIA", "ANTARCTICA", "ANTIGUA AND BARBUDA", "ATLANTIC OCEAN", "AUSTRALIA","BALTIC SEA",
+              "BANGLADESH","BULGARIA","CANADA","CHILE","CHINA","COLOMBIA","CONGO","COOK ISLANDS", "COSTA RICA",
+              "CROATIA","CUBA","CYPRUS", "CYPRUS ISLAND","DEAD SEA","DENMARK","DOMINICAN REPUBLIC","EAST CHINA SEA",
+              "ECUADOR","EGYPT","EL SALVADOR", "ERITREA","FIJI","FRANCE","FRENCH POLYNESIA","GEORGIA","GERMANY","GHANA",
+              "GREECE","GREENLAND", "GUADELOUPE (FRENCH TERRITORY)","GUATEMALA","HAITI","HOLLAND","HONDURAS", "ICELAND",
+              "INDIA","INDONESIA","IRAN", "IRELAND","IRISH SEA","ISRAEL","ITALY","JAMAICA","JAPAN","JORDAN","KENYA",
+              "KERMADEC ISLANDS","KOREA","LEBANON", "MARSHALL ISLANDS, REP. OF","MARTINIQUE (FRENCH TERRITORY)",
+              "MEXICO","MICRONESIA, FED. STATES OF","MONTSERRAT", "MOROCCO","MYANMAR (BURMA)","NAURU","NEPAL",
+              "NETHERLANDS","NEW CALEDONIA","NEW ZEALAND","NICARAGUA","NORTH KOREA", "NORTH SEA",
+              "NORTHWEST PACIFIC OCEAN","NORWAY","PACIFIC OCEAN","PAKISTAN","PANAMA","PAPUA NEW GUINEA","PERU",
+              "PHILIPPINES", "PORTUGAL", "RUSSIA", "SAINT VINCENT AND THE GRENADINES", "SAMOA", "SCOTLAND",
+              "SERBIA AND MONTENEGRO", "SOLOMON ISLANDS", "SOUTH AFRICA", "SOUTH KOREA", "SPAIN", "SRI LANKA", "SUDAN",
+              "SWEDEN", "SWITZERLAND", "SYRIA", "TAIWAN", "TOGO", "TONGA", "TRINIDAD AND TOBAGO", "TUNISIA", "TURKEY",
+              "TURKMENISTAN", "UK", "UK TERRITORY", "UKRAINE", "URUGUAY", "USA", "USA TERRITORY", "VANUATU", "VENEZUELA",
+              "WALLIS AND FUTUNA (FRENCH TERRITORY)"
+          };
+          boolean countryTmp = false;
+          for(int i = 0; i < countries.length; i++){
+            if(countries[i].equals(value)){
+              countryTmp = true;
+            }
+          }
+          isValid = countryTmp;
+          break;
+        case "distancemin":
+          Integer distanceMin = Integer.parseInt(value);
+          if(distanceMin < 0 || distanceMin > 20000){
+            isValid = false;
+          }
+          break;
+        case "distanceMax":
+          Integer distanceMax = Integer.parseInt(value);
+          if(distanceMax < 0 || distanceMax > 20000){
+            isValid = false;
+          }
+          break;
+        case "latnorth" :
+          Float latNorth = Float.parseFloat(value);
+          if(latNorth < -90 || latNorth > 90){
+            isValid = false;
+          }
+          break;
+        case "latsouth":
+          Float latSouth = Float.parseFloat(value);
+          if(latSouth < -90 || latSouth > 90){
+            isValid = false;
+          }
+          break;
+        case "longwest":
+          Float longWest = Float.parseFloat(value);
+          if(longWest < -180 || longWest > 180){
+            isValid = false;
+          }
+          break;
+        case "longeast" :
+          Float longEast = Float.parseFloat(value);
+          if(longEast < -180 || longEast > 180){
+            isValid = false;
+          }
+          break;
+        case "minwaterht" :
+          Float minWaterHt = Float.parseFloat(value);
+          if(minWaterHt < 0 || minWaterHt > 800){
+            isValid = false;
+          }
+          break;
+        case "maxwaterht" :
+          Float maxWaterHt = Float.parseFloat(value);
+          if(maxWaterHt < 0 || maxWaterHt > 800){
+            isValid = false;
+          }
+          break;
+        case "typeofmeasure":
+          Integer typeOfMeasure = Integer.parseInt(value);
+          boolean measureTmp = false;
+          int[] types = {1,2,3,4,5,6,7,8,9,10};
+          for(int i = 0; i < types.length; i++){
+            if(types[i] == typeOfMeasure){
+              measureTmp = true;
+            }
+          }
+          isValid = measureTmp;
+          break;
+        case "deathsmin":
+          Integer deathsMin = Integer.parseInt(value);
+          if(deathsMin < 0 || deathsMin > 300000){
+            isValid = false;
+          }
+          break;
+        case "deathsmax" :
+          Integer deathsMax = Integer.parseInt(value);
+          if(deathsMax < 0 || deathsMax > 300000){
+            isValid = false;
+          }
+          break;
+        case "damagemillioinsmin":
+          Float damageMin = Float.parseFloat(value);
+          if(damageMin < 0 || damageMin > 4500){
+            isValid = false;
+          }
+          break;
+        case "damagemillioinsmax":
+          Float damageMax = Float.parseFloat(value);
+          if(damageMax < 0 || damageMax > 4500){
+            isValid = false;
+          }
+          break;
+      }
+      if(isValid == false){
+        return isValid;
+      }
+    }
+
+    return isValid;
+
+  }
 }
+

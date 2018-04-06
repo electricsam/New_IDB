@@ -74,4 +74,6 @@ public interface TsunamiEventService {
   List<TsunamiRunup> getRunupById(Integer id);
 
   List<TsunamiRunupViewNonPersist> getAllRunups();
+
+  boolean validateParams(Map<String, String> map);
 }
