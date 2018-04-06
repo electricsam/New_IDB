@@ -2,10 +2,11 @@ package com.idb_backend.mvp.service.impl;
 
 import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
+import com.idb_backend.mvp.service.Constants;
 import com.idb_backend.mvp.service.TsunamiEventService;
+import oracle.jdbc.driver.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -443,174 +444,214 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
       String value = map.get(key);
       switch (key){
         case "tsminyear":
-          Integer minyear  = Integer.parseInt(value);
-          if(minyear < -2000 || minyear > 3000){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getMinYear(), Constants.getMaxYear(), Integer.parseInt(value));
           break;
         case "tsmaxyear":
-          Integer maxyear = Integer.parseInt(value);
-          if(maxyear < -2000 || maxyear > 3000){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getMinYear(), Constants.getMaxYear(), Integer.parseInt(value));
           break;
         case "tsregion":
-          Integer tsRegion = Integer.parseInt(value);
-          int[] tsregions = {30, 40, 50, 60, 70, 71, 72, 73, 74, 75, 76, 77, 78, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89};
-          boolean tsregionTmp = false;
-          for(int i = 0; i < tsregions.length; i++){
-            if(tsregions[i] == tsRegion){
-              tsregionTmp = true;
-            }
-          }
-          isValid = tsregionTmp;
+         isValid = validateIntList(Constants.getRegions(), Integer.parseInt(value));
           break;
         case "tscountry":
-          String[] tscountries = {
-              "ALBANIA", "ALGERIA", "ANTARCTICA", "ANTIGUA AND BARBUDA", "ATLANTIC OCEAN", "AUSTRALIA","BALTIC SEA",
-              "BANGLADESH","BULGARIA","CANADA","CHILE","CHINA","COLOMBIA","CONGO","COOK ISLANDS", "COSTA RICA",
-              "CROATIA","CUBA","CYPRUS", "CYPRUS ISLAND","DEAD SEA","DENMARK","DOMINICAN REPUBLIC","EAST CHINA SEA",
-              "ECUADOR","EGYPT","EL SALVADOR", "ERITREA","FIJI","FRANCE","FRENCH POLYNESIA","GEORGIA","GERMANY","GHANA",
-              "GREECE","GREENLAND", "GUADELOUPE (FRENCH TERRITORY)","GUATEMALA","HAITI","HOLLAND","HONDURAS", "ICELAND",
-              "INDIA","INDONESIA","IRAN", "IRELAND","IRISH SEA","ISRAEL","ITALY","JAMAICA","JAPAN","JORDAN","KENYA",
-              "KERMADEC ISLANDS","KOREA","LEBANON", "MARSHALL ISLANDS, REP. OF","MARTINIQUE (FRENCH TERRITORY)",
-              "MEXICO","MICRONESIA, FED. STATES OF","MONTSERRAT", "MOROCCO","MYANMAR (BURMA)","NAURU","NEPAL",
-              "NETHERLANDS","NEW CALEDONIA","NEW ZEALAND","NICARAGUA","NORTH KOREA", "NORTH SEA",
-              "NORTHWEST PACIFIC OCEAN","NORWAY","PACIFIC OCEAN","PAKISTAN","PANAMA","PAPUA NEW GUINEA","PERU",
-              "PHILIPPINES", "PORTUGAL", "RUSSIA", "SAINT VINCENT AND THE GRENADINES", "SAMOA", "SCOTLAND",
-              "SERBIA AND MONTENEGRO", "SOLOMON ISLANDS", "SOUTH AFRICA", "SOUTH KOREA", "SPAIN", "SRI LANKA", "SUDAN",
-              "SWEDEN", "SWITZERLAND", "SYRIA", "TAIWAN", "TOGO", "TONGA", "TRINIDAD AND TOBAGO", "TUNISIA", "TURKEY",
-              "TURKMENISTAN", "UK", "UK TERRITORY", "UKRAINE", "URUGUAY", "USA", "USA TERRITORY", "VANUATU", "VENEZUELA",
-              "WALLIS AND FUTUNA (FRENCH TERRITORY)"
-          };
-          boolean tsCountryTmp = false;
-          for(int i = 0; i < tscountries.length; i++){
-            if(tscountries[i].equals(value)){
-              tsCountryTmp = true;
-            }
-          }
-          isValid = tsCountryTmp;
+          isValid = validateStringList(Constants.getCountries(), value);
           break;
-        case "region": {
-          Integer region = Integer.parseInt(value);
-          int[] regions = {30, 40, 50, 60, 70, 71, 72, 73, 74, 75, 76, 77, 78, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89};
-          boolean regionTmp = false;
-          for(int i = 0; i < regions.length; i++){
-            if(regions[i] == region){
-              regionTmp = true;
-            }
-          }
-          isValid = regionTmp;
+        case "region":
+          isValid = validateIntList(Constants.getRegions(), Integer.parseInt(value));
           break;
-        }
         case "country":
-          String[] countries = {
-              "ALBANIA", "ALGERIA", "ANTARCTICA", "ANTIGUA AND BARBUDA", "ATLANTIC OCEAN", "AUSTRALIA","BALTIC SEA",
-              "BANGLADESH","BULGARIA","CANADA","CHILE","CHINA","COLOMBIA","CONGO","COOK ISLANDS", "COSTA RICA",
-              "CROATIA","CUBA","CYPRUS", "CYPRUS ISLAND","DEAD SEA","DENMARK","DOMINICAN REPUBLIC","EAST CHINA SEA",
-              "ECUADOR","EGYPT","EL SALVADOR", "ERITREA","FIJI","FRANCE","FRENCH POLYNESIA","GEORGIA","GERMANY","GHANA",
-              "GREECE","GREENLAND", "GUADELOUPE (FRENCH TERRITORY)","GUATEMALA","HAITI","HOLLAND","HONDURAS", "ICELAND",
-              "INDIA","INDONESIA","IRAN", "IRELAND","IRISH SEA","ISRAEL","ITALY","JAMAICA","JAPAN","JORDAN","KENYA",
-              "KERMADEC ISLANDS","KOREA","LEBANON", "MARSHALL ISLANDS, REP. OF","MARTINIQUE (FRENCH TERRITORY)",
-              "MEXICO","MICRONESIA, FED. STATES OF","MONTSERRAT", "MOROCCO","MYANMAR (BURMA)","NAURU","NEPAL",
-              "NETHERLANDS","NEW CALEDONIA","NEW ZEALAND","NICARAGUA","NORTH KOREA", "NORTH SEA",
-              "NORTHWEST PACIFIC OCEAN","NORWAY","PACIFIC OCEAN","PAKISTAN","PANAMA","PAPUA NEW GUINEA","PERU",
-              "PHILIPPINES", "PORTUGAL", "RUSSIA", "SAINT VINCENT AND THE GRENADINES", "SAMOA", "SCOTLAND",
-              "SERBIA AND MONTENEGRO", "SOLOMON ISLANDS", "SOUTH AFRICA", "SOUTH KOREA", "SPAIN", "SRI LANKA", "SUDAN",
-              "SWEDEN", "SWITZERLAND", "SYRIA", "TAIWAN", "TOGO", "TONGA", "TRINIDAD AND TOBAGO", "TUNISIA", "TURKEY",
-              "TURKMENISTAN", "UK", "UK TERRITORY", "UKRAINE", "URUGUAY", "USA", "USA TERRITORY", "VANUATU", "VENEZUELA",
-              "WALLIS AND FUTUNA (FRENCH TERRITORY)"
-          };
-          boolean countryTmp = false;
-          for(int i = 0; i < countries.length; i++){
-            if(countries[i].equals(value)){
-              countryTmp = true;
-            }
-          }
-          isValid = countryTmp;
+          isValid = validateStringList(Constants.getCountries(), value);
           break;
         case "distancemin":
-          Integer distanceMin = Integer.parseInt(value);
-          if(distanceMin < 0 || distanceMin > 20000){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getRunupDistanceMin(), Constants.getRunupDistanceMax(), Integer.parseInt(value));
           break;
         case "distanceMax":
-          Integer distanceMax = Integer.parseInt(value);
-          if(distanceMax < 0 || distanceMax > 20000){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getRunupDistanceMin(), Constants.getRunupDistanceMax(), Integer.parseInt(value));
           break;
         case "latnorth" :
-          Float latNorth = Float.parseFloat(value);
-          if(latNorth < -90 || latNorth > 90){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getLatMin(), Constants.getLatMax(), Float.parseFloat(value));
           break;
         case "latsouth":
-          Float latSouth = Float.parseFloat(value);
-          if(latSouth < -90 || latSouth > 90){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getLatMin(), Constants.getLatMax(), Float.parseFloat(value));
           break;
         case "longwest":
-          Float longWest = Float.parseFloat(value);
-          if(longWest < -180 || longWest > 180){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getLongMin(), Constants.getLongMax(), Float.parseFloat(value));
           break;
         case "longeast" :
-          Float longEast = Float.parseFloat(value);
-          if(longEast < -180 || longEast > 180){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getLongMin(), Constants.getLongMax(), Float.parseFloat(value));
           break;
         case "minwaterht" :
-          Float minWaterHt = Float.parseFloat(value);
-          if(minWaterHt < 0 || minWaterHt > 800){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getMinWaterHt(), Constants.getMaxWaterHt(), Float.parseFloat(value));
           break;
         case "maxwaterht" :
-          Float maxWaterHt = Float.parseFloat(value);
-          if(maxWaterHt < 0 || maxWaterHt > 800){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getMinWaterHt(), Constants.getMaxWaterHt(), Float.parseFloat(value));
           break;
         case "typeofmeasure":
-          Integer typeOfMeasure = Integer.parseInt(value);
-          boolean measureTmp = false;
-          int[] types = {1,2,3,4,5,6,7,8,9,10};
-          for(int i = 0; i < types.length; i++){
-            if(types[i] == typeOfMeasure){
-              measureTmp = true;
-            }
-          }
-          isValid = measureTmp;
+          isValid = validateMinMax(Constants.getMeasureTypeMin(), Constants.getMeasureTypeMax(), Integer.parseInt(value));
           break;
         case "deathsmin":
-          Integer deathsMin = Integer.parseInt(value);
-          if(deathsMin < 0 || deathsMin > 300000){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getDeathsMin(), Constants.getDeathsMax(), Integer.parseInt(value));
           break;
         case "deathsmax" :
-          Integer deathsMax = Integer.parseInt(value);
-          if(deathsMax < 0 || deathsMax > 300000){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getDeathsMin(), Constants.getDeathsMax(), Integer.parseInt(value));
           break;
         case "damagemillioinsmin":
-          Float damageMin = Float.parseFloat(value);
-          if(damageMin < 0 || damageMin > 4500){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getDamageMillionsMin(), Constants.getDamageMillionsMax(), Integer.parseInt(value));
           break;
         case "damagemillioinsmax":
-          Float damageMax = Float.parseFloat(value);
-          if(damageMax < 0 || damageMax > 4500){
-            isValid = false;
-          }
+          isValid = validateMinMax(Constants.getDamageMillionsMin(), Constants.getDamageMillionsMax(), Integer.parseInt(value));
+          break;
+        case "minyear":
+          isValid = validateMinMax(Constants.getMinYear(), Constants.getMaxYear(), Integer.parseInt(value));
+          break;
+        case "maxyear":
+          isValid = validateMinMax(Constants.getMinYear(), Constants.getMaxYear(), Integer.parseInt(value));
+          break;
+        case "minvalidity":
+          isValid = validateMinMax(Constants.getMinValidity(), Constants.getMaxValidity(), Integer.parseInt(value));
+          break;
+        case "maxvalidity":
+          isValid = validateMinMax(Constants.getMinValidity(), Constants.getMaxValidity(), Integer.parseInt(value));
+          break;
+        case "mincause":
+          isValid = validateMinMax(Constants.getMinCause(), Constants.getMaxCause(), Integer.parseInt(value));
+          break;
+        case "maxcause":
+          isValid = validateMinMax(Constants.getMinCause(), Constants.getMaxCause(), Integer.parseInt(value));
+          break;
+        case "area":
+          isValid = validateStringList(Constants.getAreas(), value);
+          break;
+        case "eqmagmin":
+          isValid = validateMinMax(Constants.getEqMagMin(), Constants.getEqMagMax(), Double.parseDouble(value));
+          break;
+        case "eqmagmax":
+          isValid = validateMinMax(Constants.getEqMagMin(), Constants.getEqMagMax(), Double.parseDouble(value));
+          break;
+        case "runupregion":
+          isValid = validateIntList(Constants.getRegions(), Integer.parseInt(value));
+          break;
+        case "runupcountry":
+          isValid = validateStringList(Constants.getCountries(), value);
+          break;
+        case "runuparea":
+          isValid = validateStringList(Constants.getAreas(), value);
+          break;
+        case "runuptraveltimemin":
+          isValid = validateMinMax(Constants.getTravelTimeMin(), Constants.getTravelTimeMax(), Integer.parseInt(value));
+          break;
+        case "runuptraveltimemax":
+          isValid = validateMinMax(Constants.getTravelTimeMin(), Constants.getTravelTimeMax(), Integer.parseInt(value));
+          break;
+        case "runuptraveldistancemin":
+          isValid = validateMinMax(Constants.getRunupDistanceMin(), Constants.getRunupDistanceMax(), Integer.parseInt(value));
+          break;
+        case "runuptraveldistancemax":
+          isValid = validateMinMax(Constants.getRunupDistanceMin(), Constants.getRunupDistanceMax(), Integer.parseInt(value));
+          break;
+        case "numberofrunupsmin":
+          isValid = validateMinMax(Constants.getNumRunupsMin(), Constants.getNumRunupsMax(), Integer.parseInt(value));
+          break;
+        case "numberofrunupsmiax":
+          isValid = validateMinMax(Constants.getNumRunupsMin(), Constants.getNumRunupsMax(), Integer.parseInt(value));
+          break;
+        case "waterheightmin":
+          isValid = validateMinMax(Constants.getMinWaterHt(), Constants.getMaxWaterHt(), Float.parseFloat(value));
+          break;
+        case "waterheightmax":
+          isValid = validateMinMax(Constants.getMinWaterHt(), Constants.getMaxWaterHt(), Float.parseFloat(value));
+          break;
+        case "numberofdeathsmin":
+          isValid = validateMinMax(Constants.getDeathsMin(), Constants.getDeathsMax(), Integer.parseInt(value));
+          break;
+        case "numberofdeathsmax":
+          isValid = validateMinMax(Constants.getDeathsMin(), Constants.getDeathsMax(), Integer.parseInt(value));
+          break;
+        case "numberofinjuriesmin":
+          isValid = validateMinMax(Constants.getInjuriesMin(), Constants.getInjuriesMax(), Integer.parseInt(value));
+          break;
+        case "numberofinjuriesmax":
+          isValid = validateMinMax(Constants.getInjuriesMin(), Constants.getInjuriesMax(), Integer.parseInt(value));
+          break;
+        case "numhousesdestroyedmin":
+          isValid = validateMinMax(Constants.getHousesDestroyedMin(), Constants.getHousesDestroyedMax(), Integer.parseInt(value));
+          break;
+        case "numhousesdestroyedmax":
+          isValid = validateMinMax(Constants.getHousesDestroyedMin(), Constants.getHousesDestroyedMax(), Integer.parseInt(value));
+          break;
+        case "deathdescriptionmin":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "deathdescriptionmax":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "injurydescriptmin":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "injurydescriptmax":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "housesdescriptmin":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "housesdescriptmax":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "damagedescriptmin":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "damagedescriptmax":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "rnpmeasuretype":
+          isValid = validateMinMax(Constants.getMeasureTypeMin(), Constants.getMeasureTypeMax(), Integer.parseInt(value));
+          break;
+        case "rnphtmin":
+          isValid = validateMinMax(Constants.getMinWaterHt(), Constants.getMaxWaterHt(), Float.parseFloat(value));
+          break;
+        case "rnphtmax":
+          isValid = validateMinMax(Constants.getMinWaterHt(), Constants.getMaxWaterHt(), Float.parseFloat(value));
+          break;
+        case "rnpdeathmin":
+          isValid = validateMinMax(Constants.getDeathsMin(), Constants.getDeathsMax(), Integer.parseInt(value));
+          break;
+        case "rnpdeathmax":
+          isValid = validateMinMax(Constants.getDeathsMin(), Constants.getDeathsMax(), Integer.parseInt(value));
+          break;
+        case "rnpinjurymin":
+          isValid = validateMinMax(Constants.getRnpInjuryMin(), Constants.getRnpInjuryMax(), Integer.parseInt(value));
+          break;
+        case "rnpinjurymax":
+          isValid = validateMinMax(Constants.getRnpInjuryMin(), Constants.getRnpInjuryMax(), Integer.parseInt(value));
+          break;
+        case "rnpdamagemin":
+          isValid = validateMinMax(Constants.getDamageMillionsMin(), Constants.getDamageMillionsMax(), Float.parseFloat(value));
+          break;
+        case "rnpdamagemax":
+          isValid = validateMinMax(Constants.getDamageMillionsMin(), Constants.getDamageMillionsMax(), Float.parseFloat(value));
+          break;
+        case "rnphousesmin":
+          isValid = validateMinMax(Constants.getRnpHousesMin(), Constants.getRnpHouseMax(), Integer.parseInt(value));
+          break;
+        case "rnphousesmax":
+          isValid = validateMinMax(Constants.getRnpHousesMin(), Constants.getRnpHouseMax(), Integer.parseInt(value));
+          break;
+        case "rnpdeathdescripmin":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "rnpdeathdescripmax":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "rnpinjurydescripmin":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "rnpinjurydescripmax":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "rnpdamagedescripmin":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
+          break;
+        case "rnpdamagedescripmax":
+          isValid = validateMinMax(Constants.getDescripMin(), Constants.getDescripMax(), Integer.parseInt(value));
           break;
       }
       if(isValid == false){
@@ -619,7 +660,56 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
     }
 
     return isValid;
-
   }
+
+  @Override
+  public boolean validateMinMax(int min, int max, Integer value){
+    if(value < min || value > max){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  @Override
+  public boolean validateStringList(String[] list, String value){
+    boolean tmp = false;
+    for(int i = 0; i < list.length; i++){
+      if(list[i].equals(value)){
+        tmp = true;
+      }
+    }
+    return tmp;
+  }
+
+  @Override
+  public boolean validateIntList(int[] list, Integer value){
+    boolean tmp = false;
+    for(int i = 0; i < list.length; i++){
+      if(list[i] == value){
+        tmp = true;
+      }
+    }
+    return tmp;
+  }
+
+  @Override
+  public boolean validateMinMax(int min, int max, Float value){
+    if(value < min || value > max){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  @Override
+  public boolean validateMinMax(double min, double max, Double value){
+    if(value < min || value > max){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
 }
 

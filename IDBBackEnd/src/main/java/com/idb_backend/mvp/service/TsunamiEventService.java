@@ -76,4 +76,14 @@ public interface TsunamiEventService {
   List<TsunamiRunupViewNonPersist> getAllRunups();
 
   boolean validateParams(Map<String, String> map);
+
+  boolean validateMinMax(int min, int max, Integer value);
+
+  boolean validateStringList(String[] list, String value);
+
+  boolean validateIntList(int[] list, Integer value);
+
+  boolean validateMinMax(int min, int max, Float value);
+
+  boolean validateMinMax(double min, double max, Double value);
 }
