@@ -27,8 +27,6 @@ public class TsunamiEventController {
   @Autowired
   TsunamiEventService tsunamiEventService;
 
-  //TODO: insert error handling for each of these endpoints
-
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents", method= RequestMethod.GET)
   public @ResponseBody ResponseEntity<List<TsunamiEventView>> getAllEvents(){
@@ -57,6 +55,10 @@ public class TsunamiEventController {
   @RequestMapping(value = "/tsunamievents/select", method= RequestMethod.GET)
   public ResponseEntity<List<TsunamiEventViewNonPersist>> getEventsByQuery(@RequestParam Map<String, String> allRequestParams){
     try{
+      boolean validParams = tsunamiEventService.validateParams(allRequestParams);
+      if(!validParams){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+      }
       List<TsunamiEventViewNonPersist> events = tsunamiEventService.generateCriteria(allRequestParams);
       return new ResponseEntity<>(events, HttpStatus.OK);
     }catch (NumberFormatException e){
@@ -67,32 +69,55 @@ public class TsunamiEventController {
 
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents", method=RequestMethod.POST)
-  public ResponseEntity<TsunamiEvent> postTsunamiEvent(@RequestBody TsunamiEvent tsunamiEvent){
+  public ResponseEntity postTsunamiEvent(@Valid @RequestBody TsunamiEvent tsunamiEvent, Errors errors){
     try{
+      if(errors.hasErrors()){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+      }
+
       Integer maxId = new ArrayList<>(tsunamiEventService.checkMaxTsEventId()).get(0).getId() + 1;
       tsunamiEvent.setId(maxId);
       tsunamiEventService.addEvent(tsunamiEvent);
 
       return new ResponseEntity<>(tsunamiEvent, HttpStatus.OK);
-    }catch(Exception e){
-      TsunamiEvent failed = new TsunamiEvent();
+    }catch (EntityNotFoundException e){
 
-      return new ResponseEntity<>(failed, HttpStatus.INTERNAL_SERVER_ERROR);
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
+    }catch (DataIntegrityViolationException e){
+
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
     }
   }
 
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents/{id}", method = RequestMethod.PATCH)
-  public ResponseEntity<TsunamiEvent> patchEvent( @PathVariable("id") Integer id, @RequestBody TsunamiEvent tsunamiEvent){
+  public ResponseEntity patchEvent( @PathVariable("id") Integer id,
+                                                  @Valid @RequestBody TsunamiEvent tsunamiEvent, Errors errors){
     try{
-    tsunamiEvent.setId(id);
-    tsunamiEventService.updateEvent(tsunamiEvent);
+      if(errors.hasErrors()){
 
-    return new ResponseEntity<>(tsunamiEvent, HttpStatus.OK);
-    }catch(Exception e){
-      TsunamiEvent failed = new TsunamiEvent();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+      }
 
-      return new ResponseEntity<>(failed, HttpStatus.INTERNAL_SERVER_ERROR);
+      tsunamiEvent.setId(id);
+      tsunamiEventService.updateEvent(tsunamiEvent);
+
+      return new ResponseEntity<>(tsunamiEvent, HttpStatus.OK);
+
+    }catch (EntityNotFoundException e){
+
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
+    }catch (DataIntegrityViolationException e){
+
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
+    }catch(TransactionSystemException e){
+
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+
     }
 
   }
@@ -105,6 +130,8 @@ public class TsunamiEventController {
       return ResponseEntity.status(HttpStatus.OK).body(null);
     }catch (IndexOutOfBoundsException e){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    }catch (JpaObjectRetrievalFailureException e){
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
   }
 
@@ -112,12 +139,8 @@ public class TsunamiEventController {
   @RequestMapping(value = "/tsunamirunups/select", method= RequestMethod.GET)
   public ResponseEntity<List<TsunamiRunupViewNonPersist>> getRunupsByQuery(@RequestParam Map<String, String> allRequestParams){
     try{
-
       boolean validParams = tsunamiEventService.validateParams(allRequestParams);
-
-
-
-      if(validParams == false){
+      if(!validParams){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
       }
 
@@ -139,7 +162,6 @@ public class TsunamiEventController {
       List<TsunamiRunupViewNonPersist> list = tsunamiEventService.getAllRunups();
       return new ResponseEntity<>(list, HttpStatus.OK);
     }catch (Exception e){
-      System.out.println("You have encountered an error");
       List<TsunamiRunupViewNonPersist> list = new ArrayList<>();
       return new ResponseEntity<>(list, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -161,9 +183,14 @@ public class TsunamiEventController {
 
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamirunups/{eventid}", method=RequestMethod.POST)
-  public ResponseEntity<TsunamiRunup> postRunup(@PathVariable("eventid") Integer eventId, @RequestBody TsunamiRunup tsunamiRunup){
+  public ResponseEntity postRunup(@PathVariable("eventid") Integer eventId,
+                                                @Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
     try{
+      if(errors.hasErrors()){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+      }
       Integer maxId = new ArrayList<>(tsunamiEventService.checkMaxRunupId()).get(0).getId() + 1;
+
       tsunamiRunup.setId(maxId);
       tsunamiRunup.setTsunamiEvent(tsunamiEventService.getEventProxy(eventId));
       tsunamiEventService.addRunup(tsunamiRunup);
@@ -189,7 +216,6 @@ public class TsunamiEventController {
                                    @Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
     try{
       if(errors.hasErrors()){
-//        Status err = new Status(errors.getFieldError("year").getField() + " " + errors.getFieldError("year").getDefaultMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
       }
 
@@ -225,6 +251,8 @@ public class TsunamiEventController {
 
     }catch (JpaObjectRetrievalFailureException e){
 
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    }catch (IndexOutOfBoundsException e){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 

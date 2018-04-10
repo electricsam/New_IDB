@@ -1,10 +1,14 @@
 package com.idb_backend.mvp.domain.model;
 
+import com.idb_backend.mvp.service.Constants;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
+import oracle.jdbc.driver.Const;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.*;
 
@@ -19,96 +23,176 @@ public class TsunamiEvent implements Serializable {
   private Integer id;
 
   @Column(name = "YEAR")
+  @Min(value = Constants.minYear)
   private Integer year;
 
   @Column(name = "MONTH")
+  @Min(value = Constants.minMonth)
+  @Max(value = Constants.maxMonth)
   private Integer month;
 
   @Column(name = "DAY")
+  @Min(value = Constants.minDay)
+  @Max(value = Constants.maxDay)
   private Integer day;
 
   @Column(name = "HOUR")
+  @Min(value = Constants.minHour)
+  @Max(value = Constants.maxHour)
   private Integer hour;
 
   @Column(name = "MINUTE")
+  @Min(value = Constants.minMin)
+  @Max(value = Constants.maxMin)
   private Integer minute;
 
   @Column(name = "SECOND")
+//  @Min(value = Constants.minSec)
+//  @Max(value = Constants.maxSec)
   private Float second;
 
   @Column(name = "LATITUDE")
+  @Min(value = Constants.latMin)
+  @Max(value = Constants.latMax)
   private Float latitude;
 
   @Column(name = "LONGITUDE")
+  @Min(value = Constants.longMin)
+  @Max(value = Constants.longMax)
   private Float longitude;
 
   @Column(name = "LOCATION_NAME")
   private String locationName;
 
   @Column(name = "AREA")
+  @InString(strs = {
+      "ACEH", "AICHI", "AK", "AKITA", "AL", "AOMORI", "AR", "AS", "AZ", "BALI", "BANGKA-BELITUNG", "BANTEN",
+      "BC", "BENGKULU", "BONIN IS, TOKYO", "CA", "CENTRAL JAVA", "CENTRAL SULAWESI", "CHIBA", "CO", "CT", "DC", "DE",
+      "EAST JAVA", "EAST NUSA TENGGARA", "EHIME", "FL", "FM", "FUKUI", "FUKUOKA", "FUKUSHIMA", "GA", "GIFU",
+      "GORONTALO", "GU", "GUMMA", "HI", "HIROSHIMA", "HOKKAIDO", "HYOGO", "IA", "IBARAKI", "ID", "IL", "IN", "ISHIKAWA",
+      "IWATE", "IZU-OSHIMA, TOKYO", "JAKARTA", "KAGAWA", "KAGOSHIMA", "KANAGAWA", "KOCHI", "KS", "KUMAMOTO", "KY",
+      "KYOTO", "LA", "LAMPUNG", "MA", "MALUKU", "MD", "ME", "MH", "MI", "MIE", "MIYAGI", "MIYAZAKI", "MN", "MO", "MP",
+      "MS", "MT", "NAGANO", "NAGASAKI", "NARA", "NC", "ND", "NE", "NH", "NIIGATA", "NJ", "NL", "NM", "NORTH MALUKU",
+      "NORTH SULAWESI", "NORTH SUMATRA", "NS", "NV", "NY", "OH", "OITA", "OK", "OKAYAMA", "OKINAWA",
+      "OKUSHIRI IS, HOKKAIDO", "OR", "OSAKA", "PA", "PAPUA", "PR", "PW", "RI", "RIAU", "SAGA", "SAITAMA", "SC", "SD",
+      "SHIGA", "SHIMANE", "SHIZUOKA", "SOUTH EAST SULAWESI", "SOUTH KALIMANTAN", "SOUTH SULAWESI", "SUNDA STRAIT", "TN",
+      "TOKUSHIMA", "TOKUSIMA", "TOKYO", "TOTTORI", "TOYAMA", "TSHIBA", "TX", "UT", "VA", "VI", "VT", "WA", "WAKAYAMA",
+      "WEST JAVA", "WEST KALIMANTAN", "WEST NUSA TENGGARA", "WEST PAPUA", "WEST SULAWESI", "WEST SUMATRA", "WESTJAVA",
+      "WI", "WV", "WY", "YAMAGATA", "YAMAGUCHI", "YOGYAKARTA"
+  })
   private String area;
 
   @Column(name = "COUNTRY")
+  @InString(strs = {
+      "ALBANIA", "ALGERIA", "ANTARCTICA", "ANTIGUA AND BARBUDA", "ATLANTIC OCEAN", "AUSTRALIA","BALTIC SEA",
+      "BANGLADESH","BULGARIA","CANADA","CHILE","CHINA","COLOMBIA","CONGO","COOK ISLANDS", "COSTA RICA",
+      "CROATIA","CUBA","CYPRUS", "CYPRUS ISLAND","DEAD SEA","DENMARK","DOMINICAN REPUBLIC","EAST CHINA SEA",
+      "ECUADOR","EGYPT","EL SALVADOR", "ERITREA","FIJI","FRANCE","FRENCH POLYNESIA","GEORGIA","GERMANY","GHANA",
+      "GREECE","GREENLAND", "GUADELOUPE (FRENCH TERRITORY)","GUATEMALA","HAITI","HOLLAND","HONDURAS", "ICELAND",
+      "INDIA","INDONESIA","IRAN", "IRELAND","IRISH SEA","ISRAEL","ITALY","JAMAICA","JAPAN","JORDAN","KENYA",
+      "KERMADEC ISLANDS","KOREA","LEBANON", "MARSHALL ISLANDS, REP. OF","MARTINIQUE (FRENCH TERRITORY)",
+      "MEXICO","MICRONESIA, FED. STATES OF","MONTSERRAT", "MOROCCO","MYANMAR (BURMA)","NAURU","NEPAL",
+      "NETHERLANDS","NEW CALEDONIA","NEW ZEALAND","NICARAGUA","NORTH KOREA", "NORTH SEA",
+      "NORTHWEST PACIFIC OCEAN","NORWAY","PACIFIC OCEAN","PAKISTAN","PANAMA","PAPUA NEW GUINEA","PERU",
+      "PHILIPPINES", "PORTUGAL", "RUSSIA", "SAINT VINCENT AND THE GRENADINES", "SAMOA", "SCOTLAND",
+      "SERBIA AND MONTENEGRO", "SOLOMON ISLANDS", "SOUTH AFRICA", "SOUTH KOREA", "SPAIN", "SRI LANKA", "SUDAN",
+      "SWEDEN", "SWITZERLAND", "SYRIA", "TAIWAN", "TOGO", "TONGA", "TRINIDAD AND TOBAGO", "TUNISIA", "TURKEY",
+      "TURKMENISTAN", "UK", "UK TERRITORY", "UKRAINE", "URUGUAY", "USA", "USA TERRITORY", "VANUATU", "VENEZUELA",
+      "WALLIS AND FUTUNA (FRENCH TERRITORY)"
+  })
   private String country;
 
   @Column(name = "REGION_CODE")
+  @In(nums = {
+      30, 40, 50, 60, 70, 71, 72, 73, 74, 75, 76, 77, 78, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89
+  })
   private Integer regionCode;
 
   @Column(name = "CAUSE_CODE")
+  @Min(value = Constants.minCause)
+  @Max(value = Constants.maxCause)
   private Integer causeCode;
 
   @Column(name = "EVENT_VALIDITY")
+  @Min(value = Constants.minValidity)
+  @Max(value = Constants.maxValidity)
   private Integer eventValidity;
 
   @Column(name = "EQ_MAG_UNK")
+//  @Min(value = Constants.eqMagMin)
+//  @Max(value = Constants.eqMagMax)
   private Float eqMagUnk;
 
   @Column(name = "EQ_MAG_MB")
+//  @Min(value = Constants.eqMagMin)
+//  @Max(value = Constants.eqMagMax)
   private Float eqMagMb;
 
   @Column(name = "EQ_MAG_MS")
+//  @Min(value = Constants.eqMagMin)
+//  @Max(value = Constants.eqMagMax)
   private Float eqMagMs;
 
   @Column(name = "EQ_MAG_MW")
+//  @Min(value = Constants.eqMagMin)
+//  @Max(value = Constants.eqMagMax)
   private Float eqMagMw;
 
   @Column(name = "EQ_DEPTH")
+  @Min(value = Constants.minWaterHt)
+  @Max(value = Constants.maxWaterHt)
   private Integer eqDepth;
 
   @Column(name = "MAX_EVENT_RUNUP")
+  @Min(value = Constants.minWaterHt)
+  @Max(value = Constants.maxWaterHt)
   private Float maxEventRunup;
 
   @Column(name = "TS_MT_ABE")
+//  @Min(value = Constants.minTsMt)
+//  @Max(value = Constants.maxTsMt)
   private Float tsMtAbe;
 
   @Column(name = "TS_MT_II")
+//  @Min(value = Constants.minTsMt)
+//  @Max(value = Constants.maxTsMt)
   private Float tsMtIi;
 
   @Column(name = "TS_INTENSITY")
+//  @Min(value = Constants.minTsMt)
+//  @Max(value = Constants.maxTsMt)
   private Float tsIntensity;
 
   @Column(name = "DAMAGE_MILLIONS_DOLLARS")
   private Float damageMillionsDollars;
 
   @Column(name = "DAMAGE_AMOUNT_ORDER")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer damageAmountOrder;
 
   @Column(name = "HOUSES_DESTROYED")
   private Integer housesDestroyed;
 
   @Column(name = "HOUSES_AMOUNT_ORDER")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer housesAmountOrder;
 
   @Column(name = "DEATHS")
   private Integer deaths;
 
   @Column(name = "DEATHS_AMOUNT_ORDER")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer deathsAmountOrder;
 
   @Column(name = "INJURIES")
   private Integer injuries;
 
   @Column(name = "INJURIES_AMOUNT_ORDER")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer injuriesAmountOrder;
 
   @Column(name = "WARNING_STATUS_ID")
@@ -146,49 +230,61 @@ public class TsunamiEvent implements Serializable {
   private Float damageMillionsDollarsTotal;
 
   @Column(name = "DAMAGE_AMOUNT_ORDER_TOTAL")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer damageAmountOrderTotal;
 
   @Column(name = "HOUSES_DESTROYED_TOTAL")
   private Integer housesDestroyedTotal;
 
   @Column(name = "HOUSES_AMOUNT_ORDER_TOTAL")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer housesAmountOrderTotal;
 
   @Column(name = "DEATHS_TOTAL")
   private Integer deathsTotal;
 
   @Column(name = "DEATHS_AMOUNT_ORDER_TOTAL")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer deathsAmountOrderTotal;
 
   @Column(name = "INJURIES_TOTAL")
   private Integer injuriesTotal;
 
   @Column(name = "INJURIES_AMOUNT_ORDER_TOTAL")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer injuriesAmountOrderTotal;
 
   @Column(name = "LAST_UPDATE")
   private Date lastUpdate;
 
-  //TODO: Default null
   @Column(name = "MISSING")
   private Integer missing;
 
-  //TODO: Default null
   @Column(name = "MISSING_AMOUNT_ORDER")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer missingAmountOrder;
 
-  //TODO: Default null
   @Column(name = "MISSING_TOTAL")
   private Integer missingTotal;
 
-  //TODO: Default null
   @Column(name = "MISSING_AMOUNT_ORDER_TOTAL")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer missingAmountOrderTotal;
 
   @Column(name = "EQ_MAG_ML")
+//  @Min(value = Constants.eqMagMin)
+//  @Max(value = Constants.eqMagMax)
   private Float eqMagMl;
 
   @Column(name = "EQ_MAG_MFA")
+//  @Min(value = Constants.eqMagMin)
+//  @Max(value = Constants.eqMagMax)
   private Float eqMagMfa;
 
   @Column(name = "FLAG_LOC_TIME_CHK")
@@ -210,9 +306,13 @@ public class TsunamiEvent implements Serializable {
   private Integer housesDamagedTotal;
 
   @Column(name = "HOUSES_DAMAGED_AMOUNT_ORDER")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer housesDamagedAmountOrder;
 
   @Column(name = "HOUSES_DAM_AMOUNT_ORDER_TOTAL")
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer housesDamAmountOrderTotal;
 
   @Column(name = "PUBLISH")
@@ -235,8 +335,6 @@ public class TsunamiEvent implements Serializable {
       inverseJoinColumns = {@JoinColumn(name= "TSREF_ID")}
   )
   Set<Reference> references = new HashSet<>();
-
-
 
   public Integer getId() {
     return id;

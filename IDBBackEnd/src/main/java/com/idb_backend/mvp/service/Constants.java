@@ -3,6 +3,22 @@ package com.idb_backend.mvp.service;
 public class Constants {
   public static final int minYear = -2000;
   public static final int maxYear = 3000;
+  public static final int minMonth = 1;
+  public static final int maxMonth = 12;
+  public static final int minDay = 1;
+  public static final int maxDay = 31;
+  public static final int minHour = 0;
+  public static final int maxHour = 23;
+  public static final int minMin = 0;
+  public static final int maxMin = 59;
+  public static final String minPeriod = "0";
+  public static final String maxPeriod = "180";
+  public static final int minHoriz = 0;
+  public static final int maxHoriz = 10000;
+  public static final double minSec = 0;
+  public static final double maxSec = 59.9;
+  public static final float minTsMt = -20;
+  public static final float maxTsMt = 20;
   public static final int minValidity = -1;
   public static final int maxValidity = 4;
   public static final int minCause = 0;
@@ -11,6 +27,8 @@ public class Constants {
   public static final double eqMagMax = 9.5;
   public static final int travelTimeMin = 0;
   public static final int travelTimeMax = 60;
+  public static final int travelMinuteMin = 0;
+  public static final int travelMinuteMax = 59;
   public static final int runupDistanceMin = 0;
   public static final int runupDistanceMax = 20000;
   public static final int numRunupsMin = 0;
@@ -72,6 +90,78 @@ public class Constants {
       "WEST JAVA", "WEST KALIMANTAN", "WEST NUSA TENGGARA", "WEST PAPUA", "WEST SULAWESI", "WEST SUMATRA", "WESTJAVA",
       "WI", "WV", "WY", "YAMAGATA", "YAMAGUCHI", "YOGYAKARTA"
   };
+
+  public static int getMinHoriz() {
+    return minHoriz;
+  }
+
+  public static int getMaxHoriz() {
+    return maxHoriz;
+  }
+
+  public static String getMinPeriod() {
+    return minPeriod;
+  }
+
+  public static String getMaxPeriod() {
+    return maxPeriod;
+  }
+
+  public static int getTravelMinuteMin() {
+    return travelMinuteMin;
+  }
+
+  public static int getTravelMinuteMax() {
+    return travelMinuteMax;
+  }
+
+  public static float getMinTsMt() {
+    return minTsMt;
+  }
+
+  public static float getMaxTsMt() {
+    return maxTsMt;
+  }
+
+  public static int getMinMin() {
+    return minMin;
+  }
+
+  public static int getMaxMin() {
+    return maxMin;
+  }
+
+  public static double getMinSec() {
+    return minSec;
+  }
+
+  public static double getMaxSec() {
+    return maxSec;
+  }
+
+  public static int getMinHour() {
+    return minHour;
+  }
+
+  public static int getMaxHour() {
+    return maxHour;
+  }
+
+  public static int getMinDay() {
+    return minDay;
+  }
+
+  public static int getMaxDay() {
+    return maxDay;
+  }
+
+  public static int getMinMonth() {
+    return minMonth;
+  }
+
+  public static int getMaxMonth() {
+    return maxMonth;
+  }
 
   public static int getRnpHousesMin() {
     return rnpHousesMin;

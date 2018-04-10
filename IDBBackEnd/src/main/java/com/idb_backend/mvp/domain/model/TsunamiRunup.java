@@ -1,14 +1,13 @@
 package com.idb_backend.mvp.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.idb_backend.mvp.service.Constants;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
+import oracle.jdbc.driver.Const;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity(name = "TSRUNUP_TSQP")
@@ -23,47 +22,47 @@ public class TsunamiRunup {
   private TsunamiEvent tsunamiEvent;
 
   @Column(name = "YEAR")
-  @Min(value = -2000)
+  @Min(value = Constants.minYear)
   private Integer year;
 
   @Column(name = "MONTH")
-  @Min(value = 1)
-  @Max(value = 12)
+  @Min(value = Constants.minMonth)
+  @Max(value = Constants.maxMonth)
   private Integer month;
 
   @Column(name = "DAY")
-  @Min(value = 1)
-  @Max(value = 31)
+  @Min(value = Constants.minDay)
+  @Max(value = Constants.maxDay)
   private Integer day;
 
   @Column(name = "ARR_DAY")
-  @Min(value = 1)
-  @Max(value = 31)
+  @Min(value = Constants.minDay)
+  @Max(value = Constants.maxDay)
   private Integer arrDay;
 
   @Column(name = "ARR_HOUR")
-  @Min(value = 0)
-  @Max(value = 23)
+  @Min(value = Constants.minHour)
+  @Max(value = Constants.maxHour)
   private Integer arrHour;
 
   @Column(name = "ARR_MIN")
-  @Min(value = 0)
-  @Max(value = 59)
+  @Min(value = Constants.minMin)
+  @Max(value = Constants.maxMin)
   private Integer arrMin;
 
   @Column(name = "TRAV_HOURS")
-  @Min(value = 0)
-  @Max(value = 60)
+  @Min(value = Constants.travelTimeMin)
+  @Max(value = Constants.travelTimeMax)
   private Integer travHours;
 
   @Column(name = "TRAV_MINS")
-  @Min(value = 0)
-  @Max(value = 59)
+  @Min(value = Constants.travelMinuteMin)
+  @Max(value = Constants.travelMinuteMax)
   private Integer travMins;
 
   @Column(name = "PERIOD")
-  @Min(value = 0)
-  @Max(value = 180)
+  @DecimalMin(value = Constants.minPeriod)
+  @DecimalMax(value = Constants.maxPeriod)
   private Float period;
 
   @Column(name = "FIRST_MOTION")
@@ -72,13 +71,13 @@ public class TsunamiRunup {
   private String firstMotion;
 
   @Column(name = "LATITUDE")
-  @Min(value = -90)
-  @Max(value = 90)
+  @Min(value = Constants.latMin)
+  @Max(value = Constants.latMax)
   private Float latitude;
 
   @Column(name = "LONGITUDE")
-  @Min(value = -180)
-  @Max(value = 180)
+  @Min(value = Constants.longMin)
+  @Max(value = Constants.longMax)
   private Float longitude;
 
   @Column(name = "LOCATION_NAME")
@@ -132,50 +131,54 @@ public class TsunamiRunup {
   private Integer regionCode;
 
   @Column(name = "RUNUP_HT")
-  @Min(value = 0)
-  @Max(value = 800)
+  @Min(value = Constants.minWaterHt)
+  @Max(value = Constants.maxWaterHt)
   private Float runupHt;
 
   @Column(name = "RUNUP_HORIZ")
-  @Min(value = 0)
-  @Max(value= 10000)
+  @Min(value = Constants.minHoriz)
+  @Max(value= Constants.maxHoriz)
   private Float runupHoriz;
 
   @Column(name = "TYPE_OF_MEASUREMENT_ID")
-  @Min(value = -1)
-  @Max(value = 10)
+  @Min(value = Constants.measureTypeMin)
+  @Max(value = Constants.measureTypeMax)
   private Integer typeOfMeasurementId;
 
   @Column(name = "DAMAGE_MILLIONS_DOLLARS")
+  @Min(value = 0)
   private Float damageMillionsDollars;
 
   @Column(name = "DAMAGE_AMOUNT_ORDER")
-  @Min(value = 0)
-  @Max(value = 4)
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer damageAmountOrder;
 
   @Column(name = "HOUSES_DESTROYED")
+  @Min(value = 0)
   private Integer housesDestroyed;
 
   @Column(name = "HOUSES_AMOUNT_ORDER")
-  @Min(value = 0)
-  @Max(value = 4)
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer housesAmountOrder;
 
   @Column(name = "DEATHS")
+  @Min(value = 0)
   private Integer deaths;
 
   @Column(name = "DEATHS_AMOUNT_ORDER")
-  @Min(value = 0)
-  @Max(value = 4)
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer deathsAmountOrder;
 
   @Column(name = "INJURIES")
+  @Min(value = 0)
   private Integer injuries;
 
   @Column(name = "INJURIES_AMOUNT_ORDER")
-  @Min(value = 0)
-  @Max(value = 4)
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer injuriesAmountOrder;
 
   @Column(name = "NGDC_DATE")
@@ -210,12 +213,12 @@ public class TsunamiRunup {
   private Date lastUpdate;
 
   @Column(name = "MISSING")
+  @Min(value = 0)
   private Integer missing;
 
-  //TODO: Default null
   @Column(name = "MISSING_AMOUNT_ORDER")
-  @Min(value = 0)
-  @Max(value = 4)
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer missingAmountOrder;
 
   @Column(name = "DOUBTFUL")
@@ -247,21 +250,23 @@ public class TsunamiRunup {
   private Integer waveArrTravMinsCalc;
 
   @Column(name = "WAVE_ARR_HT")
+  @Min(value = Constants.minWaterHt)
+  @Max(value = Constants.maxWaterHt)
   private Integer waveArrHt;
 
   @Column(name = "MAX_WAVE_ARR_DAY")
-  @Min(value = 1)
-  @Max(value = 31)
+  @Min(value = Constants.minDay)
+  @Max(value = Constants.maxDay)
   private Integer maxWaveArrDay;
 
   @Column(name = "MAX_WAVE_ARR_HOUR")
-  @Min(value = 0)
-  @Max(value = 23)
+  @Min(value = Constants.minHour)
+  @Max(value = Constants.maxHour)
   private Integer maxWaveArrHour;
 
   @Column(name = "MAX_WAVE_ARR_MIN")
-  @Min(value = 0)
-  @Max(value = 59)
+  @Min(value = Constants.minMin)
+  @Max(value = Constants.maxMin)
   private Integer getMaxWaveArrMin;
 
   @Column(name = "MAX_WAVE_NUM")
@@ -274,11 +279,12 @@ public class TsunamiRunup {
   private Integer predTravMins;
 
   @Column(name = "HOUSES_DAMAGED")
+  @Min(value = 0)
   private Integer housesDamaged;
 
   @Column(name = "HOUSES_DAMAGED_AMOUNT_ORDER")
-  @Min(value = 0)
-  @Max(value = 4)
+  @Min(value = Constants.descripMin)
+  @Max(value = Constants.descripMax)
   private Integer housesDamagedAmountOrder;
 
   @Column(name = "PUBLISH")

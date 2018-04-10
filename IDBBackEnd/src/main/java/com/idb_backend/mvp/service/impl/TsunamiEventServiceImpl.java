@@ -4,7 +4,6 @@ import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.service.Constants;
 import com.idb_backend.mvp.service.TsunamiEventService;
-import oracle.jdbc.driver.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,6 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
 
   @Autowired
   TsunamiEventRepository tsunamiEventRepository;
-
 
   public List<TsunamiEventViewNonPersist> generateCriteria (Map<String, String> map){
 
@@ -49,7 +47,6 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
         root.get("damageMillionsDollarsTotal"), root.get("damageAmountOrderTotal"), root.get("housesDestroyedTotal"),
         root.get("housesAmountOrderTotal"), root.get("housesDamagedTotal"), root.get("housesDamAmountOrderTotal")
     ).distinct(true);
-
 
     predList.add(genIntMinMax(map, "minyear", "maxyear", "year", builder, root));
     predList.add(genIntMinMax(map, "minvalidity", "maxvalidity", "eventValidity", builder, root));
@@ -139,7 +136,6 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
       return null;
     }
   }
-
 
   @Override
   public Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder, Root root){
@@ -256,7 +252,6 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
       return null;
     }
   }
-
 
   @Override
   public Predicate checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
@@ -712,4 +707,3 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
   }
 
 }
-
