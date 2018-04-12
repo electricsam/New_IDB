@@ -19,6 +19,7 @@ import UpdateTsunamiContainer from "./tsunamiForms/UpdateTsunamiContainer";
 import TestContainer from "./testComponents/TestContainer";
 import UpdateRunupContainer from "./tsunamiForms/UpdateRunupContainer";
 import RunupContainer from "./Runup/RunupContainer";
+import TsunamiLanding from "./tsunami/TsunamiLanding";
 
 class App extends React.Component {
   render() {
@@ -30,15 +31,16 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/about" component={AboutPage} />
-            <Route exact strict path="/tsunamisdata" component={TsunamiContainer} />
-            <Route exact path="/runupdata" component={RunupContainer}/>
-            <Route exact path="/tsunamieventsearch" component={TsunamiSearchContainer}/>
-            <Route exact path="/inserttsunamievent" component={TsunamiInsertContainer}/>
-            <Route exact path="/inserttsunamirunup/:eventId" component={RunupInsertContainer}/>
-            <Route exact path="/tsunamirunupsearch" component={RunupSearchContainer}/>
-            <Route exact path="/updatetsunami/:id" component={UpdateTsunamiContainer}/>
-            <Route exact path={'/userdisplay'} component={UserDisplay}/>
-            <Route exact path='/updaterunup/:runupId/:eventId' component={UpdateRunupContainer}/>
+            <Route exact strict path="/tsunami/event/data" component={TsunamiContainer}/>
+            <Route exact path="/tsunami/runup/data" component={RunupContainer}/>
+            <Route exact path="/tsunami/eventsearch" component={TsunamiSearchContainer}/>
+            <Route exact path="/tsunami/insertevent" component={TsunamiInsertContainer}/>
+            <Route exact path="/tsunami/insertrunup/:eventId" component={RunupInsertContainer}/>
+            <Route exact path="/tsunami/runupsearch" component={RunupSearchContainer}/>
+            <Route exact path="/tsunami/updatetsunami/:id" component={UpdateTsunamiContainer}/>
+            <Route exact path='/userdisplay' component={UserDisplay}/>
+            <Route exact path='/tsunami/updaterunup/:runupId/:eventId' component={UpdateRunupContainer}/>
+            <Route exact path='/tsunami/landing' component={TsunamiLanding}/>
             {/*Must have 404 component listed last*/}
             <Route path ="*" component={FourZeroFour}/>
           </Switch>

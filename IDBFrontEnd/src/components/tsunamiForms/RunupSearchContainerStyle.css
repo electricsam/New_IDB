@@ -77,7 +77,8 @@
     grid-column: 2/3;
     grid-row: 2/3;
     display: grid;
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-row-gap: .5rem;
+    grid-template-rows: auto auto auto;
     grid-template-columns: 100%;
     justify-items: start;
     align-items: center;
@@ -85,15 +86,21 @@
     height: auto;
 }
 
-@each $tsource $i in (year, region, country, state, province, latLong, validity, cause, eqMag,
-locType, loc){
+@each $tsource $i in (year, region, country){
     .$tsource{
         grid-column: 1/2;
         grid-row: calc($i + 2)/ calc($i + 3);
+        display: inline-block;
+        width: 100%;
     }
 
     .$tsource div{
         display: inline-block;
+    }
+
+    .$tsource .minMaxTitle{
+        margin-right: 2%;
+        font-weight: bold;
     }
 }
 
@@ -114,7 +121,8 @@ locType, loc){
     grid-column: 2/3;
     grid-row: 2/3;
     display: grid;
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+    grid-row-gap: .5rem;
+    grid-template-rows: auto auto auto auto auto auto auto;
     grid-template-columns: 100%;
     justify-items: start;
     align-items: center;
@@ -125,10 +133,17 @@ locType, loc){
     .$source{
         grid-column: 1/2;
         grid-row: calc($j + 2)/ calc($j + 3);
+        display: inline-block;
+        width: 100%;
     }
 
     .$source div{
         display: inline-block;
+    }
+
+    .$source .minMaxTitle{
+        margin-right: 2%;
+        font-weight: bold;
     }
 }
 
@@ -149,7 +164,8 @@ locType, loc){
     grid-column: 2/3;
     grid-row: 2/3;
     display: grid;
-    grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+    grid-row-gap: .5rem;
+    grid-template-rows: auto auto auto auto auto;
     grid-template-columns: 100%;
     justify-items: start;
     align-items: center;
@@ -160,10 +176,17 @@ locType, loc){
     .$effect{
         grid-column: 1/2;
         grid-row: calc($k + 2)/calc($k + 3);
+        display: inline-block;
+        width: 100%;
     }
 
     .$effect div{
         display: inline-block;
+    }
+
+    .$effect .minMaxTitle{
+        margin-right: 2%;
+        font-weight: bold;
     }
 }
 
@@ -174,7 +197,6 @@ locType, loc){
     color: rgb(102,102,102);
     border: .5px solid rgb(102,102,102);
     text-transform: uppercase;
-
     outline: 0;
 }
 
@@ -188,3 +210,6 @@ locType, loc){
     box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.2)
 }
 
+.location{
+    width: 100%;
+}

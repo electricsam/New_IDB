@@ -28,8 +28,9 @@ const RunupSourceInfo = props => (
     {
       props.showRunupSource ?
       <div className={Styles.formInnerSectionOne}>
+
         <div className={Styles.year}>
-          <div >Year:</div>
+          <div className={Styles.minMaxTitle}>Year</div>
           <MinMax
             model=".tsunami.rnpsearch.tsminyear"
             title="Min"
@@ -51,9 +52,11 @@ const RunupSourceInfo = props => (
         </div>
 
         <div className={Styles.region}>
+          <div className={Styles.minMaxTitle}>Region</div>
           <DropDown title="Region" model=".tsunami.rnpsearch.tsregion" data={regions}/>
         </div>
         <div className={Styles.country}>
+          <div className={Styles.minMaxTitle}>Country</div>
           <DropDown title="Country" model=".tsunami.rnpsearch.tscountry" data={countries} />
         </div>
       </div>:

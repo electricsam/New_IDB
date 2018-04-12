@@ -21,12 +21,12 @@ import Styles from "./RunupInsertStyle.css";
 const RunupInsert = props => (
   <div className={Styles.formSectionOne}>
     <div className={Styles.header}>
-      <h3>Section One</h3>
+      <h3>Insert Runup</h3>
     </div>
     <div className={Styles.formInnerSectionOne}>
 
       <div className={Styles.year}>
-        <div className={Styles.minMaxHeader}>Year</div>
+        <div className={Styles.minMaxTitle}>Year</div>
         <MinMax model=".tsunami.rnpinsert.year"
                 title=""
                 min={validationConstants.year.min}
@@ -37,7 +37,7 @@ const RunupInsert = props => (
       </div>
 
       <div className={Styles.month}>
-        <div>Month</div>
+        <div className={Styles.minMaxTitle}>Month</div>
         <MinMax model=".tsunami.rnpinsert.month"
                 title=""
                 min={validationConstants.month.min}
@@ -48,7 +48,7 @@ const RunupInsert = props => (
       </div>
 
       <div className={Styles.day}>
-        <div>Day</div>
+        <div className={Styles.minMaxTitle}>Day</div>
         <MinMax model=".tsunami.rnpinsert.day"
                 title=""
                 min={validationConstants.day.min}
@@ -59,7 +59,7 @@ const RunupInsert = props => (
       </div>
 
       <div className={Styles.location}>
-        <label htmlFor=".tsunami.rnpinsert.locationName">Location Name</label>
+        <div className={Styles.minMaxTitle}>Location</div>
         <Control.text
           model=".tsunami.rnpinsert.locationName"
           id=".tsunami.rnpinsert.locationName"
@@ -67,26 +67,29 @@ const RunupInsert = props => (
       </div>
 
       <div className={Styles.country}>
+        <div className={Styles.minMaxTitle}>Country</div>
         <DropDown title="Country" model=".tsunami.rnpinsert.country" data={countries}/>
       </div>
       <div className={Styles.region}>
+        <div className={Styles.minMaxTitle}>Region</div>
         <DropDown title="Region" model=".tsunami.rnpinsert.region" data={regions}/>
       </div>
 
       <div className={Styles.area}>
-        <div>Area</div>
-        <DropDown title="State" model=".tsunami.rnpinsert.area" data={states}/>
-        <DropDown title="Canadian Province" model=".tsunami.rnpinsert.area" data={canadianProvince}/>
-        <DropDown title="Japanese Prefecture" model=".tsunami.rnpinsert.area" data={japanesePrefecture}/>
-        <DropDown title="Indonesian Province" model=".tsunami.rnpinsert.area" data={indonesianProvince}/>
+        <div className={Styles.minMaxTitle}>Area</div>
+          <DropDown title="State" model=".tsunami.rnpinsert.area" data={states}/>
+          <DropDown title="Canadian Province" model=".tsunami.rnpinsert.area" data={canadianProvince}/>
+          <DropDown title="Japanese Prefecture" model=".tsunami.rnpinsert.area" data={japanesePrefecture}/>
+          <DropDown title="Indonesian Province" model=".tsunami.rnpinsert.area" data={indonesianProvince}/>
       </div>
 
       <div className={Styles.measure}>
+        <div className={Styles.minMaxTitle}>Type of Measurement</div>
         <DropDown title="Type of Measurement" model=".tsunami.rnpinsert.typeOfMeasurementId" data={rnpMeasureType}/>
       </div>
 
       <div className={Styles.maxHt}>
-        <div>Maximum Height (meters) </div>
+        <div className={Styles.minMaxTitle}>Maximum Height (meters) </div>
         <MinMax model=".tsunami.rnpinsert.runupHt"
                 title=""
                 min={validationConstants.waterHeight.min}
@@ -97,7 +100,7 @@ const RunupInsert = props => (
       </div>
 
       <div className={Styles.horiz}>
-        <div>Maximum Horizontal Inundation (meters)</div>
+        <div className={Styles.minMaxTitle}>Maximum Horizontal Inundation (meters)</div>
         <MinMax model=".tsunami.rnpinsert.runupHoriz"
                 title=""
                 min={validationConstants.horizInnundation.min}
@@ -108,7 +111,7 @@ const RunupInsert = props => (
       </div>
 
       <div className={Styles.period}>
-        <div>Period</div>
+        <div className={Styles.minMaxTitle}>Period</div>
         <MinMax model=".tsunami.rnpinsert.period"
                 title=""
                 min={validationConstants.period.min}
@@ -119,11 +122,12 @@ const RunupInsert = props => (
       </div>
 
       <div className={Styles.firstMotion}>
+        <div className={Styles.minMaxTitle}>First Motion</div>
         <DropDown title="First Motion" model=".tsunami.rnpinsert.firstMotion" data={firstMotion}/>
       </div>
 
-      <div className={Styles.latitude}>
-        <div>Latitude</div>
+      <div className={Styles.lat}>
+        <div className={Styles.minMaxTitle}>Latitude</div>
         <MinMax model=".tsuanmi.rnpinsert.latitude"
                 title=""
                 min={validationConstants.latitude.min}
@@ -132,8 +136,8 @@ const RunupInsert = props => (
                 validMessage={{valid: "Invalid Latitude"}}
         />
       </div>
-      <div className={Styles.longitude}>
-        <div>Longitude</div>
+      <div className={Styles.long}>
+        <div className={Styles.minMaxTitle}>Longitude</div>
         <MinMax model=".tsuanmi.rnpinsert.longitude"
                 title=""
                 min={validationConstants.longitude.min}
@@ -144,32 +148,34 @@ const RunupInsert = props => (
       </div>
 
       <div className={Styles.arrival}>
-        <div>Arrival Time</div>
-        <MinMax model=".tsunami.rnpinsert.arrDay"
-                title="Day"
-                min={validationConstants.day.min}
-                max={validationConstants.day.max}
-                validMinMax={props.validateMinMax}
-                validMessage={{valid: "Invalid Arrival Day"}}
-        />
-        <MinMax model=".tsunami.rnpinsert.arrHour"
-                title="Hour"
-                min={validationConstants.hour.min}
-                max={validationConstants.hour.max}
-                validMinMax={props.validateMinMax}
-                validMessage={{valid: "Invalid Arrival Hour"}}
-        />
-        <MinMax model=".tsunami.rnpinsert.arrMin"
-                title="Minute"
-                min={validationConstants.minute.min}
-                max={validationConstants.minute.max}
-                validMinMax={props.validateMinMax}
-                validMessage={{valid: "Invalid Arrival Minute"}}
-        />
+        <div className={Styles.minMaxTitle}>Arrival Time</div>
+          <MinMax model=".tsunami.rnpinsert.arrDay"
+                  title="Day"
+                  min={validationConstants.day.min}
+                  max={validationConstants.day.max}
+                  validMinMax={props.validateMinMax}
+                  validMessage={{valid: "Invalid Arrival Day"}}
+          />
+          <MinMax model=".tsunami.rnpinsert.arrHour"
+                  title="Hour"
+                  min={validationConstants.hour.min}
+                  max={validationConstants.hour.max}
+                  validMinMax={props.validateMinMax}
+                  validMessage={{valid: "Invalid Arrival Hour"}}
+          />
+
+          <MinMax model=".tsunami.rnpinsert.arrMin"
+                  title="Minute"
+                  min={validationConstants.minute.min}
+                  max={validationConstants.minute.max}
+                  validMinMax={props.validateMinMax}
+                  validMessage={{valid: "Invalid Arrival Minute"}}
+          />
+
       </div>
 
       <div className={Styles.travel}>
-        <div>Travel Time</div>
+        <div className={Styles.minMaxTitle}>Travel Time</div>
         <MinMax model=".tsunami.rnpinsert.travHours"
                 title="Hour"
                 min={validationConstants.hour.min}
@@ -187,7 +193,7 @@ const RunupInsert = props => (
       </div>
 
       <div className={Styles.maxArrival}>
-        <div>Max Arrival Time</div>
+        <div className={Styles.minMaxTitle}>Max Arrival Time</div>
         <MinMax model=".tsunami.rnpinsert.maxWaveArrDay"
                 title="Day"
                 min={validationConstants.day.min}
@@ -212,7 +218,7 @@ const RunupInsert = props => (
       </div>
 
       <div className={Styles.doubtful}>
-        <div>Doubtfulness</div>
+        <div className={Styles.minMaxTitle}>Doubtfulness</div>
         <Control.radio
           model=".tsunami.rnpinsert.doubtful"
           id=".tsunami.rnpinsert.doubtful"
@@ -238,7 +244,7 @@ const RunupInsert = props => (
       </div>
 
       <div className={Styles.damage}>
-        <div>Damage</div>
+        <div className={Styles.minMaxTitle}>Damage</div>
         <MinMax
           model=".tsunami.rnpinsert.damageMillionsofDollars"
           title="Damage in Millions of Dollars"
@@ -247,14 +253,14 @@ const RunupInsert = props => (
           validMinMax={props.validateMinMax}
           validMessage={{valid: "Invalid Damage"}}
         />
-        <div>OR</div>
+        <div className={Styles.minMaxTitle}> OR Damage Description</div>
         <DropDown title="Damage Description"
                   model=".tsunami.rnpinsert.damageAmountOrder"
                   data={damageMillions}/>
       </div>
 
       <div className={Styles.housesDestroyed}>
-        <div>Houses Destoyed</div>
+        <div className={Styles.minMaxTitle}>Houses Destoyed</div>
         <MinMax
           model=".tsunami.rnpinsert.housesDestroyed"
           title="Number of Houses Destroyed"
@@ -263,14 +269,14 @@ const RunupInsert = props => (
           validMinMax={props.validateMinMax}
           validMessage={{valid: "Invalid Houses Destroyed"}}
         />
-        <div>OR</div>
+        <div className={Styles.minMaxTitle}> OR Houses Destroyed Description</div>
         <DropDown title="Houses Destroyed Description"
                   model=".tsunami.rnpinsert.housesAmountOrder"
                   data={effectDescriptions}/>
       </div>
 
       <div className={Styles.deaths}>
-        <div>Deaths</div>
+        <div className={Styles.minMaxTitle}>Deaths</div>
         <MinMax
           model=".tsunami.rnpinsert.deaths"
           title="Number of Deaths"
@@ -279,12 +285,12 @@ const RunupInsert = props => (
           validMinMax={props.validateMinMax}
           validMessage={{valid: "Invalid Deaths"}}
         />
-        <div> OR </div>
+        <div className={Styles.minMaxTitle}> OR Death Description</div>
         <DropDown title="Death Description" model=".tsunami.rnpinsert.deathsAmountOrder" data={effectDescriptions}/>
       </div>
 
       <div className={Styles.injuries}>
-        <div>Injuries</div>
+        <div className={Styles.minMaxTitle}>Injuries</div>
         <MinMax
           model=".tsunami.rnpinsert.injuries"
           title="Number of Injuries"
@@ -293,12 +299,12 @@ const RunupInsert = props => (
           validMinMax={props.validateMinMax}
           validMessage={{valid: "Invalid Injuries"}}
         />
-        <div> OR </div>
+        <div className={Styles.minMaxTitle}> OR Injury Description</div>
         <DropDown title="Injury Description" model=".tsunami.rnpinsert.injuriesAmountOrder" data={effectDescriptions}/>
       </div>
 
       <div className={Styles.missing}>
-        <div>Missing</div>
+        <div className={Styles.minMaxTitle}>Missing</div>
         <MinMax
           model=".tsunami.rnpinsert.missing"
           title="Number of Missing"
@@ -307,12 +313,12 @@ const RunupInsert = props => (
           validMinMax={props.validateMinMax}
           validMessage={{valid: "Invalid Missing"}}
         />
-        <div> OR </div>
+        <div className={Styles.minMaxTitle}> OR Missing Description</div>
         <DropDown title="Missing Description" model=".tsunami.rnpinsert.missingAmountOrder" data={effectDescriptions}/>
       </div>
 
       <div className={Styles.comments}>
-        <label htmlFor=".tsunami.insert.comments">Comments</label>
+        <div className={Styles.minMaxTitle}>Comments</div>
         <Control.textarea
           model=".tsunami.insert.comments"
           id=".tsunami.insert.comments"

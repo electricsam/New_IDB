@@ -2,16 +2,15 @@ import React from 'react';
 import { Control, Errors } from 'react-redux-form/immutable';
 import PropTypes from 'prop-types';
 
+import Styles from "./DropDownStyles.css"
 
 const DropDown = props => (
-  <div>
-    <label htmlFor={props.model}>{props.title}</label>
+  <div className={Styles.dropContainer}>
     <Control.select model={props.model} id={props.model}>
       {props.data.map(e => <option value={e.value}>{e.name}</option>)}
     </Control.select>
   </div>
 );
-
 
 export default DropDown;
 

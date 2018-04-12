@@ -26,7 +26,7 @@ const TsunamiSourceParameters = props => (
         <div className={Styles.formInnerSectionOne}>
 
           <div className={Styles.year}>
-            <div className={Styles.minMaxTitle}>Year:</div>
+            <div className={Styles.minMaxTitle}>Year</div>
             <MinMax
               model=".tsunami.search.minyear"
               title="Min"
@@ -44,24 +44,29 @@ const TsunamiSourceParameters = props => (
           </div>
 
           <div className={Styles.region}>
+            <div className={Styles.minMaxTitle}>Region</div>
             <DropDown title="Region" model=".tsunami.search.region" data={regions}/>
           </div>
 
           <div className={Styles.country}>
+            <div className={Styles.minMaxTitle}>Country</div>
             <DropDown title="Country" model=".tsunami.search.country" data={countries}/>
           </div>
 
           <div className={Styles.state}>
+            <div className={Styles.minMaxTitle}>U.S. State / Territory</div>
             <DropDown title="U.S. State / Territory" model=".tsunami.search.area" data={states}/>
 
           </div>
 
           <div className={Styles.province}>
+            <div className={Styles.minMaxTitle}>Canadian Province</div>
             <DropDown title="Canadian Province" model=".tsunami.search.area" data={canadianProvince}/>
           </div>
 
 
           <div className={Styles.latLong}>
+            <div className={Styles.minMaxTitle}>Lat / Long</div>
             <MinMax
               model=".tsunami.search.latnorth"
               title="Northernmost Latitude"
@@ -93,7 +98,7 @@ const TsunamiSourceParameters = props => (
           </div>
 
           <div className={Styles.validity}>
-            <div>Validity</div>
+            <div className={Styles.minMaxTitle}>Validity</div>
             <MinMax
               model=".tsunami.search.minvalidity"
               title="Min"
@@ -111,7 +116,7 @@ const TsunamiSourceParameters = props => (
           </div>
 
           <div className={Styles.cause}>
-            <div>Cause of Tsunami</div>
+            <div className={Styles.minMaxTitle}>Cause of Tsunami</div>
             <MinMax
               model=".tsunami.search.mincause"
               title="Min"
@@ -121,7 +126,7 @@ const TsunamiSourceParameters = props => (
               validMessage={{valid: "Invalid Cause"}}/>
             <MinMax
               model=".tsunami.search.maxcause"
-              title="max"
+              title="Max"
               min={validationConstants.cause.min}
               max={validationConstants.cause.max}
               validMinMax={props.validateMinMax}
@@ -129,7 +134,7 @@ const TsunamiSourceParameters = props => (
           </div>
 
           <div className={Styles.eqMag}>
-            <div>Earthquake Magnitude</div>
+            <div className={Styles.minMaxTitle}>Earthquake Magnitude</div>
             <MinMax
               model=".tsunami.search.eqmagmin"
               title="Min"

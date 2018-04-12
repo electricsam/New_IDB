@@ -1,0 +1,22 @@
+.minMaxInput{
+    margin-right: 1%;
+    white-space: nowrap;
+}
+
+.minMaxInput label{
+    display: inline-block;
+    margin-right: 1%;
+}
+
+.minMaxInput input{
+    display: inline-block;
+}
+
+.errors{
+    color: red;
+    margin-left: 2%;
+}
+
+.errors span{
+    display: block;
+}

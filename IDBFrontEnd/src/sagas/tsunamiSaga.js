@@ -188,4 +188,32 @@ export function* watchFetchAllRunups(){
   yield takeEvery("FETCH_ALL_RUNUP_REQUESTED", fetchAllRunups);
 }
 
+export function* deleteRunup(value){
+  try{
+    const response = yield call(axios.delete, `http://localhost:8080/tsunamirunups/${value.payload}`);
+    yield put({
+      type: "DELETE_RUNUP_FULFILLED",
+      payload:response.data
+    });
+  }catch(error){
+    yield put({type: "DELETE_RUNUP_REJECTED", payload: error});
+  }
+}
+
+export function* watchDeleteRunup(){
+  yield takeEvery("DELETE_RUNUP_REQUESTED", deleteRunup);
+}
+
+export function* watchDeleteRunupFulfilled(){
+  yield takeEvery("DELETE_RUNUP_FULFILLED", resetDeleteRunup);
+}
+
+export function* watchDeleteRunupRejected(){
+  yield takeEvery("DELETE_RUNUP_REJECTED", resetDeleteRunup);
+}
+
+export function* resetDeleteRunup(){
+  yield put({type: "SET_DELETE_RUNUP_ID", payload: null});
+  yield put({type: "TOGGLE_DELETE_RUNUP_CONFIRMATION"});
+}
 

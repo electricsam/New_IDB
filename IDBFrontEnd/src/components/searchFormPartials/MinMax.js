@@ -2,10 +2,10 @@ import React from 'react';
 import { Control, Errors } from 'react-redux-form/immutable';
 import PropTypes from 'prop-types';
 
-import Styles from '../tsunamiForms/TsunamiSearchContainerStyle.css';
+import Styles from './MinMaxStyle.css';
 
 const MinMax = props => (
-  <div>
+  <div className={Styles.minMaxInput}>
     <label htmlFor={props.model}>{props.title}</label>
     <Control.text
       model={props.model}

@@ -29,12 +29,13 @@ class RunupInsertContainer extends React.Component{
     val = val.tsunami.asMutable().toJS();
     if(val.rnpinsert){
       let encoded = encodeQueryString(JSON.stringify(val.rnpinsert));
-      console.log("This.props:", this.props)
       action({type: "POST_TS_RUNUP_REQUESTED", payload: {runup: val.rnpinsert, id: this.props.match.params.eventId}});
     }
   }
 
-  validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+  validateMinMax = (val, min, max) => {
+    (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+  }
 
   render(){
     const { tsunami } = this.props;
@@ -44,7 +45,7 @@ class RunupInsertContainer extends React.Component{
 
           <RunupInsert validateMinMax={this.validateMinMax}/>
 
-          <button type="submit" >
+          <button type="submit" className={Styles.searchButton}>
             Submit
           </button> </Form>
       </div>

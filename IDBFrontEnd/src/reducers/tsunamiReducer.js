@@ -24,6 +24,10 @@ export const initialState = fromJS({
   fetchingRunup: false,
   fetchedRunup: false,
   runupData: [],
+  deleteRunupId: null,
+  showDeleteConfirmation: false,
+  deletingRunup: false,
+  deletedRunup: false,
 });
 
 export default function reducer(state=initialState, action){
@@ -143,6 +147,22 @@ export default function reducer(state=initialState, action){
         runupData: action.payload.data,
         headersAndAccessors: action.payload.formattedData
       });
+    }
+    case "TOGGLE_DELETE_RUNUP_CONFIRMATION": {
+      console.log("you are inside the toggle action for delete confirmation on runups")
+      return state.merge(state, {showDeleteConfirmation: !state.get('showDeleteConfirmation')});
+    }
+    case "SET_DELETE_RUNUP_ID":{
+      return state.merge(state, {deleteRunupId: action.payload});
+    }
+    case "DELETE_RUNUP_REQUESTED": {
+      return state.merge(state, {deletingRunup: true});
+    }
+    case "DELETE_RUNUP_FULFILLED": {
+      return state.merge(state, {deletingRunup: false, deletedRunup: true});
+    }
+    case "DELETE_RUNUP_REJECTED": {
+      return state.merge(state, {deletingRunup: false, error: action.payload});
     }
     default:
       return state;

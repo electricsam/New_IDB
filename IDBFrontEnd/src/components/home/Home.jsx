@@ -4,7 +4,6 @@ import killerWhale from '../../assets/killer_whale.jpg';
 import Styles from './HomeStyle.css';
 import { Link } from 'react-router-dom';
 
-import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer.jsx';
 
 const inlineStyles = {
@@ -18,7 +17,6 @@ const Home = () => {
     <div className={Styles.container} style={inlineStyles}>
       <div className={Styles.welcome}>
         <h1 id="hello" className={Styles.title}>Natural Hazards Data</h1>
-
       </div>
     </div>
   );

@@ -56,10 +56,6 @@
     width: 100%;
 }
 
-.minMaxTitle{
-    display: block;
-}
-
 /*TsunamiSourceParameters Form Section*/
 .formSectionOne{
     grid-column: 1/2;
@@ -91,10 +87,16 @@ locType, loc){
     .$tsource{
         grid-column: 1/2;
         grid-row: calc($i + 2)/ calc($i + 3);
+        width: 100%;
     }
 
     .$tsource div{
         display: inline-block;
+    }
+
+    .$tsource .minMaxTitle{
+        margin-right: 1%;
+        font-weight: bold;
     }
 }
 
@@ -106,7 +108,7 @@ locType, loc){
     grid-template-rows: auto auto;
     grid-template-columns: 2.5% 95% 2.5%;
     justify-items: start;
-    align-items: center;
+    align-items: start;
     width: 100%;
     height: auto
 }
@@ -114,6 +116,7 @@ locType, loc){
 .formInnerSectionTwo{
     grid-column: 2/3;
     grid-row: 2/3;
+    grid-row-gap: .5rem;
     display: grid;
     grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
     grid-template-columns: 100%;
@@ -122,15 +125,22 @@ locType, loc){
     width: 100%;
     height: auto
 }
-@each $place $j in (rnpRegion, rnpCountries, rnpStates, rnpProvince, rnpIndoProv, rnpJpPre, rnpDistance, travHrs,
+
+@each $class $i in (rnpRegion, rnpCountry, rnpState, rnpProvince, rnpIndoProv, rnpJpPre, rnpDistance, travHrs,
 rnpLocType, rnpLoc){
-    .$place{
+    .$class{
         grid-column: 1/2;
-        grid-row: calc($j + 2)/ calc($j + 3);
+        grid-row: calc($i + 2)/ calc($i + 3);
+        width: 100%;
     }
 
-    .$place div{
+    .$class div{
         display: inline-block;
+    }
+
+    .$class .minMaxTitle{
+        margin-right: 1%;
+        font-weight: bold;
     }
 }
 
@@ -151,6 +161,7 @@ rnpLocType, rnpLoc){
     grid-column: 2/3;
     grid-row: 2/3;
     display: grid;
+    grid-row-gap: .5rem;
     grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
     grid-template-columns: 100%;
     justify-items: start;
@@ -164,10 +175,16 @@ injuryDescrip, damage, damageDescrip, numHouses, housesDescrip
     .$effect{
         grid-column: 1/2;
         grid-row: calc($k + 2)/calc($k + 3);
+        width: 100%
     }
 
     .$effect div{
         display: inline-block;
+    }
+
+    .$effect .minMaxTitle{
+        margin-right: 2%;
+        font-weight: bold;
     }
 }
 
@@ -188,6 +205,7 @@ injuryDescrip, damage, damageDescrip, numHouses, housesDescrip
     grid-column: 2/3;
     grid-row: 2/3;
     display: grid;
+    grid-row-gap: .5rem;
     grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto;
     grid-template-columns: 100%;
     justify-items: start;
@@ -200,10 +218,16 @@ injuryDescrip, damage, damageDescrip, numHouses, housesDescrip
     .$class{
         grid-column: 1/2;
         grid-row: calc($l + 2)/calc($l + 3);
+        width: 100%
     }
 
     .$class div{
         display: inline-block;
+    }
+
+    .$class .minMaxTitle{
+        margin-right: 2%;
+        font-weight: bold;
     }
 }
 
@@ -215,7 +239,6 @@ injuryDescrip, damage, damageDescrip, numHouses, housesDescrip
     color: rgb(102,102,102);
     border: .5px solid rgb(102,102,102);
     text-transform: uppercase;
-
     outline: 0;
 }
 
@@ -227,5 +250,9 @@ injuryDescrip, damage, damageDescrip, numHouses, housesDescrip
 .searchButton:focus{
     outline: none;
     box-shadow: 0px 0px 4px 3px rgba(0, 0, 0, 0.2)
+}
+
+.minMaxTitle{
+    display: block;
 }
 

@@ -4,6 +4,7 @@ import { Control, Form, Errors, actions } from 'react-redux-form/immutable';
 
 import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
+import Styles from "./InsertTsunamiStyles.css"
 
 import InsertTsunami from './InsertTsunami';
 
@@ -36,25 +37,26 @@ class TsunamiInsertContainer extends React.Component{
       //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
       // this.props.history.push(`/tsunamis?${encoded}`);
 
-
     }else{
       // action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
       // this.props.history.push(`/tsunamis`)
     }
   }
 
-  validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+  validateMinMax = (val, min, max) => {
+    (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+  }
 
   render(){
     const { tsunami } = this.props;
     return (
-      <div >
-        <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)}>
+      <div className={Styles.container}>
+        <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
           <InsertTsunami validateMinMax={this.validateMinMax} />
 
 
-          <button type="submit" >
+          <button type="submit" className={Styles.searchButton}>
             Submit
           </button> </Form>
       </div>

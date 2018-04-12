@@ -9,6 +9,8 @@ import Loading from "../loadbar/Loading"
 import InsertTsunami from './InsertTsunami';
 import UpdateTsunami from "./UpdateTsunami";
 
+import Styles from "./UpdateTsunamiStyles.css"
+
 const errorStyles = {
   color: 'red',
   display: 'block'
@@ -49,7 +51,9 @@ class UpdateTsunamiContainer extends React.Component{
     // }
   }
 
-  validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+  validateMinMax = (val, min, max) => {
+    (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+  }
 
   render(){
     const { tsunami } = this.props;
@@ -59,15 +63,12 @@ class UpdateTsunamiContainer extends React.Component{
       )
     }else{
       return (
-
-        <div >
-          <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)}>
+        <div className={Styles.container}>
+          <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
             <UpdateTsunami validateMinMax={this.validateMinMax}/>
 
-
-
-            <button type="submit" >
+            <button type="submit" className={Styles.searchButton} >
               Submit
             </button> </Form>
         </div>

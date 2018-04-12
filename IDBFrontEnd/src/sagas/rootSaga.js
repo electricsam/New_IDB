@@ -10,6 +10,9 @@ import {
   watchUpdateRunup,
   watchFetchSpecifiedRunup,
   watchFetchAllRunups,
+  watchDeleteRunup,
+  watchDeleteRunupFulfilled,
+  watchDeleteRunupRejected,
 } from './tsunamiSaga';
 
 export default function* rootSaga(){
@@ -22,6 +25,9 @@ export default function* rootSaga(){
     watchFetchRunup(),
     watchUpdateRunup(),
     watchFetchSpecifiedRunup(),
-    watchFetchAllRunups()
+    watchFetchAllRunups(),
+    watchDeleteRunup(),
+    watchDeleteRunupFulfilled(),
+    watchDeleteRunupRejected(),
   ]);
 }

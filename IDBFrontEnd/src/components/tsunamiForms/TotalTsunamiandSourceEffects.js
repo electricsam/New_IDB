@@ -27,7 +27,7 @@ const TotalTsunamiandSourceEffects = props => (
       props.showTotalTsunamiSourceForm ?
         <div className={Styles.formInnerSectionFour}>
           <div className={Styles.deathsTotal}>
-            <div>Total Number of Deaths</div>
+            <div className={Styles.minMaxTitle}>Total Number of Deaths</div>
             <MinMax model=".tsunami.search.totaldeathsmin"
                     title="Min"
                     min={validationConstants.numberOfDeaths.min}
@@ -45,7 +45,7 @@ const TotalTsunamiandSourceEffects = props => (
           </div>
 
           <div className={Styles.deathTotalDescrip}>
-            <div>Total Death Description</div>
+            <div className={Styles.minMaxTitle}>Total Death Description</div>
             <MinMax model=".tsunami.search.totaldeathdescripmin"
                     title="Min"
                     min={validationConstants.numberOfDeaths.min}
@@ -66,11 +66,12 @@ const TotalTsunamiandSourceEffects = props => (
 
 
           <div className={Styles.typeMeasure}>
+            <div className={Styles.minMaxTitle}> Type of Measurement</div>
             <DropDown title="Type of Measurement" model=".tsunami.search.rnpmeasuretype" data={rnpMeasureType}/>
           </div>
 
           <div className={Styles.vertHt}>
-            <div>Vertical Height at Runup Location</div>
+            <div className={Styles.minMaxTitle}>Vertical Height at Runup Location</div>
             <MinMax model=".tsunami.search.rnphtmin"
                     title="Min"
                     min={validationConstants.waterHeight.min}
@@ -89,7 +90,7 @@ const TotalTsunamiandSourceEffects = props => (
 
 
           <div className={Styles.rnpDeaths}>
-            <div>Number of Deaths at Runup Location</div>
+            <div className={Styles.minMaxTitle}>Number of Deaths at Runup Location</div>
             <MinMax model=".tsunami.search.rnpdeathmin"
                     title="Min"
                     min={validationConstants.numberOfDeaths.min}
@@ -107,7 +108,7 @@ const TotalTsunamiandSourceEffects = props => (
           </div>
 
           <div className={Styles.rnpDeathDescrip}>
-            <div>Death Description</div>
+            <div className={Styles.minMaxTitle}>Death Description</div>
             <MinMax model=".tsunami.search.rnpdeathdescripmin"
                     title="Min"
                     min={validationConstants.deathDescription.min}
@@ -125,7 +126,7 @@ const TotalTsunamiandSourceEffects = props => (
           </div>
 
           <div className={Styles.rnpInjuries}>
-            <div>Number of Injuries at Runup Location</div>
+            <div className={Styles.minMaxTitle}>Number of Injuries at Runup Location</div>
             <MinMax model=".tsunami.search.rnpinjurymin"
                     title="Min"
                     min={validationConstants.numberOfInjuries.min}
@@ -143,7 +144,7 @@ const TotalTsunamiandSourceEffects = props => (
           </div>
 
           <div className={Styles.rnpInjuryDescrip}>
-            <div>Injury Description</div>
+            <div className={Styles.minMaxTitle}>Injury Description</div>
             <MinMax model=".tsunami.search.rnpinjurydescripmin"
                     title="Min"
                     min={validationConstants.injuryDescription.min}
@@ -161,7 +162,7 @@ const TotalTsunamiandSourceEffects = props => (
           </div>
 
           <div className={Styles.rnpDamage}>
-            <div>Damage in Millions of Dollars</div>
+            <div className={Styles.minMaxTitle}>Damage in Millions of Dollars</div>
             <MinMax model=".tsunami.search.rnpdamagemin"
                     title="Min"
                     min={validationConstants.damageInMillions.min}
@@ -179,7 +180,7 @@ const TotalTsunamiandSourceEffects = props => (
           </div>
 
           <div className={Styles.rnpDamageDescrip}>
-            <div>Damage Description</div>
+            <div className={Styles.minMaxTitle}>Damage Description</div>
             <MinMax model=".tsunami.search.rnpdamagedescripmin"
                     title="Min"
                     min={validationConstants.damageDescription.min}
@@ -197,7 +198,7 @@ const TotalTsunamiandSourceEffects = props => (
           </div>
 
           <div className={Styles.rnpHouses}>
-            <div>Number of Houses Destroyed at Runup Location</div>
+            <div className={Styles.minMaxTitle}>Number of Houses Destroyed at Runup Location</div>
             <MinMax model=".tsunami.search.rnphousesmin"
                     title="Min"
                     min={validationConstants.numberOfHousesDestroyed.min}
@@ -215,7 +216,7 @@ const TotalTsunamiandSourceEffects = props => (
           </div>
 
           <div className={Styles.rnpHousesDescrip}>
-            <div>Houses Destoryed Description</div>
+            <div className={Styles.minMaxTitle}>Houses Destoryed Description</div>
             <MinMax model=".tsunami.search.rnphousesdescripmin"
                     title="Min"
                     min={validationConstants.housesDestroyedDescription.min}

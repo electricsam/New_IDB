@@ -24,16 +24,15 @@ const Table = props => (
       //The style height gives fixed header with scroll
       style={{
         height: "50%", // This will force the table body to overflow and scroll, since there is not enough room
-        width: "95%"
+        width: "95%",
+        textAlign:"center"
       }}
       className="-striped -highlight"
       defaultSorted={[{id: 'id', desc: false}]}
       loading={props.loading}
       handleEdit={props.handleEdit}
     />
-
   </div>
-
 );
 
 export default Table;

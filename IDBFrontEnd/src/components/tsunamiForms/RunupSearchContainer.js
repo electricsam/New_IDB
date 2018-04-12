@@ -45,10 +45,10 @@ class RunupSearchContainer extends React.Component{
       // action({type: "FETCH_SPECIFIED_RUNUP_REQUESTED", payload: queryString});
 
       //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
-      this.props.history.push(`/runupdata?${encoded}`);
+      this.props.history.push(`/tsunami/runup/data?${encoded}`);
     }else{
       action({type: "FETCH_ALL_RUNUPS_REQUESTED"});
-      this.props.history.push(`/runupdata`)
+      this.props.history.push(`/tsunami/runup/data`)
     }
   }
 
@@ -58,7 +58,7 @@ class RunupSearchContainer extends React.Component{
 
   toggleParamsEffect = () => action({type: "TOGGLE_RUNUPPARAMS_FORM"});
 
-  validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+    validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
   checkRunupLocType = () => this.props.tsunami.get('runupLocType')
 

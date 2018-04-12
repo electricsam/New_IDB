@@ -42,10 +42,10 @@ class TsunamiSearchContainer extends React.Component{
       let queryString = createApiQueryString(val.search);
       action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});
       //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
-      this.props.history.push(`/tsunamisdata?${encoded}`);
+      this.props.history.push(`/tsunami/event/data?${encoded}`);
     }else{
       action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
-      this.props.history.push(`/tsunamisdata`)
+      this.props.history.push(`/tsunami/event/sdata`)
     }
   }
 

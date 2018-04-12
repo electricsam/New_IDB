@@ -13,7 +13,7 @@ import {
 
 import DropDown from '../searchFormPartials/DropDown.jsx';
 import MinMax from '../searchFormPartials/MinMax';
-import Styles from './RunupSearchContainerStyle.css';
+import Styles from './TsunamiSearchContainerStyle.css';
 
 const TsunamiRunupByPlace = props => (
 
@@ -34,26 +34,32 @@ const TsunamiRunupByPlace = props => (
       <div className={Styles.formInnerSectionTwo}>
 
         <div className={Styles.rnpRegion}>
+          <div className={Styles.minMaxTitle}>Region</div>
           <DropDown title="Runup Region Name " model=".tsunami.search.runupregion" data={regions}/>
         </div>
 
-        <div className={Styles.rnpCountries}>
+        <div className={Styles.rnpCountry}>
+          <div className={Styles.minMaxTitle}>Country</div>
           <DropDown title="Runup Country " model=".tsunami.search.runupcountry" data={countries}/>
         </div>
 
-        <div className={Styles.rnpStates}>
+        <div className={Styles.rnpState}>
+          <div className={Styles.minMaxTitle}>U.S. States / Territory</div>
           <DropDown title="Runup U.S. State / Territory " model=".tsunami.search.runuparea" data={states}/>
         </div>
 
         <div className={Styles.rnpProvince}>
+          <div className={Styles.minMaxTitle}>Canadian Province</div>
           <DropDown title="Runup Canadian Province " model=".tsunami.search.runuparea" data={canadianProvince}/>
         </div>
 
         <div className={Styles.rnpIndoProv}>
+          <div className={Styles.minMaxTitle}>Indonesian Province</div>
           <DropDown title="Runup Indonesian Province" model=".tsunami.search.runuparea" data={indonesianProvince}/>
         </div>
 
         <div className={Styles.rnpJpPre}>
+          <div className={Styles.minMaxTitle}>Japanese Prefect</div>
           <DropDown title="Runup Japanese Prefecture" model=".tsunami.search.runuparea" data={japanesePrefecture}/>
         </div>
 
@@ -78,7 +84,7 @@ const TsunamiRunupByPlace = props => (
         </div>
 
         <div className={Styles.travHrs}>
-          <div>Travel Time (Hours) </div>
+          <div className={Styles.minMaxTitle}>Travel Time (Hours)</div>
           <MinMax
             model=".tsunami.search.runuptraveltimemin"
             title="Min"
@@ -190,8 +196,7 @@ const TsunamiRunupByPlace = props => (
           })()}
 
         </div>
-      </div>:
-      <div></div>
+      </div>:<div></div>
     }
 
 

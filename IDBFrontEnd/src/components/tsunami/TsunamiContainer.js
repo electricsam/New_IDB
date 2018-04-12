@@ -8,6 +8,10 @@ import Table from "../table/Table";
 
 import { decodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions';
 
+const tableStyle = {
+  textAlign: "center"
+}
+
 const action = obj => store.dispatch(obj);
 
 class TsunamiContainer extends React.Component {
@@ -25,6 +29,8 @@ class TsunamiContainer extends React.Component {
       let decoded = JSON.parse(decodeQueryString(search));
       let queryString = createApiQueryString(decoded)
       action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});
+    }else{
+      action({type:"FETCH_ALL_TS_EVENTS_REQUESTED"})
     }
   }
 
@@ -33,12 +39,16 @@ class TsunamiContainer extends React.Component {
 
     if( tsunami.get('fetchedTsEvent')){
       return (
-        <Table
-          loading={tsunami.get('fetchingTsEvent')}
-          data={tsunami.asMutable().getIn(['TsEvents']).toJS()}
-          columns={tsunami.getIn(['headersAndAccessors']).toJS()}
-          title="Tsunami Data"
-        />
+        <div>
+
+          <Table
+            loading={tsunami.get('fetchingTsEvent')}
+            data={tsunami.asMutable().getIn(['TsEvents']).toJS()}
+            columns={tsunami.getIn(['headersAndAccessors']).toJS()}
+            style={tableStyle}
+            title="Tsunami Data"
+          />
+        </div>
       )
     }else{
       return <Loading/>

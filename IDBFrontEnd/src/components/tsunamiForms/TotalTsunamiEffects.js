@@ -22,7 +22,7 @@ const TotalTsunamiEffects = props => (
       props.showTsunamiEffectsForm ?
       <div className={Styles.formInnerSectionThree}>
         <div className={Styles.numRunups}>
-          <div>Number of Runups</div>
+          <div className={Styles.minMaxTitle}>Number of Runups</div>
           <MinMax
             model=".tsunami.search.numberofrunupsmin"
             title="Min"
@@ -42,7 +42,7 @@ const TotalTsunamiEffects = props => (
         </div>
 
         <div className={Styles.maxWater}>
-          <div>Maximum Water Height</div>
+          <div className={Styles.minMaxTitle}>Maximum Water Height</div>
           <MinMax
             model=".tsunami.search.waterheightmin"
             title="Min"
@@ -62,7 +62,7 @@ const TotalTsunamiEffects = props => (
         </div>
 
         <div className={Styles.numDeaths}>
-          <div>Number of Deaths</div>
+          <div className={Styles.minMaxTitle}>Number of Deaths</div>
           <MinMax
             model=".tsunami.search.numberofdeathsmin"
             title="Min"
@@ -82,7 +82,7 @@ const TotalTsunamiEffects = props => (
         </div>
 
         <div className={Styles.deathDescrip}>
-          <div>Death Description</div>
+          <div className={Styles.minMaxTitle}>Death Description</div>
           <MinMax
             model=".tsunami.search.deathdescriptionmin"
             title="Min"
@@ -102,7 +102,7 @@ const TotalTsunamiEffects = props => (
         </div>
 
         <div className={Styles.numInjuries}>
-          <div>Number of Injuries</div>
+          <div className={Styles.minMaxTitle}>Number of Injuries</div>
           <MinMax
             model=".tsunami.search.numberofinjuriesmin"
             title="Min"
@@ -122,7 +122,7 @@ const TotalTsunamiEffects = props => (
         </div>
 
         <div className={Styles.injuryDescrip}>
-          <div>Injuries Description</div>
+          <div className={Styles.minMaxTitle}>Injuries Description</div>
           <MinMax
             model=".tsunami.search.injurydescriptmin"
             title="Min"
@@ -142,7 +142,7 @@ const TotalTsunamiEffects = props => (
         </div>
 
         <div className={Styles.damage}>
-          <div>Damage in Millions of Dollars</div>
+          <div className={Styles.minMaxTitle}>Damage in Millions of Dollars</div>
           <MinMax
             model=".tsunami.search.damageinmillionsmin"
             title="Min"
@@ -162,7 +162,7 @@ const TotalTsunamiEffects = props => (
         </div>
 
         <div className={Styles.damageDescrip}>
-          <div>Damage Description</div>
+          <div className={Styles.minMaxTitle}>Damage Description</div>
           <MinMax
             model=".tsunami.search.damagedescriptmin"
             title="Min"
@@ -182,7 +182,7 @@ const TotalTsunamiEffects = props => (
         </div>
 
         <div className={Styles.numHouses}>
-          <div>Number of Houses Destroyed</div>
+          <div className={Styles.minMaxTitle}>Number of Houses Destroyed</div>
           <MinMax
             model=".tsunami.search.numhousesdestroyedmin"
             title="Min"
@@ -202,7 +202,7 @@ const TotalTsunamiEffects = props => (
         </div>
 
         <div className={Styles.housesDescrip}>
-          <div>Houses Destroyed Description</div>
+          <div className={Styles.minMaxTitle}>Houses Destroyed Description</div>
           <MinMax
             model=".tsunami.search.housesdescriptmin"
             title="Min"

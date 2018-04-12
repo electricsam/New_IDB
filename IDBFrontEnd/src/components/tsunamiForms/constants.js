@@ -110,7 +110,7 @@ const countries = [
   { name:'VANUATU', value: 'VANUATU'},
   { name:'VENEZUELA', value: 'VENEZUELA'},
   { name:'WALLIS AND FUTUNA (FRENCH TERRITORY)', value: 'WALLIS AND FUTUNA (FRENCH TERRITORY)'},
-]
+];
 
 const states = [
   {
@@ -353,7 +353,7 @@ const states = [
     name: "Wyoming",
     value: "WY"
   }
-]
+];
 
 const canadianProvince = [
   {
@@ -371,7 +371,7 @@ const canadianProvince = [
     name: "Nova Scotia",
     value: "NS"
   }
-]
+];
 
 
 const japanesePrefecture = [
@@ -426,7 +426,7 @@ const japanesePrefecture = [
   { name: 'WAKAYAMA', value: 'WAKAYAMA'},
   { name: 'YAMAGATA', value: 'YAMAGATA'},
   { name: 'YAMAGUCHI', value: 'YAMAGUCHI'},
-]
+];
 
 const indonesianProvince = [
   {name: "Select a Province", value: ""},
@@ -460,7 +460,7 @@ const indonesianProvince = [
   {name: 'WEST SUMATRA', value: 'WEST SUMATRA'},
   {name: 'WESTJAVA', value: 'WESTJAVA'},
   {name: 'YOGYAKARTA', value: 'YOGYAKARTA'},
-]
+];
 
 
 const regions = [
@@ -584,13 +584,6 @@ const firstMotion = [
   {name: "Fall", value: "F"}
 ];
 
-const runupValidity = [
-  {
-    name: "Valid"
-  }
-];
-
-
 const rnpMeasureType = [
   { name: "Select a Measurement Type", value: ""},
   { name: "Eyewitness measurement", value: 1},
@@ -604,20 +597,19 @@ const rnpMeasureType = [
   { name: "Splash mark, Post-tsunami survey measurement", value: 9},
   { name: "Flow Depth, Post-tsunami survey measurement", value: 10}
 
-]
+];
 
 const validationConstants = {
   cause: {min: 0, max: 11},
   year: {min: -2000, max: (new Date).getFullYear()},
   month: {min: 1, max: 12},
-  //TODO: develope a function that validates num days based on the inputed month;
   day: {min: 1, max: 31},
   hour: {min: 0, max: 24},
   minute: {min: 0, max: 60},
   second: {min:0, max:60},
   validity: {min: -1, max: 4},
-  latitude: {min: -90, max: 90},
-  longitude: {min: -1180, max: 1180},
+  latitude: {min: -1 , max: 90},
+  longitude: {min: -180, max: 180},
   eqMag: {min: 0.0, max: 9.5},
   runupDistance: {min: 0, max: 2000},
   travelTime: {min: 0, max: 60},
@@ -637,9 +629,8 @@ const validationConstants = {
   warningStatus: {min: -1, max: 4},
   period: {min: 0, max: 180},
   distanceRnpLoc:{min: 0, max: 20000},
-  period: {min: 0, max: 180},
   runupHt: {min: 0, max: 800},
-}
+};
 
 export {
   countries,
@@ -653,5 +644,4 @@ export {
   firstMotion,
   effectDescriptions,
   damageMillions,
-
 }
