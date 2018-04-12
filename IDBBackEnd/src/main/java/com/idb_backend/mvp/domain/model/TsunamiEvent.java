@@ -1,9 +1,10 @@
 package com.idb_backend.mvp.domain.model;
 
+import com.idb_backend.mvp.domain.annotations.In;
+import com.idb_backend.mvp.domain.annotations.InString;
 import com.idb_backend.mvp.service.Constants;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
-import oracle.jdbc.driver.Const;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;

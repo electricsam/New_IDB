@@ -1,4 +1,4 @@
-package com.idb_backend.mvp.domain.model;
+package com.idb_backend.mvp.domain.annotations;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

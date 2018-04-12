@@ -52,7 +52,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
     predList.add(genIntMinMax(map, "minvalidity", "maxvalidity", "eventValidity", builder, root));
     predList.add(genEqRestriction(map, "country", "country", builder, root));
     predList.add(genIntMinMax(map,  "mincause", "maxcause", "causeCode", builder, root));
-    predList.add(checkRegionParams(map, "regioncode", "regionCode", builder, root));
+    predList.add(checkRegionParams(map, "region", "regionCode", builder, root));
     predList.add(genEqRestriction(map, "area", "area", builder, root));
     predList.add(genFloatMinMax(map, "latnorth", "latsouth", "latitude", builder, root));
     predList.add(genFloatMinMax(map, "longwest", "longeast", "longitude", builder, root));
@@ -103,6 +103,8 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
     Predicate [] predArray = new Predicate[criteriaList.size()];
     criteriaList.toArray(predArray);
     criteria.where(predArray);
+
+    System.out.println("This is the criteria: " + criteria.toString());
 
     return getEventsByQuery(criteria);
   }
@@ -236,6 +238,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
                                      CriteriaBuilder builder, Root root){
     Integer condition = generateInteger(map, key);
     if(condition != null){
+      System.out.println("you are checking the region param: "+ condition);
       return builder.equal(root.get(colName), condition);
     }else{
       return null;
