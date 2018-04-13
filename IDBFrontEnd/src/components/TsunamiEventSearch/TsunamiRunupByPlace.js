@@ -45,22 +45,38 @@ const TsunamiRunupByPlace = props => (
 
         <div className={Styles.rnpState}>
           <div className={Styles.minMaxTitle}>U.S. States / Territory</div>
-          <DropDown title="Runup U.S. State / Territory " model=".tsunami.search.runuparea" data={states}/>
+          <DropDown title="Runup U.S. State / Territory "
+                    model=".tsunami.search.runuparea"
+                    data={states}
+                    disabled={props.country === "USA"? false: true}
+          />
         </div>
 
         <div className={Styles.rnpProvince}>
           <div className={Styles.minMaxTitle}>Canadian Province</div>
-          <DropDown title="Runup Canadian Province " model=".tsunami.search.runuparea" data={canadianProvince}/>
+          <DropDown title="Runup Canadian Province "
+                    model=".tsunami.search.runuparea"
+                    data={canadianProvince}
+                    disabled={props.country === "CANADA"? false: true}
+          />
         </div>
 
         <div className={Styles.rnpIndoProv}>
           <div className={Styles.minMaxTitle}>Indonesian Province</div>
-          <DropDown title="Runup Indonesian Province" model=".tsunami.search.runuparea" data={indonesianProvince}/>
+          <DropDown title="Runup Indonesian Province"
+                    model=".tsunami.search.runuparea"
+                    data={indonesianProvince}
+                    disabled={props.country === "INDONESIA"? false: true}
+          />
         </div>
 
         <div className={Styles.rnpJpPre}>
           <div className={Styles.minMaxTitle}>Japanese Prefect</div>
-          <DropDown title="Runup Japanese Prefecture" model=".tsunami.search.runuparea" data={japanesePrefecture}/>
+          <DropDown title="Runup Japanese Prefecture"
+                    model=".tsunami.search.runuparea"
+                    data={japanesePrefecture}
+                    disabled={props.country === "JAPAN"? false: true}
+          />
         </div>
 
         <div className={Styles.rnpDistance}>

@@ -32,6 +32,10 @@ export const initialState = fromJS({
   deletedEvent: false,
   deleteEventId: null,
   showDeleteEventConfirmation: false,
+  search:{
+    country: "",
+    runupcountry: "",
+  }
 });
 
 export default function reducer(state=initialState, action){

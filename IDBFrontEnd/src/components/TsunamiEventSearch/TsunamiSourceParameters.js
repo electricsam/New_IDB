@@ -9,8 +9,8 @@ import MinMax from '../searchFormPartials/MinMax'
 import Styles from './TsunamiSearchContainerStyle.css';
 
 const TsunamiSourceParameters = props => (
-  <div className={Styles.formSectionOne}>
 
+  <div className={Styles.formSectionOne}>
     <div className={Styles.header}>
       <h3>Tsunami Source Parameters</h3>
       <div className={Styles.expandCollapse}>
@@ -24,7 +24,6 @@ const TsunamiSourceParameters = props => (
     {
       props.showSourceForm?
         <div className={Styles.formInnerSectionOne}>
-
           <div className={Styles.year}>
             <div className={Styles.minMaxTitle}>Year</div>
             <MinMax
@@ -55,13 +54,20 @@ const TsunamiSourceParameters = props => (
 
           <div className={Styles.state}>
             <div className={Styles.minMaxTitle}>U.S. State / Territory</div>
-            <DropDown title="U.S. State / Territory" model=".tsunami.search.area" data={states}/>
+            <DropDown title="U.S. State / Territory"
+                      model=".tsunami.search.area"
+                      data={states}
+                      disabled={props.country === "USA"? false: true} />
 
           </div>
 
           <div className={Styles.province}>
             <div className={Styles.minMaxTitle}>Canadian Province</div>
-            <DropDown title="Canadian Province" model=".tsunami.search.area" data={canadianProvince}/>
+            <DropDown title="Canadian Province"
+                      model=".tsunami.search.area"
+                      data={canadianProvince}
+                      disabled={props.country === "CANADA"? false: true}
+            />
           </div>
 
 

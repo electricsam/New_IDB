@@ -38,6 +38,7 @@ class TsunamiSearchContainer extends React.Component{
   handleSubmit(val){
     val = val.tsunami.asMutable().toJS();
     if(val.search){
+      console.log("val.search: ", val.search);
       let encoded = encodeQueryString(JSON.stringify(val.search));
       let queryString = createApiQueryString(val.search);
       action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});
@@ -74,6 +75,7 @@ class TsunamiSearchContainer extends React.Component{
             checkLocType={this.checkLocType}
             showSourceForm = {tsunami.get('showSourceForm')}
             toggleSourceForm = {this.toggleSourceForm}
+            country={tsunami.asMutable().toJS().search.country}
           />
 
           <TsunamiRunupByPlace
@@ -81,6 +83,7 @@ class TsunamiSearchContainer extends React.Component{
             checkRunupLocType={this.checkRunupLocType}
             showRunupPlaceForm={tsunami.get('showRunupPlaceForm')}
             toggleRunupPlaceForm={this.toggleRunupPlaceForm}
+            country={tsunami.asMutable().toJS().search.runupcountry}
           />
 
           <TotalTsunamiEffects
