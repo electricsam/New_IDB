@@ -47,6 +47,15 @@ const mapToTable = (arr) => {
       )
     });
     result.push({
+      Header: "Related Runups",
+      accessor: 'relatedRunups',
+      Cell: props => (
+        <button type="button" onClick={()=> getRelatedRunups(`${props.original.id}`)}>
+          Related Runups
+        </button>
+      )
+    });
+    result.push({
       Header: "Delete",
       accessor: 'delete',
       Cell: props => (
@@ -54,10 +63,17 @@ const mapToTable = (arr) => {
           Delete Event
         </button>
       )
-    })
+    });
 
   }
   return result;
+}
+
+const getRelatedRunups = (val) => {
+  let queryObj = {eventid: val};
+  let encoded = encodeQueryString(JSON.stringify(queryObj));
+  let queryString = createApiQueryString(queryObj);
+  store.dispatch(push(`/tsunami/runup/data?${encoded}`));
 }
 
 const deleteRunup = (id) => {

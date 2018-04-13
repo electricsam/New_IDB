@@ -24,9 +24,7 @@ class RunupContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log("you reached the component did mount");
     let { search } = this.props.location;
-    console.log(this.props)
     if(search.length){
       search = search.split('?')[1];
       let decoded = JSON.parse(decodeQueryString(search));

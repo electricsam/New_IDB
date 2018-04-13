@@ -1,18 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Control, Form, Errors, actions } from 'react-redux-form/immutable';
+import {connect} from 'react-redux';
+import {actions, Control, Errors, Form} from 'react-redux-form/immutable';
 
-import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
+import {createApiQueryString, encodeQueryString} from '../../helperFunctions/helperFunctions'
 import store from '../../store';
-import { countries, states, canadianProvince, validationConstants, regions } from '../tsunamiForms/constants'
-import MinMax from '../searchFormPartials/MinMax';
 import Styles from './RunupSearchContainerStyle.css';
-import DropDown from "../searchFormPartials/DropDown.jsx";
 import RunupSourceInfo from "./RunupSourceInfo";
 import RunupLocationInfo from "./RunupLocationInfo";
 import RunupParamsEffects from "./RunupParamsEffects";
-
-
 
 const errorStyles = {
   color: 'red',
@@ -42,9 +37,6 @@ class RunupSearchContainer extends React.Component{
     if(val.rnpsearch){
       let encoded = encodeQueryString(JSON.stringify(val.rnpsearch));
       let queryString = createApiQueryString(val.rnpsearch);
-      // action({type: "FETCH_SPECIFIED_RUNUP_REQUESTED", payload: queryString});
-
-      //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
       this.props.history.push(`/tsunami/runup/data?${encoded}`);
     }else{
       action({type: "FETCH_ALL_RUNUPS_REQUESTED"});
