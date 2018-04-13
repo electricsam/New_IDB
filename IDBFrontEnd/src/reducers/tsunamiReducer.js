@@ -28,6 +28,10 @@ export const initialState = fromJS({
   showDeleteConfirmation: false,
   deletingRunup: false,
   deletedRunup: false,
+  deletingEvent: false,
+  deletedEvent: false,
+  deleteEventId: null,
+  showDeleteEventConfirmation: false,
 });
 
 export default function reducer(state=initialState, action){
@@ -149,10 +153,9 @@ export default function reducer(state=initialState, action){
       });
     }
     case "TOGGLE_DELETE_RUNUP_CONFIRMATION": {
-      console.log("you are inside the toggle action for delete confirmation on runups")
       return state.merge(state, {showDeleteConfirmation: !state.get('showDeleteConfirmation')});
     }
-    case "w":{
+    case "SET_DELETE_RUNUP_ID":{
       return state.merge(state, {deleteRunupId: action.payload});
     }
     case "DELETE_RUNUP_REQUESTED": {
@@ -163,6 +166,21 @@ export default function reducer(state=initialState, action){
     }
     case "DELETE_RUNUP_REJECTED": {
       return state.merge(state, {deletingRunup: false, error: action.payload});
+    }
+    case "SET_DELETE_EVENT_ID":{
+      return state.merge(state, {deleteEventId: action.payload});
+    }
+    case "TOGGLE_DELETE_EVENT_CONFIRMATION": {
+      return state.merge(state, {showDeleteEventConfirmation: !state.get('showDeleteEventConfirmation')})
+    }
+    case "DELETE_EVENT_REQUESTED": {
+      return state.merge(state, {deletingEvent: true});
+    }
+    case "DELETE_EVENT_FULFILLED": {
+      return state.merge(state, {deletingEvent: false, deletedEvent: true});
+    }
+    case "DELETE_EVENT_REJECTED": {
+      return state.merge(state, {deletingEvent: false, error: action.payload});
     }
     default:
       return state;

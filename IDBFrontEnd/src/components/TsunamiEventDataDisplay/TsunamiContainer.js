@@ -7,9 +7,14 @@ import Loading from '../loadbar/Loading';
 import Table from "../table/Table";
 
 import { decodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions';
+import DialogBox from "../searchFormPartials/DialogBox";
 
 const tableStyle = {
   textAlign: "center"
+}
+
+const hiddenStyle = {
+  display: "none"
 }
 
 const action = obj => store.dispatch(obj);
@@ -34,13 +39,29 @@ class TsunamiContainer extends React.Component {
     }
   }
 
+  handleYesClick = () => {
+    let id = this.props.tsunami.get('deleteEventId');
+    action({type: "DELETE_EVENT_REQUESTED", payload: id});
+  }
+
+  handleNoClick = () => {
+    action({type: "TOGGLE_DELETE_EVENT_CONFIRMATION"});
+    action({type: "SET_DELETE_EVENT_ID", payload: null});
+  }
+
   render() {
     const { tsunami } = this.props;
 
     if( tsunami.get('fetchedTsEvent')){
       return (
         <div>
-
+          {tsunami.get('showDeleteEventConfirmation')?
+            <DialogBox
+              handleYesClick={this.handleYesClick}
+              handleNoClick={this.handleNoClick}
+            />:
+            <div style={hiddenStyle}></div>
+          }
           <Table
             loading={tsunami.get('fetchingTsEvent')}
             data={tsunami.asMutable().getIn(['TsEvents']).toJS()}

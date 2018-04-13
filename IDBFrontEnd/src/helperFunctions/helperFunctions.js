@@ -36,13 +36,22 @@ const mapToTable = (arr) => {
       Cell: props => (
         <button type="button" onClick={()=> store.dispatch(push(`/tsunami/updatetsunami/${props.original.id}`))}>Edit Event</button>
       )
-    })
+    });
     result.push({
       Header: "Add TsunamiRunupDataDisplay",
       accessor: 'addRunup',
       Cell: props => (
         <button type="button" onClick={()=> store.dispatch(push(`/tsunami/insertrunup/${props.original.id}`))}>
           Add Runup
+        </button>
+      )
+    });
+    result.push({
+      Header: "Delete",
+      accessor: 'delete',
+      Cell: props => (
+        <button type="button" onClick={()=> deleteEvent(props.original.id)}>
+          Delete Event
         </button>
       )
     })
@@ -52,10 +61,14 @@ const mapToTable = (arr) => {
 }
 
 const deleteRunup = (id) => {
-  console.log("you have gotten inside the deleteRunup")
   store.dispatch({type: "SET_DELETE_RUNUP_ID", payload: id});
   store.dispatch({type: "TOGGLE_DELETE_RUNUP_CONFIRMATION"});
 };
+
+const deleteEvent = (id) => {
+  store.dispatch({type: "SET_DELETE_EVENT_ID", payload: id});
+  store.dispatch({type: "TOGGLE_DELETE_EVENT_CONFIRMATION"});
+}
 
 
 const mapToRunupTable = (arr) => {

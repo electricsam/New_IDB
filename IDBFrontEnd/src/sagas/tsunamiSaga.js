@@ -217,3 +217,31 @@ export function* resetDeleteRunup(){
   yield put({type: "TOGGLE_DELETE_RUNUP_CONFIRMATION"});
 }
 
+export function* deleteEvent(value){
+  try{
+    const response = yield call(axios.delete, `http://localhost:8080/tsunamievents/${value.payload}`);
+    yield put({
+      type: "DELETE_EVENT_FULFILLED",
+      payload: response.data
+    });
+  }catch(error) {
+    yield put({type:"DELETE_EVENT_REJECTED"});
+  }
+}
+
+export function* watchDeleteEvent () {
+  yield takeEvery("DELETE_EVENT_REQUESTED", deleteEvent);
+}
+
+export function* resetDeleteEvent() {
+  yield put({type: "SET_DELETE_EVENT_ID", payload: null});
+  yield put({type: "TOGGLE_DELETE_EVENT_CONFIRMATION"});
+}
+
+export function* watchDeleteEventFulfilled(){
+  yield takeEvery("DELETE_EVENT_FULFILLED", resetDeleteEvent);
+}
+
+export function* watchDeleteEventRejected() {
+  yield takeEvery("DELETE_EVENT_REJECTED", resetDeleteEvent);
+}
