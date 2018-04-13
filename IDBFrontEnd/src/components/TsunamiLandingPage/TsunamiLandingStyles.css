@@ -18,7 +18,6 @@
     align-items: center;
 }
 
-
 @each $class $i in (searchEvent, searchRunup){
     .$class{
         grid-row: 1/2;

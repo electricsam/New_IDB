@@ -7,7 +7,7 @@ const DialogBox = props => (
     <div className={Styles.copy}>Are you sure?</div>
     <div className={Styles.buttonContainer}>
       <div className={Styles.yes} onClick={() => props.handleYesClick()}>Yes</div>
-      <div className={Styles.no}>No</div>
+      <div className={Styles.no} onClick={() => props.handleNoClick()}>No</div>
     </div>
   </div>
 

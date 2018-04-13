@@ -4,7 +4,7 @@
 // import tsunamiReducer, { initialState } from './tsunamiReducer';
 //
 //
-// describe('tsunami reducer', ()=>{
+// describe('TsunamiLandingPage reducer', ()=>{
 //   it('should return the initial state when given parameters an unmatched action', ()=> {
 //     expect(tsunamiReducer(undefined, {})).to.equal(initialState);
 //   });

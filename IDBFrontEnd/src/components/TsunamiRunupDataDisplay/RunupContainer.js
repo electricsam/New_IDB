@@ -11,6 +11,10 @@ import DialogBox from "../searchFormPartials/DialogBox";
 
 const action = obj => store.dispatch(obj);
 
+const styles = {
+  display: "hidden"
+}
+
 class RunupContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +23,7 @@ class RunupContainer extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     console.log("you reached the component did mount");
     let { search } = this.props.location;
     console.log(this.props)
@@ -34,11 +38,13 @@ class RunupContainer extends React.Component {
   }
 
   handleYesClick = () => {
-    console.log("you you be clicken")
-    console.log("PROPS", this.props)
     let id = this.props.tsunami.get('deleteRunupId');
-    console.log("id", id)
     action({type: "DELETE_RUNUP_REQUESTED", payload: id})
+  }
+
+  handleNoClick = () => {
+    action({type:"TOGGLE_DELETE_RUNUP_CONFIRMATION"});
+    action({type: "SET_DELETE_RUNUP_ID", payload: null});
   }
 
   render() {
@@ -48,8 +54,11 @@ class RunupContainer extends React.Component {
       return (
         <div>
           {tsunami.get('showDeleteConfirmation')?
-              <DialogBox handleYesClick={this.handleYesClick}/>
-              :<div>Nope</div>
+              <DialogBox
+                handleYesClick={this.handleYesClick}
+                handleNoClick={this.handleNoClick}
+              />
+              :<div style={styles}></div>
           }
           <Table
             loading={tsunami.get('fetchingRunup')}

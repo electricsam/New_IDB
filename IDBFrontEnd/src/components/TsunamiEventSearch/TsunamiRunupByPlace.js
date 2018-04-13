@@ -9,7 +9,7 @@ import {
   japanesePrefecture,
   indonesianProvince,
   validationConstants
-} from "./constants";
+} from "../tsunamiForms/constants";
 
 import DropDown from '../searchFormPartials/DropDown.jsx';
 import MinMax from '../searchFormPartials/MinMax';

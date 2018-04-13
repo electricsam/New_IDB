@@ -1,7 +1,7 @@
 import React from 'react'
 import { Control, Errors } from 'react-redux-form/immutable';
 
-import { validationConstants } from "./constants";
+import { validationConstants } from "../tsunamiForms/constants";
 
 import MinMax from '../searchFormPartials/MinMax';
 import Styles from './TsunamiSearchContainerStyle.css';

@@ -1,5 +1,0 @@
-/*TODO: create a push down transition for enter*/
-
-.reactcsscollapsetransition {
-    transition: height 250ms cubic-bezier(.4, 0, .2, 1);
-}

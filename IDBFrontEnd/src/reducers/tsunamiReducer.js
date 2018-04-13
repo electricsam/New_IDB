@@ -152,7 +152,7 @@ export default function reducer(state=initialState, action){
       console.log("you are inside the toggle action for delete confirmation on runups")
       return state.merge(state, {showDeleteConfirmation: !state.get('showDeleteConfirmation')});
     }
-    case "SET_DELETE_RUNUP_ID":{
+    case "w":{
       return state.merge(state, {deleteRunupId: action.payload});
     }
     case "DELETE_RUNUP_REQUESTED": {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Control, Errors } from 'react-redux-form/immutable';
 import PropTypes from 'prop-types';
 
-import Styles from '../tsunamiForms/TsunamiSearchContainerStyle.css';
+import Styles from '../TsunamiEventSearch/TsunamiSearchContainerStyle.css';
 
 const Text = props => (
   <div>

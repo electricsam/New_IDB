@@ -38,7 +38,7 @@ const mapToTable = (arr) => {
       )
     })
     result.push({
-      Header: "Add Runup",
+      Header: "Add TsunamiRunupDataDisplay",
       accessor: 'addRunup',
       Cell: props => (
         <button type="button" onClick={()=> store.dispatch(push(`/tsunami/insertrunup/${props.original.id}`))}>

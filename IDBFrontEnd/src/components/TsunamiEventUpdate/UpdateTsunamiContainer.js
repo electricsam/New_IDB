@@ -6,7 +6,7 @@ import { encodeQueryString, createApiQueryString } from '../../helperFunctions/h
 import store from '../../store';
 import Loading from "../loadbar/Loading"
 
-import InsertTsunami from './InsertTsunami';
+import InsertTsunami from '../TsunamiEventInsert/InsertTsunami';
 import UpdateTsunami from "./UpdateTsunami";
 
 import Styles from "./UpdateTsunamiStyles.css"

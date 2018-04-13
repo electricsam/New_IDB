@@ -4,22 +4,21 @@ import {ConnectedRouter} from 'react-router-redux';
 
 import NewNavbar from './newNavbar/NewNavbar';
 import Footer from './footer/Footer.jsx';
-import TsunamiContainer from './tsunami/TsunamiContainer';
+import TsunamiContainer from './TsunamiEventDataDisplay/TsunamiContainer';
 import AboutPage from './about/AboutPage';
 import Styles from './AppStyle.css';
 import Home from './home/Home.jsx';
 import {history} from '../store';
 import FourZeroFour from "./FourZeroFour/FourZeroFour";
-import TsunamiSearchContainer from "./tsunamiForms/TsunamiSearchContainer.jsx";
-import UserDisplay from "./user/UserDisplay";
-import TsunamiInsertContainer from "./tsunamiForms/TsunamiInsertContainer";
-import RunupInsertContainer from "./tsunamiForms/RunupInsertContainer";
-import RunupSearchContainer from "./tsunamiForms/RunupSearchContainer";
-import UpdateTsunamiContainer from "./tsunamiForms/UpdateTsunamiContainer";
+import TsunamiSearchContainer from "./TsunamiEventSearch/TsunamiSearchContainer.jsx";
+import TsunamiInsertContainer from "./TsunamiEventInsert/TsunamiInsertContainer";
+import RunupInsertContainer from "./TsunamiRunupInsert/RunupInsertContainer";
+import RunupSearchContainer from "./TsunamiRunupSearch/RunupSearchContainer";
+import UpdateTsunamiContainer from "./TsunamiEventUpdate/UpdateTsunamiContainer";
 import TestContainer from "./testComponents/TestContainer";
-import UpdateRunupContainer from "./tsunamiForms/UpdateRunupContainer";
-import RunupContainer from "./Runup/RunupContainer";
-import TsunamiLanding from "./tsunami/TsunamiLanding";
+import UpdateRunupContainer from "./TsunamiRunupUpdate/UpdateRunupContainer";
+import RunupContainer from "./TsunamiRunupDataDisplay/RunupContainer";
+import TsunamiLanding from "./TsunamiLandingPage/TsunamiLanding";
 
 class App extends React.Component {
   render() {
@@ -38,7 +37,6 @@ class App extends React.Component {
             <Route exact path="/tsunami/insertrunup/:eventId" component={RunupInsertContainer}/>
             <Route exact path="/tsunami/runupsearch" component={RunupSearchContainer}/>
             <Route exact path="/tsunami/updatetsunami/:id" component={UpdateTsunamiContainer}/>
-            <Route exact path='/userdisplay' component={UserDisplay}/>
             <Route exact path='/tsunami/updaterunup/:runupId/:eventId' component={UpdateRunupContainer}/>
             <Route exact path='/tsunami/landing' component={TsunamiLanding}/>
             {/*Must have 404 component listed last*/}

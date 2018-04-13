@@ -4,7 +4,7 @@ import { Control, Form, Errors, actions } from 'react-redux-form/immutable';
 
 import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
-import { countries, states, canadianProvince, validationConstants, regions } from './constants'
+import { countries, states, canadianProvince, validationConstants, regions } from '../tsunamiForms/constants'
 import MinMax from '../searchFormPartials/MinMax';
 import Styles from './RunupSearchContainerStyle.css';
 import DropDown from "../searchFormPartials/DropDown.jsx";

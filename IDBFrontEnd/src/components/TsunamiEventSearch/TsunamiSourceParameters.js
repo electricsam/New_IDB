@@ -1,7 +1,7 @@
 import React from 'react';
 import { Control, Errors } from 'react-redux-form/immutable';
 import PropTypes from 'prop-types';
-import {countries, canadianProvince, states, regions, validationConstants} from "./constants";
+import {countries, canadianProvince, states, regions, validationConstants} from "../tsunamiForms/constants";
 
 import DropDown from '../searchFormPartials/DropDown.jsx'
 import MinMax from '../searchFormPartials/MinMax'

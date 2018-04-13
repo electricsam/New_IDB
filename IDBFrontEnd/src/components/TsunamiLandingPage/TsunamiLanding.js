@@ -9,25 +9,25 @@ import TsunamiLandingPartial from "./TsunamiLandingPartial";
 const buttons = [
   {
     title: "Add Event",
-    url: '/tsunami/insertevent',
+    url: '/TsunamiLandingPage/insertevent',
     outerStyle: Styles.addEvent,
     innerStyle: Styles.buttonTitle
   },
   {
     title: "Search Events",
-    url: '/tsunami/eventsearch',
+    url: '/TsunamiLandingPage/eventsearch',
     outerStyle: Styles.searchEvent,
     innerStyle: Styles.buttonTitle
   },
   {
     title: "Search Runups",
-    url: '/tsunami/runupsearch',
+    url: '/TsunamiLandingPage/runupsearch',
     outerStyle: Styles.searchRunup,
     innerStyle: Styles.buttonTitle
   },
   {
     title: "Search Deposits",
-    url: '/tsunami/depositsearch',
+    url: '/TsunamiLandingPage/depositsearch',
     outerStyle: Styles.searchDeposit,
     innerStyle: Styles.buttonTitle
   }

@@ -9,7 +9,7 @@ import {
   japanesePrefecture,
   indonesianProvince,
   validationConstants, rnpMeasureType, effectDescriptions, damageMillions, firstMotion
-} from "./constants";
+} from "../tsunamiForms/constants";
 
 
 import DropDown from '../searchFormPartials/DropDown.jsx';
