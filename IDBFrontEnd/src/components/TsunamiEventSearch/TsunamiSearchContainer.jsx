@@ -45,7 +45,7 @@ class TsunamiSearchContainer extends React.Component{
       this.props.history.push(`/tsunami/event/data?${encoded}`);
     }else{
       action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
-      this.props.history.push(`/tsunami/event/sdata`)
+      this.props.history.push(`/tsunami/event/data`)
     }
   }
 

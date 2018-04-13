@@ -10,7 +10,7 @@ export function* watchUpdateFetchedTsEvent(){
 
 export function* fetchAllTsEvents(){
   try {
-    const response = yield call(axios.get, 'http://localhost:8080/tsunamievents');
+    const response = yield call(axios.get, 'http://localhost:8080/tsunamievents/select');
     yield put({
       type: "FETCH_ALL_TS_EVENTS_FULFILLED",
       payload:{data: response.data, formattedData: mapToTable(response.data)}
@@ -174,7 +174,7 @@ export function* watchFetchSpecifiedRunup() {
 
 export function* fetchAllRunups(){
   try {
-    const response = yield call(axios.get, 'http://localhost:8080/tsunamirunups');
+    const response = yield call(axios.get, 'http://localhost:8080/tsunamirunups/select');
     yield put({
       type: "FETCH_ALL_RUNUP_FULFILLED",
       payload:{data: response.data, formattedData: mapToRunupTable(response.data)}
