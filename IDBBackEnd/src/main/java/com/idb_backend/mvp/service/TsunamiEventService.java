@@ -86,4 +86,7 @@ public interface TsunamiEventService {
   boolean validateMinMax(int min, int max, Float value);
 
   boolean validateMinMax(double min, double max, Double value);
+
+  Predicate genNumEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
+                                    Join join);
 }

@@ -216,6 +216,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
                                     Root root){
     String condition = map.get(key);
     if(condition != null){
+      condition = condition.toUpperCase();
       return builder.equal(root.get(colName), condition);
     }else{
       return null;
@@ -226,6 +227,18 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
   public Predicate genEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
                                     Join join){
     String condition = map.get(key);
+    if(condition != null){
+      condition = condition.toUpperCase();
+      return builder.equal(join.get(colName), condition);
+    }else{
+      return null;
+    }
+  }
+
+  @Override
+  public Predicate genNumEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
+                                    Join join){
+    Integer condition = generateInteger(map, key);
     if(condition != null){
       return builder.equal(join.get(colName), condition);
     }else{
@@ -261,15 +274,15 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
                                   String not, String colName, CriteriaBuilder builder, Root root){
 
     if(map.get(start) != null){
-      return builder.like(root.get(colName), map.get(start) + "%");
+      return builder.like(root.get(colName), map.get(start).toUpperCase() + "%");
     }else if(map.get(end) != null){
-      return builder.like(root.get(colName), "%" + map.get(end));
+      return builder.like(root.get(colName), "%" + map.get(end).toUpperCase());
     }else if(map.get(includes) != null){
-      return builder.like(root.get(colName), "%" + map.get(includes) + "%");
+      return builder.like(root.get(colName), "%" + map.get(includes).toUpperCase() + "%");
     }else if(map.get(match) != null){
-      return builder.equal(root.get(colName), map.get(match));
+      return builder.equal(root.get(colName), map.get(match).toUpperCase());
     }else if(map.get(not) != null){
-      return builder.notLike(root.get(colName), "%" + map.get(not) + "%");
+      return builder.notLike(root.get(colName), "%" + map.get(not).toUpperCase() + "%");
     }else{
       return null;
     }
@@ -280,15 +293,15 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
                                   String not, String colName, CriteriaBuilder builder,
                                   Join join){
     if(map.get(start) != null){
-      return builder.like(join.get(colName), map.get(start) + "%");
+      return builder.like(join.get(colName), map.get(start).toUpperCase() + "%");
     }else if(map.get(end) != null){
-      return builder.like(join.get(colName), "%" + map.get(end));
+      return builder.like(join.get(colName), "%" + map.get(end).toUpperCase());
     }else if(map.get(includes) != null){
-      return builder.like(join.get(colName), "%" + map.get(includes) + "%");
+      return builder.like(join.get(colName), "%" + map.get(includes).toUpperCase() + "%");
     }else if(map.get(match) != null){
-      return builder.equal(join.get(colName), map.get(match));
+      return builder.equal(join.get(colName), map.get(match).toUpperCase());
     }else if(map.get(not) != null){
-      return builder.notLike(join.get(colName), "%" + map.get(not) + "%");
+      return builder.notLike(join.get(colName), "%" + map.get(not).toUpperCase() + "%");
     }else{
       return null;
     }
@@ -319,6 +332,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
     tsunamiEventRepository.updateEvent(tsunamiEvent);
   }
 
+
   @Override
   public List<TsunamiRunupViewNonPersist> generateRunupCriteria(Map<String, String> map) {
     CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -341,6 +355,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
         root.get("housesDamaged"), root.get("housesDamagedAmountOrder"), join.get("id").alias("eventId")
     ).distinct(true);
 
+    predList.add(genNumEqRestriction(map, "eventid", "id", builder, join));
     predList.add(genIntMinMax(map, "tsminyear", "tsmaxyear", "year", builder, join));
     predList.add(genEqRestriction(map, "tsregion", "regionCode", builder, join));
     predList.add(genEqRestriction(map, "tscountry", "regionCode", builder, join));

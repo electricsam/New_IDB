@@ -178,7 +178,6 @@ public class TsunamiEventController {
       List<TsunamiRunup> list = new ArrayList<>();
       return new ResponseEntity<>(list, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
   }
 
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
