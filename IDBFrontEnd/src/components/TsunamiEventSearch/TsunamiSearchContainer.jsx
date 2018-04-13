@@ -38,7 +38,6 @@ class TsunamiSearchContainer extends React.Component{
   handleSubmit(val){
     val = val.tsunami.asMutable().toJS();
     if(val.search){
-      console.log("val.search: ", val.search);
       let encoded = encodeQueryString(JSON.stringify(val.search));
       let queryString = createApiQueryString(val.search);
       action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});

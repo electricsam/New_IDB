@@ -136,7 +136,6 @@ const createApiQueryString = (obj) => {
       result += (key+"="+obj[key]+"&");
     }
   }
-  console.log("result: ", result);
   return result;
 }
 

@@ -154,11 +154,9 @@ export function* updateRunup(action){
 
 export function* fetchSpecifiedRunup(action){
   let queryString = action.payload;
-  console.log(action.payload)
 
   try{
     const response = yield call(axios.get, `http://localhost:8080/tsunamirunups/select?${queryString}`);
-    console.log("you have at the very least reached this part of things")
     yield  put({
       type: "FETCH_SPECIFIED_RUNUP_FULFILLED",
       payload:{data: response.data, formattedData: mapToRunupTable(response.data)}

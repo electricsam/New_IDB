@@ -11,9 +11,6 @@ import Styles from "./RunupSearchContainerStyle.css"
 const RunupSourceInfo = props => (
 
   <div className={Styles.formSectionOne}>
-    {
-      console.log(props)
-    }
     <div className={Styles.header}>
       <h3>Runup Source Information</h3>
       <div className={Styles.expandCollapse}>

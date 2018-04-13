@@ -30,9 +30,6 @@ class UpdateTsunamiContainer extends React.Component{
   componentDidMount = () => {
     let id = this.props.match.params.id;
     action({type: "FETCH_TS_EVENT_REQUESTED", payload: id});
-    setTimeout(()=>{
-      console.log(this.props.tsunami.asMutable().toJS().tsEvent);
-    }, 5000)
     //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
   }
 

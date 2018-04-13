@@ -20,8 +20,6 @@ class RunupInsertContainer extends React.Component{
   }
 
   componentDidMount = () => {
-   console.log("LOCATION", this.props.location.search)
-
     //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
   }
 

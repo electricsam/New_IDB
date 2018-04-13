@@ -32,7 +32,6 @@ class TsunamiInsertContainer extends React.Component{
     val = val.tsunami.asMutable().toJS();
     if(val.insert){
       let encoded = encodeQueryString(JSON.stringify(val.insert));
-      console.log("Val.Insert: ", val.insert);
       action({type: "POST_TS_EVENT_REQUESTED", payload: val.insert});
       //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
       // this.props.history.push(`/tsunamis?${encoded}`);
