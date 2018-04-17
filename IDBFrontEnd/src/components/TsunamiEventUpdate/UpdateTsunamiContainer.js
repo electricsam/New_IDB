@@ -27,7 +27,7 @@ class UpdateTsunamiContainer extends React.Component{
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount(){
     let id = this.props.match.params.id;
     action({type: "FETCH_TS_EVENT_REQUESTED", payload: id});
     //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that

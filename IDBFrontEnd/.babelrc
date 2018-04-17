@@ -1,0 +1,18 @@
+{
+  "presets": ["react", "env", "stage-0"],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-decorators-legacy"
+  ],
+
+  //TODO: examine hmre
+
+  "env": {
+    "development": {
+      "presets": ["react-hmre"]
+    },
+    "production":{
+      "presets": []
+    }
+  }
+}

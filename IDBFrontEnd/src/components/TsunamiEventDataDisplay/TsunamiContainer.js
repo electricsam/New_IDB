@@ -32,19 +32,19 @@ class TsunamiContainer extends React.Component {
     if(search.length){
       search = search.split('?')[1];
       let decoded = JSON.parse(decodeQueryString(search));
-      let queryString = createApiQueryString(decoded)
+      let queryString = createApiQueryString(decoded);
       action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});
     }else{
       action({type:"FETCH_ALL_TS_EVENTS_REQUESTED"})
     }
   }
 
-  handleYesClick = () => {
+  handleYesClick(){
     let id = this.props.tsunami.get('deleteEventId');
     action({type: "DELETE_EVENT_REQUESTED", payload: id});
   }
 
-  handleNoClick = () => {
+  handleNoClick(){
     action({type: "TOGGLE_DELETE_EVENT_CONFIRMATION"});
     action({type: "SET_DELETE_EVENT_ID", payload: null});
   }

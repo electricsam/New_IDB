@@ -24,7 +24,7 @@ class TsunamiInsertContainer extends React.Component{
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount(){
     //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
   }
 
