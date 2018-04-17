@@ -7,6 +7,7 @@ public class TsunamiRefsPk implements Serializable{
   private TsunamiEvent tsEventId;
   private Reference tsRefId;
 
+  public TsunamiRefsPk() {}
 
   public TsunamiRefsPk(TsunamiEvent tsunamiEvent, Reference reference) {
     this.tsEventId = tsunamiEvent;
