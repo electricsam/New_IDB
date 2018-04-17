@@ -25,7 +25,13 @@ module.exports = {
     filename: 'index.js',
     overlay:{
       errors: false,
-      warnings: false,
+      warnings: false
+    },
+    proxy: {
+      '/**': {
+        target: 'http://localhost:10088',
+        secure: false
+      }
     }
   },
   plugins: [

@@ -27,7 +27,6 @@ public class TsunamiEventController {
   @Autowired
   TsunamiEventService tsunamiEventService;
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents", method= RequestMethod.GET)
   public @ResponseBody ResponseEntity<List<TsunamiEventView>> getAllEvents(){
     try{
@@ -38,7 +37,6 @@ public class TsunamiEventController {
     }
   }
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievent/{id}", method= RequestMethod.GET)
   public @ResponseBody ResponseEntity<List<TsunamiEvent>> getEventById(@PathVariable("id") Integer id){
     try{
@@ -51,7 +49,6 @@ public class TsunamiEventController {
   }
 
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents/select", method= RequestMethod.GET)
   public ResponseEntity<List<TsunamiEventViewNonPersist>> getEventsByQuery(@RequestParam Map<String, String> allRequestParams){
     try{
@@ -67,7 +64,6 @@ public class TsunamiEventController {
     }
   }
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents", method=RequestMethod.POST)
   public ResponseEntity postTsunamiEvent(@Valid @RequestBody TsunamiEvent tsunamiEvent, Errors errors){
     try{
@@ -91,7 +87,6 @@ public class TsunamiEventController {
     }
   }
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents/{id}", method = RequestMethod.PATCH)
   public ResponseEntity patchEvent( @PathVariable("id") Integer id,
                                                   @Valid @RequestBody TsunamiEvent tsunamiEvent, Errors errors){
@@ -122,7 +117,6 @@ public class TsunamiEventController {
 
   }
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents/{id}", method = RequestMethod.DELETE)
   public ResponseEntity deleteTsunamiEvent(@PathVariable("id") Integer id){
     try{
@@ -135,7 +129,6 @@ public class TsunamiEventController {
     }
   }
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamirunups/select", method= RequestMethod.GET)
   public ResponseEntity<List<TsunamiRunupViewNonPersist>> getRunupsByQuery(@RequestParam Map<String, String> allRequestParams){
     try{
@@ -155,7 +148,6 @@ public class TsunamiEventController {
 
   }
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamirunups", method= RequestMethod.GET)
   public ResponseEntity<List<TsunamiRunupViewNonPersist>> getAllRunups(){
     try{
@@ -168,7 +160,6 @@ public class TsunamiEventController {
   }
 
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamirunups/{id}", method= RequestMethod.GET)
   public ResponseEntity<List<TsunamiRunup>> getRunupById(@PathVariable("id") Integer id){
     try{
@@ -180,7 +171,6 @@ public class TsunamiEventController {
     }
   }
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamirunups/{eventid}", method=RequestMethod.POST)
   public ResponseEntity postRunup(@PathVariable("eventid") Integer eventId,
                                                 @Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
@@ -208,7 +198,6 @@ public class TsunamiEventController {
 
   }
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamirunups/{runupid}/{eventid}", method = RequestMethod.PATCH)
   public ResponseEntity patchRunup(@PathVariable("runupid") Integer runupId,
                                    @PathVariable("eventid") Integer eventId,
@@ -240,7 +229,6 @@ public class TsunamiEventController {
     }
   }
 
-  @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamirunups/{id}", method = RequestMethod.DELETE)
   public ResponseEntity deleteRunup(@PathVariable("id") Integer id){
     try{

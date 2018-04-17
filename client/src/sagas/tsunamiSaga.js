@@ -8,9 +8,12 @@ export function* watchUpdateFetchedTsEvent(){
   yield takeEvery("UPDATE_FETCHED_TS_EVENT", fetch)
 }
 
+const TSUNAMI_EVENTS_BASEPATH = '/tsunamievents/',
+      TSUNAMI_RUNUPS_BASEPATH = '/tsunamirunups/';
+
 export function* fetchAllTsEvents(){
   try {
-    const response = yield call(axios.get, 'http://localhost:8080/tsunamievents/select');
+    const response = yield call(axios.get, `${TSUNAMI_EVENTS_BASEPATH}select`);
     yield put({
       type: "FETCH_ALL_TS_EVENTS_FULFILLED",
       payload:{data: response.data, formattedData: mapToTable(response.data)}
@@ -27,7 +30,7 @@ export function* watchFetchAllTsEvents(){
 export function* fetchTsEventById(action){
   let id = action.payload;
   try{
-    const response = yield call(axios.get, `http://localhost:8080/tsunamievent/${id}`);
+    const response = yield call(axios.get, `${TSUNAMI_EVENTS_BASEPATH}${id}`);
     yield put({
       type: "FETCH_TS_EVENT_FULFILLED",
       payload: response.data
@@ -45,7 +48,7 @@ export function* watchFetchTsEventById(){
 export function* fetchSpecifiedTSEvents(action){
   let queryString = action.payload;
   try{
-    const response = yield call(axios.get, `http://localhost:8080/tsunamievents/select?${queryString}`);
+    const response = yield call(axios.get, `${TSUNAMI_EVENTS_BASEPATH}select?${queryString}`);
     yield put({
       type: "FETCH_SPECIFIED_TS_EVENTS_FULFILLED",
       payload:{data: response.data, formattedData: mapToTable(response.data)}
@@ -63,7 +66,7 @@ export function* patchTsEvent(action){
   let id = action.payload.id;
   let tsEvent = action.payload.tsEvent;
   try{
-    const response = yield call(axios.patch, `http://localhost:8080/tsunamievents/${id}`, tsEvent);
+    const response = yield call(axios.patch, `${TSUNAMI_EVENTS_BASEPATH}${id}`, tsEvent);
     yield put({
       type: "PATCH_TS_EVENT_FULFILLED",
       payload: response.data
@@ -87,7 +90,7 @@ export function* watchPatchTsEvent(){
 export function* postTsEvent(action){
   let tsEvent = action.payload;
   try{
-    const response = yield call(axios.post, "http://localhost:8080/tsunamievents", tsEvent);
+    const response = yield call(axios.post, TSUNAMI_EVENTS_BASEPATH, tsEvent);
     yield put({
       type:"POST_TS_EVENT_FULFILLED",
       payload:{data: response.data}
@@ -104,7 +107,7 @@ export function* watchPostTsEvent(){
 export function* postRunup(action){
   let { runup, id } = action.payload
   try{
-    const response = yield call(axios.post, `http://localhost:8080/tsunamirunups/${id}`, runup);
+    const response = yield call(axios.post, `${TSUNAMI_RUNUPS_BASEPATH}${id}`, runup);
     yield put({
       type:"POST_TS_RUNUP_FULFILLED",
       payload:{data: response.data}
@@ -125,7 +128,7 @@ export function* watchFetchRunup(){
 export function* fetchRunup(action){
   let runupId = action.payload;
   try{
-    const response = yield call(axios.get, `http://localhost:8080/tsunamirunups/${runupId}`);
+    const response = yield call(axios.get, `${TSUNAMI_RUNUPS_BASEPATH}${runupId}`);
     yield put({
       type: "FETCH_TS_RUNUP_FULFILLED",
       payload: response.data
@@ -145,7 +148,7 @@ export function* updateRunup(action){
   let runup = action.payload.runup;
 
   try{
-    const response = yield call(axios.patch, `http://localhost808/tsunamirunups/${runupid}/${eventid}`, runup);
+    const response = yield call(axios.patch, `${TSUNAMI_RUNUPS_BASEPATH}${runupid}/${eventid}`, runup);
     yield put({type: "UPDATE_TS_RUNUP_FULFILLED",payload: response.data});
   }catch(error){
     yield put({type: "UPDATE_TS_RUNUP_REJECTED", payload: error});
@@ -156,7 +159,7 @@ export function* fetchSpecifiedRunup(action){
   let queryString = action.payload;
 
   try{
-    const response = yield call(axios.get, `http://localhost:8080/tsunamirunups/select?${queryString}`);
+    const response = yield call(axios.get, `${TSUNAMI_RUNUPS_BASEPATH}select?${queryString}`);
     yield  put({
       type: "FETCH_SPECIFIED_RUNUP_FULFILLED",
       payload:{data: response.data, formattedData: mapToRunupTable(response.data)}
@@ -172,7 +175,7 @@ export function* watchFetchSpecifiedRunup() {
 
 export function* fetchAllRunups(){
   try {
-    const response = yield call(axios.get, 'http://localhost:8080/tsunamirunups/select');
+    const response = yield call(axios.get, `${TSUNAMI_RUNUPS_BASEPATH}select`);
     yield put({
       type: "FETCH_ALL_RUNUP_FULFILLED",
       payload:{data: response.data, formattedData: mapToRunupTable(response.data)}
@@ -188,7 +191,7 @@ export function* watchFetchAllRunups(){
 
 export function* deleteRunup(value){
   try{
-    const response = yield call(axios.delete, `http://localhost:8080/tsunamirunups/${value.payload}`);
+    const response = yield call(axios.delete, `${TSUNAMI_RUNUPS_BASEPATH}${value.payload}`);
     yield put({
       type: "DELETE_RUNUP_FULFILLED",
       payload:response.data
@@ -217,7 +220,7 @@ export function* resetDeleteRunup(){
 
 export function* deleteEvent(value){
   try{
-    const response = yield call(axios.delete, `http://localhost:8080/tsunamievents/${value.payload}`);
+    const response = yield call(axios.delete, `${TSUNAMI_EVENTS_BASEPATH}${value.payload}`);
     yield put({
       type: "DELETE_EVENT_FULFILLED",
       payload: response.data
