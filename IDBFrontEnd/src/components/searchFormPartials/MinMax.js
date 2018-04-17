@@ -1,5 +1,6 @@
+require('babel-polyfill')
 import React from 'react';
-import { Control, Errors } from 'react-redux-form/immutable';
+import { Control, Errors } from 'react-redux-form/lib/immutable';
 import PropTypes from 'prop-types';
 
 import Styles from './MinMaxStyle.css';

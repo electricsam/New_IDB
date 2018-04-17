@@ -1,9 +1,10 @@
 process.env.NODE_ENV = 'test';
 
 require('babel-register');
-require.extensions['css'] = function () {return null;}
-require.extensions['png'] = function () {return null;}
-require.extensions['jpg'] = function () {return null;}
+require('babel-polyfill');
+require.extensions['css'] = function () {return null;};
+require.extensions['png'] = function () {return null;};
+require.extensions['jpg'] = function () {return null;};
 
 const hook = require('css-modules-require-hook');
 
@@ -20,13 +21,13 @@ Object.keys(document.defaultView).forEach((property)=> {
     exposedProperties.push(property);
     global[property] = document.defaultView[property];
   }
-})
+});
 
 //this allows enzyme to reference generated classNames from css modules
 hook({
   extensions: ['.css'],
   generateScopedName: '[name]__[local]'
-})
+});
 
 
 global.navigator = {

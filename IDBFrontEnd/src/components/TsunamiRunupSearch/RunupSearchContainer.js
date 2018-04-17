@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {actions, Control, Errors, Form} from 'react-redux-form/immutable';
+import {actions, Control, Errors, Form} from 'react-redux-form/lib/immutable';
 
 import {createApiQueryString, encodeQueryString} from '../../helperFunctions/helperFunctions'
 import store from '../../store';
