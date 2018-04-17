@@ -23,7 +23,7 @@ public class TsunamiRefs {
   @Column(name = "PUBLISH")
   private String publish;
 
-  @Column(name = "PREVIOUS STATE")
+  @Column(name = "PREVIOUS_STATE")
   private String previousState;
 
 
