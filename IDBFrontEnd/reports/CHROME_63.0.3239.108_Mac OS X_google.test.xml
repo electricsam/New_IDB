@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="1"
+            tests="1">
+
+  <testsuite name="google.test"
+    errors="1" failures="1" hostname="" id="" package="google.test" skipped="0"
+    tests="1" time="4.022" timestamp="Tue, 30 Jan 2018 17:22:06 GMT">
+  
+    <testcase name="Demo test Google" classname="google.test" time="4.022" assertions="2">
+
+      <failure message="Testing if element &lt;#main&gt; contains text: &#34;Night Watch&#34;. Element could not be located.">    at Object.Demo test Google (/Users/cmg/WebstormProjects/IDBFrontEnd/nightwatch_tests/google.test.js:7:22)
+    at process._tickCallback (internal/process/next_tick.js:150:11)</failure>
+
+    
+    </testcase>
+  
+
+  
+    <system-err>
+      ERROR: Unable to locate element: &#34;#main&#34; using: css selector
+    at F.command (/Users/cmg/WebstormProjects/IDBFrontEnd/node_modules/nightwatch/lib/api/assertions/containsText.js:46:21)
+    at F.module.exports.BaseAssertion._scheduleAssertion (/Users/cmg/WebstormProjects/IDBFrontEnd/node_modules/nightwatch/lib/core/assertion.js:87:17)
+    at F.module.exports.BaseAssertion._executeCommand (/Users/cmg/WebstormProjects/IDBFrontEnd/node_modules/nightwatch/lib/core/assertion.js:82:17)
+    at AssertionInstance.commandFn [as _commandFn] (/Users/cmg/WebstormProjects/IDBFrontEnd/node_modules/nightwatch/lib/core/assertion.js:180:21)
+    at AsyncTree.runCommand (/Users/cmg/WebstormProjects/IDBFrontEnd/node_modules/nightwatch/lib/core/queue.js:154:30)
+    at AsyncTree.runChildNode (/Users/cmg/WebstormProjects/IDBFrontEnd/node_modules/nightwatch/lib/core/queue.js:114:8)
+    at AsyncTree.walkDown (/Users/cmg/WebstormProjects/IDBFrontEnd/node_modules/nightwatch/lib/core/queue.js:80:10)
+    at AsyncTree.walkUp (/Users/cmg/WebstormProjects/IDBFrontEnd/node_modules/nightwatch/lib/core/queue.js:97:8)
+    at AsyncTree.walkDown (/Users/cmg/WebstormProjects/IDBFrontEnd/node_modules/nightwatch/lib/core/queue.js:90:12)
+    at AsyncTree.traverse (/Users/cmg/WebstormProjects/IDBFrontEnd/node_modules/nightwatch/lib/core/queue.js:73:8)
+    </system-err>
+  
+
+  
+  </testsuite>
+</testsuites>

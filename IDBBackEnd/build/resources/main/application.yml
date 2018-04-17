@@ -1,0 +1,30 @@
+spring:
+  session:
+    store-type: jdbc
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1234:xe
+    username: haz
+    password: auWhAzVcmxtwYiWJDLIi
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: HAZ
+        current_session_context_class: thread
+        dialect: org.hibernate.spatial.dialect.oracle.OracleSpatial10gDialect
+corsAllowed: http://localhost:8181
+
+####Flyaway Properties ####
+flyway:
+  url: jdbc:oracle:thin:@localhost:1234:xe
+  locations: db/migration
+  user: haz
+  password: auWhAzVcmxtwYiWJDLIi
+  baseline-on-migrate: true
+
+#Lets the test run without auth
+management.security.enabled: false
+management.health.db.enabled: false
+security.basic.enabled: false

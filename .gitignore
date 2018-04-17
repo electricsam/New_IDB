@@ -1,5 +1,10 @@
  ### OSX template
 .DS_Store
 
+.gradle/
+.idea/
+*.iml
+
 docker-compose.yml
 postgres-data/
+
