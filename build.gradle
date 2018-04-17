@@ -1,0 +1,8 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+}
+
+group='ncei.idb'
+version='2.0'
