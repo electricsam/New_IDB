@@ -12,7 +12,7 @@ module.exports = {
   target: 'web',
   output: {
     path: __dirname + '/dist',
-    publicPath: '/',
+    publicPath: '/idb/',
     filename: 'bundle.js'
   },
     plugins: [
