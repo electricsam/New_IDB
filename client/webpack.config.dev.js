@@ -6,9 +6,8 @@ const path = require('path');
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
-    'babel-polyfill',
     'webpack-hot-middleware/client?reload=true',
-    path.resolve(__dirname, 'src/index.js'),
+    path.resolve(__dirname, 'src/index.js')
   ],
   target: 'web',
   output: {
@@ -51,16 +50,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test:/\.js$/,
-        enforce: "pre",
-        loader: "eslint-loader",
-        options:{
-          emitWarning: true,
-        }
+        test: /\.(js|jsx)?$/,
+        exclude: '/node_modules/',
+        use: 'babel-loader'
       },
       {
-        test: /\.(js|jsx)?$/,
-        use: 'babel-loader',
+        test:/\.js$/,
+        exclude: '/node_modules/',
+        loader: "eslint-loader",
+        options:{
+          emitWarning: true
+        }
       },
       {
         test: /\.css$/,
