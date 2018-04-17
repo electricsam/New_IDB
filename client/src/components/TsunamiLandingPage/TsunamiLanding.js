@@ -39,7 +39,7 @@ class TsunamiLanding extends React.Component{
     this.state = {};
   }
 
-  handleClick = value => {
+  handleClick(value) {
     store.dispatch(push(value))
   };
 

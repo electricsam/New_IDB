@@ -19,7 +19,7 @@ class RunupInsertContainer extends React.Component{
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
   }
 
@@ -31,7 +31,7 @@ class RunupInsertContainer extends React.Component{
     }
   }
 
-  validateMinMax = (val, min, max) => {
+  validateMinMax(val, min, max) {
     (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
   }
 

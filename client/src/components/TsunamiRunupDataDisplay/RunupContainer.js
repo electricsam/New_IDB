@@ -35,12 +35,12 @@ class RunupContainer extends React.Component {
     }
   }
 
-  handleYesClick = () => {
+  handleYesClick() {
     let id = this.props.tsunami.get('deleteRunupId');
     action({type: "DELETE_RUNUP_REQUESTED", payload: id})
   }
 
-  handleNoClick = () => {
+  handleNoClick() {
     action({type:"TOGGLE_DELETE_RUNUP_CONFIRMATION"});
     action({type: "SET_DELETE_RUNUP_ID", payload: null});
   }

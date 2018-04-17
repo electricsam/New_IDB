@@ -1,6 +1,5 @@
 *.log
 
-.babelrc
 .idea
 
 gulpfile.js
