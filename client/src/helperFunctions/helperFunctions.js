@@ -30,40 +30,40 @@ const mapToTable = (arr) => {
     accessors.map(e => {
       result.push({Header: camelToPascal(e), accessor: e, })
     });
-    // result.push({
-    //   Header: "Edit",
-    //   accessor: 'edit',
-    //   Cell: props => (
-    //     <button type="button" onClick={()=> store.dispatch(push(`/tsunami/updatetsunami/${props.original.id}`))}>Edit Event</button>
-    //   )
-    // });
-    // result.push({
-    //   Header: "Add TsunamiRunupDataDisplay",
-    //   accessor: 'addRunup',
-    //   Cell: props => (
-    //     <button type="button" onClick={()=> store.dispatch(push(`/tsunami/insertrunup/${props.original.id}`))}>
-    //       Add Runup
-    //     </button>
-    //   )
-    // });
-    // result.push({
-    //   Header: "Related Runups",
-    //   accessor: 'relatedRunups',
-    //   Cell: props => (
-    //     <button type="button" onClick={()=> getRelatedRunups(`${props.original.id}`)}>
-    //       Related Runups
-    //     </button>
-    //   )
-    // });
-    // result.push({
-    //   Header: "Delete",
-    //   accessor: 'delete',
-    //   Cell: props => (
-    //     <button type="button" onClick={()=> deleteEvent(props.original.id)}>
-    //       Delete Event
-    //     </button>
-    //   )
-    // });
+    result.push({
+      Header: "Edit",
+      accessor: 'edit',
+      Cell: props => (
+        <button type="button" onClick={()=> store.dispatch(push(`/tsunami/updatetsunami/${props.original.id}`))}>Edit Event</button>
+      )
+    });
+    result.push({
+      Header: "Add TsunamiRunupDataDisplay",
+      accessor: 'addRunup',
+      Cell: props => (
+        <button type="button" onClick={()=> store.dispatch(push(`/tsunami/insertrunup/${props.original.id}`))}>
+          Add Runup
+        </button>
+      )
+    });
+    result.push({
+      Header: "Related Runups",
+      accessor: 'relatedRunups',
+      Cell: props => (
+        <button type="button" onClick={()=> getRelatedRunups(`${props.original.id}`)}>
+          Related Runups
+        </button>
+      )
+    });
+    result.push({
+      Header: "Delete",
+      accessor: 'delete',
+      Cell: props => (
+        <button type="button" onClick={()=> deleteEvent(props.original.id)}>
+          Delete Event
+        </button>
+      )
+    });
 
   }
   return result;
@@ -94,26 +94,26 @@ const mapToRunupTable = (arr) => {
     accessors.map(e => {
       result.push({Header: camelToPascal(e), accessor: e, })
     });
-    // result.push({
-    //   Header: "Edit",
-    //   accessor: 'edit',
-    //   Cell: props => (
-    //     <button type="button"
-    //             onClick={()=> store.dispatch(push(`/tsunami/updaterunup/${props.original.id}/${props.original.eventId}`))}>
-    //       Edit Runup
-    //     </button>
-    //   )
-    // })
-    // result.push({
-    //   Header: "Delete",
-    //   accessor: 'delete',
-    //   Cell: props => (
-    //     <button type="button"
-    //             onClick={()=> deleteRunup(props.original.id)}>
-    //       Delete Runup
-    //     </button>
-    //   )
-    // })
+    result.push({
+      Header: "Edit",
+      accessor: 'edit',
+      Cell: props => (
+        <button type="button"
+                onClick={()=> store.dispatch(push(`/tsunami/updaterunup/${props.original.id}/${props.original.eventId}`))}>
+          Edit Runup
+        </button>
+      )
+    })
+    result.push({
+      Header: "Delete",
+      accessor: 'delete',
+      Cell: props => (
+        <button type="button"
+                onClick={()=> deleteRunup(props.original.id)}>
+          Delete Runup
+        </button>
+      )
+    })
 
   }
   return result;
