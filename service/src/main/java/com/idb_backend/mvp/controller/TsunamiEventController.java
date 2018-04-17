@@ -37,7 +37,7 @@ public class TsunamiEventController {
     }
   }
 
-  @RequestMapping(value = "/tsunamievent/{id}", method= RequestMethod.GET)
+  @RequestMapping(value = "/tsunamievents/{id}", method= RequestMethod.GET)
   public @ResponseBody ResponseEntity<List<TsunamiEvent>> getEventById(@PathVariable("id") Integer id){
     try{
       List<TsunamiEvent> event = tsunamiEventRepository.getEventById(id);
