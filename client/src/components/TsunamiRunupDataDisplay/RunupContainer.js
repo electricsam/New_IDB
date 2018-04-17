@@ -36,7 +36,7 @@ class RunupContainer extends React.Component {
   }
 
   handleYesClick() {
-    let id = this.props.tsunami.get('deleteRunupId');
+    const id = this.props.tsunami.get('deleteRunupId');
     action({type: "DELETE_RUNUP_REQUESTED", payload: id})
   }
 
@@ -48,7 +48,7 @@ class RunupContainer extends React.Component {
   render() {
     const { tsunami } = this.props;
 
-    if( tsunami.get('fetchedRunup')){
+    if( tsunami.get('fetchedRunup')) {
       return (
         <div>
           {tsunami.get('showDeleteConfirmation')?

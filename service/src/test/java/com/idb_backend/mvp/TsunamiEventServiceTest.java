@@ -1,36 +1,48 @@
 package com.idb_backend.mvp;
 
 
-import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.service.TsunamiEventService;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
-import static org.mockito.BDDMockito.given;
+import java.util.HashMap;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
+@SpringBootTest
 public class TsunamiEventServiceTest {
 
   @Autowired
   TsunamiEventService tsunamiEventService;
 
-  @MockBean
-  TsunamiEventRepository tsunamiEventRepository;
-
-  @Test
-  public void generateCritera() throws Exception{
-
-//    given(tsunamiEventService.generateCriteria);
-
-
-
+  @Before
+  public void setupMocks(){
+    MockitoAnnotations.initMocks(this);
   }
 
+  @Test
+  public void generateIntegerTest(){
+    Map<String, String> map = new HashMap<>();
+    map.put("min", "20");
+    String key = "min";
+    Integer actual = tsunamiEventService.generateInteger(map, key);
+    Integer expected = 20;
+    Assert.assertEquals(expected, actual);
+  }
 
-
-
+  @Test
+  public void generateFloatTest(){
+    Map<String, String> map = new HashMap<>();
+    map.put("min", "20.25");
+    String key = "min";
+    Float actual = tsunamiEventService.generateFloat(map, key);
+    Float expected = 20.25f;
+    Assert.assertEquals(expected, actual);
+  }
 }

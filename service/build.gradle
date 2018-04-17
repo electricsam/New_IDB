@@ -1,8 +1,11 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.9.RELEASE'
+		springBootVersion = '2.0.0.RELEASE'
 	}
 	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
 		mavenCentral()
 	}
 	dependencies {
@@ -10,11 +13,11 @@ buildscript {
 	}
 }
 
-
+apply plugin: 'war'
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'war'
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.idb_backend'
 version = '0.0.1-SNAPSHOT'

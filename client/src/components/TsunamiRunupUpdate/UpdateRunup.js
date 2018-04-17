@@ -25,27 +25,27 @@ const UpdateRunup = props => (
     <div className={Styles.formInnerSectionOne}>
       <div className={Styles.year}>
         <div className={Styles.minMaxTitle}>Year</div>
-      <MinMax model=".tsunami.runupData[0].year"
-              title=""
-              min={validationConstants.year.min}
-              max={validationConstants.year.max}
-              validMinMax={props.validateMinMax}/>
+        <MinMax model=".tsunami.runupData[0].year"
+                title=""
+                min={validationConstants.year.min}
+                max={validationConstants.year.max}
+                validMinMax={props.validateMinMax}/>
       </div>
       <div className={Styles.month}>
         <div className={Styles.minMaxTitle}>Month</div>
-      <MinMax model=".tsunami.runupData[0].month"
-              title=""
-              min={validationConstants.month.min}
-              max={validationConstants.month.max}
-              validMinMax={props.validateMinMax}/>
+        <MinMax model=".tsunami.runupData[0].month"
+                title=""
+                min={validationConstants.month.min}
+                max={validationConstants.month.max}
+                validMinMax={props.validateMinMax}/>
       </div>
       <div className={Styles.day}>
         <div className={Styles.minMaxTitle}>Day</div>
-      <MinMax model=".tsunami.runupData[0].day"
-              title=""
-              min={validationConstants.day.min}
-              max={validationConstants.day.max}
-              validMinMax={props.validateMinMax}/>
+        <MinMax model=".tsunami.runupData[0].day"
+                title=""
+                min={validationConstants.day.min}
+                max={validationConstants.day.max}
+                validMinMax={props.validateMinMax}/>
       </div>
       <div className={Styles.arrival}>
         <div className={Styles.minMaxTitle}>Arrival Time</div>
