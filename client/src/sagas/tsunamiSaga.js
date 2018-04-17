@@ -1,5 +1,4 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
 import axios from 'axios';
 
 import { mapToTable, mapToRunupTable } from '../helperFunctions/helperFunctions';
@@ -143,12 +142,9 @@ export function* watchUpdateRunup(){
 }
 
 export function* updateRunup(action){
-  let runupId = action.payload.runupId;
-  let eventId = action.payload.eventId;
-  let runup = action.payload.runup;
-
+  let { runupId, eventId, runupData } = action.payload;
   try{
-    const response = yield call(axios.patch, `${TSUNAMI_RUNUPS_BASEPATH}${runupid}/${eventid}`, runup);
+    const response = yield call(axios.patch, `${TSUNAMI_RUNUPS_BASEPATH}${runupId}/${eventId}`, runupData);
     yield put({type: "UPDATE_TS_RUNUP_FULFILLED",payload: response.data});
   }catch(error){
     yield put({type: "UPDATE_TS_RUNUP_REJECTED", payload: error});
@@ -215,7 +211,7 @@ export function* watchDeleteRunupRejected(){
 
 export function* resetDeleteRunup(){
   yield put({type: "SET_DELETE_RUNUP_ID", payload: null});
-  yield put({type: "TOGGLE_DELETE_RUNUP_CONFIRMATION"});
+    yield put({type: "TOGGLE_DELETE_RUNUP_CONFIRMATION"});
 }
 
 export function* deleteEvent(value){

@@ -1,4 +1,4 @@
-import { combineForms } from 'react-redux-form/immutable';
+import { combineForms } from 'react-redux-form/lib/immutable';
 
 import tsunamiReducer from './tsunamiReducer';
 

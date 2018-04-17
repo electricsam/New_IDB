@@ -17,7 +17,7 @@ const oddEven = (num) => {
 };
 
 const camelToPascal = (string) => {
-  if (typeof string !== 'string') return 'whoops';
+  if (typeof string !== 'string') return 'error in camelToPascal';
   return string.split(/(?=[A-Z])/).map((e, i, a) => (
     a[i] = e.charAt(0).toUpperCase() + e.slice(1)
   )).join(' ');
@@ -30,51 +30,51 @@ const mapToTable = (arr) => {
     accessors.map(e => {
       result.push({Header: camelToPascal(e), accessor: e, })
     });
-    result.push({
-      Header: "Edit",
-      accessor: 'edit',
-      Cell: props => (
-        <button type="button" onClick={()=> store.dispatch(push(`/tsunami/updatetsunami/${props.original.id}`))}>Edit Event</button>
-      )
-    });
-    result.push({
-      Header: "Add TsunamiRunupDataDisplay",
-      accessor: 'addRunup',
-      Cell: props => (
-        <button type="button" onClick={()=> store.dispatch(push(`/tsunami/insertrunup/${props.original.id}`))}>
-          Add Runup
-        </button>
-      )
-    });
-    result.push({
-      Header: "Related Runups",
-      accessor: 'relatedRunups',
-      Cell: props => (
-        <button type="button" onClick={()=> getRelatedRunups(`${props.original.id}`)}>
-          Related Runups
-        </button>
-      )
-    });
-    result.push({
-      Header: "Delete",
-      accessor: 'delete',
-      Cell: props => (
-        <button type="button" onClick={()=> deleteEvent(props.original.id)}>
-          Delete Event
-        </button>
-      )
-    });
+    // result.push({
+    //   Header: "Edit",
+    //   accessor: 'edit',
+    //   Cell: props => (
+    //     <button type="button" onClick={()=> store.dispatch(push(`/tsunami/updatetsunami/${props.original.id}`))}>Edit Event</button>
+    //   )
+    // });
+    // result.push({
+    //   Header: "Add TsunamiRunupDataDisplay",
+    //   accessor: 'addRunup',
+    //   Cell: props => (
+    //     <button type="button" onClick={()=> store.dispatch(push(`/tsunami/insertrunup/${props.original.id}`))}>
+    //       Add Runup
+    //     </button>
+    //   )
+    // });
+    // result.push({
+    //   Header: "Related Runups",
+    //   accessor: 'relatedRunups',
+    //   Cell: props => (
+    //     <button type="button" onClick={()=> getRelatedRunups(`${props.original.id}`)}>
+    //       Related Runups
+    //     </button>
+    //   )
+    // });
+    // result.push({
+    //   Header: "Delete",
+    //   accessor: 'delete',
+    //   Cell: props => (
+    //     <button type="button" onClick={()=> deleteEvent(props.original.id)}>
+    //       Delete Event
+    //     </button>
+    //   )
+    // });
 
   }
   return result;
-}
+};
 
 const getRelatedRunups = (val) => {
   let queryObj = {eventid: val};
   let encoded = encodeQueryString(JSON.stringify(queryObj));
   let queryString = createApiQueryString(queryObj);
   store.dispatch(push(`/tsunami/runup/data?${encoded}`));
-}
+};
 
 const deleteRunup = (id) => {
   store.dispatch({type: "SET_DELETE_RUNUP_ID", payload: id});
@@ -84,7 +84,7 @@ const deleteRunup = (id) => {
 const deleteEvent = (id) => {
   store.dispatch({type: "SET_DELETE_EVENT_ID", payload: id});
   store.dispatch({type: "TOGGLE_DELETE_EVENT_CONFIRMATION"});
-}
+};
 
 
 const mapToRunupTable = (arr) => {
@@ -94,38 +94,38 @@ const mapToRunupTable = (arr) => {
     accessors.map(e => {
       result.push({Header: camelToPascal(e), accessor: e, })
     });
-    result.push({
-      Header: "Edit",
-      accessor: 'edit',
-      Cell: props => (
-        <button type="button"
-                onClick={()=> store.dispatch(push(`/tsunami/updaterunup/${props.original.id}/${props.original.eventId}`))}>
-          Edit Runup
-        </button>
-      )
-    })
-    result.push({
-      Header: "Delete",
-      accessor: 'delete',
-      Cell: props => (
-        <button type="button"
-                onClick={()=> deleteRunup(props.original.id)}>
-          Delete Runup
-        </button>
-      )
-    })
+    // result.push({
+    //   Header: "Edit",
+    //   accessor: 'edit',
+    //   Cell: props => (
+    //     <button type="button"
+    //             onClick={()=> store.dispatch(push(`/tsunami/updaterunup/${props.original.id}/${props.original.eventId}`))}>
+    //       Edit Runup
+    //     </button>
+    //   )
+    // })
+    // result.push({
+    //   Header: "Delete",
+    //   accessor: 'delete',
+    //   Cell: props => (
+    //     <button type="button"
+    //             onClick={()=> deleteRunup(props.original.id)}>
+    //       Delete Runup
+    //     </button>
+    //   )
+    // })
 
   }
   return result;
-}
+};
 
 const encodeQueryString = (query) => {
   return CryptoJS.AES.encrypt(query, hashPass).toString();
-}
+};
 
 const decodeQueryString = (query) => {
   return CryptoJS.AES.decrypt(query, hashPass).toString(CryptoJS.enc.Utf8);
-}
+};
 
 
 const createApiQueryString = (obj) => {
@@ -137,7 +137,7 @@ const createApiQueryString = (obj) => {
     }
   }
   return result;
-}
+};
 
 
 module.exports = {
