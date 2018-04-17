@@ -7,7 +7,7 @@ import java.util.*;
 public class Reference {
 
   @Id
-  @Column(name = "ID")
+  @Column(name = "ID", nullable = false)
   private Integer id;
 
   @Column(name = "REF_NO")

@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.*;
 
 @Entity(name = "TSEVENT_TSQP")
@@ -122,22 +123,22 @@ public class TsunamiEvent implements Serializable {
   @Column(name = "EQ_MAG_UNK")
 //  @Min(value = Constants.eqMagMin)
 //  @Max(value = Constants.eqMagMax)
-  private Float eqMagUnk;
+  private BigDecimal eqMagUnk;
 
   @Column(name = "EQ_MAG_MB")
 //  @Min(value = Constants.eqMagMin)
 //  @Max(value = Constants.eqMagMax)
-  private Float eqMagMb;
+  private BigDecimal eqMagMb;
 
   @Column(name = "EQ_MAG_MS")
 //  @Min(value = Constants.eqMagMin)
 //  @Max(value = Constants.eqMagMax)
-  private Float eqMagMs;
+  private BigDecimal eqMagMs;
 
   @Column(name = "EQ_MAG_MW")
 //  @Min(value = Constants.eqMagMin)
 //  @Max(value = Constants.eqMagMax)
-  private Float eqMagMw;
+  private BigDecimal eqMagMw;
 
   @Column(name = "EQ_DEPTH")
   @Min(value = Constants.minWaterHt)
@@ -165,7 +166,7 @@ public class TsunamiEvent implements Serializable {
   private Float tsIntensity;
 
   @Column(name = "DAMAGE_MILLIONS_DOLLARS")
-  private Float damageMillionsDollars;
+  private BigDecimal damageMillionsDollars;
 
   @Column(name = "DAMAGE_AMOUNT_ORDER")
   @Min(value = Constants.descripMin)
@@ -228,7 +229,7 @@ public class TsunamiEvent implements Serializable {
   private Geometry shape;
 
   @Column(name = "DAMAGE_MILLIONS_DOLLARS_TOTAL")
-  private Float damageMillionsDollarsTotal;
+  private BigDecimal damageMillionsDollarsTotal;
 
   @Column(name = "DAMAGE_AMOUNT_ORDER_TOTAL")
   @Min(value = Constants.descripMin)
@@ -457,35 +458,35 @@ public class TsunamiEvent implements Serializable {
     this.eventValidity = eventValidity;
   }
 
-  public Float getEqMagUnk() {
+  public BigDecimal getEqMagUnk() {
     return eqMagUnk;
   }
 
-  public void setEqMagUnk(Float eqMagUnk) {
+  public void setEqMagUnk(BigDecimal eqMagUnk) {
     this.eqMagUnk = eqMagUnk;
   }
 
-  public Float getEqMagMb() {
+  public BigDecimal getEqMagMb() {
     return eqMagMb;
   }
 
-  public void setEqMagMb(Float eqMagMb) {
+  public void setEqMagMb(BigDecimal eqMagMb) {
     this.eqMagMb = eqMagMb;
   }
 
-  public Float getEqMagMs() {
+  public BigDecimal getEqMagMs() {
     return eqMagMs;
   }
 
-  public void setEqMagMs(Float eqMagMs) {
+  public void setEqMagMs(BigDecimal eqMagMs) {
     this.eqMagMs = eqMagMs;
   }
 
-  public Float getEqMagMw() {
+  public BigDecimal getEqMagMw() {
     return eqMagMw;
   }
 
-  public void setEqMagMw(Float eqMagMw) {
+  public void setEqMagMw(BigDecimal eqMagMw) {
     this.eqMagMw = eqMagMw;
   }
 
@@ -529,11 +530,11 @@ public class TsunamiEvent implements Serializable {
     this.tsIntensity = tsIntensity;
   }
 
-  public Float getDamageMillionsDollars() {
+  public BigDecimal getDamageMillionsDollars() {
     return damageMillionsDollars;
   }
 
-  public void setDamageMillionsDollars(Float damageMillionsDollars) {
+  public void setDamageMillionsDollars(BigDecimal damageMillionsDollars) {
     this.damageMillionsDollars = damageMillionsDollars;
   }
 
@@ -634,11 +635,11 @@ public class TsunamiEvent implements Serializable {
   }
 
 
-  public Float getDamageMillionsDollarsTotal() {
+  public BigDecimal getDamageMillionsDollarsTotal() {
     return damageMillionsDollarsTotal;
   }
 
-  public void setDamageMillionsDollarsTotal(Float damageMillionsDollarsTotal) {
+  public void setDamageMillionsDollarsTotal(BigDecimal damageMillionsDollarsTotal) {
     this.damageMillionsDollarsTotal = damageMillionsDollarsTotal;
   }
 
