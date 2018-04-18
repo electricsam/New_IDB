@@ -4,6 +4,9 @@
 .gradle/
 .idea/
 *.iml
+IDBFrontEnd/
+
+IDBBackEnd/
 
 docker-compose.yml
 postgres-data/

@@ -87,7 +87,7 @@ public class TsunamiEventControllerTest {
 
     given(tsunamiEventRepository.getEventById(tsunamiEvent.getId())).willReturn(list);
 
-    mockMvc.perform(get("/tsunamievent/100")
+    mockMvc.perform(get("/tsunamievents/100")
         .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$", hasSize(1)))

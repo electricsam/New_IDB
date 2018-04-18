@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import { get } from 'immutable';
+import { connect } from 'react-redux';
+import { get, getIn } from "immutable";
 
 import store from '../../store';
 import Loading from '../loadbar/Loading';

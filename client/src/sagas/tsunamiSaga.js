@@ -155,6 +155,8 @@ export function* fetchSpecifiedRunup(action){
   let queryString = action.payload;
 
   try{
+    console.log("this is the query string ", queryString);
+    console.log("this is the full path")
     const response = yield call(axios.get, `${TSUNAMI_RUNUPS_BASEPATH}select?${queryString}`);
     yield  put({
       type: "FETCH_SPECIFIED_RUNUP_FULFILLED",

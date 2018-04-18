@@ -1,4 +1,23 @@
+//{
+//  "presets": ["es2015", "react"],
+//  "plugins": ["transform-class-properties"]
+//}
+
 {
-  "presets": ["es2015", "react"],
-  "plugins": ["transform-class-properties"]
+  "presets": ["react", "env", "stage-0"],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-decorators-legacy"
+ 	 ],
+
+  //TODO: examine hmre
+
+  "env": {
+    "development": {
+      "presets": ["react-hmre"]
+    },
+    "production":{
+      "presets": []
+    }
+  }
 }

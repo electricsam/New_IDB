@@ -13,6 +13,10 @@ buildscript {
 	}
 }
 
+plugins{
+    id 'org.springframework.boot' version '2.0.0.RELEASE'
+}
+
 apply plugin: 'war'
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
@@ -22,6 +26,7 @@ apply plugin: 'io.spring.dependency-management'
 group = 'com.idb_backend'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+
 
 repositories {
 	mavenCentral()
@@ -49,12 +54,6 @@ dependencies {
 	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-}
-
-task showDate{
-	doLast{
-		println 'Current Date: ' + new Date()
-	}
 }
 
 test {

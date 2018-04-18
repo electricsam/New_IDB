@@ -1,6 +1,5 @@
 package com.idb_backend.mvp;
 
-
 import com.idb_backend.mvp.service.TsunamiEventService;
 import org.junit.Assert;
 import org.junit.Before;

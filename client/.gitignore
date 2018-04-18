@@ -9,5 +9,6 @@ node_modules
 reports/
 selenium-server-standalone-3.8.1.jar
 server.js
+selenium-debug.log
 
 dist/

@@ -27,6 +27,8 @@ nbdist/
 
 **/application.properties
 **/application.yml
+./src/main/resources/*.yml
+
 /out/
 /src/main/resources/*.sql
 /src/main/resources/db/migration/*.sql
