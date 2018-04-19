@@ -7,7 +7,9 @@ import store from '../../store';
 import Loading from "../loadbar/Loading"
 import Styles from "./UpdateRunupStyles.css"
 
-import UpdateRunup from "./UpdateRunup"
+import DateAndLocation from "./DateAndLocation"
+import Measurements from "./Measurements.jsx";
+import Effects from "./Effects.jsx";
 
 const errorStyles = {
   color: 'red',
@@ -57,9 +59,11 @@ class UpdateRunupContainer extends React.Component{
     }else{
       return (
         <div className={Styles.container}>
+          <h1 className={Styles.title}>Update Runup</h1>
           <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
-
-            <UpdateRunup validateMinMax={this.validateMinMax}/>
+            <DateAndLocation validateMinMax={this.validateMinMax}/>
+            <Measurements validateMinMax={this.validateMinMax}/>
+            <Effects validateMinMax={this.validateMinMax}/>
 
             <button type="submit" className={Styles.searchButton}>
               Submit
