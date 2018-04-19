@@ -4,8 +4,9 @@ import { Control, Form, Errors, actions } from 'react-redux-form/lib/immutable';
 
 import { encodeQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
-import RunupInsert from "./RunupInsert"
-
+import DateAndLocation from "./DateAndLocation.jsx"
+import Measurements from "./Measurements.jsx";
+import Effects from "./Effects.jsx";
 import Styles from "./RunupInsertStyle.css";
 
 const action = obj => store.dispatch(obj);
@@ -38,9 +39,12 @@ class RunupInsertContainer extends React.Component{
     const { tsunami } = this.props;
     return (
       <div className={Styles.container}>
+        <h1 className={Styles.title}>Insert Runup</h1>
         <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
-          <RunupInsert validateMinMax={this.validateMinMax}/>
+          <DateAndLocation validateMinMax={this.validateMinMax}/>
+          <Measurements validateMinMax={this.validateMinMax}/>
+          <Effects validateMinMax={this.validateMinMax}/>
 
           <button type="submit" className={Styles.searchButton}>
             Submit

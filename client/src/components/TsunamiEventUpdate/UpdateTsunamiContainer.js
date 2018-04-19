@@ -6,10 +6,12 @@ import { encodeQueryString, createApiQueryString } from '../../helperFunctions/h
 import store from '../../store';
 import Loading from "../loadbar/Loading"
 
-import InsertTsunami from '../TsunamiEventInsert/DateAndLocation';
-import UpdateTsunami from "./UpdateTsunami";
+import DateAndLocation from "./DateAndLocation";
 
 import Styles from "./UpdateTsunamiStyles.css"
+import Measurements from "./Measurements.jsx";
+import Effects from "./Effects.jsx";
+import TotalEffects from "./TotalEffects.jsx";
 
 const errorStyles = {
   color: 'red',
@@ -26,7 +28,6 @@ class UpdateTsunamiContainer extends React.Component{
       showSourceForm: true
     }
   }
-
 
   componentDidMount(){
     let id = this.props.match.params.id;
@@ -54,15 +55,17 @@ class UpdateTsunamiContainer extends React.Component{
   render(){
     const { tsunami } = this.props;
     if(tsunami.get("fetchingTsEvent") === true){
-      return(
-        <Loading/>
-      )
+      return(<Loading/>)
     }else{
       return (
         <div className={Styles.container}>
+          <h1 className={Styles.title}>Update Tsunami Event</h1>
           <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
-            <UpdateTsunami validateMinMax={this.validateMinMax}/>
+            <DateAndLocation validateMinMax={this.validateMinMax}/>
+            <Measurements validateMinMax={this.validateMinMax}/>
+            <Effects validateMinMax={this.validateMinMax}/>
+            <TotalEffects validateMinMax={this.validateMinMax}/>
 
             <button type="submit" className={Styles.searchButton} >
               Submit
