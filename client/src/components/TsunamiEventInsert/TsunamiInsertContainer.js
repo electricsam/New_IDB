@@ -51,6 +51,7 @@ class TsunamiInsertContainer extends React.Component{
     const { tsunami } = this.props;
     return (
       <div className={Styles.container}>
+        <h1 className={Styles.title}> Insert Tsunami Event</h1>
         <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
           <DateAndLocation validateMinMax={this.validateMinMax} />
