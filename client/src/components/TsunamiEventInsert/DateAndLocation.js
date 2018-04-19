@@ -18,7 +18,7 @@ import Styles from './InsertTsunamiStyles.css';
 const DateAndLocation = props => (
   <div className={Styles.formSectionOne}>
     <div className={Styles.header}>
-      <h3>Date and Location Of Event</h3>
+      <h3>Event Date and Location</h3>
     </div>
     <div className={Styles.formInnerSectionOne}>
       <div className={Styles.year}>

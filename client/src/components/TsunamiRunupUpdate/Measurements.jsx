@@ -10,7 +10,7 @@ import Styles from './UpdateRunupStyles.css';
 const Measurements = props => (
     <div className={Styles.formSectionTwo}>
         <div className={Styles.header}>
-            <h3>Runup Measurments</h3>
+            <h3>Runup Measurements</h3>
         </div>
         <div className={Styles.formInnerSectionTwo}>
             <div className={Styles.arrival}>
