@@ -7,8 +7,10 @@ export function* watchUpdateFetchedTsEvent(){
   yield takeEvery("UPDATE_FETCHED_TS_EVENT", fetch)
 }
 
-const TSUNAMI_EVENTS_BASEPATH = '/tsunamievents/',
-      TSUNAMI_RUNUPS_BASEPATH = '/tsunamirunups/';
+const port = "http://localhost:10088";
+
+const TSUNAMI_EVENTS_BASEPATH = `/tsunamievents/`,
+      TSUNAMI_RUNUPS_BASEPATH = `/tsunamirunups/`;
 
 export function* fetchAllTsEvents(){
   try {

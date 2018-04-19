@@ -6,7 +6,7 @@ import { encodeQueryString, createApiQueryString } from '../../helperFunctions/h
 import store from '../../store';
 import Loading from "../loadbar/Loading"
 
-import InsertTsunami from '../TsunamiEventInsert/InsertTsunami';
+import InsertTsunami from '../TsunamiEventInsert/DateAndLocation';
 import UpdateTsunami from "./UpdateTsunami";
 
 import Styles from "./UpdateTsunamiStyles.css"
@@ -49,9 +49,7 @@ class UpdateTsunamiContainer extends React.Component{
     // }
   }
 
-  validateMinMax = (val, min, max) => {
-    (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
-  }
+  validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
   render(){
     const { tsunami } = this.props;

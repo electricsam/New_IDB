@@ -32,9 +32,7 @@ class RunupInsertContainer extends React.Component{
     }
   }
 
-  validateMinMax(val, min, max) {
-    (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
-  }
+  validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
   render(){
     const { tsunami } = this.props;

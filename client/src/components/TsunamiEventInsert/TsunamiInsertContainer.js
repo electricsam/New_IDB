@@ -6,7 +6,10 @@ import { encodeQueryString, createApiQueryString } from '../../helperFunctions/h
 import store from '../../store';
 import Styles from "./InsertTsunamiStyles.css"
 
-import InsertTsunami from './InsertTsunami';
+import DateAndLocation from './DateAndLocation';
+import Measurements from "./Measurements.jsx";
+import Effects from "./Effects.jsx";
+import TotalEffects from "./TotalEffects.jsx";
 
 const errorStyles = {
   color: 'red',
@@ -42,9 +45,7 @@ class TsunamiInsertContainer extends React.Component{
     }
   }
 
-  validateMinMax = (val, min, max) => {
-    (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
-  }
+  validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
   render(){
     const { tsunami } = this.props;
@@ -52,8 +53,10 @@ class TsunamiInsertContainer extends React.Component{
       <div className={Styles.container}>
         <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
-          <InsertTsunami validateMinMax={this.validateMinMax} />
-
+          <DateAndLocation validateMinMax={this.validateMinMax} />
+          <Measurements validateMinMax={this.validateMinMax}/>
+          <Effects validateMinMax={this.validateMinMax}/>
+          <TotalEffects validateMinMax={this.validateMinMax}/>
 
           <button type="submit" className={Styles.searchButton}>
             Submit

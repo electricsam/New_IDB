@@ -17,6 +17,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'src'),
+    historyApiFallback: {index: 'index.html'},
     compress:true,
     hotOnly:true,
     port:9000,
@@ -28,7 +29,7 @@ module.exports = {
     },
     proxy: {
       '/**': {
-        target: 'http://localhost:10088',
+        target: 'http://localhost:10088/',
         secure: false
       }
     }
