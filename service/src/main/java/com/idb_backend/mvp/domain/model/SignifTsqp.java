@@ -6,13 +6,14 @@ import com.vividsolutions.jts.io.WKTWriter;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity(name = "SIGNIF_TSQP")
 @Table(name = "SIGNIF_TSQP")
-public class SignifTsqp {
+public class SignifTsqp implements Serializable {
 
   @Id
-  private String id;
+  private Integer id;
 
   private String flagDuplicate;
   private String year;
@@ -74,11 +75,11 @@ public class SignifTsqp {
   private String previousState;
 
 
-  public String getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
