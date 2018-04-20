@@ -1,9 +1,19 @@
-package com.sample;
+package com.idb_backend.mvp.domain.model;
 
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.io.WKTWriter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity(name = "SIGNIF_TSQP")
+@Table(name = "SIGNIF_TSQP")
 public class SignifTsqp {
 
+  @Id
   private String id;
+
   private String flagDuplicate;
   private String year;
   private String month;
@@ -32,7 +42,7 @@ public class SignifTsqp {
   private java.sql.Date ngdcDate;
   private String temporalAccuracy;
   private String objectid;
-  private String shape;
+  private Geometry shape;
   private String comments;
   private String housesDestroyed;
   private String housesAmountOrder;
@@ -326,10 +336,15 @@ public class SignifTsqp {
 
 
   public String getShape() {
-    return shape;
+    if(shape == null){
+      return null;
+    }else{
+      WKTWriter w = new WKTWriter();
+      return w.write(shape);
+    }
   }
 
-  public void setShape(String shape) {
+  public void setShape(Geometry shape) {
     this.shape = shape;
   }
 

@@ -149,7 +149,6 @@ public class TsunamiEventController {
       return new ResponseEntity<>(list, HttpStatus.OK);
 
     }catch (NumberFormatException e){
-      System.out.println("************************THERE WAS A NUMBER FORMAT EXCEPTION***************************");
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 
@@ -182,7 +181,7 @@ public class TsunamiEventController {
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamirunups/{eventid}", method=RequestMethod.POST)
   public ResponseEntity postRunup(@PathVariable("eventid") Integer eventId,
-                                                @Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
+                                  @Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
     try{
       if(errors.hasErrors()){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
@@ -203,8 +202,6 @@ public class TsunamiEventController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 
     }
-
-
   }
 
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
