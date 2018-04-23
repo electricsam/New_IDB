@@ -1,12 +1,22 @@
 package com.idb_backend.mvp.domain.repository;
 
+import com.idb_backend.mvp.domain.model.QSignifTsqp;
 import com.idb_backend.mvp.domain.model.SignifTsqp;
+import com.querydsl.core.types.dsl.StringPath;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
+import org.springframework.data.querydsl.binding.QuerydslBindings;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.List;
+public interface EarthquakeRepository extends
+    JpaRepository<SignifTsqp, Integer>, QuerydslPredicateExecutor<SignifTsqp>, QuerydslBinderCustomizer<QSignifTsqp> {
+  @Override
+  default public void customize(QuerydslBindings bindings, QSignifTsqp signifTsqp) {
+    System.out.println("hello from bindings " + bindings.toString());
 
-public interface EarthquakeRepository extends JpaRepository<SignifTsqp, String> {
-
+    bindings.bind(String.class).first(
+        (StringPath path, String value) -> path.containsIgnoreCase(value));
+    bindings.bind(String.class).first(
+        (StringPath path, String value) -> path.goe(value));
+  }
 }
