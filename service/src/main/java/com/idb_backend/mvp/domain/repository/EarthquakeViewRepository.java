@@ -8,7 +8,7 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 
-public interface EarthquakeRepository extends
+public interface EarthquakeViewRepository extends
     JpaRepository<SignifVsqp, Integer>, QuerydslPredicateExecutor<SignifVsqp>, QuerydslBinderCustomizer<QSignifVsqp> {
   @Override
   default public void customize(QuerydslBindings bindings, QSignifVsqp root) {
