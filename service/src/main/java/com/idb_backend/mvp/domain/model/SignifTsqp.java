@@ -1,13 +1,18 @@
 package com.idb_backend.mvp.domain.model;
 
+import com.querydsl.core.annotations.QueryEntity;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.sql.Date;
 
+@QueryEntity
 @Entity(name = "SIGNIF_TSQP")
 @Table(name = "SIGNIF_TSQP")
 public class SignifTsqp implements Serializable {
@@ -16,64 +21,66 @@ public class SignifTsqp implements Serializable {
   private Integer id;
 
   private String flagDuplicate;
-  private String year;
-  private String month;
-  private String day;
-  private String hour;
-  private String minute;
-  private String second;
-  private String latitude;
-  private String longitude;
+  private Integer year;
+  private Integer month;
+  private Integer day;
+  private Integer hour;
+  private Integer minute;
+  private Double second;
+  private Double latitude;
+  private Double longitude;
   private String locationName;
   private String area;
   private String country;
-  private String eqDepth;
-  private String eqMagUnk;
-  private String eqMagMb;
-  private String eqMagMs;
-  private String eqMagMw;
+  private Integer eqDepth;
+  private Double eqMagUnk;
+  private Double eqMagMb;
+  private Double eqMagMs;
+  private Double eqMagMw;
   private String intensity;
-  private String damageMillionsDollars;
-  private String damageAmountOrder;
-  private String deaths;
-  private String deathsAmountOrder;
-  private String injuries;
-  private String injuriesAmountOrder;
+  private Double damageMillionsDollars;
+  private Integer damageAmountOrder;
+  private Integer deaths;
+  private Integer deathsAmountOrder;
+  private Integer injuries;
+  private Integer injuriesAmountOrder;
   private String flagTsunami;
   private java.sql.Date ngdcDate;
   private String temporalAccuracy;
-  private String objectid;
+  private BigInteger objectid;
   private Geometry shape;
   private String comments;
-  private String housesDestroyed;
-  private String housesAmountOrder;
-  private String tsuId;
+  private Integer housesDestroyed;
+  private Integer housesAmountOrder;
+
+  /*This is going to be a onetomany or manytoone relationship*/
+  private Integer tsuId;
+
   private java.sql.Date lastUpdate;
-  private String deathsTotal;
-  private String deathsAmountOrderTotal;
-  private String injuriesTotal;
-  private String injuriesAmountOrderTotal;
-  private String damageMillionsDollarsTotal;
-  private String damageAmountOrderTotal;
-  private String housesDestroyedTotal;
-  private String housesAmountOrderTotal;
-  private String missing;
-  private String missingAmountOrder;
-  private String missingTotal;
-  private String missingAmountOrderTotal;
-  private String eqMagMl;
-  private String eqMagMfa;
+  private Integer deathsTotal;
+  private Integer deathsAmountOrderTotal;
+  private Integer injuriesTotal;
+  private Integer injuriesAmountOrderTotal;
+  private Double damageMillionsDollarsTotal;
+  private Integer damageAmountOrderTotal;
+  private Integer housesDestroyedTotal;
+  private Integer housesAmountOrderTotal;
+  private Integer missing;
+  private Integer missingAmountOrder;
+  private Integer missingTotal;
+  private Integer missingAmountOrderTotal;
+  private Double eqMagMl;
+  private Double eqMagMfa;
   private String flagEpicenterChk;
   private String flagMagnitudeChk;
   private String flagEffectsChk;
-  private String regionCode;
-  private String housesDamaged;
-  private String housesDamagedTotal;
-  private String housesDamagedAmountOrder;
-  private String housesDamAmountOrderTotal;
+  private Integer regionCode;
+  private Integer housesDamaged;
+  private Integer housesDamagedTotal;
+  private Integer housesDamagedAmountOrder;
+  private Integer housesDamAmountOrderTotal;
   private String publish;
   private String previousState;
-
 
   public Integer getId() {
     return id;
@@ -83,7 +90,6 @@ public class SignifTsqp implements Serializable {
     this.id = id;
   }
 
-
   public String getFlagDuplicate() {
     return flagDuplicate;
   }
@@ -92,78 +98,69 @@ public class SignifTsqp implements Serializable {
     this.flagDuplicate = flagDuplicate;
   }
 
-
-  public String getYear() {
+  public Integer getYear() {
     return year;
   }
 
-  public void setYear(String year) {
+  public void setYear(Integer year) {
     this.year = year;
   }
 
-
-  public String getMonth() {
+  public Integer getMonth() {
     return month;
   }
 
-  public void setMonth(String month) {
+  public void setMonth(Integer month) {
     this.month = month;
   }
 
-
-  public String getDay() {
+  public Integer getDay() {
     return day;
   }
 
-  public void setDay(String day) {
+  public void setDay(Integer day) {
     this.day = day;
   }
 
-
-  public String getHour() {
+  public Integer getHour() {
     return hour;
   }
 
-  public void setHour(String hour) {
+  public void setHour(Integer hour) {
     this.hour = hour;
   }
 
-
-  public String getMinute() {
+  public Integer getMinute() {
     return minute;
   }
 
-  public void setMinute(String minute) {
+  public void setMinute(Integer minute) {
     this.minute = minute;
   }
 
-
-  public String getSecond() {
+  public Double getSecond() {
     return second;
   }
 
-  public void setSecond(String second) {
+  public void setSecond(Double second) {
     this.second = second;
   }
 
-
-  public String getLatitude() {
+  public Double getLatitude() {
     return latitude;
   }
 
-  public void setLatitude(String latitude) {
+  public void setLatitude(Double latitude) {
     this.latitude = latitude;
   }
 
-
-  public String getLongitude() {
+  public Double getLongitude() {
     return longitude;
   }
 
-  public void setLongitude(String longitude) {
+  public void setLongitude(Double longitude) {
     this.longitude = longitude;
   }
-
 
   public String getLocationName() {
     return locationName;
@@ -173,7 +170,6 @@ public class SignifTsqp implements Serializable {
     this.locationName = locationName;
   }
 
-
   public String getArea() {
     return area;
   }
@@ -181,7 +177,6 @@ public class SignifTsqp implements Serializable {
   public void setArea(String area) {
     this.area = area;
   }
-
 
   public String getCountry() {
     return country;
@@ -191,51 +186,45 @@ public class SignifTsqp implements Serializable {
     this.country = country;
   }
 
-
-  public String getEqDepth() {
+  public Integer getEqDepth() {
     return eqDepth;
   }
 
-  public void setEqDepth(String eqDepth) {
+  public void setEqDepth(Integer eqDepth) {
     this.eqDepth = eqDepth;
   }
 
-
-  public String getEqMagUnk() {
+  public Double getEqMagUnk() {
     return eqMagUnk;
   }
 
-  public void setEqMagUnk(String eqMagUnk) {
+  public void setEqMagUnk(Double eqMagUnk) {
     this.eqMagUnk = eqMagUnk;
   }
 
-
-  public String getEqMagMb() {
+  public Double getEqMagMb() {
     return eqMagMb;
   }
 
-  public void setEqMagMb(String eqMagMb) {
+  public void setEqMagMb(Double eqMagMb) {
     this.eqMagMb = eqMagMb;
   }
 
-
-  public String getEqMagMs() {
+  public Double getEqMagMs() {
     return eqMagMs;
   }
 
-  public void setEqMagMs(String eqMagMs) {
+  public void setEqMagMs(Double eqMagMs) {
     this.eqMagMs = eqMagMs;
   }
 
-
-  public String getEqMagMw() {
+  public Double getEqMagMw() {
     return eqMagMw;
   }
 
-  public void setEqMagMw(String eqMagMw) {
+  public void setEqMagMw(Double eqMagMw) {
     this.eqMagMw = eqMagMw;
   }
-
 
   public String getIntensity() {
     return intensity;
@@ -245,60 +234,53 @@ public class SignifTsqp implements Serializable {
     this.intensity = intensity;
   }
 
-
-  public String getDamageMillionsDollars() {
+  public Double getDamageMillionsDollars() {
     return damageMillionsDollars;
   }
 
-  public void setDamageMillionsDollars(String damageMillionsDollars) {
+  public void setDamageMillionsDollars(Double damageMillionsDollars) {
     this.damageMillionsDollars = damageMillionsDollars;
   }
 
-
-  public String getDamageAmountOrder() {
+  public Integer getDamageAmountOrder() {
     return damageAmountOrder;
   }
 
-  public void setDamageAmountOrder(String damageAmountOrder) {
+  public void setDamageAmountOrder(Integer damageAmountOrder) {
     this.damageAmountOrder = damageAmountOrder;
   }
 
-
-  public String getDeaths() {
+  public Integer getDeaths() {
     return deaths;
   }
 
-  public void setDeaths(String deaths) {
+  public void setDeaths(Integer deaths) {
     this.deaths = deaths;
   }
 
-
-  public String getDeathsAmountOrder() {
+  public Integer getDeathsAmountOrder() {
     return deathsAmountOrder;
   }
 
-  public void setDeathsAmountOrder(String deathsAmountOrder) {
+  public void setDeathsAmountOrder(Integer deathsAmountOrder) {
     this.deathsAmountOrder = deathsAmountOrder;
   }
 
-
-  public String getInjuries() {
+  public Integer getInjuries() {
     return injuries;
   }
 
-  public void setInjuries(String injuries) {
+  public void setInjuries(Integer injuries) {
     this.injuries = injuries;
   }
 
-
-  public String getInjuriesAmountOrder() {
+  public Integer getInjuriesAmountOrder() {
     return injuriesAmountOrder;
   }
 
-  public void setInjuriesAmountOrder(String injuriesAmountOrder) {
+  public void setInjuriesAmountOrder(Integer injuriesAmountOrder) {
     this.injuriesAmountOrder = injuriesAmountOrder;
   }
-
 
   public String getFlagTsunami() {
     return flagTsunami;
@@ -308,15 +290,13 @@ public class SignifTsqp implements Serializable {
     this.flagTsunami = flagTsunami;
   }
 
-
-  public java.sql.Date getNgdcDate() {
+  public Date getNgdcDate() {
     return ngdcDate;
   }
 
-  public void setNgdcDate(java.sql.Date ngdcDate) {
+  public void setNgdcDate(Date ngdcDate) {
     this.ngdcDate = ngdcDate;
   }
-
 
   public String getTemporalAccuracy() {
     return temporalAccuracy;
@@ -326,29 +306,21 @@ public class SignifTsqp implements Serializable {
     this.temporalAccuracy = temporalAccuracy;
   }
 
-
-  public String getObjectid() {
+  public BigInteger getObjectid() {
     return objectid;
   }
 
-  public void setObjectid(String objectid) {
+  public void setObjectid(BigInteger objectid) {
     this.objectid = objectid;
   }
 
-
-  public String getShape() {
-    if(shape == null){
-      return null;
-    }else{
-      WKTWriter w = new WKTWriter();
-      return w.write(shape);
-    }
+  public Geometry getShape() {
+    return shape;
   }
 
   public void setShape(Geometry shape) {
     this.shape = shape;
   }
-
 
   public String getComments() {
     return comments;
@@ -358,168 +330,149 @@ public class SignifTsqp implements Serializable {
     this.comments = comments;
   }
 
-
-  public String getHousesDestroyed() {
+  public Integer getHousesDestroyed() {
     return housesDestroyed;
   }
 
-  public void setHousesDestroyed(String housesDestroyed) {
+  public void setHousesDestroyed(Integer housesDestroyed) {
     this.housesDestroyed = housesDestroyed;
   }
 
-
-  public String getHousesAmountOrder() {
+  public Integer getHousesAmountOrder() {
     return housesAmountOrder;
   }
 
-  public void setHousesAmountOrder(String housesAmountOrder) {
+  public void setHousesAmountOrder(Integer housesAmountOrder) {
     this.housesAmountOrder = housesAmountOrder;
   }
 
-
-  public String getTsuId() {
+  public Integer getTsuId() {
     return tsuId;
   }
 
-  public void setTsuId(String tsuId) {
+  public void setTsuId(Integer tsuId) {
     this.tsuId = tsuId;
   }
 
-
-  public java.sql.Date getLastUpdate() {
+  public Date getLastUpdate() {
     return lastUpdate;
   }
 
-  public void setLastUpdate(java.sql.Date lastUpdate) {
+  public void setLastUpdate(Date lastUpdate) {
     this.lastUpdate = lastUpdate;
   }
 
-
-  public String getDeathsTotal() {
+  public Integer getDeathsTotal() {
     return deathsTotal;
   }
 
-  public void setDeathsTotal(String deathsTotal) {
+  public void setDeathsTotal(Integer deathsTotal) {
     this.deathsTotal = deathsTotal;
   }
 
-
-  public String getDeathsAmountOrderTotal() {
+  public Integer getDeathsAmountOrderTotal() {
     return deathsAmountOrderTotal;
   }
 
-  public void setDeathsAmountOrderTotal(String deathsAmountOrderTotal) {
+  public void setDeathsAmountOrderTotal(Integer deathsAmountOrderTotal) {
     this.deathsAmountOrderTotal = deathsAmountOrderTotal;
   }
 
-
-  public String getInjuriesTotal() {
+  public Integer getInjuriesTotal() {
     return injuriesTotal;
   }
 
-  public void setInjuriesTotal(String injuriesTotal) {
+  public void setInjuriesTotal(Integer injuriesTotal) {
     this.injuriesTotal = injuriesTotal;
   }
 
-
-  public String getInjuriesAmountOrderTotal() {
+  public Integer getInjuriesAmountOrderTotal() {
     return injuriesAmountOrderTotal;
   }
 
-  public void setInjuriesAmountOrderTotal(String injuriesAmountOrderTotal) {
+  public void setInjuriesAmountOrderTotal(Integer injuriesAmountOrderTotal) {
     this.injuriesAmountOrderTotal = injuriesAmountOrderTotal;
   }
 
-
-  public String getDamageMillionsDollarsTotal() {
+  public Double getDamageMillionsDollarsTotal() {
     return damageMillionsDollarsTotal;
   }
 
-  public void setDamageMillionsDollarsTotal(String damageMillionsDollarsTotal) {
+  public void setDamageMillionsDollarsTotal(Double damageMillionsDollarsTotal) {
     this.damageMillionsDollarsTotal = damageMillionsDollarsTotal;
   }
 
-
-  public String getDamageAmountOrderTotal() {
+  public Integer getDamageAmountOrderTotal() {
     return damageAmountOrderTotal;
   }
 
-  public void setDamageAmountOrderTotal(String damageAmountOrderTotal) {
+  public void setDamageAmountOrderTotal(Integer damageAmountOrderTotal) {
     this.damageAmountOrderTotal = damageAmountOrderTotal;
   }
 
-
-  public String getHousesDestroyedTotal() {
+  public Integer getHousesDestroyedTotal() {
     return housesDestroyedTotal;
   }
 
-  public void setHousesDestroyedTotal(String housesDestroyedTotal) {
+  public void setHousesDestroyedTotal(Integer housesDestroyedTotal) {
     this.housesDestroyedTotal = housesDestroyedTotal;
   }
 
-
-  public String getHousesAmountOrderTotal() {
+  public Integer getHousesAmountOrderTotal() {
     return housesAmountOrderTotal;
   }
 
-  public void setHousesAmountOrderTotal(String housesAmountOrderTotal) {
+  public void setHousesAmountOrderTotal(Integer housesAmountOrderTotal) {
     this.housesAmountOrderTotal = housesAmountOrderTotal;
   }
 
-
-  public String getMissing() {
+  public Integer getMissing() {
     return missing;
   }
 
-  public void setMissing(String missing) {
+  public void setMissing(Integer missing) {
     this.missing = missing;
   }
 
-
-  public String getMissingAmountOrder() {
+  public Integer getMissingAmountOrder() {
     return missingAmountOrder;
   }
 
-  public void setMissingAmountOrder(String missingAmountOrder) {
+  public void setMissingAmountOrder(Integer missingAmountOrder) {
     this.missingAmountOrder = missingAmountOrder;
   }
 
-
-  public String getMissingTotal() {
+  public Integer getMissingTotal() {
     return missingTotal;
   }
 
-  public void setMissingTotal(String missingTotal) {
+  public void setMissingTotal(Integer missingTotal) {
     this.missingTotal = missingTotal;
   }
 
-
-  public String getMissingAmountOrderTotal() {
+  public Integer getMissingAmountOrderTotal() {
     return missingAmountOrderTotal;
   }
 
-  public void setMissingAmountOrderTotal(String missingAmountOrderTotal) {
+  public void setMissingAmountOrderTotal(Integer missingAmountOrderTotal) {
     this.missingAmountOrderTotal = missingAmountOrderTotal;
   }
 
-
-  public String getEqMagMl() {
+  public Double getEqMagMl() {
     return eqMagMl;
   }
 
-  public void setEqMagMl(String eqMagMl) {
+  public void setEqMagMl(Double eqMagMl) {
     this.eqMagMl = eqMagMl;
   }
 
-
-  public String getEqMagMfa() {
+  public Double getEqMagMfa() {
     return eqMagMfa;
   }
 
-  public void setEqMagMfa(String eqMagMfa) {
+  public void setEqMagMfa(Double eqMagMfa) {
     this.eqMagMfa = eqMagMfa;
   }
-
 
   public String getFlagEpicenterChk() {
     return flagEpicenterChk;
@@ -529,7 +482,6 @@ public class SignifTsqp implements Serializable {
     this.flagEpicenterChk = flagEpicenterChk;
   }
 
-
   public String getFlagMagnitudeChk() {
     return flagMagnitudeChk;
   }
@@ -537,7 +489,6 @@ public class SignifTsqp implements Serializable {
   public void setFlagMagnitudeChk(String flagMagnitudeChk) {
     this.flagMagnitudeChk = flagMagnitudeChk;
   }
-
 
   public String getFlagEffectsChk() {
     return flagEffectsChk;
@@ -547,51 +498,45 @@ public class SignifTsqp implements Serializable {
     this.flagEffectsChk = flagEffectsChk;
   }
 
-
-  public String getRegionCode() {
+  public Integer getRegionCode() {
     return regionCode;
   }
 
-  public void setRegionCode(String regionCode) {
+  public void setRegionCode(Integer regionCode) {
     this.regionCode = regionCode;
   }
 
-
-  public String getHousesDamaged() {
+  public Integer getHousesDamaged() {
     return housesDamaged;
   }
 
-  public void setHousesDamaged(String housesDamaged) {
+  public void setHousesDamaged(Integer housesDamaged) {
     this.housesDamaged = housesDamaged;
   }
 
-
-  public String getHousesDamagedTotal() {
+  public Integer getHousesDamagedTotal() {
     return housesDamagedTotal;
   }
 
-  public void setHousesDamagedTotal(String housesDamagedTotal) {
+  public void setHousesDamagedTotal(Integer housesDamagedTotal) {
     this.housesDamagedTotal = housesDamagedTotal;
   }
 
-
-  public String getHousesDamagedAmountOrder() {
+  public Integer getHousesDamagedAmountOrder() {
     return housesDamagedAmountOrder;
   }
 
-  public void setHousesDamagedAmountOrder(String housesDamagedAmountOrder) {
+  public void setHousesDamagedAmountOrder(Integer housesDamagedAmountOrder) {
     this.housesDamagedAmountOrder = housesDamagedAmountOrder;
   }
 
-
-  public String getHousesDamAmountOrderTotal() {
+  public Integer getHousesDamAmountOrderTotal() {
     return housesDamAmountOrderTotal;
   }
 
-  public void setHousesDamAmountOrderTotal(String housesDamAmountOrderTotal) {
+  public void setHousesDamAmountOrderTotal(Integer housesDamAmountOrderTotal) {
     this.housesDamAmountOrderTotal = housesDamAmountOrderTotal;
   }
-
 
   public String getPublish() {
     return publish;
@@ -601,7 +546,6 @@ public class SignifTsqp implements Serializable {
     this.publish = publish;
   }
 
-
   public String getPreviousState() {
     return previousState;
   }
@@ -609,5 +553,4 @@ public class SignifTsqp implements Serializable {
   public void setPreviousState(String previousState) {
     this.previousState = previousState;
   }
-
 }

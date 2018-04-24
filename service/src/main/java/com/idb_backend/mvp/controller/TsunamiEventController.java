@@ -94,7 +94,7 @@ public class TsunamiEventController {
   @CrossOrigin(origins = {"http://localhost:8181", "http://localhost:9000"})
   @RequestMapping(value = "/tsunamievents/{id}", method = RequestMethod.PATCH)
   public ResponseEntity patchEvent( @PathVariable("id") Integer id,
-                                                  @Valid @RequestBody TsunamiEvent tsunamiEvent, Errors errors){
+                                    @Valid @RequestBody TsunamiEvent tsunamiEvent, Errors errors){
     try{
       if(errors.hasErrors()){
 
