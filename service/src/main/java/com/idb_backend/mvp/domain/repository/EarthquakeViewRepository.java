@@ -2,6 +2,7 @@ package com.idb_backend.mvp.domain.repository;
 
 import com.idb_backend.mvp.domain.model.QSignifVsqp;
 import com.idb_backend.mvp.domain.model.SignifVsqp;
+import com.querydsl.core.types.dsl.Expressions;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -64,16 +65,16 @@ public interface EarthquakeViewRepository extends
 
     bindings.bind(root.maxDeathsAmountOrderTotal).first((path, value) -> root.deathsAmountOrderTotal.loe(value));
 
-//    bindings.bind(root.locStart).first((path, value) -> {
-//      return root.locationName.like(value.toUpperCase().concat("%"));
-//    });
-//
-//    bindings.bind(root.locEnd).first((path, value) -> {
-//      return root.locationName.like(Expressions.asString("%").concat(value.toUpperCase()));
-//    });
-//
-//    bindings.bind(root.locMatch).first((path, value) -> {
-//      return root.locationName.eq(value.toUpperCase());
-//    });
+    bindings.bind(root.locStart).first((path, value) -> root.locationName.startsWithIgnoreCase(value));
+
+    bindings.bind(root.locEnd).first((path, value) -> root.locationName.endsWithIgnoreCase(value));
+
+    bindings.bind(root.locMatch).first((path, value) -> root.locationName.equalsIgnoreCase(value));
+
+    bindings.bind(root.locIncludes).first((path, value) -> root.locationName.containsIgnoreCase(value));
+
+    bindings.bind(root.locNot).first((path, value) -> {
+      return root.locationName.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
+    });
   }
 }
