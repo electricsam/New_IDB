@@ -1,4 +1,4 @@
-package com.idb_backend.mvp.domain.repository.impl;
+package com.idb_backend.mvp.domain.repository;
 
 import com.idb_backend.mvp.domain.model.QSignifTsqp;
 import com.idb_backend.mvp.domain.model.SignifTsqp;
@@ -14,5 +14,4 @@ public interface EarthquakeRepository extends JpaRepository<SignifTsqp, Integer>
   default public void customize(QuerydslBindings bindings, QSignifTsqp root){
     bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));
   }
-
 }

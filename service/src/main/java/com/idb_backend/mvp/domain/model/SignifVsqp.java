@@ -13,8 +13,8 @@ import java.math.BigInteger;
 import java.sql.Date;
 
 @QueryEntity
-@Entity
-@Table
+@Entity(name = "SIGNIF_VSQP")
+@Table(name = "SIGNIF_VSQP")
 public class SignifVsqp implements Serializable{
 
   @Id
@@ -52,6 +52,22 @@ public class SignifVsqp implements Serializable{
   private Double maxLongitude;
 
   private String locationName;
+
+  @Transient
+  private String locStart;
+
+  @Transient
+  private String locEnd;
+
+  @Transient
+  private String locIncludes;
+
+  @Transient
+  private String locMatch;
+
+  @Transient
+  private String locNot;
+
   private String area;
   private String country;
   private Integer regionCode;
@@ -170,6 +186,46 @@ public class SignifVsqp implements Serializable{
   private Integer housesDamagedTotal;
   private Integer housesDamagedAmountOrder;
   private Integer housesDamAmountOrderTotal;
+
+  public String getLocStart() {
+    return locStart;
+  }
+
+  public void setLocStart(String locStart) {
+    this.locStart = locStart;
+  }
+
+  public String getLocEnd() {
+    return locEnd;
+  }
+
+  public void setLocEnd(String locEnd) {
+    this.locEnd = locEnd;
+  }
+
+  public String getLocIncludes() {
+    return locIncludes;
+  }
+
+  public void setLocIncludes(String locIncludes) {
+    this.locIncludes = locIncludes;
+  }
+
+  public String getLocmatch() {
+    return locMatch;
+  }
+
+  public void setLocmatch(String locmatch) {
+    this.locMatch = locmatch;
+  }
+
+  public String getLocNot() {
+    return locNot;
+  }
+
+  public void setLocNot(String locNot) {
+    this.locNot = locNot;
+  }
 
   public Double getMinLatitude() {
     return minLatitude;

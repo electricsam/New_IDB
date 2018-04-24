@@ -3,8 +3,8 @@ package com.idb_backend.mvp.controller;
 import com.idb_backend.mvp.domain.model.QSignifVsqp;
 import com.idb_backend.mvp.domain.model.SignifTsqp;
 import com.idb_backend.mvp.domain.model.SignifVsqp;
+import com.idb_backend.mvp.domain.repository.EarthquakeRepository;
 import com.idb_backend.mvp.domain.repository.EarthquakeViewRepository;
-import com.idb_backend.mvp.domain.repository.impl.EarthquakeRepository;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,7 @@ public class EarthquakeController {
 
   @RequestMapping(value = "/earthquakes", method= RequestMethod.GET)
   @ResponseBody
-  public Iterable<SignifVsqp> getAllEarthquakes(@RequestParam final MultiValueMap<String, String> map,
-                                                @QuerydslPredicate(root = SignifTsqp.class) Predicate predicate){
+  public Iterable<SignifVsqp> getAllEarthquakes(@QuerydslPredicate(root = SignifVsqp.class) Predicate predicate){
     Iterable<SignifVsqp> result = earthquakeViewRepository.findAll(predicate);
     return result;
   }
@@ -69,7 +68,5 @@ public class EarthquakeController {
   public void deleteEarthquake(@PathVariable("id") Integer id){
     earthquakeRepository.deleteById(id);
   }
-
-
 
 }
