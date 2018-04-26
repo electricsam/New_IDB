@@ -1,5 +1,6 @@
 package com.idb_backend.mvp.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.idb_backend.mvp.domain.annotations.In;
 import com.idb_backend.mvp.domain.annotations.InString;
 import com.idb_backend.mvp.service.Constants;
@@ -329,7 +330,6 @@ public class TsunamiEvent implements Serializable {
 //  @OneToMany( mappedBy = "tsEventId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //  private Set<TsunamiRefs> tsunamiRefs = new HashSet<>();
 
-
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
       name = "TSEVENT_REFS",
@@ -337,6 +337,10 @@ public class TsunamiEvent implements Serializable {
       inverseJoinColumns = {@JoinColumn(name= "TSREF_ID")}
   )
   Set<Reference> references = new HashSet<>();
+
+  @OneToMany(mappedBy = "tsunamiEvent", fetch = FetchType.EAGER)
+  @JsonManagedReference
+  private Set<SignifToTsEvent> signifToTsEvents = new HashSet<>();
 
   public Integer getId() {
     return id;

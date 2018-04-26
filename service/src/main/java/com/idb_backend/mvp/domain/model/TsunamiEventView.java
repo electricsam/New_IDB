@@ -15,7 +15,6 @@ import java.util.List;
 public class TsunamiEventView implements Serializable{
   private static final long serialVersionUID = 3678107792576131001L;
 
-
   @Id
   @Column(name = "ID", nullable = false)
   private int id;
@@ -285,7 +284,6 @@ public class TsunamiEventView implements Serializable{
   public void setDay(Integer day) {
     this.day = day;
   }
-
 
   public Float getLatitude() {
     return latitude;

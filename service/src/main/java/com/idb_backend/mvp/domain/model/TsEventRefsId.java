@@ -4,13 +4,11 @@ import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
-
 @Embeddable
 public class TsEventRefsId implements Serializable {
 
   private TsunamiEvent tsunamiEvent;
   private Reference reference;
-
 
   @ManyToOne
   public TsunamiEvent getTsunamiEvent(){
@@ -20,7 +18,6 @@ public class TsEventRefsId implements Serializable {
   public void setTsunamiEvent(TsunamiEvent tsunamiEvent){
     this.tsunamiEvent = tsunamiEvent;
   }
-
 
   @ManyToOne
   public Reference getReference(){
@@ -38,8 +35,7 @@ public class TsEventRefsId implements Serializable {
     TsEventRefsId that = (TsEventRefsId) o;
 
     if (tsunamiEvent != null ? !tsunamiEvent.equals(that.tsunamiEvent) : that.tsunamiEvent != null) return false;
-    if (reference != null ? !reference.equals(that.reference) : that.reference != null)
-      return false;
+    if (reference != null ? !reference.equals(that.reference) : that.reference != null) return false;
 
     return true;
   }

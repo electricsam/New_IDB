@@ -8,6 +8,7 @@ import com.idb_backend.mvp.domain.repository.EarthquakeViewRepository;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,17 @@ public class EarthquakeController {
   @RequestMapping(value = "/earthquakes", method= RequestMethod.GET)
   @ResponseBody
   public Iterable<SignifVsqp> getAllEarthquakes(@QuerydslPredicate(root = SignifVsqp.class) Predicate predicate){
+
     Iterable<SignifVsqp> result = earthquakeViewRepository.findAll(predicate);
+    return result;
+  }
+
+//This is will be for immediate removal
+  @RequestMapping(value = "/earthquakes/tsqp", method= RequestMethod.GET)
+  @ResponseBody
+  public Iterable<SignifTsqp> getAllEarthquakesTsqp(@QuerydslPredicate(root = SignifTsqp.class) Predicate predicate){
+
+    Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate);
     return result;
   }
 

@@ -26,7 +26,6 @@ public class TsunamiRefs {
   @Column(name = "PREVIOUS_STATE")
   private String previousState;
 
-
   public TsunamiEvent getTsEventId() {
     return tsEventId;
   }
