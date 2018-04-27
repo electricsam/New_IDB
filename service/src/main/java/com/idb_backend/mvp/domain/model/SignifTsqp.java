@@ -84,7 +84,7 @@ public class SignifTsqp implements Serializable {
   private String previousState;
 
   @OneToMany(mappedBy = "signifTsqp", fetch = FetchType.EAGER)
-  @JsonManagedReference
+//  @JsonManagedReference
   private Set<SignifToTsEvent> signifToTsEvents = new HashSet<>();
 
 

@@ -340,7 +340,7 @@ public class TsunamiEvent implements Serializable {
   Set<Reference> references = new HashSet<>();
 
   @OneToMany(mappedBy = "tsunamiEvent", fetch = FetchType.EAGER)
-  @JsonManagedReference
+//  @JsonManagedReference
   private Set<SignifToTsEvent> signifToTsEvents = new HashSet<>();
 
   public Integer getId() {

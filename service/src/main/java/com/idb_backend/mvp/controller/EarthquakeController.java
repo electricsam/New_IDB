@@ -1,22 +1,17 @@
 package com.idb_backend.mvp.controller;
 
-import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
+import com.idb_backend.mvp.domain.model.QSignifTsqp;
 import com.idb_backend.mvp.domain.model.QSignifVsqp;
 import com.idb_backend.mvp.domain.model.SignifTsqp;
 import com.idb_backend.mvp.domain.model.SignifVsqp;
-import com.idb_backend.mvp.domain.model.TsunamiEvent;
 import com.idb_backend.mvp.domain.repository.EarthquakeRepository;
 import com.idb_backend.mvp.domain.repository.EarthquakeViewRepository;
-import com.idb_backend.mvp.domain.repository.impl.EarthquakeRepositoryImpl;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
-import org.hibernate.boot.jaxb.hbm.internal.CacheAccessTypeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -50,20 +45,22 @@ public class EarthquakeController {
 
   @RequestMapping(value = "/earthquakes", method= RequestMethod.GET)
   @ResponseBody
-  public ResponseEntity getAllEarthquakes(@RequestParam Map<String, String> params, @QuerydslPredicate(root = SignifVsqp.class) Predicate predicate){
+  public ResponseEntity getAllEarthquakes(@RequestParam Map<String, String> params,
+                                          @QuerydslPredicate(root = SignifVsqp.class) Predicate predicate){
     try{
-      if(params.get("tsunamiid") != ""){
+      if(params.get("tsunamiid") != "" && params.get("tsunamiid") != null){
         Iterable<SignifVsqp> result = earthquakeRepository
             .findRelatedEarthquake(Integer.parseInt(params.get("tsunamiid")));
+        System.out.println("you are passed the eq repo");
         return ResponseEntity.status(HttpStatus.OK).body(result);
       }else{
         Iterable<SignifVsqp> result = earthquakeViewRepository.findAll(predicate);
         return ResponseEntity.status(HttpStatus.OK).body(result);
       }
     }catch (NumberFormatException e){
+      System.out.println("you are in the badrequest section ");
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
-
   }
 
 //This is will be for immediate removal
@@ -107,23 +104,19 @@ public class EarthquakeController {
 
   @RequestMapping(value = "/earthquakes", method= RequestMethod.POST)
   @ResponseBody
-  public ResponseEntity postEarthquake(@RequestBody SignifTsqp signifTsqp){
-    try{
-      Predicate predicate = QSignifVsqp.signifVsqp.id.gt(10000);
-      OrderSpecifier orderSpecifier = QSignifVsqp.signifVsqp.id.desc();
+  public Optional<SignifTsqp> postEarthquake(@RequestBody SignifTsqp signifTsqp){
+
+      Predicate predicate = QSignifTsqp.signifTsqp.id.gt(10000);
+      OrderSpecifier orderSpecifier = QSignifTsqp.signifTsqp.id.desc();
+
       Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate, orderSpecifier);
-
-
       Integer id = result.iterator().next().getId() + 1;
       signifTsqp.setId(id);
-
       earthquakeRepository.save(signifTsqp);
-      Optional<SignifTsqp> posted = earthquakeRepository.findById(id);
 
-      return ResponseEntity.status(HttpStatus.OK).body(posted);
-    }catch (Exception e){
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-    }
+      Optional<SignifTsqp> posted = earthquakeRepository.findById(id);
+      return posted;
+
   }
 
   @RequestMapping(value = "/earthquakes/{id}", method = RequestMethod.DELETE)
