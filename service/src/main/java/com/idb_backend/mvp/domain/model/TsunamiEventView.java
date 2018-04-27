@@ -1,14 +1,13 @@
 package com.idb_backend.mvp.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
 import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity(name = "TSEVENT_VSQP")
 @Immutable
@@ -252,6 +251,8 @@ public class TsunamiEventView implements Serializable{
 
   @OneToMany( mappedBy = "tsunamiEventView", cascade = CascadeType.ALL)
   private List<TsunamiRunupView> tsunamiRunupViews = new ArrayList<>();
+
+
 
   public int getId() {
     return id;

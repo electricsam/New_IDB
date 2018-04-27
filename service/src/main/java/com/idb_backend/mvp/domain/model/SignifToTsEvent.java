@@ -21,7 +21,6 @@ public class SignifToTsEvent {
   @JoinColumn(name = "TSU_ID", insertable = false, updatable = false)
   public TsunamiEvent tsunamiEvent;
 
-
 //  @JsonIgnore
   @JsonBackReference
   public SignifTsqp getSignifTsqp() {

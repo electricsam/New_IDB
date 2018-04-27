@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.idb_backend.mvp.domain.annotations.In;
 import com.idb_backend.mvp.domain.annotations.InString;
 import com.idb_backend.mvp.service.Constants;
+import com.querydsl.core.annotations.QueryEntity;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
 import org.hibernate.annotations.DynamicUpdate;
@@ -14,7 +15,7 @@ import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
-
+@QueryEntity
 @Entity(name = "TSEVENT_TSQP")
 @DynamicUpdate(value = true)
 @Table(name = "TSEVENT_TSQP")

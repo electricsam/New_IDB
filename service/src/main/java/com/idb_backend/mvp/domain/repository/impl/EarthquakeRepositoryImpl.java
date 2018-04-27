@@ -1,19 +1,35 @@
-//package com.idb_backend.mvp.domain.repository.impl;
-//
-//import com.idb_backend.mvp.domain.model.SignifTsqp;
-//import com.idb_backend.mvp.domain.repository.EarthquakeRepository;
-//import org.springframework.data.jpa.repository.JpaRepository;
-//import org.springframework.data.jpa.repository.support.JpaEntityInformation;
-//import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-//
-//import javax.persistence.EntityManager;
-//
-//public class EarthquakeRepositoryImpl extends SimpleJpaRepository<SignifTsqp, Integer>
-//    implements EarthquakeRepository<SignifTsqp, Integer> {
-//
-//  public EarthquakeRepositoryImpl(JpaEntityInformation<SignifTsqp, Integer> entityInformation,
-//                                  EntityManager entityManager) {
-//        super(entityInformation, entityManager);
-//        this.entityManager = entityManager;
-//    }
-//}
+package com.idb_backend.mvp.domain.repository.impl;
+
+import com.idb_backend.mvp.domain.model.*;
+import com.idb_backend.mvp.domain.repository.EarthquakeCustomRepository;
+import com.querydsl.jpa.impl.JPAQuery;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+public class EarthquakeRepositoryImpl extends QuerydslRepositorySupport implements EarthquakeCustomRepository{
+
+  public EarthquakeRepositoryImpl(){
+    super(SignifTsqp.class);
+  }
+
+  @PersistenceContext
+  EntityManager entityManager;
+
+  @Override
+  public Iterable<SignifVsqp> findRelatedEarthquake(Integer tsunamiId){
+    JPAQuery<SignifVsqp> query = new JPAQuery<>(entityManager);
+    QSignifVsqp eq = QSignifVsqp.signifVsqp;
+    QSignifToTsEvent ste = QSignifToTsEvent.signifToTsEvent;
+    QTsunamiEvent tse = QTsunamiEvent.tsunamiEvent;
+    return query.select(eq)
+        .from(ste)
+        .innerJoin(eq)
+        .on(eq.id.eq(ste.signifTsqp.id))
+        .innerJoin(tse)
+        .on(tse.id.eq(ste.tsunamiEvent.id))
+        .where(tse.id.eq(tsunamiId))
+        .fetch();
+  }
+}
