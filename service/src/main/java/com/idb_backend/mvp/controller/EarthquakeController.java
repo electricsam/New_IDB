@@ -1,13 +1,13 @@
 package com.idb_backend.mvp.controller;
 
 import com.idb_backend.mvp.domain.model.QSignifTsqp;
-import com.idb_backend.mvp.domain.model.QSignifVsqp;
 import com.idb_backend.mvp.domain.model.SignifTsqp;
 import com.idb_backend.mvp.domain.model.SignifVsqp;
 import com.idb_backend.mvp.domain.repository.EarthquakeRepository;
 import com.idb_backend.mvp.domain.repository.EarthquakeViewRepository;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
+import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,6 @@ public class EarthquakeController {
   @Autowired
   EarthquakeRepository earthquakeRepository;
 
-
   /*
   * This is a test controller method that will assess the viablility of a custom implementation
   * */
@@ -39,8 +38,6 @@ public class EarthquakeController {
     }catch (Exception e){
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
-
-
   }
 
   @RequestMapping(value = "/earthquakes", method= RequestMethod.GET)
@@ -104,18 +101,21 @@ public class EarthquakeController {
 
   @RequestMapping(value = "/earthquakes", method= RequestMethod.POST)
   @ResponseBody
-  public Optional<SignifTsqp> postEarthquake(@RequestBody SignifTsqp signifTsqp){
+  public ResponseEntity postEarthquake(@RequestBody SignifTsqp signifTsqp){
+      try{
+        Predicate predicate = QSignifTsqp.signifTsqp.id.gt(10000);
+        OrderSpecifier orderSpecifier = QSignifTsqp.signifTsqp.id.desc();
 
-      Predicate predicate = QSignifTsqp.signifTsqp.id.gt(10000);
-      OrderSpecifier orderSpecifier = QSignifTsqp.signifTsqp.id.desc();
+        Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate, orderSpecifier);
+        Integer id = result.iterator().next().getId() + 1;
+        signifTsqp.setId(id);
+        earthquakeRepository.save(signifTsqp);
 
-      Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate, orderSpecifier);
-      Integer id = result.iterator().next().getId() + 1;
-      signifTsqp.setId(id);
-      earthquakeRepository.save(signifTsqp);
-
-      Optional<SignifTsqp> posted = earthquakeRepository.findById(id);
-      return posted;
+        Optional<SignifTsqp> posted = earthquakeRepository.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(posted);
+      }catch (Exception e){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+      }
 
   }
 
