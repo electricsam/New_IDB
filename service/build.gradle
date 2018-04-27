@@ -53,10 +53,10 @@ dependencies {
     compileOnly "com.querydsl:querydsl-apt:4.2.1"
     compile 'org.springframework.data:spring-data-rest-webmvc:3.0.5.RELEASE'
 	compile 'org.springframework.boot:spring-boot-starter-test'
-    compile "org.springframework.boot:spring-boot-starter-security"
+//    compile "org.springframework.boot:spring-boot-starter-security"
     compile "org.springframework.boot:spring-boot-configuration-processor"
 	compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
-	compile "org.flywaydb:flyway-core:5.0.7"
+//	compile "org.flywaydb:flyway-core:5.0.7"
 	compile group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.9.Final'
     compile group: 'org.hibernate', name: 'hibernate-spatial', version: '5.2.13.Final'
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'

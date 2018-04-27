@@ -7,7 +7,6 @@ import com.idb_backend.mvp.domain.repository.EarthquakeRepository;
 import com.idb_backend.mvp.domain.repository.EarthquakeViewRepository;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
-import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
@@ -44,6 +43,8 @@ public class EarthquakeController {
   @ResponseBody
   public ResponseEntity getAllEarthquakes(@RequestParam Map<String, String> params,
                                           @QuerydslPredicate(root = SignifVsqp.class) Predicate predicate){
+
+//    return ResponseEntity.status(HttpStatus.OK).body(null);
     try{
       if(params.get("tsunamiid") != "" && params.get("tsunamiid") != null){
         Iterable<SignifVsqp> result = earthquakeRepository
@@ -51,6 +52,7 @@ public class EarthquakeController {
         System.out.println("you are passed the eq repo");
         return ResponseEntity.status(HttpStatus.OK).body(result);
       }else{
+        System.out.println("you are inside of the else statement");
         Iterable<SignifVsqp> result = earthquakeViewRepository.findAll(predicate);
         return ResponseEntity.status(HttpStatus.OK).body(result);
       }
@@ -108,6 +110,7 @@ public class EarthquakeController {
 
         Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate, orderSpecifier);
         Integer id = result.iterator().next().getId() + 1;
+        System.out.println("This is the old way " + id);
         signifTsqp.setId(id);
         earthquakeRepository.save(signifTsqp);
 
@@ -116,7 +119,6 @@ public class EarthquakeController {
       }catch (Exception e){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
       }
-
   }
 
   @RequestMapping(value = "/earthquakes/{id}", method = RequestMethod.DELETE)
@@ -128,5 +130,4 @@ public class EarthquakeController {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
   }
-
 }

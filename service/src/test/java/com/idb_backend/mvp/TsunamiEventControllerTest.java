@@ -56,7 +56,7 @@ public class TsunamiEventControllerTest {
 
     given(tsunamiEventRepository.getAllTsunamiEvents()).willReturn(allEvents);
 
-    mockMvc.perform(get("/tsunamievents")
+    mockMvc.perform(get("http://localhost:10088/tsunamievents")
         .contentType(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$", hasSize(1)))
