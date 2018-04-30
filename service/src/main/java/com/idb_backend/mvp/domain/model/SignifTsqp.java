@@ -1,6 +1,5 @@
 package com.idb_backend.mvp.domain.model;
 
-import com.idb_backend.mvp.domain.annotations.InString;
 import com.querydsl.core.annotations.QueryEntity;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
@@ -10,7 +9,6 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -55,6 +53,7 @@ public class SignifTsqp implements Serializable {
   private String area;
   private String country;
 
+  @Range(min = 0, max = 800)
   private Integer eqDepth;
 
   @DecimalMin(value = "0")
