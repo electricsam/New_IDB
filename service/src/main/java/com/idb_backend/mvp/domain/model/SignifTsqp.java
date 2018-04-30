@@ -131,7 +131,6 @@ public class SignifTsqp implements Serializable {
   @Range(min = 0, max = 4)
   private Integer missingAmountOrderTotal;
 
-
   @DecimalMin(value = "0")
   @DecimalMax(value = "9.9")
   private Double eqMagMl;
@@ -157,7 +156,6 @@ public class SignifTsqp implements Serializable {
   @OneToMany(mappedBy = "signifTsqp", fetch = FetchType.EAGER)
 //  @JsonManagedReference
   private Set<SignifToTsEvent> signifToTsEvents = new HashSet<>();
-
 
   public String getShape() {
     if(shape == null){

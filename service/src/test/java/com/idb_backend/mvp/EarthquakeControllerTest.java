@@ -151,4 +151,32 @@ public class EarthquakeControllerTest {
     mockMvc.perform(delete("/earthquakes/" + id)).andExpect(status().isOk());
   }
 
+
+  @Test
+  public void patchEarthquakeTestFail() throws Exception {
+    SignifTsqp signifTsqp = new SignifTsqp();
+    signifTsqp.setId(1);
+    signifTsqp.setCountry("US");
+
+
+    mockMvc.perform(patch("/earthquakes/1")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(objectMapper.writeValueAsString(signifTsqp)))
+        .andExpect(status().isBadRequest());
+  }
+
+
+  @Test
+  public void postEarthquakeTestFail() throws Exception {
+    SignifTsqp signifTsqp = new SignifTsqp();
+    signifTsqp.setId(1);
+    signifTsqp.setMonth(13);
+
+    mockMvc.perform(post("/earthquakes")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(objectMapper.writeValueAsString(signifTsqp)))
+        .andExpect(status().isBadRequest());
+
+  }
+
 }
