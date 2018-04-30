@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Map;
 import java.util.Optional;
 
@@ -46,17 +48,17 @@ public class EarthquakeController {
     }
   }
 
-  //This is will be for immediate removal
-  @RequestMapping(value = "/earthquakes/tsqp", method= RequestMethod.GET)
-  @ResponseBody
-  public ResponseEntity getAllEarthquakesTsqp(@QuerydslPredicate(root = SignifTsqp.class) Predicate predicate){
-    try{
-      Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate);
-      return ResponseEntity.status(HttpStatus.OK).body(result);
-    }catch (Exception e){
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-    }
-  }
+//  This is will be for immediate removal
+//  @RequestMapping(value = "/earthquakes/tsqp", method= RequestMethod.GET)
+//  @ResponseBody
+//  public ResponseEntity getAllEarthquakesTsqp(@QuerydslPredicate(root = SignifTsqp.class) Predicate predicate){
+//    try{
+//      Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate);
+//      return ResponseEntity.status(HttpStatus.OK).body(result);
+//    }catch (Exception e){
+//      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+//    }
+//  }
 
   @RequestMapping(value = "/earthquakes/{id}", method= RequestMethod.GET)
   @ResponseBody
@@ -71,13 +73,18 @@ public class EarthquakeController {
 
   @RequestMapping(value = "/earthquakes/{id}", method= RequestMethod.PATCH)
   @ResponseBody
-  public ResponseEntity patchEarthquake(@PathVariable("id") Integer id, @RequestBody SignifTsqp signifTsqp){
+  public ResponseEntity patchEarthquake(@PathVariable("id") Integer id,
+                                        @Valid @RequestBody SignifTsqp signifTsqp, Errors errors){
     try{
-      //TODO: you will need to send through a copy of the whole object or call each method to update each field
-      signifTsqp.setId(id);
-      earthquakeRepository.save(signifTsqp);
-      Optional<SignifTsqp> result = earthquakeRepository.findById(id);
-      return ResponseEntity.status(HttpStatus.OK).body(result);
+      if(errors.hasErrors()){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+      }else{
+        //TODO: you will need to send through a copy of the whole object or call each method to update each field
+        signifTsqp.setId(id);
+        earthquakeRepository.save(signifTsqp);
+        Optional<SignifTsqp> result = earthquakeRepository.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+      }
     }catch (Exception e){
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
@@ -85,19 +92,23 @@ public class EarthquakeController {
 
   @RequestMapping(value = "/earthquakes", method= RequestMethod.POST)
   @ResponseBody
-  public ResponseEntity postEarthquake(@RequestBody SignifTsqp signifTsqp){
+  public ResponseEntity postEarthquake(@Valid @RequestBody SignifTsqp signifTsqp, Errors errors){
       try{
-        Predicate predicate = QSignifTsqp.signifTsqp.id.gt(10000);
-        OrderSpecifier orderSpecifier = QSignifTsqp.signifTsqp.id.desc();
+        if(errors.hasErrors()){
+          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        }else{
+          Predicate predicate = QSignifTsqp.signifTsqp.id.gt(10000);
+          OrderSpecifier orderSpecifier = QSignifTsqp.signifTsqp.id.desc();
 
-        Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate, orderSpecifier);
-        Integer id = result.iterator().next().getId() + 1;
-        System.out.println("This is the old way " + id);
-        signifTsqp.setId(id);
-        earthquakeRepository.save(signifTsqp);
+          Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate, orderSpecifier);
+          Integer id = result.iterator().next().getId() + 1;
+          System.out.println("This is the old way " + id);
+          signifTsqp.setId(id);
+          earthquakeRepository.save(signifTsqp);
 
-        Optional<SignifTsqp> posted = earthquakeRepository.findById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(posted);
+          Optional<SignifTsqp> posted = earthquakeRepository.findById(id);
+          return ResponseEntity.status(HttpStatus.OK).body(posted);
+        }
       }catch (Exception e){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
       }
