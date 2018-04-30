@@ -1,40 +1,17 @@
 package com.idb_backend.mvp.domain.repository;
 
-import com.idb_backend.mvp.domain.model.*;
+import com.idb_backend.mvp.domain.model.QTsunamiEvent;
+import com.idb_backend.mvp.domain.model.TsunamiEvent;
+import com.querydsl.core.types.dsl.StringPath;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
+import org.springframework.data.querydsl.binding.QuerydslBindings;
 
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
-import java.io.IOException;
-import java.util.List;
-
-public interface TsunamiEventRepository {
-  List<TsunamiEventView> getAllTsunamiEvents();
-
-  List<TsunamiEventViewNonPersist> getEventsByQuery(CriteriaQuery<TsunamiEventViewNonPersist> criteria);
-
-  void addEvent(TsunamiEvent tsunamiEvent);
-
-  List<TsunamiEvent> checkMaxTsEventId();
-
-  List<TsunamiRunup> checkMaxRunupId();
-
-  void addRunup(TsunamiRunup tsunamiRunup);
-
-  List<TsunamiRunupViewNonPersist> getRunupsByQuery(CriteriaQuery<TsunamiRunupViewNonPersist> criteria);
-
-  void updateEvent(TsunamiEvent tsunamiEvent);
-
-  List<TsunamiEvent> getEventById(Integer id);
-
-  void updateRunup(TsunamiRunup tsunamiRunup);
-
-  void deleteRunup(Integer id);
-
-  TsunamiEvent getEventProxy(Integer id);
-
-  void deleteEvent(Integer id);
-
-  List<TsunamiRunup> getRunupById(Integer id);
-
-  List<TsunamiRunupView> getAllRunups();
+public interface TsunamiEventRepository extends JpaRepository<TsunamiEvent, Integer>,
+    QuerydslPredicateExecutor<TsunamiEvent>, QuerydslBinderCustomizer<QTsunamiEvent>, TsunamiEventCustomRepository {
+  @Override
+  default void customize(QuerydslBindings bindings, QTsunamiEvent root){
+    bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));
+  }
 }

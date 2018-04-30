@@ -1,13 +1,13 @@
 package com.idb_backend.mvp.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.querydsl.core.annotations.QueryEntity;
 
 import javax.persistence.*;
+
 @QueryEntity
-@Entity
 @Table(name = "SIGNIF_TO_TSEVENT")
+@Entity(name = "SIGNIF_TO_TSEVENT")
 public class SignifToTsEvent {
 
   @EmbeddedId
@@ -22,7 +22,6 @@ public class SignifToTsEvent {
   public TsunamiEvent tsunamiEvent;
 
   @JsonIgnore
-//  @JsonBackReference
   public SignifTsqp getSignifTsqp() {
     return signifTsqp;
   }
@@ -32,7 +31,6 @@ public class SignifToTsEvent {
   }
 
   @JsonIgnore
-//  @JsonBackReference
   public TsunamiEvent getTsunamiEvent() {
     return tsunamiEvent;
   }

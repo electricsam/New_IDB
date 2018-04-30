@@ -1,21 +1,26 @@
 package com.idb_backend.mvp.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.querydsl.core.annotations.QueryEntity;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@QueryEntity
+@Table(name = "TSEVENT_REFS")
 @Entity(name = "TSEVENT_REFS")
-@IdClass(TsunamiRefsPk.class)
 public class TsunamiRefs {
 
-  @Id
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "TSEVENT_ID")
-  private TsunamiEvent tsEventId;
+  @EmbeddedId
+  TsEventRefsId id = new TsEventRefsId();
 
-  @Id
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "TSREF_ID")
-  private Reference tsRefId;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "TSEVENT_ID", insertable = false, updatable = false)
+  private TsunamiEvent tsunamiEvent;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "TSREF_ID", insertable = false, updatable = false)
+  private Reference reference;
 
   @Column(name = "LAST_UPDATE")
   private Date lastUpdate;
@@ -26,20 +31,22 @@ public class TsunamiRefs {
   @Column(name = "PREVIOUS_STATE")
   private String previousState;
 
-  public TsunamiEvent getTsEventId() {
-    return tsEventId;
+  @JsonIgnore
+  public TsunamiEvent getTsunamiEvent() {
+    return tsunamiEvent;
   }
 
-  public void setTsEventId(TsunamiEvent tsEventId) {
-    this.tsEventId = tsEventId;
+  public void setTsunamiEvent(TsunamiEvent tsunamiEvent) {
+    this.tsunamiEvent = tsunamiEvent;
   }
 
-  public Reference getTsRefId() {
-    return tsRefId;
+  @JsonIgnore
+  public Reference getReference() {
+    return reference;
   }
 
-  public void setTsRefId(Reference tsRefId) {
-    this.tsRefId = tsRefId;
+  public void setReference(Reference reference) {
+    this.reference = reference;
   }
 
   public Date getLastUpdate() {

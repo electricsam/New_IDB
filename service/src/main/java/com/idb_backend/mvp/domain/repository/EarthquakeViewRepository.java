@@ -13,11 +13,7 @@ public interface EarthquakeViewRepository extends
   @Override
   default void customize(QuerydslBindings bindings, QSignifVsqp root) {
 
-    bindings.bind(root.minYear).first((path, value) -> {
-
-      System.out.println("you are in the binding");
-      return root.year.goe(value);
-    });
+    bindings.bind(root.minYear).first((path, value) -> root.year.goe(value));
 
     bindings.bind(root.maxYear).first((path, value) -> root.year.goe(value));
 

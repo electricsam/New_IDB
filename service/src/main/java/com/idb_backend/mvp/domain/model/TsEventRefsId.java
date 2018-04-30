@@ -1,49 +1,37 @@
 package com.idb_backend.mvp.domain.model;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Embeddable
 public class TsEventRefsId implements Serializable {
 
-  private TsunamiEvent tsunamiEvent;
-  private Reference reference;
+  @Column(name = "TSEVENT_ID")
+  private Integer tseventId;
 
-  @ManyToOne
-  public TsunamiEvent getTsunamiEvent(){
-    return tsunamiEvent;
+  @Column(name = "TSREF_ID")
+  private Integer tsrefId;
+
+  public TsEventRefsId(){
   }
 
-  public void setTsunamiEvent(TsunamiEvent tsunamiEvent){
-    this.tsunamiEvent = tsunamiEvent;
-  }
-
-  @ManyToOne
-  public Reference getReference(){
-    return reference;
-  }
-
-  public void setReference(Reference reference){
-    this.reference = reference;
+  public TsEventRefsId(Integer tseventId, Integer tsrefId){
+    this.tseventId = tseventId;
+    this.tsrefId = tsrefId;
   }
 
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    TsEventRefsId that = (TsEventRefsId) o;
-
-    if (tsunamiEvent != null ? !tsunamiEvent.equals(that.tsunamiEvent) : that.tsunamiEvent != null) return false;
-    if (reference != null ? !reference.equals(that.reference) : that.reference != null) return false;
-
-    return true;
+    if(o != null && o instanceof TsEventRefsId){
+      TsEventRefsId that = (TsEventRefsId) o;
+      return this.tseventId.equals(that.tseventId) && this.tsrefId.equals(that.tsrefId);
+    }
+    return false;
   }
 
   public int hashCode() {
-    int result;
-    result = (tsunamiEvent != null ? tsunamiEvent.hashCode() : 0);
-    result = 31 * result + (reference != null ? reference.hashCode() : 0);
-    return result;
+    return tseventId.hashCode() + tsrefId.hashCode();
   }
+
+
 }
