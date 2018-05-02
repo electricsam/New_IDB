@@ -1,338 +1,182 @@
-//package com.idb_backend.mvp.service.impl;
-//
-//import com.idb_backend.mvp.domain.model.*;
-//import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
-//import com.idb_backend.mvp.service.Constants;
-//import com.idb_backend.mvp.service.TsunamiEventService;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import javax.persistence.EntityManager;
-//import javax.persistence.PersistenceContext;
-//import javax.persistence.criteria.*;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Map;
-//
-//@Service
-//public class TsunamiEventServiceImpl implements TsunamiEventService {
-//
-//  @PersistenceContext
-//  EntityManager em;
-//
-//  @Autowired
-//  TsunamiEventRepository tsunamiEventRepository;
-//
-//  public List<TsunamiEventViewNonPersist> generateCriteria (Map<String, String> map){
-//
-//    CriteriaBuilder builder = em.getCriteriaBuilder();
-//    CriteriaQuery<TsunamiEventViewNonPersist> criteria = builder.createQuery( TsunamiEventViewNonPersist.class );
-//    Root<TsunamiEventView> root = criteria.from( TsunamiEventView.class );
-//    Join<TsunamiEventView, TsunamiRunupView> join = root.join("tsunamiRunupViews");
-//    List criteriaList = new ArrayList();
-//
-//    List<Predicate> predList = new ArrayList<>();
-//
-//    criteria.multiselect(
-//        root.get("id"), root.get("year"), root.get("month"), root.get("day"), root.get("hour"), root.get("minute"),
-//        root.get("second"), root.get("country"), root.get("eventValidity"), root.get("causeCode"),
-//        root.get("eqMagnitude"), root.get("locationName"), root.get("latitude"), root.get("longitude"),
-//        root.get("maxEventRunup"), root.get("numRunup"), root.get("tsMtAbe"), root.get("tsMtIi"),
-//        root.get("tsIntensity"), root.get("deaths"), root.get("deathsAmountOrder"), root.get("missing"),
-//        root.get("missingAmountOrder"), root.get("injuries"), root.get("injuriesAmountOrder"),
-//        root.get("damageMillionsDollars"), root.get("damageAmountOrder"), root.get("housesDestroyed"),
-//        root.get("housesAmountOrder"), root.get("housesDamaged"), root.get("housesDamagedAmountOrder"),
-//        root.get("deathsTotal"), root.get("deathsAmountOrderTotal"), root.get("missingTotal"),
-//        root.get("missingAmountOrderTotal"), root.get("injuriesTotal"), root.get("injuriesAmountOrderTotal"),
-//        root.get("damageMillionsDollarsTotal"), root.get("damageAmountOrderTotal"), root.get("housesDestroyedTotal"),
-//        root.get("housesAmountOrderTotal"), root.get("housesDamagedTotal"), root.get("housesDamAmountOrderTotal")
-//    ).distinct(true);
-//
-//    predList.add(genIntMinMax(map, "minyear", "maxyear", "year", builder, root));
-//    predList.add(genIntMinMax(map, "minvalidity", "maxvalidity", "eventValidity", builder, root));
-//    predList.add(genEqRestriction(map, "country", "country", builder, root));
-//    predList.add(genIntMinMax(map,  "mincause", "maxcause", "causeCode", builder, root));
-//    predList.add(checkRegionParams(map, "region", "regionCode", builder, root));
-//    predList.add(genEqRestriction(map, "area", "area", builder, root));
-//    predList.add(genFloatMinMax(map, "latnorth", "latsouth", "latitude", builder, root));
-//    predList.add(genFloatMinMax(map, "longwest", "longeast", "longitude", builder, root));
-//    predList.add(genFloatMinMax(map, "eqmagmin", "eqmagmax", "eqMagnitude", builder, root));
-//    predList.add(checkRegionParams(map, "runupregion", "tsRunups.regionCode", builder, join));
-//    predList.add(genEqRestriction(map, "runupcountry", "country", builder, join));
-//    predList.add(genEqRestriction(map, "runuparea", "area", builder, join));
-//    predList.add(genIntMinMax(map, "runuptraveltimemin", "runuptraveltimemax", "travHours", builder, join));
-//    predList.add(genIntMinMax(map, "runupdistancemin", "runupdistancemax", "distFromSource", builder, root));
-//    predList.add(genIntMinMax(map, "numberofrunupsmin", "numberofrunupsmax", "numRunup", builder, root));
-//    predList.add(genFloatMinMax(map, "waterheightmin", "waterheightmax", "maxEventRunup", builder, root));
-//    predList.add(genIntMinMax(map, "numberofdeathsmin", "numberofdeathsmax", "deaths", builder, root));
-//    predList.add(genIntMinMax(map, "numberofinjuriesmin", "numberofinjuriesmax", "injuries", builder, root));
-//    predList.add(genIntMinMax(map, "numhousesdestroyedmin", "numhousesdestroyedmax", "housesDestroyed", builder, root));
-//    predList.add(genIntMinMax(map, "deathdescriptionmin", "deathdescriptionmax", "deathsAmountOrder", builder, root));
-//    predList.add(genIntMinMax(map, "injurydescriptmin", "injurydescriptmax", "injuryAmountOrder", builder, root));
-//    predList.add(genIntMinMax(map, "damagedescriptmin", "damagedescriptmax", "damageAmountOrder", builder, root));
-//    predList.add(genIntMinMax(map, "housesdescriptmin", "housesdescriptmax", "housesAmountOrder", builder, root));
-//    predList.add(genIntMinMax(map, "totaldeathsmin", "totaldeathsmax", "deathsTotal", builder, root));
-//    predList.add(genEqRestriction(map, "rnpmeasuretype", "typeOfMeasurementId", builder, join));
-//    predList.add(genFloatMinMax(map, "rnphtmin", "rnphtmax", "runuoHt", builder, join));
-//    predList.add(genIntMinMax(map, "rnpdeathmin", "rnpdeathmax", "deaths", builder, join));
-//    predList.add(genIntMinMax(map, "rnpdeathdescripmin", "rnpdeathdescripmax", "deathsAmountOrder", builder, join));
-//    predList.add(genIntMinMax(map, "rnpinjurymin", "rnpinjurymax", "injuries", builder, join));
-//    predList.add(genIntMinMax(map, "rnpinjurydescripmin", "rnpinjurydescripmax", "injuriesAmountOrder", builder, join));
-//    predList.add(genFloatMinMax(map, "rnpdamagemin", "rnpdamagemax", "damageMillionsDollars", builder, join));
-//    predList.add(genIntMinMax(map, "rnpdamagedescripmin", "rnpdamagedescripmax", "damageAmountOrder", builder, join));
-//    predList.add(genIntMinMax(map, "rnphousesmin", "rnphousesmax", "housesDestroyed", builder, join));
-//    predList.add(genIntMinMax(map, "rnphousesdescripmin", "rnphousesdescripmax", "housesAmountOrder", builder, join));
-//    predList.add(checkLocParams(map, "runuplocstart", "runuplocend", "runuplocincludes", "runuplocmatch", "runuplocnot",
-//        "locationName", builder, join
-//    ));
-//    predList.add(checkLocParams(map, "locstart", "locend", "locincludes", "locmatch", "locnot", "locationName", builder,
-//        root
-//    ));
-//    predList.add(genIntMinMax(map, "totaldeathdescripmin", "totaldeathdescripmax", "deathsAmountOrderTotal", builder,
-//        root));
-//    predList.add(genFloatMinMax(map, "damageinmillionsmin", "damageinmillionsmax", "damageMillionsDollars", builder,
-//        root
-//    ));
-//
-//    for(int i = 0; i < predList.size(); i++){
-//      if(predList.get(i) != null){
-//        criteriaList.add(predList.get(i));
-//      }
-//    }
-//
-//    Predicate [] predArray = new Predicate[criteriaList.size()];
-//    criteriaList.toArray(predArray);
-//    criteria.where(predArray);
-//
-//    System.out.println("This is the criteria: " + criteria.toString());
-//
-//    return getEventsByQuery(criteria);
-//  }
-//
-//  public List<TsunamiEventViewNonPersist> getEventsByQuery(CriteriaQuery<TsunamiEventViewNonPersist> criteria){
-//    return tsunamiEventRepository.getEventsByQuery(criteria);
-//  }
-//
-//  @Override
-//  public Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder, Root root){
-//    if(min != null && max != null){
-//      return builder.between(root.get(colName), min, max);
-//    }else if(min != null){
-//      return builder.ge(root.get(colName), min);
-//    }else if(max != null){
-//      return builder.le(root.get(colName), max);
-//    }else{
-//      return null;
-//    }
-//  }
-//
-//  @Override
-//  public Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder, Join join){
-//    if(min != null && max != null){
-//      return builder.between(join.get(colName), min, max);
-//    }else if(min != null){
-//      return builder.ge(join.get(colName), min);
-//    }else if(max != null){
-//      return builder.le(join.get(colName), max);
-//    }else{
-//      return null;
-//    }
-//  }
-//
-//  @Override
-//  public Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder, Root root){
-//    if(min != null && max != null){
-//      return builder.between(root.get(colName), min, max);
-//    }else if(min != null){
-//      return builder.ge(root.get(colName), min);
-//    }else if(max != null){
-//      return builder.le(root.get(colName), max);
-//    }else{
-//      return null;
-//    }
-//  }
-//
-//  public Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder, Join join){
-//    if(min != null && max != null){
-//      return builder.between(join.get(colName), min, max);
-//    }else if(min != null){
-//      return builder.ge(join.get(colName), min);
-//    }else if(max != null){
-//      return builder.le(join.get(colName), max);
-//    }else{
-//      return null;
-//    }
-//  }
-//
-//  @Override
-//  public Integer generateInteger(Map<String, String> map, String key){
-//    return map.get(key) != null? new Integer(Integer.parseInt(map.get(key))): null;
-//  }
-//
-//  @Override
-//  public Float generateFloat(Map<String, String> map, String key) {
-//    return map.get(key) != null? new Float(Float.parseFloat(map.get(key))) : null;
-//  }
-//
-//  @Override
-//  public Predicate genIntMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
-//                                CriteriaBuilder builder, Root root) throws NumberFormatException{
-//    //TODO: need to figure out validation
-//    Integer min = generateInteger(map, minKey);
-//    Integer max = generateInteger(map, maxKey);
-//
-//    return checkMinMax(min, max, colName, builder, root);
-//  }
-//
-//  @Override
-//  public Predicate genIntMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
-//                                CriteriaBuilder builder, Join join) throws NumberFormatException{
-//    Integer min = generateInteger(map, minKey);
-//    Integer max = generateInteger(map, maxKey);
-//
-//    return checkMinMax(min, max, colName, builder, join);
-//  }
-//
-//  @Override
-//  public Predicate genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
-//                                  CriteriaBuilder builder, Root root) throws NumberFormatException{
-//    Float min = generateFloat(map, minKey);
-//    Float max = generateFloat(map, maxKey);
-//
-//    return checkMinMax(min, max, colName, builder, root);
-//  }
-//
-//  @Override
-//  public Predicate genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
-//                                  CriteriaBuilder builder, Join join) throws NumberFormatException{
-//    Float min = generateFloat(map, minKey);
-//    Float max = generateFloat(map, maxKey);
-//
-//    return checkMinMax(min, max, colName, builder, join);
-//  }
-//
-//  @Override
-//  public Predicate genEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
-//                                    Root root){
-//    String condition = map.get(key);
-//    if(condition != null){
-//      condition = condition.toUpperCase();
-//      return builder.equal(root.get(colName), condition);
-//    }else{
-//      return null;
-//    }
-//  }
-//
-//  @Override
-//  public Predicate genEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
-//                                    Join join){
-//    String condition = map.get(key);
-//    if(condition != null){
-//      condition = condition.toUpperCase();
-//      return builder.equal(join.get(colName), condition);
-//    }else{
-//      return null;
-//    }
-//  }
-//
-//  @Override
-//  public Predicate genNumEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
-//                                    Join join){
-//    Integer condition = generateInteger(map, key);
-//    if(condition != null){
-//      return builder.equal(join.get(colName), condition);
-//    }else{
-//      return null;
-//    }
-//  }
-//
-//  @Override
-//  public Predicate checkRegionParams(Map<String, String> map, String key, String colName,
-//                                     CriteriaBuilder builder, Root root){
-//    Integer condition = generateInteger(map, key);
-//    if(condition != null){
-//      System.out.println("you are checking the region param: "+ condition);
-//      return builder.equal(root.get(colName), condition);
-//    }else{
-//      return null;
-//    }
-//  }
-//
-//  @Override
-//  public Predicate checkRegionParams(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
-//                                     Join join ){
-//    Integer condition = generateInteger(map, key);
-//    if(condition != null){
-//      return builder.equal(join.get(colName), condition);
-//    }else{
-//      return null;
-//    }
-//  }
-//
-//  @Override
-//  public Predicate checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
-//                                  String not, String colName, CriteriaBuilder builder, Root root){
-//
-//    if(map.get(start) != null){
-//      return builder.like(root.get(colName), map.get(start).toUpperCase() + "%");
-//    }else if(map.get(end) != null){
-//      return builder.like(root.get(colName), "%" + map.get(end).toUpperCase());
-//    }else if(map.get(includes) != null){
-//      return builder.like(root.get(colName), "%" + map.get(includes).toUpperCase() + "%");
-//    }else if(map.get(match) != null){
-//      return builder.equal(root.get(colName), map.get(match).toUpperCase());
-//    }else if(map.get(not) != null){
-//      return builder.notLike(root.get(colName), "%" + map.get(not).toUpperCase() + "%");
-//    }else{
-//      return null;
-//    }
-//  }
-//
-//  @Override
-//  public Predicate checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
-//                                  String not, String colName, CriteriaBuilder builder,
-//                                  Join join){
-//    if(map.get(start) != null){
-//      return builder.like(join.get(colName), map.get(start).toUpperCase() + "%");
-//    }else if(map.get(end) != null){
-//      return builder.like(join.get(colName), "%" + map.get(end).toUpperCase());
-//    }else if(map.get(includes) != null){
-//      return builder.like(join.get(colName), "%" + map.get(includes).toUpperCase() + "%");
-//    }else if(map.get(match) != null){
-//      return builder.equal(join.get(colName), map.get(match).toUpperCase());
-//    }else if(map.get(not) != null){
-//      return builder.notLike(join.get(colName), "%" + map.get(not).toUpperCase() + "%");
-//    }else{
-//      return null;
-//    }
-//  }
-//
-//  @Override
-//  public void addEvent(TsunamiEvent tsunamiEvent){
-//    tsunamiEventRepository.addEvent(tsunamiEvent);
-//  }
-//
-//  @Override
-//  public void addRunup(TsunamiRunup tsunamiRunup){
-//    tsunamiEventRepository.addRunup(tsunamiRunup);
-//  }
-//
-//  @Override
-//  public List<TsunamiEvent> checkMaxTsEventId() {
-//    return tsunamiEventRepository.checkMaxTsEventId();
-//  }
-//
-//  @Override
-//  public List<TsunamiRunup> checkMaxRunupId(){
-//    return tsunamiEventRepository.checkMaxRunupId();
-//  }
-//
-//  @Override
-//  public void updateEvent(TsunamiEvent tsunamiEvent) {
-//    tsunamiEventRepository.updateEvent(tsunamiEvent);
-//  }
-//
-//
+package com.idb_backend.mvp.service.impl;
+
+import com.idb_backend.mvp.domain.model.QTsunamiRunupView;
+import com.idb_backend.mvp.domain.model.TsunamiEventView;
+import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
+import com.idb_backend.mvp.domain.repository.TsunamiEventViewRepository;
+import com.idb_backend.mvp.domain.repository.impl.TsunamiEventViewRepositoryImpl;
+import com.idb_backend.mvp.service.TsunamiEventService;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.core.types.dsl.NumberPath;
+import com.querydsl.core.types.dsl.StringPath;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class TsunamiEventServiceImpl implements TsunamiEventService {
+
+  @Autowired
+  TsunamiEventViewRepository tsunamiEventViewRepository;
+
+  @Autowired
+  TsunamiEventRepository tsunamiEventRepository;
+
+  public BooleanExpression generateCriteria (Map<String, String> map){
+    QTsunamiRunupView root = QTsunamiRunupView.tsunamiRunupView;
+    BooleanExpression master = QTsunamiRunupView.tsunamiRunupView.day.goe(1);
+
+    List<BooleanExpression> boolList = new ArrayList<>();
+    boolList.add(genIntMinMax(map, "rnpdeathmin", "rnpdeathmax", root.deaths));
+    boolList.add(genIntMinMax(map, "rnpdeathdescripmin", "rnpdeathdescripmax", root.deathsAmountOrder));
+    boolList.add(genIntMinMax(map, "rnpinjurymin", "rnpinjurymax", root.injuries));
+    boolList.add(genIntMinMax(map, "runuptraveltimemin", "runuptraveltimemax", root.travHours));
+    boolList.add(genIntMinMax(map, "rnpinjurydescripmin", "rnpinjurydescripmax", root.injuriesAmountOrder));
+    boolList.add(genIntMinMax(map, "rnpdamagedescripmin", "rnpdamagedescripmax", root.damageAmountOrder));
+    boolList.add(genIntMinMax(map, "rnphousesmin", "rnphousesmax", root.housesDestroyed));
+    boolList.add(genIntMinMax(map, "rnphousesdescripmin", "rnphousesdescripmax", root.housesAmountOrder));
+    boolList.add(genEqRestriction(map, "runupcountry", root.country));
+    boolList.add(genEqRestriction(map, "runuparea", root.area));
+    boolList.add(genEqRestriction(map, "rnpmeasuretype", root.typeOfMeasurementId));
+    boolList.add(genEqRestriction(map, "runupregion", root.regionCode));
+    boolList.add(genDoubleMinMax(map, "rnphtmin", "rnphtmax", root.runupHt));
+    boolList.add(genDoubleMinMax(map, "rnpdamagemin", "rnpdamagemax", root.damageMillionsDollars));
+    boolList.add(checkLocParams(map, "runuplocstart", "runuplocend", "runuplocincludes", "runuplocmatch",
+        "runuplocnot", root.locationName));
+
+    for(int i = 0; i < boolList.size(); i++){
+      if(boolList.get(i) != null){
+        master = master.and(boolList.get(i));
+      }
+    }
+
+    return master;
+
+  }
+
+  @Override
+  public BooleanExpression combineBools(Predicate predicate, BooleanExpression runupBool){
+    BooleanExpression result = runupBool.and(predicate);
+    return result;
+  }
+
+  @Override
+  public BooleanExpression checkMinMax(Integer min, Integer max, NumberPath<Integer> root){
+    if(min != null && max != null){
+      BooleanExpression expression = root.between(min, max);
+      return expression;
+    }else if(min != null){
+     BooleanExpression expression = root.goe(min);
+     return expression;
+    }else if(max != null){
+      BooleanExpression expression = root.loe(max);
+      return expression;
+    }else{
+      return null;
+    }
+  }
+
+  @Override
+  public Integer generateInteger(Map<String, String> map, String key){
+    return map.get(key) != null? new Integer(Integer.parseInt(map.get(key))): null;
+  }
+
+  @Override
+  public BooleanExpression genIntMinMax(Map<String, String> map, String minKey, String maxKey, NumberPath<Integer> root)
+      throws NumberFormatException{
+    Integer min = generateInteger(map, minKey);
+    Integer max = generateInteger(map, maxKey);
+
+    return checkMinMax(min, max, root);
+  }
+
+  @Override
+  public BooleanExpression genEqRestriction(Map<String, String> map, String key, StringPath root){
+    String condition = map.get(key);
+    if(condition != null){
+      condition = condition.toUpperCase();
+      return root.eq(condition);
+    }else{
+      return null;
+    }
+  }
+
+  @Override
+  public BooleanExpression genEqRestriction(Map<String, String> map, String key, NumberPath root){
+    Integer condition = generateInteger(map, key);
+    if(condition != null){
+      return root.eq(condition);
+    }else{
+      return null;
+    }
+  }
+
+  @Override
+  public BooleanExpression checkMinMax(Double min, Double max, NumberPath<Double> root){
+    if(min != null && max != null){
+      return root.between(min, max);
+    }else if(min != null){
+      return root.goe(min);
+    }else if(max != null){
+      return root.loe(max);
+    }else{
+      return null;
+    }
+  }
+
+  @Override
+  public Double generateDouble(Map<String, String> map, String key) {
+    return map.get(key) != null? new Double(Double.parseDouble(map.get(key))) : null;
+  }
+
+  @Override
+  public BooleanExpression genDoubleMinMax(Map<String, String> map, String minKey, String maxKey,
+                                           NumberPath<Double> root)
+      throws NumberFormatException{
+    Double min = generateDouble(map, minKey);
+    Double max = generateDouble(map, maxKey);
+
+    return checkMinMax(min, max, root);
+  }
+
+  @Override
+  public BooleanExpression checkLocParams(Map<String, String> map, String start, String end, String includes,
+                                          String match, String not, StringPath root){
+    if(map.get(start) != null){
+      return root.startsWithIgnoreCase(start);
+    }else if(map.get(end) != null){
+      return root.endsWithIgnoreCase(end);
+    }else if(map.get(includes) != null){
+      return root.containsIgnoreCase(includes);
+    }else if(map.get(match) != null){
+      return root.equalsIgnoreCase(match);
+    }else if(map.get(not) != null){
+      return root.notLike(Expressions.asString("%").concat(not.toUpperCase().concat("%")));
+    }else{
+      return null;
+    }
+  }
+
+  @Override
+  public Iterable<TsunamiEventView> getTsunamis(Map<String, String> params, Predicate predicate){
+    if(params.get("earthquakeid") != null && params.get("earthquakeid") != ""){
+      return tsunamiEventRepository.findRelatedTsunamiFromEarthquake(Integer.parseInt(params.get("earthquakeid")));
+    }else if(params.get("refid") != null && params.get("refid") != ""){
+      return tsunamiEventRepository.findRelatedTsunamiFromRef(Integer.parseInt(params.get("refid")));
+    }else if(params.get("volcanoid") != null && params.get("volcanoid") != ""){
+      return tsunamiEventRepository.findRelatedTsunamiFromVolcano(Integer.parseInt(params.get("volcanoid")));
+    }
+    else{
+      return tsunamiEventViewRepository.findEventsByQuery(combineBools(predicate, generateCriteria(params)));
+    }
+
+  }
+
 //  @Override
 //  public List<TsunamiRunupViewNonPersist> generateRunupCriteria(Map<String, String> map) {
 //    CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -385,35 +229,9 @@
 //      return getRunupsByQuery(criteria);
 //
 //  }
-//
-//  List<TsunamiRunupViewNonPersist> getRunupsByQuery(CriteriaQuery<TsunamiRunupViewNonPersist> criteria){
-//    return tsunamiEventRepository.getRunupsByQuery(criteria);
-//  }
-//
-//  @Override
-//  public void updateRunup(TsunamiRunup tsunamiRunup){
-//    tsunamiEventRepository.updateRunup(tsunamiRunup);
-//  }
-//
-//  @Override
-//  public void deleteRunup(Integer id){
-//    tsunamiEventRepository.deleteRunup(id);
-//  }
-//
-//  @Override
-//  public TsunamiEvent getEventProxy(Integer id){
-//    return tsunamiEventRepository.getEventProxy(id);
-//  }
-//
-//  @Override
-//  public void deleteEvent(Integer id){
-//    tsunamiEventRepository.deleteEvent(id);
-//  }
-//
-//  @Override
-//  public List<TsunamiRunup> getRunupById(Integer id){
-//    return tsunamiEventRepository.getRunupById(id);
-//  }
+
+
+
 //
 //  @Override
 //  public List<TsunamiRunupViewNonPersist> getAllRunups(){
@@ -449,7 +267,7 @@
 //
 //    return getRunupsByQuery(criteria);
 //  }
-//
+
 //  @Override
 //  public boolean validateParams(Map<String, String> map){
 //    boolean isValid = true;
@@ -674,7 +492,9 @@
 //
 //    return isValid;
 //  }
-//
+
+
+
 //  @Override
 //  public boolean validateMinMax(int min, int max, Integer value){
 //    if(value < min || value > max){
@@ -724,4 +544,4 @@
 //    }
 //  }
 //
-//}
+}

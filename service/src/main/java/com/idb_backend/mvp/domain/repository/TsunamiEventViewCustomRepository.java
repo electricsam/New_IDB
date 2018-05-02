@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface TsunamiEventViewCustomRepository {
 
-  Iterable<TsunamiEventView> findEventsByQuery(Map<String, String> params, Predicate predicate);
+  Iterable<TsunamiEventView> findEventsByQuery(Predicate predicate);
 
 }

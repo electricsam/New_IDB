@@ -1,5 +1,6 @@
 package com.idb_backend.mvp.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.querydsl.core.annotations.QueryEntity;
 import com.vividsolutions.jts.geom.Geometry;
@@ -275,7 +276,8 @@ public class TsunamiEventView implements Serializable{
   private Integer temporalAccuracy;
 
   @Getter(value = AccessLevel.PRIVATE)
-  private String tsDate;
+  @Column(name = "TSDATE")
+  private String tsdate;
 
   //TODO: this is a foreign key so add necessary annotations
   @Getter(value = AccessLevel.PRIVATE)
@@ -428,27 +430,26 @@ public class TsunamiEventView implements Serializable{
   private Integer mapVolId;
 
   @Getter(value = AccessLevel.PRIVATE)
-  private BigInteger objectId;
-
-  private Geometry shape;
+  private BigInteger objectid;
 
   @Getter(value = AccessLevel.PRIVATE)
   private Integer numDeposits;
 
   @OneToMany( mappedBy = "tsunamiEventView", cascade = CascadeType.ALL)
+  @JsonIgnore
   private Set<TsunamiRunupView> tsunamiRunupViews = new HashSet<>();
 
-  public String getShape() {
-    if(shape == null){
-      return null;
-    }else{
-      WKTWriter w = new WKTWriter();
-      return w.write(shape);
-    }
-  }
+//  public String getShape() {
+//    if(shape == null){
+//      return null;
+//    }else{
+//      WKTWriter w = new WKTWriter();
+//      return w.write(shape);
+//    }
+//  }
 
-  public void setShape(Geometry shape) {
-    this.shape = shape;
-  }
+//  public void setShape(Geometry shape) {
+//    this.shape = shape;
+//  }
 
 }

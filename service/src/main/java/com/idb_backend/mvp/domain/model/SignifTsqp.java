@@ -153,6 +153,12 @@ public class SignifTsqp implements Serializable {
   private String publish;
   private String previousState;
 
+  @OneToMany(mappedBy = "signifTsqp", fetch = FetchType.LAZY)
+  private Set<SignifAndVolEvent> signifAndVolEvents = new HashSet<>();
+
+  @OneToMany(mappedBy = "signifTsqp", fetch = FetchType.LAZY)
+  private Set<SignifRefs> signifRefs = new HashSet<>();
+
   @OneToMany(mappedBy = "signifTsqp", fetch = FetchType.EAGER)
   private Set<SignifToTsEvent> signifToTsEvents = new HashSet<>();
 

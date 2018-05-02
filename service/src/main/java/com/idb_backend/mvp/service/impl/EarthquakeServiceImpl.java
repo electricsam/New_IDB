@@ -23,7 +23,13 @@ public class EarthquakeServiceImpl implements EarthquakeService{
   public Iterable<SignifVsqp> getAllEarthquakes(Map<String, String> params, Predicate predicate) {
     if(params.get("tsunamiid") != "" && params.get("tsunamiid") != null){
       Integer tsunamiId = Integer.parseInt(params.get("tsunamiid"));
-      return earthquakeRepository.findRelatedEarthquake(tsunamiId);
+      return earthquakeRepository.findRelatedEarthquakeFromTsunami(tsunamiId);
+    }else if(params.get("refid") != "" && params.get("refid") != null){
+      Integer refId = Integer.parseInt(params.get("refid"));
+      return earthquakeRepository.findRelatedEarthquakeFromRef(refId);
+    }else if(params.get("volcanoid") != "" && params.get("volcanoid") != null){
+      Integer volId = Integer.parseInt(params.get("volcanoid"));
+      return earthquakeRepository.findRelatedEarthquakeFromVolcano(volId);
     }else{
       return earthquakeViewRepository.findAll(predicate);
     }

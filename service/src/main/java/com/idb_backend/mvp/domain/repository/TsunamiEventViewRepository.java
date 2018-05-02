@@ -10,7 +10,7 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 
 public interface TsunamiEventViewRepository extends
     JpaRepository<TsunamiEventView, Integer>, QuerydslPredicateExecutor<TsunamiEventView>,
-    QuerydslBinderCustomizer<QTsunamiEventView>{
+    QuerydslBinderCustomizer<QTsunamiEventView>, TsunamiEventViewCustomRepository{
 
   @Override
   default void customize(QuerydslBindings bindings, QTsunamiEventView root) {
@@ -101,4 +101,5 @@ public interface TsunamiEventViewRepository extends
 
     bindings.bind(root.maxDamageAmountOrderTotal).first((path, value) -> root.damageAmountOrderTotal.loe(value));
   }
+
 }

@@ -1,12 +1,17 @@
 package com.idb_backend.mvp.controller;
 
-import com.idb_backend.mvp.domain.model.*;
+import com.idb_backend.mvp.domain.model.QTsunamiEvent;
+import com.idb_backend.mvp.domain.model.TsunamiEvent;
+import com.idb_backend.mvp.domain.model.TsunamiEventView;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.domain.repository.TsunamiEventViewRepository;
+import com.idb_backend.mvp.service.TsunamiEventService;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
@@ -16,7 +21,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class TsunamiEventController {
@@ -27,8 +35,8 @@ public class TsunamiEventController {
   @Autowired
   TsunamiEventViewRepository tsunamiEventViewRepository;
   
-//  @Autowired
-//  TsunamiEventService tsunamiEventService;
+  @Autowired
+  TsunamiEventService tsunamiEventService;
 
 
   @RequestMapping(value = "/tsunamievents", method= RequestMethod.GET)
@@ -53,17 +61,13 @@ public class TsunamiEventController {
   }
 
   @RequestMapping(value = "/tsunamievents/select", method= RequestMethod.GET)
-  public ResponseEntity getEventsByQuery(@RequestParam Map<String, String> allRequestParams){
+  public ResponseEntity getEventsByQuery(@RequestParam Map<String, String> allRequestParams,
+                                         @QuerydslPredicate(root = TsunamiEventView.class) Predicate predicate){
     try{
-//      boolean validParams = tsunamiEventService.validateParams(allRequestParams);
-//      if(!validParams){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-//      }
-//      List<TsunamiEventViewNonPersist> events = tsunamiEventService.generateCriteria(allRequestParams);
-//      return new ResponseEntity<>(events, HttpStatus.OK);
+      Iterable<TsunamiEventView> result = tsunamiEventService.getTsunamis(allRequestParams, predicate);
+      return ResponseEntity.status(HttpStatus.OK).body(result);
+
     }catch (NumberFormatException e){
-//      List<TsunamiEventViewNonPersist> events = new ArrayList<>();
-//      return new ResponseEntity<>(events, HttpStatus.BAD_REQUEST);
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
   }
@@ -133,6 +137,7 @@ public class TsunamiEventController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
   }
+
 
 //  @RequestMapping(value = "/tsunamirunups/select", method= RequestMethod.GET)
 //  public ResponseEntity<List<TsunamiRunupViewNonPersist>> getRunupsByQuery(@RequestParam Map<String, String> allRequestParams){

@@ -1,9 +1,12 @@
 package com.idb_backend.mvp.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.querydsl.core.annotations.QueryEntity;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
@@ -22,6 +25,7 @@ public class TsunamiRunupView {
   @JoinColumn(name = "TSEVENT_ID")
   private TsunamiEventView tsunamiEventView;
 
+
   private Integer year;
 
   private Integer month;
@@ -38,13 +42,13 @@ public class TsunamiRunupView {
 
   private Integer travMins;
 
-  private Float period;
+  private Double period;
 
   private String firstMotion;
 
-  private Float latitude;
+  private Double latitude;
 
-  private Float longitude;
+  private Double longitude;
 
   private String locationName;
 
@@ -54,13 +58,13 @@ public class TsunamiRunupView {
 
   private Integer regionCode;
 
-  private Float runupHt;
+  private Double runupHt;
 
-  private Float runupHoriz;
+  private Double runupHoriz;
 
   private Integer typeOfMeasurementId;
 
-  private Float damageMillionsDollars;
+  private Double damageMillionsDollars;
 
   private Integer damageAmountOrder;
 
@@ -80,11 +84,11 @@ public class TsunamiRunupView {
 
   private Integer temporalAccuracy;
 
-  private Long objectId;
+  private Long objectid;
 
   private Integer idRef;
 
-  private String tsDate;
+  private String tsdate;
 
   private String hasEvent;
 
@@ -96,20 +100,20 @@ public class TsunamiRunupView {
 
   private Integer distFromSource;
 
-  private Geometry shape;
-
-  public String getShape() {
-    if(shape == null){
-      return null;
-    }else{
-      WKTWriter w = new WKTWriter();
-      return w.write(shape);
-    }
-  }
-
-  public void setShape(Geometry shape) {
-    this.shape = shape;
-  }
+//  private Geometry shape;
+//
+//  public String getShape() {
+//    if(shape == null){
+//      return null;
+//    }else{
+//      WKTWriter w = new WKTWriter();
+//      return w.write(shape);
+//    }
+//  }
+//
+//  public void setShape(Geometry shape) {
+//    this.shape = shape;
+//  }
 
   private Integer eventRegionCode;
 

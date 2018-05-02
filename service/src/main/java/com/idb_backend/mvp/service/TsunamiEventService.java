@@ -1,92 +1,40 @@
-//package com.idb_backend.mvp.service;
-//
-//import com.idb_backend.mvp.domain.model.*;
-//
-//import javax.persistence.criteria.*;
-//import java.util.List;
-//import java.util.Map;
-//
-//public interface TsunamiEventService {
-//
-//  Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder, Root root);
-//
-//  Predicate checkMinMax(Integer min, Integer max, String colName, CriteriaBuilder builder, Join join);
-//
-//  Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder, Root root);
-//
-//  Predicate checkMinMax(Float min, Float max, String colName, CriteriaBuilder builder, Join join);
-//
-//  Predicate genIntMinMax (Map<String, String> map, String minKey, String maxKey, String colName,
-//                          CriteriaBuilder builder, Root root) throws NumberFormatException;
-//
-//  Predicate genIntMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
-//                         CriteriaBuilder builder, Join join) throws NumberFormatException;
-//
-//
-//  Predicate genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
-//                           CriteriaBuilder builder, Root root) throws NumberFormatException;
-//
-//  Predicate genFloatMinMax(Map<String, String> map, String minKey, String maxKey, String colName,
-//                           CriteriaBuilder builder, Join join) throws NumberFormatException;
-//
-//  List<TsunamiEventViewNonPersist> getEventsByQuery(CriteriaQuery<TsunamiEventViewNonPersist> criteria);
-//
-//  List<TsunamiEventViewNonPersist> generateCriteria(Map<String, String> map);
-//
-//  Integer generateInteger(Map<String, String> map, String key);
-//
-//  Float generateFloat(Map<String, String> map, String key);
-//
-//  Predicate genEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder, Root root);
-//
-//  Predicate checkRegionParams(Map<String, String> map, String key, String colName, CriteriaBuilder builder, Root root);
-//
-//  Predicate checkRegionParams(Map<String, String> map, String key, String colName, CriteriaBuilder builder, Join join );
-//
-//  Predicate checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
-//                           String not, String colName, CriteriaBuilder builder, Root root);
-//
-//  Predicate checkLocParams(Map<String, String> map, String start, String end, String includes, String match,
-//                           String not, String colName, CriteriaBuilder builder, Join join);
-//
-//  Predicate genEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder, Join join);
-//
-//  void addEvent(TsunamiEvent tsunamiEvent);
-//
-//  List<TsunamiEvent> checkMaxTsEventId();
-//
-//  List<TsunamiRunup> checkMaxRunupId();
-//
-//  void addRunup(TsunamiRunup tsunamiRunup);
-//
-//  List<TsunamiRunupViewNonPersist> generateRunupCriteria(Map<String, String> map);
-//
-//  void updateEvent(TsunamiEvent tsunamiEvent);
-//
-//  void updateRunup(TsunamiRunup tsunamiRunup);
-//
-//  void deleteRunup(Integer id);
-//
-//  TsunamiEvent getEventProxy(Integer id);
-//
-//  void deleteEvent(Integer id);
-//
-//  List<TsunamiRunup> getRunupById(Integer id);
-//
-//  List<TsunamiRunupViewNonPersist> getAllRunups();
-//
-//  boolean validateParams(Map<String, String> map);
-//
-//  boolean validateMinMax(int min, int max, Integer value);
-//
-//  boolean validateStringList(String[] list, String value);
-//
-//  boolean validateIntList(int[] list, Integer value);
-//
-//  boolean validateMinMax(int min, int max, Float value);
-//
-//  boolean validateMinMax(double min, double max, Double value);
-//
-//  Predicate genNumEqRestriction(Map<String, String> map, String key, String colName, CriteriaBuilder builder,
-//                                    Join join);
-//}
+package com.idb_backend.mvp.service;
+
+import com.idb_backend.mvp.domain.model.TsunamiEventView;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.NumberPath;
+import com.querydsl.core.types.dsl.StringPath;
+
+import java.util.Map;
+
+public interface TsunamiEventService {
+
+  BooleanExpression combineBools(Predicate predicate, BooleanExpression runupBool);
+
+  BooleanExpression checkMinMax(Integer min, Integer max, NumberPath<Integer> root);
+
+  BooleanExpression genIntMinMax(Map<String, String> map, String minKey, String maxKey,
+                                 NumberPath<Integer> root) throws NumberFormatException;
+
+  Integer generateInteger(Map<String, String> map, String key);
+
+  BooleanExpression generateCriteria(Map<String, String> map);
+
+  BooleanExpression genEqRestriction(Map<String, String> map, String key, StringPath root);
+
+  BooleanExpression genEqRestriction(Map<String, String> map, String key, NumberPath root);
+
+  BooleanExpression checkMinMax(Double min, Double max, NumberPath<Double> root);
+
+  Double generateDouble(Map<String, String> map, String key);
+
+  BooleanExpression genDoubleMinMax(Map<String, String> map, String minKey, String maxKey,
+                                    NumberPath<Double> root);
+
+  BooleanExpression checkLocParams(Map<String, String> map, String locStart, String locEnd,
+                                   String locIncludes, String locMatch, String locNot,
+                                   StringPath root);
+
+  Iterable<TsunamiEventView> getTsunamis(Map<String, String> params, Predicate predicate);
+}

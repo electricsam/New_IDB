@@ -30,4 +30,9 @@ public class Reference {
   @OneToMany(mappedBy = "reference", fetch = FetchType.LAZY)
   private Set<TsunamiRefs> tsunamiRefs = new HashSet<>();
 
+  @OneToMany(mappedBy = "reference", fetch = FetchType.LAZY)
+  private Set<SignifRefs> signifRefs = new HashSet<>();
+
+  @OneToMany(mappedBy = "reference", fetch = FetchType.LAZY)
+  private Set<VolcanoRefs> volcanoRefs = new HashSet<>();
 }

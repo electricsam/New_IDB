@@ -273,4 +273,7 @@ public class TsunamiEvent implements Serializable {
   @OneToMany(mappedBy = "tsunamiEvent", fetch = FetchType.EAGER)
   private Set<SignifToTsEvent> signifToTsEvents = new HashSet<>();
 
+  @OneToMany(mappedBy =  "tsunamiEvent", fetch = FetchType.EAGER)
+  private Set<TseventAndVolEvent> tseventAndVolEvents = new HashSet<>();
+
 }

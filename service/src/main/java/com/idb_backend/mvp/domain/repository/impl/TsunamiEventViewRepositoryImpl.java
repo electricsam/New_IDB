@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Map;
 
 public class TsunamiEventViewRepositoryImpl extends QuerydslRepositorySupport implements
     TsunamiEventViewCustomRepository{
@@ -20,19 +19,23 @@ public class TsunamiEventViewRepositoryImpl extends QuerydslRepositorySupport im
   @PersistenceContext
   EntityManager entityManager;
 
-  public Iterable<TsunamiEventView> findEventsByQuery(Map<String, String> params, Predicate predicate){
+  public Iterable<TsunamiEventView> findEventsByQuery(Predicate predicate){
     JPAQuery<TsunamiEventView> query = new JPAQuery<>(entityManager);
     QTsunamiEventView ts = QTsunamiEventView.tsunamiEventView;
     QTsunamiRunupView rnp = QTsunamiRunupView.tsunamiRunupView;
 
-    return query.select(ts)
+    /*
+    * This section will be moved into a service and then pushed into the repo that you have here
+    */
+
+    return query
+        .select(ts).distinct()
         .from(rnp)
         .innerJoin(ts)
         .on(ts.id.eq(rnp.tsunamiEventView.id))
-        .where(predicate).fetch();
-//        before you move on to here it would be helpful to have additional predicates for the rnp join logic
-// worked up in a service and then passed in rather than make them on the fly here - let the service be ugly
-//        .where()
-
+        .where(predicate)
+        .fetch();
   }
+
+
 }

@@ -18,18 +18,47 @@ public class EarthquakeRepositoryImpl extends QuerydslRepositorySupport implemen
   EntityManager entityManager;
 
   @Override
-  public Iterable<SignifVsqp> findRelatedEarthquake(Integer tsunamiId){
+  public Iterable<SignifVsqp> findRelatedEarthquakeFromTsunami(Integer tsunamiId){
     JPAQuery<SignifVsqp> query = new JPAQuery<>(entityManager);
     QSignifVsqp eq = QSignifVsqp.signifVsqp;
     QSignifToTsEvent ste = QSignifToTsEvent.signifToTsEvent;
-    QTsunamiEvent tse = QTsunamiEvent.tsunamiEvent;
-    return query.select(eq)
+    return query
+        .select(eq)
         .from(ste)
         .innerJoin(eq)
         .on(eq.id.eq(ste.signifTsqp.id))
-        .innerJoin(tse)
-        .on(tse.id.eq(ste.tsunamiEvent.id))
-        .where(tse.id.eq(tsunamiId))
+        .where(ste.tsunamiEvent.id.eq(tsunamiId))
         .fetch();
   }
+
+  @Override
+  public Iterable<SignifVsqp> findRelatedEarthquakeFromRef(Integer refId){
+    JPAQuery<SignifVsqp> query = new JPAQuery<>(entityManager);
+    QSignifVsqp eq = QSignifVsqp.signifVsqp;
+    QSignifRefs sr = QSignifRefs.signifRefs;
+
+    return query
+        .select(eq)
+        .from(sr)
+        .innerJoin(eq)
+        .on(eq.id.eq(sr.signifTsqp.id))
+        .where(sr.reference.id.eq(refId))
+        .fetch();
+  }
+
+  @Override
+  public Iterable<SignifVsqp> findRelatedEarthquakeFromVolcano(Integer volId){
+    JPAQuery<SignifVsqp> query = new JPAQuery<>(entityManager);
+    QSignifVsqp eq = QSignifVsqp.signifVsqp;
+    QSignifAndVolEvent sv = QSignifAndVolEvent.signifAndVolEvent;
+
+    return query
+        .select(eq)
+        .from(sv)
+        .innerJoin(eq)
+        .on(eq.id.eq(sv.signifTsqp.id))
+        .where(sv.volcanoEvent.hazEventId.eq(volId))
+        .fetch();
+  }
+
 }
