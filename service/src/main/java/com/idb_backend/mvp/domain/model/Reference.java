@@ -35,4 +35,8 @@ public class Reference {
 
   @OneToMany(mappedBy = "reference", fetch = FetchType.LAZY)
   private Set<VolcanoRefs> volcanoRefs = new HashSet<>();
+
+  @OneToMany(mappedBy = "reference", fetch = FetchType.LAZY)
+  private Set<TsrunupRefs> tsrunupRefs = new HashSet<>();
+
 }

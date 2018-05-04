@@ -52,7 +52,7 @@ public class TsunamiEventController {
   @RequestMapping(value = "/tsunamievents/{id}", method= RequestMethod.GET)
   public @ResponseBody ResponseEntity getEventById(@PathVariable("id") Integer id){
     try{
-      Optional<TsunamiEventView> result = tsunamiEventViewRepository.findById(id);
+      Optional<TsunamiEvent> result = tsunamiEventRepository.findById(id);
       return ResponseEntity.status(HttpStatus.OK).body(result);
     }catch(Exception e){
       List<TsunamiEvent> event = new ArrayList<>();

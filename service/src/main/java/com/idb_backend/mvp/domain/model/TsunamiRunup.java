@@ -12,6 +12,8 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @QueryEntity
@@ -19,7 +21,7 @@ import java.util.Date;
 @Entity(name = "TSRUNUP_TSQP")
 public class TsunamiRunup {
   @Id
-  private int id;
+  private Integer id;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "TSEVENT_ID")
@@ -230,6 +232,9 @@ public class TsunamiRunup {
   private String publish;
 
   private String previousState;
+
+  @OneToMany(mappedBy = "tsunamiRunup", fetch = FetchType.LAZY)
+  private Set<TsrunupRefs> tsrunupRefs = new HashSet<>();
 
 }
 

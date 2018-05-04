@@ -2,9 +2,10 @@ package com.idb_backend.mvp.domain.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-public class VolRefsId {
+public class VolRefsId implements Serializable{
 
   @Column(name = "VOL_ID")
   private Integer volId;

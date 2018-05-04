@@ -42,7 +42,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
     boolList.add(genIntMinMax(map, "rnphousesdescripmin", "rnphousesdescripmax", root.housesAmountOrder));
     boolList.add(genEqRestriction(map, "runupcountry", root.country));
     boolList.add(genEqRestriction(map, "runuparea", root.area));
-    boolList.add(genEqRestriction(map, "rnpmeasuretype", root.typeOfMeasurementId));
+    boolList.add(genEqRestriction(map, "rnpmeasuretype", root.typeMeasurementId));
     boolList.add(genEqRestriction(map, "runupregion", root.regionCode));
     boolList.add(genDoubleMinMax(map, "rnphtmin", "rnphtmax", root.runupHt));
     boolList.add(genDoubleMinMax(map, "rnpdamagemin", "rnpdamagemax", root.damageMillionsDollars));
@@ -99,8 +99,7 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
   public BooleanExpression genEqRestriction(Map<String, String> map, String key, StringPath root){
     String condition = map.get(key);
     if(condition != null){
-      condition = condition.toUpperCase();
-      return root.eq(condition);
+      return root.equalsIgnoreCase(condition);
     }else{
       return null;
     }
@@ -170,11 +169,11 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
       return tsunamiEventRepository.findRelatedTsunamiFromRef(Integer.parseInt(params.get("refid")));
     }else if(params.get("volcanoid") != null && params.get("volcanoid") != ""){
       return tsunamiEventRepository.findRelatedTsunamiFromVolcano(Integer.parseInt(params.get("volcanoid")));
-    }
-    else{
+    }else if(params.get("runupid") != null && params.get("runupid") != ""){
+      return tsunamiEventRepository.findRelatedTsunamiFromRunup(Integer.parseInt(params.get("runupid")));
+    } else{
       return tsunamiEventViewRepository.findEventsByQuery(combineBools(predicate, generateCriteria(params)));
     }
-
   }
 
 //  @Override

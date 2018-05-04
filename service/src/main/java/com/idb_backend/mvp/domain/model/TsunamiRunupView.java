@@ -19,17 +19,17 @@ import java.util.Date;
 @Entity(name = "TSRUNUP_VSQP")
 public class TsunamiRunupView {
   @Id
-  private int id;
+  private Integer id;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "TSEVENT_ID")
   private TsunamiEventView tsunamiEventView;
 
-
+  @Getter(AccessLevel.PRIVATE)
   private Integer year;
-
+  @Getter(AccessLevel.PRIVATE)
   private Integer month;
-
+  @Getter(AccessLevel.PRIVATE)
   private Integer day;
 
   private Integer arrDay;
@@ -48,7 +48,23 @@ public class TsunamiRunupView {
 
   private Double latitude;
 
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Double minLatitude;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Double maxLatitude;
+
   private Double longitude;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Double minLongitude;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Double maxLongitude;
 
   private String locationName;
 
@@ -60,11 +76,27 @@ public class TsunamiRunupView {
 
   private Double runupHt;
 
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Double minRunupHt;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Double maxRunupHt;
+
   private Double runupHoriz;
 
-  private Integer typeOfMeasurementId;
+  private Integer typeMeasurementId;
 
   private Double damageMillionsDollars;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Double minDamageMillionsDollars;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Double maxDamageMillionsDollars;
 
   private Integer damageAmountOrder;
 
@@ -74,31 +106,55 @@ public class TsunamiRunupView {
 
   private Integer deaths;
 
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Integer minDeaths;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Integer maxDeaths;
+
   private Integer deathsAmountOrder;
 
   private Integer injuries;
 
   private Integer injuriesAmountOrder;
 
+  @Getter(AccessLevel.PRIVATE)
   private Date ngdcDate;
 
+  @Getter(AccessLevel.PRIVATE)
   private Integer temporalAccuracy;
 
+  @Getter(AccessLevel.PRIVATE)
   private Long objectid;
+
 
   private Integer idRef;
 
+  @Getter(AccessLevel.PRIVATE)
   private String tsdate;
 
+  @Getter(AccessLevel.PRIVATE)
   private String hasEvent;
 
   private String comments;
 
+  @Getter(AccessLevel.PRIVATE)
   private String hasRef;
 
+  @Getter(AccessLevel.PRIVATE)
   private String doubtful;
 
   private Integer distFromSource;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Integer minDistFromSource;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private Integer maxDistFromSource;
 
 //  private Geometry shape;
 //
@@ -115,10 +171,13 @@ public class TsunamiRunupView {
 //    this.shape = shape;
 //  }
 
+  @Getter(AccessLevel.PRIVATE)
   private Integer eventRegionCode;
 
+  @Getter(AccessLevel.PRIVATE)
   private Integer predTravHours;
 
+  @Getter(AccessLevel.PRIVATE)
   private Integer predTravMins;
 
   private Integer housesDamaged;

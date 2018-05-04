@@ -9,4 +9,6 @@ public interface TsunamiEventCustomRepository {
   Iterable<TsunamiEventView> findRelatedTsunamiFromRef(Integer refId);
 
   Iterable<TsunamiEventView> findRelatedTsunamiFromVolcano(Integer volId);
+
+  Iterable<TsunamiEventView> findRelatedTsunamiFromRunup(Integer runupId);
 }

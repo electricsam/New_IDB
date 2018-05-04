@@ -70,4 +70,19 @@ public class TsunamiEventRepositoryImpl extends QuerydslRepositorySupport implem
         .fetch();
   }
 
+  @Override
+  public Iterable<TsunamiEventView> findRelatedTsunamiFromRunup(Integer runupId){
+    JPAQuery<TsunamiEventView> query = new JPAQuery<>(entityManager);
+    QTsunamiEventView tse = QTsunamiEventView.tsunamiEventView;
+    QTsunamiRunupView rv = QTsunamiRunupView.tsunamiRunupView;
+
+    return query
+        .select(tse)
+        .from(rv)
+        .innerJoin(tse)
+        .on(tse.id.eq(rv.tsunamiEventView.id))
+        .where(rv.id.eq(runupId))
+        .fetch();
+  }
+
 }
