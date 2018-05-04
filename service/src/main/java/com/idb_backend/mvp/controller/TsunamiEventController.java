@@ -39,7 +39,8 @@ public class TsunamiEventController {
 
 
   @RequestMapping(value = "/tsunamievents", method= RequestMethod.GET)
-  public @ResponseBody ResponseEntity getAllEvents(){
+  @ResponseBody
+  public ResponseEntity getAllEvents(){
     try{
       List<TsunamiEventView> events = tsunamiEventViewRepository.findAll();
       return new ResponseEntity<>(events, HttpStatus.OK);
@@ -49,7 +50,8 @@ public class TsunamiEventController {
   }
 
   @RequestMapping(value = "/tsunamievents/{id}", method= RequestMethod.GET)
-  public @ResponseBody ResponseEntity getEventById(@PathVariable("id") Integer id){
+  @ResponseBody
+  public ResponseEntity getEventById(@PathVariable("id") Integer id){
     try{
       Optional<TsunamiEvent> result = tsunamiEventRepository.findById(id);
       return ResponseEntity.status(HttpStatus.OK).body(result);
@@ -60,6 +62,7 @@ public class TsunamiEventController {
   }
 
   @RequestMapping(value = "/tsunamievents/select", method= RequestMethod.GET)
+  @ResponseBody
   public ResponseEntity getEventsByQuery(@RequestParam Map<String, String> allRequestParams,
                                          @QuerydslPredicate(root = TsunamiEventView.class) Predicate predicate){
     try{
@@ -72,6 +75,7 @@ public class TsunamiEventController {
   }
 
   @RequestMapping(value = "/tsunamievents", method=RequestMethod.POST)
+  @ResponseBody
   public ResponseEntity postTsunamiEvent(@Valid @RequestBody TsunamiEvent tsunamiEvent, Errors errors){
     try{
       if(errors.hasErrors()){
@@ -97,6 +101,7 @@ public class TsunamiEventController {
   }
 
   @RequestMapping(value = "/tsunamievents/{id}", method = RequestMethod.PATCH)
+  @ResponseBody
   public ResponseEntity patchEvent( @PathVariable("id") Integer id,
                                     @Valid @RequestBody TsunamiEvent tsunamiEvent, Errors errors){
     try{
@@ -126,6 +131,7 @@ public class TsunamiEventController {
   }
 
   @RequestMapping(value = "/tsunamievents/{id}", method = RequestMethod.DELETE)
+  @ResponseBody
   public ResponseEntity deleteTsunamiEvent(@PathVariable("id") Integer id){
     try{
       tsunamiEventRepository.deleteById(id);

@@ -31,6 +31,7 @@ public class RunupController {
   RunupRepository runupRepository;
 
   @RequestMapping(value = "/runups", method = RequestMethod.GET)
+  @ResponseBody
   public ResponseEntity getRunups(@RequestParam Map<String, String> map,
                                   @QuerydslPredicate(root = TsunamiRunupView.class) Predicate predicate){
     List<RunupProjection> runups = runupService.getRunups(map, predicate);
@@ -38,6 +39,7 @@ public class RunupController {
   }
 
   @RequestMapping(value = "/runups/{id}", method = RequestMethod.GET)
+  @ResponseBody
   public ResponseEntity getRunupsById(@PathVariable("id") Integer id){
     try{
       Optional<TsunamiRunup> runup = runupRepository.findById(id);
@@ -48,6 +50,7 @@ public class RunupController {
   }
 
   @RequestMapping(value = "/runups/{id}", method = RequestMethod.PATCH)
+  @ResponseBody
   public ResponseEntity patchRunup(@PathVariable("id") Integer id,
                                    @Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
 
@@ -66,6 +69,7 @@ public class RunupController {
   }
 
   @RequestMapping(value = "/runups", method = RequestMethod.POST)
+  @ResponseBody
   public ResponseEntity postRunup(@Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
     try{
       if(errors.hasErrors()){
@@ -86,6 +90,7 @@ public class RunupController {
   }
 
   @RequestMapping(value = "/runup/{id}", method = RequestMethod.DELETE)
+  @ResponseBody
   public ResponseEntity deleteRunup(@PathVariable("id") Integer id){
     try{
       runupRepository.deleteById(id);
