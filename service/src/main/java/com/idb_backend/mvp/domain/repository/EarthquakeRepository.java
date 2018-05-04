@@ -11,7 +11,7 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 public interface EarthquakeRepository extends JpaRepository<SignifTsqp, Integer>, QuerydslPredicateExecutor<SignifTsqp>,
     QuerydslBinderCustomizer<QSignifTsqp>, EarthquakeCustomRepository {
   @Override
-  default public void customize(QuerydslBindings bindings, QSignifTsqp root){
+  default void customize(QuerydslBindings bindings, QSignifTsqp root){
     bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));
 
   }

@@ -8,7 +8,6 @@ import com.idb_backend.mvp.domain.repository.TsunamiEventViewRepository;
 import com.idb_backend.mvp.service.TsunamiEventService;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
