@@ -70,12 +70,12 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
 
   @Override
   public List<VolcanoEventProjection> findRelatedVolcanoesFromEarthquake(Integer earthquakeid){
-    JPAQuery<VolcanoEvent> query = new JPAQuery<>();
+    JPAQuery<VolcanoEvent> query = new JPAQuery<>(entityManager);
     QVolcanoEvent e = QVolcanoEvent.volcanoEvent;
     QVolLocTsqp l = QVolLocTsqp.volLocTsqp;
     QSignifAndVolEvent  sv = QSignifAndVolEvent.signifAndVolEvent;
 
-    return query.select(Projections.bean(VolcanoEventProjection.class, e.year, e.mo, e.day, e.assocTsu, e.assocEq,
+    return query.select(Projections.bean(VolcanoEventProjection.class, e.hazEventId, e.year, e.mo, e.day, e.assocTsu, e.assocEq,
         l.name, l.location, l.country, l.latitude, l.longitude, l.elevation, l.morphology, e.vei, e.agent,
         e.deathsAmountOrder, e.injuries, e.injuriesAmountOrder, e.damageMillionsDollars, e.damageAmountOrder,
         e.housesDestroyed, e.housesAmountOrder))
@@ -91,12 +91,12 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
 
   @Override
   public List<VolcanoEventProjection> findRelatedVolcanoesFromRef(Integer refId){
-    JPAQuery<VolcanoEvent> query = new JPAQuery<>();
+    JPAQuery<VolcanoEvent> query = new JPAQuery<>(entityManager);
     QVolcanoEvent e = QVolcanoEvent.volcanoEvent;
     QVolLocTsqp l = QVolLocTsqp.volLocTsqp;
     QVolcanoRefs vr = QVolcanoRefs.volcanoRefs;
 
-    return query.select(Projections.bean(VolcanoEventProjection.class, e.year, e.mo, e.day, e.assocTsu, e.assocEq,
+    return query.select(Projections.bean(VolcanoEventProjection.class, e.hazEventId, e.year, e.mo, e.day, e.assocTsu, e.assocEq,
         l.name, l.location, l.country, l.latitude, l.longitude, l.elevation, l.morphology, e.vei, e.agent,
         e.deathsAmountOrder, e.injuries, e.injuriesAmountOrder, e.damageMillionsDollars, e.damageAmountOrder,
         e.housesDestroyed, e.housesAmountOrder))
@@ -112,12 +112,12 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
 
   @Override
   public List<VolcanoEventProjection> findRelatedVolcanoesFromTsunami(Integer tsunamiId){
-    JPAQuery<VolcanoEvent> query = new JPAQuery<>();
+    JPAQuery<VolcanoEvent> query = new JPAQuery<>(entityManager);
     QVolcanoEvent e = QVolcanoEvent.volcanoEvent;
     QVolLocTsqp l = QVolLocTsqp.volLocTsqp;
     QTseventAndVolEvent tv = QTseventAndVolEvent.tseventAndVolEvent;
 
-    return query.select(Projections.bean(VolcanoEventProjection.class, e.year, e.mo, e.day, e.assocTsu, e.assocEq,
+    return query.select(Projections.bean(VolcanoEventProjection.class, e.hazEventId, e.year, e.mo, e.day, e.assocTsu, e.assocEq,
         l.name, l.location, l.country, l.latitude, l.longitude, l.elevation, l.morphology, e.vei, e.agent,
         e.deathsAmountOrder, e.injuries, e.injuriesAmountOrder, e.damageMillionsDollars, e.damageAmountOrder,
         e.housesDestroyed, e.housesAmountOrder))
