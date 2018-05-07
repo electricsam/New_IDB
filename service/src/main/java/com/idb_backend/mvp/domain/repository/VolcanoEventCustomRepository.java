@@ -1,5 +1,6 @@
 package com.idb_backend.mvp.domain.repository;
 
+import com.idb_backend.mvp.domain.model.VolcanoEvent;
 import com.idb_backend.mvp.domain.model.VolcanoEventProjection;
 import com.querydsl.core.types.Predicate;
 

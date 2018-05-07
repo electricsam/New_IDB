@@ -1,9 +1,6 @@
 package com.idb_backend.mvp.service.impl;
 
-import com.idb_backend.mvp.domain.model.QTsunamiRunupView;
-import com.idb_backend.mvp.domain.model.QVolLocTsqp;
-import com.idb_backend.mvp.domain.model.QVolcanoEvent;
-import com.idb_backend.mvp.domain.model.VolcanoEventProjection;
+import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.VolcanoEventRepository;
 import com.idb_backend.mvp.service.VolcanoService;
 import com.querydsl.core.types.Predicate;
@@ -33,6 +30,8 @@ public class VolcanoServiceImpl implements VolcanoService{
     }else if(params.get("tsunamiid") != null && params.get("tsunamiid") != ""){
       return volcanoEventRepository.findRelatedVolcanoesFromTsunami(Integer.parseInt(params.get("tsunamiid")));
     }else{
+      System.out.println("This is the predicate in the service: " + predicate);
+      System.out.println("This is the params var in the service: " + params);
       return volcanoEventRepository.findByQuery(combineBools(predicate, generateCriteria(params)));
     }
 

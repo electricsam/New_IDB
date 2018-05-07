@@ -35,9 +35,12 @@ public class VolcanoEventController {
                                      @QuerydslPredicate(root = VolcanoEvent.class) Predicate predicate){
     try{
       List<VolcanoEventProjection> list = volcanoService.getVolcanoes(params, predicate);
+
+      System.out.println("this is the list: " + list);
       return ResponseEntity.status(HttpStatus.OK).body(list);
     }catch (Exception e){
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+      throw e;
+//      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
   }
 

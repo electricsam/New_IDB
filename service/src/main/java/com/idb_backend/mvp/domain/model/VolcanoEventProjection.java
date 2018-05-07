@@ -8,6 +8,8 @@ public class VolcanoEventProjection implements Serializable{
   private Integer year;
   private Integer mo;
   private Integer day;
+  private String assocTsu;
+  private String assocEq;
 
   private String name;
   private String location;
@@ -29,6 +31,22 @@ public class VolcanoEventProjection implements Serializable{
 
 
   public VolcanoEventProjection(){}
+
+  public String getAssocTsu() {
+    return assocTsu;
+  }
+
+  public void setAssocTsu(String assocTsu) {
+    this.assocTsu = assocTsu;
+  }
+
+  public String getAssocEq() {
+    return assocEq;
+  }
+
+  public void setAssocEq(String assocEq) {
+    this.assocEq = assocEq;
+  }
 
   public Integer getHazEventId() {
     return hazEventId;

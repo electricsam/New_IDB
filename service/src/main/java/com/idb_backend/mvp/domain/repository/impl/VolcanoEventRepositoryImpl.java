@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implements VolcanoEventCustomRepository{
@@ -20,22 +21,49 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
 
   @Override
   public List<VolcanoEventProjection> findByQuery(Predicate predicate){
-    JPAQuery<VolcanoEvent> query = new JPAQuery<>();
+    JPAQuery<VolcanoEvent> query = new JPAQuery<>(entityManager);
     QVolcanoEvent e = QVolcanoEvent.volcanoEvent;
     QVolLocTsqp l = QVolLocTsqp.volLocTsqp;
 
-
-    List<VolcanoEventProjection> result = query.select(Projections.bean(VolcanoEventProjection.class, e.year, e.mo, e.day, e.assocTsu, e.assocEq,
-        l.name, l.location, l.country, l.latitude, l.longitude, l.elevation, l.morphology, e.vei, e.agent,
-        e.deathsAmountOrder, e.injuries, e.injuriesAmountOrder, e.damageMillionsDollars, e.damageAmountOrder,
-        e.housesDestroyed, e.housesAmountOrder))
+    List<VolcanoEventProjection> result = query
+        .select(Projections.bean(
+            VolcanoEventProjection.class,
+            e.hazEventId,
+            e.year,
+            e.mo,
+            e.day,
+            e.assocTsu,
+            e.assocEq,
+            l.name,
+            l.location,
+            l.country,
+            l.latitude,
+            l.longitude,
+            l.elevation,
+            l.morphology,
+            e.vei,
+            e.agent,
+            e.damageMillionsDollars,
+            e.damageAmountOrder,
+            e.deathsAmountOrder,
+            e.injuries,
+            e.injuriesAmountOrder,
+            e.housesDestroyed,
+            e.housesAmountOrder))
         .from(e)
         .innerJoin(l)
         .on(l.id.eq(e.volLocTsqp.id))
         .where(predicate)
         .fetch();
 
-    System.out.println(predicate);
+    System.out.println(query);
+
+    System.out.println("hello world");
+
+
+//    System.out.println(result);
+
+//    return result;
 
     return result;
   }

@@ -174,7 +174,7 @@ public class VolcanoEvent {
   private String publish;
   private String previousState;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "VOL_ID")
   @JsonIgnore
   private VolLocTsqp volLocTsqp;
@@ -184,7 +184,7 @@ public class VolcanoEvent {
   @JsonIgnore
   private Set<SignifAndVolEvent> signifAndVolEvents = new HashSet<>();
 
-  @OneToMany(mappedBy = "volcanoEvent", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "volcanoEvent", fetch = FetchType.LAZY)
   @JsonIgnore
   private Set<TseventAndVolEvent> tseventAndVolEvents = new HashSet<>();
 
