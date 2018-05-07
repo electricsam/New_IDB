@@ -4,7 +4,9 @@ package com.idb_backend.mvp.domain.model;
 import com.querydsl.core.annotations.QueryEntity;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -23,6 +25,28 @@ public class VolLocTsqp {
   private String num;
   private String name;
   private String location;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String locStart;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String locEnd;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String locIncludes;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String locMatch;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String locNot;
+
+
   private Double latitude;
   private Double longitude;
   private Integer elevation;
@@ -35,7 +59,7 @@ public class VolLocTsqp {
   private String publish;
   private String previousState;
 
-  @OneToMany(mappedBy = "volcanoEvent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "volLocTsqp", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<VolcanoEvent> volcanoEvents = new ArrayList<>();
 
 

@@ -13,7 +13,6 @@ public interface ReferenceRepository extends JpaRepository<Reference, Integer>, 
 
   @Override
   default void customize(QuerydslBindings bindings, QReference root){
-
   }
 
 }
