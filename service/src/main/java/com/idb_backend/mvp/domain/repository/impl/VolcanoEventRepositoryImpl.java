@@ -24,7 +24,8 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
     QVolcanoEvent e = QVolcanoEvent.volcanoEvent;
     QVolLocTsqp l = QVolLocTsqp.volLocTsqp;
 
-    return query.select(Projections.bean(VolcanoEventProjection.class, e.year, e.mo, e.day, e.assocTsu, e.assocEq,
+
+    List<VolcanoEventProjection> result = query.select(Projections.bean(VolcanoEventProjection.class, e.year, e.mo, e.day, e.assocTsu, e.assocEq,
         l.name, l.location, l.country, l.latitude, l.longitude, l.elevation, l.morphology, e.vei, e.agent,
         e.deathsAmountOrder, e.injuries, e.injuriesAmountOrder, e.damageMillionsDollars, e.damageAmountOrder,
         e.housesDestroyed, e.housesAmountOrder))
@@ -33,6 +34,10 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
         .on(l.id.eq(e.volLocTsqp.id))
         .where(predicate)
         .fetch();
+
+    System.out.println(predicate);
+
+    return result;
   }
 
   @Override

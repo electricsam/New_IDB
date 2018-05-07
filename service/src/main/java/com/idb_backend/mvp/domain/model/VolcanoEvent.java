@@ -181,12 +181,15 @@ public class VolcanoEvent {
 //  private Integer volId;
 
   @OneToMany(mappedBy = "volcanoEvent", fetch = FetchType.LAZY)
+  @JsonIgnore
   private Set<SignifAndVolEvent> signifAndVolEvents = new HashSet<>();
 
   @OneToMany(mappedBy = "volcanoEvent", fetch = FetchType.EAGER)
+  @JsonIgnore
   private Set<TseventAndVolEvent> tseventAndVolEvents = new HashSet<>();
 
   @OneToMany(mappedBy = "volcanoEvent", fetch = FetchType.LAZY)
+  @JsonIgnore
   private Set<VolcanoRefs> volcanoRefs = new HashSet<>();
 
 }

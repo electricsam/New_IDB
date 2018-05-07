@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-public class VolcanoController {
+public class VolcanoEventController {
 
   @Autowired
   VolcanoService volcanoService;
@@ -31,7 +31,8 @@ public class VolcanoController {
 
   @RequestMapping(value = "/volcanoes", method = RequestMethod.GET)
   @ResponseBody
-  public ResponseEntity getVolcanoes(@RequestBody Map<String, String> params, @QuerydslPredicate Predicate predicate){
+  public ResponseEntity getVolcanoes(@RequestParam Map<String, String> params,
+                                     @QuerydslPredicate(root = VolcanoEvent.class) Predicate predicate){
     try{
       List<VolcanoEventProjection> list = volcanoService.getVolcanoes(params, predicate);
       return ResponseEntity.status(HttpStatus.OK).body(list);
@@ -46,6 +47,7 @@ public class VolcanoController {
     try{
       return ResponseEntity.status(HttpStatus.OK).body(volcanoEventRepository.findById(id));
     }catch (Exception e){
+      System.out.println("error: " + e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
   }

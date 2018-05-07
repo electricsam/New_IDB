@@ -177,7 +177,7 @@ public class TsunamiEvent implements Serializable {
 
   private Integer temporalAccuracy;
 
-  private Long objectId;
+  private Long objectid;
 
   public String getShape() {
     if(shape == null){

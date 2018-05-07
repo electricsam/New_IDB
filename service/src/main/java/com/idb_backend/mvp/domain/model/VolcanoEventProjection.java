@@ -1,6 +1,8 @@
 package com.idb_backend.mvp.domain.model;
 
-public class VolcanoEventProjection {
+import java.io.Serializable;
+
+public class VolcanoEventProjection implements Serializable{
 
   private Integer hazEventId;
   private Integer year;
