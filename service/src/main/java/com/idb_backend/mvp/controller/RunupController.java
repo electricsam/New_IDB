@@ -89,7 +89,7 @@ public class RunupController {
     }
   }
 
-  @RequestMapping(value = "/runup/{id}", method = RequestMethod.DELETE)
+  @RequestMapping(value = "/runups/{id}", method = RequestMethod.DELETE)
   @ResponseBody
   public ResponseEntity deleteRunup(@PathVariable("id") Integer id){
     try{

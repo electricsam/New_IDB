@@ -9,8 +9,8 @@ export function* watchUpdateFetchedTsEvent(){
 
 const port = "http://localhost:10088";
 
-const TSUNAMI_EVENTS_BASEPATH = `/tsunamievents/`,
-      TSUNAMI_RUNUPS_BASEPATH = `/tsunamirunups/`;
+const TSUNAMI_EVENTS_BASEPATH = `/idb/tsunamievents/`,
+      TSUNAMI_RUNUPS_BASEPATH = `/idb/runups/`;
 
 export function* fetchAllTsEvents(){
   try {

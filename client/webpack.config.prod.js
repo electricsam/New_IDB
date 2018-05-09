@@ -32,6 +32,7 @@ module.exports = {
       {
         test:/\.js$/,
         enforce: "pre",
+        exclude: '/node_modules/',
         loader: "eslint-loader",
         options:{
           emitWarning: true,
@@ -39,6 +40,7 @@ module.exports = {
       },
       {
         test: /\.(js|jsx)?$/,
+        exclude: '/node_modules/',
         use: 'babel-loader',
       },
       {
@@ -53,11 +55,16 @@ module.exports = {
             options: {
               importLoaders: 1,
               modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
+              localIdentName: '[name]__[local]'
             }
           },
           {
-            loader: 'postcss-loader'
+            loader: 'postcss-loader',
+            options: {
+                plugins: (loader) => [
+                    require('postcss-advanced-variables')()
+                ]
+            }
           }
         ]
       },

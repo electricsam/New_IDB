@@ -24,6 +24,29 @@ public class VolLocTsqp {
 
   private String num;
   private String name;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String nameStart;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String nameEnd;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String nameIncludes;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String nameMatch;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String nameNot;
+
+
+
   private String location;
 
   @Transient
@@ -46,9 +69,26 @@ public class VolLocTsqp {
   @Getter(value = AccessLevel.PRIVATE)
   private String locNot;
 
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double minLatitude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double maxLatitude;
 
   private Double latitude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double minLongitude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double maxLongitude;
+
   private Double longitude;
+
   private Integer elevation;
   private String morphology;
   private String status;
