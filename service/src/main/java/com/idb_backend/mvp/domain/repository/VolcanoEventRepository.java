@@ -8,6 +8,8 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 
+import java.util.Optional;
+
 public interface VolcanoEventRepository extends JpaRepository<VolcanoEvent, Integer>,
     QuerydslPredicateExecutor<VolcanoEvent>, QuerydslBinderCustomizer<QVolcanoEvent>, VolcanoEventCustomRepository{
 

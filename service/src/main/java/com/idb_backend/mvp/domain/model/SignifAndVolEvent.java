@@ -20,11 +20,13 @@ public class SignifAndVolEvent {
   @JoinColumn(name = "VOL_ID", insertable = false, updatable = false)
   private VolcanoEvent volcanoEvent;
 
-
   private java.sql.Date lastUpdate;
   private String publish;
   private String previousState;
 
+  public void setId(Integer sigId, Integer volId){
+    this.id = new SigVolId(sigId, volId);
+  }
 
   public SignifTsqp getSignifTsqp() {
     return signifTsqp;
@@ -50,7 +52,6 @@ public class SignifAndVolEvent {
     this.lastUpdate = lastUpdate;
   }
 
-
   public String getPublish() {
     return publish;
   }
@@ -58,7 +59,6 @@ public class SignifAndVolEvent {
   public void setPublish(String publish) {
     this.publish = publish;
   }
-
 
   public String getPreviousState() {
     return previousState;

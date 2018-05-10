@@ -3,6 +3,7 @@ package com.idb_backend.mvp.controller;
 
 import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.RunupRepository;
+import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.service.RunupService;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.OrderSpecifier;
@@ -29,6 +30,9 @@ public class RunupController {
 
   @Autowired
   RunupRepository runupRepository;
+
+  @Autowired
+  TsunamiEventRepository tsunamiEventRepository;
 
   @RequestMapping(value = "/runups", method = RequestMethod.GET)
   @ResponseBody
@@ -68,13 +72,18 @@ public class RunupController {
     }
   }
 
-  @RequestMapping(value = "/runups", method = RequestMethod.POST)
+  @RequestMapping(value = "/runups/{eventid}", method = RequestMethod.POST)
   @ResponseBody
-  public ResponseEntity postRunup(@Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
+  public ResponseEntity postRunup(@PathVariable("eventid" ) Integer eventId,
+                                  @Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
     try{
       if(errors.hasErrors()){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
       }else{
+//        This peice needs a test
+        Optional<TsunamiEvent> assocEvent = tsunamiEventRepository.findById(eventId);
+        tsunamiRunup.setTsunamiEvent(assocEvent.get());
+
         OrderSpecifier orderSpecifier = QTsunamiRunup.tsunamiRunup.id.desc();
         Iterable<TsunamiRunup> result = runupRepository.findAll(orderSpecifier);
         Integer id = result.iterator().next().getId() + 1;

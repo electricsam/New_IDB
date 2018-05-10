@@ -30,9 +30,11 @@ public class TsunamiEventView implements Serializable{
   private Integer year;
 
   @Transient
+  @Getter(value = AccessLevel.PRIVATE)
   private Integer minYear;
 
   @Transient
+  @Getter(value = AccessLevel.PRIVATE)
   private Integer maxYear;
 
   private Integer month;
@@ -48,17 +50,21 @@ public class TsunamiEventView implements Serializable{
   private Double latitude;
 
   @Transient
+  @Getter(value = AccessLevel.PRIVATE)
   private Double minLatitude;
 
   @Transient
+  @Getter(value = AccessLevel.PRIVATE)
   private Double maxLatitude;
 
   private Double longitude;
 
   @Transient
+  @Getter(value = AccessLevel.PRIVATE)
   private Double minLongitude;
 
   @Transient
+  @Getter(value = AccessLevel.PRIVATE)
   private Double maxLongitude;
 
   private String locationName;

@@ -192,4 +192,14 @@ public class VolcanoEvent {
   @JsonIgnore
   private Set<VolcanoRefs> volcanoRefs = new HashSet<>();
 
+  public void setVolLocTsqp(VolLocTsqp volLocTsqp){
+    this.volLocTsqp = volLocTsqp;
+  }
+
+  public VolLocTsqp getVolLocTsqp(){
+    return this.volLocTsqp;
+  }
+
+
+
 }

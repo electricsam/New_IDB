@@ -112,4 +112,9 @@ public class VolLocTsqp {
     }
   }
 
+//  TODO: change this - needed to remove becuase of recursive issues
+  public String toString(){
+    return "";
+  }
+
 }

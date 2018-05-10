@@ -1,12 +1,15 @@
 package com.idb_backend.mvp.controller;
 
 import com.idb_backend.mvp.domain.model.QVolcanoEvent;
+import com.idb_backend.mvp.domain.model.VolLocTsqp;
 import com.idb_backend.mvp.domain.model.VolcanoEvent;
 import com.idb_backend.mvp.domain.model.VolcanoEventProjection;
+import com.idb_backend.mvp.domain.repository.VolLocTsqpRepository;
 import com.idb_backend.mvp.domain.repository.VolcanoEventRepository;
 import com.idb_backend.mvp.service.VolcanoService;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
@@ -28,6 +31,9 @@ public class VolcanoEventController {
   @Autowired
   VolcanoEventRepository volcanoEventRepository;
 
+  @Autowired
+  VolLocTsqpRepository volLocTsqpRepository;
+
 
   @RequestMapping(value = "/volcanoes", method = RequestMethod.GET)
   @ResponseBody
@@ -48,7 +54,8 @@ public class VolcanoEventController {
   @ResponseBody
   public ResponseEntity getVolcanoById(@PathVariable("id") Integer id){
     try{
-      return ResponseEntity.status(HttpStatus.OK).body(volcanoEventRepository.findById(id));
+      Optional<VolcanoEvent> result = volcanoEventRepository.findById(id);
+      return ResponseEntity.status(HttpStatus.OK).body(result);
     }catch (Exception e){
       System.out.println("error: " + e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
@@ -66,7 +73,9 @@ public class VolcanoEventController {
         volcanoEvent.setHazEventId(id);
         volcanoEventRepository.save(volcanoEvent);
 
-        Optional<VolcanoEvent> patched = volcanoEventRepository.findById(id);
+        BooleanExpression booleanExpression = QVolcanoEvent.volcanoEvent.hazEventId.eq(id);
+
+        Optional<VolcanoEvent> patched = volcanoEventRepository.findOne(booleanExpression);
 
         return ResponseEntity.status(HttpStatus.OK).body(patched);
       }
@@ -75,20 +84,27 @@ public class VolcanoEventController {
     }
   }
 
-  @RequestMapping(value = "/volcanoes", method = RequestMethod.POST)
+  @RequestMapping(value = "/volcanoes/{volid}", method = RequestMethod.POST)
   @ResponseBody
-  public ResponseEntity postVolcano(@Valid @RequestBody VolcanoEvent volcanoEvent, Errors errors){
+  public ResponseEntity postVolcano(@PathVariable("volid") Integer volId,
+                                    @Valid @RequestBody VolcanoEvent volcanoEvent, Errors errors){
     try{
       if(errors.hasErrors()){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
       }else{
+//        Must test these next two lines building an association
+        Optional<VolLocTsqp> assocVol = volLocTsqpRepository.findById(volId);
+        volcanoEvent.setVolLocTsqp(assocVol.get());
+
         OrderSpecifier orderSpecifier = QVolcanoEvent.volcanoEvent.hazEventId.desc();
         Iterable<VolcanoEvent> events = volcanoEventRepository.findAll(orderSpecifier);
         Integer id = events.iterator().next().getHazEventId() + 1;
         volcanoEvent.setHazEventId(id);
         volcanoEventRepository.save(volcanoEvent);
 
-        Optional<VolcanoEvent> posted = volcanoEventRepository.findById(id);
+        BooleanExpression booleanExpression = QVolcanoEvent.volcanoEvent.hazEventId.eq(id);
+
+        Optional<VolcanoEvent> posted = volcanoEventRepository.findOne(booleanExpression);
         return ResponseEntity.status(HttpStatus.OK).body(posted);
       }
     }catch (Exception e){
