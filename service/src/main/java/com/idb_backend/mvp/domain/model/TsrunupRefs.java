@@ -26,6 +26,9 @@ public class TsrunupRefs {
   private String publish;
   private String previousState;
 
+  public void setId(Integer tsrunupId, Integer tsrefId){
+    this.id = new RunupRefId(tsrunupId, tsrefId);
+  }
 
   public TsunamiRunup getTsunamiRunup() {
     return tsunamiRunup;
