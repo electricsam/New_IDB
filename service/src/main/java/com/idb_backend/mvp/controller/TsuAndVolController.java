@@ -46,10 +46,7 @@ public class TsuAndVolController {
 
       return ResponseEntity.status(HttpStatus.OK).body(null);
     }catch (Exception e){
-
-      System.out.println("you have run into a problem of major proportions");
-      System.out.println(e);
-      throw e;
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
 
 

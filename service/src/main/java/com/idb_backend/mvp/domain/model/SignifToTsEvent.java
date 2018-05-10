@@ -21,6 +21,11 @@ public class SignifToTsEvent {
   @JoinColumn(name = "TSU_ID", insertable = false, updatable = false)
   public TsunamiEvent tsunamiEvent;
 
+  public void setId(Integer sigId, Integer tsuId){
+    this.id = new SignifToTsEventId(sigId, tsuId);
+  }
+
+
   @JsonIgnore
   public SignifTsqp getSignifTsqp() {
     return signifTsqp;

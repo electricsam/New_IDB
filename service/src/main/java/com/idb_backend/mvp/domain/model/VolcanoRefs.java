@@ -25,6 +25,10 @@ public class VolcanoRefs {
   private String previousState;
 
 
+  public void setId(Integer volId, Integer refId){
+    this.id = new VolRefsId(volId, refId);
+  }
+
   public VolcanoEvent getVolcanoEvent() {
     return volcanoEvent;
   }

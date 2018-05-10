@@ -31,6 +31,10 @@ public class TsunamiRefs {
   @Column(name = "PREVIOUS_STATE")
   private String previousState;
 
+  public void setId(Integer tseventId, Integer tsrefId){
+    this.id = new TsEventRefsId(tseventId, tsrefId);
+  }
+
   @JsonIgnore
   public TsunamiEvent getTsunamiEvent() {
     return tsunamiEvent;

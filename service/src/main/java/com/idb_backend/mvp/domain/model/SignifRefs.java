@@ -21,11 +21,13 @@ public class SignifRefs {
   @JoinColumn(name = "REF_ID", insertable = false, updatable = false)
   private Reference reference;
 
-
   private java.sql.Date lastUpdate;
   private String publish;
   private String previousState;
 
+  public void setId(Integer signifId, Integer refId){
+    this.id = new SignifRefsId(signifId, refId);
+  }
 
   public SignifTsqp getSignifTsqp() {
     return signifTsqp;
