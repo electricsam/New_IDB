@@ -26,6 +26,9 @@ public class TseventAndVolEvent {
   private String publish;
   private String previousState;
 
+  public void setId(Integer tsuId, Integer volId){
+    this.id = new TsEventVolId(tsuId, volId);
+  }
 
   public TsunamiEvent getTsunamiEvent() {
     return tsunamiEvent;
@@ -51,7 +54,6 @@ public class TseventAndVolEvent {
     this.lastUpdate = lastUpdate;
   }
 
-
   public String getPublish() {
     return publish;
   }
@@ -59,7 +61,6 @@ public class TseventAndVolEvent {
   public void setPublish(String publish) {
     this.publish = publish;
   }
-
 
   public String getPreviousState() {
     return previousState;
