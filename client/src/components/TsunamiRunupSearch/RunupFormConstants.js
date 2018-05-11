@@ -1,5 +1,6 @@
 import { regions, validationConstants, countries } from '../tsunamiForms/constants'
 import RunupSearchStyles from './RunupSearchContainerStyle.css'
+import {deleteRunup} from "../../sagas/tsunamiSaga";
 
 
 const RunupLocInfo = [
@@ -91,6 +92,49 @@ const RunupLocInfo = [
   }
 ];
 
+
+const RunupSourceInfo = [
+  {
+    type: 'MINMAX',
+    sectionStyle: RunupSearchStyles.year,
+    titleStyle: RunupSearchStyles.minMaxTitle,
+    title: "Year",
+    minThreshold: validationConstants.year.min,
+    maxThreshold: validationConstants.year.max,
+    min:{
+      model: ".tsunami.rnpsearch.tsminyear",
+      validMessage: "Invalid Year"
+    },
+    max:{
+      model: ".tsunami.rnpsearch.tsmaxyear",
+      validMessage: "Invalid Year"
+    }
+  },
+  {
+    type: "DROPDOWN",
+    title: "Region",
+    model: ".tsunami.rnpsearch.tsregion",
+    id: ".tsunami.rnpsearch.tsregion",
+    styles:{
+      wrapper: RunupSearchStyles.region,
+      title: RunupSearchStyles.minMaxTitle
+    },
+    data: countries
+  },
+  {
+    type: "DROPDOWN",
+    title: "Country",
+    model: ".tsunami.rnpsearch.tscountry",
+    id: ".tsunami.rnpsearch.tscountry",
+    styles:{
+      wrapper: RunupSearchStyles.country,
+      title: RunupSearchStyles.minMaxTitle
+    },
+    data: regions
+  }
+];
+
 export {
-  RunupLocInfo
+  RunupLocInfo,
+  RunupSourceInfo
 }

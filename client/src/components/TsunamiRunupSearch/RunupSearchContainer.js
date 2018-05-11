@@ -5,13 +5,12 @@ import {actions, Control, Errors, Form} from 'react-redux-form/lib/immutable';
 import {createApiQueryString, encodeQueryString} from '../../helperFunctions/helperFunctions'
 import store from '../../store';
 import Styles from './RunupSearchContainerStyle.css';
-import RunupSourceInfo from "./RunupSourceInfo";
-import RunupLocationInfo from "./RunupLocationInfo";
+// import RunupSourceInfo from "./RunupSourceInfo";
 import RunupParamsEffects from "./RunupParamsEffects";
 import FormSection from "./FormSection";
 
 
-import { RunupLocInfo } from './RunupFormConstants';
+import { RunupLocInfo, RunupSourceInfo } from './RunupFormConstants';
 
 import RunupSearchStyles from './RunupSearchContainerStyle.css'
 
@@ -67,16 +66,16 @@ class RunupSearchContainer extends React.Component{
       <div className={Styles.container}>
         <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
-          <RunupSourceInfo
-          validateMinMax={this.validateMinMax}
-          showRunupSource={tsunami.get('showRunupSource')}
-          toggleShowRunupSource={this.toggleRunupSourceInfo}
-          />
-
-          <RunupParamsEffects
+         <FormSection
+            title="Runup Source Information"
+            sectionStyle={RunupSearchStyles.formSectionOne}
+            headerStyle={RunupSearchStyles.header}
+            toggleSection={this.toggleRunupSourceInfo}
+            showSection={tsunami.get('showRunupSource')}
+            innerSectionStyle={RunupSearchStyles.formInnerSectionOne}
+            expandCollapseStyle={RunupSearchStyles.expandCollapse}
             validateMinMax={this.validateMinMax}
-            showParamsEffect={tsunami.get('showRunupParams')}
-            toggleShowRunupParams={this.toggleParamsEffect}
+            formData={RunupSourceInfo}
           />
 
           <FormSection
@@ -91,6 +90,13 @@ class RunupSearchContainer extends React.Component{
             validateMinMax={this.validateMinMax}
             formData={RunupLocInfo}
           />
+
+          <RunupParamsEffects
+            validateMinMax={this.validateMinMax}
+            showParamsEffect={tsunami.get('showRunupParams')}
+            toggleShowRunupParams={this.toggleParamsEffect}
+          />
+
 
 
           <button type="submit"  className={Styles.searchButton}>

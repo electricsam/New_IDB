@@ -46,19 +46,21 @@ const FormSection = props => (
                 return (
                   <div className={e.sectionStyle}>
                     <div className={e.titleStyle}>{e.title}</div>
-                    <MinMax model={e.min.model}
-                            title="Min"
-                            min={e.minThreshold}
-                            max={e.maxThreshold}
-                            validMinMax={props.validateMinMax}
-                            validMessage={{valid: e.min.validMessage}}
+                    <MinMax
+                      model={e.min.model}
+                      title="Min"
+                      min={e.minThreshold}
+                      max={e.maxThreshold}
+                      validMinMax={props.validateMinMax}
+                      validMessage={{valid: e.min.validMessage}}
                     />
-                    <MinMax model={e.max.model}
-                            title="Max"
-                            min={e.minThreshold}
-                            max={e.maxThreshold}
-                            validMinMax={props.validateMinMax}
-                            validMessage={{valid: e.max.validMessage}}
+                    <MinMax
+                      model={e.max.model}
+                      title="Max"
+                      min={e.minThreshold}
+                      max={e.maxThreshold}
+                      validMinMax={props.validateMinMax}
+                      validMessage={{valid: e.max.validMessage}}
                     />
                   </div>
                 )
@@ -70,11 +72,12 @@ const FormSection = props => (
                       {
                         e.data.map(x => {
                           return(
-                            <MinMax model={x.model}
-                                    title={x.title}
-                                    min={x.minThreshold}
-                                    max={x.maxThreshold}
-                                    validMinMax={props.validateMinMax}/>
+                            <MinMax
+                              model={x.model}
+                              title={x.title}
+                              min={x.minThreshold}
+                              max={x.maxThreshold}
+                              validMinMax={props.validateMinMax}/>
                           )
                         })
                       }
