@@ -1,5 +1,5 @@
-import { regions, validationConstants, countries } from '../tsunamiForms/constants'
-import RunupSearchStyles from './RunupSearchContainerStyle.css'
+import {regions, validationConstants, countries, rnpMeasureType} from '../tsunamiForms/constants'
+import Styles from './RunupSearchContainerStyle.css'
 import {deleteRunup} from "../../sagas/tsunamiSaga";
 
 
@@ -11,8 +11,8 @@ const RunupLocInfo = [
     data: regions,
     id: '.tsunami.rnpsearch.region',
     styles: {
-      wrapper: RunupSearchStyles.rnpRegion,
-      title: RunupSearchStyles.minMaxTitle
+      wrapper: Styles.rnpRegion,
+      title: Styles.minMaxTitle
     }
   },
   {
@@ -22,15 +22,15 @@ const RunupLocInfo = [
     id: ".tsunami.rnpsearch.country",
     data: countries,
     styles: {
-      wrapper: RunupSearchStyles.rnpCountry,
-      title: RunupSearchStyles.minMaxTitle
+      wrapper: Styles.rnpCountry,
+      title: Styles.minMaxTitle
     }
   },
   {
     type: 'RADIO',
     title: "Location",
-    sectionStyle: RunupSearchStyles.rnpLocTypes,
-    titleStyle: RunupSearchStyles.minMaxTitle,
+    sectionStyle: Styles.rnpLocTypes,
+    titleStyle: Styles.minMaxTitle,
     htmlFor:'.tsunami.runupLocType',
     model: ".tsunami.runupLocType",
     radios: [
@@ -44,8 +44,8 @@ const RunupLocInfo = [
   },
   {
     type: "MINMAX",
-    sectionStyle:RunupSearchStyles.distance,
-    titleStyle: RunupSearchStyles.minMaxTitle,
+    sectionStyle:Styles.distance,
+    titleStyle: Styles.minMaxTitle,
     title: "Distance",
     minThreshold: validationConstants.distanceRnpLoc.min,
     maxThreshold: validationConstants.distanceRnpLoc.max,
@@ -61,8 +61,8 @@ const RunupLocInfo = [
   {
     type: "MULTIMINMAX",
     title: "Range of Coordinates in decimal degrees of the Runup Location",
-    sectionStyle: RunupSearchStyles.rnpCoordinates,
-    titleStyle: RunupSearchStyles.minMaxTitle,
+    sectionStyle: Styles.rnpCoordinates,
+    titleStyle: Styles.minMaxTitle,
     data : [
       {
         model: ".tsunami.rnpsearch.latnorth",
@@ -96,8 +96,8 @@ const RunupLocInfo = [
 const RunupSourceInfo = [
   {
     type: 'MINMAX',
-    sectionStyle: RunupSearchStyles.year,
-    titleStyle: RunupSearchStyles.minMaxTitle,
+    sectionStyle: Styles.year,
+    titleStyle: Styles.minMaxTitle,
     title: "Year",
     minThreshold: validationConstants.year.min,
     maxThreshold: validationConstants.year.max,
@@ -116,8 +116,8 @@ const RunupSourceInfo = [
     model: ".tsunami.rnpsearch.tsregion",
     id: ".tsunami.rnpsearch.tsregion",
     styles:{
-      wrapper: RunupSearchStyles.region,
-      title: RunupSearchStyles.minMaxTitle
+      wrapper: Styles.region,
+      title: Styles.minMaxTitle
     },
     data: countries
   },
@@ -127,14 +127,80 @@ const RunupSourceInfo = [
     model: ".tsunami.rnpsearch.tscountry",
     id: ".tsunami.rnpsearch.tscountry",
     styles:{
-      wrapper: RunupSearchStyles.country,
-      title: RunupSearchStyles.minMaxTitle
+      wrapper: Styles.country,
+      title: Styles.minMaxTitle
     },
     data: regions
   }
 ];
 
+
+const RunupParamsEffects = [
+  {
+    type: "DROPDOWN",
+    title: "Type of Measurement",
+    model: ".tsunami.rnpsearch.typeofmeasure",
+    id: ".tsunami.rnpsearch.typeofmeasure",
+    styles:{
+      wrapper: Styles.typeOfMeasure,
+      title: Styles.minMaxTitle
+    },
+    data: rnpMeasureType
+  },
+  {
+    type: "MINMAX",
+    title: "Water Height",
+    sectionStyle: Styles.waterHt,
+    titleStyle: Styles.minMaxTitle,
+    minThreshold: validationConstants.waterHeight.min,
+    maxThreshold: validationConstants.waterHeight.max,
+    min:{
+      model:".tsunami.rnpsearch.minwaterht",
+      validMessage: "Invalid Min Water Height"
+    },
+    max: {
+      model: ".tsunami.rnpsearch.maxwaterht",
+      validMessage: "Invalid Max Water Height"
+    }
+  },
+  {
+    type: "MINMAX",
+    title: "Number of Deaths at Runup Location",
+    sectionStyle: Styles.deaths,
+    titleStyle: Styles.minMaxTitle,
+    minThreshold: validationConstants.numberOfDeaths.min,
+    maxThreshold: validationConstants.numberOfDeaths.max,
+    min:{
+      model: ".tsunami.rnpsearch.deathsmin",
+      validMessage: "Invalid Min Deaths"
+    },
+    max:{
+      model: ".tsunami.rnpsearch.deathsmax",
+      validMessage: "Invalid Max Deaths"
+    }
+  },
+  {
+    type: "MINMAX",
+    title: "Damage in Millions of Dollars at the Runup Location",
+    sectionStyle: Styles.damage,
+    titleStyle: Styles.minMaxTitle,
+    minThreshold: validationConstants.damageInMillions.min,
+    maxThreshold: validationConstants.damageInMillions.max,
+    min: {
+      model: ".tsunami.rnpsearch.damagemillionsmin",
+      validMessage: "Invalid Min Damage"
+    },
+    max:{
+      model: ".tsunami.rnpsearch.damagemillionsmax",
+      validMessage: "Invalid Max Damage"
+    }
+  }
+];
+
+
+
 export {
   RunupLocInfo,
-  RunupSourceInfo
+  RunupSourceInfo,
+  RunupParamsEffects
 }
