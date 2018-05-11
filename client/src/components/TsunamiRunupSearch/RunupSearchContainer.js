@@ -8,6 +8,12 @@ import Styles from './RunupSearchContainerStyle.css';
 import RunupSourceInfo from "./RunupSourceInfo";
 import RunupLocationInfo from "./RunupLocationInfo";
 import RunupParamsEffects from "./RunupParamsEffects";
+import FormSection from "./FormSection";
+
+
+import { RunupLocInfo } from './RunupFormConstants';
+
+import RunupSearchStyles from './RunupSearchContainerStyle.css'
 
 const errorStyles = {
   color: 'red',
@@ -51,9 +57,9 @@ class RunupSearchContainer extends React.Component{
 
   toggleParamsEffect = () => action({type: "TOGGLE_RUNUPPARAMS_FORM"});
 
-    validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+  validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
-  checkRunupLocType = () => this.props.tsunami.get('runupLocType')
+  checkRunupLocType = () => this.props.tsunami.get('runupLocType');
 
   render(){
     const { tsunami } = this.props;
@@ -67,18 +73,25 @@ class RunupSearchContainer extends React.Component{
           toggleShowRunupSource={this.toggleRunupSourceInfo}
           />
 
-          <RunupLocationInfo
-            validateMinMax={this.validateMinMax}
-            checkLocType={this.checkRunupLocType}
-            showRunupLocation={tsunami.get('showRunupLocation')}
-            toggleShowRunupLocation={this.toggleRunupLocationInfo}
-          />
-
           <RunupParamsEffects
             validateMinMax={this.validateMinMax}
             showParamsEffect={tsunami.get('showRunupParams')}
             toggleShowRunupParams={this.toggleParamsEffect}
           />
+
+          <FormSection
+            title="Tsunami Runup Location Information"
+            sectionStyle={RunupSearchStyles.formSectionTwo}
+            headerStyle={RunupSearchStyles.header}
+            toggleSection={this.toggleRunupLocationInfo}
+            showSection={tsunami.get('showRunupLocation')}
+            innerSectionStyle={RunupSearchStyles.formInnerSectionTwo}
+            expandCollapseStyle={RunupSearchStyles.expandCollapse}
+            checkConditions={this.checkRunupLocType}
+            validateMinMax={this.validateMinMax}
+            formData={RunupLocInfo}
+          />
+
 
           <button type="submit"  className={Styles.searchButton}>
             Submit

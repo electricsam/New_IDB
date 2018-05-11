@@ -156,7 +156,6 @@ const RunupLocationInfo = props => (
               max={validationConstants.latitude.max}
               validMinMax={props.validateMinMax}
               validMessage={{valid: "Invalid Latitude"}}
-              validMessage={{valid: "Invalid Latitude"}}
             />
             <MinMax
               model=".tsunami.rnpsearch.latsouth"
@@ -164,7 +163,6 @@ const RunupLocationInfo = props => (
               min={validationConstants.latitude.min}
               max={validationConstants.latitude.max}
               validMinMax={props.validateMinMax}
-              validMessage={{valid: "Invalid Latitude"}}
               validMessage={{valid: "Invalid Latitude"}}
             />
             <MinMax
@@ -174,7 +172,6 @@ const RunupLocationInfo = props => (
               max={validationConstants.longitude.max}
               validMinMax={props.validateMinMax}
               validMessage={{valid: "Invalid Longitude"}}
-              validMessage={{valid: "Invalid Longitude"}}
             />
             <MinMax
               model=".tsunami.rnpsearch.longeast"
@@ -182,7 +179,6 @@ const RunupLocationInfo = props => (
               min={validationConstants.longitude.min}
               max={validationConstants.longitude.max}
               validMinMax={props.validateMinMax}
-              validMessage={{valid: "Invalid Longitude"}}
               validMessage={{valid: "Invalid Longitude"}}
             />
 
