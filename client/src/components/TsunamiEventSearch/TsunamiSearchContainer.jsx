@@ -5,14 +5,17 @@ import { Control, Form, Errors, actions } from 'react-redux-form/lib/immutable';
 import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
 import { countries, states, canadianProvince, validationConstants, regions } from '../tsunamiForms/constants'
-import MinMax from '../searchFormPartials/MinMax';
+import MinMax from '../FormPartials/MinMax';
 import Styles from './TsunamiSearchContainerStyle.css';
-import DropDown from "../searchFormPartials/DropDown.jsx";
+import DropDown from "../FormPartials/DropDown.jsx";
 
-import TsunamiSourceParameters from './TsunamiSourceParameters';
-import TsunamiRunupByPlace from './TsunamiRunupByPlace';
-import TotalTsunamiEffects from "./TotalTsunamiEffects";
-import TotalTsunamiandSourceEffects from "./TotalTsunamiandSourceEffects";
+// import TsunamiSourceParameters from './TsunamiSourceParameters';
+import { TsunamiSourceParameters, TsunamiRunupByPlace, TotalTsunamiEffects, TotalTsunamiAndSourceEffects } from "./EventSearchConstants";
+
+// import TsunamiRunupByPlace from './TsunamiRunupByPlace';
+// import TotalTsunamiEffects from "./TotalTsunamiEffects";
+// import TotalTsunamiandSourceEffects from "./TotalTsunamiandSourceEffects";
+import FormSection from "../FormPartials/FormSection";
 
 const errorStyles = {
   color: 'red',
@@ -29,7 +32,6 @@ class TsunamiSearchContainer extends React.Component{
       showSourceForm: true
     }
   }
-
 
   componentDidMount(){
     //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
@@ -64,38 +66,66 @@ class TsunamiSearchContainer extends React.Component{
 
   checkRunupLocType = () => this.props.tsunami.get('runupLocType')
 
+  checkDropDownDisabled = (val) => this.props.tsunami.asMutable().toJS().search.country === val? false: true;
+
+  checkDropdownDisabledRunup = (val) => this.props.tsunami.asMutable().toJS().search.runupCountry === val? false: true;
+
   render(){
     const { tsunami } = this.props;
     return (
       <div className={Styles.container}>
         <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
 
-          <TsunamiSourceParameters
+          <FormSection
+            title="Tsunami Source Parameters"
+            sectionStyle={Styles.formSectionOne}
+            headerStyle={Styles.header}
+            toggleSection={this.toggleSourceForm}
+            showSection={tsunami.get('showSourceForm')}
+            innerSectionStyle={Styles.formInnerSectionOne}
+            expandCollapseStyle={Styles.expandCollapse}
             validateMinMax={this.validateMinMax}
-            checkLocType={this.checkLocType}
-            showSourceForm = {tsunami.get('showSourceForm')}
-            toggleSourceForm = {this.toggleSourceForm}
-            country={tsunami.asMutable().toJS().search.country}
+            formData={TsunamiSourceParameters}
+            checkDropDownDisabled={this.checkDropDownDisabled}
+            checkConditions={this.checkLocType}
           />
 
-          <TsunamiRunupByPlace
+          <FormSection
+            title="Tsunami Runup By Place"
+            sectionStyle={Styles.formSectionTwo}
+            headerStyle={Styles.header}
+            toggleSection={this.toggleRunupPlaceForm}
+            showSection={tsunami.get('showRunupPlaceForm')}
+            innerSectionStyle={Styles.formInnerSectionTwo}
+            expandCollapseStyle={Styles.expandCollapse}
             validateMinMax={this.validateMinMax}
-            checkRunupLocType={this.checkRunupLocType}
-            showRunupPlaceForm={tsunami.get('showRunupPlaceForm')}
-            toggleRunupPlaceForm={this.toggleRunupPlaceForm}
-            country={tsunami.asMutable().toJS().search.runupcountry}
+            formData={TsunamiRunupByPlace}
+            checkDropDownDisabled={this.checkDropdownDisabledRunup}
+            checkConditions={this.checkRunupLocType}
           />
 
-          <TotalTsunamiEffects
+          <FormSection
+            title="Total Tsunami Effects"
+            sectionStyle={Styles.formSectionThree}
+            headerStyle={Styles.header}
+            toggleSection={this.toggleTsunamiEffectsForm}
+            showSection={tsunami.get('showTsunamiEffectsForm')}
+            innerSectionStyle={Styles.formInnerSectionThree}
+            expandCollapseStyle={Styles.expandCollapse}
             validateMinMax={this.validateMinMax}
-            showTsunamiEffectsForm={tsunami.get('showTsunamiEffectsForm')}
-            toggleTsunamiEffectsForm={this.toggleTsunamiEffectsForm}
+            formData={TotalTsunamiEffects}
           />
 
-          <TotalTsunamiandSourceEffects
+          <FormSection
+            title="Total Tsunami and Source Effects"
+            sectionStyle={Styles.formSectionFour}
+            headerStyle={Styles.header}
+            toggleSection={this.toggleTotalTsunamiSourceForm}
+            showSection={tsunami.get('showTotalTsunamiSourceForm')}
+            innerSectionStyle={Styles.formInnerSectionFour}
+            expandCollapseStyle={Styles.expandCollapse}
             validateMinMax={this.validateMinMax}
-            showTotalTsunamiSourceForm={tsunami.get('showTotalTsunamiSourceForm')}
-            toggleTotalTsunamiSourceForm={this.toggleTotalTsunamiSourceForm}
+            formData={TotalTsunamiAndSourceEffects}
           />
 
         <button type="submit" className={Styles.searchButton}>

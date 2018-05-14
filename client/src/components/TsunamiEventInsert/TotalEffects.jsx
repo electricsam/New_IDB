@@ -2,7 +2,7 @@ import React from 'react';
 import {Control, Errors} from 'react-redux-form/lib/immutable';
 
 import { validationConstants } from "../tsunamiForms/constants";
-import MinMax from '../searchFormPartials/MinMax';
+import MinMax from '../FormPartials/MinMax';
 import Styles from './InsertTsunamiStyles.css';
 
 const TotalEffects = props => (

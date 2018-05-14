@@ -1,11 +1,12 @@
 import React from 'react';
 
-import DropDown from "../searchFormPartials/DropDown.jsx";
-import Radio from "../searchFormPartials/Radio";
-import MinMax from "../searchFormPartials/MinMax";
+import DropDown from "./DropDown.jsx";
+import Radio from "./Radio";
+import MinMax from "./MinMax";
 
 const FormSection = props => (
   <div className={props.sectionStyle}>
+    {console.log("PROPS: ******************************** ",props)}
     <div className={props.headerStyle}>
       <h3>{props.title}</h3>
       <div className={props.expandCollapseStyle}>
@@ -26,6 +27,14 @@ const FormSection = props => (
                     <div className={e.styles.wrapper}>
                       <div className={e.styles.title}>{e.title}</div>
                       <DropDown title={e.title} model={e.model} data={e.data}/>
+                    </div>
+                )
+              } else if(e.type === 'DROPDOWNOR'){
+                return (
+                    <div className={e.styles.wrapper}>
+                      <div className={e.styles.title}>{e.title}</div>
+                      <DropDown title={e.title} model={e.model} data={e.data}
+                                disabled={() => props.checkDropDownDisabled(e.disabled)}/>
                     </div>
                 )
               }else if(e.type === 'RADIO'){
@@ -77,7 +86,9 @@ const FormSection = props => (
                               title={x.title}
                               min={x.minThreshold}
                               max={x.maxThreshold}
-                              validMinMax={props.validateMinMax}/>
+                              validMinMax={props.validateMinMax}
+                              validMessage={{valid: x.validMessage}}
+                            />
                           )
                         })
                       }

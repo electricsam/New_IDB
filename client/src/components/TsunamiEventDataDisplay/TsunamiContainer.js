@@ -7,7 +7,7 @@ import Loading from '../loadbar/Loading';
 import Table from "../table/Table";
 
 import { decodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions';
-import DialogBox from "../searchFormPartials/DialogBox";
+import DialogBox from "../FormPartials/DialogBox";
 
 const tableStyle = {
   textAlign: "center"

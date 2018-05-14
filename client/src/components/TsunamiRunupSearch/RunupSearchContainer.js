@@ -6,7 +6,7 @@ import {createApiQueryString, encodeQueryString} from '../../helperFunctions/hel
 import store from '../../store';
 import Styles from './RunupSearchContainerStyle.css';
 // import RunupParamsEffects from "./RunupParamsEffects";
-import FormSection from "./FormSection";
+import FormSection from "../FormPartials/FormSection";
 
 
 import { RunupLocInfo, RunupSourceInfo, RunupParamsEffects } from './RunupFormConstants';
@@ -42,6 +42,7 @@ class RunupSearchContainer extends React.Component{
     if(val.rnpsearch){
       let encoded = encodeQueryString(JSON.stringify(val.rnpsearch));
       let queryString = createApiQueryString(val.rnpsearch);
+      console.log("**********************************THIS IS QUERYSTRING:", queryString, "***************************");
       this.props.history.push(`/tsunami/runup/data?${encoded}`);
     }else{
       action({type: "FETCH_ALL_RUNUPS_REQUESTED"});
@@ -102,7 +103,7 @@ class RunupSearchContainer extends React.Component{
             validateMinMax={this.validateMinMax}
             formData={RunupParamsEffects}
           />
-          
+
           <button type="submit"  className={Styles.searchButton}>
             Submit
           </button> </Form>

@@ -32,22 +32,26 @@ public class TsunamiEventServiceImpl implements TsunamiEventService {
     BooleanExpression master = QTsunamiRunupView.tsunamiRunupView.day.goe(1);
 
     List<BooleanExpression> boolList = new ArrayList<>();
-    boolList.add(genIntMinMax(map, "rnpdeathmin", "rnpdeathmax", root.deaths));
-    boolList.add(genIntMinMax(map, "rnpdeathdescripmin", "rnpdeathdescripmax", root.deathsAmountOrder));
-    boolList.add(genIntMinMax(map, "rnpinjurymin", "rnpinjurymax", root.injuries));
-    boolList.add(genIntMinMax(map, "runuptraveltimemin", "runuptraveltimemax", root.travHours));
-    boolList.add(genIntMinMax(map, "rnpinjurydescripmin", "rnpinjurydescripmax", root.injuriesAmountOrder));
-    boolList.add(genIntMinMax(map, "rnpdamagedescripmin", "rnpdamagedescripmax", root.damageAmountOrder));
-    boolList.add(genIntMinMax(map, "rnphousesmin", "rnphousesmax", root.housesDestroyed));
-    boolList.add(genIntMinMax(map, "rnphousesdescripmin", "rnphousesdescripmax", root.housesAmountOrder));
-    boolList.add(genEqRestriction(map, "runupcountry", root.country));
-    boolList.add(genEqRestriction(map, "runuparea", root.area));
-    boolList.add(genEqRestriction(map, "rnpmeasuretype", root.typeMeasurementId));
-    boolList.add(genEqRestriction(map, "runupregion", root.regionCode));
-    boolList.add(genDoubleMinMax(map, "rnphtmin", "rnphtmax", root.runupHt));
-    boolList.add(genDoubleMinMax(map, "rnpdamagemin", "rnpdamagemax", root.damageMillionsDollars));
-    boolList.add(checkLocParams(map, "runuplocstart", "runuplocend", "runuplocincludes", "runuplocmatch",
-        "runuplocnot", root.locationName));
+
+    boolList.add(genEqRestriction(map, "runupRegion", root.regionCode));
+    boolList.add(genEqRestriction(map, "runupCountry", root.country));
+    boolList.add(genEqRestriction(map, "runupArea", root.area));
+    boolList.add(genIntMinMax(map, "runupMinDistance", "runupMaxDistance", root.distFromSource));
+    boolList.add(genIntMinMax(map, "runupMinTravelTime", "runupMaxTravelTime", root.travHours));
+    boolList.add(checkLocParams(map, "runupLocStart", "runupLocEnd", "runupLocIncludes", "runupLocMatch", "runupLocNot",
+        root.locationName));
+    boolList.add(genEqRestriction(map, "runupMeasureType", root.typeMeasurementId));
+    boolList.add(genDoubleMinMax(map, "runupMinHeight", "runupMaxHeight", root.runupHt));
+    boolList.add(genIntMinMax(map, "runupMinDeaths", "runupMaxDeaths", root.deaths));
+    boolList.add(genIntMinMax(map, "runupMinDeathsAmountOrder", "runupMaxDeathsAmountOrder", root.deathsAmountOrder));
+    boolList.add(genIntMinMax(map, "runupMinInjuries", "runupMaxInjuries", root.injuries));
+    boolList.add(genIntMinMax(map, "runupMinInjuriesAmountOrder", "runupMinInjuriesAmountOrder",
+        root.injuriesAmountOrder));
+    boolList.add(genDoubleMinMax(map, "runupMinDamageInMillions", "runupMaxDamageInMillions",
+        root.damageMillionsDollars));
+    boolList.add(genIntMinMax(map, "runupMinDamageAmountOrder", "runupMaxDamageAmountOrder", root.damageAmountOrder));
+    boolList.add(genIntMinMax(map, "runupMinHousesDestroyed", "runupMaxHousesDestroyed", root.housesDestroyed));
+    boolList.add(genIntMinMax(map, "runupMinHousesAmountOrder", "runupMaxHousesAmountOrder", root.housesAmountOrder));
 
     for(int i = 0; i < boolList.size(); i++){
       if(boolList.get(i) != null){

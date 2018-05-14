@@ -11,8 +11,8 @@ import {
   validationConstants
 } from "../tsunamiForms/constants";
 
-import DropDown from '../searchFormPartials/DropDown.jsx';
-import MinMax from '../searchFormPartials/MinMax';
+import DropDown from '../FormPartials/DropDown.jsx';
+import MinMax from '../FormPartials/MinMax';
 import Styles from './UpdateTsunamiStyles.css';
 
 

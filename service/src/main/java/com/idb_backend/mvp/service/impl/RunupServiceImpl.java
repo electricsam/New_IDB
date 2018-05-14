@@ -27,9 +27,9 @@ public class RunupServiceImpl implements RunupService {
     BooleanExpression master = event.day.goe(1);
 
     List<BooleanExpression> boolList = new ArrayList<>();
-    boolList.add(genIntMinMax(map, "tsminyear", "tsmaxyear", event.year));
-    boolList.add(genEqRestriction(map, "tsregion", event.regionCode));
-    boolList.add(genEqRestriction(map, "tscountry", event.country));
+    boolList.add(genIntMinMax(map, "tsMinYear", "tsMaxYear", event.year));
+    boolList.add(genEqRestriction(map, "tsRegionCode", event.regionCode));
+    boolList.add(genEqRestriction(map, "tsCountry", event.country));
 
     for(int i = 0; i < boolList.size(); i++){
       if(boolList.get(i) != null){

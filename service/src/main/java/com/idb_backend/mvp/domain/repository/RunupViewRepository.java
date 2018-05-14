@@ -2,6 +2,7 @@ package com.idb_backend.mvp.domain.repository;
 
 import com.idb_backend.mvp.domain.model.QTsunamiRunupView;
 import com.idb_backend.mvp.domain.model.TsunamiRunupView;
+import com.querydsl.core.types.dsl.Expressions;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -36,5 +37,18 @@ public interface RunupViewRepository extends JpaRepository<TsunamiRunupView, Int
     bindings.bind(root.minDamageMillionsDollars).first((path, value) -> root.damageMillionsDollars.goe(value));
 
     bindings.bind(root.maxDamageMillionsDollars).first((path, value) -> root.damageMillionsDollars.loe(value));
+
+    bindings.bind(root.locStart).first((path, value) -> root.locationName.startsWithIgnoreCase(value));
+
+    bindings.bind(root.locEnd).first((path, value) -> root.locationName.endsWithIgnoreCase(value));
+
+    bindings.bind(root.locIncludes).first((path, value) -> root.locationName.containsIgnoreCase(value));
+
+    bindings.bind(root.locMatch).first((path, value) -> root.locationName.equalsIgnoreCase(value));
+
+    bindings.bind(root.locNot).first((path, value) -> {
+      return root.locationName.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
+    });
+    
   }
 }

@@ -68,6 +68,26 @@ public class TsunamiRunupView {
 
   private String locationName;
 
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private String locStart;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private String locEnd;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private String locIncludes;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private String locMatch;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private String locNot;
+
   private String area;
 
   private String country;

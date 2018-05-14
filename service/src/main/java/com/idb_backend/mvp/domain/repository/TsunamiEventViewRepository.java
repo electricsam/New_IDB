@@ -2,6 +2,7 @@ package com.idb_backend.mvp.domain.repository;
 
 import com.idb_backend.mvp.domain.model.QTsunamiEventView;
 import com.idb_backend.mvp.domain.model.TsunamiEventView;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.StringPath;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -100,6 +101,19 @@ public interface TsunamiEventViewRepository extends
     bindings.bind(root.minDamageAmountOrderTotal).first((path, value) -> root.damageAmountOrderTotal.goe(value));
 
     bindings.bind(root.maxDamageAmountOrderTotal).first((path, value) -> root.damageAmountOrderTotal.loe(value));
+
+    bindings.bind(root.locStart).first((path, value) -> root.locationName.startsWithIgnoreCase(value));
+
+    bindings.bind(root.locEnd).first((path, value) -> root.locationName.endsWithIgnoreCase(value));
+
+    bindings.bind(root.locIncludes).first((path, value) -> root.locationName.containsIgnoreCase(value));
+
+    bindings.bind(root.locMatch).first((path, value) -> root.locationName.equalsIgnoreCase(value));
+
+    bindings.bind(root.locNot).first((path, value) -> {
+      return root.locationName.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
+    });
+
   }
 
 }

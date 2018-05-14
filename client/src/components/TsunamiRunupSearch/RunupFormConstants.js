@@ -7,9 +7,9 @@ const RunupLocInfo = [
   {
     type: 'DROPDOWN',
     title: 'Region',
-    model: '.tsunami.rnpsearch.region',
+    model: '.tsunami.rnpsearch.regionCode',
     data: regions,
-    id: '.tsunami.rnpsearch.region',
+    id: '.tsunami.rnpsearch.regionCode',
     styles: {
       wrapper: Styles.rnpRegion,
       title: Styles.minMaxTitle
@@ -29,7 +29,7 @@ const RunupLocInfo = [
   {
     type: 'RADIO',
     title: "Location",
-    sectionStyle: Styles.rnpLocTypes,
+    sectionStyle: Styles.rnpLocType,
     titleStyle: Styles.minMaxTitle,
     htmlFor:'.tsunami.runupLocType',
     model: ".tsunami.runupLocType",
@@ -50,11 +50,11 @@ const RunupLocInfo = [
     minThreshold: validationConstants.distanceRnpLoc.min,
     maxThreshold: validationConstants.distanceRnpLoc.max,
     min: {
-      model: ".tsunami.rnpsearch.distancemin",
+      model: ".tsunami.rnpsearch.minDistFromSource",
       validMessage: "Invalid Min Distance"
     },
     max: {
-      model: ".tsunami.rnpsearch.distancemax",
+      model: ".tsunami.rnpsearch.maxDistFromSource",
       validMessage: "Invalid Max Distance"
     }
   },
@@ -65,28 +65,32 @@ const RunupLocInfo = [
     titleStyle: Styles.minMaxTitle,
     data : [
       {
-        model: ".tsunami.rnpsearch.latnorth",
+        model: ".tsunami.rnpsearch.maxLatitude",
         title: "Northermost Latitude",
         minThreshold: validationConstants.latitude.min,
-        maxThreshold: validationConstants.latitude.max
+        maxThreshold: validationConstants.latitude.max,
+        validMessage: "Invalid Latitude"
       },
       {
-        model: ".tsunami.rnpsearch.latsouth",
+        model: ".tsunami.rnpsearch.minLatitude",
         title: "Southernmost Latitude",
         minThreshold: validationConstants.latitude.min,
-        maxThreshold: validationConstants.latitude.max
+        maxThreshold: validationConstants.latitude.max,
+        validMessage: "Invalid Latitude"
       },
       {
-        model: ".tsunami.rnpsearch.longwest",
+        model: ".tsunami.rnpsearch.minLongitude",
         title: "Westernmost Longitude",
         minThreshold: validationConstants.longitude.min,
-        maxThreshold: validationConstants.longitude.max
+        maxThreshold: validationConstants.longitude.max,
+        validMessage:"Invalid Longitude"
       },
       {
-        model: ".tsunami.rnpsearch.longeast",
+        model: ".tsunami.rnpsearch.maxLongitude",
         title: "Easternmost Longitude",
         minThreshold: validationConstants.longitude.min,
-        maxThreshold: validationConstants.longitude.max
+        maxThreshold: validationConstants.longitude.max,
+        validMessage:"Invalid Longitude"
       }
     ]
   }
@@ -102,35 +106,35 @@ const RunupSourceInfo = [
     minThreshold: validationConstants.year.min,
     maxThreshold: validationConstants.year.max,
     min:{
-      model: ".tsunami.rnpsearch.tsminyear",
+      model: ".tsunami.rnpsearch.tsMinYear",
       validMessage: "Invalid Year"
     },
     max:{
-      model: ".tsunami.rnpsearch.tsmaxyear",
+      model: ".tsunami.rnpsearch.tsMaxYear",
       validMessage: "Invalid Year"
     }
   },
   {
     type: "DROPDOWN",
     title: "Region",
-    model: ".tsunami.rnpsearch.tsregion",
-    id: ".tsunami.rnpsearch.tsregion",
+    model: ".tsunami.rnpsearch.tsRegionCode",
+    id: ".tsunami.rnpsearch.tsRegionCode",
     styles:{
       wrapper: Styles.region,
       title: Styles.minMaxTitle
     },
-    data: countries
+    data: regions
   },
   {
     type: "DROPDOWN",
     title: "Country",
-    model: ".tsunami.rnpsearch.tscountry",
-    id: ".tsunami.rnpsearch.tscountry",
+    model: ".tsunami.rnpsearch.tsCountry",
+    id: ".tsunami.rnpsearch.tsCountry",
     styles:{
       wrapper: Styles.country,
       title: Styles.minMaxTitle
     },
-    data: regions
+    data: countries
   }
 ];
 
@@ -139,8 +143,8 @@ const RunupParamsEffects = [
   {
     type: "DROPDOWN",
     title: "Type of Measurement",
-    model: ".tsunami.rnpsearch.typeofmeasure",
-    id: ".tsunami.rnpsearch.typeofmeasure",
+    model: ".tsunami.rnpsearch.typeMeasurementId",
+    id: ".tsunami.rnpsearch.typeMeasurementId",
     styles:{
       wrapper: Styles.typeOfMeasure,
       title: Styles.minMaxTitle
@@ -155,11 +159,11 @@ const RunupParamsEffects = [
     minThreshold: validationConstants.waterHeight.min,
     maxThreshold: validationConstants.waterHeight.max,
     min:{
-      model:".tsunami.rnpsearch.minwaterht",
+      model:".tsunami.rnpsearch.minRunupHt",
       validMessage: "Invalid Min Water Height"
     },
     max: {
-      model: ".tsunami.rnpsearch.maxwaterht",
+      model: ".tsunami.rnpsearch.maxRunupHt",
       validMessage: "Invalid Max Water Height"
     }
   },
@@ -171,11 +175,11 @@ const RunupParamsEffects = [
     minThreshold: validationConstants.numberOfDeaths.min,
     maxThreshold: validationConstants.numberOfDeaths.max,
     min:{
-      model: ".tsunami.rnpsearch.deathsmin",
+      model: ".tsunami.rnpsearch.minDeaths",
       validMessage: "Invalid Min Deaths"
     },
     max:{
-      model: ".tsunami.rnpsearch.deathsmax",
+      model: ".tsunami.rnpsearch.maxDeaths",
       validMessage: "Invalid Max Deaths"
     }
   },
@@ -187,16 +191,15 @@ const RunupParamsEffects = [
     minThreshold: validationConstants.damageInMillions.min,
     maxThreshold: validationConstants.damageInMillions.max,
     min: {
-      model: ".tsunami.rnpsearch.damagemillionsmin",
+      model: ".tsunami.rnpsearch.minDamageMillionsDollars",
       validMessage: "Invalid Min Damage"
     },
     max:{
-      model: ".tsunami.rnpsearch.damagemillionsmax",
+      model: ".tsunami.rnpsearch.maxDamageMillionsDollars",
       validMessage: "Invalid Max Damage"
     }
   }
 ];
-
 
 
 export {

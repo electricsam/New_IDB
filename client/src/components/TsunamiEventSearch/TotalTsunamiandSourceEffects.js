@@ -3,8 +3,8 @@ import { Control, Errors } from 'react-redux-form/lib/immutable';
 import PropTypes from 'prop-types';
 import {countries, canadianProvince, states, regions, validationConstants, rnpMeasureType} from "../tsunamiForms/constants";
 
-import DropDown from '../searchFormPartials/DropDown.jsx'
-import MinMax from '../searchFormPartials/MinMax'
+import DropDown from '../FormPartials/DropDown.jsx'
+import MinMax from '../FormPartials/MinMax'
 
 import Styles from './TsunamiSearchContainerStyle.css';
 

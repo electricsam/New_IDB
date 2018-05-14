@@ -2,8 +2,8 @@ import React from 'react'
 import { Control, Errors } from 'react-redux-form/lib/immutable';
 
 import { validationConstants, rnpMeasureType, firstMotion } from "../tsunamiForms/constants";
-import DropDown from '../searchFormPartials/DropDown.jsx';
-import MinMax from '../searchFormPartials/MinMax';
+import DropDown from '../FormPartials/DropDown.jsx';
+import MinMax from '../FormPartials/MinMax';
 import Styles from './UpdateRunupStyles.css';
 
 
