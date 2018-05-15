@@ -117,6 +117,25 @@ const FormSection = props => (
                       <Control.text model={e.model} id={e.model}/>
                     </SubSection>
                 )
+              }else if(e.type === "RADIONOTEXT"){
+                return (
+                    <SubSection title={e.title}>
+                      {
+                        e.data.map(x => (
+                            <div>
+                              <Control.radio model={e.model}
+                                             id={e.id}
+                                             value={x.value}
+                                             isToggle={true}
+                                             checked={x.checked}/>
+                              <label htmlFor={x.htmlFor}> {x.label} </label>
+                            </div>
+                        ))
+                      }
+
+                    </SubSection>
+
+                )
               }
             })
           }

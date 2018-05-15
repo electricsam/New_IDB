@@ -60,8 +60,6 @@ const Measurements = props => (
                 <DropDown title="First Motion" model=".tsunami.rnpinsert.firstMotion" data={firstMotion}/>
             </div>
 
-
-
             <div className={Styles.arrival}>
                 <div className={Styles.minMaxTitle}>Arrival Time</div>
                 <MinMax model=".tsunami.rnpinsert.arrDay"

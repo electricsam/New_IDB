@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Control, Form, Errors, actions } from 'react-redux-form/lib/immutable';
 
 import { encodeQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
-import DateAndLocation from "./DateAndLocation.jsx"
-import Measurements from "./Measurements.jsx";
-import Effects from "./Effects.jsx";
-import Styles from "./RunupInsertStyle.css";
+import MultiPartForm from "../FormPartials/MultiPartForm";
+import FormSection from "../FormPartials/FormSection";
+// import Styles from "./RunupInsertStyle.css";
+
+import { Measurements, DateAndLocation, Effects } from "./RunupInsertConstants";
 
 const action = obj => store.dispatch(obj);
 
@@ -33,23 +33,47 @@ class RunupInsertContainer extends React.Component{
     }
   }
 
+  toggleDateAndLocation = () => action({type: "TOGGLE_RUNUP_INSERT_DATE_LOC"});
+
+  toggleMeasurements = () => action({type: "TOGGLE_RUNUP_INSERT_MEASURE"});
+
+  toggleEffects = () => action({type: "TOGGLE_RUNUP_INSERT_EFFECTS"});
+
+  checkDropDownDisabled = (val) => this.props.tsunami.asMutable().toJS().rnpinsert.country === val? false: true;
+
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
   render(){
     const { tsunami } = this.props;
     return (
-      <div className={Styles.container}>
-        <h1 className={Styles.title}>Insert Runup</h1>
-        <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
+        <MultiPartForm title="Insert Runup" handleSubmit={this.handleSubmit}>
 
-          <DateAndLocation validateMinMax={this.validateMinMax}/>
-          <Measurements validateMinMax={this.validateMinMax}/>
-          <Effects validateMinMax={this.validateMinMax}/>
+          <FormSection
+            title="Date and Location"
+            toggleSection={this.toggleDateAndLocation}
+            showSection={tsunami.get('showRunupInsertDateLoc')}
+            validateMinMax={this.validateMinMax}
+            formData={DateAndLocation}
+            checkDropDownDisabled={this.checkDropDownDisabled}
+          />
+          <FormSection
+            title="Measurements"
+            toggleSection={this.toggleMeasurements}
+            showSection={tsunami.get('showRunupInsertMeasure')}
+            validateMinMax={this.validateMinMax}
+            formData={Measurements}
+            checkDropDownDisabled={this.checkDropDownDisabled}
+          />
+          <FormSection
+            title="Effects"
+            toggleSection={this.toggleEffects}
+            showSection={tsunami.get('showRunupInsertEffects')}
+            validateMinMax={this.validateMinMax}
+            formData={Effects}
+            checkDropDownDisabled={this.checkDropDownDisabled}
+          />
 
-          <button type="submit" className={Styles.searchButton}>
-            Submit
-          </button> </Form>
-      </div>
+        </MultiPartForm>
     )
   }
 }
