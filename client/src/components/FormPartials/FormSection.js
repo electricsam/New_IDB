@@ -132,9 +132,13 @@ const FormSection = props => (
                             </div>
                         ))
                       }
-
                     </SubSection>
-
+                )
+              }else if(e.type === "TEXTAREA"){
+                return (
+                    <SubSection title={e.title}>
+                      <Control.textarea model={e.model} id={e.id}/>
+                    </SubSection>
                 )
               }
             })

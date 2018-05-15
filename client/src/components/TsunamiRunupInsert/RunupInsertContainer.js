@@ -5,7 +5,6 @@ import { encodeQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
 import MultiPartForm from "../FormPartials/MultiPartForm";
 import FormSection from "../FormPartials/FormSection";
-// import Styles from "./RunupInsertStyle.css";
 
 import { Measurements, DateAndLocation, Effects } from "./RunupInsertConstants";
 
@@ -19,7 +18,6 @@ class RunupInsertContainer extends React.Component{
       showSourceForm: true
     }
   }
-
 
   componentDidMount(){
     //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that

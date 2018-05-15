@@ -23,7 +23,7 @@ export const initialState = fromJS({
   showRunupParams: true,
   fetchingRunup: false,
   fetchedRunup: false,
-  runupData: [],
+  runupData: [{country: ""}],
   deleteRunupId: null,
   showDeleteConfirmation: false,
   deletingRunup: false,
@@ -49,6 +49,9 @@ export const initialState = fromJS({
   showRunupInsertDateLoc: true,
   showRunupInsertMeasure: true,
   showRunupInsertEffects: true,
+  showRunupUpdateDateLoc: true,
+  showRunupUpdateMeasure: true,
+  showRunupUpdateEffects: true,
 });
 
 export default function reducer(state=initialState, action){
@@ -219,6 +222,15 @@ export default function reducer(state=initialState, action){
     }
     case "TOGGLE_RUNUP_INSERT_EFFECTS": {
       return state.merge(state, {showRunupInsertEffects: !state.get('showRunupInsertEffects')});
+    }
+    case "TOGGLE_RUNUP_UPDATE_DATE_LOC": {
+      return state.merge(state, {showRunupUpdateDateLoc: !state.get('showRunupUpdateDateLoc')});
+    }
+    case "TOGGLE_RUNUP_UPDATE_MEASURE": {
+      return state.merge(state, {showRunupUpdateMeasure: !state.get('showRunupUpdateMeasure')});
+    }
+    case "TOGGLE_RUNUP_UPDATE_EFFECTS": {
+      return state.merge(state, {showRunupUpdateEffects: !state.get('showRunupUpdateEffects')});
     }
     default:
       return state;

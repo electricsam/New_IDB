@@ -21,9 +21,11 @@ const Radio = props => (
           )
         })
       }
-      props.noText? (<div></div>) :
-      (<Control.text model={`${props.textModelPreface}${props.checkConditions()}`}
-        id={`${props.textModelPreface}${props.checkConditions()}`}/>)
+      {
+        props.noText? (<div></div>) :
+        (<Control.text model={`${props.textModelPreface}${props.checkConditions()}`}
+          id={`${props.textModelPreface}${props.checkConditions()}`}/>)
+      }
     </div>
 );
 
