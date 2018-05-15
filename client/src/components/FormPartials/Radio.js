@@ -1,14 +1,15 @@
 import React from 'react';
 import { Control } from 'react-redux-form/lib/immutable'
 
+import Styles from "./RadioStyles.css"
 
 const Radio = props => (
-    <div className={props.radioSectionStyle}>
-      <div className={props.titleStyle}>{props.title}</div>
+    <div className={Styles.subSection}>
+      <div className={Styles.subSectionTitle}>{props.title}</div>
       {
         props.radios.map(e => {
           return (
-              <div>
+              <div className={Styles.radioDiv}>
                 <Control.radio
                     model={props.model}
                     id={props.model}

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Styles from './MinMaxStyle.css';
 
 const MinMax = props => (
-  <div className={Styles.minMaxInput}>
+  <div className={Styles.container}>
     <label htmlFor={props.model}>{props.title}</label>
     <Control.text
       model={props.model}

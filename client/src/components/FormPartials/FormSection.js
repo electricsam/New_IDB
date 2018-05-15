@@ -3,13 +3,15 @@ import React from 'react';
 import DropDown from "./DropDown.jsx";
 import Radio from "./Radio";
 import MinMax from "./MinMax";
+import SubSection from "./SubSection"
+
+import Styles from "./FormSectionStyles.css"
 
 const FormSection = props => (
-  <div className={props.sectionStyle}>
-    {console.log("PROPS: ******************************** ",props)}
-    <div className={props.headerStyle}>
+  <div className={Styles.formOuterSection}>
+    <div className={Styles.header}>
       <h3>{props.title}</h3>
-      <div className={props.expandCollapseStyle}>
+      <div className={Styles.expandCollapse}>
         {
           props.showSection ?
             <i className="material-icons" onClick={props.toggleSection}>&#xE5CE;</i> :
@@ -19,30 +21,32 @@ const FormSection = props => (
     </div>
     {
       props.showSection?
-        <div className={props.innerSectionStyle}>
+        <div className={Styles.formInnerSection}>
           {
             props.formData.map(e => {
               if(e.type === 'DROPDOWN'){
                 return (
-                    <div className={e.styles.wrapper}>
-                      <div className={e.styles.title}>{e.title}</div>
-                      <DropDown title={e.title} model={e.model} data={e.data}/>
-                    </div>
+                    <SubSection title={e.title}>
+                      <DropDown model={e.model} data={e.data}/>
+                    </SubSection>
                 )
               } else if(e.type === 'DROPDOWNOR'){
                 return (
-                    <div className={e.styles.wrapper}>
-                      <div className={e.styles.title}>{e.title}</div>
-                      <DropDown title={e.title} model={e.model} data={e.data}
-                                disabled={() => props.checkDropDownDisabled(e.disabled)}/>
-                    </div>
+                    <SubSection title={e.title}>
+                      {
+                        e.dropDowns.map(x => (
+                            <DropDown  model={x.model} data={x.data}
+                                       disabled={()=>props.checkDropDownDisabled(x.disabled)}/>
+                        ))
+                      }
+                    </SubSection>
                 )
               }else if(e.type === 'RADIO'){
                 return (
                   <Radio
                     radios={e.radios}
-                    radioSectionStyle={e.sectionStyle}
-                    titleStyle={e.titleStyle}
+                    radioSectionStyle={Styles.subSection}
+                    titleStyle={Styles.subSectionTitle}
                     title={e.title}
                     htmlFor={e.htmlFor}
                     checkConditions={props.checkConditions}
@@ -53,31 +57,29 @@ const FormSection = props => (
               }
               else if(e.type === 'MINMAX'){
                 return (
-                  <div className={e.sectionStyle}>
-                    <div className={e.titleStyle}>{e.title}</div>
-                    <MinMax
-                      model={e.min.model}
-                      title="Min"
-                      min={e.minThreshold}
-                      max={e.maxThreshold}
-                      validMinMax={props.validateMinMax}
-                      validMessage={{valid: e.min.validMessage}}
-                    />
-                    <MinMax
-                      model={e.max.model}
-                      title="Max"
-                      min={e.minThreshold}
-                      max={e.maxThreshold}
-                      validMinMax={props.validateMinMax}
-                      validMessage={{valid: e.max.validMessage}}
-                    />
-                  </div>
+                    <SubSection title={e.title}>
+                      <MinMax
+                          model={e.min.model}
+                          title="Min"
+                          min={e.minThreshold}
+                          max={e.maxThreshold}
+                          validMinMax={props.validateMinMax}
+                          validMessage={{valid: e.min.validMessage}}
+                      />
+                      <MinMax
+                          model={e.max.model}
+                          title="Max"
+                          min={e.minThreshold}
+                          max={e.maxThreshold}
+                          validMinMax={props.validateMinMax}
+                          validMessage={{valid: e.max.validMessage}}
+                      />
+                    </SubSection>
                 )
               }
-              else if(e.type = 'MULTIMINMAX'){
+              else if(e.type === 'MULTIMINMAX'){
                 return (
-                    <div className={e.sectionStyle}>
-                      <div className={e.titleStyle}>{e.title}</div>
+                    <SubSection title={e.title}>
                       {
                         e.data.map(x => {
                           return(
@@ -92,17 +94,32 @@ const FormSection = props => (
                           )
                         })
                       }
-                    </div>
+                    </SubSection>
+                )
+              }else if (e.type === 'TEXT'){
+                return (
+                    <SubSection title={e.title}>
+                      <MinMax
+                          model={e.model}
+                          title=""
+                          min={e.minThreshold}
+                          max={e.maxThreshold}
+                          validMinMax={props.validateMinMax}
+                          validMessage={{valid: e.validMessage}}
+                      />
+                    </SubSection>
+                )
+              }else if (e.type === 'TEXTNOVAL'){
+                return (
+                    <SubSection title={e.title}>
+                      <Control.text model={e.model} id={e.model}/>
+                    </SubSection>
                 )
               }
             })
           }
         </div>:
         <div></div>
-
-
-
-
     }
   </div>
 );

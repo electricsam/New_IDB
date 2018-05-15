@@ -1,0 +1,66 @@
+.header{
+    border-bottom: 1px solid rgb(108,109,109);
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+    align-self: start;
+    grid-column: 2/3;
+}
+
+.header h3{
+    margin: 0;
+    margin-top: 2%;
+    display: block;
+}
+
+.expandCollapse{
+    width: 10%;
+    text-align: right;
+    align-self: flex-end;
+}
+
+.expandCollapse:hover i{
+    cursor: pointer;
+}
+
+.formOuterSection{
+    grid-column: 1/2;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 2.5% 95% 2.5%;
+    justify-items: start;
+    align-items: start;
+    width: 100%;
+    height: auto;
+}
+
+.formInnerSection{
+    grid-column: 2/3;
+    margin-top: .5%;
+    grid-row-gap: .5rem;
+    display: grid;
+    grid-template-columns: 100%;
+    justify-items: start;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.subSection{
+    grid-column: 1/2;
+    width: 100%;
+}
+
+.subSection .div{
+    display: inline-block;
+}
+
+.subSectionTitle{
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 2%;
+}
+
+
+

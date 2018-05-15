@@ -1,26 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Control, Form, Errors, actions } from 'react-redux-form/lib/immutable';
 
 import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
-import { countries, states, canadianProvince, validationConstants, regions } from '../tsunamiForms/constants'
-import MinMax from '../FormPartials/MinMax';
 import Styles from './TsunamiSearchContainerStyle.css';
-import DropDown from "../FormPartials/DropDown.jsx";
+import MultiPartForm from "../FormPartials/MultiPartForm";
 
-// import TsunamiSourceParameters from './TsunamiSourceParameters';
-import { TsunamiSourceParameters, TsunamiRunupByPlace, TotalTsunamiEffects, TotalTsunamiAndSourceEffects } from "./EventSearchConstants";
+import {
+  TsunamiSourceParameters,
+  TsunamiRunupByPlace,
+  TotalTsunamiEffects,
+  TotalTsunamiAndSourceEffects
+} from "./EventSearchConstants";
 
-// import TsunamiRunupByPlace from './TsunamiRunupByPlace';
-// import TotalTsunamiEffects from "./TotalTsunamiEffects";
-// import TotalTsunamiandSourceEffects from "./TotalTsunamiandSourceEffects";
 import FormSection from "../FormPartials/FormSection";
-
-const errorStyles = {
-  color: 'red',
-  display: 'block'
-}
 
 const action = obj => store.dispatch(obj);
 
@@ -73,8 +66,7 @@ class TsunamiSearchContainer extends React.Component{
   render(){
     const { tsunami } = this.props;
     return (
-      <div className={Styles.container}>
-        <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
+      <MultiPartForm title={"Search Tsunami Events"} handleSubmit={this.handleSubmit}>
 
           <FormSection
             title="Tsunami Source Parameters"
@@ -128,10 +120,7 @@ class TsunamiSearchContainer extends React.Component{
             formData={TotalTsunamiAndSourceEffects}
           />
 
-        <button type="submit" className={Styles.searchButton}>
-          Submit
-        </button> </Form>
-      </div>
+      </MultiPartForm>
     )
   }
 }
@@ -139,4 +128,3 @@ class TsunamiSearchContainer extends React.Component{
 const mapStateToProps = state => ({tsunami: state.deep.tsunami});
 
 export default connect(mapStateToProps)(TsunamiSearchContainer);
-

@@ -16,7 +16,6 @@ const DropDown = props => (
 export default DropDown;
 
 DropDown.propTypes = {
-  title: PropTypes.string.isRequired,
   model: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
 }

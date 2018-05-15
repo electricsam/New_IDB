@@ -11,11 +11,6 @@ import Measurements from "./Measurements.jsx";
 import Effects from "./Effects.jsx";
 import TotalEffects from "./TotalEffects.jsx";
 
-const errorStyles = {
-  color: 'red',
-  display: 'block'
-}
-
 const action = obj => store.dispatch(obj);
 
 class TsunamiInsertContainer extends React.Component{

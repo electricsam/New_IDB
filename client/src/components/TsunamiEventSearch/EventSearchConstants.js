@@ -1,4 +1,3 @@
-import Styles from "./TsunamiSearchContainerStyle.css"
 import {
   regions, validationConstants, countries, rnpMeasureType, states,
   canadianProvince, indonesianProvince, japanesePrefecture
@@ -7,8 +6,6 @@ import {
 const TsunamiSourceParameters = [
   {
     type: "MINMAX",
-    sectionStyle: Styles.year,
-    titleStyle: Styles.minMaxTitle,
     title: "Year",
     minThreshold: validationConstants.year.min,
     maxThreshold: validationConstants.year.max,
@@ -27,10 +24,6 @@ const TsunamiSourceParameters = [
     model: ".tsunami.search.regionCode",
     data: regions,
     id: ".tsunami.search.regionCode",
-    styles: {
-      wrapper: Styles.region,
-      title: Styles.minMaxTitle
-    }
   },
   {
     type: "DROPDOWN",
@@ -38,40 +31,30 @@ const TsunamiSourceParameters = [
     model: ".tsunami.search.country",
     data: countries,
     id: ".tsunami.search.country",
-    styles: {
-      wrapper: Styles.country,
-      title: Styles.minMaxTitle
-    }
-  },
+     },
   {
     type: "DROPDOWNOR",
-    title: "U.S. State / Territory",
-    model: ".tsunami.search.area",
-    data: states,
-    id: ".tsunami.search.area",
-    disabled: "USA",
-    styles: {
-      wrapper: Styles.state,
-      title: Styles.minMaxTitle
-    }
+    title: "Area",
+    dropDowns: [
+      {
+        model: ".tsunami.search.area",
+        data: states,
+        id: ".tsunami.search.area",
+        disabled: "USA",
+      },
+      {
+        model: ".tsunami.search.area",
+        data: canadianProvince,
+        id: ".tsunami.search.area",
+        disabled: "CANADA",
+      },
+    ]
+
   },
-  {
-    type: "DROPDOWNOR",
-    title: "Canadian Province",
-    model: ".tsunami.search.area",
-    data: canadianProvince,
-    id: ".tsunami.search.area",
-    disabled: "CANADA",
-    styles: {
-      wrapper: Styles.province,
-      title: Styles.minMaxTitle
-    }
-  },
+
   {
     type: "MULTIMINMAX",
     title: "Lat / Long",
-    sectionStyle:Styles.latLong,
-    titleStyle: Styles.minMaxTitle,
     data: [
       {
         model: ".tsunami.search.maxLatitude",
@@ -105,8 +88,6 @@ const TsunamiSourceParameters = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.validity,
-    titleStyle: Styles.minMaxTitle,
     title: "Validity",
     minThreshold: validationConstants.validity.min,
     maxThreshold: validationConstants.validity.max,
@@ -121,8 +102,6 @@ const TsunamiSourceParameters = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.cause,
-    titleStyle: Styles.minMaxTitle,
     title: "Cause of Tsunami",
     minThreshold: validationConstants.cause.min,
     maxThreshold: validationConstants.cause.max,
@@ -137,8 +116,6 @@ const TsunamiSourceParameters = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.eqMag,
-    titleStyle: Styles.minMaxTitle,
     title: "Earthquake Magnitude",
     minThreshold:validationConstants.eqMag.min,
     maxThreshold: validationConstants.eqMag.max,
@@ -154,8 +131,6 @@ const TsunamiSourceParameters = [
   {
     type: "RADIO",
     title: "Location",
-    sectionStyle: Styles.locType,
-    titleStyle: Styles.minMaxTitle,
     htmlFor: ".tsunami.locType",
     model: ".tsunami.locType",
     radios: [
@@ -177,10 +152,6 @@ const TsunamiRunupByPlace = [
     model: ".tsunami.search.runupRegion",
     id: ".tsunami.search.runupRegion",
     data: regions,
-    styles: {
-      wrapper: Styles.rnpRegion,
-      title: Styles.minMaxTitle
-    }
   },
   {
     type: "DROPDOWN",
@@ -188,63 +159,39 @@ const TsunamiRunupByPlace = [
     model: ".tsunami.search.runupCountry",
     id: ".tsunami.search.runupCountry",
     data: countries,
-    styles: {
-      wrapper: Styles.rnpCountry,
-      title: Styles.minMaxTitle
-    }
   },
   {
     type: "DROPDOWNOR",
-    title: "U.S. State / Territory",
-    model: ".tsunami.search.runupArea",
-    id: ".tsunami.search.runupArea",
-    data: states,
-    styles: {
-      wrapper: Styles.rnpState,
-      title: Styles.minMaxTitle
-    },
-    disabled: "USA"
-  },
-  {
-    type: "DROPDOWNOR",
-    title: "Canadian Province",
-    model: ".tsunami.search.runupArea",
-    id: ".tsunami.search.runupArea",
-    data: canadianProvince,
-    styles: {
-      wrapper: Styles.rnpProvince,
-      title: Styles.minMaxTitle
-    },
-    disabled: "CANADA"
-  },
-  {
-    type: "DROPDOWNOR",
-    title: "Indonesian Province",
-    model: ".tsunami.search.runupArea",
-    id: ".tsunami.search.runupArea",
-    data: indonesianProvince,
-    styles: {
-      wrapper: Styles.rnpIndoProv,
-      title: Styles.minMaxTitle
-    },
-    disabled: "INDONESIA"
-  },
-  {
-    type: "DROPDOWNOR",
-    title: "Japanese Prefecture",
-    model: ".tsunami.search.runupArea",
-    id: ".tsunami.search.runupArea",
-    data: japanesePrefecture,
-    styles: {
-      wrapper: Styles.rnpJpPre,
-      title: Styles.minMaxTitle
-    },
-    disabled: "JAPAN"
+    title: "Area",
+    dropDowns: [
+      {
+        model: ".tsunami.search.runupArea",
+        id: ".tsunami.search.runupArea",
+        data: states,
+        disabled: "USA"
+      },
+      {
+        model: ".tsunami.search.runupArea",
+        id: ".tsunami.search.runupArea",
+        data: canadianProvince,
+        disabled: "CANADA"
+      },
+      {
+        model: ".tsunami.search.runupArea",
+        id: ".tsunami.search.runupArea",
+        data: indonesianProvince,
+        disabled: "INDONESIA"
+      },
+      {
+        model: ".tsunami.search.runupArea",
+        id: ".tsunami.search.runupArea",
+        data: japanesePrefecture,
+        disabled: "JAPAN"
+      },
+    ]
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.rnpDistance,
-    titleStyle: Styles.minMaxTitle,
     title: "Distance of Runup Location",
     minThreshold: validationConstants.distanceRnpLoc.min,
     maxThreshold: validationConstants.distanceRnpLoc.max,
@@ -259,8 +206,6 @@ const TsunamiRunupByPlace = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.travHrs,
-    titleStyle: Styles.minMaxTitle,
     title: "Travel Time (Hours)",
     minThreshold: validationConstants.travelTime.min,
     maxThreshold: validationConstants.travelTime.max,
@@ -276,8 +221,6 @@ const TsunamiRunupByPlace = [
   {
     type: "RADIO",
     title: "Runup Location",
-    sectionStyle: Styles.rnpLocType,
-    titleStyle: Styles.minMaxTitle,
     htmlFor: ".tsunami.runupLocType",
     model: ".tsunami.runupLocType",
     radios: [
@@ -294,8 +237,6 @@ const TsunamiRunupByPlace = [
 const TotalTsunamiEffects = [
   {
     type: "MINMAX",
-    sectionStyle: Styles.numRunups,
-    titleStyle: Styles.minMaxTitle,
     title: "Number of Runups",
     minThreshold: validationConstants.numberOfRunups.min,
     maxThreshold: validationConstants.numberOfRunups.max,
@@ -310,8 +251,6 @@ const TotalTsunamiEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.maxWater,
-    titleStyle: Styles.minMaxTitle,
     title: "Maximum Water Height",
     minThreshold: validationConstants.waterHeight.min,
     maxThreshold: validationConstants.waterHeight.max,
@@ -326,8 +265,6 @@ const TotalTsunamiEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.numDeaths,
-    titleStyle: Styles.minMaxTitle,
     title: "Number of Deaths",
     minThreshold: validationConstants.numberOfDeaths.min,
     maxThreshold: validationConstants.numberOfDeaths.max,
@@ -342,8 +279,6 @@ const TotalTsunamiEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.deathDescrip,
-    titleStyle: Styles.minMaxTitle,
     title: "Death Description",
     minThreshold: validationConstants.deathDescription.min,
     maxThreshold: validationConstants.deathDescription.max,
@@ -358,8 +293,6 @@ const TotalTsunamiEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.numInjuries,
-    titleStyle: Styles.minMaxTitle,
     title: "Number of Injuries",
     minThreshold: validationConstants.numberOfInjuries.min,
     maxThreshold: validationConstants.numberOfInjuries.max,
@@ -374,8 +307,6 @@ const TotalTsunamiEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.injuryDescrip,
-    titleStyle: Styles.minMaxTitle,
     title: "Injury Description",
     minThreshold: validationConstants.injuryDescription.min,
     maxThreshold: validationConstants.injuryDescription.max,
@@ -390,8 +321,6 @@ const TotalTsunamiEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.damage,
-    titleStyle: Styles.minMaxTitle,
     title: "Damage in Millions of Dollars",
     minThreshold: validationConstants.damageInMillions.min,
     maxThreshold: validationConstants.damageInMillions.max,
@@ -406,8 +335,6 @@ const TotalTsunamiEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.damageDescrip,
-    titleStyle: Styles.minMaxTitle,
     title: "Damage Description",
     minThreshold: validationConstants.damageDescription.min,
     maxThreshold: validationConstants.damageDescription.max,
@@ -422,8 +349,6 @@ const TotalTsunamiEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.numHouses,
-    titleStyle: Styles.minMaxTitle,
     title: "Number of Houses Destroyed",
     minThreshold: validationConstants.numberOfHousesDestroyed.min,
     maxThreshold: validationConstants.numberOfHousesDestroyed.max,
@@ -438,8 +363,6 @@ const TotalTsunamiEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.housesDescrip,
-    titleStyle: Styles.minMaxTitle,
     title: "Houses Destroyed Description",
     minThreshold: validationConstants.housesDestroyedDescription.min,
     maxThreshold: validationConstants.housesDestroyedDescription.max,
@@ -457,8 +380,6 @@ const TotalTsunamiEffects = [
 const TotalTsunamiAndSourceEffects = [
   {
     type: "MINMAX",
-    sectionStyle: Styles.deathsTotal,
-    titleStyle: Styles.minMaxTitle,
     title: "Total Number of Deaths",
     minThreshold: validationConstants.numberOfDeaths.min,
     maxThreshold: validationConstants.numberOfDeaths.max,
@@ -473,8 +394,6 @@ const TotalTsunamiAndSourceEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.deathTotalDescrip,
-    titleStyle: Styles.minMaxTitle,
     title: "Total Death Description",
     minThreshold: validationConstants.deathDescription.min,
     maxThreshold: validationConstants.deathDescription.max,
@@ -493,15 +412,9 @@ const TotalTsunamiAndSourceEffects = [
     model: ".tsunami.search.runupMeasureType",
     id: ".tsunami.search.runupMeasureType",
     data: rnpMeasureType,
-    styles: {
-      wrapper: Styles.typeMeasure,
-      title: Styles.minMaxTitle
-    }
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.vertHt,
-    titleStyle: Styles.minMaxTitle,
     title: "Vertical Height at Runup Location",
     minThreshold: validationConstants.waterHeight.min,
     maxThreshold: validationConstants.waterHeight.max,
@@ -516,8 +429,6 @@ const TotalTsunamiAndSourceEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.rnpDeaths,
-    titleStyle: Styles.minMaxTitle,
     title: "Number of Deaths at Runup Location",
     minThreshold: validationConstants.numberOfDeaths.min,
     maxThreshold: validationConstants.numberOfDeaths.max,
@@ -532,8 +443,6 @@ const TotalTsunamiAndSourceEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.rnpDeathDescrip,
-    titleStyle: Styles.minMaxTitle,
     title: "Description of Deaths at Runup Location",
     minThreshold: validationConstants.deathDescription.min,
     maxThreshold: validationConstants.deathDescription.max,
@@ -548,8 +457,6 @@ const TotalTsunamiAndSourceEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.rnpInjuries,
-    titleStyle: Styles.minMaxTitle,
     title: "Number of Injuries at Runup Location",
     minThreshold: validationConstants.numberOfInjuries.min,
     maxThreshold: validationConstants.numberOfInjuries.max,
@@ -564,8 +471,6 @@ const TotalTsunamiAndSourceEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.rnpInjuryDescrip,
-    titleStyle: Styles.minMaxTitle,
     title: "Injury Description at Runup Location",
     minThreshold: validationConstants.injuryDescription.min,
     maxThreshold: validationConstants.injuryDescription.max,
@@ -580,8 +485,6 @@ const TotalTsunamiAndSourceEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.rnpDamage,
-    titleStyle: Styles.minMaxTitle,
     title: "Damage in Millions of Dollars at Runup Location",
     minThreshold: validationConstants.damageInMillions.min,
     maxThreshold: validationConstants.damageInMillions.max,
@@ -596,8 +499,6 @@ const TotalTsunamiAndSourceEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.rnpDamageDescrip,
-    titleStyle: Styles.minMaxTitle,
     title: "Damage Description at Runup Location",
     minThreshold: validationConstants.damageDescription.min,
     maxThreshold: validationConstants.damageDescription.max,
@@ -612,8 +513,6 @@ const TotalTsunamiAndSourceEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.rnpHouses,
-    titleStyle: Styles.minMaxTitle,
     title: "Number of Houses Destroyed at Runup Location",
     minThreshold: validationConstants.numberOfHousesDestroyed.min,
     maxThreshold: validationConstants.numberOfHousesDestroyed.max,
@@ -628,8 +527,6 @@ const TotalTsunamiAndSourceEffects = [
   },
   {
     type: "MINMAX",
-    sectionStyle: Styles.rnpHousesDescrip,
-    titleStyle: Styles.minMaxTitle,
     title: "Houses Destroyed Description at Runup Location",
     minThreshold: validationConstants.housesDestroyedDescription.min,
     maxThreshold: validationConstants.housesDestroyedDescription.max,

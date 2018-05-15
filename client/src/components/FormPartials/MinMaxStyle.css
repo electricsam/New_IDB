@@ -1,14 +1,15 @@
-.minMaxInput{
+.container{
     margin-right: 1%;
     white-space: nowrap;
+    display: inline-block;
 }
 
-.minMaxInput label{
+.container label{
     display: inline-block;
     margin-right: 1%;
 }
 
-.minMaxInput input{
+.container input{
     display: inline-block;
 }
 

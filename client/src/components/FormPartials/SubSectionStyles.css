@@ -1,0 +1,14 @@
+.subSection{
+    grid-column: 1/2;
+    width: 100%;
+}
+
+.subSection .div{
+    display: inline-block;
+}
+
+.subSectionTitle{
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 2%;
+}
