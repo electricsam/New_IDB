@@ -5,20 +5,11 @@ import {actions, Control, Errors, Form} from 'react-redux-form/lib/immutable';
 import {createApiQueryString, encodeQueryString} from '../../helperFunctions/helperFunctions'
 import store from '../../store';
 import Styles from './RunupSearchContainerStyle.css';
-// import RunupParamsEffects from "./RunupParamsEffects";
 import FormSection from "../FormPartials/FormSection";
 
-
 import { RunupLocInfo, RunupSourceInfo, RunupParamsEffects } from './RunupFormConstants';
-
 import RunupSearchStyles from './RunupSearchContainerStyle.css'
-
-const errorStyles = {
-  color: 'red',
-  display: 'block'
-}
-
-//TODO: Remove const from action
+import MultiPartForm from "../FormPartials/MultiPartForm";
 
 const action = obj => store.dispatch(obj);
 
@@ -31,7 +22,6 @@ class RunupSearchContainer extends React.Component{
     }
   }
 
-
   componentDidMount(){
     //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
     // - specifically for radio button toggle to location search
@@ -42,7 +32,6 @@ class RunupSearchContainer extends React.Component{
     if(val.rnpsearch){
       let encoded = encodeQueryString(JSON.stringify(val.rnpsearch));
       let queryString = createApiQueryString(val.rnpsearch);
-      console.log("**********************************THIS IS QUERYSTRING:", queryString, "***************************");
       this.props.history.push(`/tsunami/runup/data?${encoded}`);
     }else{
       action({type: "FETCH_ALL_RUNUPS_REQUESTED"});
@@ -63,8 +52,7 @@ class RunupSearchContainer extends React.Component{
   render(){
     const { tsunami } = this.props;
     return (
-      <div className={Styles.container}>
-        <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
+        <MultiPartForm title="Search Runups" handleSubmit={this.handleSubmit}>
 
          <FormSection
             title="Runup Source Information"
@@ -91,7 +79,6 @@ class RunupSearchContainer extends React.Component{
             formData={RunupLocInfo}
           />
 
-
           <FormSection
             title="Tsunami Runup Parameters and Effects Information"
             sectionStyle={RunupSearchStyles.formSectionThree}
@@ -104,10 +91,8 @@ class RunupSearchContainer extends React.Component{
             formData={RunupParamsEffects}
           />
 
-          <button type="submit"  className={Styles.searchButton}>
-            Submit
-          </button> </Form>
-      </div>
+        </MultiPartForm>
+
     )
   }
 }

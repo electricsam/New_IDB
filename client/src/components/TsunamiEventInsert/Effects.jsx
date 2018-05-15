@@ -14,7 +14,7 @@ const Effects = props => (
             <div className={Styles.damage}>
                 <div className={Styles.minMaxTitle}>Damage</div>
                 <MinMax
-                    model=".tsunami.insert.damageMillionsofDollars"
+                    model=".tsunami.insert.damageMillionsDollars"
                     title="Damage in Millions of Dollars"
                     min={validationConstants.damageInMillions.min}
                     max={validationConstants.damageInMillions.max}

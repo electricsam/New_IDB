@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Control } from 'react-redux-form/lib/immutable'
+
 import DropDown from "./DropDown.jsx";
 import Radio from "./Radio";
 import MinMax from "./MinMax";

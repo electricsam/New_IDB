@@ -70,12 +70,8 @@ class TsunamiSearchContainer extends React.Component{
 
           <FormSection
             title="Tsunami Source Parameters"
-            sectionStyle={Styles.formSectionOne}
-            headerStyle={Styles.header}
             toggleSection={this.toggleSourceForm}
             showSection={tsunami.get('showSourceForm')}
-            innerSectionStyle={Styles.formInnerSectionOne}
-            expandCollapseStyle={Styles.expandCollapse}
             validateMinMax={this.validateMinMax}
             formData={TsunamiSourceParameters}
             checkDropDownDisabled={this.checkDropDownDisabled}
@@ -84,12 +80,8 @@ class TsunamiSearchContainer extends React.Component{
 
           <FormSection
             title="Tsunami Runup By Place"
-            sectionStyle={Styles.formSectionTwo}
-            headerStyle={Styles.header}
             toggleSection={this.toggleRunupPlaceForm}
             showSection={tsunami.get('showRunupPlaceForm')}
-            innerSectionStyle={Styles.formInnerSectionTwo}
-            expandCollapseStyle={Styles.expandCollapse}
             validateMinMax={this.validateMinMax}
             formData={TsunamiRunupByPlace}
             checkDropDownDisabled={this.checkDropdownDisabledRunup}
@@ -98,24 +90,16 @@ class TsunamiSearchContainer extends React.Component{
 
           <FormSection
             title="Total Tsunami Effects"
-            sectionStyle={Styles.formSectionThree}
-            headerStyle={Styles.header}
             toggleSection={this.toggleTsunamiEffectsForm}
             showSection={tsunami.get('showTsunamiEffectsForm')}
-            innerSectionStyle={Styles.formInnerSectionThree}
-            expandCollapseStyle={Styles.expandCollapse}
             validateMinMax={this.validateMinMax}
             formData={TotalTsunamiEffects}
           />
 
           <FormSection
             title="Total Tsunami and Source Effects"
-            sectionStyle={Styles.formSectionFour}
-            headerStyle={Styles.header}
             toggleSection={this.toggleTotalTsunamiSourceForm}
             showSection={tsunami.get('showTotalTsunamiSourceForm')}
-            innerSectionStyle={Styles.formInnerSectionFour}
-            expandCollapseStyle={Styles.expandCollapse}
             validateMinMax={this.validateMinMax}
             formData={TotalTsunamiAndSourceEffects}
           />

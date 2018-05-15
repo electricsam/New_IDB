@@ -35,7 +35,14 @@ export const initialState = fromJS({
   search:{
     country: "",
     runupcountry: "",
-  }
+  },
+  insert: {
+    country:""
+  },
+  showTsInsertDateLoc: true,
+  showTsInsertMeasure: true,
+  showTsInsertEffects: true,
+  showTsInsertEffectsTotal: true,
 });
 
 export default function reducer(state=initialState, action){
@@ -185,6 +192,18 @@ export default function reducer(state=initialState, action){
     }
     case "DELETE_EVENT_REJECTED": {
       return state.merge(state, {deletingEvent: false, error: action.payload});
+    }
+    case "TOGGLE_TSINSERT_DATE_AND_LOCATION": {
+      return state.merge(state, {showTsInsertDateLoc: !state.get('showTsInsertDateLoc')});
+    }
+    case "TOGGLE_TSINSERT_MEASUREMENTS": {
+      return state.merge(state, {showTsInsertMeasure: !state.get('showTsInsertMeasure')});
+    }
+    case "TOGGLE_TSINSERT_EFFECTS": {
+      return state.merge(state, {showTsInsertEffects: !state.get('showTsInsertEffects')});
+    }
+    case "TOGGLE_TSINSERT_TOTAL_EFFECTS": {
+      return state.merge(state, {showTsInsertEffectsTotal: !state.get('showTsInsertEffectsTotal')});
     }
     default:
       return state;

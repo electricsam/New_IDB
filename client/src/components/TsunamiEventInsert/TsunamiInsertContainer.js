@@ -1,15 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Control, Form, Errors, actions } from 'react-redux-form/lib/immutable';
 
 import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
 import Styles from "./InsertTsunamiStyles.css"
 
-import DateAndLocation from './DateAndLocation';
-import Measurements from "./Measurements.jsx";
-import Effects from "./Effects.jsx";
-import TotalEffects from "./TotalEffects.jsx";
+import MultiPartForm from "../FormPartials/MultiPartForm";
+import FormSection from "../FormPartials/FormSection";
+import { Measurements, TotalEffects, Effects, DateAndLocation } from "./TsunamiEventInsertConstants"
 
 const action = obj => store.dispatch(obj);
 
@@ -40,24 +38,55 @@ class TsunamiInsertContainer extends React.Component{
     }
   }
 
+  toggleDateAndLocation = () => action({type: "TOGGLE_TSINSERT_DATE_AND_LOCATION"});
+
+  toggleMeasurements = () => action({type: "TOGGLE_TSINSERT_MEASUREMENTS"});
+
+  toggleEffects = () => action({type: "TOGGLE_TSINSERT_EFFECTS"});
+
+  toggleTotalEffects = () => action({type: "TOGGLE_TSINSERT_TOTAL_EFFECTS"})
+
+  checkDropDownDisabled = (val) => this.props.tsunami.asMutable().toJS().insert.country === val? false: true;
+
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+
+
 
   render(){
     const { tsunami } = this.props;
     return (
-      <div className={Styles.container}>
-        <h1 className={Styles.title}> Insert Tsunami Event</h1>
-        <Form model="deep" onSubmit={(value)=> this.handleSubmit(value)} className={Styles.form}>
+        <MultiPartForm title="Insert Tsunami Event" handleSubmit={this.handleSubmit}>
+          <FormSection
+            title="Date and Location"
+            toggleSection={this.toggleDateAndLocation}
+            showSection={tsunami.get('showTsInsertDateLoc')}
+            validateMinMax={this.validateMinMax}
+            formData={DateAndLocation}
+            checkDropDownDisabled={this.checkDropDownDisabled}
+          />
+          <FormSection
+              title="Measurements"
+              toggleSection={this.toggleMeasurements}
+              showSection={tsunami.get('showTsInsertMeasure')}
+              validateMinMax={this.validateMinMax}
+              formData={Measurements}
+          />
+          <FormSection
+              title="Effects"
+              toggleSection={this.toggleEffects}
+              showSection={tsunami.get('showTsInsertEffects')}
+              validateMinMax={this.validateMinMax}
+              formData={Effects}
+          />
+          <FormSection
+              title="Total Effects"
+              toggleSection={this.toggleTotalEffects}
+              showSection={tsunami.get('showTsInsertEffectsTotal')}
+              validateMinMax={this.validateMinMax}
+              formData={TotalEffects}
+          />
 
-          <DateAndLocation validateMinMax={this.validateMinMax} />
-          <Measurements validateMinMax={this.validateMinMax}/>
-          <Effects validateMinMax={this.validateMinMax}/>
-          <TotalEffects validateMinMax={this.validateMinMax}/>
-
-          <button type="submit" className={Styles.searchButton}>
-            Submit
-          </button> </Form>
-      </div>
+        </MultiPartForm>
     )
   }
 }
