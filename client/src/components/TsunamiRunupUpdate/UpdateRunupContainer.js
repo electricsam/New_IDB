@@ -66,7 +66,7 @@ class UpdateRunupContainer extends React.Component{
       )
     }else{
       return (
-          <MultiPartForm>
+          <MultiPartForm title="Update Runup" handleSubmit={this.handleSubmit}>
 
             <FormSection
               title="Date and Location"

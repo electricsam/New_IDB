@@ -11,7 +11,7 @@ export const initialState = fromJS({
   fetchingTsEvent: false,
   fetchedTsEvent: false,
   error: null,
-  TsEvents: [],
+  tsEvents: [{country: ""}],
   tsEvent:{},
   headersAndAccessors: [],
   showSourceForm: true,
@@ -52,6 +52,10 @@ export const initialState = fromJS({
   showRunupUpdateDateLoc: true,
   showRunupUpdateMeasure: true,
   showRunupUpdateEffects: true,
+  showTsunamiUpdateDateLoc: true,
+  showTsunamiUpdateMeasure: true,
+  showTsunamiUpdateEffects: true,
+  showTsunamiUpdateEffectsTotal: true,
 });
 
 export default function reducer(state=initialState, action){
@@ -66,7 +70,7 @@ export default function reducer(state=initialState, action){
       return state.merge(state, {
         fetchingTsEvent:false,
         fetchedTsEvent: true,
-        TsEvents: action.payload.data,
+        tsEvents: action.payload.data,
         headersAndAccessors: action.payload.formattedData
       });
     }
@@ -80,7 +84,7 @@ export default function reducer(state=initialState, action){
       return state.merge(state, {
         fetchingTsEvent:false,
         fetchedTsEvent: true,
-        TsEvents: action.payload.data,
+        tsEvents: action.payload.data,
         headersAndAccessors: action.payload.formattedData
       });
     }
@@ -231,6 +235,18 @@ export default function reducer(state=initialState, action){
     }
     case "TOGGLE_RUNUP_UPDATE_EFFECTS": {
       return state.merge(state, {showRunupUpdateEffects: !state.get('showRunupUpdateEffects')});
+    }
+    case "TOGGLE_TSUNAMI_UPDATE_DATE_LOC": {
+      return state.merge(state, {showTsunamiUpdateDateLoc: !state.get('showTsunamiUpdateDateLoc')});
+    }
+    case "TOGGLE_TSUNAMI_UPDATE_MEASURE": {
+      return state.merge(state, {showTsunamiUpdateMeasure: !state.get('showTsunamiUpdateMeasure')});
+    }
+    case "TOGGLE_TSUNAMI_UPDATE_EFFECTS": {
+      return state.merge(state, {showTsunamiUpdateEffects: !state.get('showTsunamiUpdateEffects')});
+    }
+    case "TOGGLE_TSUNAMI_UPDATE_EFFECTS_TOTAL": {
+      return state.merge(state, {showTsunamiUpdateEffectsTotal: !state.get('showTsunamiUpdateEffectsTotal')});
     }
     default:
       return state;

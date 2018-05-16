@@ -42,6 +42,14 @@ const DateAndLocation = [
   },
   {
     type: "TEXT",
+    title: "Minute",
+    model: ".tsunami.insert.minute",
+    minThreshold: validationConstants.minute.min,
+    maxThreshold: validationConstants.minute.max,
+    validMessage: "Invalid Minute"
+  },
+  {
+    type: "TEXT",
     title: "Second",
     model: ".tsunami.insert.second",
     minThreshold: validationConstants.second.min,
@@ -201,14 +209,14 @@ const Measurements = [
     title: "Tsunami Magnitude",
     data:[
       {
-        model: ".tsunami.insert.eqMtAbe",
+        model: ".tsunami.insert.tsMtAbe",
         title: "Abe",
         minThreshold: validationConstants.tsMag.min,
         maxThreshold: validationConstants.tsMag.max,
         validMessage: "Invalid Tsunami Magnitude"
       },
       {
-        model: ".tsunami.insert.eqMtII",
+        model: ".tsunami.insert.tsMtII",
         title: "Iida-Imamura",
         minThreshold: validationConstants.tsMag.min,
         maxThreshold: validationConstants.tsMag.max,
@@ -437,6 +445,12 @@ const Measurements = [
          validMessage: "Invalid Missing Description"
        }
      ]
+   },
+   {
+     type: "TEXTAREA",
+     model: ".tsunami.insert.comments",
+     id: ".tsunami.insert.comments",
+     title: "Comments"
    }
  ];
 
