@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
-import Styles from './TsunamiSearchContainerStyle.css';
 import MultiPartForm from "../FormPartials/MultiPartForm";
+import FormSection from "../FormPartials/FormSection";
 
 import {
   TsunamiSourceParameters,
@@ -13,7 +13,6 @@ import {
   TotalTsunamiAndSourceEffects
 } from "./EventSearchConstants";
 
-import FormSection from "../FormPartials/FormSection";
 
 const action = obj => store.dispatch(obj);
 
@@ -66,7 +65,7 @@ class TsunamiSearchContainer extends React.Component{
   render(){
     const { tsunami } = this.props;
     return (
-      <MultiPartForm title={"Search Tsunami Events"} handleSubmit={this.handleSubmit}>
+      <MultiPartForm title={"Search Tsunami Events"} handleSubmit={this.handleSubmit.bind(this)}>
 
           <FormSection
             title="Tsunami Source Parameters"

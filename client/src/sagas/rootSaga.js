@@ -16,6 +16,7 @@ import {
   watchDeleteEvent,
   watchDeleteEventFulfilled,
   watchDeleteEventRejected,
+  watchPatchTsEvent
 } from './tsunamiSaga';
 
 export default function* rootSaga(){
@@ -35,5 +36,6 @@ export default function* rootSaga(){
     watchDeleteEvent(),
     watchDeleteEventFulfilled(),
     watchDeleteEventRejected(),
+    watchPatchTsEvent(),
   ]);
 }

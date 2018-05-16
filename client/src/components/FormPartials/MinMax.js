@@ -14,7 +14,8 @@ const MinMax = props => (
       validators={{
         valid: val => props.validMinMax(val, props.min, props.max)
       }}
-      validateOn="blur" required={false}>
+      validateOn="blur" required={false}
+    >
     </Control.text>
     <Errors
       className={Styles.errors}
@@ -29,7 +30,7 @@ export default MinMax;
 
 MinMax.propTypes = {
   model: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   validMinMax: PropTypes.func.isRequired,

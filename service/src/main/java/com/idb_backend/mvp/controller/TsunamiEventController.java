@@ -38,21 +38,22 @@ public class TsunamiEventController {
   TsunamiEventService tsunamiEventService;
 
 
-  @RequestMapping(value = "/tsunamievents", method= RequestMethod.GET)
-  @ResponseBody
-  public ResponseEntity getAllEvents(){
-    try{
-      List<TsunamiEventView> events = tsunamiEventViewRepository.findAll();
-      return new ResponseEntity<>(events, HttpStatus.OK);
-    }catch(Exception e){
-      return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
+//  @RequestMapping(value = "/tsunamievents", method= RequestMethod.GET)
+//  @ResponseBody
+//  public ResponseEntity getAllEvents(){
+//    try{
+//      List<TsunamiEventView> events = tsunamiEventViewRepository.findAll();
+//      return new ResponseEntity<>(events, HttpStatus.OK);
+//    }catch(Exception e){
+//      return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
+//  }
 
   @RequestMapping(value = "/tsunamievents/{id}", method= RequestMethod.GET)
   @ResponseBody
   public ResponseEntity getEventById(@PathVariable("id") Integer id){
     try{
+      System.out.println("you have arrived in the tsunamievents");
       Optional<TsunamiEvent> result = tsunamiEventRepository.findById(id);
       return ResponseEntity.status(HttpStatus.OK).body(result);
     }catch(Exception e){
@@ -61,7 +62,7 @@ public class TsunamiEventController {
     }
   }
 
-  @RequestMapping(value = "/tsunamievents/select", method= RequestMethod.GET)
+  @RequestMapping(value = "/tsunamievents", method= RequestMethod.GET)
   @ResponseBody
   public ResponseEntity getEventsByQuery(@RequestParam Map<String, String> allRequestParams,
                                          @QuerydslPredicate(root = TsunamiEventView.class) Predicate predicate){

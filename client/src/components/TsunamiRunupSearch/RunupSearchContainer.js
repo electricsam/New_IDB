@@ -28,6 +28,7 @@ class RunupSearchContainer extends React.Component{
   }
 
   handleSubmit(val){
+    console.log("THIS.PROPS: ", this.props);
     val = val.tsunami.asMutable().toJS();
     if(val.rnpsearch){
       let encoded = encodeQueryString(JSON.stringify(val.rnpsearch));
@@ -52,7 +53,7 @@ class RunupSearchContainer extends React.Component{
   render(){
     const { tsunami } = this.props;
     return (
-        <MultiPartForm title="Search Runups" handleSubmit={this.handleSubmit}>
+        <MultiPartForm title="Search Runups" handleSubmit={this.handleSubmit.bind(this)}>
 
          <FormSection
             title="Runup Source Information"

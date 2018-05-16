@@ -60,13 +60,14 @@ class UpdateRunupContainer extends React.Component{
 
   render(){
     const { tsunami } = this.props;
+    console.log("RUNUPDATA", this.props.tsunami.asMutable().toJS().runupData);
     if(tsunami.get("fetchingRunup") === true){
       return(
         <Loading/>
       )
     }else{
       return (
-          <MultiPartForm title="Update Runup" handleSubmit={this.handleSubmit}>
+          <MultiPartForm title="Update Runup" handleSubmit={this.handleSubmit.bind(this)}>
 
             <FormSection
               title="Date and Location"
@@ -74,7 +75,7 @@ class UpdateRunupContainer extends React.Component{
               showSection={tsunami.get('showRunupUpdateDateLoc')}
               validateMinMax={this.validateMinMax}
               formData={DateAndLocation}
-              checkDropDownDisabled={this.checkDropDownDisabled}
+              checkDropDownDisabled={this.checkDropDownDisabled.bind(this)}
             />
 
             <FormSection

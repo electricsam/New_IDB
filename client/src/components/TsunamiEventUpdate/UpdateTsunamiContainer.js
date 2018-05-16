@@ -19,8 +19,10 @@ class UpdateTsunamiContainer extends React.Component{
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     let id = this.props.match.params.id;
+
+    console.log("Action was dispatched")
     action({type: "FETCH_TS_EVENT_REQUESTED", payload: id});
     //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
   }
@@ -61,8 +63,8 @@ class UpdateTsunamiContainer extends React.Component{
       return(<Loading/>)
     }else{
       return (
-          <MultiPartForm title="Update Tsunami Event" handleSubmit={this.handleSubmit}>
-            {console.log(this.props.tsunami.asMutable().toJS())}
+          <MultiPartForm title="Update Tsunami Event" handleSubmit={this.handleSubmit.bind(this)}>
+            {console.log("HEY ITS ME", this.props.tsunami.asMutable().toJS())}
             <FormSection
               title="Date and Location"
               toggleSection={this.toggleDateAndLocation}

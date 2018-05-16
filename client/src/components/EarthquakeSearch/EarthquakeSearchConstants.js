@@ -2,7 +2,7 @@ import { validationConstants,
   regions,
   countries,
   states
-} from "../components/tsunamiForms/constants";
+} from "../tsunamiForms/constants";
 
 const EarthquakeParameters = [
   {
@@ -22,15 +22,15 @@ const EarthquakeParameters = [
   {
     type: "DROPDOWN",
     title: "Region",
-    model: ".tsunami.search.region",
-    id: ".tsunami.search.region",
+    model: ".earthquake.search.region",
+    id: ".earthquake.search.region",
     data: regions
   },
   {
     type: "DROPDOWN",
     title: "Country",
-    model: ".tsunami.search.country",
-    id: ".tsunami.search.country",
+    model: ".earthquake.search.country",
+    id: ".earthquake.search.country",
     data: countries
   },
   {
@@ -38,8 +38,8 @@ const EarthquakeParameters = [
     title: "Area",
     dropDowns: [
       {
-        model: ".tsunami.search.area",
-        id: ".tsunami.search.area",
+        model: ".earthquake.search.area",
+        id: ".earthquake.search.area",
         data: states,
         disabled: "USA"
       }
@@ -49,8 +49,8 @@ const EarthquakeParameters = [
     type: "RADIO",
     title: "Earthquake Location",
     htmlFor: ".earthquake.locType",
-    model: ".tsunami.locType",
-    radio: [
+    model: ".earthquake.locType",
+    radios: [
       {value: "locStart", label: "Starts With"},
       {value: "locIncludes", label: "Includes"},
       {value: "locMatches", label: "Matches"},
@@ -191,11 +191,11 @@ const TotalEarthquakeAndSecondaryEffects = [
     minThreshold: validationConstants.numberOfDeaths.min,
     maxThreshold: validationConstants.numberOfDeaths.max,
     min: {
-      model: ".tsunami.search.minDeathsTotal",
+      model: ".earthquake.search.minDeathsTotal",
       validMessage: "Invalid Number of Deaths"
     },
     max: {
-      model: ".tsunami.search.maxDeathsTotal",
+      model: ".earthquake.search.maxDeathsTotal",
       validMessage: "Invalid Number of Deaths"
     }
   },
@@ -205,11 +205,11 @@ const TotalEarthquakeAndSecondaryEffects = [
     minThreshold: validationConstants.deathDescription.min,
     maxThreshold: validationConstants.deathDescription.max,
     min: {
-      model: ".tsunami.search.minDeathsAmountOrderTotal",
+      model: ".earthquake.search.minDeathsAmountOrderTotal",
       validMessage: "Invalid Death Description"
     },
     max: {
-      model: ".tsunami.search.maxDeathsAmountOrderTotal",
+      model: ".earthquake.search.maxDeathsAmountOrderTotal",
       validMessage: "Invalid Death Description"
     }
   },

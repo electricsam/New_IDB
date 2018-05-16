@@ -9,13 +9,13 @@ const DateAndLocation = [
     title: "Year",
     minThreshold: validationConstants.year.min,
     maxThreshold: validationConstants.year.max,
-    model: ".tsunami.tsEvents[0].year",
+    model: '.tsunami.tsEvent.year',
     validMessage: "Invalid Year"
   },
   {
     type: "TEXT",
     title: "Month",
-    model: ".tsunami.tsEvents[0].month",
+    model: ".tsunami.tsEvent.month",
     minThreshold: validationConstants.month.min,
     maxThreshold: validationConstants.month.max,
     validMessage: "Invalid Month"
@@ -23,7 +23,7 @@ const DateAndLocation = [
   {
     type: "TEXT",
     title: "Day",
-    model: ".tsunami.tsEvents[0].day",
+    model: ".tsunami.tsEvent.day",
     minThreshold: validationConstants.day.min,
     maxThreshold: validationConstants.day.max,
     validMessage: "Invalid Day"
@@ -31,7 +31,7 @@ const DateAndLocation = [
   {
     type: "TEXT",
     title: "Hour",
-    model: ".tsunami..tsEvents[0]..hour",
+    model: ".tsunami.tsEvent.hour",
     minThreshold: validationConstants.hour.min,
     maxThreshold: validationConstants.hour.max,
     validMessage: "Invalid Hour"
@@ -39,7 +39,7 @@ const DateAndLocation = [
   {
     type: "TEXT",
     title: "Minute",
-    model: ".tsunami.tsEvents[0].minute",
+    model: ".tsunami.tsEvent.minute",
     minThreshold: validationConstants.minute.min,
     maxThreshold: validationConstants.minute.max,
     validMessage: "Invalid Minute"
@@ -47,7 +47,7 @@ const DateAndLocation = [
   {
     type: "TEXT",
     title: "Second",
-    model: ".tsunami.tsEvents[0].second",
+    model: ".tsunami.tsEvent.second",
     minThreshold: validationConstants.second.min,
     maxThreshold: validationConstants.second.max,
     validMessage: "Invalid Second"
@@ -55,7 +55,7 @@ const DateAndLocation = [
   {
     type: "TEXT",
     title: "Latitude",
-    model: ".tsunami.tsEvents[0].latitude",
+    model: ".tsunami.tsEvent.latitude",
     minThreshold: validationConstants.latitude.min,
     maxThreshold: validationConstants.latitude.max,
     validMessage: "Invalid Latitude"
@@ -63,7 +63,7 @@ const DateAndLocation = [
   {
     type: "TEXT",
     title: "Longitude",
-    model: ".tsunami.tsEvents[0].longitude",
+    model: ".tsunami.tsEvent.longitude",
     minThreshold: validationConstants.longitude.min,
     maxThreshold: validationConstants.longitude.max,
     validMessage: "Invalid Longitude"
@@ -71,20 +71,20 @@ const DateAndLocation = [
   {
     type: "TEXTNOVAL",
     title: "Location",
-    model: ".tsunami.tsEvents[0].locationName",
+    model: ".tsunami.tsEvent.locationName",
   },
   {
     type: "DROPDOWN",
     title: "Region",
-    model: ".tsunami.tsEvents[0].regionCode",
-    id: ".tsunami.tsEvents[0].regionCode",
+    model: ".tsunami.tsEvent.regionCode",
+    id: ".tsunami.tsEvent.regionCode",
     data: regions,
   },
   {
     type: "DROPDOWN",
     title: "Country",
-    model: ".tsunami.tsEvents[0].country",
-    id: ".tsunami.tsEvents[0].country",
+    model: ".tsunami.tsEvent.country",
+    id: ".tsunami.tsEvent.country",
     data: countries,
   },
   {
@@ -92,26 +92,26 @@ const DateAndLocation = [
     title: "Area",
     dropDowns: [
       {
-        model: ".tsunami.tsEvents[0].area",
-        id: ".tsunami.tsEvents[0].area",
+        model: ".tsunami.tsEvent.area",
+        id: ".tsunami.tsEvent.area",
         data: states,
         disabled: "USA",
       },
       {
-        model:".tsunami.tsEvents[0].area",
-        id: ".tsunami.tsEvents[0].area",
+        model:".tsunami.tsEvent.area",
+        id: ".tsunami.tsEvent.area",
         data: canadianProvince,
         disabled: "CANADA",
       } ,
       {
-        model:".tsunami.tsEvents[0].area",
-        id: ".tsunami.tsEvents[0].area",
+        model:".tsunami.tsEvent.area",
+        id: ".tsunami.tsEvent.area",
         data: japanesePrefecture,
         disabled: "JAPAN",
       },
       {
-        model:".tsunami.tsEvents[0].area",
-        id: ".tsunami.tsEvents[0].area",
+        model:".tsunami.tsEvent.area",
+        id: ".tsunami.tsEvent.area",
         data: indonesianProvince,
         disabled: "INDONESIA",
       }
@@ -123,7 +123,7 @@ const Measurement = [
   {
     type: "TEXT",
     title: "Earthquake Depth",
-    model: ".tsunami.tsEvents[0].eqDepth",
+    model: ".tsunami.tsEvent.eqDepth",
     minThreshold: validationConstants.eqDepth.min,
     maxThreshold: validationConstants.eqDepth.max,
     validMessage: "Invalid Earthquake Depth"
@@ -133,42 +133,42 @@ const Measurement = [
     title: "Earthquake Magnitude",
     data: [
       {
-        model: ".tsunami.tsEvents[0].eqMagUnk",
+        model: ".tsunami.tsEvent.eqMagUnk",
         title: "UNK",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
         validMessage: "Invalid Earthquake Magnitude"
       },
       {
-        model: ".tsunami.tsEvents[0].eqMagMb",
+        model: ".tsunami.tsEvent.eqMagMb",
         title: "MB",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
         validMessage: "Invalid Earthquake Magnitude"
       },
       {
-        model: ".tsunami.tsEvents[0].eqMagMs",
+        model: ".tsunami.tsEvent.eqMagMs",
         title: "MS",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
         validMessage: "Invalid Earthquake Magnitude"
       },
       {
-        model: ".tsunami.tsEvents[0].eqMagMw",
+        model: ".tsunami.tsEvent.eqMagMw",
         title: "MW",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
         validMessage: "Invalid Earthquake Magnitude"
       },
       {
-        model: ".tsunami.tsEvents[0].eqMagMfa",
+        model: ".tsunami.tsEvent.eqMagMfa",
         title: "MFA",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
         validMessage: "Invalid Earthquake Magnitude"
       },
       {
-        model: ".tsunami.tsEvents[0].eqMagMl",
+        model: ".tsunami.tsEvent.eqMagMl",
         title: "ML",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
@@ -179,7 +179,7 @@ const Measurement = [
   {
     type: "TEXT",
     title: "Cause Code",
-    model: ".tsunami.tsEvents[0].causeCode",
+    model: ".tsunami.tsEvent.causeCode",
     minThreshold: validationConstants.cause.min,
     maxThreshold: validationConstants.cause.max,
     validMessage: "Invalid Cause Code"
@@ -187,7 +187,7 @@ const Measurement = [
   {
     type: "TEXT",
     title: "Validity",
-    model: ".tsunami.tsEvents[0].eventValidity",
+    model: ".tsunami.tsEvent.eventValidity",
     minThreshold: validationConstants.validity.min,
     maxThreshold: validationConstants.validity.max,
     validMessage: "Invalid Validity",
@@ -195,7 +195,7 @@ const Measurement = [
   {
     type: "TEXT",
     title: "Maximum Water Height (meters)",
-    model: ".tsunami.tsEvents[0].maxEventRunup",
+    model: ".tsunami.tsEvent.maxEventRunup",
     minThreshold: validationConstants.waterHeight.min,
     maxThreshold: validationConstants.waterHeight.max,
     validMessage: "Invalid Maximum Water Height"
@@ -205,14 +205,14 @@ const Measurement = [
     title: "Tsunami Magnitude",
     data:[
       {
-        model: ".tsunami.tsEvents[0].tsMtAbe",
+        model: ".tsunami.tsEvent.tsMtAbe",
         title: "Abe",
         minThreshold: validationConstants.tsMag.min,
         maxThreshold: validationConstants.tsMag.max,
         validMessage: "Invalid Tsunami Magnitude"
       },
       {
-        model: ".tsunami.tsEvents[0].tsMtII",
+        model: ".tsunami.tsEvent.tsMtII",
         title: "Iida-Imamura",
         minThreshold: validationConstants.tsMag.min,
         maxThreshold: validationConstants.tsMag.max,
@@ -223,7 +223,7 @@ const Measurement = [
   {
     type: "TEXT",
     title: "Tsunami Intensity: Soloviev",
-    model: ".tsunami.tsEvents[0].tsIntensity",
+    model: ".tsunami.tsEvent.tsIntensity",
     minThreshold: validationConstants.tsMag.min,
     maxThreshold: validationConstants.tsMag.max,
     validMessage: "Invalid Intensity"
@@ -231,7 +231,7 @@ const Measurement = [
   {
     type: "TEXT",
     title: "Tsunami Warning Status",
-    model: ".tsunami.tsEvents[0].warningStatusId",
+    model: ".tsunami.tsEvent.warningStatusId",
     minThreshold: validationConstants.warningStatus.min,
     maxThreshold: validationConstants.warningStatus.max,
     validMessage: "Invalid Warning Status"
@@ -244,14 +244,14 @@ const Effects = [
     title: "Damage",
     data: [
       {
-        model: ".tsunami.tsEvents[0].damageMillionsDollars",
+        model: ".tsunami.tsEvent.damageMillionsDollars",
         title: "Damage in Millions of Dollars",
         minThreshold: validationConstants.damageInMillions.min,
         maxThreshold: validationConstants.damageInMillions.max,
         validMessage: "Invalid Damage"
       },
       {
-        model: ".tsunami.tsEvents[0].damageAmountOrder",
+        model: ".tsunami.tsEvent.damageAmountOrder",
         title: "Damage Description",
         minThreshold: validationConstants.damageDescription.min,
         maxThreshold: validationConstants.damageDescription.max,
@@ -264,14 +264,14 @@ const Effects = [
     title: "Houses Destroyed",
     data: [
       {
-        model: ".tsunami.tsEvents[0].housesDestroyed",
+        model: ".tsunami.tsEvent.housesDestroyed",
         title: "Number of Houses Destroyed",
         minThreshold: validationConstants.numberOfHousesDestroyed.min,
         maxThreshold: validationConstants.numberOfHousesDestroyed.max,
         validMessage: "Invalid Houses Destroyed"
       },
       {
-        model: ".tsunami.tsEvents[0].housesAmountOrder",
+        model: ".tsunami.tsEvent.housesAmountOrder",
         title: "Houses Destroyed Description",
         minThreshold: validationConstants.housesDestroyedDescription.min,
         maxThreshold: validationConstants.housesDestroyedDescription.max,
@@ -284,14 +284,14 @@ const Effects = [
     title: "Deaths",
     data: [
       {
-        model: ".tsunami.tsEvents[0].deaths",
+        model: ".tsunami.tsEvent.deaths",
         title: "Number of Deaths",
         minThreshold: validationConstants.numberOfDeaths.min,
         maxThreshold: validationConstants.numberOfDeaths.max,
         validMessage: "Invalid Number of Deaths"
       },
       {
-        model: ".tsunami.tsEvents[0].deathsAmountOrder",
+        model: ".tsunami.tsEvent.deathsAmountOrder",
         title: "Death Description",
         minThreshold: validationConstants.deathDescription.min,
         maxThreshold: validationConstants.deathDescription.max,
@@ -304,14 +304,14 @@ const Effects = [
     title: "Injuries",
     data: [
       {
-        model: ".tsunami.tsEvents[0].injuries",
+        model: ".tsunami.tsEvent.injuries",
         title: "Number of Injuries",
         minThreshold: validationConstants.numberOfInjuries.min,
         maxThreshold: validationConstants.numberOfInjuries.max,
         validMessage: "Invalid Number of Injuries"
       },
       {
-        model: ".tsunami.tsEvents[0].injuriesAmountOrder",
+        model: ".tsunami.tsEvent.injuriesAmountOrder",
         title: "Injury Description",
         minThreshold: validationConstants.injuryDescription.min,
         maxThreshold: validationConstants.injuryDescription.max,
@@ -324,14 +324,14 @@ const Effects = [
     title: "Missing",
     data: [
       {
-        model: ".tsunami.tsEvents[0].missing",
+        model: ".tsunami.tsEvent.missing",
         title: "Number of Missing",
         minThreshold: validationConstants.numberOfDeaths.min,
         maxThreshold: validationConstants.numberOfDeaths.max,
         validMessage: "Invalid Number of Missing"
       },
       {
-        model: ".tsunami.tsEvents[0].missingAmountOrder",
+        model: ".tsunami.tsEvent.missingAmountOrder",
         title: "Missing Description",
         minThreshold: validationConstants.deathDescription.min,
         maxThreshold: validationConstants.deathDescription.max,
@@ -347,14 +347,14 @@ const TotalEffects = [
     title: "Total Damage",
     data: [
       {
-        model: ".tsunami.tsEvents[0].damageMillionsDollarsTotal",
+        model: ".tsunami.tsEvent.damageMillionsDollarsTotal",
         title: "Total Damage in Millions of Dollars",
         minThreshold: validationConstants.damageInMillions.min,
         maxThreshold: validationConstants.damageInMillions.max,
         validMessage: "Invalid Damage"
       },
       {
-        model: ".tsunami.tsEvents[0].damageAmountOrderTotal",
+        model: ".tsunami.tsEvent.damageAmountOrderTotal",
         title: "Total Damage Description",
         minThreshold: validationConstants.damageDescription.min,
         maxThreshold: validationConstants.damageDescription.max,
@@ -367,14 +367,14 @@ const TotalEffects = [
     title: "Total Houses Destroyed",
     data: [
       {
-        model: ".tsunami.tsEvents[0].housesDestroyedTotal",
+        model: ".tsunami.tsEvent.housesDestroyedTotal",
         title: "Total Number of Houses Destroyed",
         minThreshold: validationConstants.numberOfHousesDestroyed.min,
         maxThreshold: validationConstants.numberOfHousesDestroyed.max,
         validMessage: "Invalid Houses Destroyed"
       },
       {
-        model: ".tsunami.tsEvents[0].housesAmountOrderTotal",
+        model: ".tsunami.tsEvent.housesAmountOrderTotal",
         title: "Total Houses Destroyed Description",
         minThreshold: validationConstants.housesDestroyedDescription.min,
         maxThreshold: validationConstants.housesDestroyedDescription.max,
@@ -387,14 +387,14 @@ const TotalEffects = [
     title: "Total Deaths",
     data: [
       {
-        model: ".tsunami.tsEvents[0].deathsTotal",
+        model: ".tsunami.tsEvent.deathsTotal",
         title: "Total Number of Deaths",
         minThreshold: validationConstants.numberOfDeaths.min,
         maxThreshold: validationConstants.numberOfDeaths.max,
         validMessage: "Invalid Number of Deaths"
       },
       {
-        model: ".tsunami.tsEvents[0].deathsAmountOrderTotal",
+        model: ".tsunami.tsEvent.deathsAmountOrderTotal",
         title: "Total Death Description",
         minThreshold: validationConstants.deathDescription.min,
         maxThreshold: validationConstants.deathDescription.max,
@@ -407,14 +407,14 @@ const TotalEffects = [
     title: "Total Injuries",
     data: [
       {
-        model: ".tsunami.tsEvents[0].injuriesTotal",
+        model: ".tsunami.tsEvent.injuriesTotal",
         title: "Total Number of Injuries",
         minThreshold: validationConstants.numberOfInjuries.min,
         maxThreshold: validationConstants.numberOfInjuries.max,
         validMessage: "Invalid Number of Injuries"
       },
       {
-        model: ".tsunami.tsEvents[0].injuriesAmountOrderTotal",
+        model: ".tsunami.tsEvent.injuriesAmountOrderTotal",
         title: "Total Injury Description",
         minThreshold: validationConstants.injuryDescription.min,
         maxThreshold: validationConstants.injuryDescription.max,
@@ -427,14 +427,14 @@ const TotalEffects = [
     title: "Total Missing",
     data: [
       {
-        model: ".tsunami.tsEvents[0].missingTotal",
+        model: ".tsunami.tsEvent.missingTotal",
         title: "Total Number of Missing",
         minThreshold: validationConstants.numberOfDeaths.min,
         maxThreshold: validationConstants.numberOfDeaths.max,
         validMessage: "Invalid Number of Missing"
       },
       {
-        model: ".tsunami.tsEvents[0].missingAmountOrderTotal",
+        model: ".tsunami.tsEvent.missingAmountOrderTotal",
         title: "Total Missing Description",
         minThreshold: validationConstants.deathDescription.min,
         maxThreshold: validationConstants.deathDescription.max,
@@ -444,8 +444,8 @@ const TotalEffects = [
   },
   {
     type: "TEXTAREA",
-    model: ".tsunami.tsEvents[0].comments",
-    id: ".tsunami.tsEvents[0].comments",
+    model: ".tsunami.tsEvent.comments",
+    id: ".tsunami.tsEvent.comments",
     title: "Comments"
   }
 ];

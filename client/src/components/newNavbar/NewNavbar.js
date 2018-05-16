@@ -42,6 +42,13 @@ const NewNavbar = () => (
 
             <li className={Styles.hpContentLi}>
               <Link to="/volcanoes">VOLCANOES<i className="material-icons">&#xE5CF;</i></Link>
+
+              <ul className={Styles.nestedUl}>
+
+                <li className={Styles.nestedLi}><Link to="/earthquake/eventsearch">EVENTS</Link></li>
+
+              </ul>
+
             </li>
 
             <li className={Styles.nestedList}>

@@ -1,12 +1,15 @@
 package com.idb_backend.mvp.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.idb_backend.mvp.domain.annotations.In;
 import com.idb_backend.mvp.domain.annotations.InString;
 import com.idb_backend.mvp.service.Constants;
 import com.querydsl.core.annotations.QueryEntity;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.WKTWriter;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
@@ -192,7 +195,10 @@ public class TsunamiEvent implements Serializable {
     this.shape = shape;
   }
 
+  @JsonIgnore
+  @Getter(AccessLevel.PRIVATE)
   private Geometry shape;
+
 
   private BigDecimal damageMillionsDollarsTotal;
 
@@ -265,15 +271,19 @@ public class TsunamiEvent implements Serializable {
   private String previousState;
 
   @OneToMany( mappedBy = "tsunamiEvent", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+  @JsonIgnore
   private List<TsunamiRunup> tsunamiRunups = new ArrayList<>();
 
   @OneToMany( mappedBy = "tsunamiEvent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @JsonIgnore
   private Set<TsunamiRefs> tsunamiRefs = new HashSet<>();
 
   @OneToMany(mappedBy = "tsunamiEvent", fetch = FetchType.EAGER)
+  @JsonIgnore
   private Set<SignifToTsEvent> signifToTsEvents = new HashSet<>();
 
   @OneToMany(mappedBy =  "tsunamiEvent", fetch = FetchType.EAGER)
+  @JsonIgnore
   private Set<TseventAndVolEvent> tseventAndVolEvents = new HashSet<>();
 
 }

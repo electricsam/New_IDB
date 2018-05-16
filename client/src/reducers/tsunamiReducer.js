@@ -125,7 +125,8 @@ export default function reducer(state=initialState, action){
       return state.merge(state, {fetchingRunup: true})
     }
     case "FETCH_TS_RUNUP_FULFILLED": {
-      return state.merge(state, {fetchingRunup: false, fetchedRunup: true, runupData: action.payload});
+      console.log("Action.payload: ", action.payload);
+      return state.mergeDeep(state, {fetchingRunup: false, fetchedRunup: true, runupData: [action.payload]});
     }
     case "FETCH_TS_RUNUP_REJECTED":{
       return state.merge(state, {fetchingRunup: false, error: action.payload});

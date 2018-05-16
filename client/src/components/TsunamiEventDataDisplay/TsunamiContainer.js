@@ -64,7 +64,7 @@ class TsunamiContainer extends React.Component {
           }
           <Table
             loading={tsunami.get('fetchingTsEvent')}
-            data={tsunami.asMutable().getIn(['TsEvents']).toJS()}
+            data={tsunami.asMutable().getIn(['tsEvents']).toJS()}
             columns={tsunami.getIn(['headersAndAccessors']).toJS()}
             style={tableStyle}
             title="Tsunami Data"

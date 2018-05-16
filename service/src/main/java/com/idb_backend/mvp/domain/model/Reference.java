@@ -30,7 +30,7 @@ public class Reference {
   @Getter(value = AccessLevel.PRIVATE)
   private String previousState;
   @Getter(value = AccessLevel.PRIVATE)
-  private Date lastUpdated;
+  private Date lastUpdate;
 
   private String comments;
 

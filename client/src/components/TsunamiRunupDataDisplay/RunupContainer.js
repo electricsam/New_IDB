@@ -47,7 +47,6 @@ class RunupContainer extends React.Component {
 
   render() {
     const { tsunami } = this.props;
-
     if( tsunami.get('fetchedRunup')) {
       return (
         <div>

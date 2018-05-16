@@ -123,7 +123,7 @@ public class TsunamiRunup {
 
   @Min(value = Constants.measureTypeMin)
   @Max(value = Constants.measureTypeMax)
-  private Integer typeOfMeasurementId;
+  private Integer typeMeasurementId;
 
   @Min(value = 0)
   private Float damageMillionsDollars;
@@ -188,7 +188,7 @@ public class TsunamiRunup {
 
   private Character flagRunupChk;
 
-  private Character flagArrvTravTimeChk;
+  private Character flagArrTravTimeChk;
 
   private Character flagEffectsChk;
 
@@ -214,7 +214,7 @@ public class TsunamiRunup {
 
   @Min(value = Constants.minMin)
   @Max(value = Constants.maxMin)
-  private Integer getMaxWaveArrMin;
+  private Integer maxWaveArrMin;
 
   private Integer maxWaveNum;
 
@@ -234,6 +234,7 @@ public class TsunamiRunup {
   private String previousState;
 
   @OneToMany(mappedBy = "tsunamiRunup", fetch = FetchType.LAZY)
+  @JsonIgnore
   private Set<TsrunupRefs> tsrunupRefs = new HashSet<>();
 
 }
