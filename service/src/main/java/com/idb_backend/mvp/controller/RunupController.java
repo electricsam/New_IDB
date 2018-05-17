@@ -16,6 +16,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.util.List;
@@ -26,13 +28,16 @@ import java.util.Optional;
 public class RunupController {
 
   @Autowired
+  TsunamiEventRepository tsunamiEventRepository;
+
+  @Autowired
   RunupService runupService;
 
   @Autowired
   RunupRepository runupRepository;
 
-  @Autowired
-  TsunamiEventRepository tsunamiEventRepository;
+  @PersistenceContext
+  EntityManager entityManager;
 
   @RequestMapping(value = "/runups", method = RequestMethod.GET)
   @ResponseBody
@@ -80,21 +85,23 @@ public class RunupController {
       if(errors.hasErrors()){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
       }else{
-//        This peice needs a test
-        Optional<TsunamiEvent> assocEvent = tsunamiEventRepository.findById(eventId);
-        tsunamiRunup.setTsunamiEvent(assocEvent.get());
+        TsunamiEvent assocEvent = entityManager.getReference(TsunamiEvent.class, eventId);
+        tsunamiRunup.setTsunamiEvent(assocEvent);
 
         OrderSpecifier orderSpecifier = QTsunamiRunup.tsunamiRunup.id.desc();
-        Iterable<TsunamiRunup> result = runupRepository.findAll(orderSpecifier);
+        Predicate predicate = QTsunamiRunup.tsunamiRunup.id.goe(25000);
+        Iterable<TsunamiRunup> result = runupRepository.findAll(predicate, orderSpecifier);
         Integer id = result.iterator().next().getId() + 1;
         tsunamiRunup.setId(id);
         runupRepository.save(tsunamiRunup);
 
         Optional<TsunamiRunup> postedRunup = runupRepository.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(postedRunup);
+//        return ResponseEntity.status(HttpStatus.OK).body(null);
       }
     }catch (Exception e){
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+      throw e;
+//      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
   }
 

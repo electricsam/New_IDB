@@ -55,7 +55,7 @@ class TsunamiInsertContainer extends React.Component{
   render(){
     const { tsunami } = this.props;
     return (
-        <MultiPartForm title="Insert Tsunami Event" handleSubmit={this.handleSubmit}>
+        <MultiPartForm title="Insert Tsunami Event" handleSubmit={this.handleSubmit.bind(this)}>
           <FormSection
             title="Date and Location"
             toggleSection={this.toggleDateAndLocation}

@@ -93,6 +93,7 @@ export function* watchPatchTsEvent(){
 export function* postTsEvent(action){
   let tsEvent = action.payload;
   try{
+    console.log("TSEVENT: ", tsEvent)
     const response = yield call(axios.post, TSUNAMI_EVENTS_BASEPATH, tsEvent);
     yield put({
       type:"POST_TS_EVENT_FULFILLED",
@@ -110,6 +111,7 @@ export function* watchPostTsEvent(){
 export function* postRunup(action){
   let { runup, id } = action.payload
   try{
+    console.log('this is id', id);
     const response = yield call(axios.post, `${TSUNAMI_RUNUPS_BASEPATH}/${id}`, runup);
     yield put({
       type:"POST_TS_RUNUP_FULFILLED",

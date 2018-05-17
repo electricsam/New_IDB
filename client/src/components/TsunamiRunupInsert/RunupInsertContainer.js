@@ -44,7 +44,7 @@ class RunupInsertContainer extends React.Component{
   render(){
     const { tsunami } = this.props;
     return (
-        <MultiPartForm title="Insert Runup" handleSubmit={this.handleSubmit}>
+        <MultiPartForm title="Insert Runup" handleSubmit={this.handleSubmit.bind(this)}>
 
           <FormSection
             title="Date and Location"
