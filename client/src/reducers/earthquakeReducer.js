@@ -1,5 +1,4 @@
-import { fromJS } from 'immutable';
-import { actionTypes } from 'react-redux-form';
+import {fromJS} from 'immutable';
 
 export const initialState = fromJS({
   showEqSearchParams: true,

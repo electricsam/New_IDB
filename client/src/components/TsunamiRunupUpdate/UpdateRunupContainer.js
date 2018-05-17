@@ -5,7 +5,6 @@ import { Control, Form, Errors, actions } from 'react-redux-form/lib/immutable';
 import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
 import Loading from "../loadbar/Loading"
-import Styles from "./UpdateRunupStyles.css"
 
 import { DateAndLocation, Effects, Measurements} from "./RunupUpdateConstants";
 import FormSection from "../FormPartials/FormSection";

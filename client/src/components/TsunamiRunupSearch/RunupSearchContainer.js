@@ -4,11 +4,9 @@ import {actions, Control, Errors, Form} from 'react-redux-form/lib/immutable';
 
 import {createApiQueryString, encodeQueryString} from '../../helperFunctions/helperFunctions'
 import store from '../../store';
-import Styles from './RunupSearchContainerStyle.css';
 import FormSection from "../FormPartials/FormSection";
 
 import { RunupLocInfo, RunupSourceInfo, RunupParamsEffects } from './RunupFormConstants';
-import RunupSearchStyles from './RunupSearchContainerStyle.css'
 import MultiPartForm from "../FormPartials/MultiPartForm";
 
 const action = obj => store.dispatch(obj);
@@ -57,24 +55,16 @@ class RunupSearchContainer extends React.Component{
 
          <FormSection
             title="Runup Source Information"
-            sectionStyle={RunupSearchStyles.formSectionOne}
-            headerStyle={RunupSearchStyles.header}
             toggleSection={this.toggleRunupSourceInfo}
             showSection={tsunami.get('showRunupSource')}
-            innerSectionStyle={RunupSearchStyles.formInnerSectionOne}
-            expandCollapseStyle={RunupSearchStyles.expandCollapse}
             validateMinMax={this.validateMinMax}
             formData={RunupSourceInfo}
           />
 
           <FormSection
             title="Tsunami Runup Location Information"
-            sectionStyle={RunupSearchStyles.formSectionTwo}
-            headerStyle={RunupSearchStyles.header}
             toggleSection={this.toggleRunupLocationInfo}
             showSection={tsunami.get('showRunupLocation')}
-            innerSectionStyle={RunupSearchStyles.formInnerSectionTwo}
-            expandCollapseStyle={RunupSearchStyles.expandCollapse}
             checkConditions={this.checkRunupLocType}
             validateMinMax={this.validateMinMax}
             formData={RunupLocInfo}
@@ -82,12 +72,8 @@ class RunupSearchContainer extends React.Component{
 
           <FormSection
             title="Tsunami Runup Parameters and Effects Information"
-            sectionStyle={RunupSearchStyles.formSectionThree}
-            headerStyle={RunupSearchStyles.header}
             toggleSection={this.toggleParamsEffect}
             showSection={tsunami.get('showRunupParams')}
-            innerSectionStyle={RunupSearchStyles.formInnerSectionThree}
-            expandCollapseStyle={RunupSearchStyles.expandCollapse}
             validateMinMax={this.validateMinMax}
             formData={RunupParamsEffects}
           />

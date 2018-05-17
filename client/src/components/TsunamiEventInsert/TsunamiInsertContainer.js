@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
 import store from '../../store';
-import Styles from "./InsertTsunamiStyles.css"
 
 import MultiPartForm from "../FormPartials/MultiPartForm";
 import FormSection from "../FormPartials/FormSection";
