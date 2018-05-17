@@ -1,24 +1,20 @@
 package com.idb_backend.mvp.controller;
 
-
 import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.RunupRepository;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.service.RunupService;
-import com.querydsl.core.Tuple;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -97,11 +93,9 @@ public class RunupController {
 
         Optional<TsunamiRunup> postedRunup = runupRepository.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(postedRunup);
-//        return ResponseEntity.status(HttpStatus.OK).body(null);
       }
     }catch (Exception e){
-      throw e;
-//      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
   }
 

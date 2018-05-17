@@ -37,18 +37,6 @@ public class TsunamiEventController {
   @Autowired
   TsunamiEventService tsunamiEventService;
 
-
-//  @RequestMapping(value = "/tsunamievents", method= RequestMethod.GET)
-//  @ResponseBody
-//  public ResponseEntity getAllEvents(){
-//    try{
-//      List<TsunamiEventView> events = tsunamiEventViewRepository.findAll();
-//      return new ResponseEntity<>(events, HttpStatus.OK);
-//    }catch(Exception e){
-//      return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
-//  }
-
   @RequestMapping(value = "/tsunamievents/{id}", method= RequestMethod.GET)
   @ResponseBody
   public ResponseEntity getEventById(@PathVariable("id") Integer id){
@@ -131,7 +119,6 @@ public class TsunamiEventController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 
     }
-
   }
 
   @RequestMapping(value = "/tsunamievents/{id}", method = RequestMethod.DELETE)
