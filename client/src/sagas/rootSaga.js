@@ -19,6 +19,13 @@ import {
   watchPatchTsEvent
 } from './tsunamiSaga';
 
+import {
+  watchDeleteEarthquake,
+  watchFetchSpecifiedEarthquakes,
+  watchDeleteEarthquakeFulfilled,
+  watchDeleteEarthquakeRejected
+} from "./earthquakeSaga";
+
 export default function* rootSaga(){
   yield all([
     watchFetchSpecifiedTSEvents(),
@@ -37,5 +44,9 @@ export default function* rootSaga(){
     watchDeleteEventFulfilled(),
     watchDeleteEventRejected(),
     watchPatchTsEvent(),
+    watchFetchSpecifiedEarthquakes(),
+    watchDeleteEarthquake(),
+    watchDeleteEarthquakeFulfilled(),
+    watchDeleteEarthquakeRejected(),
   ]);
 }

@@ -37,7 +37,6 @@ export function* fetchTsEventById(action){
       payload: response.data
     })
 
-
   }catch(error){
     yield  put({type: "FETCH_TS_EVENT_REJECTED", payload: error});
   }

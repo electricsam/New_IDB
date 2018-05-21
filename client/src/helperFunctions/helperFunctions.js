@@ -69,6 +69,43 @@ const mapToTable = (arr) => {
   return result;
 };
 
+const mapToEarthquakeTable = (arr) => {
+  let result = [];
+  if(arr.length){
+    let accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      result.push({Header: camelToPascal(e), accessor: e, })
+    });
+    result.push({
+      Header: "Edit",
+      accessor: 'edit',
+      Cell: props => (
+          <button type="button" onClick={()=> store.dispatch(push(`/earthquake/update/${props.original.id}`))}>
+            Edit Event
+          </button>
+      )
+    });
+    result.push({
+      Header: "Delete",
+      accessor: 'delete',
+      Cell: props => (
+          <button type="button" onClick={()=> deleteEarthquake(props.original.id)}>
+            Delete Event
+          </button>
+      )
+    });
+
+  }
+  return result;
+};
+
+
+const deleteEarthquake = (id) => {
+  console.log("props", id);
+  store.dispatch({type: "SET_DELETE_EARTHQUAKE_ID", payload: id});
+  store.dispatch({type: "TOGGLE_DELETE_EARTHQUAKE_CONFIRMATION"});
+};
+
 const getRelatedRunups = (val) => {
   let queryObj = {eventid: val};
   let encoded = encodeQueryString(JSON.stringify(queryObj));
@@ -127,7 +164,6 @@ const decodeQueryString = (query) => {
   return CryptoJS.AES.decrypt(query, hashPass).toString(CryptoJS.enc.Utf8);
 };
 
-
 const createApiQueryString = (obj) => {
   //TODO: insert a trim on strings to account for possiblility of spaces entred into boxes with no value
   let result = '';
@@ -139,7 +175,6 @@ const createApiQueryString = (obj) => {
   return result;
 };
 
-
 module.exports = {
   oddEven,
   camelToPascal,
@@ -148,4 +183,5 @@ module.exports = {
   encodeQueryString,
   createApiQueryString,
   mapToRunupTable,
+  mapToEarthquakeTable
 };

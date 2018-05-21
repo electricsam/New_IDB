@@ -65,7 +65,7 @@ class TsunamiSearchContainer extends React.Component{
   render(){
     const { tsunami } = this.props;
     return (
-      <MultiPartForm title={"Search Tsunami Events"} handleSubmit={this.handleSubmit.bind(this)}>
+      <MultiPartForm title="Search Tsunami Events" handleSubmit={this.handleSubmit.bind(this)}>
 
           <FormSection
             title="Tsunami Source Parameters"

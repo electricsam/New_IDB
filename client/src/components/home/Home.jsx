@@ -4,7 +4,7 @@ import killerWhale from '../../assets/killer_whale.jpg';
 import Styles from './HomeStyle.css';
 import { Link } from 'react-router-dom';
 
-import Footer from '../footer/Footer.jsx';
+import Footer from '../Footer/Footer.jsx';
 
 const inlineStyles = {
   backgroundImage: `url(${killerWhale})`,

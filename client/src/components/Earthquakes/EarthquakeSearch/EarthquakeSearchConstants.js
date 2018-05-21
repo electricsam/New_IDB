@@ -2,7 +2,7 @@ import { validationConstants,
   regions,
   countries,
   states
-} from "../tsunamiForms/constants";
+} from "../../tsunamiForms/constants";
 
 const EarthquakeParameters = [
   {
@@ -97,6 +97,20 @@ const EarthquakeParameters = [
     title: "Magnitude",
     minThreshold: validationConstants.eqMag.min,
     maxThreshold: validationConstants.eqMag.max,
+    min: {
+      model: ".earthquake.search.minEqMagnitude",
+      validMessage: "Invalid Earthquake Magnitude"
+    },
+    max: {
+      model: ".earthquake.search.maxEqMagnitude",
+      validMessage: "Invalid Earthquake Magnitude"
+    }
+  },
+  {
+    type: "MINMAX",
+    title: "Intensity",
+    minThreshold: validationConstants.eqIntensity.min,
+    maxThreshold: validationConstants.eqIntensity.max,
     min: {
       model: ".earthquake.search.minIntensity",
       validMessage: "Invalid Earthquake Magnitude"
@@ -212,7 +226,7 @@ const TotalEarthquakeAndSecondaryEffects = [
       model: ".earthquake.search.maxDeathsAmountOrderTotal",
       validMessage: "Invalid Death Description"
     }
-  },
+  },  
 ];
 
 export {

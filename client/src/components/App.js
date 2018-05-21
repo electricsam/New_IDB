@@ -3,7 +3,7 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 import {ConnectedRouter} from 'react-router-redux';
 
 import Navbar from './Navbar/Navbar';
-import Footer from './footer/Footer.jsx';
+import Footer from './Footer/Footer.jsx';
 import TsunamiContainer from './TsunamiEventDataDisplay/TsunamiContainer';
 import AboutPage from './about/AboutPage';
 import Styles from './AppStyle.css';
@@ -18,7 +18,8 @@ import UpdateTsunamiContainer from "./TsunamiEventUpdate/UpdateTsunamiContainer"
 import UpdateRunupContainer from "./TsunamiRunupUpdate/UpdateRunupContainer";
 import RunupContainer from "./TsunamiRunupDataDisplay/RunupContainer";
 import TsunamiLanding from "./TsunamiLandingPage/TsunamiLanding";
-import EarthquakeSearchContainer from "./EarthquakeSearch/EarthquakeSearchContainer";
+import EarthquakeSearchContainer from "./Earthquakes/EarthquakeSearch/EarthquakeSearchContainer";
+import EarthquakeContainer from "./Earthquakes/EarthquakeDataDisplay/EarthquakeContainer";
 
 class App extends React.Component {
   render() {
@@ -40,6 +41,7 @@ class App extends React.Component {
             <Route exact path='/tsunami/updaterunup/:runupId/:eventId' component={UpdateRunupContainer}/>
             <Route exact path='/tsunami/landing' component={TsunamiLanding}/>
             <Route exact path='/earthquake/eventsearch' component={EarthquakeSearchContainer}/>
+            <Route exact path='/earthquake/event/data' component={EarthquakeContainer}/>
             {/*Must have 404 component listed last*/}
             <Route path ="*" component={FourZeroFour}/>
           </Switch>

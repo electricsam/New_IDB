@@ -43,18 +43,6 @@ public class EarthquakeController {
     }
   }
 
-//  This is will be for immediate removal
-//  @RequestMapping(value = "/earthquakes/tsqp", method= RequestMethod.GET)
-//  @ResponseBody
-//  public ResponseEntity getAllEarthquakesTsqp(@QuerydslPredicate(root = SignifTsqp.class) Predicate predicate){
-//    try{
-//      Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate);
-//      return ResponseEntity.status(HttpStatus.OK).body(result);
-//    }catch (Exception e){
-//      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-//    }
-//  }
-
   @RequestMapping(value = "/earthquakes/{id}", method= RequestMethod.GET)
   @ResponseBody
   public ResponseEntity getEarthquakeById(@PathVariable("id") Integer id){

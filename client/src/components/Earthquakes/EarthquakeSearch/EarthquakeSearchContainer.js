@@ -7,10 +7,10 @@ import { EarthquakeParameters,
   TotalEarthquakeAndSecondaryEffects
 } from "./EarthquakeSearchConstants"
 
-import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
-import store from '../../store'
-import MultiPartForm from "../FormPartials/MultiPartForm";
-import FormSection from "../FormPartials/FormSection";
+import { encodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions'
+import store from '../../../store'
+import MultiPartForm from "../../FormPartials/MultiPartForm";
+import FormSection from "../../FormPartials/FormSection";
 
 const action = obj => store.dispatch(obj);
 
@@ -27,7 +27,17 @@ class EarthquakeSearchContainer extends React.Component{
   }
 
   handleSubmit(val){
-    console.log("submit being handled");
+    val = val.earthquake.asMutable().toJS();
+    if(val.search){
+      let encoded = encodeQueryString(JSON.stringify(val.search));
+      let queryString = createApiQueryString(val.search);
+
+      action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED", payload: queryString});
+      this.props.history.push( `/earthquake/event/data?${encoded}`);
+    }else{
+      action({type: "FETCH_ALL_EARTHQUAKES_REQUESTED"});
+      this.props.history.push('/earthquake/event/data');
+    }
   }
 
   checkLocType = () => this.props.earthquake.get('locType');
@@ -45,7 +55,7 @@ class EarthquakeSearchContainer extends React.Component{
   render(){
     let { earthquake } = this.props;
     return (
-        <MultiPartForm>
+        <MultiPartForm title="Search Earthquake Events" handleSubmit={this.handleSubmit.bind(this)}>
 
           <FormSection
             title="Earthquake Parameters"

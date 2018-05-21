@@ -630,6 +630,7 @@ const validationConstants = {
   period: {min: 0, max: 180},
   distanceRnpLoc:{min: 0, max: 20000},
   runupHt: {min: 0, max: 800},
+  eqIntensity: {min: 0, max: 12},
 };
 
 export {
