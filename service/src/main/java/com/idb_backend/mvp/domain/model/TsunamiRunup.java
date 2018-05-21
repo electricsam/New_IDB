@@ -11,6 +11,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +20,7 @@ import java.util.Set;
 @QueryEntity
 @Table(name = "TSRUNUP_TSQP")
 @Entity(name = "TSRUNUP_TSQP")
-public class TsunamiRunup {
+public class TsunamiRunup implements Serializable{
   @Id
   private Integer id;
 

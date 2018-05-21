@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import noaa_logo from '../../assets/noaa_logo.png'
 
-
 const NewNavbar = () => (
 
   <div className={Styles.container}>
@@ -15,7 +14,6 @@ const NewNavbar = () => (
       </div>
       <div className={Styles.noaaTitle}>
         <a href="http://www.noaa.gov/">NOAA</a>
-
       </div>
     </div>
 
@@ -45,7 +43,7 @@ const NewNavbar = () => (
 
               <ul className={Styles.nestedUl}>
 
-                <li className={Styles.nestedLi}><Link to="/earthquake/eventsearch">EVENTS</Link></li>
+                <li className={Styles.nestedLi}><Link to="/earthquake/eventsearch">EVENTS....</Link></li>
 
               </ul>
 
