@@ -47,7 +47,7 @@ public class EarthquakeController {
   @ResponseBody
   public ResponseEntity getEarthquakeById(@PathVariable("id") Integer id){
     try{
-      Optional<SignifVsqp> result = earthquakeViewRepository.findById(id);
+      Optional<SignifTsqp> result = earthquakeRepository.findById(id);
       return ResponseEntity.status(HttpStatus.OK).body(result);
     }catch (Exception e){
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

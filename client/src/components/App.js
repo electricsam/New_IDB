@@ -20,6 +20,8 @@ import RunupContainer from "./TsunamiRunupDataDisplay/RunupContainer";
 import TsunamiLanding from "./TsunamiLandingPage/TsunamiLanding";
 import EarthquakeSearchContainer from "./Earthquakes/EarthquakeSearch/EarthquakeSearchContainer";
 import EarthquakeContainer from "./Earthquakes/EarthquakeDataDisplay/EarthquakeContainer";
+import EarthquakeInsertContainer from "./Earthquakes/EarthquakeInsert/EarthquakeInsertContainer";
+import EarthquakeUpdateContainer from "./Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer";
 
 class App extends React.Component {
   render() {
@@ -42,6 +44,8 @@ class App extends React.Component {
             <Route exact path='/tsunami/landing' component={TsunamiLanding}/>
             <Route exact path='/earthquake/eventsearch' component={EarthquakeSearchContainer}/>
             <Route exact path='/earthquake/event/data' component={EarthquakeContainer}/>
+            <Route exact path='/earthquake/insert' component={EarthquakeInsertContainer}/>
+            <Route exact path='/earthquake/update/:id' component={EarthquakeUpdateContainer}/>
             {/*Must have 404 component listed last*/}
             <Route path ="*" component={FourZeroFour}/>
           </Switch>

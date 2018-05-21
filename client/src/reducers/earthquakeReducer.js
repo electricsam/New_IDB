@@ -7,7 +7,10 @@ export const initialState = fromJS({
   search: {
     country: ""
   },
-  earthquakes: [],
+  insert: {
+    country: ""
+  },
+  earthquakes: [{country: ""}],
   headersAndAccessors: [],
   fetchingEarthquake: false,
   fetchingEarthquake: false,
@@ -17,7 +20,16 @@ export const initialState = fromJS({
   deleteEarthquakeId: null,
   deletingEarthquake: false,
   deletedEarthquake: false,
-
+  showEqInsertDateLoc: true,
+  showEqInsertMeasure: true,
+  showEqInsertEffects: true,
+  showEqInsertTotalEffects: true,
+  postingEarthquake: false,
+  postedEarthquake: false,
+  showEqUpdateDateLoc: true,
+  showEqUpdateMeasure: true,
+  showEqUpdateEffects: true,
+  showEqUpdateTotalEffects: true,
 });
 
 export default function reducer(state = initialState, action){
@@ -59,6 +71,48 @@ export default function reducer(state = initialState, action){
     }
     case "FETCH_SPECIFIED_EARTHQUAKES_REJECTED": {
       return state.merge(state, {fetchingEarthquake: false, error: action.payload});
+    }
+    case "TOGGLE_EARTHQUAKE_INSERT_DATE_AND_LOCATION": {
+      return state.merge(state, {showEqInsertDateLoc: !state.get('showEqInsertDateLoc')});
+    }
+    case "TOGGLE_EARTHQUAKE_INSERT_MEASURE": {
+      return state.merge(state, {showEqInsertMeasure: !state.get('showEqInsertMeasure')});
+    }
+    case "TOGGLE_EARTHQUAKE_INSERT_EFFECTS": {
+      return state.merge(state, {showEqInsertEffects: !state.get('showEqInsertEffects')});
+    }
+    case "TOGGLE_EARTHQUAKE_INSERT_TOTAL_EFFECTS": {
+      return state.merge(state, {showEqInsertTotalEffects: !state.get('showEqInsertTotalEffects')});
+    }
+    case "POST_EARTHQUAKE_REQUESTED": {
+      return state.merge(state, {postingEarthquake: true});
+    }
+    case "POST_EARTHQUAKE_FULFILLED": {
+      return state.merge(state, {postingEarthquake: false, postedEarthquake: true, earthquakes: [action.payload]});
+    }
+    case "POST_EARTHQUAKE_REJECTED": {
+      return state.merge(state, {postingEarthquake: false, error: action.payload});
+    }
+    case "FETCH_EARTHQUAKE_REQUESTED": {
+      return state.merge(state, {fetchingEarthquake: true});
+    }
+    case "FETCH_EARTHQUAKE_FULFILLED": {
+      return state.merge(state, {fetchingEarthquake: false, fetchedEarthquake: true, earthquakes: [action.payload]});
+    }
+    case "FETCH_EARTHQUAKE_REJECTED": {
+      return state.merge(state, {fetchingEarthquake: false, error: action.payload});
+    }
+    case "TOGGLE_EARTHQUAKE_UPDATE_DATE_LOC": {
+      return state.merge(state, {showEqUpdateDateLoc: !state.get('showEqUpdateDateLoc')});
+    }
+    case "TOGGLE_EARTHQUAKE_UPDATE_MEASURE": {
+      return state.merge(state, {showEqUpdateMeasure: !state.get('showEqUpdateMeasure')});
+    }
+    case "TOGGLE_EARTHQUAKE_UPDATE_EFFECTS": {
+      return state.merge(state, {showEqUpdateEffects: !state.get('showEqUpdateEffects')});
+    }
+    case "TOGGLE_EARTHQUAKE_UPDATE_TOTAL_EFFECTS": {
+      return state.merge(state, {showEqUpdateTotalEffects: !state.get('showEqUpdateTotalEffects')});
     }
     default:
       return state;

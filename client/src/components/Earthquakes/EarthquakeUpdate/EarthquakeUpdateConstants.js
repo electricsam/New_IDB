@@ -16,7 +16,7 @@ const DateAndLocation = [
     title: "Year",
     minThreshold: validationConstants.year.min,
     maxThreshold: validationConstants.year.max,
-    model: ".earthquake.insert.year",
+    model: ".earthquake.earthquakes[0].year",
     validMessage: "Invalid Year"
   },
   {
@@ -24,7 +24,7 @@ const DateAndLocation = [
     title: "Month",
     minThreshold: validationConstants.month.min,
     maxThreshold: validationConstants.month.max,
-    model: ".earthquake.insert.month",
+    model: ".earthquake.earthquakes[0].month",
     validMessage: "Invalid Month"
   },
   {
@@ -32,7 +32,7 @@ const DateAndLocation = [
     title: "Day",
     minThreshold: validationConstants.day.min,
     maxThreshold: validationConstants.day.max,
-    model: ".earthquake.insert.day",
+    model: ".earthquake.earthquakes[0].day",
     validMessage: "Invalid Day"
   },
   {
@@ -40,7 +40,7 @@ const DateAndLocation = [
     title: "Hour",
     minThreshold: validationConstants.hour.min,
     maxThreshold: validationConstants.hour.max,
-    model: ".earthquake.insert.hour",
+    model: ".earthquake.earthquakes[0].hour",
     validMessage: "Invalid Hour"
   },
   {
@@ -48,7 +48,7 @@ const DateAndLocation = [
     title: "Min",
     minThreshold: validationConstants.minute.min,
     maxThreshold: validationConstants.minute.max,
-    model: ".earthquake.insert.minute",
+    model: ".earthquake.earthquakes[0].minute",
     validMessage: "Invalid Min"
   },
   {
@@ -56,7 +56,7 @@ const DateAndLocation = [
     title: "Second",
     minThreshold: validationConstants.second.min,
     maxThreshold: validationConstants.second.max,
-    model: ".earthquake.insert.second",
+    model: ".earthquake.earthquakes[0].second",
     validMessage: "Invalid Second"
   },
   {
@@ -64,7 +64,7 @@ const DateAndLocation = [
     title: "Latitude",
     minThreshold: validationConstants.latitude.min,
     maxThreshold: validationConstants.latitude.max,
-    model: ".earthquake.insert.latitude",
+    model: ".earthquake.earthquakes[0].latitude",
     validMessage: "Invalid Latitude"
   },
   {
@@ -72,21 +72,21 @@ const DateAndLocation = [
     title: "Longitude",
     minThreshold: validationConstants.longitude.min,
     maxThreshold: validationConstants.longitude.max,
-    model: ".earthquake.insert.longitude",
+    model: ".earthquake.earthquakes[0].longitude",
     validMessage: "Invalid Longitude"
   },
   {
     type: "DROPDOWN",
     title: "Region",
-    model: ".earthquake.insert.regionCode",
-    id: ".earthquake.insert.regionCode",
+    model: ".earthquake.earthquakes[0].regionCode",
+    id: ".earthquake.earthquakes[0].regionCode",
     data: regions,
   },
   {
     type: "DROPDOWN",
     title: "Country",
-    model: ".earthquake.insert.country",
-    id: ".earthquake.insert.country",
+    model: ".earthquake.earthquakes[0].country",
+    id: ".earthquake.earthquakes[0].country",
     data: countries,
   },
   {
@@ -94,26 +94,26 @@ const DateAndLocation = [
     title: "Area",
     dropDowns: [
       {
-        model: ".earthquake.insert.area",
-        id: ".earthquake.insert.area",
+        model: ".earthquake.earthquakes[0].area",
+        id: ".earthquake.earthquakes[0].area",
         data: states,
         disabled: "USA",
       },
       {
-        model:".earthquake.insert.area",
-        id: ".earthquake.insert.area",
+        model:".earthquake.earthquakes[0].area",
+        id: ".earthquake.earthquakes[0].area",
         data: canadianProvince,
         disabled: "CANADA",
       } ,
       {
-        model:".earthquake.insert.area",
-        id: ".earthquake.insert.area",
+        model:".earthquake.earthquakes[0].area",
+        id: ".earthquake.earthquakes[0].area",
         data: japanesePrefecture,
         disabled: "JAPAN",
       },
       {
-        model:".earthquake.insert.area",
-        id: ".earthquake.insert.area",
+        model:".earthquake.earthquakes[0].area",
+        id: ".earthquake.earthquakes[0].area",
         data: indonesianProvince,
         disabled: "INDONESIA",
       }
@@ -122,7 +122,7 @@ const DateAndLocation = [
   {
     type: "TEXTNOVAL",
     title: "Location",
-    model: ".earthquake.insert.locationName",
+    model: ".earthquake.earthquakes[0].locationName",
   },
 ];
 
@@ -133,42 +133,42 @@ const Measurements = [
     title: "Earthquake Magnitude",
     data: [
       {
-        model: ".earthquake.insert.eqMagUnk",
+        model: ".earthquake.earthquakes[0].eqMagUnk",
         title: "UNK",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
         validMessage: "Invalid Earthquake Magnitude"
       },
       {
-        model: ".earthquake.insert.eqMagMb",
+        model: ".earthquake.earthquakes[0].eqMagMb",
         title: "MB",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
         validMessage: "Invalid Earthquake Magnitude"
       },
       {
-        model: ".earthquake.insert.eqMagMs",
+        model: ".earthquake.earthquakes[0].eqMagMs",
         title: "MS",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
         validMessage: "Invalid Earthquake Magnitude"
       },
       {
-        model: ".earthquake.insert.eqMagMw",
+        model: ".earthquake.earthquakes[0].eqMagMw",
         title: "MW",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
         validMessage: "Invalid Earthquake Magnitude"
       },
       {
-        model: ".earthquake.insert.eqMagMfa",
+        model: ".earthquake.earthquakes[0].eqMagMfa",
         title: "MFA",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
         validMessage: "Invalid Earthquake Magnitude"
       },
       {
-        model: ".earthquake.insert.eqMagMl",
+        model: ".earthquake.earthquakes[0].eqMagMl",
         title: "ML",
         minThreshold: validationConstants.eqMag.min,
         minThreshold: validationConstants.eqMag.max,
@@ -181,7 +181,7 @@ const Measurements = [
     title: "MMI Intensity",
     minThreshold: validationConstants.eqIntensity.min,
     maxThreshold: validationConstants.eqIntensity.max,
-    model: ".earthquake.insert.intensity",
+    model: ".earthquake.earthquakes[0].intensity",
     validMessage: "Invalid Intensity"
   },
   {
@@ -189,7 +189,7 @@ const Measurements = [
     title: "Depth",
     minThreshold: validationConstants.eqDepth.min,
     maxThreshold: validationConstants.eqDepth.max,
-    model: ".earthquake.insert.eqDepth",
+    model: ".earthquake.earthquakes[0].eqDepth",
     validMessage: "Invalid Depth"
   }
 ];
@@ -201,14 +201,14 @@ const Effects = [
     title: "Deaths",
     minThreshold: validationConstants.numberOfDeaths.min,
     maxThreshold: validationConstants.numberOfDeaths.max,
-    model: ".earthquake.insert.deaths",
+    model: ".earthquake.earthquakes[0].deaths",
     validMessage: "Invalid Deaths"
   },
   {
     type: "DROPDOWN",
     title: "Death Description",
-    model: ".earthquake.insert.deathsAmountOrder",
-    id: ".earthquake.insert.deathsAmountOrder",
+    model: ".earthquake.earthquakes[0].deathsAmountOrder",
+    id: ".earthquake.earthquakes[0].deathsAmountOrder",
     data: effectDescriptions
   },
   {
@@ -216,14 +216,14 @@ const Effects = [
     title: "Injuries",
     minThreshold: validationConstants.numberOfInjuries.min,
     maxThreshold: validationConstants.numberOfInjuries.max,
-    model: ".earthquake.insert.injuries",
+    model: ".earthquake.earthquakes[0].injuries",
     validMessage: "Invalid Injuries"
   },
   {
     type: "DROPDOWN",
     title: "Injury Description",
-    model: ".earthquake.insert.injuriesAmountOrder",
-    id: ".earthquake.insert.injuriesAmountOrder",
+    model: ".earthquake.earthquakes[0].injuriesAmountOrder",
+    id: ".earthquake.earthquakes[0].injuriesAmountOrder",
     data: effectDescriptions
   },
   {
@@ -231,14 +231,14 @@ const Effects = [
     title: "Missing",
     minThreshold: validationConstants.deathDescription.min,
     maxThreshold: validationConstants.deathDescription.max,
-    model: ".earthquake.insert.missing",
+    model: ".earthquake.earthquakes[0].missing",
     validMessage: "Invalid Missing"
   },
   {
     type: "DROPDOWN",
     title: "Missing Description",
-    model: ".earthquake.insert.missingAmountOrder",
-    id: ".earthquake.insert.missingAmountOrder",
+    model: ".earthquake.earthquakes[0].missingAmountOrder",
+    id: ".earthquake.earthquakes[0].missingAmountOrder",
     data: effectDescriptions
   },
   {
@@ -246,14 +246,14 @@ const Effects = [
     title: "Number of Houses Damaged",
     minThreshold: validationConstants.numberOfHousesDestroyed.min,
     maxThreshold: validationConstants.numberOfHousesDestroyed.max,
-    model: ".earthquake.insert.housesDamaged",
+    model: ".earthquake.earthquakes[0].housesDamaged",
     validMessage: "Invalid Number of Houses Damaged"
   },
   {
     type: "DROPDOWN",
     title: "Houses Damaged Description",
-    model: ".earthquake.insert.housesDamagedAmountOrder",
-    id: ".earthquake.insert.housesDamagedAmountOrder",
+    model: ".earthquake.earthquakes[0].housesDamagedAmountOrder",
+    id: ".earthquake.earthquakes[0].housesDamagedAmountOrder",
     data: effectDescriptions
   },
   {
@@ -261,14 +261,14 @@ const Effects = [
     title: "Number of Houses Destroyed",
     minThreshold: validationConstants.numberOfHousesDestroyed.min,
     maxThreshold: validationConstants.numberOfHousesDestroyed.max,
-    model: ".earthquake.insert.housesDestroyed",
+    model: ".earthquake.earthquakes[0].housesDestroyed",
     validMessage: "Invalid Number of Houses Destroyed"
   },
   {
     type: "DROPDOWN",
     title: "Houses Destroyed Description",
-    model: ".earthquake.insert.housesAmountOrder",
-    id: ".earthquake.insert.housesAmountOrder",
+    model: ".earthquake.earthquakes[0].housesAmountOrder",
+    id: ".earthquake.earthquakes[0].housesAmountOrder",
     data: effectDescriptions
   },
   {
@@ -276,14 +276,14 @@ const Effects = [
     title: "Damage in Millions of Dollars",
     minThreshold: validationConstants.damageInMillions.min,
     maxThreshold: validationConstants.damageInMillions.max,
-    model: ".earthquake.insert.damageMillionsDollars",
+    model: ".earthquake.earthquakes[0].damageMillionsDollars",
     validMessage: "Invalid Number of Houses Destroyed"
   },
   {
     type: "DROPDOWN",
     title: "Damage in Millions of Dollars Description",
-    model: ".earthquake.insert.damageAmountOrder",
-    id: ".earthquake.insert.damageAmountOrder",
+    model: ".earthquake.earthquakes[0].damageAmountOrder",
+    id: ".earthquake.earthquakes[0].damageAmountOrder",
     data: damageMillions
   }
 ];
@@ -294,14 +294,14 @@ const TotalEffects = [
     title: "Total Deaths",
     minThreshold: validationConstants.numberOfDeaths.min,
     maxThreshold: validationConstants.numberOfDeaths.max,
-    model: ".earthquake.insert.deathsTotal",
+    model: ".earthquake.earthquakes[0].deathsTotal",
     validMessage: "Invalid Total Deaths"
   },
   {
     type: "DROPDOWN",
     title: "Total Death Description",
-    model: ".earthquake.insert.deathsAmountOrderTotal",
-    id: ".earthquake.insert.deathsAmountOrderTotal",
+    model: ".earthquake.earthquakes[0].deathsAmountOrderTotal",
+    id: ".earthquake.earthquakes[0].deathsAmountOrderTotal",
     data: effectDescriptions
   },
   {
@@ -309,14 +309,14 @@ const TotalEffects = [
     title: "Total Injuries",
     minThreshold: validationConstants.numberOfInjuries.min,
     maxThreshold: validationConstants.numberOfInjuries.max,
-    model: ".earthquake.insert.injuriesTotal",
+    model: ".earthquake.earthquakes[0].injuriesTotal",
     validMessage: "Invalid Total Injuries"
   },
   {
     type: "DROPDOWN",
     title: "Total Injury Description",
-    model: ".earthquake.insert.injuriesAmountOrderTotal",
-    id: ".earthquake.insert.injuriesAmountOrderTotal",
+    model: ".earthquake.earthquakes[0].injuriesAmountOrderTotal",
+    id: ".earthquake.earthquakes[0].injuriesAmountOrderTotal",
     data: effectDescriptions
   },
   {
@@ -324,14 +324,14 @@ const TotalEffects = [
     title: "Total Missing",
     minThreshold: validationConstants.deathDescription.min,
     maxThreshold: validationConstants.deathDescription.max,
-    model: ".earthquake.insert.missingTotal",
+    model: ".earthquake.earthquakes[0].missingTotal",
     validMessage: "Invalid Total Missing"
   },
   {
     type: "DROPDOWN",
     title: "Total Missing Description",
-    model: ".earthquake.insert.missingAmountOrderTotal",
-    id: ".earthquake.insert.missingAmountOrderTotal",
+    model: ".earthquake.earthquakes[0].missingAmountOrderTotal",
+    id: ".earthquake.earthquakes[0].missingAmountOrderTotal",
     data: effectDescriptions
   },
   {
@@ -339,14 +339,14 @@ const TotalEffects = [
     title: "Total Number of Houses Damaged",
     minThreshold: validationConstants.numberOfHousesDestroyed.min,
     maxThreshold: validationConstants.numberOfHousesDestroyed.max,
-    model: ".earthquake.insert.housesDamagedTotal",
+    model: ".earthquake.earthquakes[0].housesDamagedTotal",
     validMessage: "Invalid Number of Total Houses Damaged"
   },
   {
     type: "DROPDOWN",
     title: "Total Houses Damaged Description",
-    model: ".earthquake.insert.housesDamagedAmountOrderTotal",
-    id: ".earthquake.insert.housesDamagedAmountOrderTotal",
+    model: ".earthquake.earthquakes[0].housesDamagedAmountOrderTotal",
+    id: ".earthquake.earthquakes[0].housesDamagedAmountOrderTotal",
     data: effectDescriptions
   },
   {
@@ -354,14 +354,14 @@ const TotalEffects = [
     title: "Number of Total Houses Destroyed",
     minThreshold: validationConstants.numberOfHousesDestroyed.min,
     maxThreshold: validationConstants.numberOfHousesDestroyed.max,
-    model: ".earthquake.insert.housesDestroyedTotal",
+    model: ".earthquake.earthquakes[0].housesDestroyedTotal",
     validMessage: "Invalid Number of Houses Destroyed"
   },
   {
     type: "DROPDOWN",
     title: "Total Houses Destroyed Description",
-    model: ".earthquake.insert.housesAmountOrderTotal",
-    id: ".earthquake.insert.housesAmountOrderTotal",
+    model: ".earthquake.earthquakes[0].housesAmountOrderTotal",
+    id: ".earthquake.earthquakes[0].housesAmountOrderTotal",
     data: effectDescriptions
   },
   {
@@ -369,20 +369,20 @@ const TotalEffects = [
     title: "Total Damage in Millions of Dollars",
     minThreshold: validationConstants.damageInMillions.min,
     maxThreshold: validationConstants.damageInMillions.max,
-    model: ".earthquake.insert.damageMillionsDollarsTotal",
+    model: ".earthquake.earthquakes[0].damageMillionsDollarsTotal",
     validMessage: "Invalid Total Number of Houses Destroyed"
   },
   {
     type: "DROPDOWN",
     title: "Total Damage in Millions of Dollars Description",
-    model: ".earthquake.insert.damageAmountOrderTotal",
-    id: ".earthquake.insert.damageAmountOrderTotal",
+    model: ".earthquake.earthquakes[0].damageAmountOrderTotal",
+    id: ".earthquake.earthquakes[0].damageAmountOrderTotal",
     data: damageMillions
   },
   {
     type: "TEXTAREA",
-    model: ".earthquake.insert.comments",
-    id: ".earthquake.insert.comments",
+    model: ".earthquake.earthquakes[0].comments",
+    id: ".earthquake.earthquakes[0].comments",
     title: "Comments"
   }
 ];

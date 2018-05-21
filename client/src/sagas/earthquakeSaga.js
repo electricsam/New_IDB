@@ -55,3 +55,58 @@ export function* resetDeleteEarthquake(){
   yield put({type: "SET_DELETE_EARTHQUAKE_ID", payload: null});
   yield put({type: "TOGGLE_DELETE_EARTHQUAKE_CONFIRMATION"});
 }
+
+
+export function* postEarthquake(action){
+  let earthquake = action.payload;
+  try{
+    const response = yield call(axios.post, `${EARTHQUAKE_BASEPATH}`, earthquake);
+    yield put({
+      type: "POST_EARTHQUAKE_FULFILLED",
+      payload: response.data
+    })
+  }catch(error){
+    yield put({type: "POST_EARTHQUAKE_REJECTED", payload: error});
+  }
+}
+
+export function* watchPostEarthquake(){
+  yield takeEvery("POST_EARTHQUAKE_REQUESTED", postEarthquake)
+}
+
+export function* watchPatchEarthquake(){
+  yield takeEvery("PATCH_EARTHQUAKE_REQUESTED", patchEarthquake);
+}
+
+export function* patchEarthquake(action){
+  let { id, earthquake } = action.payload;
+  try{
+    const response = yield call(axios.patch, `${EARTHQUAKE_BASEPATH}/${id}`, earthquake);
+    yield put({
+      type: "PATCH_EARTHQUAKE_FULFILLED",
+      payload: response.data
+    })
+  }catch(error){
+    yield put({type:"PATCH_EARTHQUAKE_REJECTED", payload: error});
+  }
+}
+
+export function* watchFetchEarthquake(){
+  yield takeEvery("FETCH_EARTHQUAKE_REQUESTED", fetchEarthquake);
+}
+
+
+export function* fetchEarthquake(action){
+  let id = action.payload;
+  try{
+    const response = yield call(axios.get, `${EARTHQUAKE_BASEPATH}/${id}`);
+    yield put({
+      type: "FETCH_EARTHQUAKE_FULFILLED",
+      payload: response.data
+    });
+  }catch(error){
+    yield put({type:"FETCH_EARTHQUAKE_REJECTED", payload: error});
+  }
+}
+
+

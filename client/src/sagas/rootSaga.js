@@ -23,7 +23,10 @@ import {
   watchDeleteEarthquake,
   watchFetchSpecifiedEarthquakes,
   watchDeleteEarthquakeFulfilled,
-  watchDeleteEarthquakeRejected
+  watchDeleteEarthquakeRejected,
+  watchPostEarthquake,
+  watchPatchEarthquake,
+  watchFetchEarthquake,
 } from "./earthquakeSaga";
 
 export default function* rootSaga(){
@@ -48,5 +51,8 @@ export default function* rootSaga(){
     watchDeleteEarthquake(),
     watchDeleteEarthquakeFulfilled(),
     watchDeleteEarthquakeRejected(),
+    watchPostEarthquake(),
+    watchPatchEarthquake(),
+    watchFetchEarthquake(),
   ]);
 }
