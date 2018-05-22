@@ -16,8 +16,8 @@ import {
   watchDeleteEvent,
   watchDeleteEventFulfilled,
   watchDeleteEventRejected,
-  watchPatchTsEvent
-} from './tsunamiSaga';
+  watchPatchTsEvent,
+  } from './tsunamiSaga';
 
 import {
   watchDeleteEarthquake,
@@ -28,6 +28,13 @@ import {
   watchPatchEarthquake,
   watchFetchEarthquake,
 } from "./earthquakeSaga";
+
+import {
+  watchFetchSpecifiedReferences,
+  watchDeleteReferenceRequested,
+  watchDeleteReferenceFulfilled,
+  watchDeleteReferenceRejected,
+} from "./referenceSaga";
 
 export default function* rootSaga(){
   yield all([
@@ -54,5 +61,9 @@ export default function* rootSaga(){
     watchPostEarthquake(),
     watchPatchEarthquake(),
     watchFetchEarthquake(),
+    watchFetchSpecifiedReferences(),
+    watchDeleteReferenceRequested(),
+    watchDeleteReferenceFulfilled(),
+    watchDeleteReferenceRejected(),
   ]);
 }

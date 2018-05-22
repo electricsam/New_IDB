@@ -99,6 +99,41 @@ const mapToEarthquakeTable = (arr) => {
   return result;
 };
 
+const mapToReferenceTable = (arr) => {
+  let result = [];
+  if(arr.length){
+    let accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      result.push({Header: camelToPascal(e), accessor: e, })
+    });
+    result.push({
+      Header: "Edit",
+      accessor: 'edit',
+      Cell: props => (
+          <button type="button" onClick={()=> store.dispatch(push(`/reference/update/${props.original.id}`))}>
+            Edit Event
+          </button>
+      )
+    });
+    result.push({
+      Header: "Delete",
+      accessor: 'delete',
+      Cell: props => (
+          <button type="button" onClick={()=> deleteReference(props.original.id)}>
+            Delete Event
+          </button>
+      )
+    });
+
+  }
+  return result;
+};
+
+const deleteReference = id => {
+  store.dispatch({type: "SET_DELETE_REFERENCE_ID", payload: id});
+  store.dispatch({type: "TOGGLE_DELETE_REFERENCE_CONFIRMATION"});
+};
+
 
 const deleteEarthquake = (id) => {
   console.log("props", id);
@@ -183,5 +218,6 @@ module.exports = {
   encodeQueryString,
   createApiQueryString,
   mapToRunupTable,
-  mapToEarthquakeTable
+  mapToEarthquakeTable,
+  mapToReferenceTable
 };
