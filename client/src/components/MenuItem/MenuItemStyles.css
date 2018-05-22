@@ -34,7 +34,6 @@ $containerTextColor: rgb(102,102,102);
     background-color: white;
     position: relative;
     display: block;
-    /*color: $containerTextColor*/
 }
 .link i{
     height: 100%;

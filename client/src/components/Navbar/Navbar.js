@@ -76,13 +76,26 @@ class Navbar extends React.Component {
   constructor(props){
     super(props);
     this.state={
-
+      isHazMenuOpen: false,
+      isEqSubMenuOpen: false,
+      isTsSubMenuOpen: false,
+      hazDisplay: 'none'
     }
   }
 
-  handleItemMouseOver() {
-    console.log("aljdflasdkjfdlkajdslfkjalskfjldkjasldkfjlajdsfljasflj")
+  handleHazMouseEnter = () => {
+    let prevState = this.state;
+    //TODO change this to copy of this.state
+    prevState.hazDisplay = 'block';
+    this.setState(prevState);
+  };
+
+  handleHazMouseLeave = () => {
+    let prevState = this.state;
+    prevState.hazDisplay = 'none'
+    this.setState(prevState);
   }
+
 
   render() {
     return (
@@ -107,28 +120,24 @@ class Navbar extends React.Component {
                 <Link to="/about" className={Styles.mainLink}>ABOUT</Link>
               </li>
 
-              <li className={Styles.mainMenuListItemDropper}>
+              <li onMouseEnter={()=>this.handleHazMouseEnter()}
+                  onMouseLeave={()=>this.handleHazMouseLeave()}
+                  className={Styles.mainMenuListItemDropper}>
                 <Link to="/hazardPages" className={Styles.hazLink}>
                   HAZARD PAGES<i className="material-icons">&#xE5CF;</i>
                 </Link>
-                <Menu>
-                  <MenuItem
-                      linkText="EARTHQUAKES"
-                      address="/earthquake/eventsearch"
-                      handleMouseEvent={this.handleItemMouseOver}>
+                <Menu display={this.state.hazDisplay}>
+                  <MenuItem linkText="EARTHQUAKES" address="/earthquake/eventsearch">
                     <SubMenu>
-                      <MenuItem
-                          linkText="EVENTS"
-                          address={'/earthquake/eventsearch'}
-                          handleMouseEvent={this.handleItemMouseOver}/>
+                      <MenuItem linkText="Events" address={'/earthquake/eventsearch'}/>
                     </SubMenu>
                   </MenuItem>
                   <MenuItem linkText="VOLCANOES" address="/volcano/eventsearch"/>
                   <MenuItem linkText="TSUNAMIS" address="/tsunami/landing">
                     <SubMenu>
-                      <MenuItem linkText="Events" address="/tsunami/eventsearch" handleMouseEvent={this.handleItemMouseOver}/>
-                      <MenuItem linkText="Runups" address="/tsunami/runupsearch" handleMouseEvent={this.handleItemMouseOver}/>
-                      <MenuItem linkText="Deposit" address="/tsunami/depositsearch" handleMouseEvent={this.handleItemMouseOver}/>
+                      <MenuItem linkText="Events" address="/tsunami/eventsearch" />
+                      <MenuItem linkText="Runups" address="/tsunami/runupsearch" />
+                      <MenuItem linkText="Deposit" address="/tsunami/depositsearch" />
                     </SubMenu>
                   </MenuItem>
                 </Menu>

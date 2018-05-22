@@ -2,13 +2,6 @@ import React from 'react';
 import Styles from './MenuItemStyles.css';
 import { Link } from "react-router-dom";
 
-const test = {
-  color: "black"
-};
-
-
-const colorChange = () => test.color = "yellow";
-
 class MenuItem extends React.Component{
   constructor(props){
     super(props);
@@ -23,8 +16,7 @@ class MenuItem extends React.Component{
 
   handleMouseLeave = () => {
     this.setState({color: "black"})
-  }
-
+  };
 
 
   render(){
