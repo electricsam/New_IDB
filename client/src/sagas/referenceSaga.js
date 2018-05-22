@@ -92,7 +92,6 @@ export function* watchPatchReference(){
 
 export function* patchReference(action){
   let { reference, id } = action.payload;
-  console.log("**********************************REFERENCE: ", reference)
   try{
     const response = yield call(axios.patch, `${REFERENCE_BASEPATH}/${id}`, reference);
     yield put({
