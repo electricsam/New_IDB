@@ -22,7 +22,7 @@ export function* fetchSpecifiedReferences(action){
   }
 }
 
-export function* watchDeleteReferenceRequested(){
+export function* watchDeleteReference(){
   yield takeEvery("DELETE_REFERENCE_REQUESTED", deleteReference);
 }
 
@@ -51,3 +51,21 @@ export function* resetDeleteReference(){
   yield put({type: "SET_DELETE_REFERENCE_ID", payload: null});
   yield put({type: "TOGGLE_DELETE_REFERENCE_CONFIRMATION"});
 }
+
+export function* watchPostReference(){
+  yield takeEvery("POST_REFERENCE_REQUESTED", postReference)
+}
+
+export function* postReference(action){
+  let reference = action.payload;
+  try{
+    const response = yield call(axios.post, `${REFERENCE_BASEPATH}`, reference);
+    yield put({
+      type: "POST_REFERENCE_FULFILLED",
+      payload: response.data
+    })
+  }catch(error){
+    return yield put({type: "POST_REFERENCE_REJECTED", payload: error});
+  }
+}
+

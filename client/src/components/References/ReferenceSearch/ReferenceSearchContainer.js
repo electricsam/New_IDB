@@ -33,12 +33,6 @@ class ReferenceSearchContainer extends React.Component{
 
   toggleParameters = () => action({type: "TOGGLE_SEARCH_PARAMETERS"});
 
-  checkAuthor = () => this.props.reference.get('author');
-
-  checkCitation = () => this.props.reference.get('citation');
-
-  checkComments = () => this.props.reference.get('comments');
-
   checkConditions = (condition) => this.props.reference.get(condition);
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;

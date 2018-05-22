@@ -31,9 +31,10 @@ import {
 
 import {
   watchFetchSpecifiedReferences,
-  watchDeleteReferenceRequested,
+  watchDeleteReference,
   watchDeleteReferenceFulfilled,
   watchDeleteReferenceRejected,
+  watchPostReference,
 } from "./referenceSaga";
 
 export default function* rootSaga(){
@@ -62,8 +63,9 @@ export default function* rootSaga(){
     watchPatchEarthquake(),
     watchFetchEarthquake(),
     watchFetchSpecifiedReferences(),
-    watchDeleteReferenceRequested(),
+    watchDeleteReference(),
     watchDeleteReferenceFulfilled(),
     watchDeleteReferenceRejected(),
+    watchPostReference(),
   ]);
 }

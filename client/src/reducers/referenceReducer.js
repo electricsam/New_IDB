@@ -8,13 +8,15 @@ export const initialState = fromJS({
   error: null,
   deleteReferenceId: null,
   showDeleteReferenceConfirmation: false,
-  search: {
-
-  },
+  search: {},
+  insert: {},
   showSearchParams: true,
   author: null,
   citation: null,
   comments: null,
+  showReferenceInsertParam: true,
+  postingReference: false,
+  postedReference:false,
 });
 
 export default function reducer(state = initialState, action){
@@ -41,6 +43,18 @@ export default function reducer(state = initialState, action){
     }
     case "TOGGLE_SEARCH_PARAMETERS": {
       return state.merge(state, {showSearchParams: !state.get('showSearchParams')});
+    }
+    case "TOGGLE_REFERENCE_INSERT_PARAMETERS": {
+      return state.merge(state, {showReferenceInsertParam: !state.get('showReferenceInsertParam')});
+    }
+    case "POST_REFERENCE_REQUESTED": {
+      return state.merge(state, {postingReference: true});
+    }
+    case "POST_REFERENCE_FULFILLED": {
+      return state.merge(state, {postingReference: false, postedReference: true});
+    }
+    case "POST_REFERENCE_REJECTED": {
+      return state.merge(state, {postedReference: false, error: action.payload});
     }
     default:
       return state;

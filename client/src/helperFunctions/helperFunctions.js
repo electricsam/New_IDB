@@ -124,7 +124,6 @@ const mapToReferenceTable = (arr) => {
           </button>
       )
     });
-
   }
   return result;
 };
