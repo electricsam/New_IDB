@@ -28,7 +28,8 @@ public class ReferenceController {
 
   @RequestMapping(value = "/references", method = RequestMethod.GET)
   @ResponseBody
-  public ResponseEntity getReferences(@RequestParam Map<String, String> params, @QuerydslPredicate Predicate predicate){
+  public ResponseEntity getReferences(@RequestParam Map<String, String> params,
+                                      @QuerydslPredicate(root=Reference.class) Predicate predicate){
     try{
       Iterable<Reference> references = referenceService.getReferences(params, predicate);
       return ResponseEntity.status(HttpStatus.OK).body(references);

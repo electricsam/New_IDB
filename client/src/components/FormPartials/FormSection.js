@@ -44,6 +44,7 @@ const FormSection = props => (
                     </SubSection>
                 )
               }else if(e.type === 'RADIO'){
+                console.log(props);
                 return (
                   <Radio
                     radios={e.radios}
@@ -52,6 +53,7 @@ const FormSection = props => (
                     title={e.title}
                     htmlFor={e.htmlFor}
                     checkConditions={props.checkConditions}
+                    condition={e.condition}
                     textModelPreface={e.textModelPreface}
                     model={e.model}
                   />

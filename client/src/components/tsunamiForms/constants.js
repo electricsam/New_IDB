@@ -599,6 +599,21 @@ const rnpMeasureType = [
 
 ];
 
+const referenceHave = [
+  {name: "Select DB Status", value: ""},
+  {name: "Don't have", value: null},
+  {name: "Not Available", value: -1},
+  {name: "Have", value: 1},
+  {name: "Requested", value: 2},
+  {name: "Have, data needs to be added to Tsunami DB", value: 3},
+  {name: "Requested, data needs to be added to Tsunami DB"},
+  {name: "Have, all data added and QC'd", value: 5},
+  {name: "Have, needs to be added to Deposits DB", value: 6},
+  {name: "Have, checked and no data to enter", value: 7},
+  {name: "Have the document in analog but not in digital format", value: 8},
+  {name: "Have, data needs to be added to the Significant Earthquake DB", value: 9}
+];
+
 const validationConstants = {
   cause: {min: 0, max: 11},
   year: {min: -2000, max: (new Date).getFullYear()},
@@ -645,4 +660,5 @@ export {
   firstMotion,
   effectDescriptions,
   damageMillions,
+  referenceHave
 }

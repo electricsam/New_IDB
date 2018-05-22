@@ -23,6 +23,7 @@ import EarthquakeContainer from "./Earthquakes/EarthquakeDataDisplay/EarthquakeC
 import EarthquakeInsertContainer from "./Earthquakes/EarthquakeInsert/EarthquakeInsertContainer";
 import EarthquakeUpdateContainer from "./Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer";
 import ReferenceContainer from "./References/ReferenceDataDisplay/ReferenceContainer";
+import ReferenceSearchContainer from "./References/ReferenceSearch/ReferenceSearchContainer";
 
 class App extends React.Component {
   render() {
@@ -48,6 +49,7 @@ class App extends React.Component {
             <Route exact path='/earthquake/insert' component={EarthquakeInsertContainer}/>
             <Route exact path='/earthquake/update/:id' component={EarthquakeUpdateContainer}/>
             <Route exact path='/reference/data' component={ReferenceContainer}/>
+            <Route exact path='/reference/search' component={ReferenceSearchContainer}/>
             {/*Must have 404 component listed last*/}
             <Route path ="*" component={FourZeroFour}/>
           </Switch>

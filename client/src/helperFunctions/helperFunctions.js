@@ -111,7 +111,7 @@ const mapToReferenceTable = (arr) => {
       accessor: 'edit',
       Cell: props => (
           <button type="button" onClick={()=> store.dispatch(push(`/reference/update/${props.original.id}`))}>
-            Edit Event
+            Edit Reference
           </button>
       )
     });
@@ -120,7 +120,7 @@ const mapToReferenceTable = (arr) => {
       accessor: 'delete',
       Cell: props => (
           <button type="button" onClick={()=> deleteReference(props.original.id)}>
-            Delete Event
+            Delete Reference
           </button>
       )
     });

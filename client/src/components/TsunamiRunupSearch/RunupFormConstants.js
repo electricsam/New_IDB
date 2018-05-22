@@ -1,6 +1,6 @@
 import {regions, validationConstants, countries, rnpMeasureType} from '../tsunamiForms/constants'
 import {deleteRunup} from "../../sagas/tsunamiSaga";
-
+import RunupSearchContainer from './RunupSearchContainer';
 
 const RunupLocInfo = [
   {
@@ -29,7 +29,8 @@ const RunupLocInfo = [
       {value: "locMatch", label: "Matches"},
       {value: "locNot", label: "or Does Not Match"}
     ],
-    textModelPreface:".tsunami.rnpsearch."
+    textModelPreface:".tsunami.rnpsearch.",
+    condition: 'runupLocType'
   },
   {
     type: "MINMAX",

@@ -3,6 +3,10 @@ import {
   canadianProvince, indonesianProvince, japanesePrefecture
 } from '../tsunamiForms/constants';
 
+import TsunamiSearchContainer from './TsunamiSearchContainer.jsx';
+
+console.log(TsunamiSearchContainer)
+
 const TsunamiSourceParameters = [
   {
     type: "MINMAX",
@@ -140,8 +144,8 @@ const TsunamiSourceParameters = [
       {value: "locMatch", label: "Matches"},
       {value: "locNot", label: "or Does Not Match"}
     ],
-    textModelPreface:".tsunami.search."
-
+    textModelPreface:".tsunami.search.",
+    condition: 'locType'
   }
 ];
 
@@ -230,7 +234,8 @@ const TsunamiRunupByPlace = [
       {value: "runupLocMatch", label: "Matches"},
       {value: "runupLocNot", label: "or Does Not Match"}
     ],
-    textModelPreface: ".tsunami.search."
+    textModelPreface: ".tsunami.search.",
+    condition: 'runupLocType'
   }
 ];
 

@@ -51,9 +51,10 @@ class ReferenceContainer extends React.Component {
     const { reference } = this.props;
 
     if( reference.get('fetchedReference')){
+      console.log(reference.asMutable().toJS());
       return (
           <div>
-            {tsunami.get('showDeleteReferenceConfirmation')?
+            {reference.get('showDeleteReferenceConfirmation')?
                 <DialogBox
                     handleYesClick={this.handleYesClick}
                     handleNoClick={this.handleNoClick}
