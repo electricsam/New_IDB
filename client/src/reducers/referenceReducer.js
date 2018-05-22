@@ -17,6 +17,11 @@ export const initialState = fromJS({
   showReferenceInsertParam: true,
   postingReference: false,
   postedReference:false,
+  showReferenceUpdateParam: true,
+  fetchingReferenceById: false,
+  fetchedReferenceById: false,
+  patchingReference: false,
+  patchedReference: false,
 });
 
 export default function reducer(state = initialState, action){
@@ -55,6 +60,34 @@ export default function reducer(state = initialState, action){
     }
     case "POST_REFERENCE_REJECTED": {
       return state.merge(state, {postedReference: false, error: action.payload});
+    }
+    case "TOGGLE_REFERENCE_UPDATE_PARAMETERS": {
+      return state.merge(state, {showReferenceUpdateParam: !state.get('showReferenceUpdateParam')});
+    }
+    case "FETCH_REFERENCE_BY_ID_REQUESTED": {
+      return state.merge(state, {fetchingReferenceById: true});
+    }
+    case "FETCH_REFERENCE_BY_ID_FULFILLED": {
+      return state.merge(state, {
+        fetchingReferenceById: false,
+        fetchedReferenceById: true,
+        references: [action.payload]
+      });
+    }
+    case "FETCH_REFERENCE_BY_ID_REJECTED": {
+      return state.merge(state, {
+        fetchingReferenceById: false,
+        error: action.payload
+      });
+    }
+    case "PATCH_REFERENCE_REQUESTED": {
+      return state.merge(state, {patchingReference: true})
+    }
+    case "PATCH_REFERENCE_FULFILLED": {
+      return state.merge(state, {patchingReference: false, patchedReference: true})
+    }
+    case "PATCH_REFERENCE_REJECTED": {
+      return state.merge(state, {patchingReference: true, error: action.payload});
     }
     default:
       return state;

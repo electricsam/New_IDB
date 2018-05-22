@@ -69,3 +69,37 @@ export function* postReference(action){
   }
 }
 
+export function* watchFetchReferenceById(){
+  yield takeEvery("FETCH_REFERENCE_BY_ID_REQUESTED", fetchReferenceById)
+}
+
+export function* fetchReferenceById(action){
+  let id = action.payload;
+  try{
+    const response = yield call(axios.get, `${REFERENCE_BASEPATH}/${id}`);
+    yield put({
+      type: "FETCH_REFERENCE_BY_ID_FULFILLED",
+      payload: response.data
+    })
+  }catch(error){
+    return yield put({type: "FETCH_REFERENCE_BY_ID_REJECTED", error: error})
+  }
+}
+
+export function* watchPatchReference(){
+  yield takeEvery("PATCH_REFERENCE_REQUESTED", patchReference);
+}
+
+export function* patchReference(action){
+  let { reference, id } = action.payload;
+  console.log("**********************************REFERENCE: ", reference)
+  try{
+    const response = yield call(axios.patch, `${REFERENCE_BASEPATH}/${id}`, reference);
+    yield put({
+      type: "PATCH_REFERENCE_FULFILLED",
+      payload: response.data
+    });
+  }catch(error){
+    return yield put({type: "PATCH_REFERENCE_REJECTED", error: error});
+  }
+}
