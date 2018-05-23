@@ -9,8 +9,8 @@ $containerTextColor: rgb(102,102,102);
     position: absolute;
     width: 120%;
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
-    left: 0;
     top: 100%;
+    text-align: left;
 }
 
 .container li{

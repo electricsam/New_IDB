@@ -154,7 +154,7 @@ class Navbar extends React.Component {
                 </Link>
                 <Menu display={this.state.hazDisplay}>
                   <MenuItem linkText="EARTHQUAKES"
-                            address="/earthquake/eventsearch"
+                            address="/earthquake/landing"
                             handleMouseEnter={this.handleEqMouseEnter}
                             handleMouseLeave={this.handleEqMouseLeave}
                             color={this.state.menuItemColor}

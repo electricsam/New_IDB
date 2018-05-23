@@ -26,6 +26,7 @@ import ReferenceContainer from "./References/ReferenceDataDisplay/ReferenceConta
 import ReferenceSearchContainer from "./References/ReferenceSearch/ReferenceSearchContainer";
 import ReferenceInsertContainer from "./References/ReferenceInsert/ReferenceInsertContainer";
 import ReferenceUpdateContainer from "./References/ReferenceUpdate/ReferenceUpdateContainer";
+import EarthquakeLanding from "./Earthquakes/EarthquakeLanding/EarthquakeLanding";
 
 class App extends React.Component {
   render() {
@@ -50,6 +51,7 @@ class App extends React.Component {
             <Route exact path='/earthquake/event/data' component={EarthquakeContainer}/>
             <Route exact path='/earthquake/insert' component={EarthquakeInsertContainer}/>
             <Route exact path='/earthquake/update/:id' component={EarthquakeUpdateContainer}/>
+            <Route exact path='/earthquake/landing' component={EarthquakeLanding}/>
             <Route exact path='/reference/data' component={ReferenceContainer}/>
             <Route exact path='/reference/search' component={ReferenceSearchContainer}/>
             <Route exact path='/reference/insert' component={ReferenceInsertContainer}/>

@@ -119,10 +119,10 @@ $menuTextColor: rgb(102,102,102);
     grid-column: 2/3;
     justify-self: center;
     flex:1;
-    text-align: left;
+    text-align: center;
     align-self: center;
     background-color: transparent;
-    width: auto;
+    width: 100%;
 }
 
 .hazardPages li{
