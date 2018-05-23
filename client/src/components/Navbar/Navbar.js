@@ -67,7 +67,6 @@ class Navbar extends React.Component {
     this.setState(prevState);
   };
 
-
   render() {
     return (
         <div className={Styles.container}>
