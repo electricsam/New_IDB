@@ -53,8 +53,6 @@ $menuTextColor: rgb(102,102,102);
     white-space: nowrap;
 }
 
-
-
 .mainMenuListItem{
     display: inline-block;
     height: 100%;
@@ -107,13 +105,7 @@ $menuTextColor: rgb(102,102,102);
     margin-left: 1%;
 }
 
-.tsunamiLnk i{
-    height: 100%;
-    vertical-align: middle;
-    position: absolute;
-    right: 0;
 
-}
 
 .hazardPages{
     grid-column: 2/3;
@@ -135,87 +127,4 @@ $menuTextColor: rgb(102,102,102);
     z-index: 2;
 }
 
-.hazardPages .hpContentUl{
-    display:none;
-}
 
-.hpContentUl{
-    margin: 0;
-    padding: 0;
-    padding-left:5%;
-    padding-right: 5%;
-    background-color: white;
-    position: absolute;
-    width: 120%;
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
-    left: 0;
-    top: 100%;
-}
-
-.hpContentUl li{
-    margin: 5% 5% 5% 5%;
-    background-color: white;
-    position: relative;
-    display: block;
-    color: $menuTextColor
-}
-
-.hpContentLi a{
-    color: $menuTextColor;
-    transition: color .2s ease-out;
-}
-
-.hpContentLi a i{
-    position: absolute;
-    right:0;
-}
-
-.hpContentLi:hover a{
-    color: cyan;
-}
-
-.nestedUl{
-    width: 100%;
-    display: none;
-    background-color: white;
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
-    padding:0;
-    margin: 0;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    padding-left: 5%;
-    padding-right: 5%;
-}
-
-.nestedList:hover .nestedUl{
-    display: block;
-}
-
-.nestedList .tsunamiLink{
-    color:$menuTextColor;
-    transition: color .2s ease-out;
-}
-
-.nestedList:hover .tsunamiLink{
-    color:cyan;
-}
-
-.nestedUl li{
-    position: relative;
-    width: 100%;
-}
-
-.nestedList a i{
-    position: absolute;
-    right:0;
-}
-
-.nestedLi a{
-    color: $menuTextColor;
-    transition: color .2s ease-out;
-}
-
-.nestedLi:hover a{
-    color: cyan;
-}
