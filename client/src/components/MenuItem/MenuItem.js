@@ -11,22 +11,26 @@ class MenuItem extends React.Component{
   }
 
   handleMouseEnter = () => {
-    this.setState({color: "blue"})
+    this.setState({color: "cyan"});
+    this.props.handleMouseEnter();
   };
 
   handleMouseLeave = () => {
     this.setState({color: "black"})
+    this.props.handleMouseLeave()
   };
 
 
   render(){
     return (
-        <li className={Styles.hpContentLi}>
+        <li className={Styles.hpContentLi}
+            onMouseEnter={()=>this.handleMouseEnter()}
+            onMouseLeave={()=>this.handleMouseLeave()}
+        >
+
           <Link to={this.props.address}
                 className={Styles.link}
                 style={{color: this.state.color}}
-                onMouseEnter={this.handleMouseEnter}
-                onMouseLeave={this.handleMouseLeave}
           >
 
             {this.props.linkText}<i className="material-icons">&#xE5CF;</i>

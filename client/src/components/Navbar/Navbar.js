@@ -78,8 +78,10 @@ class Navbar extends React.Component {
     this.state={
       isHazMenuOpen: false,
       isEqSubMenuOpen: false,
+      eqSubMenuDisplay: 'none',
+      tsSubMenuDisplay: 'none',
       isTsSubMenuOpen: false,
-      hazDisplay: 'none'
+      hazDisplay: 'none',
     }
   }
 
@@ -94,7 +96,31 @@ class Navbar extends React.Component {
     let prevState = this.state;
     prevState.hazDisplay = 'none'
     this.setState(prevState);
-  }
+  };
+
+  handleEqMouseEnter = () => {
+    let prevState = this.state;
+    prevState.eqSubMenuDisplay = 'block';
+    this.setState(prevState);
+  };
+
+  handleEqMouseLeave = () => {
+    let prevState = this.state;
+    prevState.eqSubMenuDisplay = 'none';
+    this.setState(prevState);
+  };
+
+  handleTsMouseEnter = () => {
+    let prevState = this.state;
+    prevState.tsSubMenuDisplay = 'block';
+    this.setState(prevState);
+  };
+
+  handleTsMouseLeave = () => {
+    let prevState = this.state;
+    prevState.tsSubMenuDisplay = 'none';
+    this.setState(prevState);
+  };
 
 
   render() {
@@ -127,14 +153,21 @@ class Navbar extends React.Component {
                   HAZARD PAGES<i className="material-icons">&#xE5CF;</i>
                 </Link>
                 <Menu display={this.state.hazDisplay}>
-                  <MenuItem linkText="EARTHQUAKES" address="/earthquake/eventsearch">
-                    <SubMenu>
+                  <MenuItem linkText="EARTHQUAKES"
+                            address="/earthquake/eventsearch"
+                            handleMouseEnter={this.handleEqMouseEnter}
+                            handleMouseLeave={this.handleEqMouseLeave}
+                            color={this.state.menuItemColor}
+                  >
+                    <SubMenu display={this.state.eqSubMenuDisplay}>
                       <MenuItem linkText="Events" address={'/earthquake/eventsearch'}/>
                     </SubMenu>
                   </MenuItem>
                   <MenuItem linkText="VOLCANOES" address="/volcano/eventsearch"/>
-                  <MenuItem linkText="TSUNAMIS" address="/tsunami/landing">
-                    <SubMenu>
+                  <MenuItem linkText="TSUNAMIS" address="/tsunami/landing"
+                            handleMouseEnter={this.handleTsMouseEnter}
+                            handleMouseLeave={this.handleTsMouseLeave}>
+                    <SubMenu display={this.state.tsSubMenuDisplay}>
                       <MenuItem linkText="Events" address="/tsunami/eventsearch" />
                       <MenuItem linkText="Runups" address="/tsunami/runupsearch" />
                       <MenuItem linkText="Deposit" address="/tsunami/depositsearch" />
