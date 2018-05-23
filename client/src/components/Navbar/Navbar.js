@@ -11,11 +11,9 @@ class Navbar extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      isHazMenuOpen: false,
-      isEqSubMenuOpen: false,
       eqSubMenuDisplay: 'none',
       tsSubMenuDisplay: 'none',
-      isTsSubMenuOpen: false,
+      refSubMenuDisplay: 'none',
       hazDisplay: 'none',
     }
   }
@@ -56,6 +54,19 @@ class Navbar extends React.Component {
     prevState.tsSubMenuDisplay = 'none';
     this.setState(prevState);
   };
+
+  handleRefMouseEnter = () => {
+    let prevState = this.state;
+    prevState.refSubMenuDisplay = 'block';
+    this.setState(prevState);
+  };
+
+  handleRefMouseLeave = () => {
+    let prevState = this.state;
+    prevState.refSubMenuDisplay = 'none';
+    this.setState(prevState);
+  };
+
 
   render() {
     return (
@@ -106,6 +117,14 @@ class Navbar extends React.Component {
                       <MenuItem linkText="Runups" address="/tsunami/runupsearch" />
                       <MenuItem linkText="Deposit" address="/tsunami/depositsearch" />
                     </SubMenu>
+                  </MenuItem>
+                  <MenuItem linkText="REFERENCES" address="/reference/landing"
+                            handleMouseEnter={this.handleRefMouseEnter}
+                            handleMouseLeave={this.handleRefMouseLeave}>
+                    <SubMenu display={this.state.refSubMenuDisplay}>
+                      <MenuItem linkText="References" address="/reference/search"/>
+                    </SubMenu>
+
                   </MenuItem>
                 </Menu>
               </li>
