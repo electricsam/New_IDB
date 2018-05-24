@@ -4,7 +4,7 @@ import { validationConstants,
   states,
   japanesePrefecture,
   indonesianProvince,
-  canadianProvince } from "../tsunamiForms/constants";
+  canadianProvince } from "../../formConstants/constants";
 
 
 const DateAndLocation = [

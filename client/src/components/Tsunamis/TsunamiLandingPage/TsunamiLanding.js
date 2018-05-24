@@ -2,7 +2,7 @@ import React from 'react';
 import { push } from "react-router-redux";
 import {connect} from "react-redux";
 
-import store from '../../store';
+import store from '../../../store';
 import Styles from './TsunamiLandingStyles.css';
 import TsunamiLandingPartial from "./TsunamiLandingPartial";
 

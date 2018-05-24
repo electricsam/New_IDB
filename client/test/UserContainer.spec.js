@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import * as enzyme from 'enzyme';
 import sinon from 'sinon';
-import UserContainer from '../src/components/TsunamiEventDataDisplay/TsunamiContainer'
+import UserContainer from '../src/components/Tsunamis/TsunamiEventDataDisplay/TsunamiContainer'
 import Adapter from 'enzyme-adapter-react-16'
 import configureStore from 'redux-mock-store';
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { encodeQueryString } from '../../helperFunctions/helperFunctions'
-import store from '../../store';
-import MultiPartForm from "../FormPartials/MultiPartForm";
-import FormSection from "../FormPartials/FormSection";
+import { encodeQueryString } from '../../../helperFunctions/helperFunctions'
+import store from '../../../store';
+import MultiPartForm from "../../FormPartials/MultiPartForm";
+import FormSection from "../../FormPartials/FormSection";
 
 import { Measurements, DateAndLocation, Effects } from "./RunupInsertConstants";
 

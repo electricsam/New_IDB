@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {actions, Control, Errors, Form} from 'react-redux-form/lib/immutable';
 
-import {createApiQueryString, encodeQueryString} from '../../helperFunctions/helperFunctions'
-import store from '../../store';
-import FormSection from "../FormPartials/FormSection";
+import {createApiQueryString, encodeQueryString} from '../../../helperFunctions/helperFunctions'
+import store from '../../../store';
+import FormSection from "../../FormPartials/FormSection";
 
 import { RunupLocInfo, RunupSourceInfo, RunupParamsEffects } from './RunupFormConstants';
-import MultiPartForm from "../FormPartials/MultiPartForm";
+import MultiPartForm from "../../FormPartials/MultiPartForm";
 
 const action = obj => store.dispatch(obj);
 

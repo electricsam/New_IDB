@@ -4,7 +4,7 @@ import { get } from 'immutable';
 
 import store from '../../../store';
 import Loading from '../../loadbar/Loading';
-import Table from "../../table/Table";
+import Table from "../../Table/Table";
 
 import { decodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions';
 import DialogBox from "../../FormPartials/DialogBox";

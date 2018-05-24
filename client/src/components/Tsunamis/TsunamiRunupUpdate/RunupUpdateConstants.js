@@ -1,13 +1,13 @@
 import {
-  validationConstants, regions, countries, canadianProvince, japanesePrefecture,
-  states, indonesianProvince, rnpMeasureType, firstMotion
-} from "../tsunamiForms/constants";
+  canadianProvince, countries, firstMotion, indonesianProvince, japanesePrefecture, regions, rnpMeasureType, states,
+  validationConstants
+} from "../../formConstants/constants";
 
 const DateAndLocation = [
   {
     type: "TEXT",
     title: "Year",
-    model: ".tsunami.rnpinsert.year",
+    model: ".tsunami.runupData[0].year",
     minThreshold: validationConstants.year.min,
     maxThreshold: validationConstants.year.max,
     validMessage: "Invalid Year"
@@ -15,7 +15,7 @@ const DateAndLocation = [
   {
     type: "TEXT",
     title: "Month",
-    model: ".tsunami.rnpinsert.month",
+    model: ".tsunami.runupData[0].month",
     minThreshold: validationConstants.month.min,
     maxThreshold: validationConstants.month.max,
     validMessage: "Invalid Month"
@@ -23,7 +23,7 @@ const DateAndLocation = [
   {
     type: "TEXT",
     title: "Day",
-    model: ".tsunami.rnpinsert.day",
+    model: ".tsunami.runupData[0].day",
     minThreshold: validationConstants.day.min,
     maxThreshold: validationConstants.day.max,
     validMessage: "Invalid Day"
@@ -31,20 +31,20 @@ const DateAndLocation = [
   {
     type: "TEXTNOVAL",
     title: "Location",
-    model: ".tsunami.rnpinsert.locationName",
+    model: ".tsunami.runupData[0].locationName",
   },
   {
     type: "DROPDOWN",
     title: "Region",
-    model: ".tsunami.rnpinsert.regionCode",
-    id: ".tsunami.rnpinsert.regionCode",
+    model: ".tsunami.runupData[0].regionCode",
+    id: ".tsunami.runupData[0].regionCode",
     data: regions
   },
   {
     type: "DROPDOWN",
     title: "Country",
-    model: ".tsunami.rnpinsert.country",
-    id: ".tsunami.rnpinsert.country",
+    model: ".tsunami.runupData[0].country",
+    id: ".tsunami.runupData[0].country",
     data: countries
   },
   {
@@ -52,26 +52,26 @@ const DateAndLocation = [
     title: "Area",
     dropDowns: [
       {
-        model: ".tsunami.rnpinsert.area",
-        id: ".tsunami.rnpinsert.area",
+        model: ".tsunami.runupData[0].area",
+        id: ".tsunami.runupData[0].area",
         data: states,
         disabled: "USA",
       },
       {
-        model:".tsunami.rnpinsert.area",
-        id: ".tsunami.rnpinsert.area",
+        model:".tsunami.runupData[0].area",
+        id: ".tsunami.runupData[0].area",
         data: canadianProvince,
         disabled: "CANADA",
       } ,
       {
-        model:".tsunami.rnpinsert.area",
-        id: ".tsunami.rnpinsert.area",
+        model:".tsunami.runupData[0].area",
+        id: ".tsunami.runupData[0].area",
         data: japanesePrefecture,
         disabled: "JAPAN",
       },
       {
-        model:".tsunami.rnpinsert.area",
-        id: ".tsunami.rnpinsert.area",
+        model:".tsunami.runupData[0].area",
+        id: ".tsunami.runupData[0].area",
         data: indonesianProvince,
         disabled: "INDONESIA",
       }
@@ -80,7 +80,7 @@ const DateAndLocation = [
   {
     type: "TEXT",
     title: "Latitude",
-    model: ".tsunami.rnpinsert.latitude",
+    model: ".tsunami.runupData[0].latitude",
     minThreshold: validationConstants.latitude.min,
     maxThreshold: validationConstants.latitude.max,
     validMessage: "Invalid Latitude"
@@ -88,7 +88,7 @@ const DateAndLocation = [
   {
     type: "TEXT",
     title: "Longitude",
-    model: ".tsunami.rnpinsert.longitude",
+    model: ".tsunami.runupData[0].longitude",
     minThreshold: validationConstants.longitude.min,
     maxThreshold: validationConstants.longitude.max,
     validMessage: "Invalid Longitude"
@@ -99,14 +99,14 @@ const Measurements = [
   {
     type:"DROPDOWN",
     title: "Type of Measurment",
-    model: ".tsunami.rnpinsert.typeMeasurementId",
-    id: ".tsunami.rnpinsert.typeMeasurementId",
+    model: ".tsunami.runupData[0].typeMeasurementId",
+    id: ".tsunami.runupData[0].typeMeasurementId",
     data: rnpMeasureType
   },
   {
     type: "TEXT",
     title: "Maximum Height",
-    model: ".tsunami.rnpinsert.runupHt",
+    model: ".tsunami.runupData[0].runupHt",
     minThreshold: validationConstants.waterHeight.min,
     maxThreshold: validationConstants.waterHeight.max,
     validMessage: "Invalid Maximum Height"
@@ -114,7 +114,7 @@ const Measurements = [
   {
     type: "TEXT",
     title: "Maximum Horizontal Inundation (meters)",
-    model: ".tsunami.rnpinsert.runupHoriz",
+    model: ".tsunami.runupData[0].runupHoriz",
     minThreshold: validationConstants.horizInnundation.min,
     maxThreshold: validationConstants.horizInnundation.max,
     validMessage: "Invalid Maximum Horizontal Inundation"
@@ -122,7 +122,7 @@ const Measurements = [
   {
     type: "TEXT",
     title: "Period",
-    model: ".tsunami.rnpinsert.period",
+    model: ".tsunami.runupData[0].period",
     minThreshold: validationConstants.period.min,
     maxThreshold: validationConstants.period.max,
     validMessage: "Invalid Period"
@@ -130,8 +130,8 @@ const Measurements = [
   {
     type:"DROPDOWN",
     title: "First Motion",
-    model: ".tsunami.rnpinsert.firstMotion",
-    id: ".tsunami.rnpinsert.firstMotion",
+    model: ".tsunami.runupData[0].firstMotion",
+    id: ".tsunami.runupData[0].firstMotion",
     data: firstMotion
   },
   {
@@ -139,21 +139,21 @@ const Measurements = [
     title: "Arrival Time",
     data: [
       {
-        model: ".tsunami.rnpinsert.arrDay",
+        model: ".tsunami.runupData[0].arrDay",
         title: "Day",
         minThreshold: validationConstants.day.min,
         maxThreshold: validationConstants.day.max,
         validMessage: "Invalid Day"
       },
       {
-        model: ".tsunami.rnpinsert.arrHour",
+        model: ".tsunami.runupData[0].arrHour",
         title: "Hour",
         minThreshold: validationConstants.hour.min,
         maxThreshold: validationConstants.hour.max,
         validMessage: "Invalid Hour"
       },
       {
-        model: ".tsunami.rnpinsert.arrMin",
+        model: ".tsunami.runupData[0].arrMin",
         title: "Minute",
         minThreshold: validationConstants.minute.min,
         maxThreshold: validationConstants.minute.max,
@@ -165,15 +165,15 @@ const Measurements = [
     type: "MULTIMINMAX",
     title: "Travel Time",
     data: [
-          {
-        model: ".tsunami.rnpinsert.travHours",
+      {
+        model: ".tsunami.runupData[0].travHours",
         title: "Hour",
         minThreshold: validationConstants.hour.min,
         maxThreshold: validationConstants.hour.max,
         validMessage: "Invalid Hour"
       },
       {
-        model: ".tsunami.rnpinsert.travMins",
+        model: ".tsunami.runupData[0].travMins",
         title: "Minute",
         minThreshold: validationConstants.minute.min,
         maxThreshold: validationConstants.minute.max,
@@ -186,21 +186,21 @@ const Measurements = [
     title: "Max Arrival Time",
     data: [
       {
-        model: ".tsunami.rnpinsert.maxWaveArrDay",
+        model: ".tsunami.runupData[0].maxWaveArrDay",
         title: "Day",
         minThreshold: validationConstants.day.min,
         maxThreshold: validationConstants.day.max,
         validMessage: "Invalid Day"
       },
       {
-        model: ".tsunami.rnpinsert.maxWaveArrHour",
+        model: ".tsunami.runupData[0].maxWaveArrHour",
         title: "Hour",
         minThreshold: validationConstants.hour.min,
         maxThreshold: validationConstants.hour.max,
         validMessage: "Invalid Hour"
       },
       {
-        model: ".tsunami.rnpinsert.maxWaveArrMin",
+        model: ".tsunami.runupData[0].maxWaveArrMin",
         title: "Minute",
         minThreshold: validationConstants.minute.min,
         maxThreshold: validationConstants.minute.max,
@@ -229,13 +229,12 @@ const Measurements = [
         label: "Meteorological"
       }
     ],
-    model: ".tsunami.rnpinsert.doubtful",
-    id: ".tsunami.rnpinsert.doubtful",
-    htmlFor: ".tsunami.rnpinsert.doubtful",
+    model: ".tsunami.runupData[0].doubtful",
+    id: ".tsunami.runupData[0].doubtful",
+    htmlFor: ".tsunami.runupData[0].doubtful",
     noText: true,
   }
 ];
-
 
 const Effects = [
   {
@@ -243,14 +242,14 @@ const Effects = [
     title: "Damage",
     data: [
       {
-        model: ".tsunami.rnpinsert.damageMillionsDollars",
+        model: ".tsunami.runupData[0].damageMillionsDollars",
         title: "Damage in Millions of Dollars",
         minThreshold: validationConstants.damageInMillions.min,
         maxThreshold: validationConstants.damageInMillions.max,
         validMessage: "Invalid Damage"
       },
       {
-        model: ".tsunami.rnpinsert.damageAmountOrder",
+        model: ".tsunami.runupData[0].damageAmountOrder",
         title: "Damage Description",
         minThreshold: validationConstants.damageDescription.min,
         maxThreshold: validationConstants.damageDescription.max,
@@ -263,14 +262,14 @@ const Effects = [
     title: "Houses Destroyed",
     data: [
       {
-        model: ".tsunami.rnpinsert.housesDestroyed",
+        model: ".tsunami.runupData[0].housesDestroyed",
         title: "Number of Houses Destroyed",
         minThreshold: validationConstants.numberOfHousesDestroyed.min,
         maxThreshold: validationConstants.numberOfHousesDestroyed.max,
         validMessage: "Invalid Houses Destroyed"
       },
       {
-        model: ".tsunami.rnpinsert.housesAmountOrder",
+        model: ".tsunami.runupData[0].housesAmountOrder",
         title: "Houses Destroyed Description",
         minThreshold: validationConstants.housesDestroyedDescription.min,
         maxThreshold: validationConstants.housesDestroyedDescription.max,
@@ -283,14 +282,14 @@ const Effects = [
     title: "Deaths",
     data: [
       {
-        model: ".tsunami.rnpinsert.deaths",
+        model: ".tsunami.runupData[0].deaths",
         title: "Number of Deaths",
         minThreshold: validationConstants.numberOfDeaths.min,
         maxThreshold: validationConstants.numberOfDeaths.max,
         validMessage: "Invalid Number of Deaths"
       },
       {
-        model: ".tsunami.rnpinsert.deathsAmountOrder",
+        model: ".tsunami.runupData[0].deathsAmountOrder",
         title: "Death Description",
         minThreshold: validationConstants.deathDescription.min,
         maxThreshold: validationConstants.deathDescription.max,
@@ -303,14 +302,14 @@ const Effects = [
     title: "Injuries",
     data: [
       {
-        model: ".tsunami.rnpinsert.injuries",
+        model: ".tsunami.runupData[0].injuries",
         title: "Number of Injuries",
         minThreshold: validationConstants.numberOfInjuries.min,
         maxThreshold: validationConstants.numberOfInjuries.max,
         validMessage: "Invalid Number of Injuries"
       },
       {
-        model: ".tsunami.rnpinsert.injuriesAmountOrder",
+        model: ".tsunami.runupData[0].injuriesAmountOrder",
         title: "Injury Description",
         minThreshold: validationConstants.injuryDescription.min,
         maxThreshold: validationConstants.injuryDescription.max,
@@ -323,14 +322,14 @@ const Effects = [
     title: "Missing",
     data: [
       {
-        model: ".tsunami.rnpinsert.missing",
+        model: ".tsunami.runupData[0].missing",
         title: "Number of Missing",
         minThreshold: validationConstants.numberOfDeaths.min,
         maxThreshold: validationConstants.numberOfDeaths.max,
         validMessage: "Invalid Number of Missing"
       },
       {
-        model: ".tsunami.rnpinsert.missingAmountOrder",
+        model: ".tsunami.runupData[0].missingAmountOrder",
         title: "Missing Description",
         minThreshold: validationConstants.deathDescription.min,
         maxThreshold: validationConstants.deathDescription.max,
@@ -343,14 +342,14 @@ const Effects = [
     title: "Houses Damaged",
     data: [
       {
-        model: ".tsunami.rnpinsert.housesDamaged",
+        model: ".tsunami.runupData[0].housesDamaged",
         title: "Number of Houses Damaged",
         minThreshold: validationConstants.numberOfHousesDestroyed.min,
         maxThreshold: validationConstants.numberOfHousesDestroyed.max,
         validMessage: "Invalid Number of Houses Damaged"
       },
       {
-        model: ".tsunami.rnpinsert.housesDamagedAmountOrder",
+        model: ".tsunami.runupData[0].housesDamagedAmountOrder",
         title: "Houses Damaged Description",
         minThreshold: validationConstants.housesDestroyedDescription.min,
         maxThreshold: validationConstants.housesDestroyedDescription.max,
@@ -361,13 +360,15 @@ const Effects = [
   {
     type: "TEXTAREA",
     title: "Comments",
-    model: ".tsunami.rnpinsert.comments",
-    id: ".tsunami.rnpinsert.comments",
+    model: ".tsunami.runupData[0].comments",
+    id: ".tsunami.runupData[0].comments",
   }
 ];
 
+
+
 export {
   DateAndLocation,
-  Measurements,
-  Effects
+  Effects,
+  Measurements
 }

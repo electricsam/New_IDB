@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
-import store from '../../store';
-import MultiPartForm from "../FormPartials/MultiPartForm";
-import FormSection from "../FormPartials/FormSection";
+import { encodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions'
+import store from '../../../store';
+import MultiPartForm from "../../FormPartials/MultiPartForm";
+import FormSection from "../../FormPartials/FormSection";
 
 import {
   TsunamiSourceParameters,

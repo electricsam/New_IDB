@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
-import store from '../../store';
+import { encodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions'
+import store from '../../../store';
 
-import MultiPartForm from "../FormPartials/MultiPartForm";
-import FormSection from "../FormPartials/FormSection";
+import MultiPartForm from "../../FormPartials/MultiPartForm";
+import FormSection from "../../FormPartials/FormSection";
 import { Measurements, TotalEffects, Effects, DateAndLocation } from "./TsunamiEventInsertConstants"
 
 const action = obj => store.dispatch(obj);

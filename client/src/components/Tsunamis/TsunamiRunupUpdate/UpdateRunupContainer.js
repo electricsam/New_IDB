@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Control, Form, Errors, actions } from 'react-redux-form/lib/immutable';
 
-import { encodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions'
-import store from '../../store';
-import Loading from "../loadbar/Loading"
+import { encodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions'
+import store from '../../../store';
+import Loading from "../../loadbar/Loading"
 
 import { DateAndLocation, Effects, Measurements} from "./RunupUpdateConstants";
-import FormSection from "../FormPartials/FormSection";
-import MultiPartForm from "../FormPartials/MultiPartForm";
+import FormSection from "../../FormPartials/FormSection";
+import MultiPartForm from "../../FormPartials/MultiPartForm";
 
 const errorStyles = {
   color: 'red',

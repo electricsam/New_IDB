@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { mapToReferenceTable } from '../helperFunctions/helperFunctions';
 
-const REFERENCE_BASEPATH = '/references'
+const REFERENCE_BASEPATH = '/idb-service/references'
 
 export function* watchFetchSpecifiedReferences(){
   yield takeEvery("FETCH_SPECIFIED_REFERENCES_REQUESTED", fetchSpecifiedReferences);

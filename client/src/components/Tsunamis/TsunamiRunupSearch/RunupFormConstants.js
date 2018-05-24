@@ -1,5 +1,5 @@
-import {regions, validationConstants, countries, rnpMeasureType} from '../tsunamiForms/constants'
-import {deleteRunup} from "../../sagas/tsunamiSaga";
+import {regions, validationConstants, countries, rnpMeasureType} from '../../formConstants/constants'
+import {deleteRunup} from "../../../sagas/tsunamiSaga";
 import RunupSearchContainer from './RunupSearchContainer';
 
 const RunupLocInfo = [

@@ -8,7 +8,7 @@ import {
   canadianProvince,
   effectDescriptions,
   damageMillions,
-} from "../../tsunamiForms/constants";
+} from "../../formConstants/constants";
 
 const DateAndLocation = [
   {

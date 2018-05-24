@@ -24,35 +24,35 @@ class EarthquakeContainer extends React.Component {
   }
 
   componentDidMount(){
-    let { search } = this.props.location;
-    if(search.length){
-      search = search.split('?')[1];
-      let decoded = JSON.parse(decodeQueryString(search));
-      let queryString = createApiQueryString(decoded);
-      action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED", payload: queryString});
-    }else{
-      action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED"});
-    }
+    // let { search } = this.props.location;
+    // if(search.length){
+    //   search = search.split('?')[1];
+    //   let decoded = JSON.parse(decodeQueryString(search));
+    //   let queryString = createApiQueryString(decoded);
+    //   action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED", payload: queryString});
+    // }else{
+    //   action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED"});
+    // }
   }
 
   handleYesClick = () => {
-    let id = this.props.earthquake.get('deleteEarthquakeId');
-    console.log("id inside the yes click: ", id);
-    action({type: "DELETE_EARTHQUAKE_REQUESTED", payload: id});
+    // let id = this.props.earthquake.get('deleteEarthquakeId');
+    // console.log("id inside the yes click: ", id);
+    // action({type: "DELETE_EARTHQUAKE_REQUESTED", payload: id});
   };
 
   handleNoClick = () => {
-    action({type: "TOGGLE_DELETE_EARTHQUAKE_CONFIRMATION"});
-    action({type: "SET_DELETE_EARTHQUAKE_ID", payload: null});
+    // action({type: "TOGGLE_DELETE_EARTHQUAKE_CONFIRMATION"});
+    // action({type: "SET_DELETE_EARTHQUAKE_ID", payload: null});
   };
 
   render(){
-    const { earthquake } = this.props;
+    const { volcano } = this.props;
 
     if( earthquake.get('fetchedEarthquake')){
       return (
           <div>
-            {earthquake.get('showDeleteEarthquakeConfirmation')?
+            {volcano.get('showDeleteEarthquakeConfirmation')?
                 <DialogBox
                     handleYesClick={this.handleYesClick}
                     handleNoClick={this.handleNoClick}
@@ -60,9 +60,9 @@ class EarthquakeContainer extends React.Component {
                 <div style={hiddenStyle}></div>
             }
             <Table
-                loading={earthquake.get('fetchingEarthquake')}
-                data={earthquake.asMutable().getIn(['earthquakes']).toJS()}
-                columns={earthquake.getIn(['headersAndAccessors']).toJS()}
+                loading={volcano.get('fetchingEarthquake')}
+                data={volcano.asMutable().getIn(['earthquakes']).toJS()}
+                columns={volcano.getIn(['headersAndAccessors']).toJS()}
                 style={tableStyle}
                 title="Earthquake Data"
             />
@@ -76,6 +76,6 @@ class EarthquakeContainer extends React.Component {
 }
 
 
-const mapStateToProps = state => ({ earthquake: state.deep.earthquake });
+const mapStateToProps = state => ({ volcano: state.deep.volcano });
 
 export default connect(mapStateToProps)(EarthquakeContainer);

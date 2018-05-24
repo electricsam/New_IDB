@@ -1,7 +1,7 @@
 import {
   regions, validationConstants, countries, rnpMeasureType, states,
   canadianProvince, indonesianProvince, japanesePrefecture
-} from '../tsunamiForms/constants';
+} from '../../formConstants/constants';
 
 import TsunamiSearchContainer from './TsunamiSearchContainer.jsx';
 

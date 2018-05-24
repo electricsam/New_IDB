@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { get } from 'immutable';
 
-import store from '../../store';
-import Loading from '../loadbar/Loading';
-import Table from "../table/Table";
+import store from '../../../store';
+import Loading from '../../loadbar/Loading';
+import Table from "../../Table/Table";
 
-import { decodeQueryString, createApiQueryString } from '../../helperFunctions/helperFunctions';
-import DialogBox from "../FormPartials/DialogBox";
+import { decodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions';
+import DialogBox from "../../FormPartials/DialogBox";
 
 const tableStyle = {
   textAlign: "center"

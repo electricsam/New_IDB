@@ -2,7 +2,7 @@ import { validationConstants,
   regions,
   countries,
   states
-} from "../../tsunamiForms/constants";
+} from "../../formConstants/constants";
 
 const EarthquakeParameters = [
   {

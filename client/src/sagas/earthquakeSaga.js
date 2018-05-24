@@ -5,7 +5,7 @@ import axios from 'axios';
 import { mapToEarthquakeTable } from '../helperFunctions/helperFunctions';
 
 const port = "http//localhost10088";
-const EARTHQUAKE_BASEPATH = `/earthquakes`
+const EARTHQUAKE_BASEPATH = `/idb-service/earthquakes`
 
 export function* fetchSpecifiedEarthquakes(action){
   let queryString = action.payload;
