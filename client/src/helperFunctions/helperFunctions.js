@@ -128,6 +128,41 @@ const mapToReferenceTable = (arr) => {
   return result;
 };
 
+
+const mapToVolcanoEventTable = arr => {
+  let result = [];
+  if(arr.length){
+    let accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      result.push({Header: camelToPascal(e), accessor: e, })
+    });
+    result.push({
+      Header: "Edit",
+      accessor: 'edit',
+      Cell: props => (
+          <button type="button" onClick={()=> store.dispatch(push(`/volcano/update/${props.original.id}`))}>
+            Edit Volcano Event
+          </button>
+      )
+    });
+    result.push({
+      Header: "Delete",
+      accessor: 'delete',
+      Cell: props => (
+          <button type="button" onClick={()=> deleteVolEvent(props.original.id)}>
+            Delete Volcano Event
+          </button>
+      )
+    });
+  }
+  return result;
+};
+
+const deleteVolEvent = id => {
+  store.dispatch({type: "SET_DELETE_VOLCANO_EVENT_ID", payload: id});
+  store.dispatch({type: "TOGGLE_DELETE_VOLCANO_EVENT_CONFIRMATION"});
+};
+
 const deleteReference = id => {
   store.dispatch({type: "SET_DELETE_REFERENCE_ID", payload: id});
   store.dispatch({type: "TOGGLE_DELETE_REFERENCE_CONFIRMATION"});
@@ -218,5 +253,6 @@ module.exports = {
   createApiQueryString,
   mapToRunupTable,
   mapToEarthquakeTable,
-  mapToReferenceTable
+  mapToReferenceTable,
+  mapToVolcanoEventTable,
 };

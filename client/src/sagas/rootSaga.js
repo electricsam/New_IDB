@@ -39,6 +39,13 @@ import {
   watchPatchReference
 } from "./referenceSaga";
 
+import {
+  watchFetchSpecifiedVolcanoEvents,
+  watchDeleteVolcanoEvent,
+  watchDeleteVolcanoEventFulfilled,
+  watchDeleteVolcanoEventRejected,
+} from './volcanoSaga';
+
 export default function* rootSaga(){
   yield all([
     watchFetchSpecifiedTSEvents(),
@@ -71,5 +78,9 @@ export default function* rootSaga(){
     watchPostReference(),
     watchFetchReferenceById(),
     watchPatchReference(),
+    watchFetchSpecifiedVolcanoEvents(),
+    watchDeleteVolcanoEvent(),
+    watchDeleteVolcanoEventFulfilled(),
+    watchDeleteVolcanoEventRejected(),
   ]);
 }

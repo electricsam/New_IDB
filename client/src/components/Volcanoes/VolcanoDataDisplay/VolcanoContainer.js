@@ -17,42 +17,43 @@ const hiddenStyle = {
 
 const action = obj => store.dispatch(obj);
 
-class EarthquakeContainer extends React.Component {
+class VolcanoContainer extends React.Component {
   constructor(props){
     super(props);
     this.state = {}
   }
 
   componentDidMount(){
-    // let { search } = this.props.location;
-    // if(search.length){
-    //   search = search.split('?')[1];
-    //   let decoded = JSON.parse(decodeQueryString(search));
-    //   let queryString = createApiQueryString(decoded);
-    //   action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED", payload: queryString});
-    // }else{
-    //   action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED"});
-    // }
+    console.log(this.props)
+    let { search } = this.props.location;
+    if(search.length){
+      search = search.split('?')[1];
+      let decoded = JSON.parse(decodeQueryString(search));
+      let queryString = createApiQueryString(decoded);
+      action({type: "FETCH_SPECIFIED_VOLCANO_EVENTS_REQUESTED", payload: queryString});
+    }else{
+      action({type: "FETCH_SPECIFIED_VOLCANO_EVENTS_REQUESTED"});
+    }
   }
 
   handleYesClick = () => {
-    // let id = this.props.earthquake.get('deleteEarthquakeId');
-    // console.log("id inside the yes click: ", id);
-    // action({type: "DELETE_EARTHQUAKE_REQUESTED", payload: id});
+    let id = this.props.earthquake.get('deleteEarthquakeId');
+    console.log("id inside the yes click: ", id);
+    action({type: "DELETE_VOLCANO_EVENT_REQUESTED", payload: id});
   };
 
   handleNoClick = () => {
-    // action({type: "TOGGLE_DELETE_EARTHQUAKE_CONFIRMATION"});
-    // action({type: "SET_DELETE_EARTHQUAKE_ID", payload: null});
+    action({type: "TOGGLE_DELETE_VOLCANO_EVENT_CONFIRMATION"});
+    action({type: "SET_DELETE_VOLCANO_EVENT_ID", payload: null});
   };
 
   render(){
     const { volcano } = this.props;
 
-    if( earthquake.get('fetchedEarthquake')){
+    if( volcano.get('fetchedVolcanoEvents')){
       return (
           <div>
-            {volcano.get('showDeleteEarthquakeConfirmation')?
+            {volcano.get('showDeleteVolcanoEventConfirmation')?
                 <DialogBox
                     handleYesClick={this.handleYesClick}
                     handleNoClick={this.handleNoClick}
@@ -60,11 +61,11 @@ class EarthquakeContainer extends React.Component {
                 <div style={hiddenStyle}></div>
             }
             <Table
-                loading={volcano.get('fetchingEarthquake')}
-                data={volcano.asMutable().getIn(['earthquakes']).toJS()}
+                loading={volcano.get('fetchingVolcanoes')}
+                data={volcano.asMutable().getIn(['volcanoEvents']).toJS()}
                 columns={volcano.getIn(['headersAndAccessors']).toJS()}
                 style={tableStyle}
-                title="Earthquake Data"
+                title="Volcano Data"
             />
           </div>
       )
@@ -78,4 +79,4 @@ class EarthquakeContainer extends React.Component {
 
 const mapStateToProps = state => ({ volcano: state.deep.volcano });
 
-export default connect(mapStateToProps)(EarthquakeContainer);
+export default connect(mapStateToProps)(VolcanoContainer);
