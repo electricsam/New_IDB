@@ -10,6 +10,10 @@ export const initialState = fromJS({
   deletedVolcanoEvent: false,
   deleteVolcanoEventId: null,
   showDeleteVolcanoEventConfirmation: false,
+  search: {},
+  showVolEventSearchParams: true,
+  name:null,
+  location:null,
 });
 
 
@@ -43,6 +47,9 @@ export default function reducer(state = initialState, action){
     }
     case "TOGGLE_DELETE_VOLCANO_EVENT_CONFIRMATION": {
       return state.merge(state, {showDeleteVolcanoEventConfirmation: !state.get('showDeleteVolcanoEventConfirmation')});
+    }
+    case "TOGGLE_VOLCANO_EVENT_SEARCH_PARAMETERS": {
+      return state.merge(state, {showVolEventSearchParams: !state.get('showVolEventSearchParams')});
     }
     default:
       return state;

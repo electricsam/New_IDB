@@ -28,6 +28,7 @@ import ReferenceInsertContainer from "./References/ReferenceInsert/ReferenceInse
 import ReferenceUpdateContainer from "./References/ReferenceUpdate/ReferenceUpdateContainer";
 import EarthquakeLanding from "./Earthquakes/EarthquakeLanding/EarthquakeLanding";
 import VolcanoContainer from "./Volcanoes/VolcanoDataDisplay/VolcanoContainer";
+import VolcanoEventSearchContainer from "./Volcanoes/VolcanoEventSearch/VolcanoEventSearchContainer";
 
 class App extends React.Component {
   render() {
@@ -58,6 +59,7 @@ class App extends React.Component {
             <Route exact path='/reference/insert' component={ReferenceInsertContainer}/>
             <Route exact path='/reference/update/:id' component={ReferenceUpdateContainer}/>
             <Route exact path='/volcano/event/data' component={VolcanoContainer}/>
+            <Route exact path='/volcano/event/search' component={VolcanoEventSearchContainer}/>
             {/*Must have 404 component listed last*/}
             <Route path ="*" component={FourZeroFour}/>
           </Switch>

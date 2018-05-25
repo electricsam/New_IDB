@@ -614,6 +614,32 @@ const referenceHave = [
   {name: "Have, data needs to be added to the Significant Earthquake DB", value: 9}
 ];
 
+const volcanoTypes = [
+
+  {name: 'Select Volcano Type', value:""},
+  {name: "Caldera", value:"Caldera" },
+  {name: "Cinder cone",  value: "Cinder cone"},
+  {name: "Complex volcano",  value: "Complex volcano"},
+  {name: "Compound volcano",  value: "Compound volcano"},
+  {name: "Crater rows",  value: "Crater rows"},
+  {name: "Fissure vent",  value: "Fissure vent"},
+  {name: "Lava cone",  value: "Lava cone"},
+  {name: "Lava dome",  value: "Lava dome"},
+  {name: "Maar", value:"Maar" },
+  {name: "Mud volcano",  value: "Mud volcano"},
+  {name: "Pumice cone",  value: "Pumice cone"},
+  {name: "Pyroclastic cone",  value: "Pyroclastic cone"},
+  {name: "Pyroclastic shield",  value: "Pyroclastic shield"},
+  {name: "Shield volcano",  value: "Shield volcano"},
+  {name: "Stratovolcano", value:"Stratovolcano" },
+  {name: "Subglacial volcano",  value: "Subglacial volcano"},
+  {name: "Submarine volcano",  value: "Submarine volcano"},
+  {name: "Tuff cone",  value: "Tuff cone"},
+  {name: "Volcanic field",  value: "Volcanic field"},
+];
+
+
+
 const validationConstants = {
   cause: {min: 0, max: 11},
   year: {min: -2000, max: (new Date).getFullYear()},
@@ -646,6 +672,7 @@ const validationConstants = {
   distanceRnpLoc:{min: 0, max: 20000},
   runupHt: {min: 0, max: 800},
   eqIntensity: {min: 0, max: 12},
+  vei: {min: 0, max: 8},
 };
 
 export {
@@ -660,5 +687,6 @@ export {
   firstMotion,
   effectDescriptions,
   damageMillions,
-  referenceHave
+  referenceHave,
+  volcanoTypes
 }
