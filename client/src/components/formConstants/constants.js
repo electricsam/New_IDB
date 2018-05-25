@@ -638,7 +638,31 @@ const volcanoTypes = [
   {name: "Volcanic field",  value: "Volcanic field"},
 ];
 
-
+const volcanoStatus = [
+  {name: "Select Status", value:""},
+  {name: "Anthropology", value:"Anthropology"},
+  {name: "Ar/Ar", value:"Ar/Ar"},
+  {name: "Dendrochronology", value:"Dendrochronology"},
+  {name: "Fumarolic", value:"Fumarolic"},
+  {name: "Historical", value:"Historical"},
+  {name: "Holocene", value:"Holocene"},
+  {name: "Holocene?", value:"Holocene?"},
+  {name: "Hot Springs", value:"Hot Springs"},
+  {name: "Hydration Rind", value:"Hydration Rind"},
+  {name: "Hydrophonic", value:"Hydrophonic"},
+  {name: "Ice Core", value:"Ice Core"},
+  {name: "K-Ar", value:"K-Ar"},
+  {name: "Lichenometry", value:"Lichenometry"},
+  {name: "Magnetism", value:"Magnetism"},
+  {name: "Pleistocene", value:"Pleistocene"},
+  {name: "Pleistocene-Fumarol", value:"Pleistocene-Fumarol"},
+  {name: "Radiocarbon", value:"Radiocarbon"},
+  {name: "Seismicity", value:"Seismicity"},
+  {name: "Tephrochronology", value:"Tephrochronology"},
+  {name: "Uncertain", value:"Uncertain"},
+  {name: "Uranium-series", value:"Uranium-series"},
+  {name: "Varve Count", value:"Varve Count"},
+];
 
 const validationConstants = {
   cause: {min: 0, max: 11},
@@ -675,6 +699,26 @@ const validationConstants = {
   vei: {min: 0, max: 8},
 };
 
+const timeOfEruption = [
+  {name: "Select Time of Eruption", value:""},
+  {name: "?", value: "?"},
+  {name: "D", value: "D"},
+  {name: "D1", value: "D1"},
+  {name: "D2", value: "D2"},
+  {name: "D3", value: "D3"},
+  {name: "D4", value: "D4"},
+  {name: "D5", value: "D5"},
+  {name: "D6", value: "D6"},
+  {name: "D7", value: "D7"},
+  {name: "P", value: "P"},
+  {name: "Q", value: "Q"},
+  {name: "U", value: "U"},
+  {name: "U1", value: "U1"},
+  {name: "U7", value: "U7"},
+  {name: "Unknown", value: "Unknown"},
+];
+
+
 export {
   countries,
   states,
@@ -688,5 +732,7 @@ export {
   effectDescriptions,
   damageMillions,
   referenceHave,
-  volcanoTypes
+  volcanoTypes,
+  volcanoStatus,
+  timeOfEruption,
 }

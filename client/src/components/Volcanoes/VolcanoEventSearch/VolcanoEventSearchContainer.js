@@ -46,7 +46,7 @@ class VolcanoEventSearchContainer extends React.Component{
   render(){
     let { volcano } = this.props;
     return (
-        <MultiPartForm title="Search Earthquake Events" handleSubmit={this.handleSubmit.bind(this)}>
+        <MultiPartForm title="Search Volcano Events" handleSubmit={this.handleSubmit.bind(this)}>
 
           <FormSection
               title="Volcano Parameters"

@@ -24,6 +24,11 @@ export const initialState = fromJS({
   deletedVolcanoLoc: false,
   deleteVolcanoLocId: null,
   showDeleteVolcanoLocConfirmation: false,
+  showVolLocSearchParams: true,
+  locSearch:{
+
+  },
+  locName:null,
 
 });
 
@@ -93,6 +98,9 @@ export default function reducer(state = initialState, action){
     }
     case "SET_DELETE_VOLCANO_LOC_ID": {
       return state.merge(state, {deleteVolcanoLocId: action.payload});
+    }
+    case "TOGGLE_VOLCANO_LOC_SEARCH_PARAMETERS": {
+      return state.merge(state, {showVolLocSearchParams: !state.get('showVolLocSearchParams')});
     }
     default:
       return state;

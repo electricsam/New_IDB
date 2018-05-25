@@ -30,6 +30,7 @@ import EarthquakeLanding from "./Earthquakes/EarthquakeLanding/EarthquakeLanding
 import VolcanoContainer from "./Volcanoes/VolcanoDataDisplay/VolcanoContainer";
 import VolcanoEventSearchContainer from "./Volcanoes/VolcanoEventSearch/VolcanoEventSearchContainer";
 import VolcanoLocContainer from "./Volcanoes/VolcanoLocDataDisplay/VolcanoLocContainer";
+import VolcanoLocSearchContainer from "./Volcanoes/VolcanoLocSearch/VolcanoLocSearchContainer";
 
 class App extends React.Component {
   render() {
@@ -62,6 +63,7 @@ class App extends React.Component {
             <Route exact path='/volcano/event/data' component={VolcanoContainer}/>
             <Route exact path='/volcano/event/search' component={VolcanoEventSearchContainer}/>
             <Route exact path='/volcano/loc/data' component={VolcanoLocContainer}/>
+            <Route exact path='/volcano/loc/search' component={VolcanoLocSearchContainer}/>
             {/*Must have 404 component listed last*/}
             <Route path ="*" component={FourZeroFour}/>
           </Switch>

@@ -13,7 +13,7 @@ public interface VolLocTsqpRepository extends JpaRepository<VolLocTsqp, Integer>
     QuerydslBinderCustomizer<QVolLocTsqp>, VolLocTsqpCustomRepository {
 
   default void customize(QuerydslBindings bindings, QVolLocTsqp root){
-    bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));
+    bindings.bind(String.class).first((StringPath path, String value) -> path.equalsIgnoreCase(value));
     bindings.bind(root.minLongitude).first((path, value) -> root.longitude.goe(value));
     bindings.bind(root.maxLongitude).first((path, value) -> root.longitude.loe(value));
 
@@ -27,8 +27,6 @@ public interface VolLocTsqpRepository extends JpaRepository<VolLocTsqp, Integer>
     bindings.bind(root.nameNot).first((path, value) -> {
        return root.name.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
       });
-
-
   }
 
 }

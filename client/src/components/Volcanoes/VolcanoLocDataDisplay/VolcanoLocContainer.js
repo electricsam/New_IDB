@@ -27,9 +27,12 @@ class VolcanoLocContainer extends React.Component {
     console.log(this.props)
     let { search } = this.props.location;
     if(search.length){
+      console.log("SEARCH", search)
       search = search.split('?')[1];
       let decoded = JSON.parse(decodeQueryString(search));
+      console.log("decoded: ", decoded);
       let queryString = createApiQueryString(decoded);
+      console.log("querystring: ", queryString);
       action({type: "FETCH_SPECIFIED_VOLCANO_LOCS_REQUESTED", payload: queryString});
     }else{
       action({type: "FETCH_SPECIFIED_VOLCANO_LOCS_REQUESTED"});
