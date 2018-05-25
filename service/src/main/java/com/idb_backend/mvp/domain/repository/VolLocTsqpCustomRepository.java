@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface VolLocTsqpCustomRepository {
 
-  List<VolLocTsqpProjection> toog(Integer eventId);
+  List<VolLocTsqpProjection> findRelatedVolcanoLocFromEvent(Integer eventId);
 
-  Iterable<VolLocTsqpProjection> boog(Predicate predicate);
+  Iterable<VolLocTsqpProjection> findByQuery(Predicate predicate);
 }

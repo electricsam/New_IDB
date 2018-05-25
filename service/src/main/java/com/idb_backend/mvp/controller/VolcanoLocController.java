@@ -32,7 +32,6 @@ public class VolcanoLocController {
   @ResponseBody
   public ResponseEntity getVolcanoLocs(@RequestParam Map<String, String> params,
                                        @QuerydslPredicate (root = VolLocTsqp.class) Predicate predicate){
-    System.out.println("###########################################: " + predicate.toString());
     try{
       Iterable<VolLocTsqpProjection> result = volLocService.getVolLocs(params, predicate);
       return ResponseEntity.status(HttpStatus.OK).body(result);

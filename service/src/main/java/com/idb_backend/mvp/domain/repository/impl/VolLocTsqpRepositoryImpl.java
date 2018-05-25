@@ -22,7 +22,7 @@ public class VolLocTsqpRepositoryImpl extends QuerydslRepositorySupport implemen
   EntityManager entityManager;
 
   @Override
-  public Iterable<VolLocTsqpProjection> boog(Predicate predicate){
+  public Iterable<VolLocTsqpProjection> findByQuery(Predicate predicate){
     JPAQuery<VolLocTsqp> query = new JPAQuery<>(entityManager);
     QVolLocTsqp vl = QVolLocTsqp.volLocTsqp;
 
@@ -43,7 +43,7 @@ public class VolLocTsqpRepositoryImpl extends QuerydslRepositorySupport implemen
   }
 
   @Override
-  public List<VolLocTsqpProjection> toog(Integer eventId) {
+  public List<VolLocTsqpProjection> findRelatedVolcanoLocFromEvent(Integer eventId) {
     JPAQuery<VolLocTsqp> query = new JPAQuery<>(entityManager);
     QVolLocTsqp vl = QVolLocTsqp.volLocTsqp;
     QVolcanoEvent ve = QVolcanoEvent.volcanoEvent;
