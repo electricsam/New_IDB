@@ -17,7 +17,7 @@ const hiddenStyle = {
 
 const action = obj => store.dispatch(obj);
 
-class VolcanoContainer extends React.Component {
+class VolcanoLocContainer extends React.Component {
   constructor(props){
     super(props);
     this.state = {}
@@ -30,30 +30,29 @@ class VolcanoContainer extends React.Component {
       search = search.split('?')[1];
       let decoded = JSON.parse(decodeQueryString(search));
       let queryString = createApiQueryString(decoded);
-      action({type: "FETCH_SPECIFIED_VOLCANO_EVENTS_REQUESTED", payload: queryString});
+      action({type: "FETCH_SPECIFIED_VOLCANO_LOCS_REQUESTED", payload: queryString});
     }else{
-      action({type: "FETCH_SPECIFIED_VOLCANO_EVENTS_REQUESTED"});
+      action({type: "FETCH_SPECIFIED_VOLCANO_LOCS_REQUESTED"});
     }
   }
 
   handleYesClick = () => {
-    let id = this.props.earthquake.get('deleteVolcanoEventId');
-    console.log("id inside the yes click: ", id);
-    action({type: "DELETE_VOLCANO_EVENT_REQUESTED", payload: id});
+    let id = this.props.earthquake.get('deleteEarthquakeId');
+    action({type: "DELETE_VOLCANO_LOC_REQUESTED", payload: id});
   };
 
   handleNoClick = () => {
-    action({type: "TOGGLE_DELETE_VOLCANO_EVENT_CONFIRMATION"});
-    action({type: "SET_DELETE_VOLCANO_EVENT_ID", payload: null});
+    action({type: "TOGGLE_DELETE_VOLCANO_LOC_CONFIRMATION"});
+    action({type: "SET_DELETE_VOLCANO_LOC_ID", payload: null});
   };
 
   render(){
     const { volcano } = this.props;
 
-    if( volcano.get('fetchedVolcanoEvents')){
+    if( volcano.get('fetchedVolcanoLocs')){
       return (
           <div>
-            {volcano.get('showDeleteVolcanoEventConfirmation')?
+            {volcano.get('showDeleteVolcanoLocConfirmation')?
                 <DialogBox
                     handleYesClick={this.handleYesClick}
                     handleNoClick={this.handleNoClick}
@@ -61,11 +60,11 @@ class VolcanoContainer extends React.Component {
                 <div style={hiddenStyle}></div>
             }
             <Table
-                loading={volcano.get('fetchingVolcanoes')}
-                data={volcano.asMutable().getIn(['volcanoEvents']).toJS()}
+                loading={volcano.get('fetchingVolcanoLocs')}
+                data={volcano.asMutable().getIn(['volcanoLocs']).toJS()}
                 columns={volcano.getIn(['headersAndAccessors']).toJS()}
                 style={tableStyle}
-                title="Volcano Data"
+                title="Volcano Loc Data"
             />
           </div>
       )
@@ -79,4 +78,4 @@ class VolcanoContainer extends React.Component {
 
 const mapStateToProps = state => ({ volcano: state.deep.volcano });
 
-export default connect(mapStateToProps)(VolcanoContainer);
+export default connect(mapStateToProps)(VolcanoLocContainer);

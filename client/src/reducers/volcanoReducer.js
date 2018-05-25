@@ -16,6 +16,15 @@ export const initialState = fromJS({
   location:null,
   comments: null,
   showVolEventSearchEffects:true,
+  fetchedVolcanoLocs:false,
+  fetchingVolcanoLocs:false,
+  showDeleteVolcanoLocsConfirmation:false,
+  volcanoLocs:[],
+  deletingVolcanoLoc: false,
+  deletedVolcanoLoc: false,
+  deleteVolcanoLocId: null,
+  showDeleteVolcanoLocConfirmation: false,
+
 });
 
 
@@ -55,6 +64,35 @@ export default function reducer(state = initialState, action){
     }
     case "TOGGLE_VOLCANO_EVENT_SEARCH_EFFECTS": {
       return state.merge(state, {showVolEventSearchEffects: !state.get("showVolEventSearchEffects")});
+    }
+    case "FETCH_SPECIFIED_VOLCANO_LOCS_REQUESTED": {
+      return state.merge(state, {fetchingVolcanoLocs: true});
+    }
+    case "FETCH_SPECIFIED_VOLCANO_LOCS_FULFILLED": {
+      return state.merge(state, {
+        fetchingVolcanoLocs: false,
+        fetchedVolcanoLocs: true,
+        volcanoLocs: action.payload.data,
+        headersAndAccessors: action.payload.formattedData
+      })
+    }
+    case "FETCH_SPECIFIED_VOLCANO_LOCS_REJECTED": {
+      return state.merge(state, {
+        fetchingVolcanoLocs: false,
+        error: action.payload
+      })
+    }
+    case "DELETE_VOLCANO_LOC_REQUESTED": {
+      return state.merge(state, {deletingVolcanoLoc: true});
+    }
+    case "DELETE_VOLCANO_LOC_FULFILLED": {
+      return state.merge(state, {deletingVolcanoLoc: false, deletedVolcanoLoc: true})
+    }
+    case "TOGGLE_DELETE_VOLCANO_LOC_CONFIRMATION": {
+      return state.merge(state, {showDeleteVolcanoLocConfirmation: !state.get('showDeleteVolcanoLocConfirmation')})
+    }
+    case "SET_DELETE_VOLCANO_LOC_ID": {
+      return state.merge(state, {deleteVolcanoLocId: action.payload});
     }
     default:
       return state;

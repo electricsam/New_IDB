@@ -158,6 +158,42 @@ const mapToVolcanoEventTable = arr => {
   return result;
 };
 
+
+const mapToVolcanoLocsTable = arr => {
+  let result = [];
+  if(arr.length){
+    let accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      result.push({Header: camelToPascal(e), accessor: e, })
+    });
+    result.push({
+      Header: "Edit",
+      accessor: 'edit',
+      Cell: props => (
+          <button type="button" onClick={()=> store.dispatch(push(`/volcano/loc/update${props.original.id}`))}>
+            Edit Volcano Event
+          </button>
+      )
+    });
+    result.push({
+      Header: "Delete",
+      accessor: 'delete',
+      Cell: props => (
+          <button type="button" onClick={()=> deleteVolLoc(props.original.id)}>
+            Delete Volcano Event
+          </button>
+      )
+    });
+  }
+  return result;
+};
+
+
+const deleteVolLoc = id => {
+  store.dispatch({type: "SET_DELETE_VOLCANO_LOC_ID", payload: id});
+  store.dispatch({type: "TOGGLE_DELETE_VOLCANO_LOC_CONFIRMATION"});
+};
+
 const deleteVolEvent = id => {
   store.dispatch({type: "SET_DELETE_VOLCANO_EVENT_ID", payload: id});
   store.dispatch({type: "TOGGLE_DELETE_VOLCANO_EVENT_CONFIRMATION"});
@@ -255,4 +291,5 @@ module.exports = {
   mapToEarthquakeTable,
   mapToReferenceTable,
   mapToVolcanoEventTable,
+  mapToVolcanoLocsTable
 };

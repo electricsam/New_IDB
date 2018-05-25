@@ -44,6 +44,10 @@ import {
   watchDeleteVolcanoEvent,
   watchDeleteVolcanoEventFulfilled,
   watchDeleteVolcanoEventRejected,
+  watchFetchSpecifiedVolcanoLocs,
+  watchDeleteVolcanoLoc,
+  watchDeleteVolcanoLocFulfilled,
+  watchDeleteVolcanoLocRejected,
 } from './volcanoSaga';
 
 export default function* rootSaga(){
@@ -82,5 +86,9 @@ export default function* rootSaga(){
     watchDeleteVolcanoEvent(),
     watchDeleteVolcanoEventFulfilled(),
     watchDeleteVolcanoEventRejected(),
+    watchFetchSpecifiedVolcanoLocs(),
+    watchDeleteVolcanoLoc(),
+    watchDeleteVolcanoLocFulfilled(),
+    watchDeleteVolcanoLocRejected(),
   ]);
 }
