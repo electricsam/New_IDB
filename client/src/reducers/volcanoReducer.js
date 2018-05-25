@@ -14,6 +14,8 @@ export const initialState = fromJS({
   showVolEventSearchParams: true,
   name:null,
   location:null,
+  comments: null,
+  showVolEventSearchEffects:true,
 });
 
 
@@ -50,6 +52,9 @@ export default function reducer(state = initialState, action){
     }
     case "TOGGLE_VOLCANO_EVENT_SEARCH_PARAMETERS": {
       return state.merge(state, {showVolEventSearchParams: !state.get('showVolEventSearchParams')});
+    }
+    case "TOGGLE_VOLCANO_EVENT_SEARCH_EFFECTS": {
+      return state.merge(state, {showVolEventSearchEffects: !state.get("showVolEventSearchEffects")});
     }
     default:
       return state;

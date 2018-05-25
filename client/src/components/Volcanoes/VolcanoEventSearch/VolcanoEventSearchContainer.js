@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Parameters } from './VolcanoEventSearchConstants';
+import {Effects, Parameters} from './VolcanoEventSearchConstants';
 
 import { encodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions'
 import store from '../../../store'
@@ -35,19 +35,13 @@ class VolcanoEventSearchContainer extends React.Component{
     }
   }
 
-  checkLocType = () => this.props.volcano.get('locType');
-
   checkConditions = (condition) => this.props.volcano.get(condition);
 
   toggleParameters = () => action({type: "TOGGLE_VOLCANO_EVENT_SEARCH_PARAMETERS"});
 
-  // toggleEffects = () => action({type: "TOGGLE_EARTHQUAKE_SEARCH_EFFECTS"});
-
-  // toggleTotalEffects = () => action({type: "TOGGLE_EARTHQUAKE_SEARCH_TOTAL_EFFECTS"});
+  toggleEffects = () => action({type: "TOGGLE_VOLCANO_EVENT_SEARCH_EFFECTS"});
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
-
-  // checkDropDownDisabled = (val) => this.props.volcano.asMutable().toJS().search.country === val? false: true;
 
   render(){
     let { volcano } = this.props;
@@ -60,10 +54,17 @@ class VolcanoEventSearchContainer extends React.Component{
               showSection={volcano.get('showVolEventSearchParams')}
               validateMinMax={this.validateMinMax}
               formData={Parameters}
-              // checkDropDownDisabled={this.checkDropDownDisabled}
               checkConditions={this.checkConditions}
           />
 
+          <FormSection
+              title="Volcano Parameters"
+              toggleSection={this.toggleEffects}
+              showSection={volcano.get('showVolEventSearchEffects')}
+              validateMinMax={this.validateMinMax}
+              formData={Effects}
+              checkConditions={this.checkConditions}
+          />
 
         </MultiPartForm>
     )
