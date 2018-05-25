@@ -31,6 +31,7 @@ import VolcanoContainer from "./Volcanoes/VolcanoDataDisplay/VolcanoContainer";
 import VolcanoEventSearchContainer from "./Volcanoes/VolcanoEventSearch/VolcanoEventSearchContainer";
 import VolcanoLocContainer from "./Volcanoes/VolcanoLocDataDisplay/VolcanoLocContainer";
 import VolcanoLocSearchContainer from "./Volcanoes/VolcanoLocSearch/VolcanoLocSearchContainer";
+import VolcanoEventInsertContainer from "./Volcanoes/VolcanoEventInsert/VolcanoEventInsertContainer";
 
 class App extends React.Component {
   render() {
@@ -64,6 +65,7 @@ class App extends React.Component {
             <Route exact path='/volcano/event/search' component={VolcanoEventSearchContainer}/>
             <Route exact path='/volcano/loc/data' component={VolcanoLocContainer}/>
             <Route exact path='/volcano/loc/search' component={VolcanoLocSearchContainer}/>
+            <Route exact path='/volcano/event/insert/:volLocId' component={VolcanoEventInsertContainer}/>
             {/*Must have 404 component listed last*/}
             <Route path ="*" component={FourZeroFour}/>
           </Switch>

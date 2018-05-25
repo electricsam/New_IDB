@@ -1,5 +1,6 @@
 package com.idb_backend.mvp.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.querydsl.core.annotations.QueryEntity;
 import lombok.AccessLevel;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TimeZone;
 
 @Data
 @QueryEntity
@@ -31,9 +33,13 @@ public class VolcanoEvent {
 
   private Integer mo;
   private Integer day;
-  private java.sql.Date eventDate;
-  private java.sql.Date startDate;
-  private java.sql.Date endDate;
+
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+  private java.util.Date eventDate;
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+  private java.util.Date startDate;
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "UTC")
+  private java.util.Date endDate;
 
   private Integer vei;
 

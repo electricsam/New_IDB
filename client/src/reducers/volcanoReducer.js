@@ -29,7 +29,12 @@ export const initialState = fromJS({
 
   },
   locName:null,
-
+  showVolEventInsertDateLoc: true,
+  insert: {
+    country: ""
+  },
+  postingVolcanoEvent: false,
+  postedVolcanoEvent: false,
 });
 
 
@@ -101,6 +106,18 @@ export default function reducer(state = initialState, action){
     }
     case "TOGGLE_VOLCANO_LOC_SEARCH_PARAMETERS": {
       return state.merge(state, {showVolLocSearchParams: !state.get('showVolLocSearchParams')});
+    }
+    case "TOGGLE_VOLCANO_EVENT_INSERT_DATE_AND_LOCATION": {
+      return state.merge(state, {showVolEventInsertDateLoc: !state.get('showVolEventInsertDateLoc')});
+    }
+    case "POST_VOLCANO_EVENT_REQUESTED": {
+      return state.merge(state, {postingVolcanoEvent: true});
+    }
+    case "POST_VOLCANO_EVENT_FULFILLED": {
+      return state.merge(state, {postingVolcanoEvent: false, postedVolcanoEvent: true});
+    }
+    case "POST_VOLCANO_EVENT_REJECTED": {
+      return state.merge(state, {postingVolcanoEvent: false, error: action.payload});
     }
     default:
       return state;

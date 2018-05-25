@@ -146,6 +146,24 @@ const mapToVolcanoEventTable = arr => {
       )
     });
     result.push({
+      Header: "Add Volcano Event",
+      accessor: 'addEvent',
+      Cell: props => (
+          <button type="button" onClick={()=> store.dispatch(push(`/volcano/event/insert/${props.original.id}`))}>
+            Add Volcano Event
+          </button>
+      )
+    });
+    // result.push({
+    //   Header: "Related Runups",
+    //   accessor: 'relatedRunups',
+    //   Cell: props => (
+    //       <button type="button" onClick={()=> getRelatedRunups(`${props.original.id}`)}>
+    //         Related Runups
+    //       </button>
+    //   )
+    // });
+    result.push({
       Header: "Delete",
       accessor: 'delete',
       Cell: props => (

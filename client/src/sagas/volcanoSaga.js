@@ -100,3 +100,21 @@ export function* resetDeleteVolcanoLoc(){
   yield put({type: "SET_DELETE_VOLCANO_LOC_ID", payload: null});
   yield put({type: "TOGGLE_DELETE_VOLCANO_LOC_CONFIRMATION"});
 }
+
+export function* watchPostVolcanoEvent(){
+  yield takeEvery("POST_VOLCANO_EVENT_REQUESTED", postVolcanoEvent);
+}
+
+export function* postVolcanoEvent(action){
+  let {volcanoEvent, id} = action.payload;
+  try{
+    const response = yield call(axios.post, `${VOLCANO_BASEPATH}/${id}`, volcanoEvent);
+    yield put({
+      type: "POST_VOLCANO_EVENT_FULFILLED",
+      payload: response.data
+    })
+  }catch(error){
+    yield put({type: "POST_VOLCANO_EVENT_FULFILLED", payload: error});
+  }
+}
+

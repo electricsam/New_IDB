@@ -36,7 +36,8 @@ import {
   watchDeleteReferenceRejected,
   watchPostReference,
   watchFetchReferenceById,
-  watchPatchReference
+  watchPatchReference,
+  watchPostVolcanoEvent,
 } from "./referenceSaga";
 
 import {
@@ -90,5 +91,6 @@ export default function* rootSaga(){
     watchDeleteVolcanoLoc(),
     watchDeleteVolcanoLocFulfilled(),
     watchDeleteVolcanoLocRejected(),
+    watchPostVolcanoEvent(),
   ]);
 }
