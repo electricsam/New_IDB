@@ -14,6 +14,7 @@ class Navbar extends React.Component {
       eqSubMenuDisplay: 'none',
       tsSubMenuDisplay: 'none',
       refSubMenuDisplay: 'none',
+      volSubMenuDisplay: 'none',
       hazDisplay: 'none',
     }
   }
@@ -67,6 +68,20 @@ class Navbar extends React.Component {
     this.setState(prevState);
   };
 
+  handleVolMouseEnter = () => {
+    let prevState = this.state;
+    prevState.volSubMenuDisplay = 'block';
+    this.setState(prevState);
+  };
+
+  handlevolMouseLeave = () => {
+    let prevState = this.state;
+    prevState.volSubMenuDisplay = 'none';
+    this.setState(prevState);
+  };
+
+
+
   render() {
     return (
         <div className={Styles.container}>
@@ -107,7 +122,18 @@ class Navbar extends React.Component {
                       <MenuItem linkText="Events" address={'/earthquake/eventsearch'}/>
                     </SubMenu>
                   </MenuItem>
-                  <MenuItem linkText="VOLCANOES" address="/volcano/eventsearch"/>
+                  <MenuItem
+                      linkText="VOLCANOES"
+                      address="/volcano/eventsearch"
+                      handleMouseEnter={this.handleVolMouseEnter}
+                      handleMouseLeave={this.handlevolMouseLeave}
+                  >
+                    <SubMenu display={this.state.volSubMenuDisplay}>
+                      <MenuItem linkText="Events" address="/volcano/event/search"/>
+                      <MenuItem linkText="Locations" address='/volcano/loc/search'/>
+                      <MenuItem linkText="Insert Location" address='/volcano/loc/insert'/>
+                    </SubMenu>
+                  </MenuItem>
                   <MenuItem linkText="TSUNAMIS" address="/tsunami/landing"
                             handleMouseEnter={this.handleTsMouseEnter}
                             handleMouseLeave={this.handleTsMouseLeave}>
