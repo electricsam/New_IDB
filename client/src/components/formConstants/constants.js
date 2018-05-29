@@ -669,9 +669,9 @@ const validationConstants = {
   year: {min: -2000, max: (new Date).getFullYear()},
   month: {min: 1, max: 12},
   day: {min: 1, max: 31},
-  hour: {min: 0, max: 24},
-  minute: {min: 0, max: 60},
-  second: {min:0, max:60},
+  hour: {min: 0, max: 23},
+  minute: {min: 0, max: 59},
+  second: {min:0, max:59},
   validity: {min: -1, max: 4},
   latitude: {min: -1 , max: 90},
   longitude: {min: -180, max: 180},
@@ -699,6 +699,22 @@ const validationConstants = {
   vei: {min: 0, max: 8},
 };
 
+const volcanoAgent = [
+  {name: "Select Agent", value: ""},
+  {name: "Avalance (Debris and landslides", value: "A"},
+  {name: "Electrical (lightning)", value: "E"},
+  {name: "Floods (& Jokulhlaups)", value: "F"},
+  {name: "Gas (emission from eruptive craters as well as fumarolic/solfataric activity)", value: "G"},
+  {name: "Indirect deaths (disease, starvation, exposure, desolation)", value: "I"},
+  {name: "Lava Flows", value: "L"},
+  {name: "Mudflows/Lahars", value: "M"},
+  {name: "Secondary (post-eruption) mudflows", value: "m"},
+  {name: "Pyroclastic flows, surges, & direct blasts", value: "P"},
+  {name: "Seismic, or volcanic earthquake (tectonic earthquake deaths excluded)", value: "S"},
+  {name: "Tephra (ash, bombs, lapilli, steam blasts.", value: "T"},
+  {name: "Waves or tsunami", value: "W"}
+];
+
 const timeOfEruption = [
   {name: "Select Time of Eruption", value:""},
   {name: "?", value: "?"},
@@ -718,7 +734,6 @@ const timeOfEruption = [
   {name: "Unknown", value: "Unknown"},
 ];
 
-
 export {
   countries,
   states,
@@ -735,4 +750,5 @@ export {
   volcanoTypes,
   volcanoStatus,
   timeOfEruption,
+  volcanoAgent,
 }

@@ -35,6 +35,8 @@ export const initialState = fromJS({
   },
   postingVolcanoEvent: false,
   postedVolcanoEvent: false,
+  showVolEventInsertMeasure: true,
+  showVolEventInsertEffects: true,
 });
 
 
@@ -118,6 +120,12 @@ export default function reducer(state = initialState, action){
     }
     case "POST_VOLCANO_EVENT_REJECTED": {
       return state.merge(state, {postingVolcanoEvent: false, error: action.payload});
+    }
+    case "TOGGLE_VOLCANO_EVENT_INSERT_MEASURE": {
+      return state.merge(state, {showVolEventInsertMeasure: !state.get('showVolEventInsertMeasure')});
+    }
+    case "TOGGLE_VOLCANO_EVENT_INSERT_EFFECTS": {
+      return state.merge(state, {showVolEventInsertEffects: !state.get('showVolEventInsertEffects')});
     }
     default:
       return state;

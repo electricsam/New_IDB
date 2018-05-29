@@ -6,7 +6,7 @@ import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
 import { encodeQueryString } from '../../../helperFunctions/helperFunctions';
 
-import { DateAndLocation } from './VolcanoEventInsertConstants';
+import { Dates, Effects, Measurements } from './VolcanoEventInsertConstants';
 
 const action = obj => store.dispatch(obj)
 
@@ -33,15 +33,35 @@ class VolcanoEventInsertContainer extends React.Component{
     }
   }
 
-  toggleDateAndLocation = () => action({type: "TOGGLE_VOLCANO_EVENT_INSERT_DATE_AND_LOCATION"});
+  toggleDate = () => action({type: "TOGGLE_VOLCANO_EVENT_INSERT_DATE_AND_LOCATION"});
+
+  toggleMeasure = () => action({type: "TOGGLE_VOLCANO_EVENT_INSERT_MEASURE"});
   //
-  // toggleMeasure = () => action({type: "TOGGLE_EARTHQUAKE_INSERT_MEASURE"});
-  //
-  // toggleEffects = () => action({type: "TOGGLE_EARTHQUAKE_INSERT_EFFECTS"});
-  //
-  // toggleTotalEffects = () => action({type: "TOGGLE_EARTHQUAKE_INSERT_TOTAL_EFFECTS"});
+  toggleEffects = () => action({type: "TOGGLE_VOLCANO_EVENT_INSERT_EFFECTS"});//
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+
+  validateDateTime = (dateTime) => {
+    if (!dateTime) return true
+    var re = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/
+    if(!re.test(dateTime)) return false;
+
+    let date = dateTime.substring(0, 10);
+    let dateArr = date.split('-').map(e => parseInt(e));
+
+    let time = dateTime.substring(11, 19)
+    let timeArr = time.split(':').map(e => parseInt(e));
+
+    if(dateArr[0] > (new Date).getFullYear() || dateArr[0] < 0) return false;
+    if(dateArr[1] > 12 || dateArr[1] < 1) return false;
+    if(dateArr[2] < 1 || dateArr[2] > 31) return false;
+
+    if(timeArr[0] < 0 || timeArr[0] > 23) return false;
+    if(timeArr[1] < 0 || timeArr[1] > 59) return false;
+    if(timeArr[2] < 0 || timeArr[2] > 59) return false;
+
+    return true;
+  };
 
   checkDropDownDisabled = (val) => this.props.volcano.asMutable().toJS().insert.country === val? false: true;
 
@@ -52,12 +72,29 @@ class VolcanoEventInsertContainer extends React.Component{
         <MultiPartForm title="Insert Volcano" handleSubmit={this.handleSubmit.bind(this)}>
 
           <FormSection
-              title="Date and Location"
-              toggleSection={this.toggleDateAndLocation}
+              title="Dates"
+              toggleSection={this.toggleDate}
               showSection={volcano.get('showVolEventInsertDateLoc')}
               validateMinMax={this.validateMinMax}
-              formData={DateAndLocation}
+              validateDateTime={this.validateDateTime}
+              formData={Dates}
               checkDropDownDisabled={this.checkDropDownDisabled}
+          />
+
+          <FormSection
+            title="Measurements"
+            toggleSection={this.toggleMeasure}
+            showSection={volcano.get('showVolEventInsertMeasure')}
+            validateMinMax={this.validateMinMax}
+            formData={Measurements}
+          />
+
+          <FormSection
+            title="Effects"
+            toggleSection={this.toggleEffects}
+            showSection={volcano.get('showVolEventInsertEffects')}
+            validateMinMax={this.validateMinMax}
+            formData={Effects}
           />
 
 

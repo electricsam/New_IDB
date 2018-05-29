@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Control, Errors  } from 'react-redux-form/lib/immutable'
+import { Control, Errors  } from 'react-redux-form/lib/immutable';
 
 import DropDown from "./DropDown.jsx";
 import Radio from "./Radio";
 import MinMax from "./MinMax";
-import SubSection from "./SubSection"
-
+import SubSection from "./SubSection";
+import DateTime from './DateTime';
 import Styles from "./FormSectionStyles.css"
 
 const FormSection = props => (
@@ -80,8 +80,18 @@ const FormSection = props => (
                       />
                     </SubSection>
                 )
-              }
-              else if(e.type === 'MULTIMINMAX'){
+              }else if (e.type === "DATETIME"){
+               return(
+                   <SubSection title={e.title}>
+                     <DateTime
+                      model={e.model}
+                      title="YYYY-MM-DD HH:MM:SS"
+                      validDateTime={props.validateDateTime}
+                      validMessage={{valid: e.validMessage}}
+                     />
+                   </SubSection>
+               )
+              }else if(e.type === 'MULTIMINMAX'){
                 return (
                     <SubSection title={e.title}>
                       {

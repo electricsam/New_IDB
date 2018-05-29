@@ -36,8 +36,10 @@ public class VolcanoEvent {
 
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
   private java.util.Date eventDate;
+
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
   private java.util.Date startDate;
+
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "UTC")
   private java.util.Date endDate;
 
