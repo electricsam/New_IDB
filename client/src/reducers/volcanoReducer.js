@@ -177,7 +177,7 @@ export default function reducer(state = initialState, action){
       return state.merge(state, {fetchingVolcanoEvents: false, error: action.payload});
     }
     case "TOGGLE_VOLCANO_EVENT_UPDATE_DATE": {
-      return state.merge(state, {showVolEventUpdateDateLoc: !state.get('showVolEventUpdateDate')})
+      return state.merge(state, {showVolEventUpdateDate: !state.get('showVolEventUpdateDate')})
     }
     case "TOGGLE_VOLCANO_EVENT_UPDATE_MEASURE": {
       return state.merge(state, {showVolEventUpdateMeasure: !state.get('showVolEventUpdateMeasure')})
