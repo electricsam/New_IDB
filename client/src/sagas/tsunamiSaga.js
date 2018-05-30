@@ -65,7 +65,6 @@ export function* watchFetchSpecifiedTSEvents(){
 
 export function* patchTsEvent(action){
   let id = action.payload.id;
-  console.log("you are in the patchTSEVENT ", action.payload.tsEvent );
   let tsEvent = action.payload.tsEvent;
   try{
     const response = yield call(axios.patch, `${TSUNAMI_EVENTS_BASEPATH}/${id}`, tsEvent);
@@ -92,7 +91,6 @@ export function* watchPatchTsEvent(){
 export function* postTsEvent(action){
   let tsEvent = action.payload;
   try{
-    console.log("TSEVENT: ", tsEvent)
     const response = yield call(axios.post, TSUNAMI_EVENTS_BASEPATH, tsEvent);
     yield put({
       type:"POST_TS_EVENT_FULFILLED",
@@ -110,7 +108,6 @@ export function* watchPostTsEvent(){
 export function* postRunup(action){
   let { runup, id } = action.payload
   try{
-    console.log('this is id', id);
     const response = yield call(axios.post, `${TSUNAMI_RUNUPS_BASEPATH}/${id}`, runup);
     yield put({
       type:"POST_TS_RUNUP_FULFILLED",
@@ -137,7 +134,6 @@ export function* fetchRunup(action){
       type: "FETCH_TS_RUNUP_FULFILLED",
       payload: response.data
     });
-    console.log("Right heree alskjfdladskjflsadjkflksjdflkajdsfl", response.data);
   }catch(error){
     yield put({type: "FETCH_TS_RUNUP_REJECTED", payload: error});
   }
@@ -148,12 +144,7 @@ export function* watchUpdateRunup(){
 }
 
 export function* updateRunup(action){
-  console.log("YOU ARE INSIDE THE UPDATE RUNUP FUNCTION");
-
   let { runupId, eventId, runupData } = action.payload;
-
-  console.log("********************************** Runup Data ", runupData, " *****************************");
-
   try{
     const response = yield call(axios.patch, `${TSUNAMI_RUNUPS_BASEPATH}/${eventId}`, runupData);
     yield put({type: "UPDATE_TS_RUNUP_FULFILLED",payload: response.data});
@@ -166,8 +157,6 @@ export function* fetchSpecifiedRunup(action){
   let queryString = action.payload;
 
   try{
-    console.log("this is the query string ", queryString);
-    console.log("this is the full path")
     const response = yield call(axios.get, `${TSUNAMI_RUNUPS_BASEPATH}?${queryString}`);
     yield  put({
       type: "FETCH_SPECIFIED_RUNUP_FULFILLED",

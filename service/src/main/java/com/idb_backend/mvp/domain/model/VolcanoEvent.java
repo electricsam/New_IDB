@@ -208,6 +208,4 @@ public class VolcanoEvent {
     return this.volLocTsqp;
   }
 
-
-
 }

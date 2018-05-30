@@ -44,13 +44,18 @@ export const initialState = fromJS({
   postedVolcanoLoc: false,
   showVolLocInsertLocation: true,
   showVolLocInsertDetails: true,
+  patchingVolcanoEvent: false,
+  patchedVolcanoEvent: false,
+  showVolEventUpdateDate: true,
+  showVolEventUpdateMeasure: true,
+  showVolEventUpdateEffects: true,
 });
 
 
 export default function reducer(state = initialState, action){
   switch(action.type){
     case "FETCH_SPECIFIED_VOLCANO_EVENTS_REQUESTED": {
-      return state.merge(state, {fetchingVolcanoEvents: true});
+      return state.merge(state, {fetchingVolcanoEvents: true, fetchedVolcanoEvents:false });
     }
     case "FETCH_SPECIFIED_VOLCANO_EVENTS_FULFILLED": {
       return state.merge(state, {
@@ -85,7 +90,7 @@ export default function reducer(state = initialState, action){
       return state.merge(state, {showVolEventSearchEffects: !state.get("showVolEventSearchEffects")});
     }
     case "FETCH_SPECIFIED_VOLCANO_LOCS_REQUESTED": {
-      return state.merge(state, {fetchingVolcanoLocs: true});
+      return state.merge(state, {fetchingVolcanoLocs: true, fetchedVolcanoLocs: false});
     }
     case "FETCH_SPECIFIED_VOLCANO_LOCS_FULFILLED": {
       return state.merge(state, {
@@ -148,6 +153,37 @@ export default function reducer(state = initialState, action){
     }
     case "TOGGLE_VOLCANO_LOC_INSERT_DETAILS": {
       return state.merge(state, {showVolLocInsertDetails: !state.get('showVolLocInsertDetails')});
+    }
+    case "PATCH_VOLCANO_EVENT_REQUESTED": {
+      return state.merge(state, {patchingVolcanoEvent: true});
+    }
+    case "PATCH_VOLCANO_EVENT_FULFILLED": {
+      return state.merge(state, {patchingVolcanoEvent: false, patchedVolcanoEvent: true});
+    }
+    case "PATCH_VOLCANO_EVENT_REJECTED": {
+      return state.merge(state, {patchingVolcanoEvent: false, error: action.payload});
+    }
+    case "FETCH_VOLCANO_EVENT_REQUESTED": {
+      return state.merge(state, {fetchingVolcanoEvents: true, fetchedVolcanoEvents: false});
+    }
+    case "FETCH_VOLCANO_EVENT_FULFILLED": {
+      return state.merge(state, {
+        fetchingVolcanoEvents: false,
+        fetchedVolcanoEvents: true,
+        volcanoEvents: [action.payload]
+      });
+    }
+    case "FETCH_VOLCANO_EVENT_REJECTED": {
+      return state.merge(state, {fetchingVolcanoEvents: false, error: action.payload});
+    }
+    case "TOGGLE_VOLCANO_EVENT_UPDATE_DATE": {
+      return state.merge(state, {showVolEventUpdateDateLoc: !state.get('showVolEventUpdateDate')})
+    }
+    case "TOGGLE_VOLCANO_EVENT_UPDATE_MEASURE": {
+      return state.merge(state, {showVolEventUpdateMeasure: !state.get('showVolEventUpdateMeasure')})
+    }
+    case "TOGGLE_VOLCANO_EVENT_UPDATE_EFFECTS": {
+      return state.merge(state, {showVolEventUpdateEffects: !state.get('showVolEventUpdateEffects')})
     }
 
 

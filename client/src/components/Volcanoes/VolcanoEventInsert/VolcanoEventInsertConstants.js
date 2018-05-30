@@ -14,7 +14,7 @@ const Dates = [
     title: "Month",
     minThreshold: validationConstants.month.min,
     maxThreshold: validationConstants.month.max,
-    model: ".volcano.insert.month",
+    model: ".volcano.insert.mo",
     validMessage: "Invalid Month"
   },
   {
@@ -52,7 +52,7 @@ const Measurements = [
     title: "VEI",
     minThreshold: validationConstants.vei.min,
     maxThreshold: validationConstants.vei.max,
-    model: ".volcano.insert.VEI",
+    model: ".volcano.insert.vei",
     validMessage: "Invalid VEI"
   },
   {

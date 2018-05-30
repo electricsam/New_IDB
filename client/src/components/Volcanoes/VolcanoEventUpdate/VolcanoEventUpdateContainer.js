@@ -6,7 +6,7 @@ import store from '../../../store';
 import Loading from "../../loadbar/Loading"
 import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
-import { DateAndLocation, Measurement, TotalEffects, Effects  } from "./TsunamiEventUpdateConstants";
+import {Dates, Measurements, Effects} from "./VolcanoEventUpdateConstants";
 
 const action = obj => store.dispatch(obj);
 
@@ -17,53 +17,85 @@ class VolcanoEventUpdateContainer extends React.Component{
   }
 
   componentWillMount(){
-    let id = this.props.match.params.id;
-    action({type: "FETCH_VOLCANO_EVENT_REQUESTED", payload: id});
+    let { hazEventId, volId } = this.props.match.params;
+    action({type: "FETCH_VOLCANO_EVENT_REQUESTED", payload: hazEventId});
   }
 
   handleSubmit(val){
     val = val.volcano.asMutable().toJS();
-    let id = this.props.match.params.id;
-    if(val.volcanoes){
-      let encoded = encodeQueryString(JSON.stringify(val.tsEvent));
-      action({type: "PATCH_VOLCANO_EVENT_REQUESTED", payload:{ tsEvent: val.tsEvent, id: id}});
+    let { volId } = this.props.match.params;
+    if(val.volcanoEvents){
+      let encoded = encodeQueryString(JSON.stringify(val.volcanoEvents[0]));
+      action({type: "PATCH_VOLCANO_EVENT_REQUESTED", payload:{ volcanoEvent: val.volcanoEvents[0], volId: volId}});
     }
   }
 
 
-  toggleDateAndLocation = () => action({type: "TOGGLE_TSUNAMI_UPDATE_DATE_LOC"});
+  toggleDate = () => action({type: "TOGGLE_VOLCANO_EVENT_UPDATE_DATE"});
 
-  toggleMeasurements = () => action({type: "TOGGLE_TSUNAMI_UPDATE_MEASURE"});
-
-  toggleEffects = () => action({type: "TOGGLE_TSUNAMI_UPDATE_EFFECTS"});
-
-  toggleTotalEffects = () => action({type: "TOGGLE_TSUNAMI_UPDATE_TOTAL_EFFECTS"});
-
-  toggleTotalEffects = () => action({type: "TOGGLE_TSUNAMI_UPDATE_EFFECTS_TOTAL"});
-
-  checkDropDownDisabled = (val) => this.props.tsunami.asMutable().toJS().tsEvents[0].country === val? false: true;
+  toggleMeasure = () => action({type: "TOGGLE_VOLCANO_EVENT_UPDATE_MEASURE"});
+  //
+  toggleEffects = () => action({type: "TOGGLE_VOLCANO_EVENT_UPDATE_EFFECTS"});//
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
+  validateDateTime = (dateTime) => {
+    if (!dateTime) return true
+    var re = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/
+    if(!re.test(dateTime)) return false;
+
+    let date = dateTime.substring(0, 10);
+    let dateArr = date.split('-').map(e => parseInt(e));
+
+    let time = dateTime.substring(11, 19)
+    let timeArr = time.split(':').map(e => parseInt(e));
+
+    if(dateArr[0] > (new Date).getFullYear() || dateArr[0] < 0) return false;
+    if(dateArr[1] > 12 || dateArr[1] < 1) return false;
+    if(dateArr[2] < 1 || dateArr[2] > 31) return false;
+
+    if(timeArr[0] < 0 || timeArr[0] > 23) return false;
+    if(timeArr[1] < 0 || timeArr[1] > 59) return false;
+    if(timeArr[2] < 0 || timeArr[2] > 59) return false;
+
+    return true;
+  };
+
+
   render(){
-    const { tsunami } = this.props;
-    if(tsunami.get("fetchingTsEvent") === true){
+    const { volcano } = this.props;
+    if(volcano.get("fetchingVolcanoEvents") === true){
       return(<Loading/>)
     }else{
       return (
           <MultiPartForm title="Update Volcano Event" handleSubmit={this.handleSubmit.bind(this)}>
             <FormSection
-                title="Date and Location"
-                toggleSection={this.toggleDateAndLocation}
-                showSection={tsunami.get('showTsunamiUpdateDateLoc')}
+                title="Dates"
+                toggleSection={this.toggleDate}
+                showSection={volcano.get('showVolEventUpdateDate')}
                 validateMinMax={this.validateMinMax}
-                formData={DateAndLocation}
-                checkDropDownDisabled={this.checkDropDownDisabled}
+                validateDateTime={this.validateDateTime}
+                formData={Dates}
+            />
+
+            <FormSection
+                title="Measurements"
+                toggleSection={this.toggleMeasure}
+                showSection={volcano.get('showVolEventUpdateMeasure')}
+                validateMinMax={this.validateMinMax}
+                formData={Measurements}
+            />
+
+            <FormSection
+                title="Effects"
+                toggleSection={this.toggleEffects}
+                showSection={volcano.get('showVolEventUpdateEffects')}
+                validateMinMax={this.validateMinMax}
+                formData={Effects}
             />
 
           </MultiPartForm>
       )
-
     }
   }
 }

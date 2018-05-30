@@ -62,22 +62,18 @@ public class VolcanoEventController {
     }
   }
 
-  @RequestMapping(value = "/volcanoes/{id}", method = RequestMethod.PATCH)
+  @RequestMapping(value = "/volcanoes/{volId}", method = RequestMethod.PATCH)
   @ResponseBody
-  public ResponseEntity patchVolcano(@PathVariable("id") Integer id,
+  public ResponseEntity patchVolcano(@PathVariable("volId") Integer volId,
                                      @Valid @RequestBody VolcanoEvent volcanoEvent, Errors errors){
     try{
       if(errors.hasErrors()){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
       }else{
-
-        volcanoEvent.setHazEventId(id);
-
+        Integer volcanoEventId = volcanoEvent.getHazEventId();
+        volcanoEvent.setVolLocTsqp(volLocTsqpRepository.findById(volId).get());
         volcanoEventRepository.save(volcanoEvent);
-
-        BooleanExpression booleanExpression = QVolcanoEvent.volcanoEvent.hazEventId.eq(id);
-
-        Optional<VolcanoEvent> patched = volcanoEventRepository.findOne(booleanExpression);
+        Optional<VolcanoEvent> patched = volcanoEventRepository.findById(volcanoEventId);
 
         return ResponseEntity.status(HttpStatus.OK).body(patched);
       }

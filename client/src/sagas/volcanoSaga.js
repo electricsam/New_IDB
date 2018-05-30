@@ -136,3 +136,40 @@ export function* postVolcanoLoc(action){
     yield put({type: "POST_VOLCANO_LOC_REJECTED", payload: error});
   }
 }
+
+export function* watchFetchVolcanoEvent(){
+  yield takeEvery("FETCH_VOLCANO_EVENT_REQUESTED", fetchVolcanoEvent)
+}
+
+export function* fetchVolcanoEvent(action){
+  let id = action.payload;
+  try{
+    const response = yield call(axios.get, `${VOLCANO_BASEPATH}/${id}`);
+    yield put({
+      type: "FETCH_VOLCANO_EVENT_FULFILLED",
+      payload: response.data
+    });
+  }catch(error){
+    yield put({type: "FETCH_VOLCANO_EVENT_REJECTED", payload: error});
+  }
+
+}
+
+export function* watchPatchVolcanoEvent(){
+  yield takeEvery("PATCH_VOLCANO_EVENT_REQUESTED", patchVolcanoEvent)
+}
+
+export function* patchVolcanoEvent(action){
+  let {volId, volcanoEvent } = action.payload;
+  console.log(volcanoEvent, " ######################################## volcanoEvent")
+
+  try{
+    const response = yield call(axios.patch, `${VOLCANO_BASEPATH}/${volId}`, volcanoEvent);
+    yield put({
+      type: "PATCH_VOLCANO_EVENT_FULFILLED",
+      payload: response.data
+    })
+  }catch(error){
+    yield put({type: "PATCH_VOLCANO_EVENT_REJECTED", payload: error});
+  }
+}

@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class VolcanoEventProjection implements Serializable{
 
   private Integer hazEventId;
+  private Integer volId;
   private Integer year;
   private Integer mo;
   private Integer day;
@@ -32,7 +33,17 @@ public class VolcanoEventProjection implements Serializable{
 
   public VolcanoEventProjection(){}
 
+  public String getAssocTsu() { return assocTsu; }
 
+  public void setAssocTsu(String assocTsu) { this.assocTsu = assocTsu; }
+
+  public String getAssocEq() { return assocEq; }
+
+  public void setAssocEq(String assocEq) { this.assocEq = assocEq; }
+
+  public Integer getVolId() { return volId; }
+
+  public void setVolId(Integer volId) { this.volId = volId; }
 
   public Integer getHazEventId() {
     return hazEventId;

@@ -29,6 +29,7 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
         .select(Projections.bean(
             VolcanoEventProjection.class,
             e.hazEventId,
+            e.volLocTsqp.id.as("volId"),
             e.year,
             e.mo,
             e.day,

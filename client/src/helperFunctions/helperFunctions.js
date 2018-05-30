@@ -140,7 +140,7 @@ const mapToVolcanoEventTable = arr => {
       Header: "Edit",
       accessor: 'edit',
       Cell: props => (
-          <button type="button" onClick={()=> store.dispatch(push(`/volcano/update/${props.original.id}`))}>
+          <button type="button" onClick={()=> store.dispatch(push(`/volcano/event/update/${props.original.hazEventId}/${props.original.volId}`))}>
             Edit Volcano Event
           </button>
       )
