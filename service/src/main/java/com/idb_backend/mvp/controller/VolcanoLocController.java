@@ -51,15 +51,14 @@ public class VolcanoLocController {
     }
   }
 
-  @RequestMapping(value = "/volcanolocs/{id}", method = RequestMethod.PATCH)
+  @RequestMapping(value = "/volcanolocs", method = RequestMethod.PATCH)
   @ResponseBody
-  public ResponseEntity patchVolcanoLoc(@PathVariable("id") Integer id,
-                                        @Valid @RequestBody VolLocTsqp volLocTsqp, Errors errors){
+  public ResponseEntity patchVolcanoLoc(@Valid @RequestBody VolLocTsqp volLocTsqp, Errors errors){
     try{
       if(errors.hasErrors()){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
       }else{
-        volLocTsqp.setId(id);
+        Integer id = volLocTsqp.getId();
         volcanoLocRepository.save(volLocTsqp);
         Optional<VolLocTsqp> patched = volcanoLocRepository.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(patched);

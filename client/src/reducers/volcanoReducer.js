@@ -49,8 +49,11 @@ export const initialState = fromJS({
   showVolEventUpdateDate: true,
   showVolEventUpdateMeasure: true,
   showVolEventUpdateEffects: true,
+  patchingVolcanoLoc: false,
+  patchedVolcanoLoc: false,
+  showVolLocUpdateLocation: true,
+  showVolLocUpdateDetails: true,
 });
-
 
 export default function reducer(state = initialState, action){
   switch(action.type){
@@ -185,8 +188,34 @@ export default function reducer(state = initialState, action){
     case "TOGGLE_VOLCANO_EVENT_UPDATE_EFFECTS": {
       return state.merge(state, {showVolEventUpdateEffects: !state.get('showVolEventUpdateEffects')})
     }
-
-
+    case "FETCH_VOLCANO_LOC_REQUESTED": {
+      return state.merge(state, {fetchingVolcanoLocs: true, fetchedVolcanoLocs: false});
+    }
+    case "FETCH_VOLCANO_LOC_FULFILLED": {
+      return state.merge(state, {
+        fetchingVolcanoLocs: false,
+        fetchedVolcanoLocs: true,
+        volcanoLocs: [action.payload]
+      })
+    }
+    case "FETCH_VOLCANO_LOC_REQUESTED": {
+      return state.merge(state, {fetchingVolcanoLocs: false, error: action.payload});
+    }
+    case "PATCH_VOLCANO_LOC_REQUESTED": {
+      return state.merge(state, {patchingVolcanoLoc: true, patchedVolcanoLoc: false});
+    }
+    case "FETCH_VOLCANO_LOC_FULFILLED": {
+      return state.merge(state, {patchingVolcanoLoc: false, patchedVolcanoLoc: true});
+    }
+    case "FETCH_VOLCANO_LOC_REJECTED": {
+      return state.merge(state, {patchingVolcanoLoc: false, error: action.payload});
+    }
+    case "TOGGLE_VOLCANO_LOC_UPDATE_LOCATION": {
+      return state.merge(state, {showVolLocUpdateLocation: !state.get('showVolLocUpdateLocation')});
+    }
+    case "TOGGLE_VOLCANO_LOC_UPDATE_DETAILS": {
+      return state.merge(state, {showVolLocUpdateDetails: !state.get('showVolLocUpdateDetails')});
+    }
     default:
       return state;
   }

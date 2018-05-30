@@ -179,7 +179,7 @@ const mapToVolcanoLocsTable = arr => {
       Header: "Edit",
       accessor: 'edit',
       Cell: props => (
-          <button type="button" onClick={()=> store.dispatch(push(`/volcano/loc/update${props.original.id}`))}>
+          <button type="button" onClick={()=> store.dispatch(push(`/volcano/loc/update/${props.original.id}`))}>
             Edit Volcano Event
           </button>
       )

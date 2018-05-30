@@ -6,35 +6,32 @@ import store from '../../../store';
 import Loading from "../../loadbar/Loading"
 import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
-import {Dates, Measurements, Effects} from "./VolcanoEventUpdateConstants";
+import {Details, Location} from "./VolcanoLocUpdateConstants";
 
 const action = obj => store.dispatch(obj);
 
-class VolcanoEventUpdateContainer extends React.Component{
+class VolcanoLocUpdateContainer extends React.Component{
   constructor(props){
     super(props);
     this.state={}
   }
 
   componentWillMount(){
-    let { hazEventId, volId } = this.props.match.params;
-    action({type: "FETCH_VOLCANO_EVENT_REQUESTED", payload: hazEventId});
+    let { id } = this.props.match.params;
+    action({type: "FETCH_VOLCANO_LOC_REQUESTED", payload: id});
   }
 
   handleSubmit(val){
     val = val.volcano.asMutable().toJS();
-    let { volId } = this.props.match.params;
-    if(val.volcanoEvents){
-      let encoded = encodeQueryString(JSON.stringify(val.volcanoEvents[0]));
-      action({type: "PATCH_VOLCANO_EVENT_REQUESTED", payload:{ volcanoEvent: val.volcanoEvents[0], volId: volId}});
+    if(val.volcanoLocs){
+      let encoded = encodeQueryString(JSON.stringify(val.volcanoLocs[0]));
+      action({type: "PATCH_VOLCANO_LOC_REQUESTED", payload: val.volcanoLocs[0]});
     }
   }
 
-  toggleDate = () => action({type: "TOGGLE_VOLCANO_EVENT_UPDATE_DATE"});
+  toggleLocation = () => action({type: "TOGGLE_VOLCANO_LOC_UPDATE_LOCATION"});
 
-  toggleMeasure = () => action({type: "TOGGLE_VOLCANO_EVENT_UPDATE_MEASURE"});
-
-  toggleEffects = () => action({type: "TOGGLE_VOLCANO_EVENT_UPDATE_EFFECTS"});//
+  toggleDetails = () => action({type: "TOGGLE_VOLCANO_LOC_UPDATE_DETAILS"});
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
@@ -60,37 +57,29 @@ class VolcanoEventUpdateContainer extends React.Component{
     return true;
   };
 
-
   render(){
     const { volcano } = this.props;
-    if(volcano.get("fetchingVolcanoEvents") === true){
+    if(volcano.get("fetchingVolcanoLocs") === true){
       return(<Loading/>)
     }else{
       return (
-          <MultiPartForm title="Update Volcano Event" handleSubmit={this.handleSubmit.bind(this)}>
+          <MultiPartForm title="Update Volcano Location" handleSubmit={this.handleSubmit.bind(this)}>
+
             <FormSection
-                title="Dates"
-                toggleSection={this.toggleDate}
-                showSection={volcano.get('showVolEventUpdateDate')}
+                title="Location"
+                toggleSection={this.toggleLocation}
+                showSection={volcano.get('showVolLocUpdateLocation')}
                 validateMinMax={this.validateMinMax}
                 validateDateTime={this.validateDateTime}
-                formData={Dates}
+                formData={Location}
             />
 
             <FormSection
-                title="Measurements"
-                toggleSection={this.toggleMeasure}
-                showSection={volcano.get('showVolEventUpdateMeasure')}
+                title="Details"
+                toggleSection={this.toggleDetails}
+                showSection={volcano.get('showVolLocUpdateDetails')}
                 validateMinMax={this.validateMinMax}
-                formData={Measurements}
-            />
-
-            <FormSection
-                title="Effects"
-                toggleSection={this.toggleEffects}
-                showSection={volcano.get('showVolEventUpdateEffects')}
-                validateMinMax={this.validateMinMax}
-                formData={Effects}
+                formData={Details}
             />
 
           </MultiPartForm>
@@ -101,5 +90,5 @@ class VolcanoEventUpdateContainer extends React.Component{
 
 const mapStateToProps = (state, ownProps) => ({volcano: state.deep.volcano});
 
-export default connect(mapStateToProps)(VolcanoEventUpdateContainer);
+export default connect(mapStateToProps)(VolcanoLocUpdateContainer);
 

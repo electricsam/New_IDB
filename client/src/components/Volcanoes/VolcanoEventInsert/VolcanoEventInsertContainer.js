@@ -35,7 +35,7 @@ class VolcanoEventInsertContainer extends React.Component{
   toggleDate = () => action({type: "TOGGLE_VOLCANO_EVENT_INSERT_DATE_AND_LOCATION"});
 
   toggleMeasure = () => action({type: "TOGGLE_VOLCANO_EVENT_INSERT_MEASURE"});
-  //
+
   toggleEffects = () => action({type: "TOGGLE_VOLCANO_EVENT_INSERT_EFFECTS"});//
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;

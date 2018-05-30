@@ -45,8 +45,6 @@ public class VolLocTsqp {
   @Getter(value = AccessLevel.PRIVATE)
   private String nameNot;
 
-
-
   private String location;
 
   @Transient
@@ -94,23 +92,16 @@ public class VolLocTsqp {
   private String status;
   private String timeErupt;
   private BigInteger objectid;
+
+  @Getter(AccessLevel.PRIVATE)
   private Geometry shape;
+
   private String country;
   private String publish;
   private String previousState;
 
   @OneToMany(mappedBy = "volLocTsqp", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<VolcanoEvent> volcanoEvents = new ArrayList<>();
-
-
-  public String getShape() {
-    if(shape == null){
-      return null;
-    }else{
-      WKTWriter w = new WKTWriter();
-      return w.write(shape);
-    }
-  }
 
 //  TODO: change this - needed to remove becuase of recursive issues
   public String toString(){
