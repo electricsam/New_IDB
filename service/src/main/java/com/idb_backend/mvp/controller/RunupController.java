@@ -54,18 +54,21 @@ public class RunupController {
     }
   }
 
-  @RequestMapping(value = "/runups/{id}", method = RequestMethod.PATCH)
+  @RequestMapping(value = "/runups/{eventId}", method = RequestMethod.PATCH)
   @ResponseBody
-  public ResponseEntity patchRunup(@PathVariable("id") Integer id,
+  public ResponseEntity patchRunup(@PathVariable("eventId") Integer eventId,
                                    @Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
 
     try {
       if(errors.hasErrors()){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
       }else{
-        tsunamiRunup.setId(id);
+        Integer runupId = tsunamiRunup.getId();
+        Optional<TsunamiEvent> tsunamiEvent = tsunamiEventRepository.findById(eventId);
+        tsunamiRunup.setTsunamiEvent(tsunamiEvent.get());
         runupRepository.save(tsunamiRunup);
-        Optional<TsunamiRunup> runup = runupRepository.findById(id);
+        Optional<TsunamiRunup> runup = runupRepository.findById(runupId);
+
         return ResponseEntity.status(HttpStatus.OK).body(runup);
       }
     }catch (Exception e){

@@ -21,10 +21,7 @@ class UpdateTsunamiContainer extends React.Component{
 
   componentWillMount(){
     let id = this.props.match.params.id;
-
-    console.log("Action was dispatched")
     action({type: "FETCH_TS_EVENT_REQUESTED", payload: id});
-    //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
   }
 
   handleSubmit(val){
@@ -33,13 +30,7 @@ class UpdateTsunamiContainer extends React.Component{
     if(val.insert){
       let encoded = encodeQueryString(JSON.stringify(val.tsEvent));
       action({type: "PATCH_TS_EVENT_REQUESTED", payload:{ tsEvent: val.tsEvent, id: id}});
-      //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
-      // this.props.history.push(`/tsunamis?${encoded}`);
     }
-    // else{
-    //   action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
-    //   // this.props.history.push(`/tsunamis`)
-    // }
   }
 
 
@@ -64,7 +55,6 @@ class UpdateTsunamiContainer extends React.Component{
     }else{
       return (
           <MultiPartForm title="Update Tsunami Event" handleSubmit={this.handleSubmit.bind(this)}>
-            {console.log("HEY ITS ME", this.props.tsunami.asMutable().toJS())}
             <FormSection
               title="Date and Location"
               toggleSection={this.toggleDateAndLocation}

@@ -21,7 +21,6 @@ class VolcanoEventInsertContainer extends React.Component{
   }
 
   handleSubmit(val){
-    //TODO: NEED TO grab the id of the vol_loc
     val = val.volcano.asMutable().toJS();
     if(val.insert){
       let encoded = encodeQueryString(JSON.stringify(val.insert));

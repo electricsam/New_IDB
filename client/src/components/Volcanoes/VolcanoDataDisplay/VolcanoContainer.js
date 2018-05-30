@@ -37,7 +37,7 @@ class VolcanoContainer extends React.Component {
   }
 
   handleYesClick = () => {
-    let id = this.props.earthquake.get('deleteVolcanoEventId');
+    let id = this.props.volcano.get('deleteVolcanoEventId');
     console.log("id inside the yes click: ", id);
     action({type: "DELETE_VOLCANO_EVENT_REQUESTED", payload: id});
   };

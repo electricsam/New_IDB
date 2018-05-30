@@ -80,6 +80,8 @@ export function* watchDeleteVolcanoLoc(){
 
 export function* deleteVolcanoLoc(action){
   let id = action.payload;
+  console.log("############################## you are inside the delete function ################################");
+  console.log("ID: ", id)
   try{
     const response = yield call(axios.delete, `${VOLCANOLOC_BASEPATH}/${id}`);
     yield put({type: "DELETE_VOLCANO_LOC_FULFILLED", payload: {}});
@@ -114,7 +116,23 @@ export function* postVolcanoEvent(action){
       payload: response.data
     })
   }catch(error){
-    yield put({type: "POST_VOLCANO_EVENT_FULFILLED", payload: error});
+    yield put({type: "POST_VOLCANO_EVENT_REJECTED", payload: error});
   }
 }
 
+export function* watchPostVolcanoLoc(){
+  yield takeEvery("POST_VOLCANO_LOC_REQUESTED", postVolcanoLoc);
+}
+
+export function* postVolcanoLoc(action){
+  let volcano = action.payload;
+  try{
+    const response = yield call(axios.post, `${VOLCANOLOC_BASEPATH}`, volcano);
+    yield put({
+      type: "POST_VOLCANO_LOC_FULFILLED",
+      payload: response.data
+    })
+  }catch(error){
+    yield put({type: "POST_VOLCANO_LOC_REJECTED", payload: error});
+  }
+}

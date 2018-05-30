@@ -84,14 +84,13 @@ public class VolcanoLocController {
         Optional<VolLocTsqp> posted = volcanoLocRepository.findById(id);
 
         return ResponseEntity.status(HttpStatus.OK).body(posted);
-
       }
     }catch (Exception e){
       return ResponseEntity.status(HttpStatus.OK).body(null);
     }
   }
 
-  @RequestMapping(value = "/volcanolocs/{id}", method = RequestMethod.POST)
+  @RequestMapping(value = "/volcanolocs/{id}", method = RequestMethod.DELETE)
   @ResponseBody
   public ResponseEntity deleteVolcanoLoc(@PathVariable("id") Integer id){
     try{
@@ -101,4 +100,6 @@ public class VolcanoLocController {
       return ResponseEntity.status(HttpStatus.OK).body(null);
     }
   }
+
+
 }

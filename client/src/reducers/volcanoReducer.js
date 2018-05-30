@@ -33,10 +33,17 @@ export const initialState = fromJS({
   insert: {
     country: ""
   },
+  locInsert: {
+
+  },
   postingVolcanoEvent: false,
   postedVolcanoEvent: false,
   showVolEventInsertMeasure: true,
   showVolEventInsertEffects: true,
+  postingVolcanoLoc: false,
+  postedVolcanoLoc: false,
+  showVolLocInsertLocation: true,
+  showVolLocInsertDetails: true,
 });
 
 
@@ -127,6 +134,23 @@ export default function reducer(state = initialState, action){
     case "TOGGLE_VOLCANO_EVENT_INSERT_EFFECTS": {
       return state.merge(state, {showVolEventInsertEffects: !state.get('showVolEventInsertEffects')});
     }
+    case "POST_VOLCANO_LOC_REQUESTED": {
+      return state.merge(state, {postingVolcanoLoc: true});
+    }
+    case "POST_VOLCANO_LOC_FULFILLED": {
+      return state.merge(state, {postingVolcanoLoc: false, postedVolcanoLoc: true});
+    }
+    case "POST_VOLCANO_LOC_REJECTED": {
+      return state.merge(state, {postingVolcanoLoc: false, error: action.payload});
+    }
+    case "TOGGLE_VOLCANO_LOC_INSERT_LOCATION": {
+      return state.merge(state, {showVolLocInsertLocation: !state.get('showVolLocInsertLocation')});
+    }
+    case "TOGGLE_VOLCANO_LOC_INSERT_DETAILS": {
+      return state.merge(state, {showVolLocInsertDetails: !state.get('showVolLocInsertDetails')});
+    }
+
+
     default:
       return state;
   }

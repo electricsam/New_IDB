@@ -70,7 +70,9 @@ public class VolcanoEventController {
       if(errors.hasErrors()){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
       }else{
+
         volcanoEvent.setHazEventId(id);
+
         volcanoEventRepository.save(volcanoEvent);
 
         BooleanExpression booleanExpression = QVolcanoEvent.volcanoEvent.hazEventId.eq(id);

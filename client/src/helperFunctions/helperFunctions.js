@@ -154,20 +154,11 @@ const mapToVolcanoEventTable = arr => {
           </button>
       )
     });
-    // result.push({
-    //   Header: "Related Runups",
-    //   accessor: 'relatedRunups',
-    //   Cell: props => (
-    //       <button type="button" onClick={()=> getRelatedRunups(`${props.original.id}`)}>
-    //         Related Runups
-    //       </button>
-    //   )
-    // });
     result.push({
       Header: "Delete",
       accessor: 'delete',
       Cell: props => (
-          <button type="button" onClick={()=> deleteVolEvent(props.original.id)}>
+          <button type="button" onClick={()=> deleteVolEvent(props.original.hazEventId)}>
             Delete Volcano Event
           </button>
       )
@@ -194,6 +185,15 @@ const mapToVolcanoLocsTable = arr => {
       )
     });
     result.push({
+      Header: "Add Event",
+      accessor: 'addEvent',
+      Cell: props => (
+          <button type="button" onClick={()=> store.dispatch(push(`/volcano/event/insert/${props.original.id}`))}>
+            Add Related Event
+          </button>
+      )
+    });
+    result.push({
       Header: "Delete",
       accessor: 'delete',
       Cell: props => (
@@ -208,11 +208,13 @@ const mapToVolcanoLocsTable = arr => {
 
 
 const deleteVolLoc = id => {
+  console.log("####################### this is the id from inside the deleteVolLoc func: ", id);
   store.dispatch({type: "SET_DELETE_VOLCANO_LOC_ID", payload: id});
   store.dispatch({type: "TOGGLE_DELETE_VOLCANO_LOC_CONFIRMATION"});
 };
 
 const deleteVolEvent = id => {
+  console.log('################################### event id; ', id);
   store.dispatch({type: "SET_DELETE_VOLCANO_EVENT_ID", payload: id});
   store.dispatch({type: "TOGGLE_DELETE_VOLCANO_EVENT_CONFIRMATION"});
 };

@@ -65,7 +65,7 @@ export function* watchFetchSpecifiedTSEvents(){
 
 export function* patchTsEvent(action){
   let id = action.payload.id;
-  console.log("you are in the patchTSEVENT")
+  console.log("you are in the patchTSEVENT ", action.payload.tsEvent );
   let tsEvent = action.payload.tsEvent;
   try{
     const response = yield call(axios.patch, `${TSUNAMI_EVENTS_BASEPATH}/${id}`, tsEvent);
@@ -148,9 +148,14 @@ export function* watchUpdateRunup(){
 }
 
 export function* updateRunup(action){
+  console.log("YOU ARE INSIDE THE UPDATE RUNUP FUNCTION");
+
   let { runupId, eventId, runupData } = action.payload;
+
+  console.log("********************************** Runup Data ", runupData, " *****************************");
+
   try{
-    const response = yield call(axios.patch, `${TSUNAMI_RUNUPS_BASEPATH}/${runupId}/${eventId}`, runupData);
+    const response = yield call(axios.patch, `${TSUNAMI_RUNUPS_BASEPATH}/${eventId}`, runupData);
     yield put({type: "UPDATE_TS_RUNUP_FULFILLED",payload: response.data});
   }catch(error){
     yield put({type: "UPDATE_TS_RUNUP_REJECTED", payload: error});
