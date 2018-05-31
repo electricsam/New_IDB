@@ -89,13 +89,13 @@ public class BaseService {
   public BooleanExpression checkLocParams(Map<String, String> map, String start, String end, String includes,
                                           String match, String not, StringPath root){
     if(map.get(start) != null){
-      return root.startsWithIgnoreCase(start);
+      return root.startsWithIgnoreCase(map.get(start));
     }else if(map.get(end) != null){
-      return root.endsWithIgnoreCase(end);
+      return root.endsWithIgnoreCase(map.get(end));
     }else if(map.get(includes) != null){
-      return root.containsIgnoreCase(includes);
+      return root.containsIgnoreCase(map.get(includes));
     }else if(map.get(match) != null){
-      return root.equalsIgnoreCase(match);
+      return root.equalsIgnoreCase(map.get(match));
     }else if(map.get(not) != null){
       return root.notLike(Expressions.asString("%").concat(not.toUpperCase().concat("%")));
     }else{
@@ -106,13 +106,13 @@ public class BaseService {
   public BooleanExpression checkLikeParams(Map<String, String> map, String start, String end, String includes,
                                            String match, String not, StringPath root){
     if(map.get(start) != null){
-      return root.startsWithIgnoreCase(start);
+      return root.startsWithIgnoreCase(map.get(start));
     }else if(map.get(end) != null){
-      return root.endsWithIgnoreCase(end);
+      return root.endsWithIgnoreCase(map.get(end));
     }else if(map.get(includes) != null){
-      return root.containsIgnoreCase(includes);
+      return root.containsIgnoreCase(map.get(includes));
     }else if(map.get(match) != null){
-      return root.equalsIgnoreCase(match);
+      return root.equalsIgnoreCase(map.get(match));
     }else if(map.get(not) != null){
       return root.notLike(Expressions.asString("%").concat(not.toUpperCase().concat("%")));
     }else{
