@@ -11,8 +11,6 @@ app.setAttribute('id', 'app');
 app.style.height = '100vh';
 document.body.appendChild(app);
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Routes />
-  </Provider>, app
-);
+ReactDOM.render(<Provider store={store}>
+  <Routes />
+</Provider>, app);

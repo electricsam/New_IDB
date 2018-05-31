@@ -1,21 +1,21 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { get } from 'immutable';
 
 import store from '../../../store';
 import Loading from '../../loadbar/Loading';
-import Table from "../../Table/Table";
+import Table from '../../Table/Table';
 
 import { decodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions';
-import DialogBox from "../../FormPartials/DialogBox";
+import DialogBox from '../../FormPartials/DialogBox';
 
 const tableStyle = {
-  textAlign: "center"
-}
+  textAlign: 'center',
+};
 
 const hiddenStyle = {
-  display: "none"
-}
+  display: 'none',
+};
 
 const action = obj => store.dispatch(obj);
 
@@ -29,38 +29,38 @@ class TsunamiContainer extends React.Component {
 
   componentDidMount() {
     let { search } = this.props.location;
-    if(search.length){
+    if (search.length) {
       search = search.split('?')[1];
-      let decoded = JSON.parse(decodeQueryString(search));
-      let queryString = createApiQueryString(decoded);
-      action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});
-    }else{
-      action({type:"FETCH_ALL_TS_EVENTS_REQUESTED"})
+      const decoded = JSON.parse(decodeQueryString(search));
+      const queryString = createApiQueryString(decoded);
+      action({ type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString });
+    } else {
+      action({ type: 'FETCH_ALL_TS_EVENTS_REQUESTED' });
     }
   }
 
-  handleYesClick(){
-    let id = this.props.tsunami.get('deleteEventId');
-    action({type: "DELETE_EVENT_REQUESTED", payload: id});
+  handleYesClick() {
+    const id = this.props.tsunami.get('deleteEventId');
+    action({ type: 'DELETE_EVENT_REQUESTED', payload: id });
   }
 
-  handleNoClick(){
-    action({type: "TOGGLE_DELETE_EVENT_CONFIRMATION"});
-    action({type: "SET_DELETE_EVENT_ID", payload: null});
+  handleNoClick() {
+    action({ type: 'TOGGLE_DELETE_EVENT_CONFIRMATION' });
+    action({ type: 'SET_DELETE_EVENT_ID', payload: null });
   }
 
   render() {
     const { tsunami } = this.props;
 
-    if( tsunami.get('fetchedTsEvent')){
+    if (tsunami.get('fetchedTsEvent')) {
       return (
         <div>
-          {tsunami.get('showDeleteEventConfirmation')?
+          {tsunami.get('showDeleteEventConfirmation') ?
             <DialogBox
               handleYesClick={this.handleYesClick}
               handleNoClick={this.handleNoClick}
-            />:
-            <div style={hiddenStyle}></div>
+            /> :
+            <div style={hiddenStyle} />
           }
           <Table
             loading={tsunami.get('fetchingTsEvent')}
@@ -70,10 +70,9 @@ class TsunamiContainer extends React.Component {
             title="Tsunami Data"
           />
         </div>
-      )
-    }else{
-      return <Loading/>
+      );
     }
+    return <Loading />;
   }
 }
 

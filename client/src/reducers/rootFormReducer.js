@@ -9,5 +9,5 @@ export default combineForms({
   volcano: volcanoReducer,
   reference: referenceReducer,
   tsunami: tsunamiReducer,
-  earthquake: earthquakeReducer
+  earthquake: earthquakeReducer,
 }, 'deep');

@@ -1,5 +1,5 @@
 import React from 'react';
-import Styles from "./DialogBoxStyle.css"
+import Styles from './DialogBoxStyle.css';
 
 
 const DialogBox = props => (
@@ -14,4 +14,4 @@ const DialogBox = props => (
 );
 
 
-export default DialogBox
+export default DialogBox;

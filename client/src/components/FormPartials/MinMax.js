@@ -1,4 +1,5 @@
-require('babel-polyfill')
+require('babel-polyfill');
+
 import React from 'react';
 import { Control, Errors } from 'react-redux-form/lib/immutable';
 import PropTypes from 'prop-types';
@@ -12,11 +13,11 @@ const MinMax = props => (
       model={props.model}
       id={props.model}
       validators={{
-        valid: val => props.validMinMax(val, props.min, props.max)
+        valid: val => props.validMinMax(val, props.min, props.max),
       }}
-      validateOn="blur" required={false}
-    >
-    </Control.text>
+      validateOn="blur"
+      required={false}
+    />
     <Errors
       className={Styles.errors}
       model={props.model}
@@ -34,4 +35,4 @@ MinMax.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   validMinMax: PropTypes.func.isRequired,
-}
+};

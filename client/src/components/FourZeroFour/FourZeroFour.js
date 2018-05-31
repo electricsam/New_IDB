@@ -11,6 +11,6 @@ const FourZeroFour = () => (
       </p>
     </div>
   </div>
-)
+);
 
 export default FourZeroFour;

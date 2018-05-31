@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactTable from 'react-table'
+import ReactTable from 'react-table';
 import PropTypes from 'prop-types';
 
 import Styles from './TableStyle.css';
@@ -18,17 +18,17 @@ const Table = props => (
           sortable: false,
           resizable: true,
           filterable: false,
-          width: 35
+          width: 35,
         }
       }
-      //The style height gives fixed header with scroll
+      // The style height gives fixed header with scroll
       style={{
-        height: "50%", // This will force the table body to overflow and scroll, since there is not enough room
-        width: "95%",
-        textAlign:"center"
+        height: '50%', // This will force the table body to overflow and scroll, since there is not enough room
+        width: '95%',
+        textAlign: 'center',
       }}
       className="-striped -highlight"
-      defaultSorted={[{id: 'id', desc: false}]}
+      defaultSorted={[{ id: 'id', desc: false }]}
       loading={props.loading}
       handleEdit={props.handleEdit}
     />
@@ -42,4 +42,4 @@ Table.propTypes = {
   columns: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
-}
+};

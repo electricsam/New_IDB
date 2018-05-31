@@ -7,4 +7,4 @@ const TsunamiLandingPartial = props => (
 
 );
 
-export default TsunamiLandingPartial
+export default TsunamiLandingPartial;

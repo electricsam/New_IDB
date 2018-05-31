@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { get, getIn } from "immutable";
+import { get, getIn } from 'immutable';
 
 import store from '../../../store';
 import Loading from '../../loadbar/Loading';
-import Table from "../../Table/Table";
+import Table from '../../Table/Table';
 
 import { decodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions';
-import DialogBox from "../../FormPartials/DialogBox";
+import DialogBox from '../../FormPartials/DialogBox';
 
 const action = obj => store.dispatch(obj);
 
 const styles = {
-  display: "hidden"
-}
+  display: 'hidden',
+};
 
 class RunupContainer extends React.Component {
   constructor(props) {
@@ -25,37 +25,37 @@ class RunupContainer extends React.Component {
 
   componentDidMount() {
     let { search } = this.props.location;
-    if(search.length){
+    if (search.length) {
       search = search.split('?')[1];
-      let decoded = JSON.parse(decodeQueryString(search));
-      let queryString = createApiQueryString(decoded)
-      action({type: 'FETCH_SPECIFIED_RUNUP_REQUESTED', payload: queryString});
-    }else{
-      action({type: 'FETCH_ALL_RUNUP_REQUESTED'})
+      const decoded = JSON.parse(decodeQueryString(search));
+      const queryString = createApiQueryString(decoded);
+      action({ type: 'FETCH_SPECIFIED_RUNUP_REQUESTED', payload: queryString });
+    } else {
+      action({ type: 'FETCH_ALL_RUNUP_REQUESTED' });
     }
   }
 
   handleYesClick() {
     const id = this.props.tsunami.get('deleteRunupId');
-    action({type: "DELETE_RUNUP_REQUESTED", payload: id})
+    action({ type: 'DELETE_RUNUP_REQUESTED', payload: id });
   }
 
   handleNoClick() {
-    action({type:"TOGGLE_DELETE_RUNUP_CONFIRMATION"});
-    action({type: "SET_DELETE_RUNUP_ID", payload: null});
+    action({ type: 'TOGGLE_DELETE_RUNUP_CONFIRMATION' });
+    action({ type: 'SET_DELETE_RUNUP_ID', payload: null });
   }
 
   render() {
     const { tsunami } = this.props;
-    if( tsunami.get('fetchedRunup')) {
+    if (tsunami.get('fetchedRunup')) {
       return (
         <div>
-          {tsunami.get('showDeleteConfirmation')?
-              <DialogBox
-                handleYesClick={this.handleYesClick}
-                handleNoClick={this.handleNoClick}
-              />
-              :<div style={styles}></div>
+          {tsunami.get('showDeleteConfirmation') ?
+            <DialogBox
+              handleYesClick={this.handleYesClick}
+              handleNoClick={this.handleNoClick}
+            />
+            : <div style={styles} />
           }
           <Table
             loading={tsunami.get('fetchingRunup')}
@@ -65,10 +65,9 @@ class RunupContainer extends React.Component {
           />
 
         </div>
-      )
-    }else{
-      return <Loading/>
+      );
     }
+    return <Loading />;
   }
 }
 
