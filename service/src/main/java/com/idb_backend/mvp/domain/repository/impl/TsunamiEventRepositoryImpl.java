@@ -3,6 +3,9 @@ package com.idb_backend.mvp.domain.repository.impl;
 import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.TsunamiEventCustomRepository;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.EntityPathBase;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.hibernate.Session;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -54,7 +57,6 @@ public class TsunamiEventRepositoryImpl extends QuerydslRepositorySupport implem
         .fetch();
   }
 
-
   @Override
   public Iterable<TsunamiEventView> findRelatedTsunamiFromVolcano(Integer volId){
     JPAQuery<TsunamiEventView> query = new JPAQuery<>(entityManager);
@@ -84,5 +86,4 @@ public class TsunamiEventRepositoryImpl extends QuerydslRepositorySupport implem
         .where(rv.id.eq(runupId))
         .fetch();
   }
-
 }

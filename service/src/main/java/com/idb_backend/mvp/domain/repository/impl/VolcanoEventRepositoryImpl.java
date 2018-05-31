@@ -57,15 +57,6 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
         .where(predicate)
         .fetch();
 
-    System.out.println(query);
-
-    System.out.println("hello world");
-
-
-//    System.out.println(result);
-
-//    return result;
-
     return result;
   }
 

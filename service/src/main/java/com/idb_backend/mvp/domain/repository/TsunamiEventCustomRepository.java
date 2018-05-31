@@ -1,6 +1,8 @@
 package com.idb_backend.mvp.domain.repository;
 
 import com.idb_backend.mvp.domain.model.TsunamiEventView;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.EntityPathBase;
 
 public interface TsunamiEventCustomRepository {
 
@@ -11,4 +13,5 @@ public interface TsunamiEventCustomRepository {
   Iterable<TsunamiEventView> findRelatedTsunamiFromVolcano(Integer volId);
 
   Iterable<TsunamiEventView> findRelatedTsunamiFromRunup(Integer runupId);
+
 }

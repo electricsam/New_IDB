@@ -9,32 +9,5 @@ import com.querydsl.core.types.dsl.StringPath;
 import java.util.Map;
 
 public interface TsunamiEventService {
-
-  BooleanExpression combineBools(Predicate predicate, BooleanExpression runupBool);
-
-  BooleanExpression checkMinMax(Integer min, Integer max, NumberPath<Integer> root);
-
-  BooleanExpression genIntMinMax(Map<String, String> map, String minKey, String maxKey,
-                                 NumberPath<Integer> root) throws NumberFormatException;
-
-  Integer generateInteger(Map<String, String> map, String key);
-
-  BooleanExpression generateCriteria(Map<String, String> map);
-
-  BooleanExpression genEqRestriction(Map<String, String> map, String key, StringPath root);
-
-  BooleanExpression genEqRestriction(Map<String, String> map, String key, NumberPath root);
-
-  BooleanExpression checkMinMax(Double min, Double max, NumberPath<Double> root);
-
-  Double generateDouble(Map<String, String> map, String key);
-
-  BooleanExpression genDoubleMinMax(Map<String, String> map, String minKey, String maxKey,
-                                    NumberPath<Double> root);
-
-  BooleanExpression checkLocParams(Map<String, String> map, String locStart, String locEnd,
-                                   String locIncludes, String locMatch, String locNot,
-                                   StringPath root);
-
   Iterable<TsunamiEventView> getTsunamis(Map<String, String> params, Predicate predicate);
 }

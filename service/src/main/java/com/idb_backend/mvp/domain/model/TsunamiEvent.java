@@ -145,23 +145,9 @@ public class TsunamiEvent implements Serializable {
 
   private Long objectid;
 
-  public String getShape() {
-    if(shape == null){
-      return null;
-    }else{
-      WKTWriter w = new WKTWriter();
-      return w.write(shape);
-    }
-  }
-
-  public void setShape(Geometry shape) {
-    this.shape = shape;
-  }
-
   @JsonIgnore
   @Getter(AccessLevel.PRIVATE)
   private Geometry shape;
-
 
   private BigDecimal damageMillionsDollarsTotal;
 
