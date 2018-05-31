@@ -66,13 +66,13 @@ public class TsunamiEventServiceImpl extends BaseService implements TsunamiEvent
 
   @Override
   public Iterable<TsunamiEventView> getTsunamis(Map<String, String> params, Predicate predicate){
-    if(params.get("earthquakeid") != null && params.get("earthquakeid") != ""){
+    if(params.get("earthquakeid") != null && !params.get("earthquakeid").equals("")){
       return tsunamiEventRepository.findRelatedTsunamiFromEarthquake(Integer.parseInt(params.get("earthquakeid")));
-    }else if(params.get("refid") != null && params.get("refid") != ""){
+    }else if(params.get("refid") != null && !params.get("refid").equals("")){
       return tsunamiEventRepository.findRelatedTsunamiFromRef(Integer.parseInt(params.get("refid")));
-    }else if(params.get("volcanoid") != null && params.get("volcanoid") != ""){
+    }else if(params.get("volcanoid") != null && !params.get("volcanoid").equals("")){
       return tsunamiEventRepository.findRelatedTsunamiFromVolcano(Integer.parseInt(params.get("volcanoid")));
-    }else if(params.get("runupid") != null && params.get("runupid") != ""){
+    }else if(params.get("runupid") != null && !params.get("runupid").equals("")){
       return tsunamiEventRepository.findRelatedTsunamiFromRunup(Integer.parseInt(params.get("runupid")));
     } else{
       return tsunamiEventViewRepository.findEventsByQuery(combineBools(predicate, generateCriteria(params)));

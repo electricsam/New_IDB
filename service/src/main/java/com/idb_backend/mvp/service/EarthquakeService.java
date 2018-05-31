@@ -7,6 +7,5 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 public interface EarthquakeService {
-
   Iterable<SignifVsqp> getAllEarthquakes(Map<String, String> params, Predicate predicate);
 }

@@ -18,13 +18,13 @@ public class ReferenceServiceImpl implements ReferenceService{
 
   @Override
   public Iterable<Reference> getReferences(Map<String, String> params, Predicate predicate){
-    if(params.get("tsunamiid") != null && params.get("tsunamiid") != ""){
+    if(params.get("tsunamiid") != null && !params.get("tsunamiid").equals("")){
       return referenceRepository.findRelatedReferencesFromTsunami(Integer.parseInt(params.get("tsunamiid")));
-    }else if(params.get("volcanoid") != null && params.get("volcanoid") != ""){
+    }else if(params.get("volcanoid") != null && !params.get("volcanoid").equals("")){
       return referenceRepository.findRelatedReferencesFromVolcano(Integer.parseInt(params.get("volcanoid")));
-    }else if(params.get("earthquakeid") != null && params.get("earthquakeid") != ""){
+    }else if(params.get("earthquakeid") != null && !params.get("earthquakeid").equals("")){
       return referenceRepository.findRelatedReferencesFromEarthquake(Integer.parseInt(params.get("earthquakeid")));
-    }else if(params.get("runupid") != null && params.get("runupid") != ""){
+    }else if(params.get("runupid") != null && !params.get("runupid").equals("")){
       return referenceRepository.findRelatedReferencesFromRunup(Integer.parseInt(params.get("runupid")));
     }else{
       return referenceRepository.findAll(predicate);

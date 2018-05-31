@@ -24,15 +24,13 @@ public class VolcanoServiceImpl extends BaseService implements VolcanoService{
 
   @Override
   public List<VolcanoEventProjection> getVolcanoes (Map<String, String> params, Predicate predicate ){
-    if(params.get("earthquakeid") != null && params.get("earthquakeid") != ""){
+    if(params.get("earthquakeid") != null && !params.get("earthquakeid").equals("")){
       return volcanoEventRepository.findRelatedVolcanoesFromEarthquake(Integer.parseInt(params.get("earthquakeid")));
-    }else if(params.get("refid") != null && params.get("refid") != ""){
+    }else if(params.get("refid") != null && !params.get("refid").equals("")){
       return volcanoEventRepository.findRelatedVolcanoesFromRef(Integer.parseInt(params.get("refid")));
-    }else if(params.get("tsunamiid") != null && params.get("tsunamiid") != ""){
+    }else if(params.get("tsunamiid") != null && !params.get("tsunamiid").equals("")){
       return volcanoEventRepository.findRelatedVolcanoesFromTsunami(Integer.parseInt(params.get("tsunamiid")));
     }else{
-      System.out.println("This is the predicate in the service: " + predicate);
-      System.out.println("This is the params var in the service: " + params);
       return volcanoEventRepository.findByQuery(combineBools(predicate, generateCriteria(params)));
     }
   }

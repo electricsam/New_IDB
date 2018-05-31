@@ -7,6 +7,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface ReferenceService {
-
   Iterable<Reference> getReferences(Map<String, String> params, Predicate predicate);
 }

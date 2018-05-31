@@ -21,13 +21,13 @@ public class EarthquakeServiceImpl implements EarthquakeService{
 
   @Override
   public Iterable<SignifVsqp> getAllEarthquakes(Map<String, String> params, Predicate predicate) {
-    if(params.get("tsunamiid") != "" && params.get("tsunamiid") != null){
+    if(!params.get("tsunamiid").equals("") && params.get("tsunamiid") != null){
       Integer tsunamiId = Integer.parseInt(params.get("tsunamiid"));
       return earthquakeRepository.findRelatedEarthquakeFromTsunami(tsunamiId);
-    }else if(params.get("refid") != "" && params.get("refid") != null){
+    }else if(!params.get("refid").equals("") && params.get("refid") != null){
       Integer refId = Integer.parseInt(params.get("refid"));
       return earthquakeRepository.findRelatedEarthquakeFromRef(refId);
-    }else if(params.get("volcanoid") != "" && params.get("volcanoid") != null){
+    }else if(!params.get("volcanoid").equals("") && params.get("volcanoid") != null){
       Integer volId = Integer.parseInt(params.get("volcanoid"));
       return earthquakeRepository.findRelatedEarthquakeFromVolcano(volId);
     }else{

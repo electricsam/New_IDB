@@ -17,7 +17,7 @@ public class VolLocServiceImpl implements VolLocService{
 
   @Override
   public Iterable<VolLocTsqpProjection> getVolLocs(Map<String, String> params, Predicate predicate){
-    if(params.get("eventid") != null && params.get("eventid") != ""){
+    if(params.get("eventid") != null && !params.get("eventid").equals("")){
       return volcanoLocRepository.findRelatedVolcanoLocFromEvent(Integer.parseInt(params.get("eventid")));
     }else{
       return volcanoLocRepository.findByQuery(predicate);
