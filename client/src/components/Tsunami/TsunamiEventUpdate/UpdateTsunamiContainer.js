@@ -27,9 +27,9 @@ class UpdateTsunamiContainer extends React.Component{
   handleSubmit(val){
     val = val.tsunami.asMutable().toJS();
     let id = this.props.match.params.id;
-    if(val.insert){
-      let encoded = encodeQueryString(JSON.stringify(val.tsEvent));
-      action({type: "PATCH_TS_EVENT_REQUESTED", payload:{ tsEvent: val.tsEvent, id: id}});
+    if(val.tsEvent[0]){
+      let encoded = encodeQueryString(JSON.stringify(val.tsEvent[0]));
+      action({type: "PATCH_TS_EVENT_REQUESTED", payload:{ tsEvent: val.tsEvent[0], id: id}});
     }
   }
 

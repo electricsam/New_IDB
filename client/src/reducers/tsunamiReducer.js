@@ -112,11 +112,15 @@ export default function reducer(state = initialState, action) {
   case 'POST_TS_RUNUP_FULFILLED': {
     return state.merge(state, { postingRunup: false, postedRunup: true, postedRunupData: action.payload.data });
   }
-  case 'FETCH_TS_EVENT': {
-    return state.merge(state, { fetchingTsEvent: true });
+  case 'FETCH_TS_EVENT_REQUESTED': {
+    return state.merge(state, { fetchingTsEvent: true, fetchedTsEvent: false });
   }
   case 'FETCH_TS_EVENT_FULFILLED': {
-    return state.merge(state, { fetchingTsEvent: false, fetchedTsEvent: true, tsEvent: action.payload });
+    return state.merge(state, { fetchingTsEvent: false,
+      fetchedTsEvent: true,
+      tsEvent: [action.payload.data],
+      headersAndAccessors: action.payload.formattedData
+    });
   }
   case 'FETCH_TS_EVENT_REJECTED': {
     return state.merge(state, { fetchingTsEvent: false, fetchedTsEvent: false, error: action.payload });

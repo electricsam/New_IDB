@@ -32,8 +32,10 @@ export function* fetchTsEventById(action) {
     const response = yield call(axios.get, `${TSUNAMI_EVENTS_BASEPATH}/${id}`);
     yield put({
       type: 'FETCH_TS_EVENT_FULFILLED',
-      payload: response.data,
+      //TODO: MAKE SURE TO CHANGE ANY CALLS TO THIS
+      payload: {data: response.data, formattedData: mapToTable([response.data])},
     });
+    console.log("response data", mapToTable(response.data))
   } catch (error) {
     yield put({ type: 'FETCH_TS_EVENT_REJECTED', payload: error });
   }

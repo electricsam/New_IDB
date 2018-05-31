@@ -1,23 +1,23 @@
-import React, { PropTypes } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
+import React, {PropTypes} from 'react';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import {ConnectedRouter} from 'react-router-redux';
 
 import Navbar from './Navbar/Navbar';
 import Footer from './Footer/Footer.jsx';
-import TsunamiContainer from './Tsunamis/TsunamiEventDataDisplay/TsunamiContainer';
+import TsunamiContainer from './Tsunami/TsunamiEventDataDisplay/TsunamiContainer';
 import AboutPage from './about/AboutPage';
 import Styles from './AppStyle.css';
 import Home from './home/Home.jsx';
-import { history } from '../store';
+import {history} from '../store';
 import FourZeroFour from './FourZeroFour/FourZeroFour';
-import TsunamiSearchContainer from './Tsunamis/TsunamiEventSearch/TsunamiSearchContainer.jsx';
-import TsunamiInsertContainer from './Tsunamis/TsunamiEventInsert/TsunamiInsertContainer';
-import RunupInsertContainer from './Tsunamis/TsunamiRunupInsert/RunupInsertContainer';
-import RunupSearchContainer from './Tsunamis/TsunamiRunupSearch/RunupSearchContainer';
-import UpdateTsunamiContainer from './Tsunamis/TsunamiEventUpdate/UpdateTsunamiContainer';
-import UpdateRunupContainer from './Tsunamis/TsunamiRunupUpdate/UpdateRunupContainer';
-import RunupContainer from './Tsunamis/TsunamiRunupDataDisplay/RunupContainer';
-import TsunamiLanding from './Tsunamis/TsunamiLandingPage/TsunamiLanding';
+import TsunamiSearchContainer from './Tsunami/TsunamiEventSearch/TsunamiSearchContainer.jsx';
+import TsunamiInsertContainer from './Tsunami/TsunamiEventInsert/TsunamiInsertContainer';
+import RunupInsertContainer from './Tsunami/TsunamiRunupInsert/RunupInsertContainer';
+import RunupSearchContainer from './Tsunami/TsunamiRunupSearch/RunupSearchContainer';
+import UpdateTsunamiContainer from './Tsunami/TsunamiEventUpdate/UpdateTsunamiContainer';
+import UpdateRunupContainer from './Tsunami/TsunamiRunupUpdate/UpdateRunupContainer';
+import RunupContainer from './Tsunami/TsunamiRunupDataDisplay/RunupContainer';
+import TsunamiLanding from './Tsunami/TsunamiLandingPage/TsunamiLanding';
 import EarthquakeSearchContainer from './Earthquakes/EarthquakeSearch/EarthquakeSearchContainer';
 import EarthquakeContainer from './Earthquakes/EarthquakeDataDisplay/EarthquakeContainer';
 import EarthquakeInsertContainer from './Earthquakes/EarthquakeInsert/EarthquakeInsertContainer';
@@ -35,6 +35,7 @@ import VolcanoEventInsertContainer from './Volcanoes/VolcanoEventInsert/VolcanoE
 import VolcanoLocInsertContainer from './Volcanoes/VolcanoLocInsert/VolcanoLocInsertContainer';
 import VolcanoEventUpdateContainer from './Volcanoes/VolcanoEventUpdate/VolcanoEventUpdateContainer';
 import VolcanoLocUpdateContainer from './Volcanoes/VolcanoLocUpdate/VolcanoLocUpdateContainer';
+import MoreTsunamiEventInfoContainer from "./Tsunami/MoreEventInfo/MoreTsunamiEventInfoContainer";
 
 class App extends React.Component {
   render() {
@@ -72,6 +73,7 @@ class App extends React.Component {
             <Route exact path="/volcano/loc/insert" component={VolcanoLocInsertContainer} />
             <Route exact path="/volcano/event/update/:hazEventId/:volId" component={VolcanoEventUpdateContainer} />
             <Route exact path="/volcano/loc/update/:id" component={VolcanoLocUpdateContainer} />
+            <Route exact path="/tsunami/event/moreinfo/:eventId" component={MoreTsunamiEventInfoContainer}/>
             {/* Must have 404 component listed last */}
             <Route path="*" component={FourZeroFour} />
           </Switch>

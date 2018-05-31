@@ -21,7 +21,6 @@ const Table = props => (
           width: 35,
         }
       }
-      // The style height gives fixed header with scroll
       style={{
         height: '50%', // This will force the table body to overflow and scroll, since there is not enough room
         width: '95%',
