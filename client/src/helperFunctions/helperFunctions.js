@@ -173,6 +173,20 @@ const mapToVolcanoEventTable = (arr) => {
       ),
     });
     result.push({
+      Header: 'Related Tsunamis',
+      accessor: 'relatedTsunamis',
+      Cell: props => (
+          <button type="button" onClick={() => {
+            let basePath = "/tsunami/event/data?"
+            let query = {volcanoid: props.original.hazEventId + ""}
+            let encoded = encodeQueryString(JSON.stringify(query));
+            return store.dispatch(push(`${basePath}${encoded}`))}
+          }>
+            Related Tsunamis
+          </button>
+      ),
+    });
+    result.push({
       Header: 'Edit',
       accessor: 'edit',
       Cell: props => (
