@@ -145,7 +145,7 @@ export function* fetchVolcanoEvent(action) {
     const response = yield call(axios.get, `${VOLCANO_BASEPATH}/${id}`);
     yield put({
       type: 'FETCH_VOLCANO_EVENT_FULFILLED',
-      payload: response.data,
+      payload: {data: response.data, formattedData: mapToVolcanoEventTable([response.data])}
     });
   } catch (error) {
     yield put({ type: 'FETCH_VOLCANO_EVENT_REJECTED', payload: error });

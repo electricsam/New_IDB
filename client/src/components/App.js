@@ -37,6 +37,7 @@ import VolcanoEventUpdateContainer from './Volcanoes/VolcanoEventUpdate/VolcanoE
 import VolcanoLocUpdateContainer from './Volcanoes/VolcanoLocUpdate/VolcanoLocUpdateContainer';
 import MoreTsunamiEventInfoContainer from "./Tsunami/MoreEventInfo/MoreTsunamiEventInfoContainer";
 import MoreRunupInfoContainer from "./Tsunami/MoreRunupInfo/MoreRunupInfoContainer";
+import MoreVolcanoEventInfoContainer from "./Volcanoes/MoreEventInformation/MoreVolcanoEventInfoContainer";
 
 class App extends React.Component {
   render() {
@@ -76,7 +77,7 @@ class App extends React.Component {
             <Route exact path="/volcano/event/update/:hazEventId/:volId" component={VolcanoEventUpdateContainer} />
             <Route exact path="/volcano/loc/update/:id" component={VolcanoLocUpdateContainer} />
             <Route exact path="/tsunami/runup/moreinfo/:runupId" component={MoreRunupInfoContainer}/>
-
+            <Route exact path="/volcano/event/moreinfo/:volcanoId" component={MoreVolcanoEventInfoContainer}/>
             {/* Must have 404 component listed last */}
             <Route path="*" component={FourZeroFour} />
           </Switch>

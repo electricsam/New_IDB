@@ -173,7 +173,8 @@ export default function reducer(state = initialState, action) {
     return state.merge(state, {
       fetchingVolcanoEvents: false,
       fetchedVolcanoEvents: true,
-      volcanoEvents: [action.payload],
+      volcanoEvents: [action.payload.data],
+      headersAndAccessors: action.payload.formattedData
     });
   }
   case 'FETCH_VOLCANO_EVENT_REJECTED': {
