@@ -145,6 +145,13 @@ const mapToVolcanoEventTable = (arr) => {
       result.push({ Header: camelToPascal(e), accessor: e });
     });
     result.push({
+      Header: 'More Info',
+      accessor: 'moreInfo',
+      Cell: props => (
+          <Link to={`/volcano/event/moreinfo/${props.original.hazEventId}`}>More Info</Link>
+      ),
+    });
+    result.push({
       Header: 'Edit',
       accessor: 'edit',
       Cell: props => (
