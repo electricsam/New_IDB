@@ -143,7 +143,7 @@ class Navbar extends React.Component {
                       <MenuItem linkText="Deposit" address="/tsunami/depositsearch" />
                     </SubMenu>
                   </MenuItem>
-                  <MenuItem linkText="REFERENCES" address="/reference/landing"
+                  <MenuItem linkText="REFERENCES" address="/reference/search"
                             handleMouseEnter={this.handleRefMouseEnter}
                             handleMouseLeave={this.handleRefMouseLeave}>
                     <SubMenu display={this.state.refSubMenuDisplay}>
