@@ -41,6 +41,34 @@ const mapToTable = (arr) => {
       ),
     });
     result.push({
+      Header: 'Related Volcanoes',
+      accessor: 'relatedVolcanoes',
+      Cell: props => (
+          <button type="button" onClick={() => {
+            let basePath = "/volcano/event/data?"
+            let query = {tsunamiid: props.original.id + ""}
+            let encoded = encodeQueryString(JSON.stringify(query));
+            return store.dispatch(push(`${basePath}${encoded}`))}
+          }>
+            Related Volcanoes
+          </button>
+      ),
+    });
+    result.push({
+      Header: 'Related Earthquakes',
+      accessor: 'relatedEarthquakes',
+      Cell: props => (
+          <button type="button" onClick={() => {
+            let basePath = "/earthquake/event/data?"
+            let query = {tsunamiid: props.original.id + ""}
+            let encoded = encodeQueryString(JSON.stringify(query));
+            return store.dispatch(push(`${basePath}${encoded}`))}
+          }>
+            Related Earthquakes
+          </button>
+      ),
+    });
+    result.push({
       Header: 'Edit',
       accessor: 'edit',
       Cell: props => (
