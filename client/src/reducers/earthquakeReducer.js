@@ -59,7 +59,7 @@ export default function reducer(state = initialState, action) {
     return state.merge(state, { deletingEarthquake: false, error: action.payload });
   }
   case 'FETCH_SPECIFIED_EARTHQUAKES_REQUESTED': {
-    return state.merge(state, { fetchingEarthquake: true });
+    return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false });
   }
   case 'FETCH_SPECIFIED_EARTHQUAKES_FULFILLED': {
     return state.merge(state, {
@@ -94,10 +94,15 @@ export default function reducer(state = initialState, action) {
     return state.merge(state, { postingEarthquake: false, error: action.payload });
   }
   case 'FETCH_EARTHQUAKE_REQUESTED': {
-    return state.merge(state, { fetchingEarthquake: true });
+    return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false });
   }
   case 'FETCH_EARTHQUAKE_FULFILLED': {
-    return state.merge(state, { fetchingEarthquake: false, fetchedEarthquake: true, earthquakes: [action.payload] });
+    return state.merge(state, {
+      fetchingEarthquake: false,
+      fetchedEarthquake: true,
+      earthquakes: [action.payload.data],
+      headersAndAccessors: action.payload.formattedData
+    });
   }
   case 'FETCH_EARTHQUAKE_REJECTED': {
     return state.merge(state, { fetchingEarthquake: false, error: action.payload });

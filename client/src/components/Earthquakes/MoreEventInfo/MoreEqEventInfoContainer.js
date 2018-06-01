@@ -15,31 +15,27 @@ class MoreVolcanoEventInfoContainer extends React.Component{
   }
 
   componentDidMount(){
-    let { volcanoId } = this.props.match.params;
-    console.log("this is my volcano id: ", volcanoId);
-    let queryString = `volcanoid=${volcanoId }`
-    action({type: "FETCH_VOLCANO_EVENT_REQUESTED", payload: volcanoId});
+    let { eqId } = this.props.match.params;
+    let queryString = `earthquakeid=${eqId}`
+    action({type: "FETCH_EARTHQUAKE_REQUESTED", payload: eqId});
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
   }
 
   render(){
-    const { volcano, reference } = this.props
+    const { earthquake, reference } = this.props
 
-    console.log("this is volcano ", volcano)
-
-    if(volcano.get('fetchedVolcanoEvents') && reference.get('fetchedReference')){
-      console.log("this is my volcano data: ", volcano.asMutable().getIn(['volcanoEvents']).toJS());
+    if(earthquake.get('fetchedEarthquake') && reference.get('fetchedReference')){
       return (
           <div>
 
-            <SmallTable data={volcano.asMutable().getIn(['volcanoEvents']).toJS()}
-                        columns={volcano.getIn(['headersAndAccessors']).toJS()}
-                        title="Significant Volcano Event Information"
-                        loading={volcano.get('fetchingVolcanoEvents')}
+            <SmallTable data={earthquake.asMutable().getIn(['earthquakes']).toJS()}
+                        columns={earthquake.getIn(['headersAndAccessors']).toJS()}
+                        title="Significant Earthquake Information"
+                        loading={earthquake.get('fetchingEarthquake')}
                         defaultPageSize={1}
             />
 
-            <MoreInfoComments comments={volcano.asMutable().getIn(['volcanoEvents']).toJS()[0].comments}/>
+            <MoreInfoComments comments={earthquake.asMutable().getIn(['earthquakes']).toJS()[0].comments}/>
 
             <SmallTable data={reference.asMutable().getIn(['references']).toJS()}
                         columns={reference.getIn(['headersAndAccessors']).toJS()}
@@ -56,6 +52,6 @@ class MoreVolcanoEventInfoContainer extends React.Component{
 }
 
 
-const mapStateToProps = state => ({volcano: state.deep.volcano, reference: state.deep.reference});
+const mapStateToProps = state => ({earthquake: state.deep.earthquake, reference: state.deep.reference});
 
 export default connect(mapStateToProps)(MoreVolcanoEventInfoContainer);

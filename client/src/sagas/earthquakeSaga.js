@@ -102,7 +102,7 @@ export function* fetchEarthquake(action) {
     const response = yield call(axios.get, `${EARTHQUAKE_BASEPATH}/${id}`);
     yield put({
       type: 'FETCH_EARTHQUAKE_FULFILLED',
-      payload: response.data,
+      payload: {data: response.data, formattedData: mapToEarthquakeTable([response.data])},
     });
   } catch (error) {
     yield put({ type: 'FETCH_EARTHQUAKE_REJECTED', payload: error });

@@ -86,6 +86,13 @@ const mapToEarthquakeTable = (arr) => {
       result.push({ Header: camelToPascal(e), accessor: e });
     });
     result.push({
+      Header: 'More Info',
+      accessor: 'moreInfo',
+      Cell: props => (
+          <Link to={`/earthquake/event/moreinfo/${props.original.id}`}>More Info</Link>
+      ),
+    });
+    result.push({
       Header: 'Edit',
       accessor: 'edit',
       Cell: props => (
@@ -287,13 +294,11 @@ const mapToRunupTable = (arr) => {
 
 
 const deleteVolLoc = (id) => {
-  console.log('####################### this is the id from inside the deleteVolLoc func: ', id);
   store.dispatch({ type: 'SET_DELETE_VOLCANO_LOC_ID', payload: id });
   store.dispatch({ type: 'TOGGLE_DELETE_VOLCANO_LOC_CONFIRMATION' });
 };
 
 const deleteVolEvent = (id) => {
-  console.log('################################### event id; ', id);
   store.dispatch({ type: 'SET_DELETE_VOLCANO_EVENT_ID', payload: id });
   store.dispatch({ type: 'TOGGLE_DELETE_VOLCANO_EVENT_CONFIRMATION' });
 };
@@ -329,21 +334,15 @@ const deleteEvent = (id) => {
 
 
 
-const encodeQueryString = query => {
-  console.log(query);
-  return CryptoJS.AES.encrypt(query, hashPass).toString()
-};
+const encodeQueryString = query => CryptoJS.AES.encrypt(query, hashPass).toString();
 
 const decodeQueryString = query => CryptoJS.AES.decrypt(query, hashPass).toString(CryptoJS.enc.Utf8);
 
 const createApiQueryString = (obj) => {
-  console.log("this is obj in createApiQueryString ", obj);
   // TODO: insert a trim on strings to account for possiblility of spaces entred into boxes with no value
   let result = '';
   for (const key in obj) {
     if (obj[key].length) {
-      console.log("KEY##########: ", key);
-      console.log()
       result += (`${key}=${obj[key]}&`);
     }
   }
