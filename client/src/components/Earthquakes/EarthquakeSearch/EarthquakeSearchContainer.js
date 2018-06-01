@@ -31,7 +31,6 @@ class EarthquakeSearchContainer extends React.Component{
     if(val.search){
       let encoded = encodeQueryString(JSON.stringify(val.search));
       let queryString = createApiQueryString(val.search);
-
       action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED", payload: queryString});
       this.props.history.push( `/earthquake/event/data?${encoded}`);
     }else{

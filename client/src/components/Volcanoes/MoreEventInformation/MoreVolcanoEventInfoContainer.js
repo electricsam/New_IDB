@@ -16,41 +16,26 @@ class MoreVolcanoEventInfoContainer extends React.Component{
 
   componentDidMount(){
     let { volcanoId } = this.props.match.params;
-    let queryString = `volcanoid=${volcanoId  }`
+    console.log("this is my volcano id: ", volcanoId);
+    let queryString = `volcanoid=${volcanoId }`
     action({type: "FETCH_VOLCANO_EVENT_REQUESTED", payload: volcanoId});
-    action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
+    // action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
   }
 
   render(){
     const { volcano, reference } = this.props
 
     if(volcano.get('fetchedVolcanoEvents') && reference.get('fetchedReference')){
-
+      console.log("this is my volcano data: ", volcano.asMutable().getIn(['volcanoEvents']).toJS());
       return (
           <div>
 
-            <SmallTable data={volcano.asMutable().getIn(['volcanoEvents']).toJS()}
-                        columns={volcano.getIn(['headersAndAccessors']).toJS()}
-                        title="Significant Volcano Event Information"
-                        loading={volcano.get('fetchingVolcanoEvents')}
-                        defaultPageSize={1}
-            />
-
-            <MoreInfoComments comments={volcano.asMutable().getIn(['volcanoEvents']).toJS()[0].comments}/>
-
-            <SmallTable data={reference.asMutable().getIn(['references']).toJS()}
-                        columns={reference.getIn(['headersAndAccessors']).toJS()}
-                        title="Related References"
-                        defaultPageSize={reference.asMutable().getIn(['references']).toJS().length}
-                        loading={reference.get('fetchingReference')}/>
+            GELASLDKFJALSK
           </div>
       )
     }
     return <Loading/>
   }
-
-
-
 }
 
 

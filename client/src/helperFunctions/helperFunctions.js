@@ -152,6 +152,20 @@ const mapToVolcanoEventTable = (arr) => {
       ),
     });
     result.push({
+      Header: 'Related Earthquakes',
+      accessor: 'relatedEarthquakes',
+      Cell: props => (
+          <button type="button" onClick={() => {
+            let basePath = "/earthquake/event/data?"
+            let query = {volcanoid: props.original.hazEventId + ""}
+            let encoded = encodeQueryString(JSON.stringify(query));
+            return store.dispatch(push(`${basePath}${encoded}`))}
+          }>
+            Related Earthquakes
+          </button>
+      ),
+    });
+    result.push({
       Header: 'Edit',
       accessor: 'edit',
       Cell: props => (
@@ -315,15 +329,21 @@ const deleteEvent = (id) => {
 
 
 
-const encodeQueryString = query => CryptoJS.AES.encrypt(query, hashPass).toString();
+const encodeQueryString = query => {
+  console.log(query);
+  return CryptoJS.AES.encrypt(query, hashPass).toString()
+};
 
 const decodeQueryString = query => CryptoJS.AES.decrypt(query, hashPass).toString(CryptoJS.enc.Utf8);
 
 const createApiQueryString = (obj) => {
+  console.log("this is obj in createApiQueryString ", obj);
   // TODO: insert a trim on strings to account for possiblility of spaces entred into boxes with no value
   let result = '';
   for (const key in obj) {
     if (obj[key].length) {
+      console.log("KEY##########: ", key);
+      console.log()
       result += (`${key}=${obj[key]}&`);
     }
   }
