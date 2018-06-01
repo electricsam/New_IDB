@@ -2,6 +2,8 @@ import React from 'react';
 
 import { push } from 'react-router-redux';
 
+import { Link } from 'react-router-dom';
+
 import store from '../store';
 
 const CryptoJS = require('crypto-js');
@@ -30,6 +32,13 @@ const mapToTable = (arr) => {
     const accessors = Object.keys(arr[0]);
     accessors.map((e) => {
       result.push({ Header: camelToPascal(e), accessor: e });
+    });
+    result.push({
+      Header: 'More Info',
+      accessor: 'moreInfo',
+      Cell: props => (
+          <Link to={`/tsunami/event/moreinfo/${props.original.id}`}>More Info</Link>
+      ),
     });
     result.push({
       Header: 'Edit',

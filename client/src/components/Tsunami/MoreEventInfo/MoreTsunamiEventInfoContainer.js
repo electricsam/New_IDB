@@ -40,7 +40,7 @@ class MoreEventInfoContainer extends React.Component{
                         defaultPageSize={1}
             />
 
-            <MoreInfoComments comments={tsunami.asMutable().getIn(['tsEvent']).toJS().comments}/>
+            <MoreInfoComments comments={tsunami.asMutable().getIn(['tsEvent']).toJS()[0].comments}/>
 
             <SmallTable data={reference.asMutable().getIn(['references']).toJS()}
                         columns={reference.getIn(['headersAndAccessors']).toJS()}
