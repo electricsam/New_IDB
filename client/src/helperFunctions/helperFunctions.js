@@ -215,6 +215,56 @@ const mapToVolcanoLocsTable = (arr) => {
 };
 
 
+const mapToRunupTable = (arr) => {
+  const result = [];
+  if (arr.length) {
+    const accessors = Object.keys(arr[0]);
+    accessors.map((e) => {
+      result.push({ Header: camelToPascal(e), accessor: e });
+    });
+    result.push({
+      Header: 'More Info',
+      accessor: 'moreInfo',
+      Cell: props => (
+          <Link to={`/tsunami/runup/moreinfo/${props.original.id}`}>More Info</Link>
+      ),
+    });
+    result.push({
+      Header: 'More Event Info',
+      accessor: 'moreEventInfo',
+      Cell: props => (
+          <Link to={`/tsunami/event/moreinfo/${props.original.eventId}`}>More Event Info</Link>
+      ),
+    });
+    result.push({
+      Header: 'Edit',
+      accessor: 'edit',
+      Cell: props => (
+          <button
+              type="button"
+              onClick={() => store.dispatch(push(`/tsunami/updaterunup/${props.original.id}/${props.original.eventId}`))}
+          >
+            Edit Runup
+          </button>
+      ),
+    });
+    result.push({
+      Header: 'Delete',
+      accessor: 'delete',
+      Cell: props => (
+          <button
+              type="button"
+              onClick={() => deleteRunup(props.original.id)}
+          >
+            Delete Runup
+          </button>
+      ),
+    });
+  }
+  return result;
+};
+
+
 const deleteVolLoc = (id) => {
   console.log('####################### this is the id from inside the deleteVolLoc func: ', id);
   store.dispatch({ type: 'SET_DELETE_VOLCANO_LOC_ID', payload: id });
@@ -257,40 +307,6 @@ const deleteEvent = (id) => {
 };
 
 
-const mapToRunupTable = (arr) => {
-  const result = [];
-  if (arr.length) {
-    const accessors = Object.keys(arr[0]);
-    accessors.map((e) => {
-      result.push({ Header: camelToPascal(e), accessor: e });
-    });
-    result.push({
-      Header: 'Edit',
-      accessor: 'edit',
-      Cell: props => (
-        <button
-          type="button"
-          onClick={() => store.dispatch(push(`/tsunami/updaterunup/${props.original.id}/${props.original.eventId}`))}
-        >
-          Edit Runup
-        </button>
-      ),
-    });
-    result.push({
-      Header: 'Delete',
-      accessor: 'delete',
-      Cell: props => (
-        <button
-          type="button"
-          onClick={() => deleteRunup(props.original.id)}
-        >
-          Delete Runup
-        </button>
-      ),
-    });
-  }
-  return result;
-};
 
 const encodeQueryString = query => CryptoJS.AES.encrypt(query, hashPass).toString();
 
