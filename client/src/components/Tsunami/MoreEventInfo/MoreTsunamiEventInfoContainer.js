@@ -6,6 +6,7 @@ import SmallTable from "../../SmallTable/SmallTable";
 import Loading from '../../loadbar/Loading';
 
 import { createApiQueryString } from '../../../helperFunctions/helperFunctions'
+import MoreInfoComments from "../../FormPartials/MoreInfoComments";
 
 const action = obj => store.dispatch(obj);
 
@@ -38,6 +39,8 @@ class MoreEventInfoContainer extends React.Component{
                         loading={tsunami.get('fetchingTsEvent')}
                         defaultPageSize={1}
             />
+
+            <MoreInfoComments comments={tsunami.asMutable().getIn(['tsEvent']).toJS().comments}/>
 
             <SmallTable data={reference.asMutable().getIn(['references']).toJS()}
                         columns={reference.getIn(['headersAndAccessors']).toJS()}
