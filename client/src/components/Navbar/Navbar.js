@@ -124,7 +124,7 @@ class Navbar extends React.Component {
                   </MenuItem>
                   <MenuItem
                       linkText="VOLCANOES"
-                      address="/volcano/eventsearch"
+                      address="/volcano/landing"
                       handleMouseEnter={this.handleVolMouseEnter}
                       handleMouseLeave={this.handlevolMouseLeave}
                   >
