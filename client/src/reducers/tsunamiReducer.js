@@ -126,11 +126,16 @@ export default function reducer(state = initialState, action) {
     return state.merge(state, { fetchingTsEvent: false, fetchedTsEvent: false, error: action.payload });
   }
   case 'FETCH_TS_RUNUP_REQUESTED': {
-    return state.merge(state, { fetchingRunup: true });
+    return state.merge(state, { fetchingRunup: true, fetchedRunup: false });
   }
   case 'FETCH_TS_RUNUP_FULFILLED': {
     console.log('Action.payload: ', action.payload);
-    return state.mergeDeep(state, { fetchingRunup: false, fetchedRunup: true, runupData: [action.payload] });
+    return state.mergeDeep(state, {
+      fetchingRunup: false,
+      fetchedRunup: true,
+      runupData: [action.payload.data],
+      headersAndAccessors: action.payload.formattedData
+    });
   }
   case 'FETCH_TS_RUNUP_REJECTED': {
     return state.merge(state, { fetchingRunup: false, error: action.payload });

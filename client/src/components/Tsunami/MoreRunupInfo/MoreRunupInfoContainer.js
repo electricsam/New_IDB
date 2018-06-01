@@ -4,42 +4,40 @@ import {connect} from "react-redux";
 import store from '../../../store';
 import SmallTable from "../../SmallTable/SmallTable";
 import Loading from '../../loadbar/Loading';
-
-import { createApiQueryString } from '../../../helperFunctions/helperFunctions'
 import MoreInfoComments from "../../FormPartials/MoreInfoComments";
 
 const action = obj => store.dispatch(obj);
 
-class MoreEventInfoContainer extends React.Component{
+class MoreRunupInfoContainer extends React.Component{
   constructor(props){
     super(props);
     this.state = {};
   }
 
   componentDidMount(){
-    let { eventId } = this.props.match.params;
-    let queryString = `tsunamiid=${eventId}`
-    action({type: "FETCH_TS_EVENT_REQUESTED", payload: eventId});
+    let { runupId } = this.props.match.params;
+    console.log("this.props.match.params ", this.props.match.params)
+    let queryString = `runupid=${runupId}`
+    action({type: "FETCH_TS_RUNUP_REQUESTED", payload: runupId});
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
-
   }
 
   render(){
     const { tsunami, reference } = this.props
 
-    if(tsunami.get('fetchedTsEvent') && reference.get('fetchedReference')){
+    if(tsunami.get('fetchedRunup') && reference.get('fetchedReference')){
 
       return (
           <div>
 
-            <SmallTable data={tsunami.asMutable().getIn(['tsEvent']).toJS()}
+            <SmallTable data={tsunami.asMutable().getIn(['runupData']).toJS()}
                         columns={tsunami.getIn(['headersAndAccessors']).toJS()}
-                        title="Tsunami Event Info"
-                        loading={tsunami.get('fetchingTsEvent')}
+                        title="Tsunami Runup Info"
+                        loading={tsunami.get('fetchingRunup')}
                         defaultPageSize={1}
             />
 
-            <MoreInfoComments comments={tsunami.asMutable().getIn(['tsEvent']).toJS()[0].comments}/>
+            <MoreInfoComments comments={tsunami.asMutable().getIn(['runupData']).toJS()[0].comments}/>
 
             <SmallTable data={reference.asMutable().getIn(['references']).toJS()}
                         columns={reference.getIn(['headersAndAccessors']).toJS()}
@@ -59,4 +57,4 @@ class MoreEventInfoContainer extends React.Component{
 
 const mapStateToProps = state => ({tsunami: state.deep.tsunami, reference: state.deep.reference});
 
-export default connect(mapStateToProps)(MoreEventInfoContainer);
+export default connect(mapStateToProps)(MoreRunupInfoContainer);

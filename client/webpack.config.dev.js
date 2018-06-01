@@ -55,14 +55,14 @@ module.exports = {
         exclude: '/node_modules/',
         use: 'babel-loader'
       },
-      {
-        test:/\.js$/,
-        exclude: '/node_modules/',
-        loader: "eslint-loader",
-        options:{
-          emitWarning: true
-        }
-      },
+      // {
+      //   test:/\.js$/,
+      //   exclude: '/node_modules/',
+      //   loader: "eslint-loader",
+      //   options:{
+      //     emitWarning: true
+      //   }
+      // },
       {
         test: /\.css$/,
         exclude: /node_modules/,
