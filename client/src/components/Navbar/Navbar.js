@@ -108,7 +108,7 @@ class Navbar extends React.Component {
               <li onMouseEnter={()=>this.handleHazMouseEnter()}
                   onMouseLeave={()=>this.handleHazMouseLeave()}
                   className={Styles.mainMenuListItemDropper}>
-                <Link to="/hazardPages" className={Styles.hazLink}>
+                <Link to="/hazards/landing" className={Styles.hazLink}>
                   HAZARD PAGES<i className="material-icons">&#xE5CF;</i>
                 </Link>
                 <Menu display={this.state.hazDisplay}>

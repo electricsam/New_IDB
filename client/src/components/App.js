@@ -40,6 +40,7 @@ import MoreRunupInfoContainer from "./Tsunami/MoreRunupInfo/MoreRunupInfoContain
 import MoreVolcanoEventInfoContainer from "./Volcanoes/MoreEventInformation/MoreVolcanoEventInfoContainer";
 import MoreEqEventInfoContainer from "./Earthquakes/MoreEventInfo/MoreEqEventInfoContainer";
 import VolcanoLanding from "./Volcanoes/VolcanoLanding/VolcanoLanding";
+import HazardsLanding from "./HazardsLanding/HazardsLanding";
 
 class App extends React.Component {
   render() {
@@ -51,6 +52,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/home" component={Home} />
             <Route exact path="/about" component={AboutPage} />
+            <Route exact path="/hazards/landing" component={HazardsLanding}/>
             <Route exact strict path="/tsunami/event/data" component={TsunamiContainer} />
             <Route exact path="/tsunami/runup/data" component={RunupContainer} />
             <Route exact path="/tsunami/eventsearch" component={TsunamiSearchContainer} />
