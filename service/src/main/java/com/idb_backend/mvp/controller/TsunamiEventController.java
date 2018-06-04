@@ -57,7 +57,6 @@ public class TsunamiEventController {
     try{
       Iterable<TsunamiEventView> result = tsunamiEventService.getTsunamis(allRequestParams, predicate);
       return ResponseEntity.status(HttpStatus.OK).body(result);
-
     }catch (NumberFormatException e){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }

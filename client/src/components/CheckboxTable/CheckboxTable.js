@@ -1,17 +1,20 @@
 import React from 'react';
-
 import ReactTable from 'react-table';
 import selectTableHOC from 'react-table/lib/hoc/selectTable';
+import { push } from 'react-router-redux';
+import {connect} from "react-redux";
+
+
+import { deleteEarthquake } from "../../helperFunctions/helperFunctions";
 
 const CheckboxTable = selectTableHOC(ReactTable);
-
-import {connect} from "react-redux";
 import DialogBox from "../FormPartials/DialogBox";
 import Table from "../Table/Table"
 import Loading from "../loadbar/Loading";
+import TickboxTable from './TickboxTable';
 import store from "../../store";
 
-import {createApiQueryString, decodeQueryString} from "../../helperFunctions/helperFunctions";
+import {createApiQueryString, decodeQueryString, encodeQueryString} from "../../helperFunctions/helperFunctions";
 
 const tableStyle = {
   textAlign: "center"
@@ -53,8 +56,12 @@ class EarthquakeSelectTestContainer extends React.Component {
   };
 
   toggleSelection = key => {
-    // let selection = this.props.earthquake.get('tableSelection');
-    action({type: "SET_TABLE_SELECTION", payload: key});
+    let selection = this.props.earthquake.get('tableSelection');
+    if(selection === key){
+      action({type: "SET_TABLE_SELECTION", payload: null});
+    }else{
+      action({type: "SET_TABLE_SELECTION", payload: key});
+    }
   }
 
   selectAll = () => {
@@ -63,16 +70,63 @@ class EarthquakeSelectTestContainer extends React.Component {
 
   toggleAll = () => {
     action({type: "SET_TABLE_SELECTION", payload: null});
+  };
+
+  handleMoreInfoCick = () => {
+    let selected = this.props.earthquake.get('tableSelection');
+    if(!selected){
+      // do nothing
+    }else{
+      store.dispatch(push(`/earthquake/event/moreinfo/${selected}`));
+    }
+  };
+
+  handleRelatedVolcanoClick = () => {
+    let selected = this.props.earthquake.get('tableSelection');
+    if(!selected){
+      // do nothing
+    }else{
+      let basePath = "/volcano/event/data?";
+      let query = {earthquakeid: selected + ""};
+      let encoded = encodeQueryString(JSON.stringify(query));
+      return store.dispatch(push(`${basePath}${encoded}`))
+    }
   }
+
+  handleRelatedTsunamiClick = () => {
+    let selected = this.props.earthquake.get('tableSelection');
+    if(!selected){
+      // do nothing
+    }else{
+      let basePath = "/tsunami/event/data?";
+      let query = {earthquakeid: selected + ""};
+      let encoded = encodeQueryString(JSON.stringify(query));
+      return store.dispatch(push(`${basePath}${encoded}`))
+    }
+  };
+
+  handleEditClick = () => {
+    let selected = this.props.earthquake.get('tableSelection');
+    if (!selected) {
+    //  do nothing
+    }else {
+      store.dispatch(push(`/earthquake/update/${selected}`));
+    }
+  }
+
+  handleDeleteClick = () => {
+    let selected = this.props.earthquake.get('tableSelection');
+    if (!selected) {
+      //  do nothing
+    }else {
+      deleteEarthquake(selected);
+    }
+  }
+
 
   isSelected = key => this.props.earthquake.get('tableSelection') === key ? true : false;
 
   logSelection = () => {console.log('selection: ', this.props.earthquake.get('tableSelection'))}
-
-
-
-
-
 
 
   render(){
@@ -86,7 +140,14 @@ class EarthquakeSelectTestContainer extends React.Component {
       isSelected,
       logSelected,
       selectType: "checkbox",
-      keyField:'id'
+      keyField: 'id',
+      buttons: [
+        {title: 'More Info', handleClick: this.handleMoreInfoCick},
+        {title: 'Related Volcanoes', handleClick: this.handleRelatedVolcanoClick},
+        {title: 'Related Tsunamis', handleClick: this.handleRelatedTsunamiClick},
+        {title: "Edit Earthquake", handleClick: this.handleEditClick},
+        {title: "Delete Earthquake", handleClick: this.handleDeleteClick}
+      ]
     };
 
     if( earthquake.get('fetchedEarthquake')){
@@ -99,34 +160,13 @@ class EarthquakeSelectTestContainer extends React.Component {
                 />:
                 <div style={hiddenStyle}></div>
             }
-
-            <div>
-              <h1>Test Earthquake Select Table</h1>
-              <CheckboxTable
-                  ref={r => {this.selectTableHOC}}
-                  className="-striped -highlight"
-                  columns={earthquake.getIn(['headersAndAccessors']).toJS()}
-                  data={earthquake.asMutable().getIn(['earthquakes']).toJS()}
-                  defaultPageSize={20}
-                  defaultSorted={[{ id: 'id', desc: false }]}
-                  expanderDefaults={
-                    {
-                      sortable: false,
-                      resizable: true,
-                      filterable: false,
-                      width: 35,
-                    }
-                  }
-                  loading={earthquake.get('fetchingEarthquake')}
-                  style={{
-                    height: '50%', // This will force the table body to overflow and scroll, since there is not enough room
-                    width: '95%',
-                    textAlign: 'center',
-                  }}
-                  {...checkboxProps}
-              />
-
-            </div>
+            <TickboxTable
+                title="Earthquake Data"
+                columns={earthquake.getIn(['headersAndAccessors']).toJS()}
+                data={earthquake.asMutable().getIn(['earthquakes']).toJS()}
+                loading={earthquake.get('fetchingEarthquake')}
+                {...checkboxProps}
+            />
 
           </div>
       )

@@ -433,4 +433,5 @@ module.exports = {
   mapToReferenceTable,
   mapToVolcanoEventTable,
   mapToVolcanoLocsTable,
+  deleteEarthquake,
 };

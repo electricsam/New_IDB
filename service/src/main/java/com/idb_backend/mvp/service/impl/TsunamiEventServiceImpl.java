@@ -66,13 +66,13 @@ public class TsunamiEventServiceImpl extends BaseService implements TsunamiEvent
 
   @Override
   public Iterable<TsunamiEventView> getTsunamis(Map<String, String> params, Predicate predicate){
-    if(params.get("earthquakeid") != null && !params.get("earthquakeid").equals("")){
+    if(params.get("earthquakeid") != null ){
       return tsunamiEventRepository.findRelatedTsunamiFromEarthquake(Integer.parseInt(params.get("earthquakeid")));
-    }else if(params.get("refid") != null && !params.get("refid").equals("")){
+    }else if(params.get("refid") != null){
       return tsunamiEventRepository.findRelatedTsunamiFromRef(Integer.parseInt(params.get("refid")));
-    }else if(params.get("volcanoid") != null && !params.get("volcanoid").equals("")){
+    }else if(params.get("volcanoid") != null){
       return tsunamiEventRepository.findRelatedTsunamiFromVolcano(Integer.parseInt(params.get("volcanoid")));
-    }else if(params.get("runupid") != null && !params.get("runupid").equals("")){
+    }else if(params.get("runupid") != null){
       return tsunamiEventRepository.findRelatedTsunamiFromRunup(Integer.parseInt(params.get("runupid")));
     } else{
       return tsunamiEventViewRepository.findEventsByQuery(combineBools(predicate, generateCriteria(params)));
