@@ -22,6 +22,7 @@ export const initialState = fromJS({
   fetchedReferenceById: false,
   patchingReference: false,
   patchedReference: false,
+  tableSelection: null,
 });
 
 export default function reducer(state = initialState, action) {
@@ -89,6 +90,9 @@ export default function reducer(state = initialState, action) {
   case 'PATCH_REFERENCE_REJECTED': {
     return state.merge(state, { patchingReference: true, error: action.payload });
   }
+    case "SET_TABLE_SELECTION": {
+      return state.merge(state, {tableSelection: action.payload});
+    }
   default:
     return state;
   }

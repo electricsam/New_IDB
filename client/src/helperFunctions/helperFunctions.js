@@ -124,24 +124,6 @@ const mapToReferenceTable = (arr) => {
     accessors.map((e) => {
       result.push({ Header: camelToPascal(e), accessor: e });
     });
-    result.push({
-      Header: 'Edit',
-      accessor: 'edit',
-      Cell: props => (
-        <button type="button" onClick={() => store.dispatch(push(`/reference/update/${props.original.id}`))}>
-            Edit Reference
-        </button>
-      ),
-    });
-    result.push({
-      Header: 'Delete',
-      accessor: 'delete',
-      Cell: props => (
-        <button type="button" onClick={() => deleteReference(props.original.id)}>
-            Delete Reference
-        </button>
-      ),
-    });
   }
   return result;
 };

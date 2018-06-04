@@ -95,7 +95,6 @@ export function* watchFetchEarthquake() {
   yield takeEvery('FETCH_EARTHQUAKE_REQUESTED', fetchEarthquake);
 }
 
-
 export function* fetchEarthquake(action) {
   const id = action.payload;
   try {
