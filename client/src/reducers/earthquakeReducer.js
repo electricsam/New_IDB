@@ -30,6 +30,7 @@ export const initialState = fromJS({
   showEqUpdateMeasure: true,
   showEqUpdateEffects: true,
   showEqUpdateTotalEffects: true,
+  tableSelection:null,
 });
 
 export default function reducer(state = initialState, action) {
@@ -119,6 +120,10 @@ export default function reducer(state = initialState, action) {
   case 'TOGGLE_EARTHQUAKE_UPDATE_TOTAL_EFFECTS': {
     return state.merge(state, { showEqUpdateTotalEffects: !state.get('showEqUpdateTotalEffects') });
   }
+    case 'SET_TABLE_SELECTION': {
+      return state.merge(state, {tableSelection: action.payload});
+    }
+
   default:
     return state;
   }

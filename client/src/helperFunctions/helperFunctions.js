@@ -108,8 +108,10 @@ const mapToTable = (arr) => {
 
 const mapToEarthquakeTable = (arr) => {
   const result = [];
+
   if (arr.length) {
     const accessors = Object.keys(arr[0]);
+
     accessors.map((e) => {
       result.push({ Header: camelToPascal(e), accessor: e });
     });
