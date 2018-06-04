@@ -108,65 +108,10 @@ const mapToTable = (arr) => {
 
 const mapToEarthquakeTable = (arr) => {
   const result = [];
-
   if (arr.length) {
     const accessors = Object.keys(arr[0]);
-
     accessors.map((e) => {
       result.push({ Header: camelToPascal(e), accessor: e });
-    });
-    result.push({
-      Header: 'More Info',
-      accessor: 'moreInfo',
-      Cell: props => (
-          <Link to={`/earthquake/event/moreinfo/${props.original.id}`}>More Info</Link>
-      ),
-    });
-    result.push({
-      Header: 'Related Volcanoes',
-      accessor: 'relatedVolcanoes',
-      Cell: props => (
-          <button type="button" onClick={() => {
-            let basePath = "/volcano/event/data?"
-            let query = {earthquakeid: props.original.id + ""}
-            let encoded = encodeQueryString(JSON.stringify(query));
-            return store.dispatch(push(`${basePath}${encoded}`))}
-          }>
-            Related Volcanoes
-          </button>
-      ),
-    });
-    result.push({
-      Header: 'Related Tsunamis',
-      accessor: 'relatedTsunamis',
-      Cell: props => (
-          <button type="button" onClick={() => {
-            let basePath = "/tsunami/event/data?"
-            let query = {earthquakeid: props.original.id + ""}
-            let encoded = encodeQueryString(JSON.stringify(query));
-            return store.dispatch(push(`${basePath}${encoded}`))}
-          }>
-            Related Tsunamis
-          </button>
-      ),
-    });
-    result.push({
-      Header: 'Edit',
-      accessor: 'edit',
-      Cell: props => (
-        <button type="button" onClick={() => store.dispatch(push(`/earthquake/update/${props.original.id}`))}>
-            Edit Event
-        </button>
-      ),
-    });
-    result.push({
-      Header: 'Delete',
-      accessor: 'delete',
-      Cell: props => (
-        <button type="button" onClick={() => deleteEarthquake(props.original.id)}>
-            Delete Event
-        </button>
-      ),
     });
   }
   return result;

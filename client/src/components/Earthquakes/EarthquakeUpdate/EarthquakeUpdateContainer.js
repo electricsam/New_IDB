@@ -16,7 +16,7 @@ class EarthquakeUpdateContainer extends React.Component{
     this.statem = {};
   }
 
-  componentWillMount(){
+  componentDidMount(){
     let id = this.props.match.params.id;
     action({type: "FETCH_EARTHQUAKE_REQUESTED", payload: id});
   }

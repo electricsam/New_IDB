@@ -26,6 +26,7 @@ public class SignifTsqp implements Serializable {
 
   @Id
   private Integer id;
+
   private String flagDuplicate;
   private Integer year;
 
