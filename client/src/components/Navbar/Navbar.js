@@ -88,7 +88,7 @@ class Navbar extends React.Component {
 
           <div className={Styles.logoContainer}>
             <div className={Styles.imgContianer}>
-              <img src={noaa_logo}/>
+              <img alt='NOAA Logo' src={noaa_logo}/>
             </div>
 
             <div className={Styles.noaaTitle}>
