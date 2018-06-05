@@ -33,75 +33,6 @@ const mapToTable = (arr) => {
     accessors.map((e) => {
       result.push({ Header: camelToPascal(e), accessor: e });
     });
-    result.push({
-      Header: 'More Info',
-      accessor: 'moreInfo',
-      Cell: props => (
-          <Link to={`/tsunami/event/moreinfo/${props.original.id}`}>More Info</Link>
-      ),
-    });
-    result.push({
-      Header: 'Related Volcanoes',
-      accessor: 'relatedVolcanoes',
-      Cell: props => (
-          <button type="button" onClick={() => {
-            let basePath = "/volcano/event/data?"
-            let query = {tsunamiid: props.original.id + ""}
-            let encoded = encodeQueryString(JSON.stringify(query));
-            return store.dispatch(push(`${basePath}${encoded}`))}
-          }>
-            Related Volcanoes
-          </button>
-      ),
-    });
-    result.push({
-      Header: 'Related Earthquakes',
-      accessor: 'relatedEarthquakes',
-      Cell: props => (
-          <button type="button" onClick={() => {
-            let basePath = "/earthquake/event/data?"
-            let query = {tsunamiid: props.original.id + ""}
-            let encoded = encodeQueryString(JSON.stringify(query));
-            return store.dispatch(push(`${basePath}${encoded}`))}
-          }>
-            Related Earthquakes
-          </button>
-      ),
-    });
-    result.push({
-      Header: 'Edit',
-      accessor: 'edit',
-      Cell: props => (
-        <button type="button" onClick={() => store.dispatch(push(`/tsunami/updatetsunami/${props.original.id}`))}>Edit Event</button>
-      ),
-    });
-    result.push({
-      Header: 'Add TsunamiRunupDataDisplay',
-      accessor: 'addRunup',
-      Cell: props => (
-        <button type="button" onClick={() => store.dispatch(push(`/tsunami/insertrunup/${props.original.id}`))}>
-          Add Runup
-        </button>
-      ),
-    });
-    result.push({
-      Header: 'Related Runups',
-      accessor: 'relatedRunups',
-      Cell: props => (
-        <button type="button" onClick={() => getRelatedRunups(`${props.original.id}`)}>
-          Related Runups
-        </button>
-      ),
-    });
-    result.push({
-      Header: 'Delete',
-      accessor: 'delete',
-      Cell: props => (
-        <button type="button" onClick={() => deleteEvent(props.original.id)}>
-          Delete Event
-        </button>
-      ),
-    });
   }
   return result;
 };
@@ -361,4 +292,5 @@ module.exports = {
   mapToVolcanoEventTable,
   mapToVolcanoLocsTable,
   deleteEarthquake,
+  getRelatedRunups,
 };

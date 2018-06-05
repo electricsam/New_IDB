@@ -85,7 +85,6 @@ class App extends React.Component {
             <Route exact path="/volcano/loc/update/:id" component={VolcanoLocUpdateContainer} />
             <Route exact path="/volcano/event/moreinfo/:volcanoId" component={MoreVolcanoEventInfoContainer}/>
             <Route exact path="/volcano/landing" component={VolcanoLanding}/>
-            <Route exact path="/eqtest" component={CheckboxTable}/>
             {/* Must have 404 component listed last */}
             <Route path="*" component={FourZeroFour} />
           </Switch>

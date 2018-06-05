@@ -258,6 +258,9 @@ export default function reducer(state = initialState, action) {
   case 'TOGGLE_TSUNAMI_UPDATE_EFFECTS_TOTAL': {
     return state.merge(state, { showTsunamiUpdateEffectsTotal: !state.get('showTsunamiUpdateEffectsTotal') });
   }
+  case "SET_TSUNAMI_TABLE_SELECTION": {
+    return state.merge(state, {tsunamiTableSelection: action.payload});
+  }
   default:
     return state;
   }
