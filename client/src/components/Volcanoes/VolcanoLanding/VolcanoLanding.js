@@ -10,7 +10,7 @@ import VolcanoLandingPartial from "./VolcanoLandingPartial";
 const buttons = [
   {
     title: 'Search Events',
-    url: '/earthquake/eventsearch',
+    url: '/volcano/event/search',
     outerStyle: Styles.button,
     innerStyle: Styles.buttonTitle,
   },

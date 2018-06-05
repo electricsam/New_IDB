@@ -53,6 +53,10 @@ export const initialState = fromJS({
   patchedVolcanoLoc: false,
   showVolLocUpdateLocation: true,
   showVolLocUpdateDetails: true,
+  volcanoEventTableSelectionId: null,
+  volcanoEventTableSelectionLocId: null,
+  volcanoLocTableSelectionId: null
+
 });
 
 export default function reducer(state = initialState, action) {
@@ -216,6 +220,12 @@ export default function reducer(state = initialState, action) {
   }
   case 'TOGGLE_VOLCANO_LOC_UPDATE_DETAILS': {
     return state.merge(state, { showVolLocUpdateDetails: !state.get('showVolLocUpdateDetails') });
+  }
+  case "SET_VOLCANO_EVENT_TABLE_SELECTION_ID": {
+    return state.merge(state, { volcanoEventTableSelectionId: action.payload});
+  }
+  case "SET_VOLCANO_EVENT_TABLE_SELECITON_LOCID": {
+    return state.merge(state, { volcanoEventTableSelectionLocId: action.payload});
   }
   default:
     return state;

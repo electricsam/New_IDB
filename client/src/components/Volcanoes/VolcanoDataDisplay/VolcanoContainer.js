@@ -1,11 +1,14 @@
 import React from 'react';
 import {connect} from "react-redux";
+import { push } from 'react-router-redux';
+
 import DialogBox from "../../FormPartials/DialogBox";
 import Table from "../../Table/Table"
 import Loading from "../../loadbar/Loading";
 import store from "../../../store";
 
-import {createApiQueryString, decodeQueryString} from "../../../helperFunctions/helperFunctions";
+import {createApiQueryString, decodeQueryString, encodeQueryString} from "../../../helperFunctions/helperFunctions";
+import TickboxTable from "../../CheckboxTable/TickboxTable";
 
 const tableStyle = {
   textAlign: "center"
@@ -24,7 +27,8 @@ class VolcanoContainer extends React.Component {
   }
 
   componentDidMount(){
-    console.log(this.props)
+    action({type: "SET_VOLCANO_EVENT_TABLE_SELECTION_ID", payload: null});
+    action({type: "SET_VOLCANO_EVENT_TABLE_SELECITON_LOCID", payload: null});
     let { search } = this.props.location;
     if(search.length){
       search = search.split('?')[1];
@@ -47,9 +51,92 @@ class VolcanoContainer extends React.Component {
     action({type: "SET_DELETE_VOLCANO_EVENT_ID", payload: null});
   };
 
+  toggleSelection = (key, shift, row) => {
+    let selection = this.props.volcano.get('volcanoEventTableSelectionId');
+    if(selection === key){
+      action({type: "SET_VOLCANO_EVENT_TABLE_SELECTION_ID", payload: null});
+      action({type: "SET_VOLCANO_EVENT_TABLE_SELECITON_LOCID", payload: null});
+    }else{
+      action({type: "SET_VOLCANO_EVENT_TABLE_SELECTION_ID", payload: key});
+      action({type: "SET_VOLCANO_EVENT_TABLE_SELECITON_LOCID", payload: row.volId});
+    }
+  };
+
+  selectAll = () => {
+    // do nothing
+  };
+
+  toggleAll = () => {
+    action({type: "SET_VOLCANO_EVENT_TABLE_SELECTION_ID", payload: null});
+    action({type: "SET_VOLCANO_EVENT_TABLE_SELECITON_LOCID", payload: null});
+  };
+
+  isSelected = key => this.props.volcano.get('volcanoEventTableSelectionId') === key;
+
+  logSelection = () => {console.log('selection: ', this.props.volcano.get('volcanoEventTableSelectionId'))};
+
+  handleMoreInfoClick = () => {
+    let id = this.props.volcano.get('volcanoEventTableSelectionId');
+    if(id){
+      store.dispatch(push(`/volcano/event/moreinfo/${id}`));
+    }
+  };
+
+  handleRelatedEarthquakeClick = () => {
+    let id = this.props.volcano.get('volcanoEventTableSelectionId');
+    if(id){
+      let basePath = "/earthquake/event/data?";
+      let query = {volcanoid: id + ""};
+      let encoded = encodeQueryString(JSON.stringify(query));
+      return store.dispatch(push(`${basePath}${encoded}`));
+    }
+  };
+
+  handleRelatedTsunamiClick = () => {
+    let id = this.props.volcano.get('volcanoEventTableSelectionId');
+    if(id){
+      let basePath = "/tsunami/event/data?"
+      let query = {volcanoid: id+ ""}
+      let encoded = encodeQueryString(JSON.stringify(query));
+      return store.dispatch(push(`${basePath}${encoded}`))
+    }
+  };
+
+  handleEditClick = () => {
+    let id = this.props.volcano.get('volcanoEventTableSelectionId');
+    let locId = this.props.volcano.get('volcanoEventTableSelectionLocId');
+    if(id && locId){
+      store.dispatch(push(`/volcano/event/update/${id}/${locId}`));
+    }
+  };
+
+  handleDeleteClick = () => {
+    let id = this.props.volcano.get('volcanoEventTableSelectionId');
+    if(id){
+      action({type: 'SET_DELETE_VOLCANO_EVENT_ID', payload: id});
+      action({type: 'TOGGLE_DELETE_VOLCANO_EVENT_CONFIRMATION'});
+    }
+  };
+
   render(){
     const { volcano } = this.props;
-
+    const { toggleSelection, selectAll, toggleAll, isSelected, logSelection } = this;
+    const checkboxProps = {
+      toggleSelection,
+      selectAll,
+      toggleAll,
+      isSelected,
+      logSelection,
+      selectType: "checkbox",
+      keyField: "hazEventId",
+      buttons: [
+        {title: "More Info", handleClick: this.handleMoreInfoClick},
+        {title: "Related Earthquakes", handleClick: this.handleRelatedEarthquakeClick},
+        {title: "Related Tsunamis", handleClick: this.handleRelatedTsunamiClick},
+        {title: "Edit Volcano Event", handleClick: this.handleEditClick},
+        {title: "Delete Volcano Event", handleClick: this.handleDeleteClick},
+      ]
+    };
     if( volcano.get('fetchedVolcanoEvents')){
       return (
           <div>
@@ -60,12 +147,12 @@ class VolcanoContainer extends React.Component {
                 />:
                 <div style={hiddenStyle}></div>
             }
-            <Table
+            <TickboxTable
                 loading={volcano.get('fetchingVolcanoes')}
                 data={volcano.asMutable().getIn(['volcanoEvents']).toJS()}
                 columns={volcano.getIn(['headersAndAccessors']).toJS()}
-                style={tableStyle}
                 title="Volcano Data"
+                {...checkboxProps}
             />
           </div>
       )

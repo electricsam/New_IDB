@@ -50,9 +50,6 @@ class RunupContainer extends React.Component {
   }
 
   toggleSelection = (key, shift, row) => {
-    console.log("key: ", key);
-    console.log("shift: ", shift)
-    console.log("row: ", row)
     let selection = this.props.tsunami.get('runupTableSelectionId');
     if(selection === key){
       action({type: "SET_RUNUP_TABLE_SELECTION_ID", payload: null});
@@ -78,7 +75,6 @@ class RunupContainer extends React.Component {
 
   handleMoreInfoClick = () => {
     let id = this.props.tsunami.get('runupTableSelectionId');
-    // let eventId = this.props.tsunami.get('runupTableSelectionEventId');
     if(id){
       store.dispatch(push(`/tsunami/runup/moreinfo/${id}`))
     }
