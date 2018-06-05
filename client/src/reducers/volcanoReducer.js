@@ -227,6 +227,9 @@ export default function reducer(state = initialState, action) {
   case "SET_VOLCANO_EVENT_TABLE_SELECITON_LOCID": {
     return state.merge(state, { volcanoEventTableSelectionLocId: action.payload});
   }
+  case "SET_VOLCANO_LOC_TABLE_SELECTION_ID": {
+    return state.merge(state, {volcanoLocTableSelectionId: action.payload});
+  }
   default:
     return state;
   }

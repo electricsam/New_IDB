@@ -6,6 +6,8 @@ import Loading from "../../loadbar/Loading";
 import store from "../../../store";
 
 import {createApiQueryString, decodeQueryString} from "../../../helperFunctions/helperFunctions";
+import TickboxTable from "../../CheckboxTable/TickboxTable";
+import {push} from "react-router-redux";
 
 const tableStyle = {
   textAlign: "center"
@@ -24,15 +26,11 @@ class VolcanoLocContainer extends React.Component {
   }
 
   componentDidMount(){
-    console.log(this.props)
     let { search } = this.props.location;
     if(search.length){
-      console.log("SEARCH", search)
       search = search.split('?')[1];
       let decoded = JSON.parse(decodeQueryString(search));
-      console.log("decoded: ", decoded);
       let queryString = createApiQueryString(decoded);
-      console.log("querystring: ", queryString);
       action({type: "FETCH_SPECIFIED_VOLCANO_LOCS_REQUESTED", payload: queryString});
     }else{
       action({type: "FETCH_SPECIFIED_VOLCANO_LOCS_REQUESTED"});
@@ -49,9 +47,66 @@ class VolcanoLocContainer extends React.Component {
     action({type: "SET_DELETE_VOLCANO_LOC_ID", payload: null});
   };
 
+  toggleSelection = key => {
+    let selection = this.props.volcano.get('volcanoLocTableSelectionId');
+    if(selection === key){
+      action({type: "SET_VOLCANO_LOC_TABLE_SELECTION_ID", payload: null});
+    }else{
+      action({type: "SET_VOLCANO_LOC_TABLE_SELECTION_ID", payload: key});
+    }
+  };
+
+  selectAll = () => {
+    // do nothing
+  };
+
+  toggleAll = () => {
+    action({type: "SET_VOLCANO_LOC_TABLE_SELECTION_ID", payload: null});
+  };
+
+  isSelected = key => this.props.volcano.get('volcanoLocTableSelectionId') === key;
+
+  logSelection = () => {console.log('selection: ', this.props.volcano.get('volcanoLocTableSelectionId'))};
+
+  handleAddEventClick = () => {
+    let selected = this.props.volcano.get('volcanoLocTableSelectionId');
+    if(selected){
+      store.dispatch(push(`/volcano/event/insert/${selected}`))
+    }
+  };
+
+  handleEditClick = () => {
+    let selected = this.props.volcano.get('volcanoLocTableSelectionId');
+    if(selected){
+      store.dispatch(push(`/volcano/loc/update/${selected}`));
+    }
+  };
+
+  handleDeleteClick = () => {
+    let selected = this.props.volcano.get('volcanoLocTableSelectionId');
+    if(selected){
+      action({ type: 'SET_DELETE_VOLCANO_LOC_ID', payload: selected });
+      action({ type: 'TOGGLE_DELETE_VOLCANO_LOC_CONFIRMATION' });
+    }
+  };
+
   render(){
     const { volcano } = this.props;
-
+    const { toggleSelection, selectAll, toggleAll, isSelected, logSelection } = this;
+    const checkboxProps = {
+      toggleSelection,
+      selectAll,
+      toggleAll,
+      isSelected,
+      logSelection,
+      selectType: "checkbox",
+      keyField: "id",
+      buttons: [
+        {title: "Add Event", handleClick: this.handleAddEventClick},
+        {title: "Edit Volcano Location", handleClick: this.handleEditClick},
+        {title: "Delete Volcano Location", handleClick: this.handleDeleteClick},
+      ]
+    };
     if( volcano.get('fetchedVolcanoLocs')){
       return (
           <div>
@@ -62,12 +117,12 @@ class VolcanoLocContainer extends React.Component {
                 />:
                 <div style={hiddenStyle}></div>
             }
-            <Table
+            <TickboxTable
                 loading={volcano.get('fetchingVolcanoLocs')}
                 data={volcano.asMutable().getIn(['volcanoLocs']).toJS()}
                 columns={volcano.getIn(['headersAndAccessors']).toJS()}
-                style={tableStyle}
                 title="Volcano Loc Data"
+                {...checkboxProps}
             />
           </div>
       )

@@ -67,68 +67,6 @@ const mapToVolcanoEventTable = (arr) => {
     accessors.map((e) => {
       result.push({ Header: camelToPascal(e), accessor: e });
     });
-    result.push({
-      Header: 'More Info',
-      accessor: 'moreInfo',
-      Cell: props => (
-          <Link to={`/volcano/event/moreinfo/${props.original.hazEventId}`}>More Info</Link>
-      ),
-    });
-    result.push({
-      Header: 'Related Earthquakes',
-      accessor: 'relatedEarthquakes',
-      Cell: props => (
-          <button type="button" onClick={() => {
-            let basePath = "/earthquake/event/data?"
-            let query = {volcanoid: props.original.hazEventId + ""}
-            let encoded = encodeQueryString(JSON.stringify(query));
-            return store.dispatch(push(`${basePath}${encoded}`))}
-          }>
-            Related Earthquakes
-          </button>
-      ),
-    });
-    result.push({
-      Header: 'Related Tsunamis',
-      accessor: 'relatedTsunamis',
-      Cell: props => (
-          <button type="button" onClick={() => {
-            let basePath = "/tsunami/event/data?"
-            let query = {volcanoid: props.original.hazEventId + ""}
-            let encoded = encodeQueryString(JSON.stringify(query));
-            return store.dispatch(push(`${basePath}${encoded}`))}
-          }>
-            Related Tsunamis
-          </button>
-      ),
-    });
-    result.push({
-      Header: 'Edit',
-      accessor: 'edit',
-      Cell: props => (
-        <button type="button" onClick={() => store.dispatch(push(`/volcano/event/update/${props.original.hazEventId}/${props.original.volId}`))}>
-            Edit Volcano Event
-        </button>
-      ),
-    });
-    result.push({
-      Header: 'Add Volcano Event',
-      accessor: 'addEvent',
-      Cell: props => (
-        <button type="button" onClick={() => store.dispatch(push(`/volcano/event/insert/${props.original.id}`))}>
-            Add Volcano Event
-        </button>
-      ),
-    });
-    result.push({
-      Header: 'Delete',
-      accessor: 'delete',
-      Cell: props => (
-        <button type="button" onClick={() => deleteVolEvent(props.original.hazEventId)}>
-            Delete Volcano Event
-        </button>
-      ),
-    });
   }
   return result;
 };
