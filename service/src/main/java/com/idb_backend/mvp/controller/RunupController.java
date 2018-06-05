@@ -39,8 +39,12 @@ public class RunupController {
   @ResponseBody
   public ResponseEntity getRunups(@RequestParam Map<String, String> map,
                                   @QuerydslPredicate(root = TsunamiRunupView.class) Predicate predicate){
-    List<RunupProjection> runups = runupService.getRunups(map, predicate);
+    try{
+      List<RunupProjection> runups = runupService.getRunups(map, predicate);
       return ResponseEntity.status(HttpStatus.OK).body(runups);
+    }catch (Exception e){
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
   }
 
   @RequestMapping(value = "/runups/{id}", method = RequestMethod.GET)

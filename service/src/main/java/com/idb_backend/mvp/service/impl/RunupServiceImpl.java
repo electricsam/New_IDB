@@ -43,8 +43,8 @@ public class RunupServiceImpl extends BaseService implements RunupService {
 
   @Override
   public List<RunupProjection> getRunups(Map<String, String> params, Predicate predicate){
-    if(params.get("tsunamiid") != null && !params.get("tsunamiid").equals("")){
-      return runupViewRepository.findRelatedRunupByTsunami(Integer.parseInt(params.get("tsunamiid")));
+    if(params.get("eventid") != null && !params.get("eventid").equals("")){
+      return runupViewRepository.findRelatedRunupByTsunami(Integer.parseInt(params.get("eventid")));
     }if(params.get("refid") != null && !params.get("refid").equals("")){
       return runupViewRepository.findRelatedRunupByRef(Integer.parseInt(params.get("refid")));
     }else{
