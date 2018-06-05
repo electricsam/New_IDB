@@ -70,7 +70,7 @@ class TsunamiContainer extends React.Component {
 
   isSelected = key => this.props.tsunami.get('tsunamiTableSelection') === key;
 
-  logSelection = () => {console.log('selection: ', this.props.earthquake.get('tsunamiTableSelection'))}
+  logSelection = () => {console.log('selection: ', this.props.tsunami.get('tsunamiTableSelection'))};
 
   handleMoreInfoClick = () => {
     let selected = this.props.tsunami.get('tsunamiTableSelection');
@@ -150,9 +150,9 @@ class TsunamiContainer extends React.Component {
         {title: 'Related Earthquake', handleClick: this.handleRelatedEarthquakeClick},
         {title: "Edit Tsunami", handleClick: this.handleEditClick},
         {title: "Add Related Runup", handleClick: this.handleAddRelatedRunupClick},
-        {title: "Delete Earthquake", handleClick: this.handleDeleteClick}
+        {title: "Delete Tsunami", handleClick: this.handleDeleteClick}
       ]
-    }
+    };
     if (tsunami.get('fetchedTsEvent')) {
       return (
         <div>

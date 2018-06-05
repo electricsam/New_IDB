@@ -56,6 +56,9 @@ export const initialState = fromJS({
   showTsunamiUpdateMeasure: true,
   showTsunamiUpdateEffects: true,
   showTsunamiUpdateEffectsTotal: true,
+  tsunamiTableSelection: null,
+  runupTableSelectionId: null,
+  runupTableSelectionEventId: null,
 });
 
 export default function reducer(state = initialState, action) {
@@ -129,8 +132,7 @@ export default function reducer(state = initialState, action) {
     return state.merge(state, { fetchingRunup: true, fetchedRunup: false });
   }
   case 'FETCH_TS_RUNUP_FULFILLED': {
-    console.log('Action.payload: ', action.payload);
-    return state.mergeDeep(state, {
+    return state.merge(state, {
       fetchingRunup: false,
       fetchedRunup: true,
       runupData: [action.payload.data],
@@ -138,7 +140,7 @@ export default function reducer(state = initialState, action) {
     });
   }
   case 'FETCH_TS_RUNUP_REJECTED': {
-    return state.merge(state, { fetchingRunup: false, error: action.payload });
+    return state.merge(state, { fetchingRunup: false, error: action.payload, fetchedRunup: false });
   }
   case 'TOGGLE_RUNUPPLACE_FORM': {
     return state.merge(state, { showRunupPlaceForm: !state.get('showRunupPlaceForm') });
@@ -260,6 +262,12 @@ export default function reducer(state = initialState, action) {
   }
   case "SET_TSUNAMI_TABLE_SELECTION": {
     return state.merge(state, {tsunamiTableSelection: action.payload});
+  }
+  case "SET_RUNUP_TABLE_SELECTION_ID": {
+    return state.merge(state, {runupTableSelectionId: action.payload});
+  }
+  case "SET_RUNUP_TABLE_SELECTION_EVENTID": {
+    return state.merge(state, {runupTableSelectionEventId: action.payload});
   }
   default:
     return state;

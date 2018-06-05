@@ -180,44 +180,6 @@ const mapToRunupTable = (arr) => {
     accessors.map((e) => {
       result.push({ Header: camelToPascal(e), accessor: e });
     });
-    result.push({
-      Header: 'More Info',
-      accessor: 'moreInfo',
-      Cell: props => (
-          <Link to={`/tsunami/runup/moreinfo/${props.original.id}`}>More Info</Link>
-      ),
-    });
-    result.push({
-      Header: 'More Event Info',
-      accessor: 'moreEventInfo',
-      Cell: props => (
-          <Link to={`/tsunami/event/moreinfo/${props.original.eventId}`}>More Event Info</Link>
-      ),
-    });
-    result.push({
-      Header: 'Edit',
-      accessor: 'edit',
-      Cell: props => (
-          <button
-              type="button"
-              onClick={() => store.dispatch(push(`/tsunami/updaterunup/${props.original.id}/${props.original.eventId}`))}
-          >
-            Edit Runup
-          </button>
-      ),
-    });
-    result.push({
-      Header: 'Delete',
-      accessor: 'delete',
-      Cell: props => (
-          <button
-              type="button"
-              onClick={() => deleteRunup(props.original.id)}
-          >
-            Delete Runup
-          </button>
-      ),
-    });
   }
   return result;
 };
@@ -237,7 +199,6 @@ const deleteReference = (id) => {
   store.dispatch({ type: 'SET_DELETE_REFERENCE_ID', payload: id });
   store.dispatch({ type: 'TOGGLE_DELETE_REFERENCE_CONFIRMATION' });
 };
-
 
 const deleteEarthquake = (id) => {
   console.log('props', id);
@@ -261,8 +222,6 @@ const deleteEvent = (id) => {
   store.dispatch({ type: 'SET_DELETE_EVENT_ID', payload: id });
   store.dispatch({ type: 'TOGGLE_DELETE_EVENT_CONFIRMATION' });
 };
-
-
 
 const encodeQueryString = query => CryptoJS.AES.encrypt(query, hashPass).toString();
 
@@ -292,5 +251,4 @@ module.exports = {
   mapToVolcanoEventTable,
   mapToVolcanoLocsTable,
   deleteEarthquake,
-  getRelatedRunups,
 };

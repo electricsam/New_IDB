@@ -24,10 +24,9 @@ class MoreRunupInfoContainer extends React.Component{
 
   render(){
     const { tsunami, reference } = this.props
-
     if(tsunami.get('fetchedRunup') && reference.get('fetchedReference')){
-
       return (
+
           <div>
 
             <SmallTable data={tsunami.asMutable().getIn(['runupData']).toJS()}

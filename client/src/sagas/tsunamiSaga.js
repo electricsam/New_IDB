@@ -126,9 +126,9 @@ export function* watchFetchRunup() {
 
 export function* fetchRunup(action) {
   const runupId = action.payload;
-  console.log("this i your runup id: ", runupId)
   try {
     const response = yield call(axios.get, `${TSUNAMI_RUNUPS_BASEPATH}/${runupId}`);
+    if(response){console.log(response)}else{console.log("NO RESPONSE")}
     yield put({
       type: 'FETCH_TS_RUNUP_FULFILLED',
       payload: {data: response.data, formattedData: mapToRunupTable([response.data])},
