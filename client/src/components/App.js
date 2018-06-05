@@ -41,7 +41,6 @@ import MoreVolcanoEventInfoContainer from "./Volcanoes/MoreEventInformation/More
 import MoreEqEventInfoContainer from "./Earthquakes/MoreEventInfo/MoreEqEventInfoContainer";
 import VolcanoLanding from "./Volcanoes/VolcanoLanding/VolcanoLanding";
 import HazardsLanding from "./HazardsLanding/HazardsLanding";
-import CheckboxTable from "./CheckboxTable/CheckboxTable";
 
 class App extends React.Component {
   render() {

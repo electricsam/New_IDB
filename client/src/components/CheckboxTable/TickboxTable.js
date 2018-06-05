@@ -11,6 +11,7 @@ const CheckboxTable = selectTableHOC(ReactTable);
 const TickboxTable = props => (
     <div className={Styles.container}>
       <h1 className={Styles.title}>{props.title}</h1>
+      <h3 className={Styles.noTuples}>{props.data.length} Tuples Returned</h3>
       <CheckboxTable
           className="-striped -highlight"
           columns={props.columns}

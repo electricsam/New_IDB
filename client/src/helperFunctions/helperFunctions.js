@@ -33,7 +33,6 @@ const mapToTable = (arr) => {
   return result;
 };
 
-
 const encodeQueryString = query => CryptoJS.AES.encrypt(query, hashPass).toString();
 
 const decodeQueryString = query => CryptoJS.AES.decrypt(query, hashPass).toString(CryptoJS.enc.Utf8);

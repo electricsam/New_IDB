@@ -12,3 +12,10 @@
 .title{
     color: rgb(102,102,102);
 }
+
+.noTuples{
+    text-align: left;: left;
+    width: 95%;
+    font-weight: bold;
+
+}
