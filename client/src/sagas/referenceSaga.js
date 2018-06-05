@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { mapToReferenceTable } from '../helperFunctions/helperFunctions';
+import { mapToTable } from '../helperFunctions/helperFunctions';
 
 const REFERENCE_BASEPATH = '/idb-service/references';
 
@@ -15,7 +15,7 @@ export function* fetchSpecifiedReferences(action) {
     const response = yield call(axios.get, `${REFERENCE_BASEPATH}?${queryString}`);
     yield put({
       type: 'FETCH_SPECIFIED_REFERENCES_FULFILLED',
-      payload: { data: response.data, formattedData: mapToReferenceTable(response.data) },
+      payload: { data: response.data, formattedData: mapToTable(response.data) },
     });
   } catch (error) {
     yield put({ type: 'FETCH_SPECIFIED_REFERENCES_REJECTED', payload: error });

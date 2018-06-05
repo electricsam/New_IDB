@@ -1,10 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-import {
-  mapToVolcanoEventTable,
-  mapToVolcanoLocsTable,
-} from '../helperFunctions/helperFunctions';
+import { mapToTable } from '../helperFunctions/helperFunctions';
 
 const VOLCANO_BASEPATH = '/idb-service/volcanoes';
 const VOLCANOLOC_BASEPATH = '/idb-service/volcanolocs';
@@ -19,7 +16,7 @@ export function* fetchSpecifiedVolcanoEvents(action) {
     const response = yield call(axios.get, `${VOLCANO_BASEPATH}?${query}`);
     yield put({
       type: 'FETCH_SPECIFIED_VOLCANO_EVENTS_FULFILLED',
-      payload: { data: response.data, formattedData: mapToVolcanoEventTable(response.data) },
+      payload: { data: response.data, formattedData: mapToTable(response.data) },
     });
   } catch (error) {
     yield put({ type: 'FETCH_SPECIFIED_VOLCANO_EVENTS_REJECTED', payload: error });
@@ -67,7 +64,7 @@ export function* fetchSpecifiedVolcanoLocs(action) {
     const response = yield call(axios.get, `${VOLCANOLOC_BASEPATH}?${query}`);
     yield put({
       type: 'FETCH_SPECIFIED_VOLCANO_LOCS_FULFILLED',
-      payload: { data: response.data, formattedData: mapToVolcanoLocsTable(response.data) },
+      payload: { data: response.data, formattedData: mapToTable(response.data) },
     });
   } catch (error) {
     yield put({ type: 'FETCH_SPECIFIED_VOLCANO_LOCS_REJECTED', payload: error });
@@ -145,7 +142,7 @@ export function* fetchVolcanoEvent(action) {
     const response = yield call(axios.get, `${VOLCANO_BASEPATH}/${id}`);
     yield put({
       type: 'FETCH_VOLCANO_EVENT_FULFILLED',
-      payload: {data: response.data, formattedData: mapToVolcanoEventTable([response.data])}
+      payload: {data: response.data, formattedData: mapToTable([response.data])}
     });
   } catch (error) {
     yield put({ type: 'FETCH_VOLCANO_EVENT_REJECTED', payload: error });

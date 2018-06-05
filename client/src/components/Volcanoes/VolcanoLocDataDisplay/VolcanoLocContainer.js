@@ -1,13 +1,12 @@
 import React from 'react';
 import {connect} from "react-redux";
+import {push} from "react-router-redux";
+
 import DialogBox from "../../FormPartials/DialogBox";
-import Table from "../../Table/Table"
 import Loading from "../../loadbar/Loading";
 import store from "../../../store";
-
 import {createApiQueryString, decodeQueryString} from "../../../helperFunctions/helperFunctions";
 import TickboxTable from "../../CheckboxTable/TickboxTable";
-import {push} from "react-router-redux";
 
 const tableStyle = {
   textAlign: "center"

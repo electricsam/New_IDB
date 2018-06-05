@@ -113,16 +113,15 @@ class EarthquakeContainer extends React.Component {
     }else {
       store.dispatch(push(`/earthquake/update/${selected}`));
     }
-  }
+  };
 
   handleDeleteClick = () => {
     let selected = this.props.earthquake.get('tableSelection');
-    if (!selected) {
-      //  do nothing
-    }else {
-      deleteEarthquake(selected);
+    if (selected){
+      action({ type: 'SET_DELETE_EARTHQUAKE_ID', payload: selected });
+      action({ type: 'TOGGLE_DELETE_EARTHQUAKE_CONFIRMATION' });
     }
-  }
+  };
 
   isSelected = key => this.props.earthquake.get('tableSelection') === key ? true : false;
 
