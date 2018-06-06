@@ -15,7 +15,7 @@ public interface EarthquakeViewRepository extends
 
     bindings.bind(root.minYear).first((path, value) -> root.year.goe(value));
 
-    bindings.bind(root.maxYear).first((path, value) -> root.year.goe(value));
+    bindings.bind(root.maxYear).first((path, value) -> root.year.loe(value));
 
     bindings.bind(root.minLatitude).first((path, value) -> root.latitude.goe(value));
 

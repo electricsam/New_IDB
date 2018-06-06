@@ -113,7 +113,5 @@ public interface TsunamiEventViewRepository extends
     bindings.bind(root.locNot).first((path, value) -> {
       return root.locationName.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
     });
-
   }
-
 }

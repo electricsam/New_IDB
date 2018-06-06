@@ -28,7 +28,7 @@ public interface RunupViewRepository extends JpaRepository<TsunamiRunupView, Int
 
     bindings.bind(root.minRunupHt).first((path, value) -> root.runupHt.goe(value));
 
-    bindings.bind(root.maxRunupHt).first((path, value) -> root.runupHt.goe(value));
+    bindings.bind(root.maxRunupHt).first((path, value) -> root.runupHt.loe(value));
 
     bindings.bind(root.minDeaths).first((path, value) -> root.deaths.goe(value));
 
