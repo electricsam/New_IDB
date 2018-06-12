@@ -25,7 +25,6 @@ public class SignifToTsEvent {
     this.id = new SignifToTsEventId(sigId, tsuId);
   }
 
-
   @JsonIgnore
   public SignifTsqp getSignifTsqp() {
     return signifTsqp;

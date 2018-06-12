@@ -5,6 +5,7 @@ import { mapToTable } from '../helperFunctions/helperFunctions';
 
 const port = 'http//localhost10088';
 const EARTHQUAKE_BASEPATH = '/idb-service/earthquakes';
+const EARTHQUAKE_TSUNAMI_BASEPATH = '/idb-service/eqtsujunction';
 
 export function* fetchSpecifiedEarthquakes(action) {
   const queryString = action.payload;
@@ -113,15 +114,23 @@ export function* fetchEarthquake(action) {
 
 
 export function* watchRelateEarthquakeToTsunami(){
-  yield takeEvery("RELATE_EARTHQUAKE_TO_TSUNAMI", relateEarthquakeToTsunami)
+  yield takeEvery("RELATE_EARTHQUAKE_TO_TSUNAMI_REQUESTED", relateEarthquakeToTsunami)
 }
 
 export function* relateEarthquakeToTsunami(action){
-  const id = action.payload;
+  const { tsuId, eqId } = action.payload;
   try{
-    
+    const response = yield call(axios.post, `${EARTHQUAKE_TSUNAMI_BASEPATH}/${eqId}/${tsuId}`, {});
+    if(response.data){
+      yield put({
+        type: "RELATE_EARTHQUAKE_TO_TSUNAMI_FULFILLED",
+        payload: {}
+      })
+    }else{
+      yield put({ type: 'RELATE_EARTHQUAKE_TO_TSUNAMI_REJECTED', payload: "empty response" });
+    }
+  }catch(error){
+    yield put({ type: 'RELATE_EARTHQUAKE_TO_TSUNAMI_REJECTED', payload: error });
   }
-
-
 }
 

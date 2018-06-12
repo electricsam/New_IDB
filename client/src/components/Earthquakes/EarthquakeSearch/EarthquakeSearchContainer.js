@@ -7,7 +7,7 @@ import { EarthquakeParameters,
   TotalEarthquakeAndSecondaryEffects
 } from "./EarthquakeSearchConstants"
 
-import { encodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions'
+import { encodeQueryString, createApiQueryString, decodeQueryString } from '../../../helperFunctions/helperFunctions'
 import store from '../../../store'
 import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
@@ -29,10 +29,20 @@ class EarthquakeSearchContainer extends React.Component{
   handleSubmit(val){
     val = val.earthquake.asMutable().toJS();
     if(val.search){
-      let encoded = encodeQueryString(JSON.stringify(val.search));
-      let queryString = createApiQueryString(val.search);
-      action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED", payload: queryString});
-      this.props.history.push( `/earthquake/event/data?${encoded}`);
+      if(this.props.location.search.length){
+        let search = JSON.parse(decodeQueryString(this.props.location.search.split("?")[1]));
+        Object.assign(val.search, search);
+        let encoded = encodeQueryString(JSON.stringify(val.search));
+        let queryString = createApiQueryString(val.search);
+        action({type: 'FETCH_SPECIFIED_EARTHQUAKES_REQUESTED', payload: queryString});
+        //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
+        this.props.history.push( `/earthquake/relate?${encoded}`);
+      }else{
+        let encoded = encodeQueryString(JSON.stringify(val.search));
+        let queryString = createApiQueryString(val.search);
+        action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED", payload: queryString});
+        this.props.history.push( `/earthquake/event/data?${encoded}`);
+      }
     }else{
       action({type: "FETCH_ALL_EARTHQUAKES_REQUESTED"});
       this.props.history.push('/earthquake/event/data');

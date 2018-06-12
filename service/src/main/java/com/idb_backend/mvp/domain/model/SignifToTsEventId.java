@@ -9,7 +9,6 @@ public class SignifToTsEventId implements Serializable{
   @Column(name = "SIG_ID")
   private Integer sigId;
 
-
   @Column(name = "TSU_ID")
   private Integer tsuId;
 

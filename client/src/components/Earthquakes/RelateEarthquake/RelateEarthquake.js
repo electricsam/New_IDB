@@ -35,7 +35,14 @@ class RelateEarthquake extends React.Component {
 
   componentDidMount(){
     action({type: "SET_TABLE_SELECTION", payload: null});
-    action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED", payload: "minYear=2015&"});
+    let { search } = this.props.location;
+    if(search.length){
+      search = search.split("?")[1];
+      let decoded = JSON.parse(decodeQueryString(search));
+      console.log("decoded from componentDidMount: ", decoded)
+      let queryString = createApiQueryString(decoded);
+      action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED", payload: queryString});
+    }
   }
 
   toggleSelection = key => {
@@ -64,32 +71,24 @@ class RelateEarthquake extends React.Component {
 
   isSelected = key => this.props.earthquake.get('tableSelection') === key ? true : false;
 
-
   handleRelateClick = () => {
     let selected = this.props.earthquake.get('tableSelection');
     let { search } = this.props.location;
     search = search.split('?')[1];
-    console.log("************************* Search: " , search);
-    let encoded = encodeQueryString(JSON.stringify({relate: true, relateTo: "tsunami", id: 10}));
-    console.log("################### encoded", encoded)
-    let decoded = JSON.parse(decodeQueryString(encoded))
-    console.log("************** decoded: ", decoded)
 
+    let decoded = JSON.parse(decodeQueryString(search));
 
-    if(selected) {
+    if(selected && decoded.relate) {
       switch(decoded.relateTo){
         case "tsunami": {
-          action({type: "RELATE_EARTHQUAKE_TO_TSUNAMI", payload: decoded.id});
+          action({type: "RELATE_EARTHQUAKE_TO_TSUNAMI_REQUESTED", payload: {eqId: selected, tsuId: decoded.relateId}});
         }
         case "volcano": {
-          action({type: "RELATE_EARTHQUAKE_TO_VOLCANO", payload: decoded.id});
+          action({type: "RELATE_EARTHQUAKE_TO_VOLCANO", payload: {eqId: selected, volId: decoded.relateId}});
         }
       }
-
-
-
     }
-  }
+  };
 
 
   render(){

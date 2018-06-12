@@ -36,6 +36,8 @@ public class SigAndTsuController {
       Optional<SignifTsqp> optionalEq = earthquakeRepository.findById(sigId);
       SignifTsqp signifTsqp = optionalEq.get();
 
+//      TODO: insert logic to check if Optional values have the necessary Signif and Tsu in them before trying to post;
+
       SignifToTsEvent signifToTsEvent = new SignifToTsEvent();
       signifToTsEvent.setSignifTsqp(signifTsqp);
       signifToTsEvent.setTsunamiEvent(tsunamiEvent);
@@ -43,7 +45,7 @@ public class SigAndTsuController {
 
       signifToTsEventRepository.save(signifToTsEvent);
 
-      return ResponseEntity.status(HttpStatus.OK).body(null);
+      return ResponseEntity.status(HttpStatus.OK).body("success");
     }catch (Exception e){
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
