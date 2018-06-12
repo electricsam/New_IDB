@@ -90,7 +90,6 @@ class RelateEarthquake extends React.Component {
     }
   };
 
-
   render(){
     const { earthquake } = this.props;
     const { toggleSelection, selectAll, toggleAll, isSelected } = this;
@@ -122,11 +121,8 @@ class RelateEarthquake extends React.Component {
       return <Loading/>
     }
   }
-
 }
-
 
 const mapStateToProps = state => ({ earthquake: state.deep.earthquake });
 
 export default connect(mapStateToProps)(RelateEarthquake);
-
