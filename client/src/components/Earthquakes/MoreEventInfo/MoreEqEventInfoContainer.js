@@ -15,9 +15,7 @@ class MoreVolcanoEventInfoContainer extends React.Component{
   }
 
   componentDidMount(){
-    console.log("thalskdjf laskjlakj lst lsllkj asjl kjtleh sslkjls l slkthel lwkwkw l")
     let { eqId } = this.props.match.params;
-    console.log("this.props; ", this.props)
     let queryString = `earthquakeid=${eqId}`
     action({type: "FETCH_EARTHQUAKE_REQUESTED", payload: eqId});
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});

@@ -111,3 +111,17 @@ export function* fetchEarthquake(action) {
   }
 }
 
+
+export function* watchRelateEarthquakeToTsunami(){
+  yield takeEvery("RELATE_EARTHQUAKE_TO_TSUNAMI", relateEarthquakeToTsunami)
+}
+
+export function* relateEarthquakeToTsunami(action){
+  const id = action.payload;
+  try{
+    
+  }
+
+
+}
+
