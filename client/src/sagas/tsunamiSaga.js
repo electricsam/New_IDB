@@ -8,7 +8,9 @@ import { mapToTable } from '../helperFunctions/helperFunctions';
 const port = 'http://localhost:10088';
 
 const TSUNAMI_EVENTS_BASEPATH = '/idb-service/tsunamievents',
-  TSUNAMI_RUNUPS_BASEPATH = '/idb-service/runups';
+    TSUNAMI_RUNUPS_BASEPATH = '/idb-service/runups',
+    TSUNAMI_EARTHQUAKE_BASEPATH = '/idb-service/eqtsujunction',
+    TSUNAMI_VOLCANO_BASEPATH ='/idb-service/tsuvoljunction';
 
 export function* fetchAllTsEvents() {
   try {
@@ -242,4 +244,46 @@ export function* watchDeleteEventFulfilled() {
 
 export function* watchDeleteEventRejected() {
   yield takeEvery('DELETE_EVENT_REJECTED', resetDeleteEvent);
+}
+
+export function* watchRelateTsunamitoEarthquake(){
+  yield takeEvery("RELATE_TSUNAMI_TO_EARTHQUAKE_REQUESTED", relateTsunamiToEarthquake);
+}
+
+export function* relateTsunamiToEarthquake(action){
+  const { tsuId, eqId } = action.payload;
+  try{
+    const response = yield call(axios.post, `${TSUNAMI_EARTHQUAKE_BASEPATH}/${eqId}/${tsuId}`);
+    if(response.data){
+      yield put({
+        type: "RELATE_TSUNAMI_TO_EARTHQUAKE_FULFILLED",
+        payload: {}
+      })
+    }else{
+      yield put({ type: 'RELATE_TSUNAMI_TO_EARTHQUAKE_REJECTED', payload: "empty response" });
+    }
+  }catch(error){
+    yield put({ type: 'RELATE_TSUNAMI_TO_EARTHQUAKE_REJECTED', payload: error });
+  }
+}
+
+export function* watchRelateTsunamitoVolcano(){
+  yield takeEvery("RELATE_TSUNAMI_TO_VOLCANO_REQUESTED", relateTsunamiToVolcano);
+}
+
+export function* relateTsunamiToVolcano(action){
+  const { tsuId, volId } = action.payload;
+  try{
+    const response = yield call(axios.post, `${TSUNAMI_VOLCANO_BASEPATH}/${tsuId}/${volId}`);
+    if(response.data){
+      yield put({
+        type: "RELATE_TSUNAMI_TO_VOLCANO_FULFILLED",
+        payload: {}
+      })
+    }else{
+      yield put({ type: 'RELATE_TSUNAMI_TO_VOLCANO_REJECTED', payload: "empty response" });
+    }
+  }catch(error){
+    yield put({ type: 'RELATE_TSUNAMI_TO_VOLCANO_REJECTED', payload: error });
+  }
 }

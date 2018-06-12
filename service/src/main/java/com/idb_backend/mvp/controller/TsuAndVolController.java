@@ -44,7 +44,7 @@ public class TsuAndVolController {
 
       tseventAndVolEventRepository.save(tseventAndVolEvent);
 
-      return ResponseEntity.status(HttpStatus.OK).body(null);
+      return ResponseEntity.status(HttpStatus.OK).body("success");
     }catch (Exception e){
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }

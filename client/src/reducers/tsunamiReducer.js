@@ -59,6 +59,8 @@ export const initialState = fromJS({
   tsunamiTableSelection: null,
   runupTableSelectionId: null,
   runupTableSelectionEventId: null,
+  relating: false,
+  related: false,
 });
 
 export default function reducer(state = initialState, action) {
@@ -268,6 +270,24 @@ export default function reducer(state = initialState, action) {
   }
   case "SET_RUNUP_TABLE_SELECTION_EVENTID": {
     return state.merge(state, {runupTableSelectionEventId: action.payload});
+  }
+  case 'RELATE_TSUNAMI_TO_EARTHQUAKE_REQUESTED': {
+    return state.merge(state, {relating: true, related: false});
+  }
+  case 'RELATE_TSUNAMI_TO_EARTHQUAKE_FULFILLED': {
+    return state.merge(state, {relating: false, related: true});
+  }
+  case 'RELATE_TSUNAMI_TO_EARTHQUAKE_REJECTED': {
+    return state.merge(state, {relating: false, related: false, error: action.payload});
+  }
+  case 'RELATE_TSUNAMI_TO_VOLCANO_REQUESTED': {
+    return state.merge(state, {relating: true, related: false});
+  }
+  case 'RELATE_TSUNAMI_TO_VOLCANO_FULFILLED': {
+    return state.merge(state, {relating: false, related: true});
+  }
+  case 'RELATE_TSUNAMI_TO_VOLCANO_REJECTED': {
+    return state.merge(state, {relating: false, related: false, error: action.payload});
   }
   default:
     return state;

@@ -31,6 +31,8 @@ export const initialState = fromJS({
   showEqUpdateEffects: true,
   showEqUpdateTotalEffects: true,
   tableSelection:null,
+  relating: false,
+  related: false
 });
 
 export default function reducer(state = initialState, action) {
@@ -130,6 +132,15 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, {relating: false, related: true});
     }
     case 'RELATE_EARTHQUAKE_TO_TSUNAMI_REJECTED': {
+      return state.merge(state, {relating: false, related: false, error: action.payload});
+    }
+    case 'RELATE_EARTHQUAKE_TO_VOLCANO_REQUESTED': {
+      return state.merge(state, {relating: true, related: false});
+    }
+    case 'RELATE_EARTHQUAKE_TO_VOLCANO_FULFILLED': {
+      return state.merge(state, {relating: false, related: true});
+    }
+    case 'RELATE_EARTHQUAKE_TO_VOLCANO_REJECTED': {
       return state.merge(state, {relating: false, related: false, error: action.payload});
     }
     default:

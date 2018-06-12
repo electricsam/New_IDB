@@ -17,6 +17,8 @@ import {
   watchDeleteEventFulfilled,
   watchDeleteEventRejected,
   watchPatchTsEvent,
+  watchRelateTsunamitoEarthquake,
+  watchRelateTsunamitoVolcano,
 } from './tsunamiSaga';
 
 import {
@@ -106,5 +108,7 @@ export default function* rootSaga() {
     watchPatchVolcanoLoc(),
     watchRelateEarthquakeToTsunami(),
     watchRelateEarthquakeToVolcano(),
+    watchRelateTsunamitoEarthquake(),
+    watchRelateTsunamitoVolcano(),
   ]);
 }

@@ -66,7 +66,17 @@ class TsunamiContainer extends React.Component {
     let selected = this.props.tsunami.get('tsunamiTableSelection');
     let { search } = this.props.location;
     search = search.split('?')[1];
-    let decoded = JSON.parse(decoded)
+    let decoded = JSON.parse(decodeQueryString(search));
+    if(selected && decoded.relate){
+      switch(decoded.relateTo){
+        case "earthquake": {
+          action({type: "RELATE_TSUNAMI_TO_EARTHQUAKE_REQUESTED", payload: {tsuId: selected, eqId: decoded.relateId}});
+        }
+        case "volcano": {
+          action({type: "RELATE_TSUNAMI_TO_VOLCANO_REQUESTED", payload: {tsuId: selected, volId: decoded.relateId}});
+        }
+      }
+    }
   };
 
   render() {
