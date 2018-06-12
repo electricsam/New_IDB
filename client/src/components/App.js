@@ -43,6 +43,7 @@ import VolcanoLanding from "./Volcanoes/VolcanoLanding/VolcanoLanding";
 import HazardsLanding from "./HazardsLanding/HazardsLanding";
 import RelateEarthquake from "./Earthquakes/RelateEarthquake/RelateEarthquake";
 import RelateTsunamiEvent from "./Tsunami/RelateTsunamiEvent/RelateTsunamiEvent";
+import RelateVolcanoEvent from "./Volcanoes/RelateVolcanoEvent/RelateVolcanoEvent";
 
 class App extends React.Component {
   render() {
@@ -88,6 +89,7 @@ class App extends React.Component {
             <Route exact path="/volcano/landing" component={VolcanoLanding}/>
             <Route exact path="/earthquake/relate" component={RelateEarthquake}/>
             <Route exact path='/tsunami/relate' component={RelateTsunamiEvent}/>
+            <Route exact path='/volcano/relate' component={RelateVolcanoEvent}/>
             {/* Must have 404 component listed last */}
             <Route path="*" component={FourZeroFour} />
           </Switch>

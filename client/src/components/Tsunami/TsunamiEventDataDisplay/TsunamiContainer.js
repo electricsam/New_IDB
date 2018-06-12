@@ -141,6 +141,15 @@ class TsunamiContainer extends React.Component {
     }
   };
 
+  handleRelateToExistingVolcano = () => {
+    let selected = this.props.tsunami.get('tsunamiTableSelection');
+    if(selected){
+      let relateObj = {relate: true, relateTo: "tsunami", relateId: selected}
+      let encoded = encodeQueryString(JSON.stringify(relateObj));
+      store.dispatch(push(`/volcano/event/search?${encoded}`));
+    }
+  };
+
   render() {
     const { tsunami } = this.props;
     const { toggleSelection, selectAll, toggleAll, isSelected, logSelection } = this;
@@ -158,6 +167,7 @@ class TsunamiContainer extends React.Component {
         {title: 'Related Volcanoes', handleClick: this.handleRelatedVolcanoClick},
         {title: 'Related Earthquake', handleClick: this.handleRelatedEarthquakeClick},
         {title: "Relate Tsunami to Existing Earthquake", handleClick: this.handleRelateToExistingEarthquake},
+        {title: "Relate Tsunami to Existing Volcano", handleClick: this.handleRelateToExistingVolcano},
         {title: "Edit Tsunami", handleClick: this.handleEditClick},
         {title: "Add Related Runup", handleClick: this.handleAddRelatedRunupClick},
         {title: "Delete Tsunami", handleClick: this.handleDeleteClick},

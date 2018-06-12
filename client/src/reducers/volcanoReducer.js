@@ -55,7 +55,9 @@ export const initialState = fromJS({
   showVolLocUpdateDetails: true,
   volcanoEventTableSelectionId: null,
   volcanoEventTableSelectionLocId: null,
-  volcanoLocTableSelectionId: null
+  volcanoLocTableSelectionId: null,
+  relating: false,
+  related: false,
 
 });
 
@@ -230,6 +232,25 @@ export default function reducer(state = initialState, action) {
   case "SET_VOLCANO_LOC_TABLE_SELECTION_ID": {
     return state.merge(state, {volcanoLocTableSelectionId: action.payload});
   }
+    case 'RELATE_VOLCANO_TO_EARTHQUAKE_REQUESTED': {
+      return state.merge(state, {relating: true, related: false});
+    }
+    case 'RELATE_VOLCANO_TO_EARTHQUAKE_FULFILLED': {
+      return state.merge(state, {relating: false, related: true});
+    }
+    case 'RELATE_VOLCANO_TO_EARTHQUAKE_REJECTED': {
+      return state.merge(state, {relating: false, related: false, error: action.payload});
+    }
+    case 'RELATE_VOLCANO_TO_TSUNAMI_REQUESTED': {
+      return state.merge(state, {relating: true, related: false});
+    }
+    case 'RELATE_VOLCANO_TO_TSUNAMI_FULFILLED': {
+      return state.merge(state, {relating: false, related: true});
+    }
+    case 'RELATE_VOLCANO_TO_TSUNAMI_REJECTED': {
+      return state.merge(state, {relating: false, related: false, error: action.payload});
+    }
+
   default:
     return state;
   }

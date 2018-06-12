@@ -79,10 +79,13 @@ class RelateEarthquake extends React.Component {
       switch(decoded.relateTo){
         case "tsunami": {
           action({type: "RELATE_EARTHQUAKE_TO_TSUNAMI_REQUESTED", payload: {eqId: selected, tsuId: decoded.relateId}});
+          break;
         }
         case "volcano": {
           action({type: "RELATE_EARTHQUAKE_TO_VOLCANO_REQUESTED", payload: {eqId: selected, volId: decoded.relateId}});
+          break;
         }
+        default: return {}
       }
     }
   };

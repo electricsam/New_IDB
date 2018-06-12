@@ -20,7 +20,7 @@ const hiddenStyle = {
 
 const action = obj => store.dispatch(obj);
 
-class TsunamiContainer extends React.Component {
+class RelateTsunamiEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,10 +71,13 @@ class TsunamiContainer extends React.Component {
       switch(decoded.relateTo){
         case "earthquake": {
           action({type: "RELATE_TSUNAMI_TO_EARTHQUAKE_REQUESTED", payload: {tsuId: selected, eqId: decoded.relateId}});
+          break;
         }
         case "volcano": {
           action({type: "RELATE_TSUNAMI_TO_VOLCANO_REQUESTED", payload: {tsuId: selected, volId: decoded.relateId}});
+          break;
         }
+        default: return {}
       }
     }
   };
@@ -112,5 +115,5 @@ class TsunamiContainer extends React.Component {
 
 const mapStateToProps = state => ({ tsunami: state.deep.tsunami });
 
-export default connect(mapStateToProps)(TsunamiContainer);
+export default connect(mapStateToProps)(RelateTsunamiEvent);
 
