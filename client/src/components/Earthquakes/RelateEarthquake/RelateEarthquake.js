@@ -108,7 +108,7 @@ class RelateEarthquake extends React.Component {
       return (
           <div>
             <TickboxTable
-                title="Earthquake Data"
+                title="Relate Earthquake"
                 columns={earthquake.getIn(['headersAndAccessors']).toJS()}
                 data={earthquake.asMutable().getIn(['earthquakes']).toJS()}
                 loading={earthquake.get('fetchingEarthquake')}
