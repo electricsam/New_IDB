@@ -4,8 +4,6 @@ import selectTableHOC from 'react-table/lib/hoc/selectTable';
 import { push } from 'react-router-redux';
 import {connect} from "react-redux";
 
-const CheckboxTable = selectTableHOC(ReactTable);
-import DialogBox from "../../FormPartials/DialogBox";
 import Loading from "../../loadbar/Loading";
 import TickboxTable from '../../CheckboxTable/TickboxTable';
 import store from "../../../store";
@@ -52,11 +50,11 @@ class RelateEarthquake extends React.Component {
     }else{
       action({type: "SET_TABLE_SELECTION", payload: key});
     }
-  }
+  };
 
   selectAll = () => {
     // do nothing
-  }
+  };
 
   toggleAll = () => {
     action({type: "SET_TABLE_SELECTION", payload: null});
@@ -84,7 +82,7 @@ class RelateEarthquake extends React.Component {
           action({type: "RELATE_EARTHQUAKE_TO_TSUNAMI_REQUESTED", payload: {eqId: selected, tsuId: decoded.relateId}});
         }
         case "volcano": {
-          action({type: "RELATE_EARTHQUAKE_TO_VOLCANO", payload: {eqId: selected, volId: decoded.relateId}});
+          action({type: "RELATE_EARTHQUAKE_TO_VOLCANO_REQUESTED", payload: {eqId: selected, volId: decoded.relateId}});
         }
       }
     }

@@ -118,6 +118,15 @@ class VolcanoContainer extends React.Component {
     }
   };
 
+  handleRelateToExistingEarthquakeClick = () => {
+    let selected = this.props.volcano.get('volcanoEventTableSelectionId');
+    if(selected){
+      let relateObj = {relate: true, relateTo:"volcano", relateId: selected}
+      let encoded = encodeQueryString(JSON.stringify(relateObj));
+      store.dispatch(push(`/earthquake/eventsearch?${encoded}`));
+    }
+  };
+
   render(){
     const { volcano } = this.props;
     const { toggleSelection, selectAll, toggleAll, isSelected, logSelection } = this;
@@ -133,6 +142,7 @@ class VolcanoContainer extends React.Component {
         {title: "More Info", handleClick: this.handleMoreInfoClick},
         {title: "Related Earthquakes", handleClick: this.handleRelatedEarthquakeClick},
         {title: "Related Tsunamis", handleClick: this.handleRelatedTsunamiClick},
+        {title: "Relate Volcano to Existing Earthquake", handleClick: this.handleRelateToExistingEarthquakeClick},
         {title: "Edit Volcano Event", handleClick: this.handleEditClick},
         {title: "Delete Volcano Event", handleClick: this.handleDeleteClick},
       ]

@@ -28,6 +28,7 @@ import {
   watchPatchEarthquake,
   watchFetchEarthquake,
   watchRelateEarthquakeToTsunami,
+  watchRelateEarthquakeToVolcano,
 } from './earthquakeSaga';
 
 import {
@@ -104,5 +105,6 @@ export default function* rootSaga() {
     watchFetchVolcanoLoc(),
     watchPatchVolcanoLoc(),
     watchRelateEarthquakeToTsunami(),
+    watchRelateEarthquakeToVolcano(),
   ]);
 }
