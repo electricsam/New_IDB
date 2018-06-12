@@ -37,7 +37,6 @@ class RelateEarthquake extends React.Component {
     if(search.length){
       search = search.split("?")[1];
       let decoded = JSON.parse(decodeQueryString(search));
-      console.log("decoded from componentDidMount: ", decoded)
       let queryString = createApiQueryString(decoded);
       action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED", payload: queryString});
     }
