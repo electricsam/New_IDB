@@ -30,6 +30,7 @@ public class VolAndRefController {
       VolcanoEvent volcanoEvent = volcanoEventRepository.findById(volId).get();
 
       VolcanoRefs volcanoRefs = new VolcanoRefs();
+      volcanoRefs.setId(volId, refId);
       volcanoRefs.setVolcanoEvent(volcanoEvent);
       volcanoRefs.setReference(reference);
 
