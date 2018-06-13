@@ -17,7 +17,7 @@ class VolcanoEventInsertContainer extends React.Component{
   }
 
   componentDidMount(){
-    console.log("the component mounted")
+    console.log("this.props.location.state: ", this.props)
   }
 
   handleSubmit(val){

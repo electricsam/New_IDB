@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { encodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions'
+import {encodeQueryString, createApiQueryString, decodeQueryString} from '../../../helperFunctions/helperFunctions'
 import store from '../../../store';
 import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
@@ -21,10 +21,19 @@ class ReferenceSearchContainer extends React.Component{
   handleSubmit(val){
     val = val.reference.asMutable().toJS();
     if(val.search){
-      let encoded = encodeQueryString(JSON.stringify(val.search));
-      let queryString = createApiQueryString(val.search);
-      action({type: 'FETCH_SPECIFIED_REFERENCES_REQUESTED', payload: queryString});
-      this.props.history.push(`/reference/data?${encoded}`);
+      if(this.props.location.search.length){
+        let search = JSON.parse(decodeQueryString(this.props.location.search.split("?")[1]));
+        Object.assign(val.search, search);
+        let encoded = encodeQueryString(JSON.stringify(val.search));
+        let queryString = createApiQueryString(val.search);
+        action({type: 'FETCH_SPECIFIED_REFERENCES_REQUESTED', payload: queryString});
+        this.props.history.push(`/reference/relate?${encoded}`);
+      }else{
+        let encoded = encodeQueryString(JSON.stringify(val.search));
+        let queryString = createApiQueryString(val.search);
+        action({type: 'FETCH_SPECIFIED_REFERENCES_REQUESTED', payload: queryString});
+        this.props.history.push(`/reference/data?${encoded}`);
+      }
     }else{
       action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED"});
       this.props.history.push(`/reference/data`)

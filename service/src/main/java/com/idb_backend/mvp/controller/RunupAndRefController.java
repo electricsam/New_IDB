@@ -21,7 +21,7 @@ public class RunupAndRefController {
   @Autowired
   TsrunupRefsRepository tsrunupRefsRepository;
 
-  @RequestMapping(value = "/volrefjunction/{runupid}/{refid}", method = RequestMethod.POST)
+  @RequestMapping(value = "/runuprefjunction/{runupid}/{refid}", method = RequestMethod.POST)
   @ResponseBody
   public ResponseEntity postRunupRefRelation(@PathVariable("runupid") Integer runupId,
                                              @PathVariable("refid") Integer refId){
@@ -37,7 +37,7 @@ public class RunupAndRefController {
 
       tsrunupRefsRepository.save(tsrunupRefs);
 
-      return ResponseEntity.status(HttpStatus.OK).body(null);
+      return ResponseEntity.status(HttpStatus.OK).body("success");
     }catch (Exception e){
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }

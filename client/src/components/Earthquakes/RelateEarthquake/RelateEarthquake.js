@@ -59,13 +59,6 @@ class RelateEarthquake extends React.Component {
     action({type: "SET_TABLE_SELECTION", payload: null});
   };
 
-  handleMoreInfoCick = () => {
-    let selected = this.props.earthquake.get('tableSelection');
-    if(selected){
-      store.dispatch(push(`/earthquake/event/moreinfo/${selected}`));
-    }
-  };
-
   isSelected = key => this.props.earthquake.get('tableSelection') === key ? true : false;
 
   handleRelateClick = () => {

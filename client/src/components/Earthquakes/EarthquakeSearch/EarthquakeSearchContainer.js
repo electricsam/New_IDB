@@ -22,9 +22,7 @@ class EarthquakeSearchContainer extends React.Component{
     }
   }
 
-  componentDidMount(){
-    console.log("this component mounted")
-  }
+  componentDidMount(){}
 
   handleSubmit(val){
     val = val.earthquake.asMutable().toJS();
@@ -35,7 +33,6 @@ class EarthquakeSearchContainer extends React.Component{
         let encoded = encodeQueryString(JSON.stringify(val.search));
         let queryString = createApiQueryString(val.search);
         action({type: 'FETCH_SPECIFIED_EARTHQUAKES_REQUESTED', payload: queryString});
-        //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
         this.props.history.push( `/earthquake/relate?${encoded}`);
       }else{
         let encoded = encodeQueryString(JSON.stringify(val.search));

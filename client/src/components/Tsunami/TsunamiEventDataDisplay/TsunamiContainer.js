@@ -132,21 +132,18 @@ class TsunamiContainer extends React.Component {
     }
   };
 
-  handleRelateToExistingEarthquake = () => {
-    let selected = this.props.tsunami.get('tsunamiTableSelection');
-    if(selected){
-      let relateObj = {relate: true, relateTo: "tsunami", relateId: selected}
-      let encoded = encodeQueryString(JSON.stringify(relateObj));
-      store.dispatch(push(`/earthquake/eventsearch?${encoded}`));
-    }
-  };
+  handleRelateToExistingEarthquake = () => {this.handleRelateClick('/earthquake/eventsearch?')};
 
-  handleRelateToExistingVolcano = () => {
+  handleRelateToExistingVolcano = () => {this.handleRelateClick('/volcano/event/search?')};
+
+  handleRelateToExistingReference = () => {this.handleRelateClick('/reference/search?')};
+
+  handleRelateClick = url => {
     let selected = this.props.tsunami.get('tsunamiTableSelection');
     if(selected){
       let relateObj = {relate: true, relateTo: "tsunami", relateId: selected}
       let encoded = encodeQueryString(JSON.stringify(relateObj));
-      store.dispatch(push(`/volcano/event/search?${encoded}`));
+      store.dispatch(push(`${url}${encoded}`));
     }
   };
 
@@ -168,6 +165,7 @@ class TsunamiContainer extends React.Component {
         {title: 'Related Earthquake', handleClick: this.handleRelatedEarthquakeClick},
         {title: "Relate Tsunami to Existing Earthquake", handleClick: this.handleRelateToExistingEarthquake},
         {title: "Relate Tsunami to Existing Volcano", handleClick: this.handleRelateToExistingVolcano},
+        {title: "Relate Tsunami to Existing Reference", handleClick: this.handleRelateToExistingReference},
         {title: "Edit Tsunami", handleClick: this.handleEditClick},
         {title: "Add Related Runup", handleClick: this.handleAddRelatedRunupClick},
         {title: "Delete Tsunami", handleClick: this.handleDeleteClick},

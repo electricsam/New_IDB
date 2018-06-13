@@ -41,6 +41,10 @@ import {
   watchPostReference,
   watchFetchReferenceById,
   watchPatchReference,
+  watchRelateReferenceToEarthquake,
+  watchRelateReferenceToVolcano,
+  watchRelateReferenceToRunup,
+  watchRelateReferenceToTsunami,
 } from './referenceSaga';
 
 import {
@@ -114,5 +118,9 @@ export default function* rootSaga() {
     watchRelateTsunamitoVolcano(),
     watchRelateVolcanoToTsunami(),
     watchRelateVolcanoToEarthquake(),
+    watchRelateReferenceToEarthquake(),
+    watchRelateReferenceToVolcano(),
+    watchRelateReferenceToRunup(),
+    watchRelateReferenceToTsunami(),
   ]);
 }

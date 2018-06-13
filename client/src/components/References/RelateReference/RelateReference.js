@@ -21,7 +21,7 @@ const hiddenStyle = {
 
 const action = obj => store.dispatch(obj);
 
-class ReferenceContainer extends React.Component {
+class RelateReference extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -38,16 +38,6 @@ class ReferenceContainer extends React.Component {
     } else {
       action({type: 'FETCH_SPECIFIED_REFERENCES_REQUESTED'});
     }
-  }
-
-  handleYesClick() {
-    const id = this.props.reference.get('deleteReferenceId');
-    action({type: 'DELETE_REFERENCE_REQUESTED', payload: id});
-  }
-
-  handleNoClick() {
-    action({type: 'TOGGLE_DELETE_REFERENCE_CONFIRMATION'});
-    action({type: 'SET_DELETE_EVENT_ID', payload: null});
   }
 
   toggleSelection = key => {
@@ -69,21 +59,35 @@ class ReferenceContainer extends React.Component {
 
   isSelected = key => this.props.reference.get('tableSelection') === key;
 
-  handleDeleteClick = () => {
-    let selection = this.props.reference.get('tableSelection');
-    if(selection){
-      store.dispatch({type: 'SET_DELETE_REFERENCE_ID', payload: selection});
-      store.dispatch({type: 'TOGGLE_DELETE_REFERENCE_CONFIRMATION'});
-    }
-  }
+  handleRelateClick = () => {
+    let selected = this.props.reference.get('tableSelection');
+    let {search} = this.props.location;
+    search = search.split('?')[1];
 
-  handleEditClick = () => {
-    let selection = this.props.reference.get('tableSelection');
-    if(selection){
-      store.dispatch(push(`/reference/update/${selection}`))
-    }
-  }
+    let decoded = JSON.parse(decodeQueryString(search));
 
+    if(selected && decoded.relate) {
+      switch(decoded.relateTo){
+        case "tsunami": {
+          action({type: "RELATE_REFERENCE_TO_TSUNAMI_REQUESTED", payload: {refId: selected, tsuId: decoded.relateId}});
+          break;
+        }
+        case "volcano": {
+          action({type: "RELATE_REFERENCE_TO_VOLCANO_REQUESTED", payload: {refId: selected, volId: decoded.relateId}});
+          break;
+        }
+        case "runup": {
+          action({type: "RELATE_REFERENCE_TO_RUNUP_REQUESTED", payload: {refId: selected, runupId: decoded.relateId}});
+          break;
+        }
+        case "earthquake": {
+          action({type: "RELATE_REFERENCE_TO_EARTHQUAKE_REQUESTED", payload: {refId: selected, eqId: decoded.relateId}});
+          break;
+        }
+        default: return {}
+      }
+    }
+  };
 
   render() {
     const {reference} = this.props;
@@ -96,22 +100,12 @@ class ReferenceContainer extends React.Component {
       selectType: "checkbox",
       keyField: 'id',
       buttons: [
-        {title: "Edit Reference", handleClick: this.handleEditClick},
-        {title: "Delete Reference", handleClick: this.handleDeleteClick}
+        {title: "Relate", handleClick: this.handleRelateClick}
       ]
     };
-      if(reference.get('fetchedReference')
-  )
-    {
-      console.log(reference.asMutable().toJS());
+    if(reference.get('fetchedReference')){
       return (
           <div>
-            {reference.get('showDeleteReferenceConfirmation') ?
-                <DialogBox
-                    handleYesClick={this.handleYesClick}
-                    handleNoClick={this.handleNoClick}
-                /> : <div style={hiddenStyle}></div>
-            }
             <TickboxTable
                 data={reference.asMutable().getIn(['references']).toJS()}
                 columns={reference.getIn(['headersAndAccessors']).toJS()}
@@ -128,5 +122,5 @@ class ReferenceContainer extends React.Component {
 
 const mapStateToProps = state => ({ reference: state.deep.reference });
 
-export default connect(mapStateToProps)(ReferenceContainer);
+export default connect(mapStateToProps)(RelateReference);
 

@@ -7,7 +7,7 @@ import store from '../../../store';
 import Loading from '../../loadbar/Loading';
 import Table from '../../Table/Table';
 
-import { decodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions';
+import {decodeQueryString, createApiQueryString, encodeQueryString} from '../../../helperFunctions/helperFunctions';
 import DialogBox from '../../FormPartials/DialogBox';
 import TickboxTable from "../../CheckboxTable/TickboxTable";
 
@@ -103,6 +103,15 @@ class RunupContainer extends React.Component {
     }
   };
 
+  handleRelateToExistingRefClick = () => {
+    let selected = this.props.tsunami.get('runupTableSelectionId');
+    if(selected){
+      let relateObj = {relate: true, relateTo: "runup", relateId: selected}
+      let encoded = encodeQueryString(JSON.stringify(relateObj));
+      store.dispatch(push(`/reference/search?${encoded}`));
+    }
+  };
+
   render() {
     const { tsunami } = this.props;
     const { toggleSelection, selectAll, toggleAll, isSelected, logSelection} = this;
@@ -117,6 +126,7 @@ class RunupContainer extends React.Component {
       buttons: [
         {title: 'More Info', handleClick: this.handleMoreInfoClick},
         {title: "More Event Info", handleClick: this.handleMoreEventInfoClick},
+        {title: "Relate to Existing Reference", handleClick: this.handleRelateToExistingRefClick},
         {title: "Edit Runup", handleClick: this.handleEditClick},
         {title: "Delete Runup", handleClick: this.handleDeleteClick}
       ]

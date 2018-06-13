@@ -1,15 +1,11 @@
 import React from 'react';
-import ReactTable from 'react-table';
-import selectTableHOC from 'react-table/lib/hoc/selectTable';
 import { push } from 'react-router-redux';
 import {connect} from "react-redux";
 
-const CheckboxTable = selectTableHOC(ReactTable);
 import DialogBox from "../../FormPartials/DialogBox";
 import Loading from "../../loadbar/Loading";
 import TickboxTable from '../../CheckboxTable/TickboxTable';
 import store from "../../../store";
-
 import {
   createApiQueryString,
   decodeQueryString,
@@ -63,11 +59,11 @@ class EarthquakeContainer extends React.Component {
     }else{
       action({type: "SET_TABLE_SELECTION", payload: key});
     }
-  }
+  };
 
   selectAll = () => {
     // do nothing
-  }
+  };
 
   toggleAll = () => {
     action({type: "SET_TABLE_SELECTION", payload: null});
@@ -92,7 +88,7 @@ class EarthquakeContainer extends React.Component {
       let encoded = encodeQueryString(JSON.stringify(query));
       return store.dispatch(push(`${basePath}${encoded}`))
     }
-  }
+  };
 
   handleRelatedTsunamiClick = () => {
     let selected = this.props.earthquake.get('tableSelection');
@@ -125,35 +121,29 @@ class EarthquakeContainer extends React.Component {
 
   isSelected = key => this.props.earthquake.get('tableSelection') === key ? true : false;
 
-  logSelection = () => {console.log('selection: ', this.props.earthquake.get('tableSelection'))}
-
-  handleRelateToExistingTsunamiClick = () => {
+  handleRelateClick = url => {
     let selected = this.props.earthquake.get('tableSelection');
     if(selected){
-      let relateObj = {relate: true, relateTo: "earthquake", relateId: selected}
+      let relateObj = {relate: true, relateTo: "earthquake", relateId: selected};
       let encoded = encodeQueryString(JSON.stringify(relateObj));
-      store.dispatch(push(`/tsunami/eventsearch?${encoded}`));
+      store.dispatch(push(`${url}${encoded}`));
     }
   };
 
-  handleRelateToExistingVolcanoClick = () => {
-    let selected = this.props.earthquake.get('tableSelection');
-    if(selected){
-      let relateObj = {relate: true, relateTo: "earthquake", relateId: selected}
-      let encoded = encodeQueryString(JSON.stringify(relateObj));
-      store.dispatch(push(`/volcano/event/search?${encoded}`));
-    }
-  }
+  handleRelateToExistingTsunamiClick = () => {this.handleRelateClick('/tsunami/eventsearch?');};
+
+  handleRelateToExistingVolcanoClick = () => {this.handleRelateClick('/volcano/event/search?');};
+
+  handleRelateToExistingRefClick = () => {this.handleRelateClick('/reference/search?')};
 
   render(){
     const { earthquake } = this.props;
-    const { toggleSelection, selectAll, toggleAll, isSelected, logSelected } = this;
+    const { toggleSelection, selectAll, toggleAll, isSelected } = this;
     const checkboxProps = {
       toggleSelection,
       selectAll,
       toggleAll,
       isSelected,
-      logSelected,
       selectType: "checkbox",
       keyField: 'id',
       buttons: [
@@ -162,6 +152,7 @@ class EarthquakeContainer extends React.Component {
         {title: 'Related Tsunamis', handleClick: this.handleRelatedTsunamiClick},
         {title: 'Relate to Existing Tsunami', handleClick: this.handleRelateToExistingTsunamiClick},
         {title: 'Relate to Existing Volcano', handleClick: this.handleRelateToExistingVolcanoClick},
+        {title: 'Relate to Existing Reference', handleClick: this.handleRelateToExistingRefClick},
         {title: "Edit Earthquake", handleClick: this.handleEditClick},
         {title: "Delete Earthquake", handleClick: this.handleDeleteClick}
       ]
@@ -194,8 +185,6 @@ class EarthquakeContainer extends React.Component {
 
 }
 
-
 const mapStateToProps = state => ({ earthquake: state.deep.earthquake });
 
 export default connect(mapStateToProps)(EarthquakeContainer);
-
