@@ -7,6 +7,7 @@ import Styles from "./DropDownStyles.css"
 
 const DropDown = props => (
   <div className={Styles.dropContainer}>
+    <label className={Styles.label} htmlFor={props.model}>{props.title}</label>
     <Control.select model={props.model} id={props.model} disabled={props.disabled}>
       {props.data.map(e => <option value={e.value}>{e.name}</option>)}
     </Control.select>

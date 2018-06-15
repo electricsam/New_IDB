@@ -1,4 +1,10 @@
 .dropContainer{
+    display: inline-block;
+    width: 100%;
+}
+
+.label{
+    font-weight: bold;
     margin-right: 2%;
     display: inline-block;
 }

@@ -1,7 +1,9 @@
 .subSection{
     grid-column: 1/2;
     width: 100%;
-    display: flex
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 .subSection .div{
@@ -9,7 +11,8 @@
 }
 
 .subSectionTitle{
-    display: inline-block;
+    /*display: inline-block;*/
     font-weight: bold;
     margin-right: 2%;
+    float: left;
 }

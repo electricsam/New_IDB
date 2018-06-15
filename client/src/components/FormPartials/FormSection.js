@@ -8,9 +8,10 @@ import MinMax from './MinMax';
 import SubSection from './SubSection';
 import DateTime from './DateTime';
 import Styles from './FormSectionStyles.css';
+import DropDownList from "./DropDownList";
 
 const FormSection = props => (
-  <div className={Styles.formOuterSection}>
+  <section className={Styles.formOuterSection}>
     <div className={Styles.header}>
       <h3>{props.title}</h3>
       <div className={Styles.expandCollapse}>
@@ -28,22 +29,12 @@ const FormSection = props => (
             props.formData.map((e) => {
               if (e.type === 'DROPDOWN') {
                 return (
-                  <SubSection title={e.title}>
-                    <DropDown model={e.model} data={e.data} />
-                  </SubSection>
+                    <DropDown model={e.model} data={e.data} title={e.title}/>
                 );
               } else if (e.type === 'DROPDOWNOR') {
                 return (
                   <SubSection title={e.title}>
-                    {
-                      e.dropDowns.map(x => (
-                        <DropDown
-                          model={x.model}
-                          data={x.data}
-                          disabled={() => props.checkDropDownDisabled(x.disabled)}
-                        />
-                      ))
-                    }
+                    <DropDownList list={e.dropDowns}/>
                   </SubSection>
                 );
               } else if (e.type === 'RADIO') {
@@ -112,16 +103,16 @@ const FormSection = props => (
                 );
               } else if (e.type === 'TEXT') {
                 return (
-                  <SubSection title={e.title}>
+
                     <MinMax
                       model={e.model}
-                      title=""
+                      title={e.title}
                       min={e.minThreshold}
                       max={e.maxThreshold}
                       validMinMax={props.validateMinMax}
                       validMessage={{ valid: e.validMessage }}
                     />
-                  </SubSection>
+
                 );
               } else if (e.type === 'TEXTNOVAL') {
                 return (
@@ -160,7 +151,7 @@ const FormSection = props => (
         </div> :
         <div />
     }
-  </div>
+  </section>
 );
 
 

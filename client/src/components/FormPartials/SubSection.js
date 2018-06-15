@@ -3,10 +3,10 @@ import Styles from './SubSectionStyles.css';
 
 
 const SubSection = props => (
-  <div className={Styles.subSection}>
-    <div className={Styles.subSectionTitle}>{props.title}</div>
+  <fieldset className={Styles.subSection}>
+    <legend className={Styles.subSectionTitle}>{props.title}</legend>
     {props.children}
-  </div>
+  </fieldset>
 );
 
 

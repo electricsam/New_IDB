@@ -62,5 +62,9 @@
     margin-right: 2%;
 }
 
-
-
+.dropListContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
