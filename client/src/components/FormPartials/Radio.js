@@ -3,6 +3,10 @@ import { Control } from 'react-redux-form/lib/immutable';
 
 import Styles from './RadioStyles.css';
 
+const hiddenStyle = {
+  visibility: 'hidden'
+};
+
 const Radio = props => (
   <div className={Styles.subSection}>
     {
@@ -20,10 +24,17 @@ const Radio = props => (
     }
     {
       props.noText ? (<div />) :
-        (<Control.text
-          model={`${props.textModelPreface}${props.checkConditions(props.condition)}`}
-          id={`${props.textModelPreface}${props.checkConditions()}`}
-        />)
+        (
+            <div className={Styles.text}>
+              <label style={hiddenStyle} htmlFor={`${props.textModelPreface}${props.checkConditions(props.condition)}`}>
+                Name
+              </label>
+              <Control.text
+                model={`${props.textModelPreface}${props.checkConditions(props.condition)}`}
+                id={`${props.textModelPreface}${props.checkConditions(props.condition)}`}
+              />
+            </div>
+        )
     }
   </div>
 );
