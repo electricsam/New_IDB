@@ -36,7 +36,7 @@ const FormSection = props => (
               } else if (e.type === 'DROPDOWNOR') {
                 return (
                   <SubSection title={e.title}>
-                    <DropDownList list={e.dropDowns}/>
+                    <DropDownList list={e.dropDowns} checkDropDownDisabled={props.checkDropDownDisabled}/>
                   </SubSection>
                 );
               } else if (e.type === 'RADIO') {

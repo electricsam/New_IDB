@@ -11,7 +11,7 @@ const DropDownList = props => {
         props.list.map(e => (
             <div className={Styles.drop}>
               <label htmlFor={e.model}>{e.title}</label>
-              <Control.select model={e.model} id={e.model} disabled={e.disabled}>
+              <Control.select model={e.model} id={e.model} disabled={() => props.checkDropDownDisabled(e.disabled)}>
                 {e.data.map(x => <option value={x.value}>{x.name}</option>)}
               </Control.select>
             </div>
