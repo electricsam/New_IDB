@@ -41,17 +41,19 @@ const FormSection = props => (
               } else if (e.type === 'RADIO') {
                 console.log(props);
                 return (
-                  <Radio
-                    radios={e.radios}
-                    radioSectionStyle={Styles.subSection}
-                    titleStyle={Styles.subSectionTitle}
-                    title={e.title}
-                    htmlFor={e.htmlFor}
-                    checkConditions={props.checkConditions}
-                    condition={e.condition}
-                    textModelPreface={e.textModelPreface}
-                    model={e.model}
-                  />
+                    <SubSection title={e.title}>
+                      <Radio
+                          radios={e.radios}
+                          radioSectionStyle={Styles.subSection}
+                          titleStyle={Styles.subSectionTitle}
+                          htmlFor={e.htmlFor}
+                          checkConditions={props.checkConditions}
+                          condition={e.condition}
+                          textModelPreface={e.textModelPreface}
+                          model={e.model}
+                      />
+                    </SubSection>
+
                 );
               } else if (e.type === 'MINMAX') {
                 return (

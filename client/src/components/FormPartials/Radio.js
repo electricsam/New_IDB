@@ -5,7 +5,6 @@ import Styles from './RadioStyles.css';
 
 const Radio = props => (
   <div className={Styles.subSection}>
-    <div className={Styles.subSectionTitle}>{props.title}</div>
     {
       props.radios.map(e => (
         <div className={Styles.radioDiv}>
