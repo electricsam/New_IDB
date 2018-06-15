@@ -1,0 +1,19 @@
+.container{
+    width: 100%;
+    vertical-align: top;
+
+}
+
+.label{
+    margin-right: 2%;
+    font-weight: bold;
+}
+
+.errors{
+    color: red;
+    margin-left: 2%
+}
+
+.errors span{
+    display: block;
+}

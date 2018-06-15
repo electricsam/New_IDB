@@ -9,6 +9,7 @@ import SubSection from './SubSection';
 import DateTime from './DateTime';
 import Styles from './FormSectionStyles.css';
 import DropDownList from "./DropDownList";
+import Text from "./Text";
 
 const FormSection = props => (
   <section className={Styles.formOuterSection}>
@@ -104,21 +105,24 @@ const FormSection = props => (
               } else if (e.type === 'TEXT') {
                 return (
 
-                    <MinMax
+                    <Text
                       model={e.model}
                       title={e.title}
                       min={e.minThreshold}
                       max={e.maxThreshold}
                       validMinMax={props.validateMinMax}
                       validMessage={{ valid: e.validMessage }}
+                      needsVal={true}
                     />
 
                 );
               } else if (e.type === 'TEXTNOVAL') {
                 return (
-                  <SubSection title={e.title}>
-                    <Control.text model={e.model} id={e.model} />
-                  </SubSection>
+                  <Text
+                    model={e.model}
+                    title={e.title}
+                    needsVal={false}
+                  />
                 );
               } else if (e.type === 'RADIONOTEXT') {
                 return (
