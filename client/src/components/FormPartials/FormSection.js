@@ -10,6 +10,7 @@ import DateTime from './DateTime';
 import Styles from './FormSectionStyles.css';
 import DropDownList from "./DropDownList";
 import Text from "./Text";
+import {Textarea} from "./Textarea";
 
 const FormSection = props => (
   <section className={Styles.formOuterSection}>
@@ -147,9 +148,7 @@ const FormSection = props => (
                 );
               } else if (e.type === 'TEXTAREA') {
                 return (
-                  <SubSection title={e.title}>
-                    <Control.textarea model={e.model} id={e.id} />
-                  </SubSection>
+                  <Textarea title={e.title} model={e.model}/>
                 );
               }
             })
