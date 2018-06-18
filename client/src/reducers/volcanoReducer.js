@@ -31,7 +31,7 @@ export const initialState = fromJS({
   locName: null,
   showVolEventInsertDateLoc: true,
   insert: {
-    country: '',
+    country: '', comments: ''
   },
   locInsert: {
 

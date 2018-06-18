@@ -170,6 +170,7 @@ const Effects = [
     model: '.volcano.insert.comments',
     id: '.volcano.insert.comments',
     title: 'Comments',
+    maxLength: 3600,
   },
 ];
 
