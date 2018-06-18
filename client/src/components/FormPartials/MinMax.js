@@ -35,4 +35,5 @@ MinMax.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   validMinMax: PropTypes.func.isRequired,
+  validMessage: PropTypes.string.isRequired,
 };
