@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Control, Errors } from 'react-redux-form/lib/immutable';
+import PropTypes from 'prop-types';
 
 import DropDown from './DropDown.jsx';
 import Radio from './Radio';
@@ -40,7 +41,6 @@ const FormSection = props => (
                   </SubSection>
                 );
               } else if (e.type === 'RADIO') {
-                console.log(props);
                 return (
                     <SubSection title={e.title}>
                       <Radio
@@ -161,3 +161,14 @@ const FormSection = props => (
 
 
 export default FormSection;
+
+FormSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  showSection: PropTypes.bool.isRequired,
+  formData: PropTypes.array.isRequired,
+  checkConditions: PropTypes.func,
+  validateMinMax: PropTypes.func,
+  validateDateTime: PropTypes.func,
+  checkDropDownDisabled: PropTypes.func,
+  toggleSelection: PropTypes.func,
+};
