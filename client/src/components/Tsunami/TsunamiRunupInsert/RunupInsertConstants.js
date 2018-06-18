@@ -363,6 +363,7 @@ const Effects = [
     title: 'Comments',
     model: '.tsunami.rnpinsert.comments',
     id: '.tsunami.rnpinsert.comments',
+    maxLength: 3600,
   },
 ];
 
