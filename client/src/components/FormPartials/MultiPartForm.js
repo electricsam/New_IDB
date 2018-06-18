@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Styles from './MultiPartFormStyles.css';
 import { Form } from 'react-redux-form/lib/immutable';
@@ -22,3 +23,8 @@ const MultiPartForm = props => (
 );
 
 export default MultiPartForm;
+
+MultiPartForm.propTypes = {
+  title: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+};
