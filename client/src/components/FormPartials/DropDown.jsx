@@ -19,4 +19,5 @@ export default DropDown;
 DropDown.propTypes = {
   model: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
-}
+  title: PropTypes.string.isRequired,
+};
