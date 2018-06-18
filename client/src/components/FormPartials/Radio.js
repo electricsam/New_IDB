@@ -1,5 +1,6 @@
 import React from 'react';
 import { Control } from 'react-redux-form/lib/immutable';
+import PropTypes from 'prop-types';
 
 import Styles from './RadioStyles.css';
 
@@ -40,3 +41,9 @@ const Radio = props => (
 );
 
 export default Radio;
+
+Radio.propTypes = {
+  radios: PropTypes.array.isRequired,
+  model: PropTypes.string.isRequired,
+  htmlFor: PropTypes.string.isRequired,
+};
