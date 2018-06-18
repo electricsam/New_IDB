@@ -155,7 +155,20 @@ const FormSection = props => (
                       validLength={props.validLength}
                       maxLength={e.maxLength}
                       validComments={props.validComments}
+                      needsVal={true}
                   />
+                );
+              }else if (e.type === 'TEXTAREANOVAL') {
+                return (
+                    <Textarea
+                        title={e.title}
+                        model={e.model}
+                        count={props.count}
+                        validLength={props.validLength}
+                        maxLength={e.maxLength}
+                        validComments={props.validComments}
+                        needsVal={false}
+                    />
                 );
               }
             })

@@ -12,7 +12,7 @@ const Parameters = [
     model: '.reference.insert.author',
   },
   {
-    type: 'TEXTAREA',
+    type: 'TEXTAREANOVAL',
     title: 'Citation',
     model: '.reference.insert.citation',
   },

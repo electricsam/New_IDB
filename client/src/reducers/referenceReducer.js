@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 
 export const initialState = fromJS({
-  references: [],
+  references: [{comments: ''}],
   headersAndAccessors: [],
   fetchingReference: false,
   fetchedReference: false,
@@ -9,7 +9,7 @@ export const initialState = fromJS({
   deleteReferenceId: null,
   showDeleteReferenceConfirmation: false,
   search: {},
-  insert: {},
+  insert: {comments: ''},
   showSearchParams: true,
   author: null,
   citation: null,

@@ -45,6 +45,7 @@ import RelateEarthquake from "./Earthquakes/RelateEarthquake/RelateEarthquake";
 import RelateTsunamiEvent from "./Tsunami/RelateTsunamiEvent/RelateTsunamiEvent";
 import RelateVolcanoEvent from "./Volcanoes/RelateVolcanoEvent/RelateVolcanoEvent";
 import RelateReference from "./References/RelateReference/RelateReference";
+import ReferenceLanding from "./References/ReferenceLanding/ReferenceLanding";
 
 class App extends React.Component {
   render() {
@@ -77,6 +78,7 @@ class App extends React.Component {
             <Route exact path="/reference/data" component={ReferenceContainer} />
             <Route exact path="/reference/search" component={ReferenceSearchContainer} />
             <Route exact path="/reference/insert" component={ReferenceInsertContainer} />
+            <Route exact path="/reference/landing" component={ReferenceLanding}/>
             <Route exact path="/reference/update/:id" component={ReferenceUpdateContainer} />
             <Route exact path="/volcano/event/data" component={VolcanoContainer} />
             <Route exact path="/volcano/event/search" component={VolcanoEventSearchContainer} />
