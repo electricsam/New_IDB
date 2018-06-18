@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Styles from './SubSectionStyles.css';
 
 
@@ -9,5 +11,8 @@ const SubSection = props => (
   </fieldset>
 );
 
-
 export default SubSection;
+
+SubSection.propTypes = {
+  title: PropTypes.string.isRequired
+};
