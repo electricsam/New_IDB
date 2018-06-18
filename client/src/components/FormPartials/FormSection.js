@@ -148,7 +148,14 @@ const FormSection = props => (
                 );
               } else if (e.type === 'TEXTAREA') {
                 return (
-                  <Textarea title={e.title} model={e.model}/>
+                  <Textarea
+                      title={e.title}
+                      model={e.model}
+                      count={props.count}
+                      validLength={props.validLength}
+                      maxLength={e.maxLength}
+                      validComments={props.validComments}
+                  />
                 );
               }
             })

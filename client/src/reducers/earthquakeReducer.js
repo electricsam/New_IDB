@@ -9,6 +9,7 @@ export const initialState = fromJS({
   },
   insert: {
     country: '',
+    comments: '',
   },
   earthquakes: [{ country: '' }],
   headersAndAccessors: [],

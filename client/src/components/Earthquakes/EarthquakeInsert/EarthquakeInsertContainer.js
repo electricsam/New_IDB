@@ -41,9 +41,12 @@ class EarthquakeInsertContainer extends React.Component{
 
   checkDropDownDisabled = (val) => this.props.earthquake.asMutable().toJS().insert.country === val? false: true;
 
+  validLength = (val, max) => (val.length > max? false: true);
+
   render() {
-    const { earthquake } = this.props;
-    console.log("earthquake ", earthquake);
+    const { earthquake, forms } = this.props;
+    const validComments = forms.earthquake.insert;
+    console.log(validComments)
     return (
         <MultiPartForm title="Insert Earthquake" handleSubmit={this.handleSubmit.bind(this)}>
           <FormSection
@@ -78,6 +81,9 @@ class EarthquakeInsertContainer extends React.Component{
               showSection={earthquake.get('showEqInsertTotalEffects')}
               validateMinMax={this.validateMinMax}
               formData={TotalEffects}
+              count={earthquake.asMutable().toJS().insert.comments}
+              validLength={this.validLength}
+              validComments={validComments}
           />
 
 
@@ -87,7 +93,7 @@ class EarthquakeInsertContainer extends React.Component{
 }
 
 
-const mapStateToProps = state => ({earthquake: state.deep.earthquake});
+const mapStateToProps = state => ({earthquake: state.deep.earthquake, forms: state.deep.forms});
 
 export default connect(mapStateToProps)(EarthquakeInsertContainer);
 
