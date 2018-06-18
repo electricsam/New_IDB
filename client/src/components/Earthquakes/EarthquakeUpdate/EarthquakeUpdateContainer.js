@@ -42,7 +42,13 @@ class EarthquakeUpdateContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
-  validLength = (val, max) => (val.length > max? false: true);
+  validLength = (val, max) => {
+    if(val === null){
+      return true
+    }else{
+      return val.length > max? false: true
+    }
+  };
 
   render(){
     const { earthquake } = this.props;
