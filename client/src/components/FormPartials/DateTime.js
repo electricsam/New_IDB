@@ -2,6 +2,7 @@ require('babel-polyfill');
 
 import React from 'react';
 import { Control, Errors } from 'react-redux-form/lib/immutable';
+import PropTypes from 'prop-types';
 
 import Styles from './DateTimeStyles.css';
 
@@ -28,3 +29,8 @@ const DateTime = props => (
 
 export default DateTime;
 
+DateTime.propTypes = {
+  model: PropTypes.string.isRequired,
+  validDateTime: PropTypes.func.isRequired,
+  validMessage: PropTypes.string.isRequired
+};

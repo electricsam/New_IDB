@@ -40,14 +40,12 @@ class EarthquakeInsertContainer extends React.Component{
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
   checkDropDownDisabled = (val) => this.props.earthquake.asMutable().toJS().insert.country === val? false: true;
-
-  // handleSubmit={this.handleSubmit.bind(this)}
-
+  
   render() {
     const { earthquake } = this.props;
     console.log("earthquake ", earthquake);
     return (
-        <MultiPartForm title="Insert Earthquake" >
+        <MultiPartForm title="Insert Earthquake" handleSubmit={this.handleSubmit.bind(this)}>
           <FormSection
             title="Date and Location"
             toggleSection={this.toggleDateAndLocation}
@@ -82,7 +80,6 @@ class EarthquakeInsertContainer extends React.Component{
               formData={TotalEffects}
           />
 
-        <button onClick={this.notify}>Toast</button>
 
         </MultiPartForm>
     )
