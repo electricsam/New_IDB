@@ -27,6 +27,7 @@ const Parameters = [
     type: 'TEXTAREA',
     title: 'Comments',
     model: '.reference.insert.comments',
+    maxLength: 3600
   },
 ];
 

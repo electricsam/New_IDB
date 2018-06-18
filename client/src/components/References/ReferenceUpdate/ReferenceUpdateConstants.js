@@ -14,7 +14,7 @@ const Parameters = [
     model: '.reference.references[0].author',
   },
   {
-    type: 'TEXTAREA',
+    type: 'TEXTAREANOVAL',
     title: 'Citation',
     model: '.reference.references[0].citation',
   },
@@ -29,6 +29,7 @@ const Parameters = [
     type: 'TEXTAREA',
     title: 'Comments',
     model: '.reference.references[0].comments',
+    maxLength: 3600
   },
 ];
 

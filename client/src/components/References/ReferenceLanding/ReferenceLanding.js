@@ -14,7 +14,7 @@ const buttons = [
     innerStyle: Styles.buttonTitle,
   },
   {
-    title: 'Search Events',
+    title: 'Search References',
     url: '/reference/search',
     outerStyle: Styles.button,
     innerStyle: Styles.buttonTitle,

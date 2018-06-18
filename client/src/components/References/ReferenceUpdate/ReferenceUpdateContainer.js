@@ -31,6 +31,14 @@ class ReferenceUpdateContainer extends React.Component{
 
   toggleParameters = () => action({type: "TOGGLE_REFERENCE_UPDATE_PARAMETERS"});
 
+  validLength = (val, max) => {
+    if(val === null){
+      return true
+    }else{
+      return val.length > max? false: true
+    }
+  };
+
   render(){
     const { reference } = this.props;
     if(reference.get("fetchingReferenceById") === true){
@@ -43,6 +51,8 @@ class ReferenceUpdateContainer extends React.Component{
                 toggleSection={this.toggleParameters}
                 showSection={reference.get('showReferenceUpdateParam')}
                 formData={Parameters}
+                count={reference.asMutable().toJS().references[0].comments}
+                validLength={this.validLength}
             />
 
           </MultiPartForm>
