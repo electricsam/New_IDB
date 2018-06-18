@@ -49,7 +49,7 @@ class TsunamiInsertContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
-
+  validLength = (val, max) => (val.length > max? false: true);
 
   render(){
     const { tsunami } = this.props;
@@ -83,6 +83,8 @@ class TsunamiInsertContainer extends React.Component{
               showSection={tsunami.get('showTsInsertEffectsTotal')}
               validateMinMax={this.validateMinMax}
               formData={TotalEffects}
+              count={tsunami.asMutable().toJS().insert.comments}
+              validLength={this.validLength}
           />
 
         </MultiPartForm>
