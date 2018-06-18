@@ -2,10 +2,7 @@ import React from 'react';
 import { Control, Errors } from 'react-redux-form/lib/immutable';
 import PropTypes from 'prop-types';
 
-
 import Styles from './TextareaStyles.css';
-
-const checkLength = (val, max) => val.length > max? true: false;
 
 export const Textarea = props => (
     <div className={Styles.container}>
@@ -19,7 +16,7 @@ export const Textarea = props => (
           validateOn="change"
       />
       <p style={{color: props.validLength(props.count, props.maxLength) ? 'green': 'red', fontWeight: 'bold'}}>
-        {props.count? props.count.length : 0} characters of {props.maxLength}
+        {props.count.length? props.count.length : 0} characters of {props.maxLength}
       </p>
     </div>
 );

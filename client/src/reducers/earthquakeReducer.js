@@ -11,7 +11,7 @@ export const initialState = fromJS({
     country: '',
     comments: '',
   },
-  earthquakes: [{ country: '' }],
+  earthquakes: [{ country: '', comments: '' }],
   headersAndAccessors: [],
   fetchingEarthquake: false,
   fetchingEarthquake: false,

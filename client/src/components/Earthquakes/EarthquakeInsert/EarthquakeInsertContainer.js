@@ -45,8 +45,6 @@ class EarthquakeInsertContainer extends React.Component{
 
   render() {
     const { earthquake, forms } = this.props;
-    const validComments = forms.earthquake.insert;
-    console.log(validComments)
     return (
         <MultiPartForm title="Insert Earthquake" handleSubmit={this.handleSubmit.bind(this)}>
           <FormSection
@@ -74,7 +72,6 @@ class EarthquakeInsertContainer extends React.Component{
               formData={Effects}
           />
 
-
           <FormSection
               title="Total Effects"
               toggleSection={this.toggleTotalEffects}
@@ -83,9 +80,7 @@ class EarthquakeInsertContainer extends React.Component{
               formData={TotalEffects}
               count={earthquake.asMutable().toJS().insert.comments}
               validLength={this.validLength}
-              validComments={validComments}
           />
-
 
         </MultiPartForm>
     )

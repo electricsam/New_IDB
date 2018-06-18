@@ -384,6 +384,7 @@ const TotalEffects = [
     model: '.earthquake.earthquakes[0].comments',
     id: '.earthquake.earthquakes[0].comments',
     title: 'Comments',
+    maxLength: 3600,
   },
 ];
 
