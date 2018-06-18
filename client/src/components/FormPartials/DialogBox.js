@@ -15,3 +15,9 @@ const DialogBox = props => (
 
 
 export default DialogBox;
+
+
+DialogBox.propTypes = {
+  handleYesClick: PropTypes.func.isRequired,
+  handleNoClick: PropTypes.func.isRequired,
+};

@@ -40,7 +40,7 @@ class EarthquakeInsertContainer extends React.Component{
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
   checkDropDownDisabled = (val) => this.props.earthquake.asMutable().toJS().insert.country === val? false: true;
-  
+
   render() {
     const { earthquake } = this.props;
     console.log("earthquake ", earthquake);
