@@ -1,5 +1,6 @@
 import React from 'react';
 import { Control, Errors } from 'react-redux-form/lib/immutable';
+import PropTypes from 'prop-types';
 
 import Styles from './TextStyles.css';
 
@@ -36,5 +37,9 @@ const Text = props => {
   }
 };
 
-
 export default Text;
+
+Text.propTypes = {
+  model: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
