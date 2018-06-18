@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 
 export const initialState = fromJS({
   error: null,
-  volcanoEvents: [],
+  volcanoEvents: [{comments: '', }],
   headersAndAccessors: [],
   fetchingVolcanoEvents: false,
   fetchedVolcanoEvents: false,

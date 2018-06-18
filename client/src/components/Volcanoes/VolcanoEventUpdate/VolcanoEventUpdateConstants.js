@@ -171,6 +171,7 @@ const Effects = [
     model: '.volcano.volcanoEvents[0].comments',
     id: '.volcano.volcanoEvents[0].comments',
     title: 'Comments',
+    maxLength: 3600,
   },
 ];
 
