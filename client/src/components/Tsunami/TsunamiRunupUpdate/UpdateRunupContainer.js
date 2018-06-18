@@ -57,6 +57,14 @@ class UpdateRunupContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
+  validLength = (val, max) => {
+    if(val === null){
+      return true
+    }else{
+      return val.length > max? false: true
+    }
+  };
+
   render(){
     const { tsunami } = this.props;
     console.log("RUNUPDATA", this.props.tsunami.asMutable().toJS().runupData);
@@ -93,6 +101,8 @@ class UpdateRunupContainer extends React.Component{
                 validateMinMax={this.validateMinMax}
                 formData={Effects}
                 checkDropDownDisabled={this.checkDropDownDisabled}
+                count={tsunami.asMutable().toJS().runupData[0].comments}
+                validLength={this.validLength}
             />
 
           </MultiPartForm>

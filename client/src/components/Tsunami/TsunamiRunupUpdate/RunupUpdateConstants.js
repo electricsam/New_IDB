@@ -362,6 +362,7 @@ const Effects = [
     title: 'Comments',
     model: '.tsunami.runupData[0].comments',
     id: '.tsunami.runupData[0].comments',
+    maxLength: 3600,
   },
 ];
 
