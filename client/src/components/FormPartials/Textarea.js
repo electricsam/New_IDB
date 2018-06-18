@@ -16,7 +16,7 @@ export const Textarea = props => (
           validateOn="change"
       />
       <p style={{color: props.validLength(props.count, props.maxLength) ? 'green': 'red', fontWeight: 'bold'}}>
-        {props.count.length? props.count.length : 0} characters of {props.maxLength}
+        {props.count? props.count.length : 0} characters of {props.maxLength}
       </p>
     </div>
 );

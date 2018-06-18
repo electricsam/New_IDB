@@ -44,9 +44,17 @@ class UpdateTsunamiContainer extends React.Component{
 
   toggleTotalEffects = () => action({type: "TOGGLE_TSUNAMI_UPDATE_EFFECTS_TOTAL"});
 
-  checkDropDownDisabled = (val) => this.props.tsunami.asMutable().toJS().tsEvents[0].country === val? false: true;
+  checkDropDownDisabled = (val) => this.props.tsunami.asMutable().toJS().tsEvent[0].country === val? false: true;
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+
+  validLength = (val, max) => {
+    if(val === null){
+      return true
+    }else{
+      return val.length > max? false: true
+    }
+  };
 
   render(){
     const { tsunami } = this.props;
@@ -89,6 +97,8 @@ class UpdateTsunamiContainer extends React.Component{
                 validateMinMax={this.validateMinMax}
                 formData={TotalEffects}
                 checkDropDownDisabled={this.checkDropDownDisabled}
+                count={tsunami.asMutable().toJS().tsEvent[0].comments}
+                validLength={this.validLength}
             />
 
           </MultiPartForm>

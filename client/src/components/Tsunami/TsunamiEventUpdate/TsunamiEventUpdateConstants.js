@@ -447,6 +447,7 @@ const TotalEffects = [
     model: '.tsunami.tsEvent[0].comments',
     id: '.tsunami.tsEvent[0].comments',
     title: 'Comments',
+    maxLength: 3600,
   },
 ];
 
