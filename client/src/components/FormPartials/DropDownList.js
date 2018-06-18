@@ -1,10 +1,12 @@
 import React from 'react';
 import { Control } from 'react-redux-form/lib/immutable';
+import PropTypes from 'prop-types';
 
 import Styles from './DropDownListStyles.css'
 
+
+
 const DropDownList = props => {
-  console.log(props)
   return (
     <div className={Styles.container}>
       {
@@ -25,3 +27,8 @@ const DropDownList = props => {
 
 
 export default DropDownList;
+
+DropDownList.propTypes = {
+  list: PropTypes.array.isRequired,
+  checkDropDownDisabled: PropTypes.func.isRequired
+};
