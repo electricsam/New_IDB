@@ -7,8 +7,6 @@ import FormSection from "../../FormPartials/FormSection";
 import { DateAndLocation, Effects, TotalEffects, Measurements} from "./EarthquakeInsertConstants";
 import { encodeQueryString } from '../../../helperFunctions/helperFunctions';
 
-
-
 const action = obj => store.dispatch(obj)
 
 class EarthquakeInsertContainer extends React.Component{
@@ -43,11 +41,13 @@ class EarthquakeInsertContainer extends React.Component{
 
   checkDropDownDisabled = (val) => this.props.earthquake.asMutable().toJS().insert.country === val? false: true;
 
+  // handleSubmit={this.handleSubmit.bind(this)}
+
   render() {
     const { earthquake } = this.props;
     console.log("earthquake ", earthquake);
     return (
-        <MultiPartForm title="Insert Earthquake" handleSubmit={this.handleSubmit.bind(this)}>
+        <MultiPartForm title="Insert Earthquake" >
           <FormSection
             title="Date and Location"
             toggleSection={this.toggleDateAndLocation}
@@ -81,6 +81,8 @@ class EarthquakeInsertContainer extends React.Component{
               validateMinMax={this.validateMinMax}
               formData={TotalEffects}
           />
+
+        <button onClick={this.notify}>Toast</button>
 
         </MultiPartForm>
     )
