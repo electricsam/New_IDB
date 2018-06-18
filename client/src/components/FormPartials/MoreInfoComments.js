@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Styles from './MoreInfoCommentsStyles.css';
 
 const MoreInfoComments = props => (
@@ -10,5 +11,4 @@ const MoreInfoComments = props => (
     </div>
 );
 
-
-export default MoreInfoComments
+export default MoreInfoComments;
