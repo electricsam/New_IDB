@@ -27,7 +27,7 @@ const buttons = [
   },
   {
     title: 'References',
-    url: '/reference/search',
+    url: '/reference/landing',
     outerStyle: Styles.button,
     innerStyle: Styles.buttonTitle,
   }

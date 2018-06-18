@@ -1,5 +1,3 @@
-require('babel-polyfill');
-
 import React from 'react';
 import { Control, Errors } from 'react-redux-form/lib/immutable';
 import PropTypes from 'prop-types';
