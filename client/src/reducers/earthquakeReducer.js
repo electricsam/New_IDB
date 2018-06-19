@@ -14,8 +14,10 @@ export const initialState = fromJS({
   earthquakes: [{ country: '', comments: '' }],
   headersAndAccessors: [],
   fetchingEarthquake: false,
-  fetchingEarthquake: false,
   fetchedEarthquake: false,
+  patchedEarthquake: false,
+  patchingEarthquake: false,
+  patchFail: false,
   error: null,
   showDeleteEarthquakeConfirmation: false,
   deleteEarthquakeId: null,
@@ -27,6 +29,7 @@ export const initialState = fromJS({
   showEqInsertTotalEffects: true,
   postingEarthquake: false,
   postedEarthquake: false,
+  postFail: false,
   showEqUpdateDateLoc: true,
   showEqUpdateMeasure: true,
   showEqUpdateEffects: true,
@@ -89,13 +92,13 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { showEqInsertTotalEffects: !state.get('showEqInsertTotalEffects') });
     }
     case 'POST_EARTHQUAKE_REQUESTED': {
-      return state.merge(state, { postingEarthquake: true });
+      return state.merge(state, { postingEarthquake: true, postedEarthquake: false, postFail: false });
     }
     case 'POST_EARTHQUAKE_FULFILLED': {
       return state.merge(state, { postingEarthquake: false, postedEarthquake: true, earthquakes: [action.payload] });
     }
     case 'POST_EARTHQUAKE_REJECTED': {
-      return state.merge(state, { postingEarthquake: false, error: action.payload });
+      return state.merge(state, { postingEarthquake: false, error: action.payload, postFail: true });
     }
     case 'FETCH_EARTHQUAKE_REQUESTED': {
       return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false });
@@ -144,6 +147,20 @@ export default function reducer(state = initialState, action) {
     case 'RELATE_EARTHQUAKE_TO_VOLCANO_REJECTED': {
       return state.merge(state, {relating: false, related: false, error: action.payload});
     }
+
+    case 'PATCH_EARTHQUAKE_REQUESTED': {
+      return state.merge(state, { patchingEarthquake: true, patchedEarthquake: false, patchFail: false });
+    }
+    case 'PATCH_EARTHQUAKE_FULFILLED': {
+      return state.merge(state, {
+        patchingEarthquake: false,
+        patchedEarthquake: true
+      });
+    }
+    case 'PATCH_EARTHQUAKE_REJECTED': {
+      return state.merge(state, { patchingEarthquake: false, patchFail: true, error: action.payload });
+    }
+
     default:
       return state;
     }

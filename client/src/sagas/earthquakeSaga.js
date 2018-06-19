@@ -82,6 +82,7 @@ export function* watchPatchEarthquake() {
 export function* patchEarthquake(action) {
   const { id, earthquake } = action.payload;
   try {
+    console.log("you are attempting to patch***********************************************************");
     const response = yield call(axios.patch, `${EARTHQUAKE_BASEPATH}/${id}`, earthquake);
     yield put({
       type: 'PATCH_EARTHQUAKE_FULFILLED',

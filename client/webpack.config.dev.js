@@ -88,14 +88,6 @@ module.exports = {
           }
         ]
       },
-      // {
-      //   test: /\.css$/,
-      //   include: path.resolve(__dirname, './node_modules/react-toastify/dist'),
-      //   use: [
-      //     {loader: 'css-loader'},
-      //     {loader: 'style-loader'}
-      //   ],
-      // },
       {
         test:/\.(jpe?g|png|gif|svg)$/i,
         exclude: /node_modules/,

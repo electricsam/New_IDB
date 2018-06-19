@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {toast, ToastContainer } from 'react-toastify';
+import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
 
 import { encodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions'
 import store from '../../../store';
@@ -16,6 +18,8 @@ class EarthquakeUpdateContainer extends React.Component{
     this.statem = {};
   }
 
+  toastId = null;
+
   componentDidMount(){
     let id = this.props.match.params.id;
     action({type: "FETCH_EARTHQUAKE_REQUESTED", payload: id});
@@ -27,6 +31,7 @@ class EarthquakeUpdateContainer extends React.Component{
     if(val.insert){
       let encoded = encodeQueryString(JSON.stringify(val.earthquakes[0]));
       action({type: "PATCH_EARTHQUAKE_REQUESTED", payload:{ earthquake: val.earthquakes[0], id: id}});
+      this.notify();
     }
   }
 
@@ -42,15 +47,35 @@ class EarthquakeUpdateContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
+  notify = () => this.toastId = toast('...updating', {autoClose: false});
+
+  updateSuccess = () => this.toastId = toast.update(this.toastId, {
+    type: toast.TYPE.SUCCESS,
+    render: 'Update Successful',
+    autoClose: 3000
+  });
+
+  updateFail = () => this.toastId = toast.update(this.toastId, {
+    type: toast.TYPE.ERROR,
+    render: 'Update Failed',
+    autoClose: 3000
+  })
+
+
   render(){
     const { earthquake } = this.props;
-    console.log("Earthquake: ", earthquake.asMutable().toJS());
+    if(earthquake.asMutable().toJS().patchedEarthquake){
+      this.updateSuccess()
+    }
+    if(earthquake.asMutable().toJS().patchFail){
+      this.updateFail();
+    }
     if(earthquake.get("fetchingEarthquake") === true){
       return(<Loading/>)
     }else{
       return (
           <MultiPartForm title="Update Earthquake Event" handleSubmit={this.handleSubmit.bind(this)}>
-
+            <ToastContainer/>
             <FormSection
               title="Date and Location"
               toggleSection={this.toggleDateAndLocation}

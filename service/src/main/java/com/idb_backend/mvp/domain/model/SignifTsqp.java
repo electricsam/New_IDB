@@ -95,7 +95,11 @@ public class SignifTsqp implements Serializable {
   private java.sql.Date ngdcDate;
   private String temporalAccuracy;
   private BigInteger objectid;
+
+
+  @Getter(value = AccessLevel.PRIVATE)
   private Geometry shape;
+
   private String comments;
   private Integer housesDestroyed;
 
@@ -168,14 +172,5 @@ public class SignifTsqp implements Serializable {
   @OneToMany(mappedBy = "signifTsqp", fetch = FetchType.LAZY)
   @JsonIgnore
   private Set<SignifToTsEvent> signifToTsEvents = new HashSet<>();
-
-  public String getShape() {
-    if(shape == null){
-      return null;
-    }else{
-      WKTWriter w = new WKTWriter();
-      return w.write(shape);
-    }
-  }
 
 }

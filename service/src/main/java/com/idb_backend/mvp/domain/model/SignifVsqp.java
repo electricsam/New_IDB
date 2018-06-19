@@ -285,7 +285,4 @@ public class SignifVsqp implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private Integer housesDamAmountOrderTotal;
 
-  public void setShape(Geometry shape) {
-    this.shape = shape;
-  }
 }

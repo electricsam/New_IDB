@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
+import {toast, ToastContainer } from 'react-toastify';
+import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
 
 import store from "../../../store";
 import MultiPartForm from "../../FormPartials/MultiPartForm";
@@ -15,19 +17,30 @@ class EarthquakeInsertContainer extends React.Component{
     this.state = {};
   }
 
-  componentDidMount(){
+  toastId = null;
 
-  }
+  componentDidMount(){}
 
   handleSubmit(val){
     val = val.earthquake.asMutable().toJS();
     if(val.insert){
       let encoded = encodeQueryString(JSON.stringify(val.insert));
       action({type: "POST_EARTHQUAKE_REQUESTED", payload: val.insert});
-    }else{
-    //  nothing
+      let toastId = null
+      this.notify();
+      // setTimeout(this.update(), 3000)
     }
   }
+
+  notify = () => this.toastId = toast('...posting', {autoClose: false});
+
+  updateSuccess = () => this.toastId = toast.update(this.toastId, {
+      type: toast.TYPE.SUCCESS,
+      render: 'Post Successful',
+      autoClose: 3000
+  });
+
+  updateFail = () => this.toastId = toast.update(this.toastId, {type: toast.TYPE.ERROR, render: 'Post Failed', autoClose: 3000})
 
   toggleDateAndLocation = () => action({type: "TOGGLE_EARTHQUAKE_INSERT_DATE_AND_LOCATION"});
 
@@ -45,8 +58,18 @@ class EarthquakeInsertContainer extends React.Component{
 
   render() {
     const { earthquake, forms } = this.props;
+    if(earthquake.asMutable().toJS().postedEarthquake){
+      this.updateSuccess()
+    }
+    if(earthquake.asMutable().toJS().postFail){
+      this.updateFail();
+    }
+
     return (
         <MultiPartForm title="Insert Earthquake" handleSubmit={this.handleSubmit.bind(this)}>
+
+          <ToastContainer/>
+
           <FormSection
             title="Date and Location"
             toggleSection={this.toggleDateAndLocation}
@@ -85,12 +108,6 @@ class EarthquakeInsertContainer extends React.Component{
   }
 }
 
-
 const mapStateToProps = state => ({earthquake: state.deep.earthquake});
 
 export default connect(mapStateToProps)(EarthquakeInsertContainer);
-
-
-
-
-
