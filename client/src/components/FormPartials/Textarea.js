@@ -4,46 +4,6 @@ import PropTypes from 'prop-types';
 
 import Styles from './TextareaStyles.css';
 
-// export const Textarea = props => {
-//   if (props.needsVal) {
-//     const insertForm = props.commentForm.insert;
-//     debugger;
-//     return (
-//         <div className={Styles.container}>
-//           <label className={Styles.label} htmlFor={props.model}>{props.title}</label>
-//           <Control.textarea
-//               model={props.model}
-//               id={props.id}
-//               validators={{
-//                 valid: val => props.validLength(val, 10)
-//               }}
-//               validateOn="change"
-//           />
-//           <p style={{color: !insertForm || insertForm.comments.valid ? 'green' : 'red', fontWeight: 'bold'}}>
-//             {!insertForm || !insertForm.comments.value ? 0: insertForm.comments.value.length} characters of {props.maxLength}
-//           </p>
-//         </div>
-//     )
-//   } else {
-//     return (<div className={Styles.container}>
-//       <label className={Styles.label} htmlFor={props.model}>{props.title}</label>
-//       <Control.textarea
-//           model={props.model}
-//           id={props.id}
-//       />
-//     </div>)
-//   }
-// };
-//
-// Textarea.propTypes = {
-//   model: PropTypes.string.isRequired,
-//   title: PropTypes.string.isRequired,
-//   id: PropTypes.string.isRequired,
-//   htmlFor: PropTypes.string.isRequired,
-// };
-
-
-
 export class Textarea extends React.Component{
   constructor(props){
     super(props);
@@ -59,9 +19,7 @@ export class Textarea extends React.Component{
     }
   }
 
-  componentDidMount(){
-    console.log("at least we mounted")
-  }
+  componentDidMount(){}
 
   validateLength = (val, max) => {
     if(val.length > max) {
@@ -76,19 +34,30 @@ export class Textarea extends React.Component{
   };
 
   render(){
-    return (
-      <div className={Styles.container}>
-        <label className={Styles.label} htmlFor={this.props.model}>{this.props.title}</label>
-        <Control.textarea
-          model={this.props.model}
-          id={this.props.id}
-          validators={{valid: val => this.validateLength(val, this.props.maxLength)}}
-          validateOn="change"
-        />
-        <p style={this.state.counterStyle}>
-          {this.state.counterData.count} characters of 3,600
-        </p>
-      </div>
-    )
+    if(this.props.needsVal){
+      return (
+        <div className={Styles.container}>
+          <label className={Styles.label} htmlFor={this.props.model}>{this.props.title}</label>
+          <Control.textarea
+            model={this.props.model}
+            id={this.props.id}
+            validators={{valid: val => this.validateLength(val, this.props.maxLength)}}
+            validateOn="change"
+          />
+          <p style={this.state.counterStyle}>
+            {this.state.counterData.count} characters of 3,600
+          </p>
+        </div>
+      )
+    }else{
+      return (
+        <div className={Styles.container}>
+           <label className={Styles.label} htmlFor={props.model}>{props.title}</label>
+           <Control.textarea
+               model={props.model}
+               id={props.id}
+           />
+        </div>)
+    }
   }
 }
