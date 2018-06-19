@@ -92,7 +92,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { patchingReference: false, patchedReference: true });
     }
     case 'PATCH_REFERENCE_REJECTED': {
-      return state.merge(state, { patchingReference: true, patchFail: true, error: action.payload });
+      return state.merge(state, { patchingReference: false, patchFail: true, error: action.payload });
     }
     case "SET_TABLE_SELECTION": {
       return state.merge(state, {tableSelection: action.payload});
