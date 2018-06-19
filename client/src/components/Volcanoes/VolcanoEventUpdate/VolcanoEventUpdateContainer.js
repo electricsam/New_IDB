@@ -60,6 +60,14 @@ class VolcanoEventUpdateContainer extends React.Component{
     return true;
   };
 
+  validLength = (val, max) => {
+    if(val === null){
+      return true
+    }else{
+      return val.length > max? false: true
+    }
+  };
+
   render(){
     const { volcano } = this.props;
     if(volcano.get("fetchingVolcanoEvents") === true){
