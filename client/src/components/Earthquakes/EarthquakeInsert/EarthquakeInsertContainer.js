@@ -8,6 +8,7 @@ import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
 import { DateAndLocation, Effects, TotalEffects, Measurements} from "./EarthquakeInsertConstants";
 import { encodeQueryString } from '../../../helperFunctions/helperFunctions';
+import {Toast} from "../../Toast/Toast";
 
 const action = obj => store.dispatch(obj)
 
@@ -26,21 +27,8 @@ class EarthquakeInsertContainer extends React.Component{
     if(val.insert){
       let encoded = encodeQueryString(JSON.stringify(val.insert));
       action({type: "POST_EARTHQUAKE_REQUESTED", payload: val.insert});
-      let toastId = null
-      this.notify();
-      // setTimeout(this.update(), 3000)
     }
   }
-
-  notify = () => this.toastId = toast('...posting', {autoClose: false});
-
-  updateSuccess = () => this.toastId = toast.update(this.toastId, {
-      type: toast.TYPE.SUCCESS,
-      render: 'Post Successful',
-      autoClose: 3000
-  });
-
-  updateFail = () => this.toastId = toast.update(this.toastId, {type: toast.TYPE.ERROR, render: 'Post Failed', autoClose: 3000})
 
   toggleDateAndLocation = () => action({type: "TOGGLE_EARTHQUAKE_INSERT_DATE_AND_LOCATION"});
 
@@ -58,17 +46,18 @@ class EarthquakeInsertContainer extends React.Component{
 
   render() {
     const { earthquake, forms } = this.props;
-    if(earthquake.asMutable().toJS().postedEarthquake){
-      this.updateSuccess()
-    }
-    if(earthquake.asMutable().toJS().postFail){
-      this.updateFail();
-    }
 
     return (
         <MultiPartForm title="Insert Earthquake" handleSubmit={this.handleSubmit.bind(this)}>
 
-          <ToastContainer/>
+          <Toast
+            actionMessage="...Posting"
+            successMessage="Post Successful"
+            failMessage="Post Failed"
+            launch={earthquake.asMutable().toJS().postingEarthquake}
+            success={earthquake.asMutable().toJS().postedEarthquake}
+            fail={earthquake.asMutable().toJS().postFail}
+          />
 
           <FormSection
             title="Date and Location"
