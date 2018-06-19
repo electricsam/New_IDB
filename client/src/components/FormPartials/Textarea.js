@@ -56,10 +56,10 @@ export class Textarea extends React.Component{
     }else{
       return (
         <div className={Styles.container}>
-           <label className={Styles.label} htmlFor={props.model}>{props.title}</label>
+           <label className={Styles.label} htmlFor={this.props.model}>{this.props.title}</label>
            <Control.textarea
-               model={props.model}
-               id={props.id}
+               model={this.props.model}
+               id={this.props.id}
            />
         </div>)
     }

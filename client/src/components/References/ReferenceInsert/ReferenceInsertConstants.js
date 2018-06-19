@@ -15,11 +15,12 @@ const Parameters = [
     type: 'TEXTAREANOVAL',
     title: 'Citation',
     model: '.reference.insert.citation',
+    id: '.reference.insert.citation',
+    maxLength: 3600
   },
   {
     type: 'DROPDOWN',
     title: 'Have and DB Status',
-    model: '.reference.insert.have',
     model: '.reference.insert.have',
     data: referenceHave,
   },
@@ -27,6 +28,7 @@ const Parameters = [
     type: 'TEXTAREA',
     title: 'Comments',
     model: '.reference.insert.comments',
+    id: '.reference.insert.comments',
     maxLength: 3600
   },
 ];

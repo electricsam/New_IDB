@@ -45,7 +45,7 @@ class EarthquakeInsertContainer extends React.Component{
   validLength = (val, max) => (val.length > max? false: true);
 
   render() {
-    const { earthquake, forms } = this.props;
+    const { earthquake } = this.props;
 
     return (
         <MultiPartForm title="Insert Earthquake" handleSubmit={this.handleSubmit.bind(this)}>

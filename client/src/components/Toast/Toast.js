@@ -10,7 +10,7 @@ export class Toast extends React.Component{
 
   toastId = '';
 
-  notify = () => this.toastId = toast(`${this.props.actionMessage}`, {autoClose: false})
+  notify = () => this.toastId = toast(`${this.props.actionMessage}`, {autoClose: false});
 
   updateSuccess = () => this.toastId = toast.update(this.toastId, {
     type: toast.TYPE.SUCCESS,

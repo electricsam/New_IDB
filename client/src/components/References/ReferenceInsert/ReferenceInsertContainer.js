@@ -7,6 +7,7 @@ import store from '../../../store';
 import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
 import { Parameters } from "./ReferenceInsertConstants";
+import {Toast} from "../../Toast/Toast";
 const action = obj => store.dispatch(obj);
 
 class ReferenceInsertContainer extends React.Component{
@@ -15,16 +16,12 @@ class ReferenceInsertContainer extends React.Component{
     this.state = {}
   }
 
-  componentDidMount(){
-    //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
-  }
+  componentDidMount(){}
 
   handleSubmit(val){
     val = val.reference.asMutable().toJS();
     if(val.insert){
       action({type: "POST_REFERENCE_REQUESTED", payload: val.insert});
-    }else{
-      //placeholder
     }
   }
 
@@ -32,8 +29,18 @@ class ReferenceInsertContainer extends React.Component{
 
   render(){
     const { reference } = this.props;
+
     return (
         <MultiPartForm title="Insert Reference" handleSubmit={this.handleSubmit.bind(this)}>
+
+          <Toast
+              actionMessage="...Posting"
+              successMessage="Post Successful"
+              failMessage="Post Failed"
+              launch={reference.asMutable().toJS().postingReference}
+              success={reference.asMutable().toJS().postedReference}
+              fail={reference.asMutable().toJS().postFail}
+          />
 
           <FormSection
               title="Parameters"

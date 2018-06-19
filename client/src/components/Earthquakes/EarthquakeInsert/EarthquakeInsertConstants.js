@@ -381,13 +381,12 @@ const TotalEffects = [
   },
   {
     type: 'TEXTAREA',
+    title: 'Comments',
     model: '.earthquake.insert.comments',
     id: '.earthquake.insert.comments',
-    title: 'Comments',
     maxLength: 3600,
   },
 ];
-
 
 export {
   DateAndLocation,

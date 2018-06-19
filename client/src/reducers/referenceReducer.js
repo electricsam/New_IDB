@@ -17,11 +17,13 @@ export const initialState = fromJS({
   showReferenceInsertParam: true,
   postingReference: false,
   postedReference: false,
+  postFail: false,
   showReferenceUpdateParam: true,
   fetchingReferenceById: false,
   fetchedReferenceById: false,
   patchingReference: false,
   patchedReference: false,
+  patchFail: false,
   tableSelection: null,
   related: false,
   relating: false,
@@ -56,13 +58,13 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { showReferenceInsertParam: !state.get('showReferenceInsertParam') });
     }
     case 'POST_REFERENCE_REQUESTED': {
-      return state.merge(state, { postingReference: true });
+      return state.merge(state, { postingReference: true, postedReference: false, postFail: false });
     }
     case 'POST_REFERENCE_FULFILLED': {
       return state.merge(state, { postingReference: false, postedReference: true });
     }
     case 'POST_REFERENCE_REJECTED': {
-      return state.merge(state, { postedReference: false, error: action.payload });
+      return state.merge(state, { postingReference: false, postFail: true, error: action.payload });
     }
     case 'TOGGLE_REFERENCE_UPDATE_PARAMETERS': {
       return state.merge(state, { showReferenceUpdateParam: !state.get('showReferenceUpdateParam') });
@@ -84,13 +86,13 @@ export default function reducer(state = initialState, action) {
       });
     }
     case 'PATCH_REFERENCE_REQUESTED': {
-      return state.merge(state, { patchingReference: true });
+      return state.merge(state, { patchingReference: true, patchFail: false, patchedReference: false });
     }
     case 'PATCH_REFERENCE_FULFILLED': {
       return state.merge(state, { patchingReference: false, patchedReference: true });
     }
     case 'PATCH_REFERENCE_REJECTED': {
-      return state.merge(state, { patchingReference: true, error: action.payload });
+      return state.merge(state, { patchingReference: true, patchFail: true, error: action.payload });
     }
     case "SET_TABLE_SELECTION": {
       return state.merge(state, {tableSelection: action.payload});

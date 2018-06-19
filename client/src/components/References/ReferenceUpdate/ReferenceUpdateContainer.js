@@ -7,6 +7,7 @@ import Loading from "../../loadbar/Loading"
 import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
 import {Parameters} from "./ReferenceUpdateConstants";
+import {Toast} from "../../Toast/Toast";
 
 const action = obj => store.dispatch(obj);
 
@@ -38,6 +39,16 @@ class ReferenceUpdateContainer extends React.Component{
     }else{
       return (
           <MultiPartForm title="Update Reference" handleSubmit={this.handleSubmit.bind(this)}>
+
+            <Toast
+                actionMessage="...Updating"
+                successMessage="Update Successful"
+                failMessage="Update Failed"
+                launch={reference.asMutable().toJS().patchingReference}
+                success={reference.asMutable().toJS().patchedReference}
+                fail={reference.asMutable().toJS().patchFail}
+            />
+
             <FormSection
                 title="Parameters"
                 toggleSection={this.toggleParameters}
