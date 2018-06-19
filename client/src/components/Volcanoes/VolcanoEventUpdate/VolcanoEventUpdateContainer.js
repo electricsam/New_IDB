@@ -60,14 +60,6 @@ class VolcanoEventUpdateContainer extends React.Component{
     return true;
   };
 
-  validLength = (val, max) => {
-    if(val === null){
-      return true
-    }else{
-      return val.length > max? false: true
-    }
-  };
-
   render(){
     const { volcano } = this.props;
     if(volcano.get("fetchingVolcanoEvents") === true){
@@ -98,8 +90,6 @@ class VolcanoEventUpdateContainer extends React.Component{
                 showSection={volcano.get('showVolEventUpdateEffects')}
                 validateMinMax={this.validateMinMax}
                 formData={Effects}
-                count={volcano.asMutable().toJS().volcanoEvents[0].comments}
-                validLength={this.validLength}
             />
 
           </MultiPartForm>

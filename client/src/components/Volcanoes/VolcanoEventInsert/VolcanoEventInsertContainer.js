@@ -64,8 +64,6 @@ class VolcanoEventInsertContainer extends React.Component{
 
   checkDropDownDisabled = (val) => this.props.volcano.asMutable().toJS().insert.country === val? false: true;
 
-  validLength = (val, max) => (val.length > max? false: true);
-
   render() {
     const { volcano } = this.props;
     console.log("volcano ", volcano);
@@ -96,8 +94,6 @@ class VolcanoEventInsertContainer extends React.Component{
             showSection={volcano.get('showVolEventInsertEffects')}
             validateMinMax={this.validateMinMax}
             formData={Effects}
-            count={volcano.asMutable().toJS().insert.comments}
-            validLength={this.validLength}
           />
 
 

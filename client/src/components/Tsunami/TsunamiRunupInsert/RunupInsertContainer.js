@@ -41,8 +41,6 @@ class RunupInsertContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
-  validLength = (val, max) => (val.length > max? false: true);
-
   render(){
     const { tsunami } = this.props;
     return (
@@ -71,8 +69,6 @@ class RunupInsertContainer extends React.Component{
             validateMinMax={this.validateMinMax}
             formData={Effects}
             checkDropDownDisabled={this.checkDropDownDisabled}
-            count={tsunami.asMutable().toJS().rnpinsert.comments}
-            validLength={this.validLength}
           />
 
         </MultiPartForm>

@@ -30,8 +30,6 @@ class ReferenceInsertContainer extends React.Component{
 
   toggleParameters = () => action({type: "TOGGLE_REFERENCE_INSERT_PARAMETERS"});
 
-  validLength = (val, max) => (val.length > max? false: true);
-
   render(){
     const { reference } = this.props;
     return (
@@ -42,8 +40,6 @@ class ReferenceInsertContainer extends React.Component{
               toggleSection={this.toggleParameters}
               showSection={reference.get('showReferenceInsertParam')}
               formData={Parameters}
-              count={reference.asMutable().toJS().insert.comments}
-              validLength={this.validLength}
           />
 
         </MultiPartForm>
