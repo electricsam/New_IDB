@@ -26,7 +26,6 @@ class RunupSearchContainer extends React.Component{
   }
 
   handleSubmit(val){
-    console.log("THIS.PROPS: ", this.props);
     val = val.tsunami.asMutable().toJS();
     if(val.rnpsearch){
       let encoded = encodeQueryString(JSON.stringify(val.rnpsearch));

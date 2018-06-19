@@ -156,6 +156,7 @@ const FormSection = props => (
                       maxLength={e.maxLength}
                       validComments={props.validComments}
                       needsVal={true}
+                      commentForm={props.commentForm}
                   />
                 );
               }else if (e.type === 'TEXTAREANOVAL') {

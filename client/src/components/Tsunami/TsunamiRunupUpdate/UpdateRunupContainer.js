@@ -30,7 +30,6 @@ class UpdateRunupContainer extends React.Component{
   componentDidMount(){
     let runupId = this.props.match.params.runupId;
     action ({type: "FETCH_TS_RUNUP_REQUESTED", payload: runupId });
-    //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
   }
 
   handleSubmit(val){

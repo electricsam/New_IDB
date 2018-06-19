@@ -177,10 +177,10 @@ export default function reducer(state = initialState, action) {
   }
   case 'FETCH_VOLCANO_EVENT_FULFILLED': {
     return state.merge(state, {
+      volcanoEvents: [action.payload.data],
+      headersAndAccessors: action.payload.formattedData,
       fetchingVolcanoEvents: false,
       fetchedVolcanoEvents: true,
-      volcanoEvents: [action.payload.data],
-      headersAndAccessors: action.payload.formattedData
     });
   }
   case 'FETCH_VOLCANO_EVENT_REJECTED': {

@@ -78,8 +78,6 @@ class EarthquakeInsertContainer extends React.Component{
               showSection={earthquake.get('showEqInsertTotalEffects')}
               validateMinMax={this.validateMinMax}
               formData={TotalEffects}
-              count={earthquake.asMutable().toJS().insert.comments}
-              validLength={this.validLength}
           />
 
         </MultiPartForm>
@@ -88,7 +86,7 @@ class EarthquakeInsertContainer extends React.Component{
 }
 
 
-const mapStateToProps = state => ({earthquake: state.deep.earthquake, forms: state.deep.forms});
+const mapStateToProps = state => ({earthquake: state.deep.earthquake});
 
 export default connect(mapStateToProps)(EarthquakeInsertContainer);
 

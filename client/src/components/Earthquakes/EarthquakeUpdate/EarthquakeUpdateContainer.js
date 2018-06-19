@@ -42,14 +42,6 @@ class EarthquakeUpdateContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
-  validLength = (val, max) => {
-    if(val === null){
-      return true
-    }else{
-      return val.length > max? false: true
-    }
-  };
-
   render(){
     const { earthquake } = this.props;
     console.log("Earthquake: ", earthquake.asMutable().toJS());
@@ -91,7 +83,6 @@ class EarthquakeUpdateContainer extends React.Component{
                 validateMinMax={this.validateMinMax}
                 formData={TotalEffects}
                 count={earthquake.asMutable().toJS().earthquakes[0].comments}
-                validLength={this.validLength}
             />
 
           </MultiPartForm>
@@ -101,7 +92,10 @@ class EarthquakeUpdateContainer extends React.Component{
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({earthquake: state.deep.earthquake, id: ownProps.match.id});
+const mapStateToProps = (state, ownProps) => ({
+  earthquake: state.deep.earthquake,
+  id: ownProps.match.id,
+});
 
 export default connect(mapStateToProps)(EarthquakeUpdateContainer);
 
