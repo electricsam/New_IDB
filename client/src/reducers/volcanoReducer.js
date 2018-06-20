@@ -47,6 +47,7 @@ export const initialState = fromJS({
   showVolLocInsertDetails: true,
   patchingVolcanoEvent: false,
   patchedVolcanoEvent: false,
+  patchVolcanoEventFail: false,
   showVolEventUpdateDate: true,
   showVolEventUpdateMeasure: true,
   showVolEventUpdateEffects: true,
@@ -165,13 +166,13 @@ export default function reducer(state = initialState, action) {
     return state.merge(state, { showVolLocInsertDetails: !state.get('showVolLocInsertDetails') });
   }
   case 'PATCH_VOLCANO_EVENT_REQUESTED': {
-    return state.merge(state, { patchingVolcanoEvent: true });
+    return state.merge(state, { patchingVolcanoEvent: true, patchedVolcanoEvent: false, patchVolcanoEventFail: false });
   }
   case 'PATCH_VOLCANO_EVENT_FULFILLED': {
     return state.merge(state, { patchingVolcanoEvent: false, patchedVolcanoEvent: true });
   }
   case 'PATCH_VOLCANO_EVENT_REJECTED': {
-    return state.merge(state, { patchingVolcanoEvent: false, error: action.payload });
+    return state.merge(state, { patchingVolcanoEvent: false, patchVolcanoEventFail: true, error: action.payload });
   }
   case 'FETCH_VOLCANO_EVENT_REQUESTED': {
     return state.merge(state, { fetchingVolcanoEvents: true, fetchedVolcanoEvents: false });
