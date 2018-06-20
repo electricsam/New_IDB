@@ -23,8 +23,8 @@ export class Textarea extends React.Component{
 
   validateLength = (val, max) => {
     if(!val){
-      console.log("you should know this by now ");
       this.setState({counterStyle: {color: 'green', display: 'block'}});
+      this.setState({counterData: {count: 0}});
       return true;
     }else if(val.length > max) {
       this.setState({counterStyle: {color: 'red', display: 'block'}});
