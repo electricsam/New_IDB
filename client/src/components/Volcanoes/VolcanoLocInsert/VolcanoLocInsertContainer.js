@@ -5,10 +5,10 @@ import store from "../../../store";
 import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
 import { encodeQueryString } from '../../../helperFunctions/helperFunctions';
-
 import { Location, Details } from './VolcanoLocInsertConstants';
+import {Toast} from "../../Toast/Toast";
 
-const action = obj => store.dispatch(obj)
+const action = obj => store.dispatch(obj);
 
 class VolcanoLocInsertContainer extends React.Component{
   constructor(props){
@@ -16,17 +16,13 @@ class VolcanoLocInsertContainer extends React.Component{
     this.state = {};
   }
 
-  componentDidMount(){
-    console.log("the component mounted")
-  }
+  componentDidMount(){}
 
   handleSubmit(val){
     val = val.volcano.asMutable().toJS();
     if(val.locInsert){
       let encoded = encodeQueryString(JSON.stringify(val.locInsert));
       action({type: "POST_VOLCANO_LOC_REQUESTED", payload: val.locInsert});
-    }else{
-      //  nothing
     }
   }
 
@@ -42,6 +38,15 @@ class VolcanoLocInsertContainer extends React.Component{
     const { volcano } = this.props;
     return (
         <MultiPartForm title="Insert Volcano" handleSubmit={this.handleSubmit.bind(this)}>
+
+          <Toast
+            actionMessage="...Posting"
+            successMessage="Post Successful"
+            failMessage="Post Failed"
+            launch={volcano.asMutable().toJS().postingVolcanoLoc}
+            success={volcano.asMutable().toJS().postedVolcanoLoc}
+            fail={volcano.asMutable().toJS().postVolcanoLocFail}
+          />
 
           <FormSection
               title="Location"

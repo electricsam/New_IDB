@@ -7,6 +7,7 @@ import Loading from "../../loadbar/Loading"
 import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
 import {Details, Location} from "./VolcanoLocUpdateConstants";
+import {Toast} from "../../Toast/Toast";
 
 const action = obj => store.dispatch(obj);
 
@@ -64,6 +65,15 @@ class VolcanoLocUpdateContainer extends React.Component{
     }else{
       return (
           <MultiPartForm title="Update Volcano Location" handleSubmit={this.handleSubmit.bind(this)}>
+
+            <Toast
+                actionMessage="...Updating"
+                successMessage="Update Successful"
+                failMessage="Update Failed"
+                launch={volcano.asMutable().toJS().patchingVolcanoLoc}
+                success={volcano.asMutable().toJS().patchedVolcanoLoc}
+                fail={volcano.asMutable().toJS().patchVolcanoLocFail}
+            />
 
             <FormSection
                 title="Location"
