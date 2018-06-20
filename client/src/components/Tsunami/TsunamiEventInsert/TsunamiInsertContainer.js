@@ -7,6 +7,7 @@ import store from '../../../store';
 import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
 import { Measurements, TotalEffects, Effects, DateAndLocation } from "./TsunamiEventInsertConstants"
+import {Toast} from "../../Toast/Toast";
 
 const action = obj => store.dispatch(obj);
 
@@ -53,6 +54,16 @@ class TsunamiInsertContainer extends React.Component{
     const { tsunami } = this.props;
     return (
         <MultiPartForm title="Insert Tsunami Event" handleSubmit={this.handleSubmit.bind(this)}>
+
+          <Toast
+              actionMessage="...Posting"
+              successMessage="Post Successful"
+              failMessage="Post Failed"
+              launch={tsunami.asMutable().toJS().postingTsEvent}
+              success={tsunami.asMutable().toJS().postedTsEvent}
+              fail={tsunami.asMutable().toJS().postTsEventFail}
+          />
+
           <FormSection
             title="Date and Location"
             toggleSection={this.toggleDateAndLocation}

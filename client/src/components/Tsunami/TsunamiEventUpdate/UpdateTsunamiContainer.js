@@ -7,6 +7,7 @@ import Loading from "../../loadbar/Loading"
 import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
 import { DateAndLocation, Measurement, TotalEffects, Effects  } from "./TsunamiEventUpdateConstants";
+import {Toast} from "../../Toast/Toast";
 
 const action = obj => store.dispatch(obj);
 
@@ -55,6 +56,17 @@ class UpdateTsunamiContainer extends React.Component{
     }else{
       return (
           <MultiPartForm title="Update Tsunami Event" handleSubmit={this.handleSubmit.bind(this)}>
+
+            <Toast
+              actionMessage="...Updating"
+              successMessage="Update Successful"
+              failMessage="Update Failed"
+              launch={tsunami.asMutable().toJS().patchingTsEvent}
+              success={tsunami.asMutable().toJS().patchedTsEvent}
+              fail={tsunami.asMutable().toJS().patchTsEventFail}
+
+            />
+
             <FormSection
               title="Date and Location"
               toggleSection={this.toggleDateAndLocation}
