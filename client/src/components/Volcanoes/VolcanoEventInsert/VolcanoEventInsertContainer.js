@@ -7,6 +7,7 @@ import FormSection from "../../FormPartials/FormSection";
 import { encodeQueryString } from '../../../helperFunctions/helperFunctions';
 
 import { Dates, Effects, Measurements } from './VolcanoEventInsertConstants';
+import {Toast} from "../../Toast/Toast";
 
 const action = obj => store.dispatch(obj)
 
@@ -69,6 +70,15 @@ class VolcanoEventInsertContainer extends React.Component{
     console.log("volcano ", volcano);
     return (
         <MultiPartForm title="Insert Volcano" handleSubmit={this.handleSubmit.bind(this)}>
+
+          <Toast
+            actionMessage="...Posting"
+            successMessage="Post Successful"
+            failMessage="Post Failed"
+            launch={volcano.asMutable().toJS().postingVolcanoEvent}
+            success={volcano.asMutable().toJS().postedVolcanoEvent}
+            fail={volcano.asMutable().toJS().postVolcanoEventFail}
+          />
 
           <FormSection
               title="Dates"
