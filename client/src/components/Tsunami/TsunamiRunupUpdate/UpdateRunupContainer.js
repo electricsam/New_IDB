@@ -9,6 +9,7 @@ import Loading from "../../loadbar/Loading"
 import { DateAndLocation, Effects, Measurements} from "./RunupUpdateConstants";
 import FormSection from "../../FormPartials/FormSection";
 import MultiPartForm from "../../FormPartials/MultiPartForm";
+import {Toast} from "../../Toast/Toast";
 
 const errorStyles = {
   color: 'red',
@@ -58,7 +59,6 @@ class UpdateRunupContainer extends React.Component{
 
   render(){
     const { tsunami } = this.props;
-    console.log("RUNUPDATA", this.props.tsunami.asMutable().toJS().runupData);
     if(tsunami.get("fetchingRunup") === true){
       return(
         <Loading/>
@@ -66,6 +66,15 @@ class UpdateRunupContainer extends React.Component{
     }else{
       return (
           <MultiPartForm title="Update Runup" handleSubmit={this.handleSubmit.bind(this)}>
+
+            <Toast
+              actionMessage="...Updating"
+              successMessage="Update Successful"
+              failMessage="Update Failed"
+              launch={tsunami.asMutable().toJS().patchingRunup}
+              success={tsunami.asMutable().toJS().patchedRunup}
+              fail={tsunami.asMutable().toJS().patchRunupFail}
+            />
 
             <FormSection
               title="Date and Location"

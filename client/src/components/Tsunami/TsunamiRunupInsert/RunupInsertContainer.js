@@ -7,6 +7,7 @@ import MultiPartForm from "../../FormPartials/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection";
 
 import { Measurements, DateAndLocation, Effects } from "./RunupInsertConstants";
+import {Toast} from "../../Toast/Toast";
 
 const action = obj => store.dispatch(obj);
 
@@ -45,6 +46,15 @@ class RunupInsertContainer extends React.Component{
     const { tsunami } = this.props;
     return (
         <MultiPartForm title="Insert Runup" handleSubmit={this.handleSubmit.bind(this)}>
+
+          <Toast
+            actionMessage="...Posting"
+            successMessage="Post Successful"
+            failMessage="Post Failed"
+            launch={tsunami.asMutable().toJS().postingRunup}
+            success={tsunami.asMutable().toJS().postedRunup}
+            fail={tsunami.asMutable().toJS().postRunupFail}
+          />
 
           <FormSection
             title="Date and Location"

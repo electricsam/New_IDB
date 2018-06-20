@@ -308,13 +308,14 @@ export default function reducer(state = initialState, action) {
     case "PATCH_TS_EVENT_FULFILLED": {
       return state.merge(state, {patchingTsEvent: false, patchedTsEvent: true})
     }
-    case"UPDATE_TS_RUNUP_REQUESTED": {
-      return state.merge(state, {patchingRunup: false, patchedRunup: false, patchRunupFail: false})
+    case "UPDATE_TS_RUNUP_REQUESTED": {
+      console.log("you are inside the UPDATE_RUNUP REDUCER CASE");
+      return state.merge(state, {patchingRunup: true, patchedRunup: false, patchRunupFail: false})
     }
-    case"UPDATE_TS_RUNUP_FULFILLED": {
+    case "UPDATE_TS_RUNUP_FULFILLED": {
       return state.merge(state, {patchingRunup: false, patchedRunup: true})
     }
-    case"UPDATE_TS_RUNUP_REJECTED": {
+    case "UPDATE_TS_RUNUP_REJECTED": {
       return state.merge(state, {patchingRunup: false, patchRunupFail: true, error: action.payload})
     }
     default:

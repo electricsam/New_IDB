@@ -64,7 +64,6 @@ class UpdateTsunamiContainer extends React.Component{
               launch={tsunami.asMutable().toJS().patchingTsEvent}
               success={tsunami.asMutable().toJS().patchedTsEvent}
               fail={tsunami.asMutable().toJS().patchTsEventFail}
-
             />
 
             <FormSection
