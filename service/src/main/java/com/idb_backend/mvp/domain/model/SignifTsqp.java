@@ -92,10 +92,15 @@ public class SignifTsqp implements Serializable {
   private Integer injuriesAmountOrder;
 
   private String flagTsunami;
-  private java.sql.Date ngdcDate;
-  private String temporalAccuracy;
-  private BigInteger objectid;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  private java.sql.Date ngdcDate;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  private String temporalAccuracy;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  private BigInteger objectid;
 
   @Getter(value = AccessLevel.PRIVATE)
   private Geometry shape;
@@ -108,7 +113,10 @@ public class SignifTsqp implements Serializable {
 
   /*This is going to be a onetomany or manytoone relationship*/
   private Integer tsuId;
+
+  @Getter(value = AccessLevel.PRIVATE)
   private java.sql.Date lastUpdate;
+
   private Integer deathsTotal;
 
   @Range(min = 0, max = 4)
