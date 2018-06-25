@@ -71,10 +71,15 @@ class TsunamiSearchContainer extends React.Component{
 
   checkDropdownDisabledRunup = (val) => this.props.tsunami.asMutable().toJS().search.runupCountry === val? false: true;
 
+  handleClear = () => action({type: 'RESET_TS_EVENT_FORM'});
+
   render(){
     const { tsunami } = this.props;
     return (
-      <MultiPartForm title="Search Tsunami Events" handleSubmit={this.handleSubmit.bind(this)}>
+      <MultiPartForm title="Search Tsunami Events"
+                     handleSubmit={this.handleSubmit.bind(this)}
+                     handleClear={this.handleClear.bind(this)}
+      >
 
           <FormSection
             title="Tsunami Source Parameters"

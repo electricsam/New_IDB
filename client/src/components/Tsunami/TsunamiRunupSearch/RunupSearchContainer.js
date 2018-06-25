@@ -47,10 +47,15 @@ class RunupSearchContainer extends React.Component{
 
   checkRunupLocType = () => this.props.tsunami.get('runupLocType');
 
+  handleClear = () => action({type: 'RESET_TS_RUNUP_FORM'});
+
   render(){
     const { tsunami } = this.props;
     return (
-        <MultiPartForm title="Search Runups" handleSubmit={this.handleSubmit.bind(this)}>
+        <MultiPartForm title="Search Runups"
+                       handleSubmit={this.handleSubmit.bind(this)}
+                       handleClear={this.handleClear.bind(this)}
+        >
 
          <FormSection
             title="Runup Source Information"

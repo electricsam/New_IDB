@@ -46,6 +46,9 @@ export const initialState = fromJS({
     country: '',
     comments: '',
   },
+  rnpsearch: {
+
+  },
   showTsInsertDateLoc: true,
   showTsInsertMeasure: true,
   showTsInsertEffects: true,
@@ -317,6 +320,12 @@ export default function reducer(state = initialState, action) {
     }
     case "UPDATE_TS_RUNUP_REJECTED": {
       return state.merge(state, {patchingRunup: false, patchRunupFail: true, error: action.payload})
+    }
+    case "RESET_TS_EVENT_FORM": {
+      return state.merge(state, {search: {country: '', runupcountry: '',}});
+    }
+    case "RESET_TS_RUNUP_FORM": {
+      return state.merge(state, {rnpsearch: {}});
     }
     default:
       return state;
