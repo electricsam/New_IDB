@@ -46,10 +46,15 @@ class ReferenceSearchContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
+  handleClear = () => action({type: 'RESET_REFERENCE_FORM'});
+
   render(){
     const { reference } = this.props;
     return (
-        <MultiPartForm title="Search References" handleSubmit={this.handleSubmit.bind(this)}>
+        <MultiPartForm title="Search References"
+                       handleSubmit={this.handleSubmit.bind(this)}
+                       handleClear={this.handleClear.bind(this)}
+        >
 
           <FormSection
               title="Parameters"

@@ -736,6 +736,19 @@ const timeOfEruption = [
   { name: 'Unknown', value: 'Unknown' },
 ];
 
+
+const modalData = [
+  {
+    title: "Year",
+    data: "Format +/-yyyy (-is B.C, +is A.D.) \n" +
+    "    The Date and Time are given in Universal Coordinated Time (also known as Greenwich Mean Time). " +
+    "The local date may be one day different.",
+    validValues: "-2000 to <Present>"
+  },
+]
+
+
+
 export {
   countries,
   states,
@@ -753,4 +766,5 @@ export {
   volcanoStatus,
   timeOfEruption,
   volcanoAgent,
+  modalData,
 };

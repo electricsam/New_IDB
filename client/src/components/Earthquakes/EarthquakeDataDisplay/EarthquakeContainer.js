@@ -12,6 +12,10 @@ import {
   encodeQueryString,
   deleteEarthquake
 } from "../../../helperFunctions/helperFunctions";
+import {DefinitionModal} from "../../DefinitionModal/DefinitionModal";
+
+import {modalData} from '../../formConstants/constants';
+import DefinitionList from "../../DefinitionList/DefinitionList";
 
 const tableStyle = {
   textAlign: "center"
@@ -26,7 +30,14 @@ const action = obj => store.dispatch(obj);
 class EarthquakeContainer extends React.Component {
   constructor(props){
     super(props);
-    this.state = {}
+    this.state = {
+      modal: {
+        isOpen: false,
+        title: 'this is a test',
+        data: "this is a test of the data that we can send through to the modal",
+        validValues: 'holder'
+      }
+    }
   }
 
   componentDidMount(){
@@ -103,6 +114,21 @@ class EarthquakeContainer extends React.Component {
 
   handleRelateToExistingRefClick = () => {this.handleRelateClick('/reference/search?')};
 
+  closeModal = () => this.setState( {modal: {...this.state.modal, isOpen: false}});
+
+  openModal = (title, data, validValues) => {
+    console.log("this is valid Values ", validValues)
+    this.setState({
+      modal: {
+          ...this.state.modal,
+        isOpen: true,
+        title: title,
+        validValues: validValues,
+        data: data
+      }
+    })
+    console.log(' you are clicking meeeeeee')
+  }
   render(){
     const { earthquake } = this.props;
     const { toggleSelection, selectAll, toggleAll, isSelected } = this;
@@ -132,12 +158,26 @@ class EarthquakeContainer extends React.Component {
                 />:
                 <div style={hiddenStyle}></div>
             }
+            <button onClick={()=> this.openModal(modalData.intensity.title, modalData.intensity.data)}>ClickMe</button>
+            <DefinitionList
+              openModal={this.openModal}
+              definitions={modalData}
+            />
             <TickboxTable
                 title="Earthquake Data"
                 columns={earthquake.getIn(['headersAndAccessors']).toJS()}
                 data={earthquake.asMutable().getIn(['earthquakes']).toJS()}
                 loading={earthquake.get('fetchingEarthquake')}
                 {...checkboxProps}
+            />
+
+            <DefinitionModal
+              isOpen={this.state.modal.isOpen}
+              onRequestClose={this.closeModal}
+              closeModal={this.closeModal}
+              title={this.state.modal.title}
+              data={this.state.modal.data}
+              validValues={this.state.modal.validValues}
             />
 
           </div>

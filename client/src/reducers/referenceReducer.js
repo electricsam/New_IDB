@@ -133,6 +133,9 @@ export default function reducer(state = initialState, action) {
     case 'RELATE_REFERENCE_TO_TSUNAMI_REJECTED': {
       return state.merge(state, {relating: false, related: false, error: action.payload});
     }
+    case 'RESET_REFERENCE_FORM': {
+      return state.merge(state, {search: {}});
+    }
     default:
       return state;
     }

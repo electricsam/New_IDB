@@ -1,0 +1,31 @@
+.modal{
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left:10%;
+    top:10%;
+    width: 80%;
+    height: 60%;
+    background-color: white;
+    overflow: auto;
+    border: 1px solid black;
+    /*background-color: rgba(0,0,0,.5)*/
+}
+
+.modalContent{
+    width: auto;
+    height: auto;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-itmes: flex-start;
+}
+
+.close{
+    align-self: flex-end;
+}
+
+.title{
+    align-self: center;
+}
+

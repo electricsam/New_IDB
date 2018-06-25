@@ -17,10 +17,10 @@ const MultiPartForm = props => (
         <button type="submit" value="Submit" className={Styles.button}>
             Submit
         </button>
-
-        <button onClick={props.handleClear} type="reset" value="Reset" className={Styles.button}>
+        {props.handleClear ? <button onClick={props.handleClear} type="reset" value="Reset" className={Styles.button}>
           Clear
-        </button>
+        </button> : <div style={{display: 'none'}}></div>}
+
       </div>
 
 
