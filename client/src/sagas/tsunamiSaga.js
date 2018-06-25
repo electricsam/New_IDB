@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { mapToTable, mapToTsunamiEventTable } from '../helperFunctions/helperFunctions';
+import { mapToTable, mapToTsunamiEventTable, mapToRunupTable } from '../helperFunctions/helperFunctions';
 
 const port = 'http://localhost:10088';
 
@@ -159,7 +159,7 @@ export function* fetchSpecifiedRunup(action) {
     const response = yield call(axios.get, `${TSUNAMI_RUNUPS_BASEPATH}?${queryString}`);
     yield put({
       type: 'FETCH_SPECIFIED_RUNUP_FULFILLED',
-      payload: { data: response.data, formattedData: mapToTable(response.data) },
+      payload: { data: response.data, formattedData: mapToRunupTable(response.data) },
     });
   } catch (error) {
     yield put({ type: 'FETCH_SPECIFIED_RUNUP_REJECTED', payload: error });

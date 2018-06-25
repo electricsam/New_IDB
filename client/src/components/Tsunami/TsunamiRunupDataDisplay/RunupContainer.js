@@ -35,7 +35,7 @@ class RunupContainer extends React.Component {
       const queryString = createApiQueryString(decoded);
       action({ type: 'FETCH_SPECIFIED_RUNUP_REQUESTED', payload: queryString });
     } else {
-      action({ type: 'FETCH_ALL_RUNUP_REQUESTED' });
+      action({ type: 'FETCH_SPECIFIED_RUNUP_REQUESTED', payload: "" });
     }
   }
 

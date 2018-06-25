@@ -73,6 +73,52 @@ const mapToTsunamiEventTable = arr => {
 };
 
 
+const mapToRunupTable = arr => {
+  const result = [];
+  if(arr.length) {
+    const accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      if(e === 'eqMagnitude'){
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e,
+          Cell: props => <Link
+              to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.eventId + ""}))}`}>
+            {props.value}
+          </Link>
+        })
+      }else{
+        result.push({ Header: camelToPascal(e), accessor: e });
+      }
+    });
+    let moreRunupInfo = {
+      Header: "More Runup Info",
+      accessor: 'moreRunupInfo',
+      Cell: props => <Link to={`/tsunami/runup/moreinfo/${props.original.id}`}>
+        <i className="material-icons">info</i>
+      </Link>
+    };
+    let tsunamiInfo = {
+      Header: 'Tsu Src',
+      accessor: 'tsuSrc',
+      Cell: props => <Link to={`/tsunami/event/moreinfo/${props.original.eventId}`}>
+        <i className="material-icons">info</i>
+      </Link>
+    };
+    result.splice(10, 0, moreRunupInfo);
+    result.splice(9, 0, tsunamiInfo);
+    result.splice(11, 0, {
+      Header: 'Related Volcano',
+      accessor: 'realatedVolcano',
+      Cell: props => <Link
+          to={`/volcano/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.eventId + ""}))}`}>
+        Vol
+      </Link>
+    })
+  }
+  return result;
+};
+
 
 const mapToTable = (arr) => {
   const result = [];
@@ -107,5 +153,6 @@ module.exports = {
   decodeQueryString,
   encodeQueryString,
   createApiQueryString,
-  mapToTsunamiEventTable
+  mapToTsunamiEventTable,
+  mapToRunupTable,
 };
