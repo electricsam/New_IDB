@@ -254,8 +254,13 @@ export default function reducer(state = initialState, action) {
     case 'RELATE_VOLCANO_TO_TSUNAMI_REJECTED': {
       return state.merge(state, {relating: false, related: false, error: action.payload});
     }
-
-  default:
-    return state;
-  }
+    case 'REST_VOLCANO_EVENT_SEARCH': {
+      return state.merge(state, {search: {}});
+    }
+    case 'REST_VOLCANO_LOC_SEARCH': {
+      return state.merge(state, {locSearch: {}});
+    }
+    default:
+      return state;
+    }
 }

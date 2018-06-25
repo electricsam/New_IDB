@@ -50,10 +50,15 @@ class VolcanoEventSearchContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
+  handleClear = () => action({type: 'REST_VOLCANO_EVENT_SEARCH'});
+
   render(){
     let { volcano } = this.props;
     return (
-        <MultiPartForm title="Search Volcano Events" handleSubmit={this.handleSubmit.bind(this)}>
+        <MultiPartForm title="Search Volcano Events"
+                       handleSubmit={this.handleSubmit.bind(this)}
+                       handleClear={this.handleClear.bind(this)}
+        >
 
           <FormSection
               title="Volcano Parameters"
