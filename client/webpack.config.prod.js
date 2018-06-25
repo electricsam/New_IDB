@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -16,6 +17,7 @@ module.exports = {
     filename: 'bundle.js'
   },
     plugins: [
+      new CopyWebpackPlugin([{'./src/assets/favicon.png', to: 'images'}]),
       new UglifyJSPlugin({
         test: /\.js($|\?)/i,
         sourceMap:true,

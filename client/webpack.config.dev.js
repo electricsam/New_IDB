@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -35,6 +36,7 @@ module.exports = {
     }
   },
   plugins: [
+    new CopyWebpackPlugin([{from: './src/assets/favicon.png', to: 'images'}]),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new UglifyJSPlugin({
