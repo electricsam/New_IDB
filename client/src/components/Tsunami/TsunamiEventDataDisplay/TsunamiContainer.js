@@ -37,7 +37,7 @@ class TsunamiContainer extends React.Component {
       const queryString = createApiQueryString(decoded);
       action({ type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString });
     } else {
-      action({ type: 'FETCH_ALL_TS_EVENTS_REQUESTED' });
+      action({ type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: '' });
     }
   }
 

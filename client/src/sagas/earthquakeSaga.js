@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { mapToTable } from '../helperFunctions/helperFunctions';
+import { mapToTable, mapToEarthquakeTable } from '../helperFunctions/helperFunctions';
 
 const port = 'http//localhost10088';
 const EARTHQUAKE_BASEPATH = '/idb-service/earthquakes';
@@ -14,7 +14,7 @@ export function* fetchSpecifiedEarthquakes(action) {
     const response = yield call(axios.get, `${EARTHQUAKE_BASEPATH}?${queryString}`);
     yield put({
       type: 'FETCH_SPECIFIED_EARTHQUAKES_FULFILLED',
-      payload: { data: response.data, formattedData: mapToTable(response.data) },
+      payload: { data: response.data, formattedData: mapToEarthquakeTable(response.data) },
     });
   } catch (error) {
     yield put({ type: 'FETCH_SPECIFIED_EARTHQUAKES_REJECTED', payload: error });

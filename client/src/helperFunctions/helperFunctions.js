@@ -119,6 +119,41 @@ const mapToRunupTable = arr => {
   return result;
 };
 
+const mapToEarthquakeTable = arr => {
+  const result = [];
+  if(arr.length) {
+    const accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      result.push({ Header: camelToPascal(e), accessor: e });
+    });
+    let moreInfo = {
+      Header: "More Info",
+      accessor: 'moreInfo',
+      Cell: props => <Link to={`/earthquake/event/moreinfo/${props.original.id}`}>
+        <i className="material-icons">info</i>
+      </Link>
+    };
+    result.splice(10, 0, moreInfo);
+    result.splice(11, 0, {
+      Header: 'Related Tsunami',
+      accessor: 'relatedTsunami',
+      Cell: props => <Link
+          to={`/tsunami/event/data?${encodeQueryString(JSON.stringify({earthquakeid: props.original.id + ""}))}`}>
+        Tsu
+      </Link>
+    });
+    result.splice(12, 0, {
+      Header: 'Related Volcano',
+      accessor: 'realatedVolcano',
+      Cell: props => <Link
+          to={`/volcano/event/data?${encodeQueryString(JSON.stringify({earthquakeid: props.original.id + ""}))}`}>
+        Vol
+      </Link>
+    });
+  }
+  return result;
+};
+
 
 const mapToTable = (arr) => {
   const result = [];
@@ -155,4 +190,5 @@ module.exports = {
   createApiQueryString,
   mapToTsunamiEventTable,
   mapToRunupTable,
+  mapToEarthquakeTable,
 };
