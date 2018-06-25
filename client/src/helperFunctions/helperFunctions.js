@@ -154,6 +154,39 @@ const mapToEarthquakeTable = arr => {
   return result;
 };
 
+const mapToVolcanoTable = arr => {
+  const result = [];
+  if(arr.length) {
+    const accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      result.push({ Header: camelToPascal(e), accessor: e });
+    });
+    result.splice(10, 0, {
+      Header: "More Info",
+      accessor: 'moreInfo',
+      Cell: props => <Link to={`/volcano/event/moreinfo/${props.original.hazEventId}`}>
+        <i className="material-icons">info</i>
+      </Link>
+    });
+    result.splice(11, 0, {
+      Header: 'TSU',
+      accessor: 'tsu',
+      Cell: props => <Link
+          to={`/tsunami/event/data?${encodeQueryString(JSON.stringify({volcanoid: props.original.hazEventId + ""}))}`}>
+        Tsu
+      </Link>
+    });
+    result.splice(12, 0, {
+      Header: 'EQ',
+      accessor: 'eq',
+      Cell: props => <Link
+          to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({volcanoid: props.original.hazEventId + ""}))}`}>
+        Vol
+      </Link>
+    });
+  }
+  return result;
+};
 
 const mapToTable = (arr) => {
   const result = [];
@@ -191,4 +224,5 @@ module.exports = {
   mapToTsunamiEventTable,
   mapToRunupTable,
   mapToEarthquakeTable,
+  mapToVolcanoTable
 };
