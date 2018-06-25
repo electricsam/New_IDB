@@ -1,9 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { mapToTable } from '../helperFunctions/helperFunctions';
-
-
+import { mapToTable, mapToTsunamiEventTable } from '../helperFunctions/helperFunctions';
 
 const port = 'http://localhost:10088';
 
@@ -53,7 +51,7 @@ export function* fetchSpecifiedTSEvents(action) {
     const response = yield call(axios.get, `${TSUNAMI_EVENTS_BASEPATH}?${queryString}`);
     yield put({
       type: 'FETCH_SPECIFIED_TS_EVENTS_FULFILLED',
-      payload: { data: response.data, formattedData: mapToTable(response.data) },
+      payload: { data: response.data, formattedData: mapToTsunamiEventTable(response.data) },
     });
   } catch (error) {
     yield put({ type: 'FETCH_SPECIFIED_TS_EVENTS_REJECTED', payload: error });

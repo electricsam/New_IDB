@@ -1,5 +1,6 @@
 import React from 'react';
 import { push } from 'react-router-redux';
+import { Link } from 'react-router-dom';
 const CryptoJS = require('crypto-js');
 
 import store from '../store';
@@ -21,6 +22,57 @@ const camelToPascal = (string) => {
     a[i] = e.charAt(0).toUpperCase() + e.slice(1)
   )).join(' ');
 };
+
+
+
+const mapToTsunamiEventTable = arr => {
+  const result = [];
+  if(arr.length) {
+    const accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      if(e === 'eqMagnitude'){
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e,
+          Cell: props => <Link
+              to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.id + ""}))}`}>
+                {props.value}
+              </Link>
+        })
+      }else if(e === 'numRunup'){
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e,
+          Cell: props => <Link
+              to={`/tsunami/runup/data?${encodeQueryString(JSON.stringify({eventid: props.original.id + ""}))}`}>
+                {props.value}
+              </Link>
+        })
+      }else{
+        result.push({ Header: camelToPascal(e), accessor: e });
+      }
+    });
+    let input = {
+      Header: "More Info",
+      accessor: 'moreInfo',
+      Cell: props => <Link to={`/tsunami/event/moreinfo/${props.original.id}`}>
+        <i className="material-icons">info</i>
+      </Link>
+    }
+    result.splice(10, 0, input);
+    result.push({
+      Header: 'Related Volcano',
+      accessor: 'realatedVolcano',
+      Cell: props => <Link
+          to={`/volcano/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.id + ""}))}`}>
+        Vol
+      </Link>
+    })
+  }
+  return result;
+};
+
+
 
 const mapToTable = (arr) => {
   const result = [];
@@ -55,4 +107,5 @@ module.exports = {
   decodeQueryString,
   encodeQueryString,
   createApiQueryString,
+  mapToTsunamiEventTable
 };
