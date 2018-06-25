@@ -160,7 +160,9 @@ export default function reducer(state = initialState, action) {
     case 'PATCH_EARTHQUAKE_REJECTED': {
       return state.merge(state, { patchingEarthquake: false, patchFail: true, error: action.payload });
     }
-
+    case 'RESET_EARTHQUAKE_SEARCH': {
+      return state.merge(state, {search: {country: ''}});
+    }
     default:
       return state;
     }

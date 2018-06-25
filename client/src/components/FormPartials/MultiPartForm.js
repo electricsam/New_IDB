@@ -13,9 +13,16 @@ const MultiPartForm = props => (
 
       {props.children}
 
-      <button type="submit" className={Styles.button}>
-          Submit
-      </button>
+      <div className={Styles.buttonContainer}>
+        <button type="submit" value="Submit" className={Styles.button}>
+            Submit
+        </button>
+
+        <button onClick={props.handleClear} type="reset" value="Reset" className={Styles.button}>
+          Clear
+        </button>
+      </div>
+
 
     </Form>
 

@@ -58,10 +58,15 @@ class EarthquakeSearchContainer extends React.Component{
 
   checkDropDownDisabled = (val) => this.props.earthquake.asMutable().toJS().search.country === val? false: true;
 
+  handleClear = () => action({type: 'RESET_EARTHQUAKE_SEARCH'});
+
   render(){
     let { earthquake } = this.props;
     return (
-        <MultiPartForm title="Search Earthquake Events" handleSubmit={this.handleSubmit.bind(this)}>
+        <MultiPartForm title="Search Earthquake Events"
+                       handleSubmit={this.handleSubmit.bind(this)}
+                       handleClear={this.handleClear}
+        >
 
           <FormSection
             title="Earthquake Parameters"
