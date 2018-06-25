@@ -16,6 +16,9 @@ class Navbar extends React.Component {
       refSubMenuDisplay: 'none',
       volSubMenuDisplay: 'none',
       hazDisplay: 'none',
+      haz: {
+        expand: 'expand_more'
+      }
     }
   }
 
@@ -23,12 +26,14 @@ class Navbar extends React.Component {
     let prevState = this.state;
     //TODO change this to copy of this.state
     prevState.hazDisplay = 'block';
+    prevState.haz.expand = 'expand_less';
     this.setState(prevState);
   };
 
   handleHazMouseLeave = () => {
     let prevState = this.state;
     prevState.hazDisplay = 'none'
+    prevState.haz.expand = 'expand_more'
     this.setState(prevState);
   };
 
@@ -109,7 +114,7 @@ class Navbar extends React.Component {
                   onMouseLeave={()=>this.handleHazMouseLeave()}
                   className={Styles.mainMenuListItemDropper}>
                 <Link to="/hazards/landing" className={Styles.hazLink}>
-                  HAZARD PAGES<i className="material-icons">&#xE5CF;</i>
+                  HAZARD PAGES<i className="material-icons">{this.state.haz.expand}</i>
                 </Link>
                 <Menu display={this.state.hazDisplay}>
                   <MenuItem linkText="EARTHQUAKES"
@@ -117,9 +122,10 @@ class Navbar extends React.Component {
                             handleMouseEnter={this.handleEqMouseEnter}
                             handleMouseLeave={this.handleEqMouseLeave}
                             color={this.state.menuItemColor}
+                            hasExpander={true}
                   >
                     <SubMenu display={this.state.eqSubMenuDisplay}>
-                      <MenuItem linkText="Events" address={'/earthquake/eventsearch'}/>
+                      <MenuItem linkText="Events" address={'/earthquake/eventsearch'} hasExpander={false}/>
                     </SubMenu>
                   </MenuItem>
                   <MenuItem
@@ -127,27 +133,32 @@ class Navbar extends React.Component {
                       address="/volcano/landing"
                       handleMouseEnter={this.handleVolMouseEnter}
                       handleMouseLeave={this.handlevolMouseLeave}
+                      hasExpander={true}
                   >
                     <SubMenu display={this.state.volSubMenuDisplay}>
-                      <MenuItem linkText="Events" address="/volcano/event/search"/>
-                      <MenuItem linkText="Locations" address='/volcano/loc/search'/>
-                      <MenuItem linkText="Insert Location" address='/volcano/loc/insert'/>
+                      <MenuItem linkText="Events" address="/volcano/event/search" hasExpander={false}/>
+                      <MenuItem linkText="Locations" address='/volcano/loc/search' hasExpander={false}/>
+                      <MenuItem linkText="Insert Location" address='/volcano/loc/insert' hasExpander={false}/>
                     </SubMenu>
                   </MenuItem>
                   <MenuItem linkText="TSUNAMIS" address="/tsunami/landing"
                             handleMouseEnter={this.handleTsMouseEnter}
-                            handleMouseLeave={this.handleTsMouseLeave}>
+                            handleMouseLeave={this.handleTsMouseLeave}
+                            hasExpander={true}
+                  >
                     <SubMenu display={this.state.tsSubMenuDisplay}>
-                      <MenuItem linkText="Events" address="/tsunami/eventsearch" />
-                      <MenuItem linkText="Runups" address="/tsunami/runupsearch" />
-                      <MenuItem linkText="Deposit" address="/tsunami/depositsearch" />
+                      <MenuItem linkText="Events" address="/tsunami/eventsearch" hasExpander={false}/>
+                      <MenuItem linkText="Runups" address="/tsunami/runupsearch" hasExpander={false}/>
+                      <MenuItem linkText="Deposit" address="/tsunami/depositsearch" hasExpander={false}/>
                     </SubMenu>
                   </MenuItem>
                   <MenuItem linkText="REFERENCES" address="/reference/landing"
                             handleMouseEnter={this.handleRefMouseEnter}
-                            handleMouseLeave={this.handleRefMouseLeave}>
+                            handleMouseLeave={this.handleRefMouseLeave}
+                            hasExpander={true}
+                  >
                     <SubMenu display={this.state.refSubMenuDisplay}>
-                      <MenuItem linkText="References" address="/reference/search"/>
+                      <MenuItem linkText="References" address="/reference/search" hasExpander={false}/>
                     </SubMenu>
 
                   </MenuItem>

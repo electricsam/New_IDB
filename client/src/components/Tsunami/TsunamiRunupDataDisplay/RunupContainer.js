@@ -73,20 +73,6 @@ class RunupContainer extends React.Component {
 
   logSelection = () => {console.log('selection: ', this.props.tsunami.get('runupTableSelection'))};
 
-  handleMoreInfoClick = () => {
-    let id = this.props.tsunami.get('runupTableSelectionId');
-    if(id){
-      store.dispatch(push(`/tsunami/runup/moreinfo/${id}`))
-    }
-  };
-
-  handleMoreEventInfoClick = () => {
-    let eventId = this.props.tsunami.get('runupTableSelectionEventId');
-    if(eventId){
-      store.dispatch(push(`/tsunami/event/moreinfo/${eventId}`))
-    }
-  };
-
   handleEditClick = () => {
     let id = this.props.tsunami.get('runupTableSelectionId');
     let eventId = this.props.tsunami.get('runupTableSelectionEventId');
@@ -124,8 +110,6 @@ class RunupContainer extends React.Component {
       selectType: "checkbox",
       keyField: 'id',
       buttons: [
-        {title: 'More Info', handleClick: this.handleMoreInfoClick},
-        {title: "More Event Info", handleClick: this.handleMoreEventInfoClick},
         {title: "Relate to Existing Reference", handleClick: this.handleRelateToExistingRefClick},
         {title: "Edit Runup", handleClick: this.handleEditClick},
         {title: "Delete Runup", handleClick: this.handleDeleteClick}

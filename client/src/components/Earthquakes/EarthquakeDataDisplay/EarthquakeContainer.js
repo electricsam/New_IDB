@@ -69,39 +69,6 @@ class EarthquakeContainer extends React.Component {
     action({type: "SET_TABLE_SELECTION", payload: null});
   };
 
-  handleMoreInfoCick = () => {
-    let selected = this.props.earthquake.get('tableSelection');
-    if(!selected){
-      // do nothing
-    }else{
-      store.dispatch(push(`/earthquake/event/moreinfo/${selected}`));
-    }
-  };
-
-  handleRelatedVolcanoClick = () => {
-    let selected = this.props.earthquake.get('tableSelection');
-    if(!selected){
-      // do nothing
-    }else{
-      let basePath = "/volcano/event/data?";
-      let query = {earthquakeid: selected + ""};
-      let encoded = encodeQueryString(JSON.stringify(query));
-      return store.dispatch(push(`${basePath}${encoded}`))
-    }
-  };
-
-  handleRelatedTsunamiClick = () => {
-    let selected = this.props.earthquake.get('tableSelection');
-    if(!selected){
-      // do nothing
-    }else{
-      let basePath = "/tsunami/event/data?";
-      let query = {earthquakeid: selected + ""};
-      let encoded = encodeQueryString(JSON.stringify(query));
-      return store.dispatch(push(`${basePath}${encoded}`))
-    }
-  };
-
   handleEditClick = () => {
     let selected = this.props.earthquake.get('tableSelection');
     if (!selected) {
@@ -147,9 +114,6 @@ class EarthquakeContainer extends React.Component {
       selectType: "checkbox",
       keyField: 'id',
       buttons: [
-        {title: 'More Info', handleClick: this.handleMoreInfoCick},
-        {title: 'Related Volcanoes', handleClick: this.handleRelatedVolcanoClick},
-        {title: 'Related Tsunamis', handleClick: this.handleRelatedTsunamiClick},
         {title: 'Relate to Existing Tsunami', handleClick: this.handleRelateToExistingTsunamiClick},
         {title: 'Relate to Existing Volcano', handleClick: this.handleRelateToExistingVolcanoClick},
         {title: 'Relate to Existing Reference', handleClick: this.handleRelateToExistingRefClick},

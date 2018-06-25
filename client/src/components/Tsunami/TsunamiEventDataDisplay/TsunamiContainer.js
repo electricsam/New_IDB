@@ -72,44 +72,6 @@ class TsunamiContainer extends React.Component {
 
   logSelection = () => {console.log('selection: ', this.props.tsunami.get('tsunamiTableSelection'))};
 
-  handleMoreInfoClick = () => {
-    let selected = this.props.tsunami.get('tsunamiTableSelection');
-    console.log("SELECTED IN HANDLEMOREINFOLCICK: ", selected);
-    if(selected){
-      store.dispatch(push(`/tsunami/event/moreinfo/${selected}`));
-    }
-  };
-
-  handleRelatedRunupClick = () => {
-    let selected = this.props.tsunami.get('tsunamiTableSelection');
-    if(selected){
-      const queryObj = { eventid: `${selected}`};
-      const encoded = encodeQueryString(JSON.stringify(queryObj));
-      const queryString = createApiQueryString(queryObj);
-      store.dispatch(push(`/tsunami/runup/data?${encoded}`));
-    }
-  };
-
-  handleRelatedVolcanoClick = () => {
-    let selected = this.props.tsunami.get('tsunamiTableSelection');
-    if(selected){
-      let basePath = "/volcano/event/data?";
-      let query = {tsunamiid: selected + ""};
-      let encoded = encodeQueryString(JSON.stringify(query));
-      return store.dispatch(push(`${basePath}${encoded}`))
-    }
-  };
-
-  handleRelatedEarthquakeClick = () => {
-    let selected = this.props.tsunami.get('tsunamiTableSelection');
-    if(selected){
-      let basePath = "/earthquake/event/data?";
-      let query = {tsunamiid: selected + ""};
-      let encoded = encodeQueryString(JSON.stringify(query));
-      return store.dispatch(push(`${basePath}${encoded}`))
-    }
-  };
-
   handleEditClick = () => {
     let selected = this.props.tsunami.get('tsunamiTableSelection');
     if(selected){
@@ -159,10 +121,6 @@ class TsunamiContainer extends React.Component {
       selectType: "checkbox",
       keyField: 'id',
       buttons: [
-        {title: 'More Info', handleClick: this.handleMoreInfoClick},
-        {title: 'Related Runups', handleClick: this.handleRelatedRunupClick},
-        {title: 'Related Volcanoes', handleClick: this.handleRelatedVolcanoClick},
-        {title: 'Related Earthquake', handleClick: this.handleRelatedEarthquakeClick},
         {title: "Relate Tsunami to Existing Earthquake", handleClick: this.handleRelateToExistingEarthquake},
         {title: "Relate Tsunami to Existing Volcano", handleClick: this.handleRelateToExistingVolcano},
         {title: "Relate Tsunami to Existing Reference", handleClick: this.handleRelateToExistingReference},
