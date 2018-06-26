@@ -13,7 +13,7 @@ export const DefinitionModal = props => {
 
             <h2 className={Styles.title}>{props.title}</h2>
 
-            <p><b>Valid Values:</b> {props.validValues}</p>
+            {props.validValues? <p><b>Valid Values:</b> {props.validValues}</p> : <div style={{display: 'none'}}></div>}
 
             <p>{props.data}</p>
           </div>

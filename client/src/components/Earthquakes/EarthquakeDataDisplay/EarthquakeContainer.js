@@ -14,7 +14,7 @@ import {
 } from "../../../helperFunctions/helperFunctions";
 import {DefinitionModal} from "../../DefinitionModal/DefinitionModal";
 
-import {modalData} from '../../formConstants/constants';
+import {tsunamiEventColumnDefinitions} from '../../formConstants/constants';
 import DefinitionList from "../../DefinitionList/DefinitionList";
 
 const tableStyle = {
@@ -158,26 +158,13 @@ class EarthquakeContainer extends React.Component {
                 />:
                 <div style={hiddenStyle}></div>
             }
-            <button onClick={()=> this.openModal(modalData.intensity.title, modalData.intensity.data)}>ClickMe</button>
-            <DefinitionList
-              openModal={this.openModal}
-              definitions={modalData}
-            />
+
             <TickboxTable
                 title="Earthquake Data"
                 columns={earthquake.getIn(['headersAndAccessors']).toJS()}
                 data={earthquake.asMutable().getIn(['earthquakes']).toJS()}
                 loading={earthquake.get('fetchingEarthquake')}
                 {...checkboxProps}
-            />
-
-            <DefinitionModal
-              isOpen={this.state.modal.isOpen}
-              onRequestClose={this.closeModal}
-              closeModal={this.closeModal}
-              title={this.state.modal.title}
-              data={this.state.modal.data}
-              validValues={this.state.modal.validValues}
             />
 
           </div>

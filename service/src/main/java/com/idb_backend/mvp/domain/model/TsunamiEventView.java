@@ -465,17 +465,4 @@ public class TsunamiEventView implements Serializable{
   @JsonIgnore
   private Set<TsunamiRunupView> tsunamiRunupViews = new HashSet<>();
 
-//  public String getShape() {
-//    if(shape == null){
-//      return null;
-//    }else{
-//      WKTWriter w = new WKTWriter();
-//      return w.write(shape);
-//    }
-//  }
-
-//  public void setShape(Geometry shape) {
-//    this.shape = shape;
-//  }
-
 }

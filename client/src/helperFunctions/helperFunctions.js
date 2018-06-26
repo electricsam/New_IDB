@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 const CryptoJS = require('crypto-js');
 
 import store from '../store';
+import {tsunamiEventColumnDefinitions} from "../components/formConstants/constants";
+
+const action = obj => store.dispatch(obj);
 
 const hashPass = 'lockunlock';
 
@@ -23,7 +26,22 @@ const camelToPascal = (string) => {
   )).join(' ');
 };
 
+const closeTsunamiEventModal = () => {
+  action({type: "CLOSE_TSUNAMI_EVENT_MODAL"})
+};
 
+const openTsunamiEventModal = (accessor) => {
+  let node = tsunamiEventColumnDefinitions[accessor];
+  if(node){
+    action({
+      type: 'OPEN_TSUNAMI_EVENT_MODAL',
+      payload: {
+        data:node.data,
+        validValues: node.validValues,
+        title: node.title
+      }})
+  }
+};
 
 const mapToTsunamiEventTable = arr => {
   const result = [];
@@ -49,7 +67,9 @@ const mapToTsunamiEventTable = arr => {
               </Link>
         })
       }else{
-        result.push({ Header: camelToPascal(e), accessor: e });
+        result.push({
+          Header: () => (<span>{camelToPascal(e)} <span onClick={() => openTsunamiEventModal(e)}>#</span></span>),
+          accessor: e });
       }
     });
     let input = {
@@ -119,6 +139,7 @@ const mapToRunupTable = arr => {
   return result;
 };
 
+
 const mapToEarthquakeTable = arr => {
   const result = [];
   if(arr.length) {
@@ -135,7 +156,9 @@ const mapToEarthquakeTable = arr => {
     };
     result.splice(10, 0, moreInfo);
     result.splice(11, 0, {
-      Header: 'Related Tsunami',
+      Header: () => (
+          <span>Related Tsunami <a href='https://www.google.com'>*</a></span>
+      ),
       accessor: 'relatedTsunami',
       Cell: props => <Link
           to={`/tsunami/event/data?${encodeQueryString(JSON.stringify({earthquakeid: props.original.id + ""}))}`}>

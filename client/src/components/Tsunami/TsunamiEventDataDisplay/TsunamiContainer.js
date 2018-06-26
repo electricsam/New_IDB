@@ -9,6 +9,8 @@ import Loading from '../../loadbar/Loading';
 import { decodeQueryString, createApiQueryString, encodeQueryString } from '../../../helperFunctions/helperFunctions';
 import DialogBox from '../../FormPartials/DialogBox';
 import TickboxTable from "../../CheckboxTable/TickboxTable";
+import {DefinitionModal} from "../../DefinitionModal/DefinitionModal";
+import DefinitionList from "../../DefinitionList/DefinitionList";
 
 const tableStyle = {
   textAlign: 'center',
@@ -109,8 +111,11 @@ class TsunamiContainer extends React.Component {
     }
   };
 
+  closeTsunamiEventModal = () => action({type: "CLOSE_TSUNAMI_EVENT_MODAL"});
+
   render() {
-    const { tsunami } = this.props;
+    const { tsunami,tsunamiUi } = this.props;
+    console.log("this is the UI ", tsunamiUi);
     const { toggleSelection, selectAll, toggleAll, isSelected, logSelection } = this;
     const checkboxProps = {
       toggleSelection,
@@ -139,6 +144,15 @@ class TsunamiContainer extends React.Component {
             /> :
             <div style={hiddenStyle} />
           }
+          {
+          <DefinitionModal
+            isOpen={tsunamiUi.get('eventModalIsOpen')}
+            closeModal={this.closeTsunamiEventModal}
+            validValues={tsunamiUi.get('eventModalValidValues')}
+            title={tsunamiUi.get('eventModalTitle')}
+            data={tsunamiUi.get('eventModalData')}
+            />
+          }
           <TickboxTable
               loading={tsunami.get('fetchingTsEvent')}
               data={tsunami.asMutable().getIn(['tsEvents']).toJS()}
@@ -146,7 +160,6 @@ class TsunamiContainer extends React.Component {
               title="Tsunami Data"
               {...checkboxProps}
           />
-
         </div>
       );
     }
@@ -154,7 +167,7 @@ class TsunamiContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ tsunami: state.deep.tsunami });
+const mapStateToProps = state => ({ tsunami: state.deep.tsunami, tsunamiUi: state.tsunamiUi });
 
 export default connect(mapStateToProps)(TsunamiContainer);
 

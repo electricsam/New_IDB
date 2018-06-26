@@ -1,9 +1,15 @@
 
 .container{
     display: flex;
-    width: 40%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 95%;
+    list-style-type: none;
 }
 
 .listItem{
     text-decoration: underline;
+    display: inline-block;
+    padding: 0 .5% 0 .5%;
+
 }
