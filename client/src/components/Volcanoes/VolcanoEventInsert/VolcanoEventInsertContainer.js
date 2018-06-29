@@ -69,7 +69,7 @@ class VolcanoEventInsertContainer extends React.Component{
     const { volcano } = this.props;
     console.log("volcano ", volcano);
     return (
-        <MultiPartForm title="Insert Volcano" handleSubmit={this.handleSubmit.bind(this)}>
+        <MultiPartForm title="Insert Volcano" handleSubmit={this.handleSubmit.bind(this)} titleColor="red">
 
           <Toast
             actionMessage="...Posting"

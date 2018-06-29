@@ -58,6 +58,7 @@ class VolcanoEventSearchContainer extends React.Component{
         <MultiPartForm title="Search Volcano Events"
                        handleSubmit={this.handleSubmit.bind(this)}
                        handleClear={this.handleClear.bind(this)}
+                       titleColor="red"
         >
 
           <FormSection

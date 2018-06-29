@@ -64,7 +64,7 @@ class VolcanoLocUpdateContainer extends React.Component{
       return(<Loading/>)
     }else{
       return (
-          <MultiPartForm title="Update Volcano Location" handleSubmit={this.handleSubmit.bind(this)}>
+          <MultiPartForm title="Update Volcano Location" handleSubmit={this.handleSubmit.bind(this)} titleColor="red">
 
             <Toast
                 actionMessage="...Updating"
