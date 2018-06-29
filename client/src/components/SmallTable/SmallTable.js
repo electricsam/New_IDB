@@ -7,7 +7,7 @@ import Styles from './SmallTableStyles.css';
 const SmallTable = props => (
     <div className={Styles.container}>
 
-      <h1 className={Styles.title}>{props.title}</h1>
+      <h1 style={{color: props.titleColor}} className={Styles.title}>{props.title}</h1>
 
       <ReactTable
           data={props.data}

@@ -35,6 +35,7 @@ class MoreEventInfoContainer extends React.Component{
             <SmallTable data={tsunami.asMutable().getIn(['tsEvent']).toJS()}
                         columns={tsunami.getIn(['headersAndAccessors']).toJS()}
                         title="Tsunami Event Info"
+                        titleColor="blue"
                         loading={tsunami.get('fetchingTsEvent')}
                         defaultPageSize={1}
             />
@@ -44,6 +45,7 @@ class MoreEventInfoContainer extends React.Component{
             <SmallTable data={reference.asMutable().getIn(['references']).toJS()}
                         columns={reference.getIn(['headersAndAccessors']).toJS()}
                         title="Related References"
+                        titleColor="black"
                         defaultPageSize={reference.asMutable().getIn(['references']).toJS().length}
                         loading={reference.get('fetchingReference')}/>
           </div>

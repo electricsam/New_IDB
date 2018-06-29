@@ -32,6 +32,7 @@ class MoreRunupInfoContainer extends React.Component{
             <SmallTable data={tsunami.asMutable().getIn(['runupData']).toJS()}
                         columns={tsunami.getIn(['headersAndAccessors']).toJS()}
                         title="Tsunami Runup Info"
+                        titleColor="blue"
                         loading={tsunami.get('fetchingRunup')}
                         defaultPageSize={1}
             />
@@ -41,6 +42,7 @@ class MoreRunupInfoContainer extends React.Component{
             <SmallTable data={reference.asMutable().getIn(['references']).toJS()}
                         columns={reference.getIn(['headersAndAccessors']).toJS()}
                         title="Related References"
+                        titleColor="black"
                         defaultPageSize={reference.asMutable().getIn(['references']).toJS().length}
                         loading={reference.get('fetchingReference')}/>
           </div>

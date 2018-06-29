@@ -31,6 +31,7 @@ class MoreVolcanoEventInfoContainer extends React.Component{
             <SmallTable data={volcano.asMutable().getIn(['volcanoEvents']).toJS()}
                         columns={volcano.getIn(['headersAndAccessors']).toJS()}
                         title="Significant Volcano Event Information"
+                        titleColor="red"
                         loading={volcano.get('fetchingVolcanoEvents')}
                         defaultPageSize={1}
             />
@@ -40,6 +41,7 @@ class MoreVolcanoEventInfoContainer extends React.Component{
             <SmallTable data={reference.asMutable().getIn(['references']).toJS()}
                         columns={reference.getIn(['headersAndAccessors']).toJS()}
                         title="Related References"
+                        titleColor="black"
                         defaultPageSize={reference.asMutable().getIn(['references']).toJS().length}
                         loading={reference.get('fetchingReference')}/>
 
