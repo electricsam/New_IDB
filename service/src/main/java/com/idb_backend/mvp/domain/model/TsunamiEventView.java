@@ -296,6 +296,26 @@ public class TsunamiEventView implements Serializable{
   private String comments;
 
   @Getter(value = AccessLevel.PRIVATE)
+  @Transient
+  private String commentsStart;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  @Transient
+  private String commentsEnd;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  @Transient
+  private String commentsMatch;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  @Transient
+  private String commentsNot;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  @Transient
+  private String commentsInclude;
+
+  @Getter(value = AccessLevel.PRIVATE)
   private Date ngdcDate;
 
   @Getter(value = AccessLevel.PRIVATE)
@@ -461,6 +481,9 @@ public class TsunamiEventView implements Serializable{
 
   @Getter(value = AccessLevel.PRIVATE)
   private Integer numDeposits;
+
+
+
 
   @OneToMany( mappedBy = "tsunamiEventView", cascade = CascadeType.ALL)
   @JsonIgnore

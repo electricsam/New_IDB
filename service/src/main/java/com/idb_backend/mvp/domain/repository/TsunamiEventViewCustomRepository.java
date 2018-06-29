@@ -9,4 +9,6 @@ public interface TsunamiEventViewCustomRepository {
 
   Iterable<TsunamiEventView> findEventsByQuery(Predicate predicate);
 
+  Iterable<TsunamiEventView> findEventsNoRunupParams(Predicate predicate);
+
 }

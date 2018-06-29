@@ -2,6 +2,7 @@ package com.idb_backend.mvp.domain.repository.impl;
 
 import com.idb_backend.mvp.domain.model.QTsunamiEventView;
 import com.idb_backend.mvp.domain.model.QTsunamiRunupView;
+import com.idb_backend.mvp.domain.model.TsunamiEvent;
 import com.idb_backend.mvp.domain.model.TsunamiEventView;
 import com.idb_backend.mvp.domain.repository.TsunamiEventViewCustomRepository;
 import com.querydsl.core.types.Predicate;
@@ -37,5 +38,16 @@ public class TsunamiEventViewRepositoryImpl extends QuerydslRepositorySupport im
         .fetch();
   }
 
+  public Iterable<TsunamiEventView> findEventsNoRunupParams(Predicate predicate){
+    JPAQuery<TsunamiEventView> query = new JPAQuery<>(entityManager);
+    QTsunamiEventView ts = QTsunamiEventView.tsunamiEventView;
+
+    return query
+        .select(ts)
+        .distinct()
+        .from(ts)
+        .where(predicate)
+        .fetch();
+  }
 
 }

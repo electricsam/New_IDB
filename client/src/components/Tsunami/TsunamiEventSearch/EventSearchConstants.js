@@ -53,7 +53,6 @@ const TsunamiSourceParameters = [
         disabled: 'CANADA',
       },
     ],
-
   },
 
   {
@@ -147,6 +146,18 @@ const TsunamiSourceParameters = [
     textModelPreface: '.tsunami.search.',
     condition: 'locType',
   },
+  {
+    type: 'RADIO',
+    title: 'Comments',
+    model: '.tsunami.commentType',
+    radios: [
+      { value: 'commentsStart', label: 'Starts With' },
+      { value: 'commentsEnd', label: 'Ends With' },
+      { value: 'commentsIncludes', label: 'Includes' },
+      { value: 'commentsMatch', label: 'Matches' },
+      { value: 'commentsNot', label: 'or Does Not Match' },
+    ]
+  }
 ];
 
 const TsunamiRunupByPlace = [

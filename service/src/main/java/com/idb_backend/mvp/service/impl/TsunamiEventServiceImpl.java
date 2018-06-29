@@ -30,7 +30,7 @@ public class TsunamiEventServiceImpl extends BaseService implements TsunamiEvent
 
   public BooleanExpression generateCriteria (Map<String, String> map){
     QTsunamiRunupView root = QTsunamiRunupView.tsunamiRunupView;
-    BooleanExpression master = QTsunamiRunupView.tsunamiRunupView.day.goe(1);
+    BooleanExpression master;
 
     List<BooleanExpression> boolList = new ArrayList<>();
 
@@ -54,10 +54,15 @@ public class TsunamiEventServiceImpl extends BaseService implements TsunamiEvent
     boolList.add(genIntMinMax(map, "runupMinHousesDestroyed", "runupMaxHousesDestroyed", root.housesDestroyed));
     boolList.add(genIntMinMax(map, "runupMinHousesAmountOrder", "runupMaxHousesAmountOrder", root.housesAmountOrder));
 
-    for(int i = 0; i < boolList.size(); i++){
-      if(boolList.get(i) != null){
-        master = master.and(boolList.get(i));
+    if(boolList.size() > 0){
+      master = boolList.get(0);
+      for(int i = 1; i < boolList.size(); i++){
+        if(boolList.get(i) != null){
+          master = master.and(boolList.get(i));
+        }
       }
+    }else{
+      master = null;
     }
 
     return master;
@@ -66,6 +71,9 @@ public class TsunamiEventServiceImpl extends BaseService implements TsunamiEvent
 
   @Override
   public Iterable<TsunamiEventView> getTsunamis(Map<String, String> params, Predicate predicate){
+
+    BooleanExpression exp = generateCriteria(params);
+
     if(params.get("earthquakeid") != null ){
       return tsunamiEventRepository.findRelatedTsunamiFromEarthquake(Integer.parseInt(params.get("earthquakeid")));
     }else if(params.get("refid") != null){
@@ -74,6 +82,8 @@ public class TsunamiEventServiceImpl extends BaseService implements TsunamiEvent
       return tsunamiEventRepository.findRelatedTsunamiFromVolcano(Integer.parseInt(params.get("volcanoid")));
     }else if(params.get("runupid") != null){
       return tsunamiEventRepository.findRelatedTsunamiFromRunup(Integer.parseInt(params.get("runupid")));
+    }else if(exp == null){
+      return tsunamiEventViewRepository.findEventsNoRunupParams(predicate);
     } else{
       return tsunamiEventViewRepository.findEventsByQuery(combineBools(predicate, generateCriteria(params)));
     }

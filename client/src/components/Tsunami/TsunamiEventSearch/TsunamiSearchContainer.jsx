@@ -79,8 +79,7 @@ class TsunamiSearchContainer extends React.Component{
       <MultiPartForm title="Search Tsunami Events"
                      handleSubmit={this.handleSubmit.bind(this)}
                      handleClear={this.handleClear.bind(this)}
-                     titleColor="blue"
-      >
+                     titleColor="blue">
 
           <FormSection
             title="Tsunami Source Parameters"

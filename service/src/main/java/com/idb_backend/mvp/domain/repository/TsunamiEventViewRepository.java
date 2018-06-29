@@ -16,8 +16,6 @@ public interface TsunamiEventViewRepository extends
   @Override
   default void customize(QuerydslBindings bindings, QTsunamiEventView root) {
 
-    bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));
-
     bindings.bind(root.minYear).first((path, value) -> root.year.goe(value));
 
     bindings.bind(root.maxYear).first((path, value) -> root.year.loe(value));
@@ -113,5 +111,15 @@ public interface TsunamiEventViewRepository extends
     bindings.bind(root.locNot).first((path, value) -> {
       return root.locationName.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
     });
+
+    bindings.bind(root.commentsStart).first((path, value) -> root.comments.startsWithIgnoreCase(value));
+
+    bindings.bind(root.commentsEnd).first((path, value) -> root.comments.endsWithIgnoreCase(value));
+
+    bindings.bind(root.commentsInclude).first((path, value) -> root.comments.containsIgnoreCase(value));
+
+    bindings.bind(root.commentsMatch).first((path, value) -> root.comments.equalsIgnoreCase(value));
+
+    bindings.bind(root.commentsNot).first((path, value) -> root.comments.notEqualsIgnoreCase(value));
   }
 }
