@@ -48,7 +48,7 @@ class EarthquakeInsertContainer extends React.Component{
     const { earthquake } = this.props;
 
     return (
-        <MultiPartForm title="Insert Earthquake" handleSubmit={this.handleSubmit.bind(this)}>
+        <MultiPartForm title="Insert Earthquake" handleSubmit={this.handleSubmit.bind(this)} titleColor={"orange"}>
 
           <Toast
             actionMessage="...Posting"
