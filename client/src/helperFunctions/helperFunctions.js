@@ -88,7 +88,7 @@ const mapToTsunamiEventTable = arr => {
             {parseFloat(props.value).toFixed(2)}
           </div>
         })
-      } else if(e === 'numRunup'){
+      }else if(e === 'numRunup'){
         result.push({
           Header: camelToPascal(e),
           accessor: e,
@@ -143,6 +143,19 @@ const mapToRunupTable = arr => {
             {props.value}
           </Link>
         })
+      }else if(e === "latitude" || e === "longitude"){
+        result.push({
+          Header:() => (
+              <div style={headerStyle}>
+                <span>{camelToPascal(e)} </span><i className="material-icons"
+                                                   style={{margin: '0 1% 0 1%', color: 'blue'}}
+                                                   onClick={() => openTsunamiEventModal(e)}>info</i>
+              </div>),
+          accessor: e,
+          Cell: props => <div>
+            {parseFloat(props.value).toFixed(2)}
+          </div>
+        })
       }else{
         result.push({ Header: camelToPascal(e), accessor: e });
       }
@@ -181,7 +194,22 @@ const mapToEarthquakeTable = arr => {
   if(arr.length) {
     const accessors = Object.keys(arr[0]);
     accessors.map(e => {
-      result.push({ Header: camelToPascal(e), accessor: e });
+    if(e === "latitude" || e === "longitude"){
+        result.push({
+          Header:() => (
+              <div style={headerStyle}>
+                <span>{camelToPascal(e)} </span><i className="material-icons"
+                                                   style={{margin: '0 1% 0 1%', color: 'blue'}}
+                                                   onClick={() => openTsunamiEventModal(e)}>info</i>
+              </div>),
+          accessor: e,
+          Cell: props => <div>
+            {parseFloat(props.value).toFixed(2)}
+          </div>
+        })
+      }else{
+        result.push({ Header: camelToPascal(e), accessor: e });
+      }
     });
     let moreInfo = {
       Header: () => <div style={headerStyle}>More Info</div>,
@@ -218,7 +246,22 @@ const mapToVolcanoTable = arr => {
   if(arr.length) {
     const accessors = Object.keys(arr[0]);
     accessors.map(e => {
-      result.push({ Header: camelToPascal(e), accessor: e });
+    if(e === "latitude" || e === "longitude"){
+        result.push({
+          Header:() => (
+              <div style={headerStyle}>
+                <span>{camelToPascal(e)} </span><i className="material-icons"
+                                                   style={{margin: '0 1% 0 1%', color: 'blue'}}
+                                                   onClick={() => openTsunamiEventModal(e)}>info</i>
+              </div>),
+          accessor: e,
+          Cell: props => <div>
+            {parseFloat(props.value).toFixed(2)}
+          </div>
+        })
+      }else{
+        result.push({ Header: camelToPascal(e), accessor: e });
+      }
     });
     result.splice(10, 0, {
       Header: "More Info",
@@ -252,7 +295,17 @@ const mapToTable = (arr) => {
   if (arr.length) {
     const accessors = Object.keys(arr[0]);
     accessors.map((e) => {
-      result.push({ Header: camelToPascal(e), accessor: e });
+    if(e === "latitude" || e === "longitude"){
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e,
+          Cell: props => <div>
+            {parseFloat(props.value).toFixed(2)}
+          </div>
+        })
+      }else{
+        result.push({ Header: camelToPascal(e), accessor: e });
+      }
     });
   }
   return result;
