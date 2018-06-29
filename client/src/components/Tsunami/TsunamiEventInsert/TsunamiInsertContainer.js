@@ -53,7 +53,7 @@ class TsunamiInsertContainer extends React.Component{
   render(){
     const { tsunami } = this.props;
     return (
-        <MultiPartForm title="Insert Tsunami Event" handleSubmit={this.handleSubmit.bind(this)}>
+        <MultiPartForm title="Insert Tsunami Event" handleSubmit={this.handleSubmit.bind(this)} titleColor="blue">
 
           <Toast
               actionMessage="...Posting"

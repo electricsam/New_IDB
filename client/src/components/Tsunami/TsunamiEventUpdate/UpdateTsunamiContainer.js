@@ -55,7 +55,7 @@ class UpdateTsunamiContainer extends React.Component{
       return(<Loading/>)
     }else{
       return (
-          <MultiPartForm title="Update Tsunami Event" handleSubmit={this.handleSubmit.bind(this)}>
+          <MultiPartForm title="Update Tsunami Event" handleSubmit={this.handleSubmit.bind(this)} titleColor="blue">
 
             <Toast
               actionMessage="...Updating"

@@ -55,6 +55,7 @@ class RunupSearchContainer extends React.Component{
         <MultiPartForm title="Search Runups"
                        handleSubmit={this.handleSubmit.bind(this)}
                        handleClear={this.handleClear.bind(this)}
+                       titleColor="blue"
         >
 
          <FormSection

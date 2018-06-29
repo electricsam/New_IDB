@@ -45,7 +45,7 @@ class RunupInsertContainer extends React.Component{
   render(){
     const { tsunami } = this.props;
     return (
-        <MultiPartForm title="Insert Runup" handleSubmit={this.handleSubmit.bind(this)}>
+        <MultiPartForm title="Insert Runup" handleSubmit={this.handleSubmit.bind(this)} titleColor="blue">
 
           <Toast
             actionMessage="...Posting"

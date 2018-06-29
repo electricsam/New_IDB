@@ -65,7 +65,7 @@ class UpdateRunupContainer extends React.Component{
       )
     }else{
       return (
-          <MultiPartForm title="Update Runup" handleSubmit={this.handleSubmit.bind(this)}>
+          <MultiPartForm title="Update Runup" handleSubmit={this.handleSubmit.bind(this)} titleColor="blue">
 
             <Toast
               actionMessage="...Updating"
