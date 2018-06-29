@@ -75,7 +75,20 @@ const mapToTsunamiEventTable = arr => {
           ),
           accessor: e
         })
-      }else if(e === 'numRunup'){
+      }else if(e === "latitude" || e === "longitude"){
+        result.push({
+          Header:() => (
+              <div style={headerStyle}>
+                <span>{camelToPascal(e)} </span><i className="material-icons"
+                                                   style={{margin: '0 1% 0 1%', color: 'blue'}}
+                                                   onClick={() => openTsunamiEventModal(e)}>info</i>
+              </div>),
+          accessor: e,
+          Cell: props => <div>
+            {parseFloat(props.value).toFixed(2)}
+          </div>
+        })
+      } else if(e === 'numRunup'){
         result.push({
           Header: camelToPascal(e),
           accessor: e,
