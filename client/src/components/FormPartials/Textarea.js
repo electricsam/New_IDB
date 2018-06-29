@@ -44,7 +44,7 @@ export class Textarea extends React.Component{
           <label className={Styles.label} htmlFor={this.props.model}>{this.props.title}</label>
           <Control.textarea
             model={this.props.model}
-            id={this.props.id}
+            id={this.props.model}
             validators={{valid: val => this.validateLength(val, this.props.maxLength)}}
             validateOn="change"
           />
@@ -59,7 +59,7 @@ export class Textarea extends React.Component{
            <label className={Styles.label} htmlFor={this.props.model}>{this.props.title}</label>
            <Control.textarea
                model={this.props.model}
-               id={this.props.id}
+               id={this.props.model}
            />
         </div>)
     }

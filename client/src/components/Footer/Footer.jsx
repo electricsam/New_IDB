@@ -24,25 +24,41 @@ const Footer = () => (
 
     <div className={Styles.social}>
       <div className = {Styles.twitter}>
-        <a href="https://twitter.com/NOAA" target="_blank">
+        <a href="https://twitter.com/NOAA"
+           target="_blank"
+           aria-label="Opens in new window"
+           title="NOAA Twitter"
+        >
           <i className="fab fa-twitter" style={inlineStyles}></i>
         </a>
       </div>
 
       <div className={Styles.facebook}>
-        <a href="https://www.facebook.com/NOAA" target="_blank">
+        <a href="https://www.facebook.com/NOAA"
+           target="_blank"
+           aria-label="Opens in new window"
+           title="NOAA Facebook"
+        >
           <i className="fab fa-facebook-f" style={inlineStyles}></i>
         </a>
       </div>
 
       <div className={Styles.instagram}>
-        <a href="https://www.instagram.com/noaa/" target="_blank">
+        <a href="https://www.instagram.com/noaa/"
+           target="_blank"
+           aria-label="Opens in new window"
+           title="NOAA Instagram"
+        >
           <i className="fab fa-instagram" style={inlineStyles}></i>
         </a>
       </div>
 
       <div className={Styles.youtube}>
-        <a href="https://www.youtube.com/usnoaagov" target="_blank">
+        <a href="https://www.youtube.com/usnoaagov"
+           target="_blank"
+           aria-label="Opens in new window"
+           title="NOAA YouTube"
+        >
           <i className="fab fa-youtube" style={inlineStyles}></i>
         </a>
       </div>

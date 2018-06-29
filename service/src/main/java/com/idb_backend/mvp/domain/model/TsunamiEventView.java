@@ -152,9 +152,9 @@ public class TsunamiEventView implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private Double minMaxEventRunup;
 
-  @Getter(value = AccessLevel.PRIVATE)
+//  @Getter(value = AccessLevel.PRIVATE)
   private BigDecimal tsMtAbe;
-  @Getter(value = AccessLevel.PRIVATE)
+//  @Getter(value = AccessLevel.PRIVATE)
   private BigDecimal tsMtIi;
 
   private BigDecimal tsIntensity;
@@ -329,6 +329,7 @@ public class TsunamiEventView implements Serializable{
   //TODO: add annotation for foreign key
   @Getter(value = AccessLevel.PRIVATE)
   private Integer mapEqId;
+
 
   private Double damageMillionsDollarsTotal;
 

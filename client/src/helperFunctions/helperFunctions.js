@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const CryptoJS = require('crypto-js');
 
 import store from '../store';
-import {tsunamiEventColumnDefinitions} from "../components/formConstants/constants";
+import {tsunamiEventColumnDefinitions} from "../components/Tsunami/TsunamiEventDataDisplay/TsunamiDataConstants";
 
 const action = obj => store.dispatch(obj);
 
@@ -43,6 +43,15 @@ const openTsunamiEventModal = (accessor) => {
   }
 };
 
+const headerStyle = {
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'nowrap',
+  justifyContent: "center",
+  alignItems: 'center'
+}
+
 const mapToTsunamiEventTable = arr => {
   const result = [];
   if(arr.length) {
@@ -50,12 +59,21 @@ const mapToTsunamiEventTable = arr => {
     accessors.map(e => {
       if(e === 'eqMagnitude'){
         result.push({
-          Header: camelToPascal(e),
+          Header: () => (<div>{camelToPascal(e)}</div>),
           accessor: e,
           Cell: props => <Link
               to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.id + ""}))}`}>
                 {props.value}
               </Link>
+        })
+      }else if(e === 'id' || e === "area" ){
+        result.push({
+          Header: () => (
+              <div style={headerStyle}>
+                {camelToPascal(e)}
+              </div>
+          ),
+          accessor: e
         })
       }else if(e === 'numRunup'){
         result.push({
@@ -68,20 +86,25 @@ const mapToTsunamiEventTable = arr => {
         })
       }else{
         result.push({
-          Header: () => (<span>{camelToPascal(e)} <span onClick={() => openTsunamiEventModal(e)}>#</span></span>),
+          Header: () => (
+          <div style={headerStyle}>
+            <span>{camelToPascal(e)} </span><i className="material-icons"
+                                               style={{margin: '0 1% 0 1%', color: 'blue'}}
+                                               onClick={() => openTsunamiEventModal(e)}>info</i>
+          </div>),
           accessor: e });
       }
     });
     let input = {
-      Header: "More Info",
+      Header: () => <div>More Info</div>,
       accessor: 'moreInfo',
       Cell: props => <Link to={`/tsunami/event/moreinfo/${props.original.id}`}>
         <i className="material-icons">info</i>
       </Link>
     }
     result.splice(10, 0, input);
-    result.push({
-      Header: 'Related Volcano',
+    result.splice(11, 0, {
+      Header: () => <div>Related Volcano </div>,
       accessor: 'realatedVolcano',
       Cell: props => <Link
           to={`/volcano/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.id + ""}))}`}>
@@ -148,7 +171,7 @@ const mapToEarthquakeTable = arr => {
       result.push({ Header: camelToPascal(e), accessor: e });
     });
     let moreInfo = {
-      Header: "More Info",
+      Header: () => <div style={headerStyle}>More Info</div>,
       accessor: 'moreInfo',
       Cell: props => <Link to={`/earthquake/event/moreinfo/${props.original.id}`}>
         <i className="material-icons">info</i>

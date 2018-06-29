@@ -46,11 +46,10 @@ public class EarthquakeIntegrationTest {
     this.signifTsqp.setLongitude(20.0);
     this.signifTsqp.setLocationName("Test Location Name");
     this.signifTsqp.setCountry("ALBANIA");
+    this.signifTsqp.
 
     earthquakeRepository.save(signifTsqp);
   }
-
-
 
   @Test
   public void getEarthquakeByIdTest() throws Exception{

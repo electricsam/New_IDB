@@ -126,7 +126,7 @@ const EarthquakeParameters = [
     minThreshold: validationConstants.eqDepth.min,
     maxThreshold: validationConstants.eqDepth.max,
     min: {
-      model: '.earthquake.search.maxEqDepth',
+      model: '.earthquake.search.minEqDepth',
       validMessage: 'Invalid Earthquake Depth',
     },
     max: {
