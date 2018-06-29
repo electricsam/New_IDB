@@ -51,7 +51,9 @@ class EarthquakeUpdateContainer extends React.Component{
       return(<Loading/>)
     }else{
       return (
-          <MultiPartForm title="Update Earthquake Event" handleSubmit={this.handleSubmit.bind(this)}>
+          <MultiPartForm title="Update Earthquake Event"
+                         handleSubmit={this.handleSubmit.bind(this)}
+                         titleColor="orange">
 
             <Toast
                 actionMessage="...Updating"

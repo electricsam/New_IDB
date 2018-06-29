@@ -66,6 +66,7 @@ class EarthquakeSearchContainer extends React.Component{
         <MultiPartForm title="Search Earthquake Events"
                        handleSubmit={this.handleSubmit.bind(this)}
                        handleClear={this.handleClear.bind(this)}
+                       titleColor="orange"
         >
 
           <FormSection
