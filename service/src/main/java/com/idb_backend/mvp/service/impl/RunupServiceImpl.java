@@ -24,17 +24,28 @@ public class RunupServiceImpl extends BaseService implements RunupService {
 
   public BooleanExpression generateCriteria(Map<String,String> map){
     QTsunamiEventView event = QTsunamiEventView.tsunamiEventView;
-    BooleanExpression master = event.day.goe(1);
+    BooleanExpression master;
 
     List<BooleanExpression> boolList = new ArrayList<>();
     boolList.add(genIntMinMax(map, "tsMinYear", "tsMaxYear", event.year));
     boolList.add(genEqRestriction(map, "tsRegionCode", event.regionCode));
     boolList.add(genEqRestriction(map, "tsCountry", event.country));
 
-    for(int i = 0; i < boolList.size(); i++){
-      if(boolList.get(i) != null){
-        master = master.and(boolList.get(i));
+//    NEW
+    boolList.add(genEqRestriction(map, "tsArea", event.area));
+    boolList.add(genIntMinMax(map, "tsMinValidity", "tsMaxValidity", event.eventValidity));
+    boolList.add(genIntMinMax(map, "tsMinCause", "tsMaxCause", event.causeCode));
+    boolList.add(genDoubleMinMax(map, "tsMinEqMag", "tsMaxEqMag", event.eqMagnitude));
+
+    if(boolList.size() > 0){
+      master = boolList.get(0);
+      for(int i = 1; i < boolList.size(); i++){
+        if(boolList.get(i) != null){
+          master = master.and(boolList.get(i));
+        }
       }
+    }else{
+      master = null;
     }
 
     return master;
@@ -43,10 +54,15 @@ public class RunupServiceImpl extends BaseService implements RunupService {
 
   @Override
   public List<RunupProjection> getRunups(Map<String, String> params, Predicate predicate){
+
+    BooleanExpression exp = generateCriteria(params);
+
     if(params.get("eventid") != null && !params.get("eventid").equals("")){
       return runupViewRepository.findRelatedRunupByTsunami(Integer.parseInt(params.get("eventid")));
-    }if(params.get("refid") != null && !params.get("refid").equals("")){
+    }else if(params.get("refid") != null && !params.get("refid").equals("")){
       return runupViewRepository.findRelatedRunupByRef(Integer.parseInt(params.get("refid")));
+    }else if(exp == null){
+      return runupViewRepository.findRunupsByQuery(predicate);
     }else{
       return runupViewRepository.findRunupsByQuery(combineBools(predicate, generateCriteria(params)));
     }

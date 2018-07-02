@@ -464,6 +464,43 @@ const indonesianProvince = [
 ];
 
 
+const chileanProvince = [
+  {name: 'Select a Province', value: ''},
+  {name: 'ANTARCTICA CHILENA', value: 'ANTARCTICA CHILENA'},
+  { name: 'ANTOFAGASTA', vaule: 'ANTOFAGASTA'},
+  { name: 'ARAUCO', vaule: 'ARAUCO'},
+  { name: 'ARICA', vaule: 'ARICA'},
+  { name: 'AYSEN', vaule: 'AYSEN'},
+  { name: 'CAPITAN PRAT', vaule: 'CAPITAN PRAT'},
+  { name: 'CARDENAL CARO', vaule: 'CARDENAL CARO'},
+  { name: 'CAUQUENES', vaule: 'CAUQUENES'},
+  { name: 'CAUTIN', vaule: 'CAUTIN'},
+  { name: 'CHANARAL', vaule: 'CHANARAL'},
+  { name: 'CHILOE', vaule: 'CHILOE'},
+  { name: 'CHOAPA', vaule: 'CHOAPA'},
+  { name: 'CONCEPCION', vaule: 'CONCEPCION'},
+  { name: 'COPIAPO', vaule: 'COPIAPO'},
+  { name: 'CURICO', vaule: 'CURICO'},
+  { name: 'ELQUI', vaule: 'ELQUI'},
+  { name: 'HUASCO', vaule: 'HUASCO'},
+  { name: 'IQUIQUE', vaule: 'IQUIQUE'},
+  { name: 'ISLA DE PASCUA', vaule: 'ISLA DE PASCUA'},
+  { name: 'JUAN FERNANDEZ IS.', vaule: 'JUAN FERNANDEZ IS.'},
+  { name: 'LIMARI', vaule: 'LIMARI'},
+  { name: 'LLANQUIHUE', vaule: 'LLANQUIHUE'},
+  { name: 'MAGALLANES', vaule: 'MAGALLANES'},
+  { name: 'NUBLE', vaule: 'NUBLE'},
+  { name: 'OSORNO', vaule: 'OSORNO'},
+  { name: 'PETORCA', vaule: 'PETORCA'},
+  { name: 'SAN ANTONIO', vaule: 'SAN ANTONIO'},
+  { name: 'SAN FELIPE DE ACONCAGUA', vaule: 'SAN FELIPE DE ACONCAGUA'},
+  { name: 'TALCA', vaule: 'TALCA'},
+  { name: 'TAMARUGAL', vaule: 'TAMARUGAL'},
+  { name: 'TOCOPILLA', vaule: 'TOCOPILLA'},
+  { name: 'VALDIVIA', vaule: 'VALDIVIA'},
+  { name: 'VALPARAISO', vaule: 'VALPARAISO'},
+];
+
 const regions = [
   {
     name: 'Select a Region',
@@ -743,6 +780,7 @@ export {
   countries,
   states,
   canadianProvince,
+  chileanProvince,
   validationConstants,
   regions,
   indonesianProvince,

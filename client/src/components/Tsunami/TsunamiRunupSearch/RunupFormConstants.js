@@ -1,6 +1,14 @@
-import { regions, validationConstants, countries, rnpMeasureType } from '../../formConstants/constants';
-import { deleteRunup } from '../../../sagas/tsunamiSaga';
-import RunupSearchContainer from './RunupSearchContainer';
+import {
+  regions,
+  validationConstants,
+  countries,
+  rnpMeasureType,
+  states,
+  indonesianProvince,
+  japanesePrefecture,
+  canadianProvince,
+  chileanProvince,
+} from '../../formConstants/constants';
 
 const RunupLocInfo = [
   {
@@ -16,6 +24,42 @@ const RunupLocInfo = [
     model: '.tsunami.rnpsearch.country',
     id: '.tsunami.rnpsearch.country',
     data: countries,
+  },
+  {
+    type: 'DROPDOWNOR',
+    title: 'Area',
+    dropDowns: [
+      {
+        model: '.tsunami.rnpsearch.area',
+        id: '.tsunami.rnpsearch.area',
+        data: states,
+        disabled: 'USA',
+      },
+      {
+        model: '.tsunami.rnpsearch.area',
+        id: '.tsunami.rnpsearch.area',
+        data: canadianProvince,
+        disabled: 'CANADA',
+      },
+      {
+        model: '.tsunami.rnpsearch.area',
+        id: '.tsunami.rnpsearch.area',
+        data: chileanProvince,
+        disabled: 'CHILE',
+      },
+      {
+        model: '.tsunami.rnpsearch.area',
+        id: '.tsunami.rnpsearch.area',
+        data: indonesianProvince,
+        disabled: 'INDONESIA',
+      },
+      {
+        model: '.tsunami.search.runupArea',
+        id: '.tsunami.search.runupArea',
+        data: japanesePrefecture,
+        disabled: 'JAPAN',
+      },
+    ],
   },
   {
     type: 'RADIO',
@@ -111,6 +155,66 @@ const RunupSourceInfo = [
     model: '.tsunami.rnpsearch.tsCountry',
     id: '.tsunami.rnpsearch.tsCountry',
     data: countries,
+  },
+  {
+    type: 'DROPDOWNOR',
+    title: 'Area',
+    dropDowns: [
+      {
+        model: '.tsunami.search.tsArea',
+        id: '.tsunami.rnpsearch.tsArea',
+        data: states,
+        disabled: 'USA',
+      },
+      {
+        model: '.tsunami.search.tsArea',
+        id: '.tsunami.rnpsearch.tsArea',
+        data: canadianProvince,
+        disabled: 'CANADA',
+      },
+    ],
+  },
+  {
+    type: "MINMAX",
+    title: "Validity",
+    minThreshold: validationConstants.validity.min,
+    maxThreshold: validationConstants.validity.max,
+    min: {
+      model: '.tsunami.rnpsearch.tsMinValidity',
+      validMessage: "Invalid Source Event Validity"
+    },
+    max: {
+      model: '.tsunami.rnpsearch.tsMaxValidity',
+      validMessage: "Invalid Source Event Validity"
+    }
+  },
+  {
+    type: "MINMAX",
+    title: "Cause",
+    minThreshold: validationConstants.cause.min,
+    maxThreshold: validationConstants.cause.max,
+    min: {
+      model: '.tsunami.rnpsearch.tsMinCause',
+      validMessage: "Invalid Source Event Cause"
+    },
+    max: {
+      model: '.tsunami.rnpsearch.tsMaxCause',
+      validMessage: "Invalid Source Event Cause"
+    }
+  },
+  {
+    type: "MINMAX",
+    title: "Earthquake Magnitude",
+    minThreshold: validationConstants.eqMag.min,
+    maxThreshold: validationConstants.eqMag.max,
+    min: {
+      model: '.tsunami.rnpsearch.tsMinEqMag',
+      validMessage: "Invalid Source Event Magnitude"
+    },
+    max: {
+      model: '.tsunami.rnpsearch.tsMaxEqMag',
+      validMessage: "Invalid Source Event Magnitude"
+    }
   },
 ];
 

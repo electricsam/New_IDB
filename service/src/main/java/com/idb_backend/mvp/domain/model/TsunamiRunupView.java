@@ -160,6 +160,26 @@ public class TsunamiRunupView {
 
   private String comments;
 
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String commentsStart;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String commentsEnd;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String commentsInclude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String commentsMatch;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String commentsNot;
+
   @Getter(AccessLevel.PRIVATE)
   private String hasRef;
 
@@ -175,21 +195,6 @@ public class TsunamiRunupView {
   @Transient
   @Getter(AccessLevel.PRIVATE)
   private Integer maxDistFromSource;
-
-//  private Geometry shape;
-//
-//  public String getShape() {
-//    if(shape == null){
-//      return null;
-//    }else{
-//      WKTWriter w = new WKTWriter();
-//      return w.write(shape);
-//    }
-//  }
-//
-//  public void setShape(Geometry shape) {
-//    this.shape = shape;
-//  }
 
   @Getter(AccessLevel.PRIVATE)
   private Integer eventRegionCode;

@@ -49,6 +49,10 @@ class RunupSearchContainer extends React.Component{
 
   handleClear = () => action({type: 'RESET_TS_RUNUP_FORM'});
 
+  checkDropDownDisabled = (val) => this.props.tsunami.asMutable().toJS().rnpsearch.tsCountry === val? false: true;
+
+  checkDropDownDisabledRunup = (val) => this.props.tsunami.asMutable().toJS().rnpsearch.country === val? false: true;
+
   render(){
     const { tsunami } = this.props;
     return (
@@ -63,6 +67,7 @@ class RunupSearchContainer extends React.Component{
             toggleSection={this.toggleRunupSourceInfo}
             showSection={tsunami.get('showRunupSource')}
             validateMinMax={this.validateMinMax}
+            checkDropDownDisabled={this.checkDropDownDisabled}
             formData={RunupSourceInfo}
           />
 
@@ -73,6 +78,7 @@ class RunupSearchContainer extends React.Component{
             checkConditions={this.checkRunupLocType}
             validateMinMax={this.validateMinMax}
             formData={RunupLocInfo}
+            checkDropDownDisabled={this.checkDropDownDisabledRunup}
           />
 
           <FormSection
