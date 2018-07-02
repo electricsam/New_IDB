@@ -30,9 +30,9 @@ public class TsunamiEventServiceImpl extends BaseService implements TsunamiEvent
 
   public BooleanExpression generateCriteria (Map<String, String> map){
     QTsunamiRunupView root = QTsunamiRunupView.tsunamiRunupView;
-    BooleanExpression master;
-
     List<BooleanExpression> boolList = new ArrayList<>();
+    BooleanExpression master = null;
+    Boolean masterExists = false;
 
     boolList.add(genEqRestriction(map, "runupRegion", root.regionCode));
     boolList.add(genEqRestriction(map, "runupCountry", root.country));
@@ -54,15 +54,16 @@ public class TsunamiEventServiceImpl extends BaseService implements TsunamiEvent
     boolList.add(genIntMinMax(map, "runupMinHousesDestroyed", "runupMaxHousesDestroyed", root.housesDestroyed));
     boolList.add(genIntMinMax(map, "runupMinHousesAmountOrder", "runupMaxHousesAmountOrder", root.housesAmountOrder));
 
-    if(boolList.size() > 0){
-      master = boolList.get(0);
-      for(int i = 1; i < boolList.size(); i++){
+    for(int i = 0; i < boolList.size(); i++){
+      if(!masterExists){
+        if(boolList.get(i) != null){
+          master = boolList.get(i);
+        }
+      }else{
         if(boolList.get(i) != null){
           master = master.and(boolList.get(i));
         }
       }
-    }else{
-      master = null;
     }
 
     return master;
