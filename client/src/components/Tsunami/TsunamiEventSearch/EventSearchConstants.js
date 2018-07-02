@@ -292,7 +292,7 @@ const TotalTsunamiEffects = [
     },
     max: {
       model: '.tsunami.search.maxDeaths',
-      validMessage: 'Invalid Deaths',R
+      validMessage: 'Invalid Deaths',
     },
   },
   {

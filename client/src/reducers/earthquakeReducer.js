@@ -161,7 +161,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { patchingEarthquake: false, patchFail: true, error: action.payload });
     }
     case 'RESET_EARTHQUAKE_SEARCH': {
-      return state.merge(state, {search: {country: ''}});
+      return state.merge(state, {search: {country: ''}, locType: null, commentType: null});
     }
     default:
       return state;
