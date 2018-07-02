@@ -71,7 +71,7 @@ class VolcanoEventSearchContainer extends React.Component{
           />
 
           <FormSection
-              title="Volcano Parameters"
+              title="Volcano Effects"
               toggleSection={this.toggleEffects}
               showSection={volcano.get('showVolEventSearchEffects')}
               validateMinMax={this.validateMinMax}

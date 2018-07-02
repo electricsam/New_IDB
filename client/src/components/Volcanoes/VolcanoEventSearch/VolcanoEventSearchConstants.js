@@ -30,7 +30,7 @@ const Parameters = [
     condition: 'name',
   },
   {
-    ype: 'RADIO',
+    type: 'RADIO',
     title: 'Volcano Location',
     htmlFor: '.volcano.location',
     model: '.volcano.location',
@@ -105,6 +105,21 @@ const Parameters = [
       validMessage: 'Invalid VEI',
     },
   },
+  {
+    type: 'RADIO',
+    title: 'Event Comments',
+    htmlFor: '.volcano.comments',
+    model: '.volcano.commentType',
+    radios: [
+      { value: 'commentsStart', label: 'Starts With' },
+      { value: 'commentsEnd', label: 'Ends With'},
+      { value: 'commentsIncludes', label: 'Includes' },
+      { value: 'commentsMatch', label: 'Matches' },
+      { value: 'commentsNot', label: 'or Does Not Match' },
+    ],
+    textModelPreface: '.volcano.search.',
+    condition: 'commentType',
+  }
 ];
 
 const Effects = [

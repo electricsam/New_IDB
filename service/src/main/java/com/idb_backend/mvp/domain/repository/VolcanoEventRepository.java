@@ -38,15 +38,15 @@ public interface VolcanoEventRepository extends JpaRepository<VolcanoEvent, Inte
 
     bindings.bind(root.maxVei).first((path, value) -> root.vei.loe(value));
 
-    bindings.bind(root.comIncludes).first((path, value) -> root.comments.containsIgnoreCase(value));
+    bindings.bind(root.commentsInclude).first((path, value) -> root.comments.containsIgnoreCase(value));
 
-    bindings.bind(root.comMatch).first((path, value) -> root.comments.equalsIgnoreCase(value));
+    bindings.bind(root.commentsMatch).first((path, value) -> root.comments.equalsIgnoreCase(value));
 
-    bindings.bind(root.comStart).first((path, value) -> root.comments.startsWithIgnoreCase(value));
+    bindings.bind(root.commentsStart).first((path, value) -> root.comments.startsWithIgnoreCase(value));
 
-    bindings.bind(root.comNot).first((path, value) -> {
-      return root.comments.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
-    });
+    bindings.bind(root.commentsNot).first((path, value) -> root.comments.notEqualsIgnoreCase(value));
+
+    bindings.bind(root.commentsEnd).first((path, value) -> root.comments.endsWithIgnoreCase(value));
   }
 
 }

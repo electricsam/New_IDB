@@ -57,23 +57,28 @@ public class VolcanoEvent {
   private String agent;
   private String assocEq;
   private String assocTsu;
+
   private String comments;
 
   @Transient
   @Getter(value = AccessLevel.PRIVATE)
-  private String comIncludes;
+  private String commentsStart;
 
   @Transient
   @Getter(value = AccessLevel.PRIVATE)
-  private String comStart;
+  private String commentsEnd;
 
   @Transient
   @Getter(value = AccessLevel.PRIVATE)
-  private String comMatch;
+  private String commentsInclude;
 
   @Transient
   @Getter(value = AccessLevel.PRIVATE)
-  private String comNot;
+  private String commentsMatch;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String commentsNot;
 
   private String reference;
 
