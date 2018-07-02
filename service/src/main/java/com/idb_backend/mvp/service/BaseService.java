@@ -97,7 +97,7 @@ public class BaseService {
     }else if(map.get(match) != null){
       return root.equalsIgnoreCase(map.get(match));
     }else if(map.get(not) != null){
-      return root.notLike(Expressions.asString("%").concat(not.toUpperCase().concat("%")));
+      return root.notEqualsIgnoreCase(map.get(not));
     }else{
       return null;
     }
@@ -114,7 +114,7 @@ public class BaseService {
     }else if(map.get(match) != null){
       return root.equalsIgnoreCase(map.get(match));
     }else if(map.get(not) != null){
-      return root.notLike(Expressions.asString("%").concat(not.toUpperCase().concat("%")));
+      return root.notEqualsIgnoreCase(map.get(not));
     }else{
       return null;
     }
