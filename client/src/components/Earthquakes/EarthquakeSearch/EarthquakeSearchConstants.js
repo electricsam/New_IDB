@@ -57,6 +57,7 @@ const EarthquakeParameters = [
       { value: 'locNot', label: 'or Does Not Match' },
     ],
     textModelPreface: '.earthquake.search.',
+    condition: 'locType'
   },
   {
     type: 'MULTIMINMAX',
@@ -227,6 +228,20 @@ const TotalEarthquakeAndSecondaryEffects = [
       validMessage: 'Invalid Death Description',
     },
   },
+  {
+    type: 'RADIO',
+    title: 'Comments',
+    model: '.earthquake.commentType',
+    radios: [
+      { value: 'commentsStart', label: 'Starts With' },
+      { value: 'commentsEnd', label: 'Ends With' },
+      { value: 'commentsInclude', label: 'Includes' },
+      { value: 'commentsMatch', label: 'Matches' },
+      { value: 'commentsNot', label: 'or Does Not Match' },
+    ],
+    textModelPreface: '.earthquake.search.',
+    condition: 'commentType',
+  }
 ];
 
 export {

@@ -72,5 +72,15 @@ public interface EarthquakeViewRepository extends
     bindings.bind(root.locNot).first((path, value) -> {
       return root.locationName.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
     });
+
+    bindings.bind(root.commentsStart).first((path, value) -> root.comments.startsWithIgnoreCase(value));
+
+    bindings.bind(root.commentsEnd).first((path, value) -> root.comments.endsWithIgnoreCase(value));
+
+    bindings.bind(root.commentsMatch).first((path, value) -> root.comments.equalsIgnoreCase(value));
+
+    bindings.bind(root.commentsInclude).first((path, value) -> root.comments.containsIgnoreCase(value));
+
+    bindings.bind(root.commentsNot).first((path, value) -> root.comments.notEqualsIgnoreCase(value));
   }
 }

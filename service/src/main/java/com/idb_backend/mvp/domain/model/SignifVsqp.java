@@ -273,6 +273,26 @@ public class SignifVsqp implements Serializable{
 
   private String comments;
 
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String commentsStart;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String commentsEnd;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String commentsMatch;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String commentsInclude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private String commentsNot;
+
   @Getter(value = AccessLevel.PRIVATE)
   private BigInteger objectid;
 

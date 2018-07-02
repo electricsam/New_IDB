@@ -46,7 +46,7 @@ class EarthquakeSearchContainer extends React.Component{
     }
   }
 
-  checkLocType = () => this.props.earthquake.get('locType');
+  checkConditions = (condition) => this.props.earthquake.get(condition);
 
   toggleParameters = () => action({type: "TOGGLE_EARTHQUAKE_SEARCH_PARAMETERS"});
 
@@ -76,7 +76,7 @@ class EarthquakeSearchContainer extends React.Component{
             validateMinMax={this.validateMinMax}
             formData={EarthquakeParameters}
             checkDropDownDisabled={this.checkDropDownDisabled}
-            checkConditions={this.checkLocType}
+            checkConditions={this.checkConditions}
           />
 
           <FormSection
@@ -93,6 +93,7 @@ class EarthquakeSearchContainer extends React.Component{
             showSection={earthquake.get('showEqSearchEffectsTotal')}
             formData={TotalEarthquakeAndSecondaryEffects}
             validateMinMax={this.validateMinMax}
+            checkConditions={this.checkConditions}
           />
 
         </MultiPartForm>
