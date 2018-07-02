@@ -12,7 +12,7 @@ public interface EarthquakeRepository extends JpaRepository<SignifTsqp, Integer>
     QuerydslBinderCustomizer<QSignifTsqp>, EarthquakeCustomRepository {
   @Override
   default void customize(QuerydslBindings bindings, QSignifTsqp root){
-    bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));
+    bindings.bind(String.class).first((StringPath path, String value) -> path.equalsIgnoreCase(value));
 
   }
 }

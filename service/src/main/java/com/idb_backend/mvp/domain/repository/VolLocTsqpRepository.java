@@ -24,9 +24,7 @@ public interface VolLocTsqpRepository extends JpaRepository<VolLocTsqp, Integer>
     bindings.bind(root.nameIncludes).first((path, value) -> root.name.containsIgnoreCase(value));
     bindings.bind(root.nameMatch).first((path, value) -> root.name.equalsIgnoreCase(value));
     bindings.bind(root.nameStart).first((path, value) -> root.name.startsWithIgnoreCase(value));
-    bindings.bind(root.nameNot).first((path, value) -> {
-       return root.name.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
-      });
+    bindings.bind(root.nameNot).first((path, value) -> root.name.notEqualsIgnoreCase(value));
   }
 
 }

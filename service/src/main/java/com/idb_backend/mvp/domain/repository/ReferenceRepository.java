@@ -17,23 +17,17 @@ public interface ReferenceRepository extends JpaRepository<Reference, Integer>, 
     bindings.bind(root.citIncludes).first((path, value) -> root.citation.containsIgnoreCase(value));
     bindings.bind(root.citMatches).first((path, value) -> root.citation.equalsIgnoreCase(value));
     bindings.bind(root.citStart).first((path, value) -> root.citation.startsWithIgnoreCase(value));
-    bindings.bind(root.citNot).first((path, value) -> {
-      return root.citation.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
-    });
+    bindings.bind(root.citNot).first((path, value) -> root.citation.notEqualsIgnoreCase(value));
 
     bindings.bind(root.authorIncludes).first((path, value) -> root.author.containsIgnoreCase(value));
     bindings.bind(root.authorMatches).first((path, value) -> root.author.equalsIgnoreCase(value));
     bindings.bind(root.authorStart).first((path, value) -> root.author.startsWithIgnoreCase(value));
-    bindings.bind(root.authorNot).first((path, value) -> {
-      return root.author.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
-    });
+    bindings.bind(root.authorNot).first((path, value) -> root.author.notEqualsIgnoreCase(value));
 
     bindings.bind(root.commentsIncludes).first((path, value) -> root.comments.containsIgnoreCase(value));
     bindings.bind(root.commentsMatches).first((path, value) -> root.comments.equalsIgnoreCase(value));
     bindings.bind(root.commentsStart).first((path, value) -> root.comments.startsWithIgnoreCase(value));
-    bindings.bind(root.commentsNot).first((path, value) -> {
-      return root.comments.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
-    });
+    bindings.bind(root.commentsNot).first((path, value) -> root.comments.notEqualsIgnoreCase(value));
 
   }
 

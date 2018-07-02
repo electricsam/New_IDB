@@ -108,9 +108,7 @@ public interface TsunamiEventViewRepository extends
 
     bindings.bind(root.locMatch).first((path, value) -> root.locationName.equalsIgnoreCase(value));
 
-    bindings.bind(root.locNot).first((path, value) -> {
-      return root.locationName.notLike(Expressions.asString("%").concat(value.toUpperCase().concat("%")));
-    });
+    bindings.bind(root.locNot).first((path, value) -> root.locationName.notEqualsIgnoreCase(value));
 
     bindings.bind(root.commentsStart).first((path, value) -> root.comments.startsWithIgnoreCase(value));
 

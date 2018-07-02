@@ -13,5 +13,5 @@ public interface RunupRepository extends JpaRepository<TsunamiRunup, Integer>, Q
 
   @Override
   default void customize(QuerydslBindings bindings, QTsunamiRunup root){
-    bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));  }
+    bindings.bind(String.class).first((StringPath path, String value) -> path.equalsIgnoreCase(value));  }
 }
