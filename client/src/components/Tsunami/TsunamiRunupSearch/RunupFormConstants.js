@@ -54,8 +54,8 @@ const RunupLocInfo = [
         disabled: 'INDONESIA',
       },
       {
-        model: '.tsunami.search.runupArea',
-        id: '.tsunami.search.runupArea',
+        model: '.tsunami.rnpsearch.runupArea',
+        id: '.tsunami.rnpsearch.runupArea',
         data: japanesePrefecture,
         disabled: 'JAPAN',
       },
@@ -190,13 +190,13 @@ const RunupSourceInfo = [
     title: 'Area',
     dropDowns: [
       {
-        model: '.tsunami.search.tsArea',
+        model: '.tsunami.rnpsearch.tsArea',
         id: '.tsunami.rnpsearch.tsArea',
         data: states,
         disabled: 'USA',
       },
       {
-        model: '.tsunami.search.tsArea',
+        model: '.tsunami.rnpsearch.tsArea',
         id: '.tsunami.rnpsearch.tsArea',
         data: canadianProvince,
         disabled: 'CANADA',
@@ -271,6 +271,20 @@ const RunupParamsEffects = [
     },
   },
   {
+    type: 'MINMAX',
+    title: 'Maximum Inundation Distance',
+    minThreshold: validationConstants.horizInnundation.min,
+    maxThreshold: validationConstants.horizInnundation.max,
+    min: {
+      model: '.tsunami.rnpsearch.minRunupHoriz',
+      validMessage: 'Invalid Max Inundation',
+    },
+    max: {
+      model: '.tsunami.rnpsearch.maxRunupHoriz',
+      validMessage: 'Invalid Max Inundation',
+    },
+  },
+  {
     type: 'RADIONOTEXT',
     title: 'Doubtfulness',
     data: [
@@ -297,35 +311,116 @@ const RunupParamsEffects = [
   },
   {
     type: 'MINMAX',
-    title: 'Number of Deaths at Runup Location',
+    title: 'Number of Deaths',
     minThreshold: validationConstants.numberOfDeaths.min,
     maxThreshold: validationConstants.numberOfDeaths.max,
     min: {
       model: '.tsunami.rnpsearch.minDeaths',
-      validMessage: 'Invalid Min Deaths',
+      validMessage: 'Invalid Deaths',
     },
     max: {
       model: '.tsunami.rnpsearch.maxDeaths',
-      validMessage: 'Invalid Max Deaths',
+      validMessage: 'Invalid Deaths',
     },
   },
   {
     type: 'MINMAX',
-    title: 'Damage in Millions of Dollars at the Runup Location',
+    title: 'Death Description',
+    minThreshold: validationConstants.deathDescription.min,
+    maxThreshold: validationConstants.deathDescription.max,
+    min: {
+      model: '.tsunami.rnpsearch.minDeathsAmountOrder',
+      validMessage: 'Invalid Death Description',
+    },
+    max: {
+      model: '.tsunami.rnpsearch.maxDeathsAmountOrder',
+      validMessage: 'Invalid Death Description',
+    },
+  },
+  {
+    type: 'MINMAX',
+    title: 'Number of Injuries',
+    minThreshold: validationConstants.numberOfInjuries.min,
+    maxThreshold: validationConstants.numberOfInjuries.max,
+    min: {
+      model: '.tsunami.rnpsearch.minInjuries',
+      validMessage: 'Invalid Number of Injuries',
+    },
+    max: {
+      model: '.tsunami.rnpsearch.maxInjuries',
+      validMessage: 'Invalid Number of Injuries',
+    },
+  },
+  {
+    type: 'MINMAX',
+    title: 'Injury Description',
+    minThreshold: validationConstants.injuryDescription.min,
+    maxThreshold: validationConstants.injuryDescription.max,
+    min: {
+      model: '.tsunami.rnpsearch.minInjuriesAmountOrder',
+      validMessage: 'Invalid Injury Description',
+    },
+    max: {
+      model: '.tsunami.rnpsearch.maxInjuriesAmountOrder',
+      validMessage: 'Invalid Injury Description',
+    },
+  },
+  {
+    type: 'MINMAX',
+    title: 'Damage in Millions of Dollars',
     minThreshold: validationConstants.damageInMillions.min,
     maxThreshold: validationConstants.damageInMillions.max,
     min: {
-      model: '.tsunami.rnpsearch.minDamageMillionsDollars',
-      validMessage: 'Invalid Min Damage',
+      model: '.tsunami.rnpsearch.minDamageMillionsDollarsTotal',
+      validMessage: 'Invalid Damage',
     },
     max: {
-      model: '.tsunami.rnpsearch.maxDamageMillionsDollars',
-      validMessage: 'Invalid Max Damage',
+      model: '.tsunami.rnpsearch.maxDamageMillionsDollarsTotal',
+      validMessage: 'Invalid Damage',
     },
   },
-
-
-
+  {
+    type: 'MINMAX',
+    title: 'Damage Description',
+    minThreshold: validationConstants.damageDescription.min,
+    maxThreshold: validationConstants.damageDescription.max,
+    min: {
+      model: '.tsunami.rnpsearch.minDamageAmountOrder',
+      validMessage: 'Invalid Damage Description',
+    },
+    max: {
+      model: '.tsunami.rnpsearch.maxDamageAmountOrder',
+      validMessage: 'Invalid Damage Description',
+    },
+  },
+  {
+    type: 'MINMAX',
+    title: 'Number of Houses Destroyed',
+    minThreshold: validationConstants.numberOfHousesDestroyed.min,
+    maxThreshold: validationConstants.numberOfHousesDestroyed.max,
+    min: {
+      model: '.tsunami.rnpsearch.minHousesDestroyed',
+      validMessage: 'Invalid Number of Houses',
+    },
+    max: {
+      model: '.tsunami.rnpsearch.maxHousesDestroyed',
+      validMessage: 'Invalid Number of Houses',
+    },
+  },
+  {
+    type: 'MINMAX',
+    title: 'Houses Destroyed Description',
+    minThreshold: validationConstants.housesDestroyedDescription.min,
+    maxThreshold: validationConstants.housesDestroyedDescription.max,
+    min: {
+      model: '.tsunami.rnpsearch.minHousesAmountOrder',
+      validMessage: 'Invalid Houses Destroyed Description',
+    },
+    max: {
+      model: '.tsunami.rnpsearch.maxHousesAmountOrder',
+      validMessage: 'Invalid Houses Destroyed Description',
+    },
+  },
 ];
 
 

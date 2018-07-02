@@ -34,13 +34,9 @@ public interface RunupViewRepository extends JpaRepository<TsunamiRunupView, Int
 
     bindings.bind(root.maxRunupHt).first((path, value) -> root.runupHt.loe(value));
 
-    bindings.bind(root.minDeaths).first((path, value) -> root.deaths.goe(value));
+    bindings.bind(root.minRunupHoriz).first((path, value) -> root.runupHoriz.goe(value));
 
-    bindings.bind(root.maxDeaths).first((path, value) -> root.deaths.loe(value));
-
-    bindings.bind(root.minDamageMillionsDollars).first((path, value) -> root.damageMillionsDollars.goe(value));
-
-    bindings.bind(root.maxDamageMillionsDollars).first((path, value) -> root.damageMillionsDollars.loe(value));
+    bindings.bind(root.maxRunupHoriz).first((path, value) -> root.runupHoriz.loe(value));
 
     bindings.bind(root.locStart).first((path, value) -> root.locationName.startsWithIgnoreCase(value));
 
@@ -61,5 +57,46 @@ public interface RunupViewRepository extends JpaRepository<TsunamiRunupView, Int
     bindings.bind(root.commentsMatch).first((path, value) -> root.comments.equalsIgnoreCase(value));
 
     bindings.bind(root.commentsNot).first((path, value) -> root.comments.notEqualsIgnoreCase(value));
+
+    bindings.bind(root.minDeaths).first((path, value) -> root.deaths.goe(value));
+
+    bindings.bind(root.maxDeaths).first((path, value) -> root.deaths.loe(value));
+
+    bindings.bind(root.minDeathsAmountOrder).first((path, value) -> root.deathsAmountOrder.goe(value));
+
+    bindings.bind(root.maxDeathsAmountOrder).first((path, value) -> root.deathsAmountOrder.loe(value));
+
+    bindings.bind(root.minInjuries).first((path, value) -> root.injuries.goe(value));
+
+    bindings.bind(root.maxInjuries).first((path, value) -> root.injuries.loe(value));
+
+    bindings.bind(root.minInjuriesAmountOrder).first((path, value) -> root.injuriesAmountOrder.goe(value));
+
+    bindings.bind(root.maxInjuriesAmountOrder).first((path, value) -> root.injuriesAmountOrder.loe(value));
+
+    bindings.bind(root.minHousesDamaged).first((path, value) -> root.housesDamaged.goe(value));
+
+    bindings.bind(root.maxHousesDamaged).first((path, value) -> root.housesDamaged.loe(value));
+
+    bindings.bind(root.minHousesDamagedAmountOrder).first((path, value) -> root.housesDamagedAmountOrder.goe(value));
+
+    bindings.bind(root.maxHousesDamagedAmountOrder).first((path, value) -> root.housesDamagedAmountOrder.loe(value));
+
+    bindings.bind(root.minHousesDestroyed).first((path, value) -> root.housesDestroyed.goe(value));
+
+    bindings.bind(root.maxHousesDestroyed).first((path, value) -> root.housesDestroyed.loe(value));
+
+    bindings.bind(root.minHousesAmountOrder).first((path, value) -> root.housesAmountOrder.goe(value));
+
+    bindings.bind(root.maxHousesAmountOrder).first((path, value) -> root.housesAmountOrder.loe(value));
+
+    bindings.bind(root.minDamageMillionsDollars).first((path, value) -> root.damageMillionsDollars.goe(value));
+
+    bindings.bind(root.maxDamageMillionsDollars).first((path, value) -> root.damageMillionsDollars.loe(value));
+
+    bindings.bind(root.minDamageAmountOrder).first((path, value) -> root.damageAmountOrder.goe(value));
+
+    bindings.bind(root.maxDamageAmountOrder).first((path, value) -> root.damageAmountOrder.loe(value));
+
   }
 }

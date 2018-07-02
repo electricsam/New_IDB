@@ -114,8 +114,19 @@ public class TsunamiRunupView {
 
   private Double runupHoriz;
 
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double minRunupHoriz;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double maxRunupHoriz;
+
   private Integer typeMeasurementId;
 
+
+
+//  This
   private Double damageMillionsDollars;
 
   @Transient
@@ -128,9 +139,33 @@ public class TsunamiRunupView {
 
   private Integer damageAmountOrder;
 
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minDamageAmountOrder;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxDamageAmountOrder;
+
   private Integer housesDestroyed;
 
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minHousesDestroyed;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxHousesDestroyed;
+
   private Integer housesAmountOrder;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minHousesAmountOrder;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxHousesAmountOrder;
 
   private Integer deaths;
 
@@ -144,9 +179,33 @@ public class TsunamiRunupView {
 
   private Integer deathsAmountOrder;
 
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minDeathsAmountOrder;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxDeathsAmountOrder;
+
   private Integer injuries;
 
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minInjuries;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxInjuries;
+
   private Integer injuriesAmountOrder;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minInjuriesAmountOrder;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxInjuriesAmountOrder;
 
   @Getter(AccessLevel.PRIVATE)
   private Date ngdcDate;
@@ -157,7 +216,7 @@ public class TsunamiRunupView {
   @Getter(AccessLevel.PRIVATE)
   private Long objectid;
 
-
+  @Getter(value = AccessLevel.PRIVATE)
   private Integer idRef;
 
   @Getter(AccessLevel.PRIVATE)
@@ -213,7 +272,23 @@ public class TsunamiRunupView {
   @Getter(AccessLevel.PRIVATE)
   private Integer predTravMins;
 
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minHousesDamaged;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxHousesDamaged;
+
   private Integer housesDamaged;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minHousesDamagedAmountOrder;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxHousesDamagedAmountOrder;
 
   private Integer housesDamagedAmountOrder;
 
