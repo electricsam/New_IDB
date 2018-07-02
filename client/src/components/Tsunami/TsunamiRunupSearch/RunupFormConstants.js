@@ -138,6 +138,21 @@ const RunupLocInfo = [
       },
     ],
   },
+  {
+    type: 'RADIO',
+    title: 'Comments',
+    htmlFor: '.tsunami.commentType',
+    model: '.tsunami.commentType',
+    radios: [
+      { value: 'commentsStart', label: 'Starts With' },
+      { value: 'commentsEnd', label: 'Ends With' },
+      { value: 'commentsInclude', label: 'Includes' },
+      { value: 'commentsMatch', label: 'Matches' },
+      { value: 'commentsNot', label: 'or Does Not Match' },
+    ],
+    textModelPreface: '.tsunami.rnpsearch.',
+    condition: 'commentType',
+  }
 ];
 
 
