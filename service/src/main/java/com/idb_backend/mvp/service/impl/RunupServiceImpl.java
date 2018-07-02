@@ -24,28 +24,28 @@ public class RunupServiceImpl extends BaseService implements RunupService {
 
   public BooleanExpression generateCriteria(Map<String,String> map){
     QTsunamiEventView event = QTsunamiEventView.tsunamiEventView;
-    BooleanExpression master;
-
     List<BooleanExpression> boolList = new ArrayList<>();
+    BooleanExpression master = null;
+    Boolean masterExists = false;
+
     boolList.add(genIntMinMax(map, "tsMinYear", "tsMaxYear", event.year));
     boolList.add(genEqRestriction(map, "tsRegionCode", event.regionCode));
     boolList.add(genEqRestriction(map, "tsCountry", event.country));
-
-//    NEW
     boolList.add(genEqRestriction(map, "tsArea", event.area));
     boolList.add(genIntMinMax(map, "tsMinValidity", "tsMaxValidity", event.eventValidity));
     boolList.add(genIntMinMax(map, "tsMinCause", "tsMaxCause", event.causeCode));
     boolList.add(genDoubleMinMax(map, "tsMinEqMag", "tsMaxEqMag", event.eqMagnitude));
 
-    if(boolList.size() > 0){
-      master = boolList.get(0);
-      for(int i = 1; i < boolList.size(); i++){
+    for(int i = 0; i < boolList.size(); i++){
+      if(!masterExists){
+        if(boolList.get(i) != null){
+          master = boolList.get(i);
+        }
+      }else{
         if(boolList.get(i) != null){
           master = master.and(boolList.get(i));
         }
       }
-    }else{
-      master = null;
     }
 
     return master;

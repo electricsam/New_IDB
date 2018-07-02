@@ -42,10 +42,10 @@ public class VolcanoServiceImpl extends BaseService implements VolcanoService{
 
   public BooleanExpression generateCriteria (Map<String, String> map){
     QVolLocTsqp root = QVolLocTsqp.volLocTsqp;
-    Integer minLat = -90;
-    BooleanExpression master;
-
     List<BooleanExpression> boolList = new ArrayList<>();
+    BooleanExpression master = null;
+    Boolean masterExists = false;
+
     boolList.add(checkLikeParams(map, "nameStart", "nameEnd", "nameIncludes", "nameMatch", "nameNot", root.name));
     boolList.add(checkLikeParams(map, "locStart", "locEnd", "locIncludes", "locMatch", "locNot", root.location));
     boolList.add(genEqRestriction(map, "country", root.country));
@@ -53,17 +53,19 @@ public class VolcanoServiceImpl extends BaseService implements VolcanoService{
     boolList.add(genDoubleMinMax(map, "minLongitude", "maxLongitude", root.longitude));
     boolList.add(genEqRestriction(map, "morphology", root.morphology));
 
-    if(boolList.size() > 0){
-      master = boolList.get(0);
-      for(int i = 1; i < boolList.size(); i++){
+    for(int i = 0; i < boolList.size(); i++){
+      if(!masterExists){
+        if(boolList.get(i) != null){
+          master = boolList.get(i);
+        }
+      }else{
         if(boolList.get(i) != null){
           master = master.and(boolList.get(i));
         }
       }
-    }else{
-      master = null;
     }
 
     return master;
+
   }
 }
