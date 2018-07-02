@@ -64,8 +64,8 @@ const RunupLocInfo = [
   {
     type: 'RADIO',
     title: 'Location',
-    htmlFor: '.tsunami.runupLocType',
-    model: '.tsunami.runupLocType',
+    htmlFor: '.tsunami.rnpLocType',
+    model: '.tsunami.rnpLocType',
     radios: [
       { value: 'locStart', label: 'Starts With' },
       { value: 'locEnd', label: 'Ends With' },
@@ -74,7 +74,7 @@ const RunupLocInfo = [
       { value: 'locNot', label: 'or Does Not Match' },
     ],
     textModelPreface: '.tsunami.rnpsearch.',
-    condition: 'runupLocType',
+    condition: 'rnpLocType',
   },
   {
     type: 'MINMAX',
@@ -141,8 +141,8 @@ const RunupLocInfo = [
   {
     type: 'RADIO',
     title: 'Comments',
-    htmlFor: '.tsunami.commentType',
-    model: '.tsunami.commentType',
+    htmlFor: '.tsunami.rnpCommentType',
+    model: '.tsunami.rnpCommentType',
     radios: [
       { value: 'commentsStart', label: 'Starts With' },
       { value: 'commentsEnd', label: 'Ends With' },
@@ -151,7 +151,7 @@ const RunupLocInfo = [
       { value: 'commentsNot', label: 'or Does Not Match' },
     ],
     textModelPreface: '.tsunami.rnpsearch.',
-    condition: 'commentType',
+    condition: 'rnpCommentType',
   }
 ];
 

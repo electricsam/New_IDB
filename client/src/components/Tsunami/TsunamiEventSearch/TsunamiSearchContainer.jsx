@@ -63,9 +63,7 @@ class TsunamiSearchContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
-  checkCondition = (condition) => this.props.tsunami.get(condition);
-
-  checkRunupLocType = (condition) => this.props.tsunami.get(condition)
+  checkConditions = (condition) => this.props.tsunami.get(condition);
 
   checkDropDownDisabled = (val) => this.props.tsunami.asMutable().toJS().search.country === val? false: true;
 
@@ -88,7 +86,7 @@ class TsunamiSearchContainer extends React.Component{
             validateMinMax={this.validateMinMax}
             formData={TsunamiSourceParameters}
             checkDropDownDisabled={this.checkDropDownDisabled}
-            checkConditions={this.checkCondition}
+            checkConditions={this.checkConditions}
           />
 
           <FormSection
@@ -98,7 +96,7 @@ class TsunamiSearchContainer extends React.Component{
             validateMinMax={this.validateMinMax}
             formData={TsunamiRunupByPlace}
             checkDropDownDisabled={this.checkDropdownDisabledRunup}
-            checkConditions={this.checkRunupLocType}
+            checkConditions={this.checkConditions}
           />
 
           <FormSection

@@ -45,7 +45,7 @@ class RunupSearchContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
-  checkCondition = (condition) => this.props.tsunami.get(condition);
+  checkConditions = (condition) => this.props.tsunami.get(condition);
 
   handleClear = () => action({type: 'RESET_TS_RUNUP_FORM'});
 
@@ -75,7 +75,7 @@ class RunupSearchContainer extends React.Component{
             title="Tsunami Runup Location Information"
             toggleSection={this.toggleRunupLocationInfo}
             showSection={tsunami.get('showRunupLocation')}
-            checkConditions={this.checkCondition}
+            checkConditions={this.checkConditions}
             validateMinMax={this.validateMinMax}
             formData={RunupLocInfo}
             checkDropDownDisabled={this.checkDropDownDisabledRunup}
