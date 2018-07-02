@@ -322,7 +322,12 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, {patchingRunup: false, patchRunupFail: true, error: action.payload})
     }
     case "RESET_TS_EVENT_FORM": {
-      return state.merge(state, {search: {country: '', runupcountry: '',}});
+      return state.merge(state, {
+        search: {country: '', runupcountry: '',},
+        locType: null,
+        commentType: null,
+        runupLocType: null,
+      });
     }
     case "RESET_TS_RUNUP_FORM": {
       return state.merge(state, {rnpsearch: {}});
