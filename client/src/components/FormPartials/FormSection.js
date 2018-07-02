@@ -132,7 +132,7 @@ const FormSection = props => (
                   <SubSection title={e.title}>
                     {
                       e.data.map(x => (
-                        <div>
+                        <div style={{display: 'inline-block', marginRight: '2%'}}>
                           <Control.radio
                             model={e.model}
                             id={e.id}

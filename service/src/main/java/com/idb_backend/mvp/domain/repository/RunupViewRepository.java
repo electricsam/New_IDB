@@ -97,6 +97,5 @@ public interface RunupViewRepository extends JpaRepository<TsunamiRunupView, Int
     bindings.bind(root.minDamageAmountOrder).first((path, value) -> root.damageAmountOrder.goe(value));
 
     bindings.bind(root.maxDamageAmountOrder).first((path, value) -> root.damageAmountOrder.loe(value));
-
   }
 }
