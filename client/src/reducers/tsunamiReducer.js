@@ -330,7 +330,11 @@ export default function reducer(state = initialState, action) {
       });
     }
     case "RESET_TS_RUNUP_FORM": {
-      return state.merge(state, {rnpsearch: {}});
+      return state.merge(state, {
+        rnpsearch: {},
+        rnpLocType: null,
+        rnpCommentType: null
+      });
     }
     default:
       return state;

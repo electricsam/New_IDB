@@ -82,6 +82,7 @@ const RunupLocInfo = [
     minThreshold: validationConstants.distanceRnpLoc.min,
     maxThreshold: validationConstants.distanceRnpLoc.max,
     min: {
+
       model: '.tsunami.rnpsearch.minDistFromSource',
       validMessage: 'Invalid Min Distance',
     },
