@@ -18,6 +18,10 @@ public interface RunupViewRepository extends JpaRepository<TsunamiRunupView, Int
 
     bindings.bind(root.maxDistFromSource).first((path, value) -> root.distFromSource.loe(value));
 
+    bindings.bind(root.minTravHours).first((path, value) -> root.travHours.goe(value));
+
+    bindings.bind(root.maxTravHours).first((path, value) -> root.travHours.loe(value));
+
     bindings.bind(root.minLatitude).first((path, value) -> root.latitude.goe(value));
 
     bindings.bind(root.maxLatitude).first((path, value) -> root.latitude.loe(value));

@@ -91,6 +91,20 @@ const RunupLocInfo = [
     },
   },
   {
+    type: 'MINMAX',
+    title: 'Travel Time',
+    minThreshold: validationConstants.travelTime.min,
+    maxThreshold: validationConstants.travelTime.max,
+    min: {
+      model: '.tsunami.rnpsearch.minTravHours',
+      validMessage: 'Invalid Min Travel Time',
+    },
+    max: {
+      model: '.tsunami.rnpsearch.maxTravHours',
+      validMessage: 'Invalid Max Travel Time',
+    },
+  },
+  {
     type: 'MULTIMINMAX',
     title: 'Range of Coordinates in decimal degrees of the Runup Location',
     data: [

@@ -40,6 +40,14 @@ public class TsunamiRunupView {
 
   private Integer travHours;
 
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minTravHours;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxTravHours;
+
   private Integer travMins;
 
   private Double period;
