@@ -153,10 +153,12 @@ const TsunamiSourceParameters = [
     radios: [
       { value: 'commentsStart', label: 'Starts With' },
       { value: 'commentsEnd', label: 'Ends With' },
-      { value: 'commentsIncludes', label: 'Includes' },
+      { value: 'commentsInclude', label: 'Includes' },
       { value: 'commentsMatch', label: 'Matches' },
       { value: 'commentsNot', label: 'or Does Not Match' },
-    ]
+    ],
+    textModelPreface: '.tsunami.search.',
+    condition: 'commentType',
   }
 ];
 
