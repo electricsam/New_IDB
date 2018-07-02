@@ -271,6 +271,31 @@ const RunupParamsEffects = [
     },
   },
   {
+    type: 'RADIONOTEXT',
+    title: 'Doubtfulness',
+    data: [
+      {
+        value: 'null',
+        checked: true,
+        label: 'OK',
+      },
+      {
+        value: '?',
+        checked: false,
+        label: 'Doubtful',
+      },
+      {
+        value: 'M',
+        checked: false,
+        label: 'Meteorological',
+      },
+    ],
+    model: '.tsunami.rnpsearch.doubtful',
+    id: '.tsunami.rnpsearch.doubtful',
+    htmlFor: '.tsunami.rnpsearch.doubtful',
+    noText: true,
+  },
+  {
     type: 'MINMAX',
     title: 'Number of Deaths at Runup Location',
     minThreshold: validationConstants.numberOfDeaths.min,
@@ -298,6 +323,9 @@ const RunupParamsEffects = [
       validMessage: 'Invalid Max Damage',
     },
   },
+
+
+
 ];
 
 

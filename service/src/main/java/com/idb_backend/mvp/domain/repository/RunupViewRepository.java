@@ -61,7 +61,5 @@ public interface RunupViewRepository extends JpaRepository<TsunamiRunupView, Int
     bindings.bind(root.commentsMatch).first((path, value) -> root.comments.equalsIgnoreCase(value));
 
     bindings.bind(root.commentsNot).first((path, value) -> root.comments.notEqualsIgnoreCase(value));
-
-
   }
 }
