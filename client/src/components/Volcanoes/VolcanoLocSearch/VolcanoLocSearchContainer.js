@@ -43,7 +43,7 @@ class VolcanoLocSearchContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
-  handleClear = () => action({type: 'REST_VOLCANO_LOC_SEARCH'});
+  handleClear = () => action({type: 'RESET_VOLCANO_LOC_SEARCH'});
 
   render(){
     let { volcano } = this.props;

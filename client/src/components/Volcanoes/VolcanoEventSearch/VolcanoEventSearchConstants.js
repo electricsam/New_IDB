@@ -179,22 +179,7 @@ const Effects = [
       validMessage: 'Invalid Damage Description',
     },
   },
-  {
-    ype: 'RADIO',
-    title: 'Volcano Eruption Comments',
-    htmlFor: '.volcano.eruption',
-    model: '.volcano.eruption',
-    radios: [
-      { value: 'comStart', label: 'Starts With' },
-      { value: 'comIncludes', label: 'Includes' },
-      { value: 'comMatch', label: 'Matches' },
-      { value: 'comNot', label: 'or Does Not Match' },
-    ],
-    textModelPreface: '.volcano.search.',
-    condition: 'comments',
-  },
 ];
-
 
 export {
   Parameters,

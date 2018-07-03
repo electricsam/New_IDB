@@ -50,7 +50,7 @@ class VolcanoEventSearchContainer extends React.Component{
 
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
-  handleClear = () => action({type: 'REST_VOLCANO_EVENT_SEARCH'});
+  handleClear = () => action({type: 'RESET_VOLCANO_EVENT_SEARCH'});
 
   render(){
     let { volcano } = this.props;

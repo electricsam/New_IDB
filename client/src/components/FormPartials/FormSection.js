@@ -82,7 +82,7 @@ const FormSection = props => (
                   <SubSection title={e.title}>
                     <DateTime
                       model={e.model}
-                      title="YYYY-MM-DD HH:MM:SS"
+                      title="YYYY-MM-DD"
                       validDateTime={props.validateDateTime}
                       validMessage={{ valid: e.validMessage }}
                     />

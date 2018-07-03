@@ -43,22 +43,15 @@ class VolcanoEventInsertContainer extends React.Component{
 
   validateDateTime = (dateTime) => {
     if (!dateTime) return true
-    var re = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/
+    var re = /^\d{4}-\d{2}-\d{2}$/
     if(!re.test(dateTime)) return false;
 
     let date = dateTime.substring(0, 10);
     let dateArr = date.split('-').map(e => parseInt(e));
 
-    let time = dateTime.substring(11, 19)
-    let timeArr = time.split(':').map(e => parseInt(e));
-
     if(dateArr[0] > (new Date).getFullYear() || dateArr[0] < 0) return false;
     if(dateArr[1] > 12 || dateArr[1] < 1) return false;
     if(dateArr[2] < 1 || dateArr[2] > 31) return false;
-
-    if(timeArr[0] < 0 || timeArr[0] > 23) return false;
-    if(timeArr[1] < 0 || timeArr[1] > 59) return false;
-    if(timeArr[2] < 0 || timeArr[2] > 59) return false;
 
     return true;
   };

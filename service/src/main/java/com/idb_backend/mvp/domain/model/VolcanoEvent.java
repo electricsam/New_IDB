@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.Getter;
 
 import javax.persistence.*;
+import javax.validation.constraints.PastOrPresent;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TimeZone;
@@ -34,13 +35,16 @@ public class VolcanoEvent {
   private Integer mo;
   private Integer day;
 
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+  @JsonFormat(pattern = "yyyy-MM-dd", timezone = "UTC")
+  @PastOrPresent
   private java.util.Date eventDate;
 
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
+  @JsonFormat(pattern = "yyyy-MM-dd ", timezone = "UTC")
+  @PastOrPresent
   private java.util.Date startDate;
 
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "UTC")
+  @JsonFormat(pattern = "yyyy-MM-dd", timezone = "UTC")
+  @PastOrPresent
   private java.util.Date endDate;
 
   private Integer vei;
