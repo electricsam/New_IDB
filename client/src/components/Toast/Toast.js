@@ -2,6 +2,7 @@ import React from 'react';
 import {toast, ToastContainer } from 'react-toastify';
 import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
 
+
 export class Toast extends React.Component{
   constructor(props){
     super(props);
