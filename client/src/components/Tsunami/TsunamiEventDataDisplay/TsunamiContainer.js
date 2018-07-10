@@ -151,6 +151,7 @@ class TsunamiContainer extends React.Component {
             title={tsunamiUi.get('eventModalTitle')}
             data={tsunamiUi.get('eventModalData')}
             secondaryData={tsunamiUi.get('eventModalSecondaryData') ? tsunamiUi.get('eventModalSecondaryData').asMutable().toJS() : null}
+            component={tsunamiUi.get('eventModalComponent') ? tsunamiUi.get('eventModalComponent').asMutable().toJS() : null}
             />
           }
           <TickboxTable

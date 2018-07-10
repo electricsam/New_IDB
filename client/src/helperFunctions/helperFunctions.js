@@ -39,7 +39,8 @@ const openTsunamiEventModal = (accessor) => {
         data:node.data,
         validValues: node.validValues,
         title: node.title,
-        secondaryData: node.secondaryData
+        secondaryData: node.secondaryData,
+        component: node.component
       }})
   }
 };

@@ -1,3 +1,4 @@
+import React from 'react';
 
 const tsunamiEventColumnDefinitions = {
   year: {
@@ -5,7 +6,7 @@ const tsunamiEventColumnDefinitions = {
     data: "Format +/-yyyy (-is B.C, +is A.D.) \n" +
     "    The Date and Time are given in Universal Coordinated Time (also known as Greenwich Mean Time). " +
     "The local date may be one day different.",
-    validValues: "-2000 to <Present>"
+    validValues: "-2000 to <Present>",
   },
   month: {
     title: 'Month',

@@ -25,6 +25,10 @@ export const DefinitionModal = props => {
                   <div style={{display:'none'}}></div>
             }
 
+            {
+              props.component?
+                  props.component: <div style={{display: 'none'}}></div>
+            }
           </div>
         </div>
     )
