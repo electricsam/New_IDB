@@ -42,6 +42,7 @@ class VolcanoLanding extends React.Component {
   render() {
     return (
         <div className={Styles.container}>
+          <h1 className={Styles.title}>Volcanoes</h1>
           <div className={Styles.innerGrid}>
             {buttons.map(e => (
                 <VolcanoLandingPartial
