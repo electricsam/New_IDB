@@ -2,6 +2,7 @@ import React from 'react';
 
 import Styles from './DefinitionModalStyles.css'
 import SecondaryData from './SecondaryData';
+import ValidValues from "./ValidValues";
 
 export const DefinitionModal = props => {
   if(props.isOpen){
@@ -14,7 +15,7 @@ export const DefinitionModal = props => {
 
             <h2 className={Styles.title}>{props.title}</h2>
 
-            {props.validValues? <p><b>Valid Values:</b> {props.validValues}</p> : <div style={{display: 'none'}}></div>}
+            <ValidValues value={props.validValues}/>
 
             <p>{props.data}</p>
 

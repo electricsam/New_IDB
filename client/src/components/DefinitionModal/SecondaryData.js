@@ -1,21 +1,11 @@
 import React from 'react';
 
-// const SecondaryData = props => (
-//     <div>
-//       <p style={{fontWeight: 'bold', fontFamily: 'sans-serif'}}>{props.title}</p>
-//       <p>{props.data}</p>
-//     </div>
-// );
-//
-// export default SecondaryData;
-
 const h5Style = {
   textDecoration: 'underline',
   color: 'blue',
   cursor: 'pointer',
   margin: '.5% 0 .5% 0'
 };
-
 
 class SecondaryData extends React.Component{
   constructor(props){
