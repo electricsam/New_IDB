@@ -34,6 +34,7 @@ class ReferenceLanding extends React.Component {
   render() {
     return (
       <div className={Styles.container}>
+        <h1 className={Styles.title}>References</h1>
         <div className={Styles.innerGrid}>
           {buttons.map(e => (
             <ReferenceLandingPartial
