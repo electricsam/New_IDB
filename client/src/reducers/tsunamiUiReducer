@@ -5,16 +5,19 @@ export const initialState = fromJS({
   eventModalTitle: null,
   eventModalValidValues: null,
   eventModalData: null,
+  eventModalSecondaryData: null,
 });
 
 export default function reducer(state = initialState, action){
   switch(action.type){
     case 'OPEN_TSUNAMI_EVENT_MODAL': {
+      console.log("action.payload: ", action.payload)
       return state.merge(state, {
         eventModalIsOpen: true,
         eventModalTitle: action.payload.title,
         eventModalData: action.payload.data,
-        eventModalValidValues: action.payload.validValues
+        eventModalValidValues: action.payload.validValues,
+        eventModalSecondaryData: action.payload.secondaryData || null
       })
     }
     case 'CLOSE_TSUNAMI_EVENT_MODAL': {

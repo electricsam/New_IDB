@@ -10,7 +10,6 @@ import { decodeQueryString, createApiQueryString, encodeQueryString } from '../.
 import DialogBox from '../../FormPartials/DialogBox';
 import TickboxTable from "../../CheckboxTable/TickboxTable";
 import {DefinitionModal} from "../../DefinitionModal/DefinitionModal";
-import DefinitionList from "../../DefinitionList/DefinitionList";
 
 const tableStyle = {
   textAlign: 'center',
@@ -151,6 +150,7 @@ class TsunamiContainer extends React.Component {
             validValues={tsunamiUi.get('eventModalValidValues')}
             title={tsunamiUi.get('eventModalTitle')}
             data={tsunamiUi.get('eventModalData')}
+            secondaryData={tsunamiUi.get('eventModalSecondaryData') ? tsunamiUi.get('eventModalSecondaryData').asMutable().toJS() : null}
             />
           }
           <TickboxTable

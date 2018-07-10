@@ -38,7 +38,8 @@ const openTsunamiEventModal = (accessor) => {
       payload: {
         data:node.data,
         validValues: node.validValues,
-        title: node.title
+        title: node.title,
+        secondaryData: node.secondaryData
       }})
   }
 };
@@ -59,7 +60,16 @@ const mapToTsunamiEventTable = arr => {
     accessors.map(e => {
       if(e === 'eqMagnitude'){
         result.push({
-          Header: () => (<div>{camelToPascal(e)}</div>),
+          Header: () => (
+              <div style={headerStyle}>
+                <span>{camelToPascal(e)}</span>
+                <i className='material-icons'
+                   style={{margin: '0 1% 0 1%', color: 'blue'}}
+                   onClick={() => openTsunamiEventModal(e)}>info</i>
+
+              </div>
+
+          ),
           accessor: e,
           Cell: props => <Link
               to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.id + ""}))}`}>

@@ -66,7 +66,38 @@ const tsunamiEventColumnDefinitions = {
     title: "Earthquake Magnitude",
     validValues: '0.0 to 9.9',
     data: 'The value in this column contains the primary earthquake magnitude. Magnitude measures the energy released at the source of the earthquake. Magnitude is determined from measurements on seismographs. For pre-instrumental events, the magnitudes are derived from intensities. There are several different scales for measuring earthquake magnitudes. The primary magnitude is chosen from the available magnitude scales in this order:\n' +
-    '\n'
+    '\n',
+    secondaryData: [
+      {
+        title: "Mw Magnitude",
+        data: "The Mw magnitude is based on the moment magnitude scale. Moment is a physical quantity proportional to the slip on the fault times the area of the fault surface that slips; it is related to the total energy released in the EQ. The moment can be estimated from seismograms (and also from geodetic measurements). The moment is then converted into a number similar to other earthquake magnitudes by a standard formula. The result is called the moment magnitude. The moment magnitude provides an estimate of earthquake size that is valid over the complete range of magnitudes, a characteristic that was lacking in other magnitude scales.\n" +
+        "\n" +
+        "The magnitude is a measure of seismic energy. The magnitude scale is logarithmic. An increase of one in magnitude represents a tenfold increase in the recorded wave amplitude. However, the energy release associated with an increase of one in magnitude is not tenfold, but about thirtyfold. For example, approximately 900 times more energy is released in an earthquake of magnitude 7 than in an earthquake of magnitude 5. Each increase in magnitude of one unit is equivalent to an increase of seismic energy of about 1.6 x 10,000,000,000,000 ergs.\n" +
+        "\n"
+      },
+      {
+        title: "Ms Magnitude",
+        data: "The Ms magnitude is the surface-wave magnitude of the earthquake.\n" +
+        "\n" +
+        "The magnitude is a measure of seismic energy. The magnitude scale is logarithmic. An increase of one in magnitude represents a tenfold increase in the recorded wave amplitude. However, the energy release associated with an increase of one in magnitude is not tenfold, but about thirtyfold. For example, approximately 900 times more energy is released in an earthquake of magnitude 7 than in an earthquake of magnitude 5. Each increase in magnitude of one unit is equivalent to an increase of seismic energy of about 1.6 x 10,000,000,000,000 ergs."
+      },
+      {
+        title: "Mb Magnitude",
+        data: "The Mb magnitude is the compressional body wave (P-wave) magnitude."
+      },
+      {
+        title: "Ml Magnitude",
+        data: "The ML magnitude was the original magnitude relationship defined by Richter and Gutenberg for local earthquakes in 1935. It is based on the maximum amplitude of a seismogram recorded on a Wood-Anderson torsion seismograph. Although these instruments are no longer widely in use, ML values are calculated using modern instrumentation with appropriate adjustments."
+      },
+      {
+        title: "Mfa Magnitude",
+        data: "The Mfa magnitudes are computed from the felt area, for earthquakes that occurred before seismic instruments were in general use."
+      },
+      {
+        title: "Unknown Magnitude",
+        data: "The computational method for the earthquake magnitude was unknown and could not be determined from the published sources"
+      }
+    ]
   },
   relatedVolcano: {
     title: "Volcano",
