@@ -11,7 +11,9 @@ import React from 'react';
 
 const h5Style = {
   textDecoration: 'underline',
+  color: 'blue',
   cursor: 'pointer',
+  margin: '.5% 0 .5% 0'
 };
 
 
@@ -28,8 +30,8 @@ class SecondaryData extends React.Component{
   render(){
     return (
         <div>
-          <h5 onClick={this.toggleOpen}>{this.props.title}</h5>
-          <p style={{display: this.state.isOpen? 'block': 'none'}}>{this.props.data}</p>
+          <h4 style={h5Style} onClick={this.toggleOpen}>{this.props.title}</h4>
+          <p style={{display: this.state.isOpen? 'block': 'none', textIndent: '2%'}}>{this.props.data}</p>
         </div>
     )
   }
