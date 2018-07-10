@@ -35,6 +35,7 @@ class EarthquakeLanding extends React.Component {
   render() {
     return (
       <div className={Styles.container}>
+        <h1 className={Styles.title}>Earthquakes</h1>
         <div className={Styles.innerGrid}>
           {buttons.map(e => (
             <EarthquakeLandingPartial
