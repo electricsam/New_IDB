@@ -47,56 +47,15 @@ public class TsunamiEventView implements Serializable{
 
   private Double second;
 
-  private Double latitude;
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minEventValidity;
 
   @Transient
   @Getter(value = AccessLevel.PRIVATE)
-  private Double minLatitude;
+  private Integer maxEventValidity;
 
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Double maxLatitude;
-
-  private Double longitude;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Double minLongitude;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Double maxLongitude;
-
-  private String locationName;
-
-  @Transient
-  @Getter(AccessLevel.PRIVATE)
-  private String locStart;
-
-  @Transient
-  @Getter(AccessLevel.PRIVATE)
-  private String locEnd;
-
-  @Transient
-  @Getter(AccessLevel.PRIVATE)
-  private String locIncludes;
-
-  @Transient
-  @Getter(AccessLevel.PRIVATE)
-  private String locMatch;
-
-  @Transient
-  @Getter(AccessLevel.PRIVATE)
-  private String locNot;
-
-  private String area;
-
-  private String country;
-
-  @Getter(value = AccessLevel.PRIVATE)
-  private Integer regionCode;
-
-  private Integer causeCode;
+  private Integer eventValidity;
 
   @Transient
   @Getter(value = AccessLevel.PRIVATE)
@@ -106,15 +65,7 @@ public class TsunamiEventView implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private Integer maxCauseCode;
 
-  private Integer eventValidity;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Integer minEventValidity;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Integer maxEventValidity;
+  private Integer causeCode;
 
   @Getter(value = AccessLevel.PRIVATE)
   private Double eqMagUnk;
@@ -139,8 +90,52 @@ public class TsunamiEventView implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private Double maxEqMagnitude;
 
+  private String country;
+
+  private String locationName;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private String locStart;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private String locEnd;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private String locIncludes;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private String locMatch;
+
+  @Transient
+  @Getter(AccessLevel.PRIVATE)
+  private String locNot;
+
   @Getter(value = AccessLevel.PRIVATE)
-  private Integer eqDepth;
+  private String area;
+
+  private Double latitude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double minLatitude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double maxLatitude;
+
+  private Double longitude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double minLongitude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double maxLongitude;
 
   private Double maxEventRunup;
 
@@ -152,12 +147,28 @@ public class TsunamiEventView implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private Double minMaxEventRunup;
 
-//  @Getter(value = AccessLevel.PRIVATE)
+  private Integer numRunup;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minNumRunup;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxNumRunup;
+
+  //  @Getter(value = AccessLevel.PRIVATE)
   private BigDecimal tsMtAbe;
-//  @Getter(value = AccessLevel.PRIVATE)
+  //  @Getter(value = AccessLevel.PRIVATE)
   private BigDecimal tsMtIi;
 
   private BigDecimal tsIntensity;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer regionCode;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer eqDepth;
 
   private Double damageMillionsDollars;
 
@@ -280,19 +291,10 @@ public class TsunamiEventView implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private Integer maxHousesDamagedAmountOrder;
 
-  private Integer numRunup;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Integer minNumRunup;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Integer maxNumRunup;
-
   @Getter(value = AccessLevel.PRIVATE)
   private Integer warningStatusId;
 
+  @Getter(value = AccessLevel.PRIVATE)
   private String comments;
 
   @Getter(value = AccessLevel.PRIVATE)
@@ -349,7 +351,6 @@ public class TsunamiEventView implements Serializable{
   //TODO: add annotation for foreign key
   @Getter(value = AccessLevel.PRIVATE)
   private Integer mapEqId;
-
 
   private Double damageMillionsDollarsTotal;
 
@@ -481,8 +482,6 @@ public class TsunamiEventView implements Serializable{
 
   @Getter(value = AccessLevel.PRIVATE)
   private Integer numDeposits;
-
-
 
 
   @OneToMany( mappedBy = "tsunamiEventView", cascade = CascadeType.ALL)

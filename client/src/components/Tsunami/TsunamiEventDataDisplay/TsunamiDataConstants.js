@@ -102,7 +102,7 @@ const tsunamiEventColumnDefinitions = {
   },
   relatedVolcano: {
     title: "Volcano",
-    data: 'The Volcano link will display additional information in a new browser window if the tsunami was associated with an volcanic eruption. The information may include information such as the VEI index, morphology, and the effects of the eruption.',
+    data: 'The Volcano link will display additional information if the tsunami was associated with an volcanic eruption. The information may include information such as the VEI index, morphology, and the effects of the eruption.',
     validValues: null
   },
   moreInfo: {
@@ -383,7 +383,7 @@ const tsunamiEventColumnDefinitions = {
     "2 = Some (~51 to 100 houses)\n" +
     "3 = Many (~101 to 1000 houses)\n" +
     "4 = Very Many (~1001 or more houses)"
-  }
+  },
 };
 
 export {

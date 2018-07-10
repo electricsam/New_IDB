@@ -54,6 +54,23 @@ const headerStyle = {
   alignItems: 'center'
 }
 
+
+const translateValue = {
+  locationName: 'Name',
+  causeCode: 'Code',
+  eventValidity: 'Val',
+  tsIntensity: 'Tsu Int',
+  tsMtAbe: 'Abe',
+  tsMtIi: 'Iida',
+  eqMagnitude: 'Earthquake Mag',
+  maxEventRunup: 'Max Water Height',
+  second: 'Sec',
+  minute:'Min',
+  hour:'Hr',
+  month: 'Mo',
+  day: 'Dy'
+}
+
 const mapToTsunamiEventTable = arr => {
   const result = [];
   if(arr.length) {
@@ -63,13 +80,11 @@ const mapToTsunamiEventTable = arr => {
         result.push({
           Header: () => (
               <div style={headerStyle}>
-                <span>{camelToPascal(e)}</span>
+                <span>Earthquake Mag</span>
                 <i className='material-icons'
                    style={{margin: '0 1% 0 1%', color: 'blue'}}
                    onClick={() => openTsunamiEventModal(e)}>info</i>
-
               </div>
-
           ),
           accessor: e,
           Cell: props => <Link
@@ -90,9 +105,10 @@ const mapToTsunamiEventTable = arr => {
         result.push({
           Header:() => (
               <div style={headerStyle}>
-                <span>{camelToPascal(e)} </span><i className="material-icons"
-                                                   style={{margin: '0 1% 0 1%', color: 'blue'}}
-                                                   onClick={() => openTsunamiEventModal(e)}>info</i>
+                <span>{camelToPascal(e)} </span>
+                <i className="material-icons"
+                   style={{margin: '0 1% 0 1%', color: 'blue'}}
+                   onClick={() => openTsunamiEventModal(e)}>info</i>
               </div>),
           accessor: e,
           Cell: props => <div>
@@ -101,34 +117,58 @@ const mapToTsunamiEventTable = arr => {
         })
       }else if(e === 'numRunup'){
         result.push({
-          Header: camelToPascal(e),
+          Header: () => (
+              <div style={headerStyle}>
+                <span>{camelToPascal(e)} </span>
+                <i className="material-icons"
+                   style={{margin: '0 1% 0 1%', color: 'blue'}}
+                   onClick={() => openTsunamiEventModal(e)}>info</i>
+              </div>),
           accessor: e,
           Cell: props => <Link
               to={`/tsunami/runup/data?${encodeQueryString(JSON.stringify({eventid: props.original.id + ""}))}`}>
                 {props.value}
               </Link>
         })
-      }else{
+      }else if(translateValue[e]){
+        result.push({
+          Header: () => (
+              <div style={headerStyle}>
+                <span style={{wordWrap: 'break-word'}}>{translateValue[e]} </span>
+                <i className="material-icons"
+                   style={{margin: '0 1% 0 1%', color: 'blue'}}
+                   onClick={() => openTsunamiEventModal(e)}>info</i>
+              </div>),
+          accessor: e });
+      } else{
         result.push({
           Header: () => (
           <div style={headerStyle}>
-            <span>{camelToPascal(e)} </span><i className="material-icons"
-                                               style={{margin: '0 1% 0 1%', color: 'blue'}}
-                                               onClick={() => openTsunamiEventModal(e)}>info</i>
+            <span style={{wordWrap: 'break-word'}}>{camelToPascal(e)} </span>
+            <i className="material-icons"
+               style={{margin: '0 1% 0 1%', color: 'blue'}}
+               onClick={() => openTsunamiEventModal(e)}>info</i>
           </div>),
           accessor: e });
       }
     });
-    let input = {
-      Header: () => <div>More Info</div>,
+    result.splice(10, 0, {
+      Header: () => (<div style={headerStyle}><span>More Info </span>
+        <i className="material-icons"
+           style={{margin: '0 1% 0 1%', color: 'blue'}}
+           onClick={() => openTsunamiEventModal('moreInfo')}>info</i>
+      </div>),
       accessor: 'moreInfo',
       Cell: props => <Link to={`/tsunami/event/moreinfo/${props.original.id}`}>
         <i className="material-icons">info</i>
       </Link>
-    }
-    result.splice(10, 0, input);
-    result.splice(11, 0, {
-      Header: () => <div>Related Volcano </div>,
+    });
+    result.splice(10, 0, {
+      Header: () => (<div style={headerStyle}><span>Related Volcano </span>
+        <i className="material-icons"
+           style={{margin: '0 1% 0 1%', color: 'blue'}}
+           onClick={() => openTsunamiEventModal('relatedVolcano')}>info</i>
+      </div>),
       accessor: 'realatedVolcano',
       Cell: props => <Link
           to={`/volcano/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.id + ""}))}`}>
