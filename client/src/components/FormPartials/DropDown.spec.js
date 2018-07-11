@@ -1,23 +1,16 @@
 import 'babel-polyfill';
-import { fromJS } from 'immutable';
-// import 'regenerator-runtime';
 import React from 'react'
 import 'raf/polyfill';
 import { expect }from 'chai';
-import sinon from 'sinon';
-import {shallow, configure, mount} from 'enzyme';
+import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import DropDown from './DropDown.jsx';
-import configureStore from 'redux-mock-store';
 
 import { countries }from '../formConstants/constants';
 
 configure({adapter: new Adapter()});
 
 describe('DropDown Load', () => {
-
-
-  let mockStore = configureStore();
   let wrapper;
   beforeEach(()=> {
     wrapper = shallow(
@@ -32,7 +25,6 @@ describe('DropDown Load', () => {
   });
 
   it('should render a div with className dropContainer', () => {
-    console.log(wrapper.debug())
     expect(wrapper.hasClass('DropDownStyles__dropContainer')).to.equal(true);
   });
 
@@ -43,7 +35,10 @@ describe('DropDown Load', () => {
         </label>
 
     )).to.equal(true)
-  })
+  });
 
+  it('should render a third party component called DefaultConnectedControlSelect', ()=> {
+    expect(wrapper.find('DefaultConnectedControlSelect')).to.have.length(1);
+  });
 
 });
