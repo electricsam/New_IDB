@@ -3,11 +3,11 @@ process.env.NODE_ENV = 'test';
 // require('babel-register')();
 var React = require('react')
 require('babel-polyfill');
-// require.extensions['css'] = function () {return null;};
+require.extensions['css'] = function () {return null;};
 // require.extensions['png'] = function () {return null;};
 // require.extensions['jpg'] = function () {return null;};
 //
-// const hook = require('css-modules-require-hook');
+const hook = require('css-modules-require-hook');
 //
 // var jsdom = require('jsdom');
 // const { JSDOM } = jsdom;
@@ -37,31 +37,7 @@ require('babel-polyfill');
 //
 // documentRef = document;
 
-// require('babel-register')();
-//
-// var jsdom = require('jsdom').jsdom;
-//
-// var exposedProperties = ['window', 'navigator', 'document'];
-// require('babel-polyfill');
-// require.extensions['css'] = function () {return null;};
-// require.extensions['png'] = function () {return null;};
-// require.extensions['jpg'] = function () {return null;};
-//
-//
-// global.document = jsdom('');
-// global.window = document.defaultView;
-// Object.keys(document.defaultView).forEach((property) => {
-//   if (typeof global[property] === 'undefined') {
-//     exposedProperties.push(property);
-//     global[property] = document.defaultView[property];
-//   }
-// });
-//
-// global.navigator = {
-//   userAgent: 'node.js'
-// };
-//
-// documentRef = document;
+
 
 
 const { JSDOM } = require('jsdom');
@@ -78,6 +54,11 @@ function copyProps(src, target) {
       }), {});
   Object.defineProperties(target, props);
 }
+
+hook({
+      extensions: ['.css'],
+  generateScopedName: '[name]__[local]'
+});
 
 global.window = window;
 global.document = window.document;

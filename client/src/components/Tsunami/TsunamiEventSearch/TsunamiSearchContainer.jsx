@@ -120,10 +120,6 @@ class TsunamiSearchContainer extends React.Component{
   }
 }
 
-const mapStateToProps = state => {
-  console.log("this is state: ",state);
-  return {tsunami: state.deep.tsunami}
-
-};
+const mapStateToProps = state => ({tsunami: state.deep.tsunami});
 
 export default connect(mapStateToProps)(TsunamiSearchContainer);

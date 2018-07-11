@@ -1,9 +1,11 @@
 import 'babel-polyfill';
+import { fromJS } from 'immutable';
 // import 'regenerator-runtime';
 import React from 'react'
 import 'raf/polyfill';
 import { expect }from 'chai';
-import {shallow, configure} from 'enzyme';
+import sinon from 'sinon';
+import {shallow, configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import TsunamiSearchContainer from './TsunamiSearchContainer.jsx'
 import configureStore from 'redux-mock-store';
@@ -13,7 +15,7 @@ configure({adapter: new Adapter()});
 describe('TsunamiEventSearchContainer load', () => {
   let initialState = {
     deep: {
-      tsunami: {
+      tsunami: fromJS({
         postingRunup: false,
         postedRunup: false,
         postRunupFail: false,
@@ -86,18 +88,26 @@ describe('TsunamiEventSearchContainer load', () => {
         patchingRunup: false,
         patchedRunup: false,
         patchRunupFail: false,
-      }
+      })
     }
   }
-  let mockStore = configureStore();
 
+  let mockStore = configureStore();
+  let wrapper;
   beforeEach(()=> {
     let store = mockStore(initialState);
-    let wrapper = shallow(<TsunamiSearchContainer store={store}/>);
+    wrapper = mount(<TsunamiSearchContainer store={store}/>);
   });
 
+  it('should call componentDidMount', () => {
+    wrapper.dive()
+    sinon.spy(TsunamiSearchContainer.prototype, 'componentDidMount');
+    expect(TsunamiSearchContainer.prototype.componentDidMount.called).to.be.true;
+  });
 
   it('should load without crashing', () => {
-    expect(true).to.be.true;
+    expect(wrapper.type()).to.equal('div');
   })
+
+
 });
