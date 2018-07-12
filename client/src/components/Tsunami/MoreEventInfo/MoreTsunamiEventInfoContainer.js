@@ -6,7 +6,7 @@ import SmallTable from "../../SmallTable/SmallTable";
 import Loading from '../../loadbar/Loading';
 
 import { createApiQueryString } from '../../../helperFunctions/helperFunctions'
-import MoreInfoComments from "../../FormPartials/MoreInfoComments";
+import MoreInfoComments from "../../FormPartials/MoreInfoComments/MoreInfoComments";
 
 const action = obj => store.dispatch(obj);
 

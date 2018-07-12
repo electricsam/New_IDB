@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import store from '../../../store';
 import SmallTable from "../../SmallTable/SmallTable";
 import Loading from '../../loadbar/Loading';
-import MoreInfoComments from "../../FormPartials/MoreInfoComments";
+import MoreInfoComments from "../../FormPartials/MoreInfoComments/MoreInfoComments";
 
 const action = obj => store.dispatch(obj);
 
