@@ -273,11 +273,11 @@ const TotalTsunamiEffects = [
     minThreshold: validationConstants.waterHeight.min,
     maxThreshold: validationConstants.waterHeight.max,
     min: {
-      model: '.tsunami.search.maxMaxEventRunup',
+      model: '.tsunami.search.minMaxEventRunup',
       validMessage: 'Invalid Max Event Runup',
     },
     max: {
-      model: '.tsunami.search.minMaxEventRunup',
+      model: '.tsunami.search.maxMaxEventRunup',
       validMessage: 'Invalid Max Event Runup',
     },
   },

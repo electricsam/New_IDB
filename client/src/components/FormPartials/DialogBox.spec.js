@@ -13,7 +13,7 @@ describe('Dialog box behavior', () => {
   let wrapper;
   let handleYesClick;
   let handleNoClick;
-  beforeEach(()=> {
+  beforeEach(() => {
     handleYesClick = sinon.spy();
     handleNoClick = sinon.spy();
 
@@ -30,14 +30,26 @@ describe('Dialog box behavior', () => {
     expect(wrapper.find('.DialogBoxStyle__copy')).to.have.length(1);
   });
 
+  it('should render a div with className buttonContainer', () => {
+    expect(wrapper.find('.DialogBoxStyle__buttonContainer')).to.have.length(1);
+  });
+
+  it('should render a div with className yes', () => {
+    expect(wrapper.find('.DialogBoxStyle__yes')).to.have.length(1)
+  });
+
+  it('should render a div with className NO', () => {
+    expect(wrapper.find('.DialogBoxStyle__no')).to.have.length(1)
+  });
+
   it('should call handleYesClick when yes button is clicked', () => {
     wrapper.find('.DialogBoxStyle__yes').simulate('click');
     expect(handleYesClick.calledOnce).to.be.true;
-  })
+  });
 
   it('should call handleNoClick when no button is clicked', () => {
     wrapper.find('.DialogBoxStyle__no').simulate('click');
     expect(handleNoClick.calledOnce).to.be.true;
-  })
+  });
 });
 
