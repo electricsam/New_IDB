@@ -6,7 +6,7 @@ import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import DropDown from './DropDown.jsx';
 
-import { countries }from '../formConstants/constants';
+import { countries }from '../../formConstants/constants';
 
 configure({adapter: new Adapter()});
 

@@ -3,15 +3,15 @@ import React from 'react';
 import { Control, Errors } from 'react-redux-form/lib/immutable';
 import PropTypes from 'prop-types';
 
-import DropDown from './DropDown.jsx';
+import DropDown from './DropDown/DropDown.jsx';
 import Radio from './Radio';
 import MinMax from './MinMax';
 import SubSection from './SubSection';
-import DateTime from './DateTime';
+import DateTime from './DateTime/DateTime';
 import Styles from './FormSectionStyles.css';
 import DropDownList from "./DropDownList";
 import Text from "./Text";
-import {Textarea} from "./Textarea";
+import {Textarea} from "./Textarea/Textarea";
 
 const FormSection = props => (
   <section className={Styles.formOuterSection}>

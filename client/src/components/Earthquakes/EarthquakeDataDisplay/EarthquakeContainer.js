@@ -2,7 +2,7 @@ import React from 'react';
 import { push } from 'react-router-redux';
 import {connect} from "react-redux";
 
-import DialogBox from "../../FormPartials/DialogBox";
+import DialogBox from "../../FormPartials/DialogBox/DialogBox";
 import Loading from "../../loadbar/Loading";
 import TickboxTable from '../../CheckboxTable/TickboxTable';
 import store from "../../../store";

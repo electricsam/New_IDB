@@ -7,7 +7,7 @@ import store from '../../../store';
 import Loading from '../../loadbar/Loading';
 
 import { decodeQueryString, createApiQueryString, encodeQueryString } from '../../../helperFunctions/helperFunctions';
-import DialogBox from '../../FormPartials/DialogBox';
+import DialogBox from '../../FormPartials/DialogBox/DialogBox';
 import TickboxTable from "../../CheckboxTable/TickboxTable";
 
 const tableStyle = {

@@ -5,7 +5,7 @@ import { expect }from 'chai';
 import sinon from 'sinon';
 import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {Textarea} from "./Textarea";
+import {Textarea} from "../Textarea/Textarea";
 import DateTime from "./DateTime";
 
 configure({adapter: new Adapter()});

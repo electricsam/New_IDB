@@ -7,7 +7,7 @@ import Loading from '../../loadbar/Loading';
 import Table from '../../Table/Table';
 
 import { decodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions';
-import DialogBox from '../../FormPartials/DialogBox';
+import DialogBox from '../../FormPartials/DialogBox/DialogBox';
 import TickboxTable from "../../CheckboxTable/TickboxTable";
 import {push} from "react-router-redux";
 

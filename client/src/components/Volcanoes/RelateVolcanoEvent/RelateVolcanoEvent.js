@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import { push } from 'react-router-redux';
 
-import DialogBox from "../../FormPartials/DialogBox";
+import DialogBox from "../../FormPartials/DialogBox/DialogBox";
 import Table from "../../Table/Table"
 import Loading from "../../loadbar/Loading";
 import store from "../../../store";
