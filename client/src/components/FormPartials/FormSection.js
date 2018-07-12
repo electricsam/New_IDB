@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import DropDown from './DropDown/DropDown.jsx';
 import Radio from './Radio/Radio';
-import MinMax from './MinMax';
+import MinMax from './MinMax/MinMax';
 import SubSection from './SubSection/SubSection';
 import DateTime from './DateTime/DateTime';
 import Styles from './FormSectionStyles.css';
