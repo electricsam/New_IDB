@@ -9,7 +9,7 @@ import {Textarea} from "./Textarea";
 
 configure({adapter: new Adapter()});
 
-describe('Textarea behavior', () => {
+describe('Textarea component', () => {
   let wrapper;
   let props = {
     model: '.tsunami.search.comments',

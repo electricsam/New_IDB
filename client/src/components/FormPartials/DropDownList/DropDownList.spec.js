@@ -5,13 +5,13 @@ import { expect }from 'chai';
 import sinon from 'sinon';
 import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {Textarea} from "./Textarea/Textarea";
-import DateTime from "./DateTime/DateTime";
+import {Textarea} from "../Textarea/Textarea";
+import DateTime from "../DateTime/DateTime";
 import DropDownList from "./DropDownList";
 
 configure({adapter: new Adapter()});
 
-describe('DateTime Component', () => {
+describe('DropdownList Component', () => {
   let wrapper;
   let checkDropDownDisabled = sinon.spy();
 
