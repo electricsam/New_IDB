@@ -17,7 +17,7 @@ import {
   DateTime,
   TextAreaNoVal,
   RadioNoText,
-} from "../TestFormData";
+} from "./TestFormData";
 import FormSection from "./FormSection";
 import SubSection from "../SubSection/SubSection";
 

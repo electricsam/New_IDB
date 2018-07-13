@@ -1,4 +1,4 @@
-import {regions, states, validationConstants} from "../formConstants/constants";
+import {regions, states, validationConstants} from "../../formConstants/constants";
 
 const testDropDownData = [
   {name: 'nameOne', value: 'nameOne'},

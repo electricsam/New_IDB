@@ -36,5 +36,7 @@ export default MultiPartForm;
 
 MultiPartForm.propTypes = {
   title: PropTypes.string.isRequired,
+  titleColor: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired,
+  handleClear: PropTypes.func,
 };
