@@ -5,7 +5,7 @@ import { encodeQueryString, createApiQueryString } from '../../../helperFunction
 import store from '../../../store';
 import Loading from "../../loadbar/Loading"
 import MultiPartForm from "../../FormPartials/MultiPartForm";
-import FormSection from "../../FormPartials/FormSection";
+import FormSection from "../../FormPartials/FormSection/FormSection";
 import { DateAndLocation, Measurement, TotalEffects, Effects  } from "./TsunamiEventUpdateConstants";
 import {Toast} from "../../Toast/Toast";
 

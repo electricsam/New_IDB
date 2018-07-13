@@ -4,7 +4,7 @@ import {actions, Control, Errors, Form} from 'react-redux-form/lib/immutable';
 
 import {createApiQueryString, encodeQueryString} from '../../../helperFunctions/helperFunctions'
 import store from '../../../store';
-import FormSection from "../../FormPartials/FormSection";
+import FormSection from "../../FormPartials/FormSection/FormSection";
 
 import { RunupLocInfo, RunupSourceInfo, RunupParamsEffects } from './RunupFormConstants';
 import MultiPartForm from "../../FormPartials/MultiPartForm";

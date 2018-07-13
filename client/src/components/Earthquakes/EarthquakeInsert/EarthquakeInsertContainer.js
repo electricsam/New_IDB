@@ -5,7 +5,7 @@ import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
 
 import store from "../../../store";
 import MultiPartForm from "../../FormPartials/MultiPartForm";
-import FormSection from "../../FormPartials/FormSection";
+import FormSection from "../../FormPartials/FormSection/FormSection";
 import { DateAndLocation, Effects, TotalEffects, Measurements} from "./EarthquakeInsertConstants";
 import { encodeQueryString } from '../../../helperFunctions/helperFunctions';
 import {Toast} from "../../Toast/Toast";

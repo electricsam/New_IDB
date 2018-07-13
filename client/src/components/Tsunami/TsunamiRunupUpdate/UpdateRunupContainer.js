@@ -7,7 +7,7 @@ import store from '../../../store';
 import Loading from "../../loadbar/Loading"
 
 import { DateAndLocation, Effects, Measurements} from "./RunupUpdateConstants";
-import FormSection from "../../FormPartials/FormSection";
+import FormSection from "../../FormPartials/FormSection/FormSection";
 import MultiPartForm from "../../FormPartials/MultiPartForm";
 import {Toast} from "../../Toast/Toast";
 

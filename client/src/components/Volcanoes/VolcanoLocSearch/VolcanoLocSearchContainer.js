@@ -6,7 +6,7 @@ import { Parameters } from "./VolcanoLocSearchConstants";
 import { encodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions'
 import store from '../../../store'
 import MultiPartForm from "../../FormPartials/MultiPartForm";
-import FormSection from "../../FormPartials/FormSection";
+import FormSection from "../../FormPartials/FormSection/FormSection";
 
 const action = obj => store.dispatch(obj);
 

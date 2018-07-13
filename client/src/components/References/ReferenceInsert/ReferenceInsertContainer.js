@@ -5,7 +5,7 @@ import { encodeQueryString, createApiQueryString } from '../../../helperFunction
 import store from '../../../store';
 
 import MultiPartForm from "../../FormPartials/MultiPartForm";
-import FormSection from "../../FormPartials/FormSection";
+import FormSection from "../../FormPartials/FormSection/FormSection";
 import { Parameters } from "./ReferenceInsertConstants";
 import {Toast} from "../../Toast/Toast";
 const action = obj => store.dispatch(obj);

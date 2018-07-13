@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import store from "../../../store";
 import MultiPartForm from "../../FormPartials/MultiPartForm";
-import FormSection from "../../FormPartials/FormSection";
+import FormSection from "../../FormPartials/FormSection/FormSection";
 import { encodeQueryString } from '../../../helperFunctions/helperFunctions';
 import { Location, Details } from './VolcanoLocInsertConstants';
 import {Toast} from "../../Toast/Toast";

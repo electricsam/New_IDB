@@ -17,9 +17,9 @@ import {
   DateTime,
   TextAreaNoVal,
   RadioNoText,
-} from "./TestFormData";
+} from "../TestFormData";
 import FormSection from "./FormSection";
-import SubSection from "./SubSection/SubSection";
+import SubSection from "../SubSection/SubSection";
 
 configure({adapter: new Adapter()});
 
@@ -139,5 +139,5 @@ describe('FormSection Component', () => {
     wrapper.setProps({formData: Text});
     expect(wrapper.find('.FormSectionStyles__formInnerSection')).to.have.length(0);
   });
-  
+
 });
