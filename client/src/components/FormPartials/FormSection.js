@@ -26,7 +26,7 @@ const FormSection = props => (
       </div>
     </div>
     {
-      props.showSection ?
+      props.showSection && Array.isArray(props.formData) ?
         <div className={Styles.formInnerSection}>
           {
             props.formData.map((e) => {
