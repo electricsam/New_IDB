@@ -314,8 +314,12 @@ const mapToEarthquakeTable = arr => {
     });
     result.splice(7, 0, {
       Header: () => (
-          <span>Tsu <a href='https://www.google.com'>*</a></span>
-      ),
+          <div style={headerStyle}>
+            <span style={{wordWrap: 'break-word'}}>Tsu </span>
+            <i className="material-icons"
+               style={{margin: '0 1% 0 1%', color: 'blue'}}
+               onClick={() => openEarthquakeModal('relatedTsunami')}>info</i>
+          </div>),
       accessor: 'relatedTsunami',
       Cell: props => <Link
           to={`/tsunami/event/data?${encodeQueryString(JSON.stringify({earthquakeid: props.original.id + ""}))}`}>
@@ -323,7 +327,12 @@ const mapToEarthquakeTable = arr => {
       </Link>
     });
     result.splice(8, 0, {
-      Header: 'Vol',
+      Header: () => (<div style={headerStyle}>
+        <span style={{wordWrap: 'break-word'}}>Vol </span>
+        <i className="material-icons"
+           style={{margin: '0 1% 0 1%', color: 'blue'}}
+           onClick={() => openEarthquakeModal('relatedVolcano')}>info</i>
+      </div>),
       accessor: 'realatedVolcano',
       Cell: props => <Link
           to={`/volcano/event/data?${encodeQueryString(JSON.stringify({earthquakeid: props.original.id + ""}))}`}>
@@ -331,7 +340,12 @@ const mapToEarthquakeTable = arr => {
       </Link>
     });
     result.splice(9, 0, {
-      Header: () => <div style={headerStyle}>More Info</div>,
+      Header: () => (<div style={headerStyle}>
+        <span style={{wordWrap: 'break-word'}}>More Info </span>
+        <i className="material-icons"
+           style={{margin: '0 1% 0 1%', color: 'blue'}}
+           onClick={() => openEarthquakeModal('moreInfo')}>info</i>
+      </div>),
       accessor: 'moreInfo',
       Cell: props => <Link to={`/earthquake/event/moreinfo/${props.original.id}`}>
         <i className="material-icons">info</i>
