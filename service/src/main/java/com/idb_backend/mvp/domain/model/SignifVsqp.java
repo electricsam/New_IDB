@@ -40,26 +40,6 @@ public class SignifVsqp implements Serializable{
   private Integer minute;
   private Double second;
 
-  private Double latitude;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Double minLatitude;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Double maxLatitude;
-
-  private Double longitude;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Double minLongitude;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Double maxLongitude;
-
   private String locationName;
 
   @Transient
@@ -81,6 +61,26 @@ public class SignifVsqp implements Serializable{
   @Transient
   @Getter(value = AccessLevel.PRIVATE)
   private String locNot;
+
+  private Double latitude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double minLatitude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double maxLatitude;
+
+  private Double longitude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double minLongitude;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Double maxLongitude;
 
   @Getter(value = AccessLevel.PRIVATE)
   private String area;
@@ -139,6 +139,30 @@ public class SignifVsqp implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private String maxIntensity;
 
+  private Integer deaths;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minDeaths;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxDeaths;
+
+  private Integer deathsAmountOrder;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer minDeathsAmountOrder;
+
+  @Transient
+  @Getter(value = AccessLevel.PRIVATE)
+  private Integer maxDeathsAmountOrder;
+
+  private Integer injuries;
+
+  private Integer injuriesAmountOrder;
+
   private Double damageMillionsDollars;
 
   @Transient
@@ -159,31 +183,10 @@ public class SignifVsqp implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private Integer maxDamageAmountOrder;
 
-  private Integer deaths;
-
-  @Transient
   @Getter(value = AccessLevel.PRIVATE)
-  private Integer minDeaths;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Integer maxDeaths;
-
-  private Integer deathsAmountOrder;
-
-  @Transient
-  private Integer minDeathsAmountOrder;
-
-  @Transient
-  @Getter(value = AccessLevel.PRIVATE)
-  private Integer maxDeathsAmountOrder;
-
-  private Integer injuries;
-
-  private Integer injuriesAmountOrder;
-
   private Integer missing;
 
+  @Getter(value = AccessLevel.PRIVATE)
   private Integer missingAmountOrder;
 
   private Integer housesDestroyed;
@@ -256,6 +259,7 @@ public class SignifVsqp implements Serializable{
   private String hasRef;
 
   /*idRef will likely be a mapping relationship (onetomany or manytoone)*/
+  @Getter(value = AccessLevel.PRIVATE )
   private Integer idRef;
 
   @Getter(value = AccessLevel.PRIVATE)
@@ -269,8 +273,10 @@ public class SignifVsqp implements Serializable{
   private Integer mapSlideId;
 
   /*mapTsunamiId will likely be a mapping relationship (onetomany or manytoone)*/
+  @Getter(value=AccessLevel.PRIVATE)
   private Integer mapTsunamiId;
 
+  @Getter(value = AccessLevel.PRIVATE)
   private String comments;
 
   @Transient

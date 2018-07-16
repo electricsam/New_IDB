@@ -55,7 +55,7 @@ const headerStyle = {
 }
 
 
-const translateValue = {
+const tsTranslateValue = {
   locationName: 'Name',
   causeCode: 'Code',
   eventValidity: 'Val',
@@ -69,7 +69,7 @@ const translateValue = {
   hour:'Hr',
   month: 'Mo',
   day: 'Dy'
-}
+};
 
 const mapToTsunamiEventTable = arr => {
   const result = [];
@@ -130,11 +130,11 @@ const mapToTsunamiEventTable = arr => {
                 {props.value}
               </Link>
         })
-      }else if(translateValue[e]){
+      }else if(tsTranslateValue[e]){
         result.push({
           Header: () => (
               <div style={headerStyle}>
-                <span style={{wordWrap: 'break-word'}}>{translateValue[e]} </span>
+                <span style={{wordWrap: 'break-word'}}>{tsTranslateValue[e]} </span>
                 <i className="material-icons"
                    style={{margin: '0 1% 0 1%', color: 'blue'}}
                    onClick={() => openTsunamiEventModal(e)}>info</i>
@@ -239,6 +239,37 @@ const mapToRunupTable = arr => {
   return result;
 };
 
+const eqTranslateValue = {
+  locationName: 'Name',
+  second: 'Sec',
+  minute:'Min',
+  hour:'Hr',
+  month: 'Mo',
+  day: 'Dy',
+  eqDepth: 'Focal Depth',
+  eqMagnitude: 'Mag',
+  intensity: 'MMI Int',
+  injuriesAmountOrder: 'Injury Description',
+  deathsAmountOrder: 'Death Description',
+  damageAmountOrder: 'Damage Description',
+  housesAmountOrder: 'Houses Destroyed Description',
+  housesDamagedAmountOrder: 'Houses Damaged Description'
+};
+
+const openEarthquakeModal = accessor => {
+  let node = earthquakeColumnDefinitions[accessor];
+  if(node){
+    action({
+      type: 'OPEN_EARTHQUAKE_EVENT_MODAL',
+      payload: {
+        data:node.data,
+        validValues: node.validValues,
+        title: node.title,
+        secondaryData: node.secondaryData,
+        component: node.component
+      }})
+  }
+};
 
 const mapToEarthquakeTable = arr => {
   const result = [];
@@ -258,21 +289,23 @@ const mapToEarthquakeTable = arr => {
             {parseFloat(props.value).toFixed(2)}
           </div>
         })
+      }else if(eqTranslateValue[e]){
+        result.push({
+          Header: () => (
+              <div style={headerStyle}>
+                <span style={{wordWrap: 'break-word'}}>{eqTranslateValue[e]} </span>
+                <i className="material-icons"
+                   style={{margin: '0 1% 0 1%', color: 'blue'}}
+                   onClick={() => openEarthquakeModal(e)}>info</i>
+              </div>),
+          accessor: e })
       }else{
         result.push({ Header: camelToPascal(e), accessor: e });
       }
     });
-    let moreInfo = {
-      Header: () => <div style={headerStyle}>More Info</div>,
-      accessor: 'moreInfo',
-      Cell: props => <Link to={`/earthquake/event/moreinfo/${props.original.id}`}>
-        <i className="material-icons">info</i>
-      </Link>
-    };
-    result.splice(10, 0, moreInfo);
-    result.splice(11, 0, {
+    result.splice(7, 0, {
       Header: () => (
-          <span>Related Tsunami <a href='https://www.google.com'>*</a></span>
+          <span>Tsu <a href='https://www.google.com'>*</a></span>
       ),
       accessor: 'relatedTsunami',
       Cell: props => <Link
@@ -280,12 +313,19 @@ const mapToEarthquakeTable = arr => {
         Tsu
       </Link>
     });
-    result.splice(12, 0, {
-      Header: 'Related Volcano',
+    result.splice(8, 0, {
+      Header: 'Vol',
       accessor: 'realatedVolcano',
       Cell: props => <Link
           to={`/volcano/event/data?${encodeQueryString(JSON.stringify({earthquakeid: props.original.id + ""}))}`}>
         Vol
+      </Link>
+    });
+    result.splice(9, 0, {
+      Header: () => <div style={headerStyle}>More Info</div>,
+      accessor: 'moreInfo',
+      Cell: props => <Link to={`/earthquake/event/moreinfo/${props.original.id}`}>
+        <i className="material-icons">info</i>
       </Link>
     });
   }
