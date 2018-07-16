@@ -8,7 +8,7 @@ import Loading from "../../loadbar/Loading"
 
 import { DateAndLocation, Effects, Measurements} from "./RunupUpdateConstants";
 import FormSection from "../../FormPartials/FormSection/FormSection";
-import MultiPartForm from "../../FormPartials/MultiPartForm";
+import MultiPartForm from "../../FormPartials/MultiPartForm/MultiPartForm";
 import {Toast} from "../../Toast/Toast";
 
 const errorStyles = {

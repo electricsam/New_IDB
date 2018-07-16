@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 
 import store from "../../../store";
-import MultiPartForm from "../../FormPartials/MultiPartForm";
+import MultiPartForm from "../../FormPartials/MultiPartForm/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection/FormSection";
 import { encodeQueryString } from '../../../helperFunctions/helperFunctions';
 

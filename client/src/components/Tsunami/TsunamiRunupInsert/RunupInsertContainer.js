@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { encodeQueryString } from '../../../helperFunctions/helperFunctions'
 import store from '../../../store';
-import MultiPartForm from "../../FormPartials/MultiPartForm";
+import MultiPartForm from "../../FormPartials/MultiPartForm/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection/FormSection";
 
 import { Measurements, DateAndLocation, Effects } from "./RunupInsertConstants";

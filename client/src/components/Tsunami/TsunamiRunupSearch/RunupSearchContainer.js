@@ -7,7 +7,7 @@ import store from '../../../store';
 import FormSection from "../../FormPartials/FormSection/FormSection";
 
 import { RunupLocInfo, RunupSourceInfo, RunupParamsEffects } from './RunupFormConstants';
-import MultiPartForm from "../../FormPartials/MultiPartForm";
+import MultiPartForm from "../../FormPartials/MultiPartForm/MultiPartForm";
 
 const action = obj => store.dispatch(obj);
 

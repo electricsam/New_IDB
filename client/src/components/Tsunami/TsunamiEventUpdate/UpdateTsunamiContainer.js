@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { encodeQueryString, createApiQueryString } from '../../../helperFunctions/helperFunctions'
 import store from '../../../store';
 import Loading from "../../loadbar/Loading"
-import MultiPartForm from "../../FormPartials/MultiPartForm";
+import MultiPartForm from "../../FormPartials/MultiPartForm/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection/FormSection";
 import { DateAndLocation, Measurement, TotalEffects, Effects  } from "./TsunamiEventUpdateConstants";
 import {Toast} from "../../Toast/Toast";

@@ -61,5 +61,5 @@ describe('MultiPartForm Component', () => {
     wrapper.setProps({handleSubmit: sinon.spy(), handleClear: null});
     expect(wrapper.find('button')).to.have.length(1);
   });
-  
+
 });

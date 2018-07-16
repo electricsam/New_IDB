@@ -9,7 +9,7 @@ import { EarthquakeParameters,
 
 import { encodeQueryString, createApiQueryString, decodeQueryString } from '../../../helperFunctions/helperFunctions'
 import store from '../../../store'
-import MultiPartForm from "../../FormPartials/MultiPartForm";
+import MultiPartForm from "../../FormPartials/MultiPartForm/MultiPartForm";
 import FormSection from "../../FormPartials/FormSection/FormSection";
 
 const action = obj => store.dispatch(obj);
