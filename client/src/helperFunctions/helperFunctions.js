@@ -5,6 +5,7 @@ const CryptoJS = require('crypto-js');
 
 import store from '../store';
 import {tsunamiEventColumnDefinitions} from "../components/Tsunami/TsunamiEventDataDisplay/TsunamiDataConstants";
+import { earthquakeColumnDefinitions } from "../components/Earthquakes/EarthquakeDataDisplay/EarthquakeDataConstants";
 
 const action = obj => store.dispatch(obj);
 
@@ -260,7 +261,7 @@ const openEarthquakeModal = accessor => {
   let node = earthquakeColumnDefinitions[accessor];
   if(node){
     action({
-      type: 'OPEN_EARTHQUAKE_EVENT_MODAL',
+      type: 'OPEN_EARTHQUAKE_MODAL',
       payload: {
         data:node.data,
         validValues: node.validValues,
@@ -282,7 +283,7 @@ const mapToEarthquakeTable = arr => {
               <div style={headerStyle}>
                 <span>{camelToPascal(e)} </span><i className="material-icons"
                                                    style={{margin: '0 1% 0 1%', color: 'blue'}}
-                                                   onClick={() => openTsunamiEventModal(e)}>info</i>
+                                                   onClick={() => openEarthquakeModal(e)}>info</i>
               </div>),
           accessor: e,
           Cell: props => <div>
@@ -300,7 +301,15 @@ const mapToEarthquakeTable = arr => {
               </div>),
           accessor: e })
       }else{
-        result.push({ Header: camelToPascal(e), accessor: e });
+      result.push({
+        Header: () => (
+            <div style={headerStyle}>
+              <span style={{wordWrap: 'break-word'}}>{camelToPascal(e)} </span>
+              <i className="material-icons"
+                 style={{margin: '0 1% 0 1%', color: 'blue'}}
+                 onClick={() => openEarthquakeModal(e)}>info</i>
+            </div>),
+        accessor: e })
       }
     });
     result.splice(7, 0, {

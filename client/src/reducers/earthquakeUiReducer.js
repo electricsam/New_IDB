@@ -11,7 +11,7 @@ export const initialState = fromJS({
 
 export default function reducer(state = initialState, action){
   switch(action.type){
-    case 'OPEN_TSUNAMI_EVENT_MODAL': {
+    case 'OPEN_EARTHQUAKE_MODAL': {
       console.log("action.payload: ", action.payload)
       return state.merge(state, {
         eventModalIsOpen: true,
@@ -22,7 +22,7 @@ export default function reducer(state = initialState, action){
         eventModalComponent: action.payload.component || null
       });
     }
-    case 'CLOSE_TSUNAMI_EVENT_MODAL': {
+    case 'CLOSE_EARTHQUAKE_MODAL': {
       return state.merge(state, {
         eventModalIsOpen: false
       });

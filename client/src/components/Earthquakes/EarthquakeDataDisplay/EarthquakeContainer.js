@@ -114,23 +114,10 @@ class EarthquakeContainer extends React.Component {
 
   handleRelateToExistingRefClick = () => {this.handleRelateClick('/reference/search?')};
 
-  closeModal = () => this.setState( {modal: {...this.state.modal, isOpen: false}});
+  closeModal = () => action({type: 'CLOSE_EARTHQUAKE_MODAL'});
 
-  openModal = (title, data, validValues) => {
-    console.log("this is valid Values ", validValues)
-    this.setState({
-      modal: {
-          ...this.state.modal,
-        isOpen: true,
-        title: title,
-        validValues: validValues,
-        data: data
-      }
-    })
-    console.log(' you are clicking meeeeeee')
-  }
   render(){
-    const { earthquake } = this.props;
+    const { earthquake, earthquakeUi } = this.props;
     const { toggleSelection, selectAll, toggleAll, isSelected } = this;
     const checkboxProps = {
       toggleSelection,
@@ -158,6 +145,16 @@ class EarthquakeContainer extends React.Component {
                 />:
                 <div style={hiddenStyle}></div>
             }
+            
+            <DefinitionModal
+                isOpen={earthquakeUi.get('eventModalIsOpen')}
+                closeModal={this.closeModal}
+                validValues={earthquakeUi.get('eventModalValidValues')}
+                title={earthquakeUi.get('eventModalTitle')}
+                data={earthquakeUi.get('eventModalData')}
+                secondaryData={earthquakeUi.get('eventModalSecondaryData') ? earthquakeUi.get('eventModalSecondaryData').asMutable().toJS() : null}
+                component={earthquakeUi.get('eventModalComponent') ? earthquakeUi.get('eventModalComponent').asMutable().toJS() : null}
+            />
 
             <TickboxTable
                 title="Earthquake Data"
@@ -176,6 +173,6 @@ class EarthquakeContainer extends React.Component {
 
 }
 
-const mapStateToProps = state => ({ earthquake: state.deep.earthquake });
+const mapStateToProps = state => ({ earthquake: state.deep.earthquake, earthquakeUi: state.earthquakeUi });
 
 export default connect(mapStateToProps)(EarthquakeContainer);
