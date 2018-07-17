@@ -11,3 +11,4 @@ IDBBackEnd/
 docker-compose.yml
 postgres-data/
 
+/client/node_modules
