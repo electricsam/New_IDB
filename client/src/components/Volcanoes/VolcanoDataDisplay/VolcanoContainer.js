@@ -9,6 +9,7 @@ import store from "../../../store";
 
 import {createApiQueryString, decodeQueryString, encodeQueryString} from "../../../helperFunctions/helperFunctions";
 import TickboxTable from "../../CheckboxTable/TickboxTable";
+import {DefinitionModal} from "../../DefinitionModal/DefinitionModal";
 
 const tableStyle = {
   textAlign: "center"
@@ -106,8 +107,10 @@ class VolcanoContainer extends React.Component {
     }
   };
 
+  closeModal = () => action({type: 'CLOSE_VOLCANO_EVENT_MODAL'});
+
   render(){
-    const { volcano } = this.props;
+    const { volcano, volcanoUi } = this.props;
     const { toggleSelection, selectAll, toggleAll, isSelected, logSelection } = this;
     const checkboxProps = {
       toggleSelection,
@@ -135,6 +138,16 @@ class VolcanoContainer extends React.Component {
                 />:
                 <div style={hiddenStyle}></div>
             }
+            <DefinitionModal
+                isOpen={volcanoUi.get('eventModalIsOpen')}
+                closeModal={this.closeModal}
+                validValues={volcanoUi.get('eventModalValidValues')}
+                title={volcanoUi.get('eventModalTitle')}
+                data={volcanoUi.get('eventModalData')}
+                secondaryData={volcanoUi.get('eventModalSecondaryData') ? volcanoUi.get('eventModalSecondaryData').asMutable().toJS() : null}
+                component={volcanoUi.get('eventModalComponent') ? volcanoUi.get('eventModalComponent').asMutable().toJS() : null}
+            />
+
             <TickboxTable
                 loading={volcano.get('fetchingVolcanoes')}
                 data={volcano.asMutable().getIn(['volcanoEvents']).toJS()}
@@ -148,10 +161,8 @@ class VolcanoContainer extends React.Component {
       return <Loading/>
     }
   }
-
 }
 
-
-const mapStateToProps = state => ({ volcano: state.deep.volcano });
+const mapStateToProps = state => ({ volcano: state.deep.volcano, volcanoUi: state.volcanoUi });
 
 export default connect(mapStateToProps)(VolcanoContainer);

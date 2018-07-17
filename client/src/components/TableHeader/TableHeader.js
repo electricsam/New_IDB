@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 const headerStyle = {
   width: '100%',
@@ -19,3 +21,9 @@ const TableHeader = props => (
 );
 
 export default TableHeader
+
+TableHeader.propTypes = {
+  title: PropTypes.string.isRequired,
+  accessor: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired
+};
