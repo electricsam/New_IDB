@@ -11,7 +11,6 @@ public class VolcanoEventProjection implements Serializable{
   private Integer day;
   private String assocTsu;
   private String assocEq;
-
   private String name;
   private String location;
   private String country;
@@ -19,17 +18,15 @@ public class VolcanoEventProjection implements Serializable{
   private Double longitude;
   private Integer elevation;
   private String morphology;
-
   private Integer vei;
   private String agent;
-  private Double damageMillionsDollars;
-  private Integer damageAmountOrder;
   private Integer deathsAmountOrder;
   private Integer injuries;
   private Integer injuriesAmountOrder;
+  private Double damageMillionsDollars;
+  private Integer damageAmountOrder;
   private Integer housesDestroyed;
   private Integer housesAmountOrder;
-
 
   public VolcanoEventProjection(){}
 
