@@ -15,7 +15,7 @@ const Table = props => (
       defaultPageSize={20}
       expanderDefaults={
         {
-          sortable: false,
+          sortable: true,
           resizable: true,
           filterable: false,
           width: 35,

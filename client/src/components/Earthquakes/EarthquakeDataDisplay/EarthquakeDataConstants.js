@@ -1,3 +1,5 @@
+import EqIntensity from "../../DefinitionComponents/EqIntensity";
+import React from 'react';
 
 const earthquakeColumnDefinitions = {
   year: {
@@ -68,7 +70,8 @@ const earthquakeColumnDefinitions = {
   intensity: {
     title: 'MMI Intensity',
     validValues: '1 to 12',
-    data: 'TBD'
+    data: 'TBD',
+    component: <EqIntensity/>
   },
   relatedTsunami: {
     title: 'Associated Tsunami or Seiche',

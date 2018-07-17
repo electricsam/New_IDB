@@ -12,40 +12,48 @@ public class RunupProjection implements Serializable{
   private Integer month;
   private Integer day;
   private Integer hour;
+  private Integer minute;
   private Double second;
   private Integer eventValidity;
+  private Integer causeCode;
   private Double eqMagnitude;
-  private Integer arrDay;
-  private Integer arrHour;
-  private Integer arrMin;
-  private Integer travHours;
-  private Integer travMins;
   private String country;
   private String area;
   private String locationName;
   private Double latitude;
   private Double longitude;
+  private Integer distFromSource;
+  private Integer arrDay;
+  private Integer arrHour;
+  private Integer arrMin;
+  private Integer travHours;
+  private Integer travMins;
   private Double runupHt;
   private Double runupHoriz;
+  private Integer typeMeasurementId;
   private Double period;
   private String firstMotion;
-  private Integer typeMeasurementId;
   private Integer deaths;
   private Integer deathsAmountOrder;
+  private Integer injuries;
+  private Integer injuriesAmountOrder;
   private Double damageMillionsDollars;
   private Integer damageAmountOrder;
   private Integer housesDestroyed;
   private Integer housesAmountOrder;
-  private Integer injuries;
-  private Integer injuriesAmountOrder;
-  private Integer distFromSource;
   private Integer housesDamaged;
   private Integer housesDamagedAmountOrder;
-  private Integer idRef;
 
 
   public RunupProjection(){}
 
+  public Integer getMinute() { return minute; }
+
+  public void setMinute(Integer minute) { this.minute = minute; }
+
+  public Integer getCauseCode() { return causeCode; }
+
+  public void setCauseCode(Integer causecode) { this.causeCode = causecode; }
 
   public Double getLongitude() {
     return longitude;
@@ -302,14 +310,6 @@ public class RunupProjection implements Serializable{
 
   public void setInjuriesAmountOrder(Integer injuriesAmountOrder) {
     this.injuriesAmountOrder = injuriesAmountOrder;
-  }
-
-  public Integer getIdRef() {
-    return idRef;
-  }
-
-  public void setIdRef(Integer idRef) {
-    this.idRef = idRef;
   }
 
   public Integer getDistFromSource() {

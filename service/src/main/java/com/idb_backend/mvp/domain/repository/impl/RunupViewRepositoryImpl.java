@@ -28,12 +28,12 @@ public class RunupViewRepositoryImpl extends QuerydslRepositorySupport implement
 
     List<RunupProjection> runups =  query
         .select(Projections.bean(
-            RunupProjection.class, rv.id, ev.id.as("eventId"), ev.eqMagnitude, ev.year, ev.month, ev.day, ev.hour,
-            ev.second, ev.eventValidity, ev.causeCode, rv.country, rv.area, rv.locationName, rv.latitude, rv.longitude,
-            rv. distFromSource, rv.arrDay, rv.arrHour, rv.arrMin, rv.travHours, rv.travMins, rv.runupHt, rv.runupHoriz,
-            rv.typeMeasurementId, rv.period, rv.firstMotion, rv.deaths, rv.deathsAmountOrder, rv.injuries,
-            rv.injuriesAmountOrder, rv.damageMillionsDollars, rv.damageAmountOrder, rv.housesDestroyed,
-            rv.housesAmountOrder, rv.housesDamaged, rv.housesDamagedAmountOrder, rv.idRef)
+            RunupProjection.class, rv.id, ev.id.as("eventId"), ev.year, ev.month, ev.day, ev.hour, ev.minute, ev.second,
+            ev.eventValidity, ev.eqMagnitude, rv.doubtful, rv.country, rv.area, rv.locationName,
+            rv.latitude, rv.longitude, rv. distFromSource, rv.arrDay, rv.arrHour, rv.arrMin, rv.travHours, rv.travMins,
+            rv.runupHt, rv.runupHoriz, rv.typeMeasurementId, rv.period, rv.firstMotion, rv.deaths, rv.deathsAmountOrder,
+            rv.injuries, rv.injuriesAmountOrder, rv.damageMillionsDollars, rv.damageAmountOrder, rv.housesDestroyed,
+            rv.housesAmountOrder, rv.housesDamaged, rv.housesDamagedAmountOrder, ev.causeCode)
         )
         .from(rv)
         .innerJoin(ev)
@@ -54,12 +54,12 @@ public class RunupViewRepositoryImpl extends QuerydslRepositorySupport implement
 
     List<RunupProjection> runups = query
         .select(Projections.bean(
-            RunupProjection.class, rv.id, ev.id.as("eventId"), ev.eqMagnitude, ev.year, ev.month, ev.day, ev.hour,
-            ev.second, ev.eventValidity, ev.causeCode, rv.country, rv.area, rv.locationName, rv.latitude, rv.longitude,
-            rv. distFromSource, rv.arrDay, rv.arrHour, rv.arrMin, rv.travHours, rv.travMins, rv.runupHt, rv.runupHoriz,
-            rv.typeMeasurementId, rv.period, rv.firstMotion, rv.deaths, rv.deathsAmountOrder, rv.injuries,
-            rv.injuriesAmountOrder, rv.damageMillionsDollars, rv.damageAmountOrder, rv.housesDestroyed,
-            rv.housesAmountOrder, rv.housesDamaged, rv.housesDamagedAmountOrder, rv.idRef)
+            RunupProjection.class, rv.id, ev.id.as("eventId"), ev.year, ev.month, ev.day, ev.hour, ev.minute, ev.second,
+            ev.eventValidity, ev.causeCode, ev.eqMagnitude, rv.doubtful, rv.country, rv.area, rv.locationName,
+            rv.latitude, rv.longitude, rv. distFromSource, rv.arrDay, rv.arrHour, rv.arrMin, rv.travHours, rv.travMins,
+            rv.runupHt, rv.runupHoriz, rv.typeMeasurementId, rv.period, rv.firstMotion, rv.deaths, rv.deathsAmountOrder,
+            rv.injuries, rv.injuriesAmountOrder, rv.damageMillionsDollars, rv.damageAmountOrder, rv.housesDestroyed,
+            rv.housesAmountOrder, rv.housesDamaged, rv.housesDamagedAmountOrder)
         )
         .from(rv)
         .innerJoin(ev)
@@ -80,12 +80,12 @@ public class RunupViewRepositoryImpl extends QuerydslRepositorySupport implement
     QTsrunupRefs rr = QTsrunupRefs.tsrunupRefs;
     List<RunupProjection> runups = query
         .select(Projections.bean(
-            RunupProjection.class, rv.id, ev.id.as("eventId"), ev.eqMagnitude, ev.year, ev.month, ev.day, ev.hour,
-            ev.second, ev.eventValidity, ev.causeCode, rv.country, rv.area, rv.locationName, rv.latitude, rv.longitude,
-            rv. distFromSource, rv.arrDay, rv.arrHour, rv.arrMin, rv.travHours, rv.travMins, rv.runupHt, rv.runupHoriz,
-            rv.typeMeasurementId, rv.period, rv.firstMotion, rv.deaths, rv.deathsAmountOrder, rv.injuries,
-            rv.injuriesAmountOrder, rv.damageMillionsDollars, rv.damageAmountOrder, rv.housesDestroyed,
-            rv.housesAmountOrder, rv.housesDamaged, rv.housesDamagedAmountOrder, rv.idRef)
+            RunupProjection.class, rv.id, ev.id.as("eventId"), ev.year, ev.month, ev.day, ev.hour, ev.minute, ev.second,
+            ev.eventValidity, ev.causeCode, ev.eqMagnitude, rv.doubtful, rv.country, rv.area, rv.locationName,
+            rv.latitude, rv.longitude, rv. distFromSource, rv.arrDay, rv.arrHour, rv.arrMin, rv.travHours, rv.travMins,
+            rv.runupHt, rv.runupHoriz, rv.typeMeasurementId, rv.period, rv.firstMotion, rv.deaths, rv.deathsAmountOrder,
+            rv.injuries, rv.injuriesAmountOrder, rv.damageMillionsDollars, rv.damageAmountOrder, rv.housesDestroyed,
+            rv.housesAmountOrder, rv.housesDamaged, rv.housesDamagedAmountOrder)
         )
         .from(rv)
         .innerJoin(ev)

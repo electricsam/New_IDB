@@ -6,6 +6,8 @@ const CryptoJS = require('crypto-js');
 import store from '../store';
 import {tsunamiEventColumnDefinitions} from "../components/Tsunami/TsunamiEventDataDisplay/TsunamiDataConstants";
 import { earthquakeColumnDefinitions } from "../components/Earthquakes/EarthquakeDataDisplay/EarthquakeDataConstants";
+import { RunupColumnDefinitions} from "../components/Tsunami/TsunamiRunupDataDisplay/RunupDataConstants";
+import TableHeader from "../components/TableHeader/TableHeader";
 
 const action = obj => store.dispatch(obj);
 
@@ -53,8 +55,7 @@ const headerStyle = {
   flexWrap: 'nowrap',
   justifyContent: "center",
   alignItems: 'center'
-}
-
+};
 
 const tsTranslateValue = {
   locationName: 'Name',
@@ -180,6 +181,46 @@ const mapToTsunamiEventTable = arr => {
   return result;
 };
 
+const openTsunamiRunupModal = accessor => {
+  let node = RunupColumnDefinitions[accessor];
+  if(node){
+    action({
+      type: 'OPEN_TSUNAMI_RUNUP_MODAL',
+      payload: {
+        data:node.data,
+        validValues: node.validValues,
+        title: node.title,
+        secondaryData: node.secondaryData,
+        component: node.component
+      }})
+  }
+};
+
+const runupTranslateVal = {
+  locationName: 'Name',
+  causeCode: 'Code',
+  eventValidity: 'Val',
+  eqMagnitude: 'Earthquake Mag',
+  second: 'Sec',
+  minute:'Min',
+  hour:'Hr',
+  month: 'Mo',
+  day: 'Dy',
+  firstMotion: '1st Mtn',
+  distFromSource: 'Distance From Source',
+  doubtful: 'Doubtful Runup',
+  runupHt: 'Max Water Height',
+  runupHoriz: 'Max Inundation Distance',
+  typeMeasurementId: 'Type of Measurement',
+
+};
+
+const runupTopStructure = {
+  date: {Header: 'Date', columns: []},
+  tsunamiSource: {Header: ''}
+};
+
+
 
 const mapToRunupTable = arr => {
   const result = [];
@@ -188,7 +229,7 @@ const mapToRunupTable = arr => {
     accessors.map(e => {
       if(e === 'eqMagnitude'){
         result.push({
-          Header: camelToPascal(e),
+          Header: () => (<TableHeader accessor={e} title='Eq Mag' handleClick={openTsunamiRunupModal}/>),
           accessor: e,
           Cell: props => <Link
               to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.eventId + ""}))}`}>
@@ -197,45 +238,46 @@ const mapToRunupTable = arr => {
         })
       }else if(e === "latitude" || e === "longitude"){
         result.push({
-          Header:() => (
-              <div style={headerStyle}>
-                <span>{camelToPascal(e)} </span><i className="material-icons"
-                                                   style={{margin: '0 1% 0 1%', color: 'blue'}}
-                                                   onClick={() => openTsunamiEventModal(e)}>info</i>
-              </div>),
+          Header:() => (<TableHeader handleClick={openTsunamiRunupModal} title={camelToPascal(e)} accessor={e}/>),
           accessor: e,
           Cell: props => <div>
             {parseFloat(props.value).toFixed(2)}
           </div>
         })
+      }else if(e === 'eventId' || e === 'id'){
+        result.push({Header: camelToPascal(e), accessor: e, show: false})
+      } else if(runupTranslateVal[e]){
+        result.push({
+          Header: () => (<TableHeader accessor={e} title={runupTranslateVal[e]} handleClick={openTsunamiRunupModal}/>),
+          accessor: e});
       }else{
-        result.push({ Header: camelToPascal(e), accessor: e });
+        result.push({
+          Header: () => (<TableHeader accessor={e} title={camelToPascal(e)} handleClick={openTsunamiRunupModal}/>),
+          accessor: e });
       }
     });
-    let moreRunupInfo = {
-      Header: "More Runup Info",
-      accessor: 'moreRunupInfo',
-      Cell: props => <Link to={`/tsunami/runup/moreinfo/${props.original.id}`}>
-        <i className="material-icons">info</i>
-      </Link>
-    };
-    let tsunamiInfo = {
-      Header: 'Tsu Src',
+    result.splice(11,0, {
+      Header:() => (<TableHeader handleClick={openTsunamiRunupModal} title='Tsu Src' accessor={'tsuSrc'}/>),
       accessor: 'tsuSrc',
       Cell: props => <Link to={`/tsunami/event/moreinfo/${props.original.eventId}`}>
         <i className="material-icons">info</i>
       </Link>
-    };
-    result.splice(10, 0, moreRunupInfo);
-    result.splice(9, 0, tsunamiInfo);
-    result.splice(11, 0, {
-      Header: 'Related Volcano',
+    });
+    result.splice(12, 0, {
+      Header:() => (<TableHeader handleClick={openTsunamiRunupModal} title='Vol' accessor='relatedVolcano'/>),
       accessor: 'realatedVolcano',
       Cell: props => <Link
           to={`/volcano/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.eventId + ""}))}`}>
         Vol
       </Link>
     })
+    result.splice(13,0,{
+      Header: () => (<TableHeader accessor='moreRunupInfo' title='Tsu Runup' handleClick={openTsunamiRunupModal}/>),
+      accessor: 'moreRunupInfo',
+      Cell: props => <Link to={`/tsunami/runup/moreinfo/${props.original.id}`}>
+        <i className="material-icons">info</i>
+      </Link>
+    });
   }
   return result;
 };

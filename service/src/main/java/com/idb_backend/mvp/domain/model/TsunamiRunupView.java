@@ -124,9 +124,6 @@ public class TsunamiRunupView {
 
   private Integer typeMeasurementId;
 
-
-
-//  This
   private Double damageMillionsDollars;
 
   @Transient

@@ -20,7 +20,7 @@ const TickboxTable = props => (
           defaultSorted={[{ id: 'id', desc: false }]}
           expanderDefaults={
             {
-              sortable: false,
+              sortable: true,
               resizable: true,
               filterable: false,
               width: 35,
