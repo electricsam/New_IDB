@@ -107,7 +107,7 @@ class VolcanoContainer extends React.Component {
     }
   };
 
-  closeModal = () => action({type: 'CLOSE_VOLCANO_EVENT_MODAL'});
+  closeModal = (e) => action({type: 'CLOSE_VOLCANO_EVENT_MODAL'});
 
   render(){
     const { volcano, volcanoUi } = this.props;

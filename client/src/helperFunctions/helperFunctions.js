@@ -389,7 +389,12 @@ const openVolcanoEventModal = (accessor) => {
 const volTranslateValue = {
   vei: 'VEI',
   morphology: 'Type',
-  day: 'Dy'
+  day: 'Dy',
+  deathsAmountOrder: 'Death Description',
+  damageAmountOrder: 'Damage Description',
+  damageMillionsDollars: 'Damage in Millions of Dollars',
+  injuriesAmountOrder: 'Injuries Description',
+  housesAmountOrder: 'Houses Destroyed Description'
 };
 
 const mapToVolcanoTable = arr => {
@@ -397,53 +402,53 @@ const mapToVolcanoTable = arr => {
   if(arr.length) {
     const accessors = Object.keys(arr[0]);
     accessors.map(e => {
-    if(e === "latitude" || e === "longitude"){
-      result.push({
-        Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openVolcanoEventModal}/>),
-        accessor: e,
-        Cell: props => <div>
-          {parseFloat(props.value).toFixed(2)}
-        </div>
-      })
-    }else if(e === 'hazEventId' || e === 'volId'){
-      result.push({
-        Header: camelToPascal(e),
-        accessor: e,
-        show: false,
-      })
-    }else if(volTranslateValue[e]){
-      result.push({
-        Header: () => (<TableHeader title={volTranslateValue[e]} accessor={e} handleClick={openVolcanoEventModal}/>),
-        accessor: e
-      })
-    }else{
-      result.push({
-        Header: () => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openVolcanoEventModal}/>),
-        accessor: e
-      });
-    }
+      if(e === "latitude" || e === "longitude"){
+        result.push({
+          Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openVolcanoEventModal}/>),
+          accessor: e,
+          Cell: props => <div>
+            {parseFloat(props.value).toFixed(2)}
+          </div>
+        })
+      }else if(e === 'hazEventId' || e === 'volId'){
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e,
+          show: false,
+        })
+      }else if(volTranslateValue[e]){
+        result.push({
+          Header: () => (<TableHeader title={volTranslateValue[e]} accessor={e} handleClick={openVolcanoEventModal}/>),
+          accessor: e
+        })
+      }else{
+        result.push({
+          Header: () => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openVolcanoEventModal}/>),
+          accessor: e
+        });
+      }
     });
-    result.splice(10, 0, {
-      Header: () => <TableHeader title='More Info' accessor={'moreInfo'} handleClick={openVolcanoEventModal()}/>,
-      accessor: 'moreInfo',
-      Cell: props => <Link to={`/volcano/event/moreinfo/${props.original.hazEventId}`}>
-        <i className="material-icons">info</i>
-      </Link>
-    });
-    result.splice(11, 0, {
-      Header: () => <TableHeader title='Tsu' accessor={'tsu'} handleClick={openVolcanoEventModal()}/>,
+    result.splice(5, 0, {
+      Header: () => <TableHeader title='Tsu' accessor={'tsu'} handleClick={openVolcanoEventModal}/>,
       accessor: 'tsu',
       Cell: props => <Link
           to={`/tsunami/event/data?${encodeQueryString(JSON.stringify({volcanoid: props.original.hazEventId + ""}))}`}>
         Tsu
       </Link>
     });
-    result.splice(12, 0, {
-      Header: () => <TableHeader title='Eq' accessor={'eq'} handleClick={openVolcanoEventModal()}/>,
+    result.splice(6, 0, {
+      Header: () => <TableHeader title='Eq' accessor={'eq'} handleClick={openVolcanoEventModal  }/>,
       accessor: 'eq',
       Cell: props => <Link
           to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({volcanoid: props.original.hazEventId + ""}))}`}>
         Vol
+      </Link>
+    });
+    result.splice(7, 0, {
+      Header: () => <TableHeader title='More Info' accessor={'moreInfo'} handleClick={openVolcanoEventModal}/>,
+      accessor: 'moreInfo',
+      Cell: props => <Link to={`/volcano/event/moreinfo/${props.original.hazEventId}`}>
+        <i className="material-icons">info</i>
       </Link>
     });
   }
