@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import VolcanoExplosivity from "../../DefinitionComponents/VolcanoExplosivity";
 import LinkingParagraph from "../../DefinitionComponents/LinkingParagraph";
 import VolcanoAgent from "../../DefinitionComponents/VolcanoAgent";
+import VolcanoStatus from "../../DefinitionComponents/VolcanoStatus";
 const VolcanoEventColumnDefinitions = {
   year: {
     title: "Year",
@@ -90,6 +91,73 @@ const VolcanoEventColumnDefinitions = {
     data: "The agent that caused the fatalities for an eruption. Adapted from Simkin and Siebert, 1994.",
     component: <VolcanoAgent/>
   },
+  deathsTotal: {
+    title: 'Number of Deaths from the Volcano:',
+    validValues: '0 to',
+    data: 'Whenever possible, numbers of deaths from the eruption are listed. These values indicate those deaths that resulted from the eruption. For total deaths (tsunami, volcano, and earthquake), see total deaths field under additional information.'
+  },
+  deathsAmountOrderTotal: {
+    title: 'Description of Number of Deaths from the Volcanic Eruption',
+    validValues: '0 to 4',
+    data: "When a description was found in the historical literature instead of an actual number of deaths, this value was coded and listed in the Deaths D column. If the actual number of deaths was listed, a descriptor was also added for search purposes.\n" +
+    "\n" +
+    "1 = Few (~1 to 50 deaths)\n" +
+    "2 = Some (~51 to 100 deaths)\n" +
+    "3 = Many (~101 to 1000 deaths)\n" +
+    "4 = Very many (over 1000 deaths)"
+  },
+  injuriesTotal: {
+    title: 'Number of Injuries from the Eruption:',
+    validValues: '0 to',
+    data: 'Whenever possible, numbers of injuries from the eruption are listed.'
+  },
+  injuriesAmountOrderTotal: {
+    title: "Description of Number of Injuries from the eruption",
+    validValues: '0 to 3',
+    data: "When a description was found in the historical literature instead of an actual number of injuries, this value was coded and listed in the Injuries D column. If the actual number of injuries was listed, a descriptor was also added for search purposes.\n" +
+    "\n" +
+    "0 = None\n" +
+    "1 = Few (~1 to 50 injuries)\n" +
+    "2 = Some(~51 to 100 injuries)\n" +
+    "3 = Many (~101 to 1000 injuries)\n" +
+    "4 = Very many (over 1000 injuries)"
+  },
+  damageMillionsDollarsTotal: {
+    title: "Damage Millions of Dollars from the Eruption:",
+    validValues: null,
+    data: "The value in the Damage column should be multipled by 1,000,000 to obtain the actual dollar amount.\n" +
+    "\n" +
+    "When a dollar amount for damage was found in the literature, it was listed in the Damage column in millions of U.S. dollars. The dollar value listed is the value at the time of the event. To convert the damage to current dollar values, please use the Consumer Price Index Calculator. Monetary conversion tables for the time of the event were used to convert foreign currency to U.S. dollars."
+  },
+  damageAmountOrderTotal: {
+    title: 'Description of Damage from the Eruption',
+    validValues: '0 to 4',
+    data: 'For those events not offering a monetary evaluation of damage, the following five-level scale was used to classify damage (1990 dollars) and was listed in the Damage D column. If the actual dollar amount of damage was listed, a descriptor was also added for search purposes.\n' +
+    '\n' +
+    '1 = LIMITED (roughly corresponding to less than $1 million)\n' +
+    '2 = MODERATE (~$1 to $5 million)\n' +
+    '3 = SEVERE (~$5 to $25 million)\n' +
+    '4 = EXTREME (~$25 million or more)\n' +
+    'When possible, a rough estimate was made of the dollar amount of damage based upon the description provided, in order to choose the damage category. In many cases, only a single descriptive term was available. These terms were converted to the damage categories based upon the authors apparent use of the term elsewhere. In the absence of other information, LIMITED is considered synonymous with slight, minor, and light, SEVERE as synonymous with major, extensive, and heavy, and EXTREME as synonymous with catastrophic.\n' +
+    '\n' +
+    'Note: The descriptive terms relate approximately to current dollar values.'
+  },
+  housesDestroyedTotal: {
+    title: "Number of Houses Destroyed by the Eruption",
+    validValues: '0 to',
+    data: "Number of Houses Destroyed by the Eruption"
+  },
+  housesAmountOrderTotal: {
+    title: "Description of Number of Houses Destroyed by the Eruption",
+    validValues: '0 to 4',
+    data: "For those events not offering an exact number of houses damaged, the following four-level scale was used to classify the damage and was listed in the Houses D column. If the actual number of houses destroyed was listed, a descriptor was also added for search purposes.\n" +
+    "\n" +
+    "0 = None\n" +
+    "1 = Few (~1 to 50 houses)\n" +
+    "2 = Some (~51 to 100 houses)\n" +
+    "3 = Many (101 to 1000 houses)\n" +
+    "4 = Very Many (~over 1000 houses)"
+  },
   deaths: {
     title: 'Number of Deaths from the Volcano:',
     validValues: '0 to',
@@ -156,8 +224,65 @@ const VolcanoEventColumnDefinitions = {
     "2 = Some (~51 to 100 houses)\n" +
     "3 = Many (101 to 1000 houses)\n" +
     "4 = Very Many (~over 1000 houses)"
+  },
+  missing: {
+    title: 'Number of Missing from the Eruption',
+    validValues: '0 to',
+    data: 'Whenever possible, numbers of Missing from the eruption are listed.'
+  },
+  missingAmountOrder: {
+    title: 'Description of Missing from the Eruption',
+    validValues: '0 to 4',
+    data: 'When a description was found in the historical literature instead of an actual number of missing, this value was coded and listed in the Missing De column. If the actual number of missing was listed, a descriptor was also added for search purposes.\n' +
+    '\n' +
+    '0 = None\n' +
+    '1 = Few (~1 to 50 missing)\n' +
+    '2 = Some(~51 to 100 missing)\n' +
+    '3 = Many (~101 to 1000 missing)\n' +
+    '4 = Very Many (~1001 or more missing)'
+  },
+  missingTotal: {
+    title: 'Number of Missing from the Eruption',
+    validValues: '0 to',
+    data: 'Whenever possible, numbers of Missing from the eruption are listed.'
+  },
+  missingAmountOrderTotal: {
+    title: 'Description of Missing from the Eruption',
+    validValues: '0 to 4',
+    data: 'When a description was found in the historical literature instead of an actual number of missing, this value was coded and listed in the Missing De column. If the actual number of missing was listed, a descriptor was also added for search purposes.\n' +
+    '\n' +
+    '0 = None\n' +
+    '1 = Few (~1 to 50 missing)\n' +
+    '2 = Some(~51 to 100 missing)\n' +
+    '3 = Many (~101 to 1000 missing)\n' +
+    '4 = Very Many (~1001 or more missing)'
+  },
+  eventDate: {
+    title: 'Event Date',
+    validValues: null,
+    data: 'Where available, this date (SYYYY-MM-DD) indicates the peak of activity. For example, the date that deaths, damage, or corresponding tsunami or earthquake occured.'
+  },
+  startDate: {
+    title: 'Start Date',
+    data: 'Where available, this date (SYYYY-MM-DD) indicates the start date of the eruption.',
+    validValues: null
+  },
+  endDate: {
+    title: 'End Date',
+    data: 'Where available, this date (SYYYY-MM-DD) indicates the last date of the eruptive event.',
+    validValues:null
+  },
+  num: {
+    title: 'Volcano Number',
+    data: 'The volcano numbering system, developed by the Catalog of Active Volcanoes of the World in the late 1930s and used in all their volumes, is geographic and hierarchical. The first two numerals identify region, the next two identify subregion, and the last two or three (after the hyphen) identify individual volcanoes in that subregion. For more information on the volcano id, please visit Smithsonian Institution, Global Volcanism Program.',
+    validValues: null
+  },
+  status: {
+    title: 'Volcano Status',
+    data: 'The Status category conveys the following hierarchical progression from high to low certainty of Holocene volcanism (from the Smithsonian Institution, Global Volcanism Program)',
+    validValues: null,
+    component: <VolcanoStatus/>
   }
-
 };
 
 export {

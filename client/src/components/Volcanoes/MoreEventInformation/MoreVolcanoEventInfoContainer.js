@@ -22,13 +22,24 @@ class MoreVolcanoEventInfoContainer extends React.Component{
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
   }
 
+  closeModal = () => action({type: 'CLOSE_VOLCANO_EVENT_MODAL'});
+
+
   render(){
-    const { volcano, reference } = this.props
+    const { volcano, reference, volcanoUi } = this.props;
     if(volcano.get('fetchedVolcanoEvents') && reference.get('fetchedReference')){
       console.log("this is my volcano data: ", volcano.asMutable().getIn(['volcanoEvents']).toJS());
       return (
           <div>
-
+            <DefinitionModal
+                isOpen={volcanoUi.get('eventModalIsOpen')}
+                closeModal={this.closeModal}
+                validValues={volcanoUi.get('eventModalValidValues')}
+                title={volcanoUi.get('eventModalTitle')}
+                data={volcanoUi.get('eventModalData')}
+                secondaryData={volcanoUi.get('eventModalSecondaryData') ? volcanoUi.get('eventModalSecondaryData').asMutable().toJS() : null}
+                component={volcanoUi.get('eventModalComponent') ? volcanoUi.get('eventModalComponent').asMutable().toJS() : null}
+            />
 
             <SmallTable data={volcano.asMutable().getIn(['volcanoEvents']).toJS()}
                         columns={volcano.getIn(['headersAndAccessors']).toJS()}
@@ -54,6 +65,10 @@ class MoreVolcanoEventInfoContainer extends React.Component{
   }
 }
 
-const mapStateToProps = state => ({volcano: state.deep.volcano, reference: state.deep.reference});
+const mapStateToProps = state => ({
+  volcano: state.deep.volcano,
+  reference: state.deep.reference,
+  volcanoUi: state.volcanoUi
+});
 
 export default connect(mapStateToProps)(MoreVolcanoEventInfoContainer);

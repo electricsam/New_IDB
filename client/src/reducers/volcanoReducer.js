@@ -201,7 +201,6 @@ export default function reducer(state = initialState, action) {
         fetchedVolcanoEvents: true,
       });
     }
-        
     case 'FETCH_MORE_INFO_VOLCANO_EVENT_REJECTED': {
       return state.merge(state, { fetchingVolcanoEvents: false, error: action.payload });
     }

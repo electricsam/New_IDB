@@ -394,7 +394,8 @@ const volTranslateValue = {
   damageAmountOrder: 'Damage Description',
   damageMillionsDollars: 'Damage in Millions of Dollars',
   injuriesAmountOrder: 'Injuries Description',
-  housesAmountOrder: 'Houses Destroyed Description'
+  housesAmountOrder: 'Houses Destroyed Description',
+  num: 'ID'
 };
 
 const mapToVolcanoTable = arr => {
@@ -453,10 +454,6 @@ const mapToVolcanoTable = arr => {
     });
   }
   return result;
-};
-
-const volMoreInfoTranslate = {
-
 };
 
 const mapToVolcanoMoreInfoTable = arr => {
