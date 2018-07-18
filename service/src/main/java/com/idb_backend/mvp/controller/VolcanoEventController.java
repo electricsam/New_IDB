@@ -1,9 +1,6 @@
 package com.idb_backend.mvp.controller;
 
-import com.idb_backend.mvp.domain.model.QVolcanoEvent;
-import com.idb_backend.mvp.domain.model.VolLocTsqp;
-import com.idb_backend.mvp.domain.model.VolcanoEvent;
-import com.idb_backend.mvp.domain.model.VolcanoEventProjection;
+import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.VolLocTsqpRepository;
 import com.idb_backend.mvp.domain.repository.VolcanoEventRepository;
 import com.idb_backend.mvp.service.VolcanoService;
@@ -47,6 +44,17 @@ public class VolcanoEventController {
     }catch (Exception e){
       throw e;
 //      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+  }
+
+  @RequestMapping(value="/volcanoes/moreinfo/{id}", method = RequestMethod.GET)
+  @ResponseBody
+  public ResponseEntity getMoreInfo(@PathVariable("id") Integer id){
+    try{
+      List<VolcanoEventMoreInfoProjection> result = volcanoEventRepository.findMoreInfo(id);
+      return ResponseEntity.status(HttpStatus.OK).body(result);
+    }catch(Exception e){
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
   }
 

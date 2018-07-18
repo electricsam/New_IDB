@@ -453,7 +453,47 @@ const mapToVolcanoTable = arr => {
     });
   }
   return result;
-};  
+};
+
+const volMoreInfoTranslate = {
+
+};
+
+const mapToVolcanoMoreInfoTable = arr => {
+  const result = [];
+  console.log("This is arr: ", arr);
+  if(arr.length){
+    const accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      if(e === "latitude" || e === "longitude"){
+        result.push({
+          Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openVolcanoEventModal}/>),
+          accessor: e,
+          Cell: props => <div>
+            {parseFloat(props.value).toFixed(2)}
+          </div>
+        })
+      }else if(e === 'hazEventId' || e === 'id'){
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e,
+          show: false,
+        })
+      }else if(volTranslateValue[e]){
+        result.push({
+          Header: () => (<TableHeader title={volTranslateValue[e]} accessor={e} handleClick={openVolcanoEventModal}/>),
+          accessor: e
+        })
+      }else{
+        result.push({
+          Header: () => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openVolcanoEventModal}/>),
+          accessor: e
+        });
+      }
+    })
+  }
+  return result;
+};
 
 const mapToTable = (arr) => {
   const result = [];
@@ -501,5 +541,6 @@ module.exports = {
   mapToTsunamiEventTable,
   mapToRunupTable,
   mapToEarthquakeTable,
-  mapToVolcanoTable
+  mapToVolcanoTable,
+  mapToVolcanoMoreInfoTable,
 };

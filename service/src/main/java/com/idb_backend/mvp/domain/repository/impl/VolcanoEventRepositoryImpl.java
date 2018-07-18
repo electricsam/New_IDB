@@ -2,6 +2,7 @@ package com.idb_backend.mvp.domain.repository.impl;
 
 import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.VolcanoEventCustomRepository;
+import com.idb_backend.mvp.domain.repository.VolcanoEventRepository;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -18,6 +19,60 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
 
   @PersistenceContext
   EntityManager entityManager;
+
+  @Override
+  public List<VolcanoEventMoreInfoProjection> findMoreInfo(Integer eventId){
+    JPAQuery<VolcanoEvent> query = new JPAQuery<>(entityManager);
+    QVolcanoEvent e = QVolcanoEvent.volcanoEvent;
+    QVolLocTsqp l = QVolLocTsqp.volLocTsqp;
+
+    List<VolcanoEventMoreInfoProjection> result = query
+        .select(Projections.bean(
+            VolcanoEventMoreInfoProjection.class,
+            e.hazEventId,
+            e.eventDate,
+            e.startDate,
+            e.endDate,
+            e.vei,
+            l.id,
+            l.num,
+            l.name,
+            l.location,
+            l.latitude,
+            l.longitude,
+            l.elevation,
+            l.morphology,
+            l.status,
+            l.timeErupt,
+            e.damageMillionsDollars,
+            e.damageAmountOrder,
+            e.deathsAmountOrder,
+            e.injuries,
+            e.injuriesAmountOrder,
+            e.housesDestroyed,
+            e.housesAmountOrder,
+            e.missing,
+            e.missingAmountOrder,
+            e.deathsTotal,
+            e.deathsAmountOrderTotal,
+            e.injuriesTotal,
+            e.injuriesAmountOrderTotal,
+            e.damageMillionsDollarsTotal,
+            e.damageAmountOrderTotal,
+            e.housesDestroyedTotal,
+            e.housesAmountOrderTotal,
+            e.missingTotal,
+            e.missingAmountOrderTotal
+        ))
+        .distinct()
+        .from(e)
+        .innerJoin(l)
+        .on(l.id.eq(e.volLocTsqp.id))
+        .where(e.hazEventId.eq(eventId))
+        .fetch();
+
+    return result;
+  }
 
   @Override
   public List<VolcanoEventProjection> findByQuery(Predicate predicate){

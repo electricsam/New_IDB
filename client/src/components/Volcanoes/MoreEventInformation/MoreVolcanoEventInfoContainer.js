@@ -18,7 +18,7 @@ class MoreVolcanoEventInfoContainer extends React.Component{
   componentDidMount(){
     let { volcanoId } = this.props.match.params;
     let queryString = `volcanoid=${volcanoId }`
-    action({type: "FETCH_VOLCANO_EVENT_REQUESTED", payload: volcanoId});
+    action({type: "FETCH_MORE_INFO_VOLCANO_EVENT_REQUESTED", payload: volcanoId});
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
   }
 
@@ -28,15 +28,7 @@ class MoreVolcanoEventInfoContainer extends React.Component{
       console.log("this is my volcano data: ", volcano.asMutable().getIn(['volcanoEvents']).toJS());
       return (
           <div>
-            <DefinitionModal
-                isOpen={volcanoUi.get('eventModalIsOpen')}
-                closeModal={this.closeModal}
-                validValues={volcanoUi.get('eventModalValidValues')}
-                title={volcanoUi.get('eventModalTitle')}
-                data={volcanoUi.get('eventModalData')}
-                secondaryData={volcanoUi.get('eventModalSecondaryData') ? volcanoUi.get('eventModalSecondaryData').asMutable().toJS() : null}
-                component={volcanoUi.get('eventModalComponent') ? volcanoUi.get('eventModalComponent').asMutable().toJS() : null}
-            />
+
 
             <SmallTable data={volcano.asMutable().getIn(['volcanoEvents']).toJS()}
                         columns={volcano.getIn(['headersAndAccessors']).toJS()}

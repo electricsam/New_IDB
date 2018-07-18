@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { mapToTable, mapToVolcanoTable } from '../helperFunctions/helperFunctions';
+import { mapToTable, mapToVolcanoTable, mapToVolcanoMoreInfoTable } from '../helperFunctions/helperFunctions';
 
 const VOLCANO_BASEPATH = '/idb-service/volcanoes';
 const VOLCANOLOC_BASEPATH = '/idb-service/volcanolocs';
@@ -150,6 +150,26 @@ export function* fetchVolcanoEvent(action) {
     yield put({ type: 'FETCH_VOLCANO_EVENT_REJECTED', payload: error });
   }
 }
+
+export function* watchFetchMoreInfoVolcanoEvent() {
+  yield takeEvery('FETCH_MORE_INFO_VOLCANO_EVENT_REQUESTED', fetchMoreInfoVolcanoEvent);
+}
+
+export function* fetchMoreInfoVolcanoEvent(action) {
+  const id = action.payload;
+  try {
+    const response = yield call(axios.get, `${VOLCANO_BASEPATH}/moreinfo/${id}`);
+    yield put({
+      type: 'FETCH_MORE_INFO_VOLCANO_EVENT_FULFILLED',
+      payload: {data: response.data, formattedData: mapToVolcanoMoreInfoTable(response.data)}
+    });
+  } catch (error) {
+    yield put({ type: 'FETCH_MORE_INFO_VOLCANO_EVENT_REJECTED', payload: error });
+  }
+}
+
+
+
 
 export function* watchPatchVolcanoEvent() {
   yield takeEvery('PATCH_VOLCANO_EVENT_REQUESTED', patchVolcanoEvent);
