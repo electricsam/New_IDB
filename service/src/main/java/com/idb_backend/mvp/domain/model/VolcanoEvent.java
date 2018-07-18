@@ -33,6 +33,7 @@ public class VolcanoEvent {
   private Integer maxYear;
 
   private Integer mo;
+
   private Integer day;
 
   @JsonFormat(pattern = "yyyy-MM-dd", timezone = "UTC")
@@ -185,7 +186,6 @@ public class VolcanoEvent {
   private Integer damageAmountOrderTotal;
   private Integer housesDestroyedTotal;
   private Integer housesAmountOrderTotal;
-
   private Integer validity;
   private Integer signif;
   private String publish;
@@ -195,7 +195,6 @@ public class VolcanoEvent {
   @JoinColumn(name = "VOL_ID")
   @JsonIgnore
   private VolLocTsqp volLocTsqp;
-//  private Integer volId;
 
   @OneToMany(mappedBy = "volcanoEvent", fetch = FetchType.LAZY)
   @JsonIgnore
