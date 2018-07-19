@@ -97,7 +97,7 @@ public class EarthquakeController {
         }else{
 
           signifTsqp = earthquakeService.sanatizeObject(signifTsqp);
-
+//TODO: need to rewrite to funnel all Strings through sanitization before passing on the Data to be posted
 
 //          Predicate predicate = QSignifTsqp.signifTsqp.id.gt(10000);
 //          OrderSpecifier orderSpecifier = QSignifTsqp.signifTsqp.id.desc();
