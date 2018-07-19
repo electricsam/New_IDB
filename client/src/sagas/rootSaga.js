@@ -31,6 +31,7 @@ import {
   watchFetchEarthquake,
   watchRelateEarthquakeToTsunami,
   watchRelateEarthquakeToVolcano,
+  watchFetchMoreInfoEarthquake,
 } from './earthquakeSaga';
 
 import {
@@ -124,5 +125,6 @@ export default function* rootSaga() {
     watchRelateReferenceToRunup(),
     watchRelateReferenceToTsunami(),
     watchFetchMoreInfoVolcanoEvent(),
+    watchFetchMoreInfoEarthquake(),
   ]);
 }

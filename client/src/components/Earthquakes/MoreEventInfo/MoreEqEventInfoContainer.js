@@ -16,13 +16,13 @@ class MoreVolcanoEventInfoContainer extends React.Component{
 
   componentDidMount(){
     let { eqId } = this.props.match.params;
-    let queryString = `earthquakeid=${eqId}`
-    action({type: "FETCH_EARTHQUAKE_REQUESTED", payload: eqId});
+    let queryString = `earthquakeid=${eqId}`;
+    action({type: "FETCH_MORE_INFO_EARTHQUAKE_REQUESTED", payload: eqId});
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
   }
 
   render(){
-    const { earthquake, reference } = this.props
+    const { earthquake, reference, earthquakeUi } = this.props;
 
     if(earthquake.get('fetchedEarthquake') && reference.get('fetchedReference')){
       return (
@@ -45,7 +45,6 @@ class MoreVolcanoEventInfoContainer extends React.Component{
                         defaultPageSize={reference.asMutable().getIn(['references']).toJS().length}
                         loading={reference.get('fetchingReference')}/>
 
-
           </div>
       )
     }
@@ -54,6 +53,10 @@ class MoreVolcanoEventInfoContainer extends React.Component{
 }
 
 
-const mapStateToProps = state => ({earthquake: state.deep.earthquake, reference: state.deep.reference});
+const mapStateToProps = state => ({
+  earthquake: state.deep.earthquake,
+  reference: state.deep.reference,
+  earthquakeUi: state.earthquakeUi
+});
 
 export default connect(mapStateToProps)(MoreVolcanoEventInfoContainer);

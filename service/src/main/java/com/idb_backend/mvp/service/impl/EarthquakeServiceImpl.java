@@ -20,7 +20,7 @@ public class EarthquakeServiceImpl implements EarthquakeService{
   EarthquakeViewRepository earthquakeViewRepository;
 
   @Override
-  public Iterable<SignifVsqp> getAllEarthquakes(Map<String, String> params, Predicate predicate) {
+  public Iterable getAllEarthquakes(Map<String, String> params, Predicate predicate) {
     if(params.get("tsunamiid") != null && !params.get("tsunamiid").equals("")){
       Integer tsunamiId = Integer.parseInt(params.get("tsunamiid"));
       return earthquakeRepository.findRelatedEarthquakeFromTsunami(tsunamiId);

@@ -2,11 +2,15 @@ package com.idb_backend.mvp.domain.repository.impl;
 
 import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.EarthquakeCustomRepository;
+import com.idb_backend.mvp.domain.repository.EarthquakeRepository;
+import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 public class EarthquakeRepositoryImpl extends QuerydslRepositorySupport implements EarthquakeCustomRepository{
 
@@ -59,6 +63,62 @@ public class EarthquakeRepositoryImpl extends QuerydslRepositorySupport implemen
         .on(eq.id.eq(sv.signifTsqp.id))
         .where(sv.volcanoEvent.hazEventId.eq(volId))
         .fetch();
+  }
+
+  @Override
+  public  List<EarthquakeMoreInfoProjection> findMoreInfo(Integer id){
+    JPAQuery<SignifTsqp> query = new JPAQuery<>(entityManager);
+    QSignifTsqp eq = QSignifTsqp.signifTsqp;
+
+    List<EarthquakeMoreInfoProjection> result = query
+        .select(Projections.bean(EarthquakeMoreInfoProjection.class,
+            eq.id,
+            eq.year,
+            eq.month,
+            eq.day,
+            eq.hour,
+            eq.minute,
+            eq.second,
+            eq.locationName,
+            eq.latitude,
+            eq.longitude,
+            eq.eqDepth,
+            eq.eqMagMw,
+            eq.eqMagMs,
+            eq.eqMagMb,
+            eq.eqMagMl,
+            eq.eqMagMfa,
+            eq.eqMagUnk,
+            eq.intensity,
+            eq.deaths,
+            eq.deathsAmountOrder,
+            eq.missing,
+            eq.missingAmountOrder,
+            eq.injuries,
+            eq.injuriesAmountOrder,
+            eq.damageMillionsDollars,
+            eq.damageAmountOrder,
+            eq.housesDestroyed,
+            eq.housesAmountOrder,
+            eq.housesDamaged,
+            eq.housesDamagedTotal,
+            eq.deathsTotal,
+            eq.deathsAmountOrderTotal,
+            eq.injuriesTotal,
+            eq.injuriesAmountOrderTotal,
+            eq.missingTotal,
+            eq.missingAmountOrderTotal,
+            eq.damageMillionsDollarsTotal,
+            eq.damageAmountOrderTotal,
+            eq.housesDestroyedTotal,
+            eq.housesAmountOrderTotal,
+            eq.housesDamagedAmountOrder,
+            eq.housesDamAmountOrderTotal)
+        ).distinct().from(eq)
+        .where(eq.id.eq(id))
+        .fetch();
+
+    return result;
   }
 
 }

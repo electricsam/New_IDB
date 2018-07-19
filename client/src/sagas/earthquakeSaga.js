@@ -114,6 +114,27 @@ export function* fetchEarthquake(action) {
   }
 }
 
+export function* watchFetchMoreInfoEarthquake() {
+  yield takeEvery('FETCH_MORE_INFO_EARTHQUAKE_REQUESTED', fetchMoreInfoEarthquake);
+}
+
+export function* fetchMoreInfoEarthquake(action) {
+  const id = action.payload;
+  try {
+    const response = yield call(axios.get, `${EARTHQUAKE_BASEPATH}/moreinfo/${id}`);
+    if(response.data){
+      yield put({
+        type: 'FETCH_MORE_INFO_EARTHQUAKE_FULFILLED',
+        payload: {data: response.data, formattedData: mapToTable([response.data])},
+      });
+    }else{
+      yield put({ type: 'FETCH_MORE_INFO_EARTHQUAKE_REJECTED', payload: "empty response" });
+    }
+  } catch (error) {
+    yield put({ type: 'FETCH_MORE_INFO_EARTHQUAKE_REJECTED', payload: error });
+  }
+}
+
 
 export function* watchRelateEarthquakeToTsunami(){
   yield takeEvery("RELATE_EARTHQUAKE_TO_TSUNAMI_REQUESTED", relateEarthquakeToTsunami)

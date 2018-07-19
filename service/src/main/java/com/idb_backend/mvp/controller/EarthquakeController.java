@@ -1,11 +1,13 @@
 package com.idb_backend.mvp.controller;
 
+import com.idb_backend.mvp.domain.model.EarthquakeMoreInfoProjection;
 import com.idb_backend.mvp.domain.model.QSignifTsqp;
 import com.idb_backend.mvp.domain.model.SignifTsqp;
 import com.idb_backend.mvp.domain.model.SignifVsqp;
 import com.idb_backend.mvp.domain.repository.EarthquakeRepository;
 import com.idb_backend.mvp.domain.repository.EarthquakeViewRepository;
 import com.idb_backend.mvp.service.EarthquakeService;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.xml.ws.Response;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -36,10 +40,21 @@ public class EarthquakeController {
   public ResponseEntity getAllEarthquakes(@RequestParam Map<String, String> params,
                                           @QuerydslPredicate(root = SignifVsqp.class) Predicate predicate){
     try{
-      Iterable<SignifVsqp> result = earthquakeService.getAllEarthquakes(params, predicate);
+      Iterable result = earthquakeService.getAllEarthquakes(params, predicate);
       return ResponseEntity.status(HttpStatus.OK).body(result);
     }catch (NumberFormatException e){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    }
+  }
+
+  @RequestMapping(value = "/earthquakes/moreinfo/{id}", method=RequestMethod.GET)
+  @ResponseBody
+  public ResponseEntity getMoreInfo(@PathVariable("id") Integer id){
+    try{
+      List<EarthquakeMoreInfoProjection> result = earthquakeRepository.findMoreInfo(id);
+      return ResponseEntity.status(HttpStatus.OK).body(result);
+    }catch (Exception e){
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
   }
 
