@@ -95,16 +95,22 @@ public class EarthquakeController {
         if(errors.hasErrors()){
           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
         }else{
-          Predicate predicate = QSignifTsqp.signifTsqp.id.gt(10000);
-          OrderSpecifier orderSpecifier = QSignifTsqp.signifTsqp.id.desc();
 
-          Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate, orderSpecifier);
-          Integer id = result.iterator().next().getId() + 1;
-          signifTsqp.setId(id);
-          earthquakeRepository.save(signifTsqp);
+          signifTsqp = earthquakeService.sanatizeObject(signifTsqp);
 
-          Optional<SignifTsqp> posted = earthquakeRepository.findById(id);
-          return ResponseEntity.status(HttpStatus.OK).body(posted);
+
+//          Predicate predicate = QSignifTsqp.signifTsqp.id.gt(10000);
+//          OrderSpecifier orderSpecifier = QSignifTsqp.signifTsqp.id.desc();
+//
+//          Iterable<SignifTsqp> result = earthquakeRepository.findAll(predicate, orderSpecifier);
+//          Integer id = result.iterator().next().getId() + 1;
+//          signifTsqp.setId(id);
+//          earthquakeRepository.save(signifTsqp);
+//
+//          Optional<SignifTsqp> posted = earthquakeRepository.findById(id);
+//          return ResponseEntity.status(HttpStatus.OK).body(posted);
+
+          return ResponseEntity.status(HttpStatus.OK).body(signifTsqp);
         }
       }catch (Exception e){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
