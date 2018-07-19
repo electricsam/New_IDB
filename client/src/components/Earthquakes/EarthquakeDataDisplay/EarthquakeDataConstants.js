@@ -168,11 +168,170 @@ const earthquakeColumnDefinitions = {
     '3 = Many (~101 to 1000 houses)\n' +
     '4 = Very Many (~1001 or more houses)'
   },
+  missing: {
+    title: 'Number of Missing from the Earthquake',
+    validValues: "0 to 1100000",
+    data: "Whenever possible, numbers of missing are listed. When references give different numbers of missing, each missing number and corresponding reference is listed as a separate record."
+  },
+  missingAmountOrder: {
+    title: 'Description of Missing from the Earthquake',
+    validValues: "0 to 4",
+    data: "When a description was found in the historical literature instead of an actual number of missing, this value was coded and listed in the Missing De column. If the actual number of Missing was listed, a descriptor was also added for search purposes.\n" +
+    "\n" +
+    "0 = None\n" +
+    "1 = Few (~1 to 50 missing)\n" +
+    "2 = Some(~51 to 100 missing)\n" +
+    "3 = Many (~101 to 1000 missing)\n" +
+    "4 = Very Many (~1001 or more missing)\n"
+  },
+  missingTotal: {
+    title: 'Total Number of Missing from the Earthquake and secondary effects (eg Tsunami)',
+    validValues: "0 to 1100000",
+    data: "Whenever possible, total number of missing from the earthquake and secondary effects are listed."
+  },
+  missingAmountOrderTotal: {
+    title: 'Description of Missing from the Earthquake and secondary effects (eg Tsunami)',
+    validValues: "0 t o 4",
+    data: "When a description was found in the historical literature instead of an actual number of missing, this value was coded and listed in the Missing De column. If the actual number of Missing was listed, a descriptor was also added for search purposes.\n" +
+    "\n" +
+    "0 = None\n" +
+    "1 = Few (~1 to 50 missing)\n" +
+    "2 = Some(~51 to 100 missing)\n" +
+    "3 = Many (~101 to 1000 missing)\n" +
+    "4 = Very Many (~1001 or more missing)\n"
+  },
+  deathsTotal: {
+    title: 'Total Number of Deaths from the Earthquake and secondary effects (eg Tsunami)',
+    validValues: '0 to 1100000',
+    data: 'Whenever possible, total number of deaths from the earthquake and secondary effects are listed. When references give different death tolls, each death toll and corresponding reference is listed as a separate record.'
+  },
+  deathsAmountOrderTotal: {
+    title: 'Description of Deaths from the Earthquake and secondary effects (eg Tsunami)',
+    validValues: '0 to 4',
+    data: 'When a description was found in the historical literature instead of an actual number of deaths, this value was coded and listed in the Deaths De column. If the actual number of deaths was listed, a descriptor was also added for search purposes.\n' +
+    '\n' +
+    '0 = None\n' +
+    '1 = Few (~1 to 50 deaths)\n' +
+    '2 = Some (~51 to 100 deaths)\n' +
+    '3 = Many (~101 to 1000 deaths)\n' +
+    '4 = Very Many (~1001 or more deaths)'
+  },
+  injuriesTotal: {
+    title: 'Total Number of Injuries from the Earthquake and secondary effects (eg Tsunami)',
+    validValues: '0 to 30000',
+    data: 'Whenever possible, total number of injuries from the earthquake and secondary effects are listed.'
+  },
+  injuriesAmountOrderTotal: {
+    title: 'Description of Injuries from the Earthquake and secondary effects (eg Tsunami)',
+    validValues: '0 to 4',
+    data: 'When a description was found in the historical literature instead of an actual number of injuries, this value was coded and listed in the Injuries De column. If the actual number of injuries was listed, a descriptor was also added for search purposes.\n' +
+    '\n' +
+    '0 = None\n' +
+    '1 = Few (~1 to 50 injuries)\n' +
+    '2 = Some(~51 to 100 injuries)\n' +
+    '3 = Many (~101 to 1000 injuries)\n' +
+    '4 = Very Many (~1001 or more injuries)\n'
+  },
+  damageMillionsDollarsTotal: {
+    title: 'Total Damage in Millions of Dollars from the Earthquake and secondary effects (eg Tsunami)',
+    validValues: null,
+    data: 'The value in the Damage column should be multipled by 1,000,000 to obtain the actual dollar amount.\n' +
+    '\n' +
+    'When a dollar amount for damage was found in the literature, it was listed in the Damage column in millions of U.S. dollars. The dollar value listed is the value at the time of the event. To convert the damage to current dollar values, please use the Consumer Price Index Calculator. Monetary conversion tables for the time of the event were used to convert foreign currency to U.S. dollars.'
+  },
+  damageAmountOrderTotal: {
+    title: 'Description of Damage from the Earthquake and secondary effects (eg Tsunami):\n',
+    validValues: '0 to 4',
+    data: 'For those events not offering a monetary evaluation of damage, the following five-level scale was used to classify damage (1990 dollars) and was listed in the Damage De column. If the actual dollar amount of damage was listed, a descriptor was also added for search purposes.\n' +
+    '\n' +
+    '0 = NONE\n' +
+    '1 = LIMITED (roughly corresponding to less than $1 million)\n' +
+    '2 = MODERATE (~$1 to $5 million)\n' +
+    '3 = SEVERE (~>$5 to $24 million)\n' +
+    '4 = EXTREME (~$25 million or more)\n' +
+    'When possible, a rough estimate was made of the dollar amount of damage based upon the description provided, in order to choose the damage category. In many cases, only a single descriptive term was available. These terms were converted to the damage categories based upon the authors apparent use of the term elsewhere. In the absence of other information, LIMITED is considered synonymous with slight, minor, and light, SEVERE as synonymous with major, extensive, and heavy, and EXTREME as synonymous with catastrophic.\n' +
+    '\n' +
+    'Note: The descriptive terms relate approximately to current dollar values.'
+  },
+  housesDestroyedTotal: {
+    title: 'Total Number of Houses Destroyed by the Earthquake and secondary effects (eg Tsunami)',
+    validValues: '0 to 1100000',
+    data: 'Whenever possible, numbers of houses destroyed are listed.'
+  },
+  housesAmountOrderTotal: {
+    title: 'Description of Houses Destroyed by the Earthquake and secondary effects (eg Tsunami)',
+    validValues: '0 to 4',
+    data: 'For those events not offering an exact number of houses destroyed, the following four-level scale was used to classify the destruction and was listed in the Houses Destroyed De column. If the actual number of houses destroyed was listed, a descriptor was also added for search purposes.\n' +
+    '\n' +
+    '0 = None\n' +
+    '1 = Few (~1 to 50 houses)\n' +
+    '2 = Some (~51 to 100 houses)\n' +
+    '3 = Many (~101 to 1000 houses)\n' +
+    '4 = Very Many (~1001 or more houses)'
+  },
+  housesDamagedTotal: {
+    title: 'Total Number of Houses Damaged by the Earthquake and secondary effects (eg Tsunami)',
+    validValues: '0 to 1100000',
+    data: 'Whenever possible, numbers of houses damaged are listed.'
+  },
+  housesDamagedAmountOrderTotal: {
+    title: 'Description of Houses Damaged by the Earthquake and secondary effects (eg Tsunami)',
+    validValues: '0 to 4',
+    data: 'For those events not offering an exact number of houses damaged, the following four-level scale was used to classify the damage and was listed in the Houses Damaged De column. If the actual number of houses destroyed was listed, a descriptor was also added for search purposes.\n' +
+    '\n' +
+    '0 = None\n' +
+    '1 = Few (~1 to 50 houses)\n' +
+    '2 = Some (~51 to 100 houses)\n' +
+    '3 = Many (~101 to 1000 houses)\n' +
+    '4 = Very Many (~1001 or more houses)'
+  },
   moreInfo: {
     title: 'Additional Earthquake Information',
     validValues: null,
     data: 'The Addl Info link will display additional earthquake information in a new browser window. The information may include effects such as the numbers of injuries and houses destroyed, Modified Mercalli Intensity, references and comments.'
-  }
+  },
+  eqMagMw: {
+    title: 'Mw Magnitude',
+    validValues: "0.0 to 9.9",
+    data: "The Mw magnitude is based on the moment magnitude scale. Moment is a physical quantity proportional to the slip on the fault times the area of the fault surface that slips; it is related to the total energy released in the EQ. The moment can be estimated from seismograms (and also from geodetic measurements). The moment is then converted into a number similar to other earthquake magnitudes by a standard formula. The result is called the moment magnitude. The moment magnitude provides an estimate of earthquake size that is valid over the complete range of magnitudes, a characteristic that was lacking in other magnitude scales.\n" +
+    "\n" +
+    "The magnitude is a measure of seismic energy. The magnitude scale is logarithmic. An increase of one in magnitude represents a tenfold increase in the recorded wave amplitude. However, the energy release associated with an increase of one in magnitude is not tenfold, but about thirtyfold. For example, approximately 900 times more energy is released in an earthquake of magnitude 7 than in an earthquake of magnitude 5. Each increase in magnitude of one unit is equivalent to an increase of seismic energy of about 1.6 x 10,000,000,000,000 ergs."
+  },
+  eqMagMs: {
+    title: 'Ms Magnitude',
+    validValues: "0.0 to 9.9",
+    data: "The Ms magnitude is the surface-wave magnitude of the earthquake.\n" +
+    "\n" +
+    "The magnitude is a measure of seismic energy. The magnitude scale is logarithmic. An increase of one in magnitude represents a tenfold increase in the recorded wave amplitude. However, the energy release associated with an increase of one in magnitude is not tenfold, but about thirtyfold. For example, approximately 900 times more energy is released in an earthquake of magnitude 7 than in an earthquake of magnitude 5. Each increase in magnitude of one unit is equivalent to an increase of seismic energy of about 1.6 x 10,000,000,000,000 ergs."
+  },
+  eqMagMb: {
+    title: 'Mb Magnitude',
+    validValues: "0.0 to 9.9",
+    data: "The Mb magnitude is the compressional body wave (P-wave) magnitude.\n" +
+    "\n" +
+    "The magnitude is a measure of seismic energy. The magnitude scale is logarithmic. An increase of one in magnitude represents a tenfold increase in the recorded wave amplitude. However, the energy release associated with an increase of one in magnitude is not tenfold, but about thirtyfold. For example, approximately 900 times more energy is released in an earthquake of magnitude 7 than in an earthquake of magnitude 5. Each increase in magnitude of one unit is equivalent to an increase of seismic energy of about 1.6 x 10,000,000,000,000 ergs."
+  },
+  eqMagMl: {
+    title: 'Ml Magnitude',
+    validValues: "0.0 to 9.9",
+    data: "The ML magnitude was the original magnitude relationship defined by Richter and Gutenberg for local earthquakes in 1935. It is based on the maximum amplitude of a seismogram recorded on a Wood-Anderson torsion seismograph. Although these instruments are no longer widely in use, ML values are calculated using modern instrumentation with appropriate adjustments.\n" +
+    "\n" +
+    "The magnitude is a measure of seismic energy. The magnitude scale is logarithmic. An increase of one in magnitude represents a tenfold increase in the recorded wave amplitude. However, the energy release associated with an increase of one in magnitude is not tenfold, but about thirtyfold. For example, approximately 900 times more energy is released in an earthquake of magnitude 7 than in an earthquake of magnitude 5. Each increase in magnitude of one unit is equivalent to an increase of seismic energy of about 1.6 x 10,000,000,000,000 ergs."
+  },
+  eqMagMfa: {
+    title: 'Mfa Magnitude',
+    validValues: "0.0 to 9.9",
+    data: "The Mfa magnitudes are computed from the felt area, for earthquakes that occurred before seismic instruments were in general use.\n" +
+    "\n" +
+    "The magnitude is a measure of seismic energy. The magnitude scale is logarithmic. An increase of one in magnitude represents a tenfold increase in the recorded wave amplitude. However, the energy release associated with an increase of one in magnitude is not tenfold, but about thirtyfold. For example, approximately 900 times more energy is released in an earthquake of magnitude 7 than in an earthquake of magnitude 5. Each increase in magnitude of one unit is equivalent to an increase of seismic energy of about 1.6 x 10,000,000,000,000 ergs."
+  },
+  eqMagUnk: {
+    title: 'Unk Magnitude',
+    validValues: "0.0 to 9.9",
+    data: "The computational method for the earthquake magnitude was unknown and could not be determined from the published sources.\n" +
+    "\n" +
+    "The magnitude is a measure of seismic energy. The magnitude scale is logarithmic. An increase of one in magnitude represents a tenfold increase in the recorded wave amplitude. However, the energy release associated with an increase of one in magnitude is not tenfold, but about thirtyfold. For example, approximately 900 times more energy is released in an earthquake of magnitude 7 than in an earthquake of magnitude 5. Each increase in magnitude of one unit is equivalent to an increase of seismic energy of about 1.6 x 10,000,000,000,000 ergs."
+  },
 };
 
 export {

@@ -22,6 +22,8 @@ class MoreVolcanoEventInfoContainer extends React.Component{
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
   }
 
+  closeModal = () => action({type: "CLOSE_EARTHQUAKE_MODAL"});
+
   render(){
     const { earthquake, reference, earthquakeUi } = this.props;
 

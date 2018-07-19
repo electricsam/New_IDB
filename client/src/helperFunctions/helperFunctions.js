@@ -317,6 +317,12 @@ const mapToEarthquakeTable = arr => {
             {parseFloat(props.value).toFixed(2)}
           </div>
         })
+      }else if(e === 'id'){
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e,
+          show: false
+        })
       }else if(eqTranslateValue[e]){
         result.push({
           Header: () => (<TableHeader title={eqTranslateValue[e]} accessor={e} handleClick={openEarthquakeModal}/>),
@@ -365,6 +371,39 @@ const mapToEarthquakeTable = arr => {
       Cell: props => <Link to={`/earthquake/event/moreinfo/${props.original.id}`}>
         <i className="material-icons">info</i>
       </Link>
+    });
+  }
+  return result;
+};
+
+const mapToEqMoreInfoTable = arr => {
+  const result = [];
+  if(arr.length) {
+    const accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      if(e === "latitude" || e === "longitude"){
+        result.push({
+          Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openEarthquakeModal}/>),
+          accessor: e,
+          Cell: props => <div>
+            {parseFloat(props.value).toFixed(2)}
+          </div>
+        })
+      }else if(e === 'id'){
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e,
+          show: false
+        })
+      }else if(eqTranslateValue[e]){
+        result.push({
+          Header: () => (<TableHeader title={eqTranslateValue[e]} accessor={e} handleClick={openEarthquakeModal}/>),
+          accessor: e })
+      }else{
+        result.push({
+          Header: () => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openEarthquakeModal}/>),
+          accessor: e })
+      }
     });
   }
   return result;
@@ -540,4 +579,5 @@ module.exports = {
   mapToEarthquakeTable,
   mapToVolcanoTable,
   mapToVolcanoMoreInfoTable,
+  mapToEqMoreInfoTable,
 };
