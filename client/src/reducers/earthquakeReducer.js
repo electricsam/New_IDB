@@ -100,6 +100,8 @@ export default function reducer(state = initialState, action) {
     case 'POST_EARTHQUAKE_REJECTED': {
       return state.merge(state, { postingEarthquake: false, error: action.payload, postFail: true });
     }
+
+
     case 'FETCH_EARTHQUAKE_REQUESTED': {
       return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false });
     }
@@ -114,6 +116,24 @@ export default function reducer(state = initialState, action) {
     case 'FETCH_EARTHQUAKE_REJECTED': {
       return state.merge(state, { fetchingEarthquake: false, error: action.payload });
     }
+
+    case 'FETCH_MORE_INFO_EARTHQUAKE_REQUESTED': {
+      return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false });
+    }
+    case 'FETCH_MORE_INFO_EARTHQUAKE_FULFILLED': {
+      return state.merge(state, {
+        fetchingEarthquake: false,
+        fetchedEarthquake: true,
+        earthquakes: action.payload.data,
+        headersAndAccessors: action.payload.formattedData
+      });
+    }
+    case 'FETCH_MORE_INFO_EARTHQUAKE_REJECTED': {
+      return state.merge(state, { fetchingEarthquake: false, error: action.payload });
+    }
+
+
+
     case 'TOGGLE_EARTHQUAKE_UPDATE_DATE_LOC': {
       return state.merge(state, { showEqUpdateDateLoc: !state.get('showEqUpdateDateLoc') });
     }

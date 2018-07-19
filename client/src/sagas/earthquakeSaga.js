@@ -125,7 +125,7 @@ export function* fetchMoreInfoEarthquake(action) {
     if(response.data){
       yield put({
         type: 'FETCH_MORE_INFO_EARTHQUAKE_FULFILLED',
-        payload: {data: response.data, formattedData: mapToTable([response.data])},
+        payload: {data: response.data, formattedData: mapToTable(response.data)},
       });
     }else{
       yield put({ type: 'FETCH_MORE_INFO_EARTHQUAKE_REJECTED', payload: "empty response" });

@@ -5,6 +5,7 @@ import store from '../../../store';
 import SmallTable from "../../SmallTable/SmallTable";
 import Loading from '../../loadbar/Loading';
 import MoreInfoComments from "../../FormPartials/MoreInfoComments/MoreInfoComments";
+import {DefinitionModal} from "../../DefinitionModal/DefinitionModal";
 
 const action = obj => store.dispatch(obj);
 
@@ -27,6 +28,16 @@ class MoreVolcanoEventInfoContainer extends React.Component{
     if(earthquake.get('fetchedEarthquake') && reference.get('fetchedReference')){
       return (
           <div>
+
+            <DefinitionModal
+                isOpen={earthquakeUi.get('eventModalIsOpen')}
+                closeModal={this.closeModal}
+                validValues={earthquakeUi.get('eventModalValidValues')}
+                title={earthquakeUi.get('eventModalTitle')}
+                data={earthquakeUi.get('eventModalData')}
+                secondaryData={earthquakeUi.get('eventModalSecondaryData') ? earthquakeUi.get('eventModalSecondaryData').asMutable().toJS() : null}
+                component={earthquakeUi.get('eventModalComponent') ? earthquakeUi.get('eventModalComponent').asMutable().toJS() : null}
+            />
 
             <SmallTable data={earthquake.asMutable().getIn(['earthquakes']).toJS()}
                         columns={earthquake.getIn(['headersAndAccessors']).toJS()}
