@@ -156,7 +156,6 @@ const mapToTsunamiEventTable = arr => {
   return result;
 };
 
-
 const mapToTsunamiEventMoreInfo = arr => {
   const result = [];
   if(arr.length) {
