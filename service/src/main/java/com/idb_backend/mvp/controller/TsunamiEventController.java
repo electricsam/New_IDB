@@ -2,6 +2,7 @@ package com.idb_backend.mvp.controller;
 
 import com.idb_backend.mvp.domain.model.QTsunamiEvent;
 import com.idb_backend.mvp.domain.model.TsunamiEvent;
+import com.idb_backend.mvp.domain.model.TsunamiEventMoreInfoProjection;
 import com.idb_backend.mvp.domain.model.TsunamiEventView;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.domain.repository.TsunamiEventViewRepository;
@@ -47,6 +48,17 @@ public class TsunamiEventController {
     }catch(Exception e){
       List<TsunamiEvent> event = new ArrayList<>();
       return new ResponseEntity<>(event, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @RequestMapping(value = "/tsunamievents/moreinfo/{id}", method = RequestMethod.GET)
+  @ResponseBody
+  public ResponseEntity getMoreInfo(@PathVariable("id") Integer id){
+    try{
+      Iterable<TsunamiEventMoreInfoProjection> result = tsunamiEventViewRepository.findMoreInfo(id);
+      return ResponseEntity.status(HttpStatus.OK).body(result);
+    }catch (Exception e){
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
   }
 

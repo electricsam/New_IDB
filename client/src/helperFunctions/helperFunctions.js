@@ -67,7 +67,19 @@ const tsTranslateValue = {
   minute:'Min',
   hour:'Hr',
   month: 'Mo',
-  day: 'Dy'
+  day: 'Dy',
+  missingAmountOrder: "Missing Description",
+  injuriesAmountOrder: "Injuries Description",
+  deathsAmountOrder: "Deaths Description",
+  housesAmountOrder: "Houses Destroyed Description",
+  housesDamagedAmountOrder: "Houses Damaged Description",
+  damageAmountOrder: "Damage Description",
+  missingAmountOrderTotal: "Total Missing Description",
+  injuriesAmountOrderTotal: "Total Injuries Description",
+  deathsAmountOrderTotal: "Total Deaths Description",
+  housesAmountOrderTotal: "Total Houses Destroyed Description",
+  housesDamAmountOrderTotal: "Total Houses Damaged Description",
+  damageAmountOrderTotal: "Total Damage Description",
 };
 
 const mapToTsunamiEventTable = arr => {
@@ -91,14 +103,11 @@ const mapToTsunamiEventTable = arr => {
                 {props.value}
               </Link>
         })
-      }else if(e === 'id' || e === "area" ){
+      }else if(e === 'id' || e === "comments" ){
         result.push({
-          Header: () => (
-              <div style={headerStyle}>
-                {camelToPascal(e)}
-              </div>
-          ),
-          accessor: e
+          Header: camelToPascal(e),
+          accessor: e,
+          show: false
         })
       }else if(e === "latitude" || e === "longitude"){
         result.push({

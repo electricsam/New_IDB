@@ -158,11 +158,11 @@ public class TsunamiEventView implements Serializable{
   private Integer maxNumRunup;
 
   //  @Getter(value = AccessLevel.PRIVATE)
-  private BigDecimal tsMtAbe;
+  private Double tsMtAbe;
   //  @Getter(value = AccessLevel.PRIVATE)
-  private BigDecimal tsMtIi;
+  private Double tsMtIi;
 
-  private BigDecimal tsIntensity;
+  private Double tsIntensity;
 
   @Getter(value = AccessLevel.PRIVATE)
   private Integer regionCode;
@@ -260,7 +260,6 @@ public class TsunamiEventView implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private Integer maxMissing;
 
-  //TODO: Default null
   private Integer missingAmountOrder;
 
   @Transient
@@ -294,7 +293,6 @@ public class TsunamiEventView implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private Integer warningStatusId;
 
-  @Getter(value = AccessLevel.PRIVATE)
   private String comments;
 
   @Getter(value = AccessLevel.PRIVATE)
@@ -462,7 +460,6 @@ public class TsunamiEventView implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private Integer maxHousesDamAmountOrderTotal;
 
-  //TODO: Default null
   private Integer missingAmountOrderTotal;
 
   @Transient
@@ -473,7 +470,6 @@ public class TsunamiEventView implements Serializable{
   @Getter(value = AccessLevel.PRIVATE)
   private Integer maxMissingAmountOrderTotal;
 
-  //  TODO: add annotation for foreign key
   @Getter(value = AccessLevel.PRIVATE)
   private Integer mapVolId;
 
