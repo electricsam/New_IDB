@@ -206,6 +206,7 @@ const mapToTsunamiEventMoreInfo = arr => {
       }
     });
   }
+  return result;
 };
 
 const openTsunamiRunupModal = accessor => {

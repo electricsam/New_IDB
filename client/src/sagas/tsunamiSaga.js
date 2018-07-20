@@ -1,7 +1,12 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { mapToTable, mapToTsunamiEventTable, mapToRunupTable } from '../helperFunctions/helperFunctions';
+import {
+  mapToTable,
+  mapToTsunamiEventTable,
+  mapToRunupTable,
+  mapToTsunamiEventMoreInfo
+} from '../helperFunctions/helperFunctions';
 
 const port = 'http://localhost:10088';
 
@@ -43,6 +48,25 @@ export function* fetchTsEventById(action) {
 
 export function* watchFetchTsEventById() {
   yield takeEvery('FETCH_TS_EVENT_REQUESTED', fetchTsEventById);
+}
+
+
+export function* fetchTsEventMoreInfo(action) {
+  const id = action.payload;
+  try {
+    const response = yield call(axios.get, `${TSUNAMI_EVENTS_BASEPATH}/moreinfo/${id}`);
+    yield put({
+      type: 'FETCH_TS_EVENT_MORE_INFO_FULFILLED',
+      //TODO: MAKE SURE TO CHANGE ANY CALLS TO THIS
+      payload: {data: response.data, formattedData: mapToTsunamiEventMoreInfo(response.data)},
+    });
+  } catch (error) {
+    yield put({ type: 'FETCH_TS_EVENT_MORE_INFO_REJECTED', payload: error });
+  }
+}
+
+export function* watchFetchTsEventMoreInfo() {
+  yield takeEvery('FETCH_TS_EVENT_MORE_INFO_REQUESTED', fetchTsEventMoreInfo);
 }
 
 export function* fetchSpecifiedTSEvents(action) {

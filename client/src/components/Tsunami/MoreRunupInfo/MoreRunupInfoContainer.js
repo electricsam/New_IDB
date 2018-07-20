@@ -16,14 +16,14 @@ class MoreRunupInfoContainer extends React.Component{
 
   componentDidMount(){
     let { runupId } = this.props.match.params;
-    console.log("this.props.match.params ", this.props.match.params)
-    let queryString = `runupid=${runupId}`
+    console.log("this.props.match.params ", this.props.match.params);
+    let queryString = `runupid=${runupId}`;
     action({type: "FETCH_TS_RUNUP_REQUESTED", payload: runupId});
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
   }
 
   render(){
-    const { tsunami, reference } = this.props
+    const { tsunami, reference, tsunamiUi } = this.props;
     if(tsunami.get('fetchedRunup') && reference.get('fetchedReference')){
       return (
 
@@ -56,6 +56,10 @@ class MoreRunupInfoContainer extends React.Component{
 }
 
 
-const mapStateToProps = state => ({tsunami: state.deep.tsunami, reference: state.deep.reference});
+const mapStateToProps = state => ({
+  tsunami: state.deep.tsunami,
+  reference: state.deep.reference,
+  tsunamiUi: state.tsunamiUi
+});
 
 export default connect(mapStateToProps)(MoreRunupInfoContainer);
