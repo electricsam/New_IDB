@@ -20,6 +20,7 @@ import {
   watchRelateTsunamitoEarthquake,
   watchRelateTsunamitoVolcano,
   watchFetchTsEventMoreInfo,
+  watchFetchRunupMoreInfo,
 } from './tsunamiSaga';
 
 import {
@@ -128,5 +129,6 @@ export default function* rootSaga() {
     watchFetchMoreInfoVolcanoEvent(),
     watchFetchMoreInfoEarthquake(),
     watchFetchTsEventMoreInfo(),
+    watchFetchRunupMoreInfo(),
   ]);
 }

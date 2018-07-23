@@ -67,7 +67,6 @@ class MoreEventInfoContainer extends React.Component{
   }
 
 
-
 }
 
 

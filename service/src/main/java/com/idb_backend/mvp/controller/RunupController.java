@@ -2,6 +2,7 @@ package com.idb_backend.mvp.controller;
 
 import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.RunupRepository;
+import com.idb_backend.mvp.domain.repository.RunupViewRepository;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.service.RunupService;
 import com.querydsl.core.types.OrderSpecifier;
@@ -32,6 +33,9 @@ public class RunupController {
   @Autowired
   RunupRepository runupRepository;
 
+  @Autowired
+  RunupViewRepository runupViewRepository;
+
   @PersistenceContext
   EntityManager entityManager;
 
@@ -46,6 +50,18 @@ public class RunupController {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
   }
+
+  @RequestMapping(value = "/runups/moreinfo/{id}", method = RequestMethod.GET)
+  @ResponseBody
+  public ResponseEntity getRunupsMoreInfo(@PathVariable("id") Integer id){
+    try{
+      List<RunupMoreInfoProjection> result = runupViewRepository.findMoreInfo(id);
+      return ResponseEntity.status(HttpStatus.OK).body(result);
+    }catch (Exception e){
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+  }
+
 
   @RequestMapping(value = "/runups/{id}", method = RequestMethod.GET)
   @ResponseBody

@@ -98,4 +98,43 @@ public class RunupViewRepositoryImpl extends QuerydslRepositorySupport implement
     return runups;
 
   }
+
+  @Override public List<RunupMoreInfoProjection> findMoreInfo(Integer runupId){
+    JPAQuery<TsunamiRunupView> query = new JPAQuery<>(entityManager);
+    QTsunamiRunupView rv = QTsunamiRunupView.tsunamiRunupView;
+    List<RunupMoreInfoProjection> result = query
+        .select(Projections.bean(
+            RunupMoreInfoProjection.class,
+            rv.id,
+            rv.country,
+            rv.locationName,
+            rv.latitude,
+            rv.longitude,
+            rv.distFromSource,
+            rv.travHours,
+            rv.travMins,
+            rv.runupHt,
+            rv.runupHoriz,
+            rv.typeMeasurementId,
+            rv.period,
+            rv.firstMotion,
+            rv.deaths,
+            rv.deathsAmountOrder,
+            rv.injuries,
+            rv.injuriesAmountOrder,
+            rv.damageMillionsDollars,
+            rv.damageAmountOrder,
+            rv.housesDestroyed,
+            rv.housesAmountOrder,
+            rv.housesDamaged,
+            rv.housesDamagedAmountOrder,
+            rv.comments)
+        )
+        .distinct()
+        .from(rv)
+        .where(rv.id.eq(runupId))
+        .fetch();
+    return result;
+  }
+
 }

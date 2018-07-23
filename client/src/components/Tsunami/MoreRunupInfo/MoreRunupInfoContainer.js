@@ -5,6 +5,7 @@ import store from '../../../store';
 import SmallTable from "../../SmallTable/SmallTable";
 import Loading from '../../loadbar/Loading';
 import MoreInfoComments from "../../FormPartials/MoreInfoComments/MoreInfoComments";
+import {DefinitionModal} from "../../DefinitionModal/DefinitionModal";
 
 const action = obj => store.dispatch(obj);
 
@@ -18,9 +19,11 @@ class MoreRunupInfoContainer extends React.Component{
     let { runupId } = this.props.match.params;
     console.log("this.props.match.params ", this.props.match.params);
     let queryString = `runupid=${runupId}`;
-    action({type: "FETCH_TS_RUNUP_REQUESTED", payload: runupId});
+    action({type: "FETCH_TS_RUNUP_MORE_INFO_REQUESTED", payload: runupId});
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
   }
+
+  closeModal = () => action({type: "CLOSE_TSUNAMI_RUNUP_MODAL"});
 
   render(){
     const { tsunami, reference, tsunamiUi } = this.props;
@@ -28,6 +31,16 @@ class MoreRunupInfoContainer extends React.Component{
       return (
 
           <div>
+
+            <DefinitionModal
+                isOpen={tsunamiUi.get('runupModalIsOpen')}
+                closeModal={this.closeModal}
+                validValues={tsunamiUi.get('runupModalValidValues')}
+                title={tsunamiUi.get('runupModalTitle')}
+                data={tsunamiUi.get('runupModalData')}
+                secondaryData={tsunamiUi.get('runupModalSecondaryData') ? tsunamiUi.get('runupModalSecondaryData').asMutable().toJS() : null}
+                component={tsunamiUi.get('runupModalComponent') ? tsunamiUi.get('runupModalComponent').asMutable().toJS() : null}
+            />
 
             <SmallTable data={tsunami.asMutable().getIn(['runupData']).toJS()}
                         columns={tsunami.getIn(['headersAndAccessors']).toJS()}

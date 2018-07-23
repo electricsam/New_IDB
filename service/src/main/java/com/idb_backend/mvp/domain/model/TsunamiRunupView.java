@@ -1,9 +1,6 @@
 package com.idb_backend.mvp.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.querydsl.core.annotations.QueryEntity;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.WKTWriter;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;

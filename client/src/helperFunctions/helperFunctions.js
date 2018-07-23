@@ -1,14 +1,14 @@
 import React from 'react';
-import { push } from 'react-router-redux';
-import { Link } from 'react-router-dom';
-const CryptoJS = require('crypto-js');
+import {Link} from 'react-router-dom';
 
 import store from '../store';
 import {tsunamiEventColumnDefinitions} from "../components/Tsunami/TsunamiEventDataDisplay/TsunamiDataConstants";
-import { earthquakeColumnDefinitions } from "../components/Earthquakes/EarthquakeDataDisplay/EarthquakeDataConstants";
-import { RunupColumnDefinitions} from "../components/Tsunami/TsunamiRunupDataDisplay/RunupDataConstants";
+import {earthquakeColumnDefinitions} from "../components/Earthquakes/EarthquakeDataDisplay/EarthquakeDataConstants";
+import {RunupColumnDefinitions} from "../components/Tsunami/TsunamiRunupDataDisplay/RunupDataConstants";
 import TableHeader from "../components/TableHeader/TableHeader";
 import {VolcanoEventColumnDefinitions} from "../components/Volcanoes/VolcanoDataDisplay/VolcanoEventConstants";
+
+const CryptoJS = require('crypto-js');
 
 const action = obj => store.dispatch(obj);
 
@@ -240,7 +240,27 @@ const runupTranslateVal = {
   runupHt: 'Max Water Height',
   runupHoriz: 'Max Inundation Distance',
   typeMeasurementId: 'Type of Measurement',
+};
 
+const runupMoreInfoTranslate = {
+  locationName: 'Name',
+  distFromSource: 'Distance From Source',
+  doubtful: 'Doubtful Runup',
+  runupHt: 'Max Water Height',
+  runupHoriz: 'Max Inundation Distance',
+  typeMeasurementId: 'Type of Measurement',
+  period: 'Per',
+  firstMotion: '1st Mtn',
+  deaths: 'Number of Deaths',
+  deathsAmountOrder: 'Deaths Description',
+  injuries: 'Number of Injuries',
+  injuriesAmountOrder: 'Description of Injuries',
+  damageMillionsDollars: 'Damage in Millions',
+  damageAmountOrder: 'Damage Description',
+  housesDestroyed: 'Number of Houses Destroyed',
+  housesAmountOrder: 'Description of Houses Destroyed',
+  housesDamaged: 'Number of Houses Damaged',
+  housesDamagedAmountOrder: 'Description of Houses Damaged'
 };
 
 const mapToRunupTable = arr => {
@@ -298,6 +318,38 @@ const mapToRunupTable = arr => {
       Cell: props => <Link to={`/tsunami/runup/moreinfo/${props.original.id}`}>
         <i className="material-icons">info</i>
       </Link>
+    });
+  }
+  return result;
+};
+
+
+const mapToRunupMoreInfoTable = arr => {
+  const result = [];
+  if(arr.length) {
+    const accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      if (e === "latitude" || e === "longitude") {
+        result.push({
+          Header: () => (<TableHeader handleClick={openTsunamiRunupModal} title={camelToPascal(e)} accessor={e}/>),
+          accessor: e,
+          Cell: props => <div>
+            {parseFloat(props.value).toFixed(2)}
+          </div>
+        })
+      } else if (e === 'eventId' || e === 'id' || e === 'comments') {
+        result.push({Header: camelToPascal(e), accessor: e, show: false})
+      } else if (runupMoreInfoTranslate[e]) {
+        result.push({
+          Header: () => (<TableHeader accessor={e} title={runupMoreInfoTranslate[e]} handleClick={openTsunamiRunupModal}/>),
+          accessor: e
+        });
+      } else {
+        result.push({
+          Header: () => (<TableHeader accessor={e} title={camelToPascal(e)} handleClick={openTsunamiRunupModal}/>),
+          accessor: e
+        });
+      }
     });
   }
   return result;
@@ -612,4 +664,5 @@ module.exports = {
   mapToVolcanoMoreInfoTable,
   mapToEqMoreInfoTable,
   mapToTsunamiEventMoreInfo,
+  mapToRunupMoreInfoTable,
 };

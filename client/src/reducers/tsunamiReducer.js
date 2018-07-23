@@ -157,9 +157,6 @@ export default function reducer(state = initialState, action) {
     case 'FETCH_TS_EVENT_MORE_INFO_REJECTED': {
       return state.merge(state, { fetchingTsEvent: false, fetchedTsEvent: false, error: action.payload });
     }
-
-
-
     case 'FETCH_TS_RUNUP_REQUESTED': {
       return state.merge(state, { fetchingRunup: true, fetchedRunup: false });
     }
@@ -172,6 +169,20 @@ export default function reducer(state = initialState, action) {
       });
     }
     case 'FETCH_TS_RUNUP_REJECTED': {
+      return state.merge(state, { fetchingRunup: false, error: action.payload, fetchedRunup: false });
+    }
+    case 'FETCH_TS_RUNUP_MORE_INFO_REQUESTED': {
+      return state.merge(state, { fetchingRunup: true, fetchedRunup: false });
+    }
+    case 'FETCH_TS_RUNUP_MORE_INFO_FULFILLED': {
+      return state.merge(state, {
+        runupData: action.payload.data,
+        headersAndAccessors: action.payload.formattedData,
+        fetchingRunup: false,
+        fetchedRunup: true,
+      });
+    }
+    case 'FETCH_TS_RUNUP_MORE_INFO_REJECTED': {
       return state.merge(state, { fetchingRunup: false, error: action.payload, fetchedRunup: false });
     }
     case 'TOGGLE_RUNUPPLACE_FORM': {

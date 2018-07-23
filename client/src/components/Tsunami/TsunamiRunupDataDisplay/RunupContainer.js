@@ -1,13 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { get, getIn } from 'immutable';
-import { push } from 'react-router-redux';
+import {connect} from 'react-redux';
+import {get, getIn} from 'immutable';
+import {push} from 'react-router-redux';
 
 import store from '../../../store';
 import Loading from '../../loadbar/Loading';
-import Table from '../../Table/Table';
-
-import {decodeQueryString, createApiQueryString, encodeQueryString} from '../../../helperFunctions/helperFunctions';
+import {createApiQueryString, decodeQueryString, encodeQueryString} from '../../../helperFunctions/helperFunctions';
 import DialogBox from '../../FormPartials/DialogBox/DialogBox';
 import TickboxTable from "../../CheckboxTable/TickboxTable";
 import {DefinitionModal} from '../../DefinitionModal/DefinitionModal';

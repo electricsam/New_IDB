@@ -63,7 +63,7 @@ public class TsunamiRunup implements Serializable{
 
   @DecimalMin(value = Constants.minPeriod)
   @DecimalMax(value = Constants.maxPeriod)
-  private Float period;
+  private Double period;
 
   @Size(min = 1, max = 1)
   @InString(strs = {"F", "R"})
@@ -71,11 +71,11 @@ public class TsunamiRunup implements Serializable{
 
   @Min(value = Constants.latMin)
   @Max(value = Constants.latMax)
-  private Float latitude;
+  private Double latitude;
 
   @Min(value = Constants.longMin)
   @Max(value = Constants.longMax)
-  private Float longitude;
+  private Double longitude;
 
   private String locationName;
 
@@ -117,18 +117,18 @@ public class TsunamiRunup implements Serializable{
 
   @Min(value = Constants.minWaterHt)
   @Max(value = Constants.maxWaterHt)
-  private Float runupHt;
+  private Double runupHt;
 
   @Min(value = Constants.minHoriz)
   @Max(value= Constants.maxHoriz)
-  private Float runupHoriz;
+  private Double runupHoriz;
 
   @Min(value = Constants.measureTypeMin)
   @Max(value = Constants.measureTypeMax)
   private Integer typeMeasurementId;
 
   @Min(value = 0)
-  private Float damageMillionsDollars;
+  private Double damageMillionsDollars;
 
   @Min(value = Constants.descripMin)
   @Max(value = Constants.descripMax)
@@ -212,7 +212,7 @@ public class TsunamiRunup implements Serializable{
 
   private Integer maxWaveNum;
 
-  private Float predTravHours;
+  private Double predTravHours;
 
   private Integer predTravMins;
 

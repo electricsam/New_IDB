@@ -226,6 +226,92 @@ const RunupColumnDefinitions = {
     'An "M" indicates the waves likely had a meteorologic source, and thus were not true tsunami waves.',
     validValues: '?, M or Null'
   },
+  deaths: {
+    title: "Number of Deaths at the Runup Location",
+    data: "Deaths from the tsunami at the specific runup location.",
+    validValues: null
+  },
+  deathsAmountOrder: {
+    title: "Description of Deaths from the Tsunami at the Runup Location",
+    validValues: "0 to 4",
+    data: "When a description was found in the historical literature instead of an actual number of deaths, this value was coded and listed in the Deaths De column. If the actual number of deaths was listed, a descriptor was also added for search purposes.\n" +
+    "\n" +
+    "0 = None\n" +
+    "1 = Few (~1 to 50 deaths)\n" +
+    "2 = Some (~51 to 100 deaths)\n" +
+    "3 = Many (~101 to 1000 deaths)\n" +
+    "4 = Very Many (~1001 or more deaths)"
+  },
+  injuries: {
+    title: "Number of Injuries at the Runup Location",
+    validValues: null,
+    data: "Whenever possible, numbers of injuries from the tsunami at the specific runup location are listed; may also include injuries from the earthquake that triggered the tsunami."
+  },
+  injuriesAmountOrder: {
+    title: "Description of Injuries from the Tsunami at the Runup Location",
+    validValues: '0 to 4',
+    data: 'When a description was found in the historical literature instead of an actual number of injuries, this value was coded and listed in the Injuries De column. If the actual number of injuries was listed, a descriptor was also added for search purposes.\n' +
+    '\n' +
+    '0 = None\n' +
+    '1 = Few (~1 to 50 injuries)\n' +
+    '2 = Some(~51 to 100 injuries)\n' +
+    '3 = Many (~101 to 1000 injuries)\n' +
+    '4 = Very Many (~1001 or more injuries)'
+  },
+  damageMillionsDollars: {
+    title: "Damage in Millions of Dollars",
+    validValues: null,
+    data: "The value in the Damage column should be multipled by 1,000,000 to obtain the actual dollar amount.\n" +
+    "\n" +
+    "When a dollar amount for damage was found in the literature, it was listed in the Damage column in millions of U.S. dollars. The dollar value listed is the value at the time of the event. To convert the damage to current dollar values today, please use the Consumer Price Index Calculator. Monetary conversion tables for the time of the event were used to convert foreign currency to U.S. dollars."
+  },
+  damageAmountOrder: {
+    title: "Description of Damage from the Tsunami at the Runup Location",
+    validValues: "0 to 4",
+    data: 'For those events not offering a monetary evaluation of damage, the following five-level scale was used to classify damage (1990 dollars) and was listed in the Damage De column. If the actual dollar amount of damage was listed, a descriptor was also added for search purposes.\n' +
+    '\n' +
+    '0 = NONE\n' +
+    '1 = LIMITED (roughly corresponding to less than $1 million)\n' +
+    '2 = MODERATE (~$1 to $5 million)\n' +
+    '3 = SEVERE (~>$5 to $24 million)\n' +
+    '4 = EXTREME (~$25 million or more)\n' +
+    'When possible, a rough estimate was made of the dollar amount of damage based upon the description provided, in order to choose the damage category. In many cases, only a single descriptive term was available. These terms were converted to the damage categories based upon the authors apparent use of the term elsewhere. In the absence of other information, LIMITED is considered synonymous with slight, minor, and light, SEVERE as synonymous with major, extensive, and heavy, and EXTREME as synonymous with catastrophic.\n' +
+    '\n' +
+    'Note: The descriptive terms relate approximately to current dollar values.\n' +
+    '\n'
+  },
+  housesDestroyed: {
+    title: "Number of Houses Destroyed",
+    validValues: null,
+    data: "Whenever possible, number of houses destroyed by the tsunami at the specific runup location are listed; may also include houses destroyed by the earthquake that triggered the tsunami."
+  },
+  housesAmountOrder: {
+    title: "Description of Houses Destroyed by the Tsunami at the Runup Location:\n",
+    validValues: "0 to 4",
+    data: "For those events not offering an exact number of houses destroyed, the following four-level scale was used to classify the destruction and was listed in the Houses Destroyed De column. If the actual number of houses destroyed was listed, a descriptor was also added for search purposes.\n" +
+    "\n" +
+    "0 = None\n" +
+    "1 = Few (~1 to 50 houses)\n" +
+    "2 = Some (~51 to 100 houses)\n" +
+    "3 = Many (~101 to 1000 houses)\n" +
+    "4 = Very Many (~1001 or more houses)"
+  },
+  housesDamaged: {
+    title: "Number of Houses Damaged",
+    validValues: "0 to 4",
+    data: "Whenever possible, number of houses damaged by the tsunami at the specific runup location are listed; may also include houses damaged by the earthquake that triggered the tsunami."
+  },
+  housesDamagedAmountOrder: {
+    title: "Description of Houses Damaged by the Tsunami at the Runup Location",
+    validValues: "0 to 4",
+    data: "For those events not offering an exact number of houses damaged, the following four-level scale was used to classify the damage and was listed in the Houses Damaged De column. If the actual number of houses damaged was listed, a descriptor was also added for search purposes.\n" +
+    "\n" +
+    "0 = None\n" +
+    "1 = Few (~1 to 50 houses)\n" +
+    "2 = Some (~51 to 100 houses)\n" +
+    "3 = Many (~101 to 1000 houses)\n" +
+    "4 = Very Many (~1001 or more houses)"
+  }
 
 };
 

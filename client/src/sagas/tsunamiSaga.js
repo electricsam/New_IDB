@@ -5,7 +5,8 @@ import {
   mapToTable,
   mapToTsunamiEventTable,
   mapToRunupTable,
-  mapToTsunamiEventMoreInfo
+  mapToTsunamiEventMoreInfo,
+  mapToRunupMoreInfoTable
 } from '../helperFunctions/helperFunctions';
 
 const port = 'http://localhost:10088';
@@ -159,6 +160,23 @@ export function* fetchRunup(action) {
     });
   } catch (error) {
     yield put({ type: 'FETCH_TS_RUNUP_REJECTED', payload: error });
+  }
+}
+
+export function* watchFetchRunupMoreInfo() {
+  yield takeEvery('FETCH_TS_RUNUP_MORE_INFO_REQUESTED', fetchRunupMoreInfo);
+}
+
+export function* fetchRunupMoreInfo(action) {
+  const runupId = action.payload;
+  try {
+    const response = yield call(axios.get, `${TSUNAMI_RUNUPS_BASEPATH}/moreinfo/${runupId}`);
+    yield put({
+      type: 'FETCH_TS_RUNUP_MORE_INFO_FULFILLED',
+      payload: {data: response.data, formattedData: mapToRunupMoreInfoTable(response.data)},
+    });
+  } catch (error) {
+    yield put({ type: 'FETCH_TS_RUNUP_MORE_INFO_REJECTED', payload: error });
   }
 }
 
