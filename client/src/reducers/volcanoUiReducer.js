@@ -6,7 +6,13 @@ export const initialState = fromJS({
   eventModalValidValues: null,
   eventModalData: null,
   eventModalSecondaryData: null,
-  eventModalComponent: null
+  eventModalComponent: null,
+  locModalIsOpen: false,
+  locModalTitle: null,
+  locModalData: null,
+  locModalValidValues: null,
+  locModalSecondaryData: null,
+  locModalComponent: null,
 });
 
 export default function reducer(state = initialState, action){
@@ -25,6 +31,22 @@ export default function reducer(state = initialState, action){
     case 'CLOSE_VOLCANO_EVENT_MODAL': {
       return state.merge(state, {
         eventModalIsOpen: false
+      });
+    }
+    case 'OPEN_VOLCANO_LOC_MODAL': {
+      console.log("action.payload: ", action.payload)
+      return state.merge(state, {
+        locModalIsOpen: true,
+        locModalTitle: action.payload.title,
+        locModalData: action.payload.data,
+        locModalValidValues: action.payload.validValues,
+        locModalSecondaryData: action.payload.secondaryData || null,
+        locModalComponent: action.payload.component || null
+      });
+    }
+    case 'CLOSE_VOLCANO_LOC_MODAL': {
+      return state.merge(state, {
+        locModalIsOpen: false
       });
     }
     default:

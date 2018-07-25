@@ -7,6 +7,7 @@ import {earthquakeColumnDefinitions} from "../components/Earthquakes/EarthquakeD
 import {RunupColumnDefinitions} from "../components/Tsunami/TsunamiRunupDataDisplay/RunupDataConstants";
 import TableHeader from "../components/TableHeader/TableHeader";
 import {VolcanoEventColumnDefinitions} from "../components/Volcanoes/VolcanoDataDisplay/VolcanoEventConstants";
+import {VolcanoLocColumnDefinitions} from "../components/Volcanoes/VolcanoLocDataDisplay/VolcanoLocConstants";
 
 const CryptoJS = require('crypto-js');
 
@@ -323,7 +324,6 @@ const mapToRunupTable = arr => {
   return result;
 };
 
-
 const mapToRunupMoreInfoTable = arr => {
   const result = [];
   if(arr.length) {
@@ -508,6 +508,22 @@ const openVolcanoEventModal = (accessor) => {
   }
 };
 
+const openVolcanoLocModal = accessor => {
+  let node = VolcanoLocColumnDefinitions[accessor];
+  if(node){
+    action({
+      type: 'OPEN_VOLCANO_LOC_MODAL',
+      payload: {
+        data:node.data,
+        validValues: node.validValues,
+        title: node.title,
+        secondaryData: node.secondaryData,
+        component: node.component
+      }
+    })
+  }
+};
+
 const volTranslateValue = {
   vei: 'VEI',
   morphology: 'Type',
@@ -518,6 +534,55 @@ const volTranslateValue = {
   injuriesAmountOrder: 'Injuries Description',
   housesAmountOrder: 'Houses Destroyed Description',
   num: 'ID'
+};
+
+const volLocTranslate = {
+  num: "Number",
+  name: "Volcano Name",
+  morphology: "Type",
+  timeErupt: "Last Known Eruption",
+  elevation: "Elev",
+};
+
+const mapToVolcanoLocsTable = arr => {
+  const result = [];
+  if(arr.length) {
+    const accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      if(e === "latitude" || e === "longitude"){
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e,
+          Cell: props => <div>
+            {parseFloat(props.value).toFixed(2)}
+          </div>
+        })
+      }else if(e === 'id'){
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e,
+          show: false,
+        })
+      }else if(e === "timeErupt"){
+        result.push({
+          Header: () => <TableHeader title={volLocTranslate[e]} accessor={e} handleClick={openVolcanoLocModal}/>,
+          accessor: e,
+        })
+      }else if(volLocTranslate[e]){
+        result.push({
+          Header: volLocTranslate[e],
+          accessor: e
+        })
+      }else{
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e
+        });
+      }
+    });
+
+  }
+  return result;
 };
 
 const mapToVolcanoTable = arr => {
@@ -665,4 +730,5 @@ module.exports = {
   mapToEqMoreInfoTable,
   mapToTsunamiEventMoreInfo,
   mapToRunupMoreInfoTable,
+  mapToVolcanoLocsTable
 };

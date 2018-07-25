@@ -48,6 +48,4 @@ public class EarthquakeMoreInfoProjection {
   private Integer housesDamAmountOrderTotal;
 
   public EarthquakeMoreInfoProjection(){}
-
-
 }
