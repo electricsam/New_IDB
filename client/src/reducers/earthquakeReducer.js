@@ -100,8 +100,6 @@ export default function reducer(state = initialState, action) {
     case 'POST_EARTHQUAKE_REJECTED': {
       return state.merge(state, { postingEarthquake: false, error: action.payload, postFail: true });
     }
-
-
     case 'FETCH_EARTHQUAKE_REQUESTED': {
       return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false });
     }
@@ -131,9 +129,6 @@ export default function reducer(state = initialState, action) {
     case 'FETCH_MORE_INFO_EARTHQUAKE_REJECTED': {
       return state.merge(state, { fetchingEarthquake: false, error: action.payload });
     }
-
-
-
     case 'TOGGLE_EARTHQUAKE_UPDATE_DATE_LOC': {
       return state.merge(state, { showEqUpdateDateLoc: !state.get('showEqUpdateDateLoc') });
     }
@@ -167,7 +162,6 @@ export default function reducer(state = initialState, action) {
     case 'RELATE_EARTHQUAKE_TO_VOLCANO_REJECTED': {
       return state.merge(state, {relating: false, related: false, error: action.payload});
     }
-
     case 'PATCH_EARTHQUAKE_REQUESTED': {
       return state.merge(state, { patchingEarthquake: true, patchedEarthquake: false, patchFail: false });
     }

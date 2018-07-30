@@ -2,12 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import store from '../store';
-import {tsunamiEventColumnDefinitions} from "../components/Tsunami/TsunamiEventDataDisplay/TsunamiDataConstants";
-import {earthquakeColumnDefinitions} from "../components/Earthquakes/EarthquakeDataDisplay/EarthquakeDataConstants";
-import {RunupColumnDefinitions} from "../components/Tsunami/TsunamiRunupDataDisplay/RunupDataConstants";
+import {tsunamiEventColumnDefinitions as tseColDefs } from "../components/Tsunami/TsunamiEventDataDisplay/TsunamiDataConstants";
+import {earthquakeColumnDefinitions as eqColDefs} from "../components/Earthquakes/EarthquakeDataDisplay/EarthquakeDataConstants";
+import {RunupColumnDefinitions as rnpColDefs} from "../components/Tsunami/TsunamiRunupDataDisplay/RunupDataConstants";
 import TableHeader from "../components/TableHeader/TableHeader";
-import {VolcanoEventColumnDefinitions} from "../components/Volcanoes/VolcanoDataDisplay/VolcanoEventConstants";
-import {VolcanoLocColumnDefinitions} from "../components/Volcanoes/VolcanoLocDataDisplay/VolcanoLocConstants";
+import {VolcanoEventColumnDefinitions as veColDefs} from "../components/Volcanoes/VolcanoDataDisplay/VolcanoEventConstants";
+import {VolcanoLocColumnDefinitions as volLocColDefs } from "../components/Volcanoes/VolcanoLocDataDisplay/VolcanoLocConstants";
+import InfoLink from "../components/InfoLink/InfoLink";
 
 const CryptoJS = require('crypto-js');
 
@@ -31,18 +32,19 @@ const camelToPascal = (string) => {
   )).join(' ');
 };
 
-const openTsunamiEventModal = (accessor) => {
-  let node = tsunamiEventColumnDefinitions[accessor];
+const openModal = (node) => {
   if(node){
+    console.log(node);
     action({
-      type: 'OPEN_TSUNAMI_EVENT_MODAL',
+      type: 'OPEN_MODAL',
       payload: {
-        data:node.data,
+        data: node.data,
         validValues: node.validValues,
         title: node.title,
         secondaryData: node.secondaryData,
         component: node.component
-      }})
+      }
+    })
   }
 };
 
@@ -90,7 +92,7 @@ const mapToTsunamiEventTable = arr => {
     accessors.map(e => {
       if(e === 'eqMagnitude'){
         result.push({
-          Header: () => <TableHeader title="Earthquake Mag" accessor={e} handleClick={openTsunamiEventModal}/>,
+          Header: () => <TableHeader title="Earthquake Mag" accessor={e} handleClick={() => openModal(tseColDefs[e])}/>,
           accessor: e,
           Cell: props => <Link
               to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.id + ""}))}`}>
@@ -105,7 +107,9 @@ const mapToTsunamiEventTable = arr => {
         })
       }else if(e === "latitude" || e === "longitude"){
         result.push({
-          Header:() => <TableHeader title={camelToPascal(e)} accessor={e} handleClick={openTsunamiEventModal()}/>,
+          Header:() => (
+              <TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(tseColDefs[e])}/>
+          ),
           accessor: e,
           Cell: props => <div>
             {parseFloat(props.value).toFixed(2)}
@@ -113,7 +117,9 @@ const mapToTsunamiEventTable = arr => {
         })
       }else if(e === 'numRunup'){
         result.push({
-          Header: () => <TableHeader title={camelToPascal(e)} accessor={e} handleClick={openTsunamiEventModal}/>,
+          Header: () => (
+              <TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(tseColDefs[e])}/>
+          ),
               accessor: e,
             Cell: props => <Link
             to={`/tsunami/runup/data?${encodeQueryString(JSON.stringify({eventid: props.original.id + ""}))}`}>
@@ -122,33 +128,42 @@ const mapToTsunamiEventTable = arr => {
       })
       }else if(tsTranslateValue[e]){
         result.push({
-          Header: () => <TableHeader title={tsTranslateValue[e]} accessor={e} handleClick={openTsunamiEventModal}/>,
+          Header: () => <TableHeader
+              title={tsTranslateValue[e]}
+              accessor={e}
+              handleClick={() => openModal(tseColDefs[e])}
+          />,
           accessor: e });
       } else{
         result.push({
-          Header: () => <TableHeader title={camelToPascal(e)} accessor={e} handleClick={openTsunamiEventModal}/>,
+          Header: () => (
+              <TableHeader
+                  title={camelToPascal(e)}
+                  accessor={e}
+                  handleClick={() => openModal(tseColDefs[e])}
+              />),
           accessor: e });
       }
     });
     result.splice(10, 0, {
-      Header: () => (<div style={headerStyle}><span>More Info </span>
-        <i className="material-icons"
-           style={{margin: '0 1% 0 1%', color: 'blue'}}
-           onClick={() => openTsunamiEventModal('moreInfo')}>info</i>
-      </div>),
+      Header: () => (
+          <TableHeader
+            title="More Info"
+            accessor="moreInfo"
+            handleClick={() => openModal(tseColDefs['moreInfo'])}
+          />),
       accessor: 'moreInfo',
-      Cell: props => <Link to={`/tsunami/event/moreinfo/${props.original.id}`}>
-        <i className="material-icons">info</i>
-      </Link>
+      Cell: props => <InfoLink to={`/tsunami/event/moreinfo/${props.original.id}`}/>
     });
     result.splice(10, 0, {
-      Header: () => (<div style={headerStyle}><span>Related Volcano </span>
-        <i className="material-icons"
-           style={{margin: '0 1% 0 1%', color: 'blue'}}
-           onClick={() => openTsunamiEventModal('relatedVolcano')}>info</i>
-      </div>),
+      Header: () => (
+          <TableHeader
+              title="RelatedVolcano"
+              accessor="relatedVolcano"
+              handleClick={() => openModal(tseColDefs['relatedVolcano'])}
+          />),
       accessor: 'realatedVolcano',
-      Cell: props => <Link
+      Cell: props => <Link style={{color: "blue"}}
           to={`/volcano/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.id + ""}))}`}>
         Vol
       </Link>
@@ -164,7 +179,7 @@ const mapToTsunamiEventMoreInfo = arr => {
     accessors.map(e => {
       if (e === 'eqMagnitude') {
         result.push({
-          Header: () => <TableHeader title="Earthquake Mag" accessor={e} handleClick={openTsunamiEventModal}/>,
+          Header: () => <TableHeader title="Earthquake Mag" accessor={e} handleClick={() => openModal(tseColDefs[e])}/>,
           accessor: e,
           Cell: props => <Link
               to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.id + ""}))}`}>
@@ -179,7 +194,9 @@ const mapToTsunamiEventMoreInfo = arr => {
         })
       } else if (e === "latitude" || e === "longitude") {
         result.push({
-          Header: () => <TableHeader title={camelToPascal(e)} accessor={e} handleClick={openTsunamiEventModal()}/>,
+          Header: () => (
+              <TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(tseColDefs[e])}/>
+          ),
           accessor: e,
           Cell: props => <div>
             {parseFloat(props.value).toFixed(2)}
@@ -187,7 +204,9 @@ const mapToTsunamiEventMoreInfo = arr => {
         })
       } else if (e === 'numRunup') {
         result.push({
-          Header: () => <TableHeader title={camelToPascal(e)} accessor={e} handleClick={openTsunamiEventModal}/>,
+          Header: () => (
+              <TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(tseColDefs[e])}/>
+          ),
           accessor: e,
           Cell: props => <Link
               to={`/tsunami/runup/data?${encodeQueryString(JSON.stringify({eventid: props.original.id + ""}))}`}>
@@ -196,33 +215,22 @@ const mapToTsunamiEventMoreInfo = arr => {
         })
       } else if (tsTranslateValue[e]) {
         result.push({
-          Header: () => <TableHeader title={tsTranslateValue[e]} accessor={e} handleClick={openTsunamiEventModal}/>,
+          Header: () => (
+              <TableHeader title={tsTranslateValue[e]} accessor={e} handleClick={() => openModal(tseColDefs[e])}/>
+          ),
           accessor: e
         });
       } else {
         result.push({
-          Header: () => <TableHeader title={camelToPascal(e)} accessor={e} handleClick={openTsunamiEventModal}/>,
+          Header: () => (
+              <TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(tseColDefs[e])}/>
+          ),
           accessor: e
         });
       }
     });
   }
   return result;
-};
-
-const openTsunamiRunupModal = accessor => {
-  let node = RunupColumnDefinitions[accessor];
-  if(node){
-    action({
-      type: 'OPEN_TSUNAMI_RUNUP_MODAL',
-      payload: {
-        data:node.data,
-        validValues: node.validValues,
-        title: node.title,
-        secondaryData: node.secondaryData,
-        component: node.component
-      }})
-  }
 };
 
 const runupTranslateVal = {
@@ -271,7 +279,7 @@ const mapToRunupTable = arr => {
     accessors.map(e => {
       if(e === 'eqMagnitude'){
         result.push({
-          Header: () => (<TableHeader accessor={e} title='Eq Mag' handleClick={openTsunamiRunupModal}/>),
+          Header: () => (<TableHeader accessor={e} title='Eq Mag' handleClick={() => openModal(rnpColDefs[e])}/>),
           accessor: e,
           Cell: props => <Link
               to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.eventId + ""}))}`}>
@@ -280,7 +288,7 @@ const mapToRunupTable = arr => {
         })
       }else if(e === "latitude" || e === "longitude"){
         result.push({
-          Header:() => (<TableHeader handleClick={openTsunamiRunupModal} title={camelToPascal(e)} accessor={e}/>),
+          Header:() => (<TableHeader handleClick={() => openModal(rnpColDefs[e])} title={camelToPascal(e)} accessor={e}/>),
           accessor: e,
           Cell: props => <div>
             {parseFloat(props.value).toFixed(2)}
@@ -290,35 +298,31 @@ const mapToRunupTable = arr => {
         result.push({Header: camelToPascal(e), accessor: e, show: false})
       } else if(runupTranslateVal[e]){
         result.push({
-          Header: () => (<TableHeader accessor={e} title={runupTranslateVal[e]} handleClick={openTsunamiRunupModal}/>),
+          Header: () => (<TableHeader accessor={e} title={runupTranslateVal[e]} handleClick={() => openModal(rnpColDefs[e])}/>),
           accessor: e});
       }else{
         result.push({
-          Header: () => (<TableHeader accessor={e} title={camelToPascal(e)} handleClick={openTsunamiRunupModal}/>),
+          Header: () => (<TableHeader accessor={e} title={camelToPascal(e)} handleClick={() => openModal(rnpColDefs[e])}/>),
           accessor: e });
       }
     });
     result.splice(11,0, {
-      Header:() => (<TableHeader handleClick={openTsunamiRunupModal} title='Tsu Src' accessor={'tsuSrc'}/>),
+      Header:() => (<TableHeader handleClick={() => openModal(rnpColDefs['tsuSrc'])} title='Tsu Src' accessor={'tsuSrc'}/>),
       accessor: 'tsuSrc',
-      Cell: props => <Link to={`/tsunami/event/moreinfo/${props.original.eventId}`}>
-        <i className="material-icons">info</i>
-      </Link>
+      Cell: props => <InfoLink to={`/tsunami/event/moreinfo/${props.original.eventId}`}/>
     });
     result.splice(12, 0, {
-      Header:() => (<TableHeader handleClick={openTsunamiRunupModal} title='Vol' accessor='relatedVolcano'/>),
+      Header:() => (<TableHeader handleClick={() => openModal(rnpColDefs['relatedVolcano'])} title='Vol' accessor='relatedVolcano'/>),
       accessor: 'realatedVolcano',
       Cell: props => <Link
           to={`/volcano/event/data?${encodeQueryString(JSON.stringify({tsunamiid: props.original.eventId + ""}))}`}>
         Vol
       </Link>
-    })
+    });
     result.splice(13,0,{
-      Header: () => (<TableHeader accessor='moreRunupInfo' title='Tsu Runup' handleClick={openTsunamiRunupModal}/>),
+      Header: () => (<TableHeader accessor='moreRunupInfo' title='Tsu Runup' handleClick={() => openModal(rnpColDefs['moreRunupInfo'])}/>),
       accessor: 'moreRunupInfo',
-      Cell: props => <Link to={`/tsunami/runup/moreinfo/${props.original.id}`}>
-        <i className="material-icons">info</i>
-      </Link>
+      Cell: props => <InfoLink to={`/tsunami/runup/moreinfo/${props.original.id}`}/>
     });
   }
   return result;
@@ -331,7 +335,9 @@ const mapToRunupMoreInfoTable = arr => {
     accessors.map(e => {
       if (e === "latitude" || e === "longitude") {
         result.push({
-          Header: () => (<TableHeader handleClick={openTsunamiRunupModal} title={camelToPascal(e)} accessor={e}/>),
+          Header: () => (
+              <TableHeader handleClick={() => openModal(rnpColDefs[e])} title={camelToPascal(e)} accessor={e}/>
+          ),
           accessor: e,
           Cell: props => <div>
             {parseFloat(props.value).toFixed(2)}
@@ -341,12 +347,20 @@ const mapToRunupMoreInfoTable = arr => {
         result.push({Header: camelToPascal(e), accessor: e, show: false})
       } else if (runupMoreInfoTranslate[e]) {
         result.push({
-          Header: () => (<TableHeader accessor={e} title={runupMoreInfoTranslate[e]} handleClick={openTsunamiRunupModal}/>),
+          Header: () => (
+              <TableHeader
+                  accessor={e}
+                  title={runupMoreInfoTranslate[e]}
+                  handleClick={() => openModal(rnpColDefs[e])}
+              />
+          ),
           accessor: e
         });
       } else {
         result.push({
-          Header: () => (<TableHeader accessor={e} title={camelToPascal(e)} handleClick={openTsunamiRunupModal}/>),
+          Header: () => (
+              <TableHeader accessor={e} title={camelToPascal(e)} handleClick={() => openModal(rnpColDefs[e])}/>
+          ),
           accessor: e
         });
       }
@@ -372,21 +386,6 @@ const eqTranslateValue = {
   housesDamagedAmountOrder: 'Houses Damaged Description'
 };
 
-const openEarthquakeModal = accessor => {
-  let node = earthquakeColumnDefinitions[accessor];
-  if(node){
-    action({
-      type: 'OPEN_EARTHQUAKE_MODAL',
-      payload: {
-        data:node.data,
-        validValues: node.validValues,
-        title: node.title,
-        secondaryData: node.secondaryData,
-        component: node.component
-      }})
-  }
-};
-
 const mapToEarthquakeTable = arr => {
   const result = [];
   if(arr.length) {
@@ -394,7 +393,7 @@ const mapToEarthquakeTable = arr => {
     accessors.map(e => {
     if(e === "latitude" || e === "longitude"){
         result.push({
-          Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openEarthquakeModal}/>),
+          Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(eqColDefs[e])}/>),
           accessor: e,
           Cell: props => <div>
             {parseFloat(props.value).toFixed(2)}
@@ -408,22 +407,22 @@ const mapToEarthquakeTable = arr => {
         })
       }else if(eqTranslateValue[e]){
         result.push({
-          Header: () => (<TableHeader title={eqTranslateValue[e]} accessor={e} handleClick={openEarthquakeModal}/>),
+          Header: () => (
+              <TableHeader title={eqTranslateValue[e]} accessor={e} handleClick={() => openModal(eqColDefs[e])}/>
+          ),
           accessor: e })
       }else{
       result.push({
-        Header: () => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openEarthquakeModal}/>),
+        Header: () => (
+            <TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(eqColDefs[e])}/>
+        ),
         accessor: e })
       }
     });
     result.splice(7, 0, {
       Header: () => (
-          <div style={headerStyle}>
-            <span style={{wordWrap: 'break-word'}}>Tsu </span>
-            <i className="material-icons"
-               style={{margin: '0 1% 0 1%', color: 'blue'}}
-               onClick={() => openEarthquakeModal('relatedTsunami')}>info</i>
-          </div>),
+          <TableHeader title="Tsu" accessor="tsu" handleClick={() => openModal(eqColDefs['relatedTsunami'])}/>
+      ),
       accessor: 'relatedTsunami',
       Cell: props => <Link
           to={`/tsunami/event/data?${encodeQueryString(JSON.stringify({earthquakeid: props.original.id + ""}))}`}>
@@ -431,12 +430,9 @@ const mapToEarthquakeTable = arr => {
       </Link>
     });
     result.splice(8, 0, {
-      Header: () => (<div style={headerStyle}>
-        <span style={{wordWrap: 'break-word'}}>Vol </span>
-        <i className="material-icons"
-           style={{margin: '0 1% 0 1%', color: 'blue'}}
-           onClick={() => openEarthquakeModal('relatedVolcano')}>info</i>
-      </div>),
+      Header: () => (
+          <TableHeader title="Vol" accessor="relatedVolcano" handleClick={() => openModal(eqColDefs['relatedVolcano'])}/>
+      ),
       accessor: 'realatedVolcano',
       Cell: props => <Link
           to={`/volcano/event/data?${encodeQueryString(JSON.stringify({earthquakeid: props.original.id + ""}))}`}>
@@ -444,16 +440,11 @@ const mapToEarthquakeTable = arr => {
       </Link>
     });
     result.splice(9, 0, {
-      Header: () => (<div style={headerStyle}>
-        <span style={{wordWrap: 'break-word'}}>More Info </span>
-        <i className="material-icons"
-           style={{margin: '0 1% 0 1%', color: 'blue'}}
-           onClick={() => openEarthquakeModal('moreInfo')}>info</i>
-      </div>),
+      Header: () => (
+          <TableHeader title="More Info" accessor="moreInfo" handleClick={() => openModal(eqColDefs['moreInfo'])}/>
+      ),
       accessor: 'moreInfo',
-      Cell: props => <Link to={`/earthquake/event/moreinfo/${props.original.id}`}>
-        <i className="material-icons">info</i>
-      </Link>
+      Cell: props => <InfoLink to={`/earthquake/event/moreinfo/${props.original.id}`}/>
     });
   }
   return result;
@@ -466,7 +457,7 @@ const mapToEqMoreInfoTable = arr => {
     accessors.map(e => {
       if(e === "latitude" || e === "longitude"){
         result.push({
-          Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openEarthquakeModal}/>),
+          Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(eqColDefs[e])}/>),
           accessor: e,
           Cell: props => <div>
             {parseFloat(props.value).toFixed(2)}
@@ -480,48 +471,16 @@ const mapToEqMoreInfoTable = arr => {
         })
       }else if(eqTranslateValue[e]){
         result.push({
-          Header: () => (<TableHeader title={eqTranslateValue[e]} accessor={e} handleClick={openEarthquakeModal}/>),
+          Header: () => (<TableHeader title={eqTranslateValue[e]} accessor={e} handleClick={() => openModal(eqColDefs[e])}/>),
           accessor: e })
       }else{
         result.push({
-          Header: () => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openEarthquakeModal}/>),
+          Header: () => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(eqColDefs[e])}/>),
           accessor: e })
       }
     });
   }
   return result;
-};
-
-const openVolcanoEventModal = (accessor) => {
-  let node = VolcanoEventColumnDefinitions[accessor];
-  if(node){
-    action({
-      type: 'OPEN_VOLCANO_EVENT_MODAL',
-      payload: {
-        data:node.data,
-        validValues: node.validValues,
-        title: node.title,
-        secondaryData: node.secondaryData,
-        component: node.component
-      }
-    })
-  }
-};
-
-const openVolcanoLocModal = accessor => {
-  let node = VolcanoLocColumnDefinitions[accessor];
-  if(node){
-    action({
-      type: 'OPEN_VOLCANO_LOC_MODAL',
-      payload: {
-        data:node.data,
-        validValues: node.validValues,
-        title: node.title,
-        secondaryData: node.secondaryData,
-        component: node.component
-      }
-    })
-  }
 };
 
 const volTranslateValue = {
@@ -565,7 +524,7 @@ const mapToVolcanoLocsTable = arr => {
         })
       }else if(e === "timeErupt"){
         result.push({
-          Header: () => <TableHeader title={volLocTranslate[e]} accessor={e} handleClick={openVolcanoLocModal}/>,
+          Header: () => <TableHeader title={volLocTranslate[e]} accessor={e} handleClick={() => openModal(volLocColDefs[e])}/>,
           accessor: e,
         })
       }else if(volLocTranslate[e]){
@@ -592,7 +551,7 @@ const mapToVolcanoTable = arr => {
     accessors.map(e => {
       if(e === "latitude" || e === "longitude"){
         result.push({
-          Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openVolcanoEventModal}/>),
+          Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(veColDefs[e])}/>),
           accessor: e,
           Cell: props => <div>
             {parseFloat(props.value).toFixed(2)}
@@ -606,38 +565,39 @@ const mapToVolcanoTable = arr => {
         })
       }else if(volTranslateValue[e]){
         result.push({
-          Header: () => (<TableHeader title={volTranslateValue[e]} accessor={e} handleClick={openVolcanoEventModal}/>),
+          Header: () => (<TableHeader title={volTranslateValue[e]} accessor={e} handleClick={() => openModal(veColDefs[e])}/>),
           accessor: e
         })
       }else{
         result.push({
-          Header: () => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openVolcanoEventModal}/>),
+          Header: () => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(veColDefs[e])}/>),
           accessor: e
         });
       }
     });
     result.splice(5, 0, {
-      Header: () => <TableHeader title='Tsu' accessor={'tsu'} handleClick={openVolcanoEventModal}/>,
+      Header: () => <TableHeader title='Tsu' accessor={'tsu'} handleClick={() => openModal(veColDefs['tsu'])}/>,
       accessor: 'tsu',
-      Cell: props => <Link
-          to={`/tsunami/event/data?${encodeQueryString(JSON.stringify({volcanoid: props.original.hazEventId + ""}))}`}>
-        Tsu
-      </Link>
+      Cell: props =>(
+          <Link style={{color: "inherit", textDecoration: "none"}}
+                to={`/tsunami/event/data?${encodeQueryString(JSON.stringify({volcanoid: props.original.hazEventId + ""}))}`}>
+            Tsu
+          </Link>
+      )
     });
     result.splice(6, 0, {
-      Header: () => <TableHeader title='Eq' accessor={'eq'} handleClick={openVolcanoEventModal  }/>,
+      Header: () => <TableHeader title='Eq' accessor={'eq'} handleClick={() => openModal(veColDefs['eq'])  }/>,
       accessor: 'eq',
-      Cell: props => <Link
-          to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({volcanoid: props.original.hazEventId + ""}))}`}>
+      Cell: props => (
+          <Link
+          to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({volcanoid: props.original.hazEventId + ''}))}`}>
         Vol
-      </Link>
+      </Link>)
     });
     result.splice(7, 0, {
-      Header: () => <TableHeader title='More Info' accessor={'moreInfo'} handleClick={openVolcanoEventModal}/>,
+      Header: () => <TableHeader title='More Info' accessor={'moreInfo'} handleClick={() => openModal(veColDefs['moreInfo'])}/>,
       accessor: 'moreInfo',
-      Cell: props => <Link to={`/volcano/event/moreinfo/${props.original.hazEventId}`}>
-        <i className="material-icons">info</i>
-      </Link>
+      Cell: props => (<InfoLink to={`/volcano/event/moreinfo/${props.original.hazEventId}`}/>)
     });
   }
   return result;
@@ -651,7 +611,7 @@ const mapToVolcanoMoreInfoTable = arr => {
     accessors.map(e => {
       if(e === "latitude" || e === "longitude"){
         result.push({
-          Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openVolcanoEventModal}/>),
+          Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(veColDefs[e])}/>),
           accessor: e,
           Cell: props => <div>
             {parseFloat(props.value).toFixed(2)}
@@ -665,12 +625,12 @@ const mapToVolcanoMoreInfoTable = arr => {
         })
       }else if(volTranslateValue[e]){
         result.push({
-          Header: () => (<TableHeader title={volTranslateValue[e]} accessor={e} handleClick={openVolcanoEventModal}/>),
+          Header: () => (<TableHeader title={volTranslateValue[e]} accessor={e} handleClick={() => openModal(veColDefs[e])}/>),
           accessor: e
         })
       }else{
         result.push({
-          Header: () => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={openVolcanoEventModal}/>),
+          Header: () => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(veColDefs[e])}/>),
           accessor: e
         });
       }

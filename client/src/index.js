@@ -6,10 +6,12 @@ import { Provider } from 'react-redux';
 import Routes from './Routes';
 import store from './store';
 
-const app = document.createElement('div');
-app.setAttribute('id', 'app');
-app.style.height = '100vh';
-document.body.appendChild(app);
+const app = document.getElementById('root');
+
+console.log(document.getElementById('root'));
+console.log(document.getElementsByTagName('div'));
+
+console.log(document.getElementById('root'));
 
 ReactDOM.render(<Provider store={store}>
   <Routes />

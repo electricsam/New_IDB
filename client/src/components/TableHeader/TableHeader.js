@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ModalLauncher from "../ModalLuncher/ModalLauncher";
 
 
 const headerStyle = {
@@ -14,9 +15,7 @@ const headerStyle = {
 const TableHeader = props => (
     <div style={headerStyle}>
       <span>{props.title} </span>
-      <i className="material-icons"
-         style={{margin: '0 1% 0 1%', color: 'blue'}}
-         onClick={() => props.handleClick(props.accessor)}>info</i>
+      <ModalLauncher  handleClick={props.handleClick} arg={props.accessor}/>
     </div>
 );
 

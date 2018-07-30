@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 import {ConnectedRouter} from 'react-router-redux';
+import { connect } from 'react-redux';
+import Modal from 'react-modal';
 
 import Navbar from './Navbar/Navbar';
 import Footer from './Footer/Footer.jsx';
@@ -46,12 +48,38 @@ import RelateTsunamiEvent from "./Tsunami/RelateTsunamiEvent/RelateTsunamiEvent"
 import RelateVolcanoEvent from "./Volcanoes/RelateVolcanoEvent/RelateVolcanoEvent";
 import RelateReference from "./References/RelateReference/RelateReference";
 import ReferenceLanding from "./References/ReferenceLanding/ReferenceLanding";
+import store from "../store";
+import {DefinitionModal} from "./DefinitionModal/DefinitionModal";
+
+Modal.setAppElement('#root');
+
+const action = obj => store.dispatch(obj);
 
 class App extends React.Component {
+  constructor(props){
+    super(props);
+
+  }
+
+
+  closeModal = () => action({type: "CLOSE_MODAL"});
+
   render() {
+    const {appUi} = this.props;
+
     return (
       <ConnectedRouter history={history}>
         <div className={Styles.container}>
+          <DefinitionModal
+              handleCloseModal={this.closeModal}
+              isOpen={appUi.get('modalIsOpen')}
+              validValues={appUi.get('modalValidValues')}
+              title={appUi.get('modalTitle')}
+              data={appUi.get('modalData')}
+              secondaryData={appUi.get('modalSecondaryData') ? appUi.get('modalSecondaryData').asMutable().toJS() : null}
+              component={appUi.get('modalComponent') ? appUi.get('modalComponent').asMutable().toJS() : null}
+          />
+
           <Route exact path="/" render={() => (<Redirect to="/home" />)} />
           <Route path="/*" component={Navbar} />
           <Switch>
@@ -104,4 +132,5 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({appUi: state.appUi});
+export default connect(mapStateToProps)(App);

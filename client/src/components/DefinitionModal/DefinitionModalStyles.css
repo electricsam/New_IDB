@@ -1,15 +1,10 @@
 .modal{
     display: block;
-    position: absolute;
+    width: 100%;
     z-index: 1;
-    left:10%;
-    top:10%;
-    width: 80%;
     height: auto;
     background-color: white;
     overflow: auto;
-    border: 1px solid black;
-    /*background-color: rgba(0,0,0,.5)*/
 }
 
 .modalContent{

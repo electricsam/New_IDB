@@ -1,39 +1,69 @@
 import React from 'react';
+import Modal from 'react-modal';
 
 import Styles from './DefinitionModalStyles.css'
 import SecondaryData from './SecondaryData';
 import ValidValues from "./ValidValues";
 
+
+const modalStyle = {
+  overlay: {
+    position: 'fixed',
+        top: '0',
+        left: '0',
+        right: '0',
+        bottom: '0',
+        backgroundColor: 'rgba(50, 50, 50, 0.75)'
+  },
+  content: {
+    position: 'absolute',
+        top: '10%',
+        left: '20%',
+        right: '20%',
+        bottom: '20%',
+        border: '1px solid #ccc',
+        background: '#fff',
+        overflow: 'auto',
+        WebkitOverflowScrolling: 'touch',
+        borderRadius: '4px',
+        outline: 'none',
+        padding: '20px'
+  }
+}
+
 export const DefinitionModal = props => {
   if(props.isOpen){
     return(
-        <div className={Styles.modal}>
-          <div className={Styles.modalContent}>
-            <button className={Styles.close} onClick={props.closeModal}>
-              <i className="material-icons">close</i>
-            </button>
+        <Modal isOpen={props.isOpen} onRequestClose={props.handleCloseModal} style={modalStyle}>
 
-            <h2 className={Styles.title}>{props.title}</h2>
+          <div className={Styles.modal} role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+            <div className={Styles.modalContent}>
+              <button className={Styles.close} onClick={props.handleCloseModal}>
+                <i className="material-icons">close</i>
+              </button>
 
-            <ValidValues value={props.validValues}/>
+              <h2 id="modalTitle" className={Styles.title}>{props.title}</h2>
 
-            <p>{props.data}</p>
+              <ValidValues value={props.validValues}/>
 
-            {
-              props.secondaryData?
-                  props.secondaryData.map(e => <SecondaryData data={e.data} title={e.title}/>):
-                  <div style={{display:'none'}}></div>
-            }
+              <p id="modalDesc">{props.data}</p>
 
-            {
-              props.component?
-                  props.component: <div style={{display: 'none'}}></div>
-            }
+              {
+                props.secondaryData?
+                    props.secondaryData.map(e => <SecondaryData data={e.data} title={e.title}/>):
+                    <div style={{display:'none'}}></div>
+              }
+
+              {
+                props.component?
+                    props.component: <div style={{display: 'none'}}></div>
+              }
+            </div>
           </div>
-        </div>
+
+        </Modal>
     )
   }else{
     return <div style={{display: 'none'}}></div>
   }
-
 };
