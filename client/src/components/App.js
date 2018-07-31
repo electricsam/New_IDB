@@ -58,15 +58,12 @@ const action = obj => store.dispatch(obj);
 class App extends React.Component {
   constructor(props){
     super(props);
-
   }
-
 
   closeModal = () => action({type: "CLOSE_MODAL"});
 
   render() {
     const {appUi} = this.props;
-
     return (
       <ConnectedRouter history={history}>
         <div className={Styles.container}>
@@ -132,4 +129,5 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({appUi: state.appUi});
+
 export default connect(mapStateToProps)(App);
