@@ -50,6 +50,8 @@ public class VolcanoEventMoreInfoProjection {
   private Integer housesAmountOrderTotal;
   private Integer missingTotal;
   private Integer missingAmountOrderTotal;
+  private String comments;
+
 
   public VolcanoEventMoreInfoProjection(){}
 }

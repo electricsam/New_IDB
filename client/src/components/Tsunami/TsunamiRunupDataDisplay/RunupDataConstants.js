@@ -61,7 +61,7 @@ const RunupColumnDefinitions = {
   country: {
     title: 'Country',
     validValues: null,
-    data: 'The Country where the tsunami source occurred (For example enter: Japan or Russia)'
+    data: 'The country where the tsunami effects were observed.'
   },
   eventValidity: {
     title: 'Tsunami Event Validity',

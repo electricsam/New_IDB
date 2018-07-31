@@ -112,7 +112,7 @@ const VolcanoEventColumnDefinitions = {
     data: 'Whenever possible, numbers of injuries from the eruption are listed.'
   },
   injuriesAmountOrderTotal: {
-    title: "Description of Number of Injuries from the eruption",
+    title: "Description of Number of Injuries From the Eruption",
     validValues: '0 to 3',
     data: "When a description was found in the historical literature instead of an actual number of injuries, this value was coded and listed in the Injuries D column. If the actual number of injuries was listed, a descriptor was also added for search purposes.\n" +
     "\n" +

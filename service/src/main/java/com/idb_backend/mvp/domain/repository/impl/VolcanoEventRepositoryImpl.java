@@ -62,7 +62,8 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
             e.housesDestroyedTotal,
             e.housesAmountOrderTotal,
             e.missingTotal,
-            e.missingAmountOrderTotal
+            e.missingAmountOrderTotal,
+            e.comments
         ))
         .distinct()
         .from(e)
