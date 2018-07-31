@@ -113,8 +113,10 @@ public class EarthquakeRepositoryImpl extends QuerydslRepositorySupport implemen
             eq.housesDestroyedTotal,
             eq.housesAmountOrderTotal,
             eq.housesDamagedAmountOrder,
-            eq.housesDamAmountOrderTotal)
-        ).distinct().from(eq)
+            eq.housesDamAmountOrderTotal,
+            eq.comments
+            ))
+        .distinct().from(eq)
         .where(eq.id.eq(id))
         .fetch();
 

@@ -46,6 +46,7 @@ public class EarthquakeMoreInfoProjection {
   private Integer housesAmountOrderTotal;
   private Integer housesDamagedAmountOrder;
   private Integer housesDamAmountOrderTotal;
+  private String comments;
 
   public EarthquakeMoreInfoProjection(){}
 }

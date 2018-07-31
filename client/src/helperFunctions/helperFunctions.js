@@ -463,7 +463,7 @@ const mapToEqMoreInfoTable = arr => {
             {parseFloat(props.value).toFixed(2)}
           </div>
         })
-      }else if(e === 'id'){
+      }else if(e === 'id' || e === 'comments'){
         result.push({
           Header: camelToPascal(e),
           accessor: e,
