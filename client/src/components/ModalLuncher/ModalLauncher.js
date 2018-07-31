@@ -7,8 +7,11 @@ const ModalLauncher = props => (
        src={launchIcon}
        onClick={props.handleClick}
        onKeyPress={(e) => {
+         console.log("you have pressed a button ")
+         console.log("key: ", e.key)
          if(e.key === 'Enter'){
-           props.handleClick(props.arg);
+           console.log('lets look at this');
+           props.handleClick();
          }
        }}
        tabIndex="0"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { push } from 'react-router-redux';
+import {push} from 'react-router-redux';
 import {connect} from "react-redux";
 
 import DialogBox from "../../FormPartials/DialogBox/DialogBox";
@@ -9,13 +9,11 @@ import store from "../../../store";
 import {
   createApiQueryString,
   decodeQueryString,
-  encodeQueryString,
-  deleteEarthquake
+  deleteEarthquake,
+  encodeQueryString
 } from "../../../helperFunctions/helperFunctions";
-import {DefinitionModal} from "../../DefinitionModal/DefinitionModal";
 
 import {tsunamiEventColumnDefinitions} from '../../formConstants/constants';
-import DefinitionList from "../../DefinitionList/DefinitionList";
 
 const tableStyle = {
   textAlign: "center"
@@ -114,10 +112,8 @@ class EarthquakeContainer extends React.Component {
 
   handleRelateToExistingRefClick = () => {this.handleRelateClick('/reference/search?')};
 
-  closeModal = () => action({type: 'CLOSE_EARTHQUAKE_MODAL'});
-
   render(){
-    const { earthquake, earthquakeUi } = this.props;
+    const { earthquake } = this.props;
     const { toggleSelection, selectAll, toggleAll, isSelected } = this;
     const checkboxProps = {
       toggleSelection,
@@ -145,16 +141,6 @@ class EarthquakeContainer extends React.Component {
                 />:
                 <div style={hiddenStyle}></div>
             }
-            
-            <DefinitionModal
-                isOpen={earthquakeUi.get('eventModalIsOpen')}
-                closeModal={this.closeModal}
-                validValues={earthquakeUi.get('eventModalValidValues')}
-                title={earthquakeUi.get('eventModalTitle')}
-                data={earthquakeUi.get('eventModalData')}
-                secondaryData={earthquakeUi.get('eventModalSecondaryData') ? earthquakeUi.get('eventModalSecondaryData').asMutable().toJS() : null}
-                component={earthquakeUi.get('eventModalComponent') ? earthquakeUi.get('eventModalComponent').asMutable().toJS() : null}
-            />
 
             <TickboxTable
                 title="Earthquake Data"
@@ -170,9 +156,8 @@ class EarthquakeContainer extends React.Component {
       return <Loading/>
     }
   }
-
 }
 
-const mapStateToProps = state => ({ earthquake: state.deep.earthquake, earthquakeUi: state.earthquakeUi });
+const mapStateToProps = state => ({ earthquake: state.deep.earthquake });
 
 export default connect(mapStateToProps)(EarthquakeContainer);

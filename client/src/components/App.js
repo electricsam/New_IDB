@@ -79,7 +79,6 @@ class App extends React.Component {
               secondaryData={appUi.get('modalSecondaryData') ? appUi.get('modalSecondaryData').asMutable().toJS() : null}
               component={appUi.get('modalComponent') ? appUi.get('modalComponent').asMutable().toJS() : null}
           />
-
           <Route exact path="/" render={() => (<Redirect to="/home" />)} />
           <Route path="/*" component={Navbar} />
           <Switch>

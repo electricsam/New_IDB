@@ -90,10 +90,8 @@ class VolcanoLocContainer extends React.Component {
     }
   };
 
-  closeModal = () => action({type: "CLOSE_VOLCANO_LOC_MODAL"});
-
   render(){
-    const { volcano, volcanoUi } = this.props;
+    const { volcano } = this.props;
     const { toggleSelection, selectAll, toggleAll, isSelected, logSelection } = this;
     const checkboxProps = {
       toggleSelection,
@@ -120,16 +118,6 @@ class VolcanoLocContainer extends React.Component {
                 <div style={hiddenStyle}></div>
             }
 
-            <DefinitionModal
-                isOpen={volcanoUi.get('locModalIsOpen')}
-                closeModal={this.closeModal}
-                validValues={volcanoUi.get('locModalValidValues')}
-                title={volcanoUi.get('locModalTitle')}
-                data={volcanoUi.get('locModalData')}
-                secondaryData={volcanoUi.get('eventModalSecondaryData') ? volcanoUi.get('locModalSecondaryData').asMutable().toJS() : null}
-                component={volcanoUi.get('locModalComponent') ? volcanoUi.get('locModalComponent').asMutable().toJS() : null}
-            />
-
             <TickboxTable
                 loading={volcano.get('fetchingVolcanoLocs')}
                 data={volcano.asMutable().getIn(['volcanoLocs']).toJS()}
@@ -143,10 +131,8 @@ class VolcanoLocContainer extends React.Component {
       return <Loading/>
     }
   }
-
 }
 
-
-const mapStateToProps = state => ({ volcano: state.deep.volcano, volcanoUi: state.volcanoUi });
+const mapStateToProps = state => ({ volcano: state.deep.volcano });
 
 export default connect(mapStateToProps)(VolcanoLocContainer);

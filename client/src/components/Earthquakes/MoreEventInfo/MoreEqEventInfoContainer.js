@@ -22,24 +22,12 @@ class MoreVolcanoEventInfoContainer extends React.Component{
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
   }
 
-  closeModal = () => action({type: "CLOSE_EARTHQUAKE_MODAL"});
-
   render(){
     const { earthquake, reference, earthquakeUi } = this.props;
 
     if(earthquake.get('fetchedEarthquake') && reference.get('fetchedReference')){
       return (
           <div>
-
-            <DefinitionModal
-                isOpen={earthquakeUi.get('eventModalIsOpen')}
-                closeModal={this.closeModal}
-                validValues={earthquakeUi.get('eventModalValidValues')}
-                title={earthquakeUi.get('eventModalTitle')}
-                data={earthquakeUi.get('eventModalData')}
-                secondaryData={earthquakeUi.get('eventModalSecondaryData') ? earthquakeUi.get('eventModalSecondaryData').asMutable().toJS() : null}
-                component={earthquakeUi.get('eventModalComponent') ? earthquakeUi.get('eventModalComponent').asMutable().toJS() : null}
-            />
 
             <SmallTable data={earthquake.asMutable().getIn(['earthquakes']).toJS()}
                         columns={earthquake.getIn(['headersAndAccessors']).toJS()}
@@ -65,11 +53,6 @@ class MoreVolcanoEventInfoContainer extends React.Component{
   }
 }
 
-
-const mapStateToProps = state => ({
-  earthquake: state.deep.earthquake,
-  reference: state.deep.reference,
-  earthquakeUi: state.earthquakeUi
-});
+const mapStateToProps = state => ({earthquake: state.deep.earthquake, reference: state.deep.reference});
 
 export default connect(mapStateToProps)(MoreVolcanoEventInfoContainer);

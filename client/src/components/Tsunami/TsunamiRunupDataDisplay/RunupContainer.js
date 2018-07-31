@@ -100,7 +100,7 @@ class RunupContainer extends React.Component {
   closeModal = () => action({type: 'CLOSE_TSUNAMI_RUNUP_MODAL'});
 
   render() {
-    const { tsunami, tsunamiUi } = this.props;
+    const { tsunami } = this.props;
     const { toggleSelection, selectAll, toggleAll, isSelected, logSelection} = this;
     const checkboxProps = {
       toggleSelection,
@@ -127,17 +127,6 @@ class RunupContainer extends React.Component {
             : <div style={styles} />
           }
 
-          <DefinitionModal
-              isOpen={tsunamiUi.get('runupModalIsOpen')}
-              closeModal={this.closeModal}
-              validValues={tsunamiUi.get('runupModalValidValues')}
-              title={tsunamiUi.get('runupModalTitle')}
-              data={tsunamiUi.get('runupModalData')}
-              secondaryData={tsunamiUi.get('runupModalSecondaryData') ? tsunamiUi.get('runupModalSecondaryData').asMutable().toJS() : null}
-              component={tsunamiUi.get('runupModalComponent') ? tsunamiUi.get('runupModalComponent').asMutable().toJS() : null}
-          />
-
-
           <TickboxTable
               loading={tsunami.get('fetchingRunup')}
               data={tsunami.asMutable().getIn(['runupData']).toJS()}
@@ -153,7 +142,7 @@ class RunupContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ tsunami: state.deep.tsunami, tsunamiUi: state.tsunamiUi });
+const mapStateToProps = state => ({ tsunami: state.deep.tsunami });
 
 export default connect(mapStateToProps)(RunupContainer);
 

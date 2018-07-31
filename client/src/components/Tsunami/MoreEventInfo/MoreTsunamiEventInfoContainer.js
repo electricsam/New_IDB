@@ -24,25 +24,14 @@ class MoreEventInfoContainer extends React.Component{
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
 
   }
-  closeModal = () => action({type: "CLOSE_TSUNAMI_EVENT_MODAL"});
 
   render(){
-    const { tsunami, reference, tsunamiUi } = this.props
+    const { tsunami, reference } = this.props
 
     if(tsunami.get('fetchedTsEvent') && reference.get('fetchedReference')){
 
       return (
           <div>
-
-            <DefinitionModal
-                isOpen={tsunamiUi.get('eventModalIsOpen')}
-                closeModal={this.closeModal}
-                validValues={tsunamiUi.get('eventModalValidValues')}
-                title={tsunamiUi.get('eventModalTitle')}
-                data={tsunamiUi.get('eventModalData')}
-                secondaryData={tsunamiUi.get('eventModalSecondaryData') ? tsunamiUi.get('eventModalSecondaryData').asMutable().toJS() : null}
-                component={tsunamiUi.get('eventModalComponent') ? tsunamiUi.get('eventModalComponent').asMutable().toJS() : null}
-            />
 
             <SmallTable data={tsunami.asMutable().getIn(['tsEvent']).toJS()}
                         columns={tsunami.getIn(['headersAndAccessors']).toJS()}
@@ -59,21 +48,15 @@ class MoreEventInfoContainer extends React.Component{
                         title="Related References"
                         titleColor="black"
                         defaultPageSize={reference.asMutable().getIn(['references']).toJS().length}
-                        loading={reference.get('fetchingReference')}/>
+                        loading={reference.get('fetchingReference')}
+            />
           </div>
       )
     }
     return <Loading/>
   }
-
-
 }
 
-
-const mapStateToProps = state => ({
-  tsunami: state.deep.tsunami,
-  reference: state.deep.reference,
-  tsunamiUi: state.tsunamiUi
-});
+const mapStateToProps = state => ({tsunami: state.deep.tsunami, reference: state.deep.reference});
 
 export default connect(mapStateToProps)(MoreEventInfoContainer);

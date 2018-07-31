@@ -23,24 +23,11 @@ class MoreRunupInfoContainer extends React.Component{
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
   }
 
-  closeModal = () => action({type: "CLOSE_TSUNAMI_RUNUP_MODAL"});
-
   render(){
-    const { tsunami, reference, tsunamiUi } = this.props;
+    const { tsunami, reference } = this.props;
     if(tsunami.get('fetchedRunup') && reference.get('fetchedReference')){
       return (
-
           <div>
-
-            <DefinitionModal
-                isOpen={tsunamiUi.get('runupModalIsOpen')}
-                closeModal={this.closeModal}
-                validValues={tsunamiUi.get('runupModalValidValues')}
-                title={tsunamiUi.get('runupModalTitle')}
-                data={tsunamiUi.get('runupModalData')}
-                secondaryData={tsunamiUi.get('runupModalSecondaryData') ? tsunamiUi.get('runupModalSecondaryData').asMutable().toJS() : null}
-                component={tsunamiUi.get('runupModalComponent') ? tsunamiUi.get('runupModalComponent').asMutable().toJS() : null}
-            />
 
             <SmallTable data={tsunami.asMutable().getIn(['runupData']).toJS()}
                         columns={tsunami.getIn(['headersAndAccessors']).toJS()}
@@ -63,16 +50,8 @@ class MoreRunupInfoContainer extends React.Component{
     }
     return <Loading/>
   }
-
-
-
 }
 
-
-const mapStateToProps = state => ({
-  tsunami: state.deep.tsunami,
-  reference: state.deep.reference,
-  tsunamiUi: state.tsunamiUi
-});
+const mapStateToProps = state => ({tsunami: state.deep.tsunami, reference: state.deep.reference});
 
 export default connect(mapStateToProps)(MoreRunupInfoContainer);

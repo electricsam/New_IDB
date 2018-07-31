@@ -1,15 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { get } from 'immutable';
-import { push } from 'react-router-redux';
+import {connect} from 'react-redux';
+import {get} from 'immutable';
+import {push} from 'react-router-redux';
 
 import store from '../../../store';
 import Loading from '../../loadbar/Loading';
 
-import { decodeQueryString, createApiQueryString, encodeQueryString } from '../../../helperFunctions/helperFunctions';
+import {createApiQueryString, decodeQueryString, encodeQueryString} from '../../../helperFunctions/helperFunctions';
 import DialogBox from '../../FormPartials/DialogBox/DialogBox';
 import TickboxTable from "../../CheckboxTable/TickboxTable";
-import {DefinitionModal} from "../../DefinitionModal/DefinitionModal";
 
 const tableStyle = {
   textAlign: 'center',
@@ -110,11 +109,8 @@ class TsunamiContainer extends React.Component {
     }
   };
 
-  closeTsunamiEventModal = () => action({type: "CLOSE_TSUNAMI_EVENT_MODAL"});
-
   render() {
-    const { tsunami,tsunamiUi } = this.props;
-    console.log("this is the UI ", tsunamiUi);
+    const { tsunami } = this.props;
     const { toggleSelection, selectAll, toggleAll, isSelected, logSelection } = this;
     const checkboxProps = {
       toggleSelection,
@@ -143,17 +139,6 @@ class TsunamiContainer extends React.Component {
             /> :
             <div style={hiddenStyle} />
           }
-          {
-          <DefinitionModal
-            isOpen={tsunamiUi.get('eventModalIsOpen')}
-            closeModal={this.closeTsunamiEventModal}
-            validValues={tsunamiUi.get('eventModalValidValues')}
-            title={tsunamiUi.get('eventModalTitle')}
-            data={tsunamiUi.get('eventModalData')}
-            secondaryData={tsunamiUi.get('eventModalSecondaryData') ? tsunamiUi.get('eventModalSecondaryData').asMutable().toJS() : null}
-            component={tsunamiUi.get('eventModalComponent') ? tsunamiUi.get('eventModalComponent').asMutable().toJS() : null}
-            />
-          }
           <TickboxTable
               loading={tsunami.get('fetchingTsEvent')}
               data={tsunami.asMutable().getIn(['tsEvents']).toJS()}
@@ -168,7 +153,7 @@ class TsunamiContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ tsunami: state.deep.tsunami, tsunamiUi: state.tsunamiUi });
+const mapStateToProps = state => ({ tsunami: state.deep.tsunami });
 
 export default connect(mapStateToProps)(TsunamiContainer);
 
