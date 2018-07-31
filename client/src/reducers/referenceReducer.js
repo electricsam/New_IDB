@@ -32,7 +32,7 @@ export const initialState = fromJS({
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case 'FETCH_SPECIFIED_REFERENCES_REQUESTED': {
-      return state.merge(state, { fetchingReference: true });
+      return state.merge(state, { fetchingReference: true, fetchedReference: false });
     }
     case 'FETCH_SPECIFIED_REFERENCES_FULFILLED': {
       return state.merge(state, {
@@ -70,7 +70,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { showReferenceUpdateParam: !state.get('showReferenceUpdateParam') });
     }
     case 'FETCH_REFERENCE_BY_ID_REQUESTED': {
-      return state.merge(state, { fetchingReferenceById: true });
+      return state.merge(state, { fetchingReferenceById: true, fetchedReferenceById: false });
     }
     case 'FETCH_REFERENCE_BY_ID_FULFILLED': {
       return state.merge(state, {
@@ -104,7 +104,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, {relating: false, related: true});
     }
     case 'RELATE_REFERENCE_TO_EARTHQUAKE_REJECTED': {
-      return state.merge(state, {relating: false, related: false, error: action.payload});
+      return state.merge(state, {relating: false, error: action.payload});
     }
     case 'RELATE_REFERENCE_TO_VOLCANO_REQUESTED': {
       return state.merge(state, {relating: true, related: false});
@@ -113,7 +113,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, {relating: false, related: true});
     }
     case 'RELATE_REFERENCE_TO_VOLCANO_REJECTED': {
-      return state.merge(state, {relating: false, related: false, error: action.payload});
+      return state.merge(state, {relating: false, error: action.payload});
     }
     case 'RELATE_REFERENCE_TO_RUNUP_REQUESTED': {
       return state.merge(state, {relating: true, related: false});
@@ -122,7 +122,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, {relating: false, related: true});
     }
     case 'RELATE_REFERENCE_TO_RUNUP_REJECTED': {
-      return state.merge(state, {relating: false, related: false, error: action.payload});
+      return state.merge(state, {relating: false, error: action.payload});
     }
     case 'RELATE_REFERENCE_TO_TSUNAMI_REQUESTED': {
       return state.merge(state, {relating: true, related: false});
@@ -131,7 +131,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, {relating: false, related: true});
     }
     case 'RELATE_REFERENCE_TO_TSUNAMI_REJECTED': {
-      return state.merge(state, {relating: false, related: false, error: action.payload});
+      return state.merge(state, {relating: false, error: action.payload});
     }
     case 'RESET_REFERENCE_FORM': {
       return state.merge(state, {search: {}});

@@ -57,13 +57,13 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { showDeleteEarthquakeConfirmation: !state.get('showDeleteEarthquakeConfirmation') });
     }
     case 'DELETE_EARTHQUAKE_REQUESTED': {
-      return state.merge(state, { deletingEarthquake: true });
+      return state.merge(state, { deletingEarthquake: true, deletedEarthquake: false });
     }
     case 'DELETE_EARTHQUAKE_FULFILLED': {
       return state.merge(state, { deletingEarthquake: false, deletedEarthquake: true });
     }
     case 'DELETE_EARTHQUAKE_REJECTED': {
-      return state.merge(state, { deletingEarthquake: false, error: action.payload });
+      return state.merge(state, { deletingEarthquake: false, deletedEarthquake: false, error: action.payload });
     }
     case 'FETCH_SPECIFIED_EARTHQUAKES_REQUESTED': {
       return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false });
@@ -151,7 +151,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, {relating: false, related: true});
     }
     case 'RELATE_EARTHQUAKE_TO_TSUNAMI_REJECTED': {
-      return state.merge(state, {relating: false, related: false, error: action.payload});
+      return state.merge(state, {relating: false, error: action.payload});
     }
     case 'RELATE_EARTHQUAKE_TO_VOLCANO_REQUESTED': {
       return state.merge(state, {relating: true, related: false});
@@ -160,7 +160,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, {relating: false, related: true});
     }
     case 'RELATE_EARTHQUAKE_TO_VOLCANO_REJECTED': {
-      return state.merge(state, {relating: false, related: false, error: action.payload});
+      return state.merge(state, {relating: false, error: action.payload});
     }
     case 'PATCH_EARTHQUAKE_REQUESTED': {
       return state.merge(state, { patchingEarthquake: true, patchedEarthquake: false, patchFail: false });

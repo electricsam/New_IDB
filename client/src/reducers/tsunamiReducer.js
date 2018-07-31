@@ -79,7 +79,7 @@ export const initialState = fromJS({
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case 'FETCH_ALL_TS_EVENTS_REQUESTED': {
-      return state.set(state, 'fetchingTsEvent', true);
+      return state.merge(state, {fetchingTsEvent: true, fetchedTsEvent: false});
     }
     case 'FETCH_ALL_TS_EVENTS_REJECTED': {
       return state.merge(state, { fetchingTsEvent: false, error: action.payload });
@@ -93,7 +93,7 @@ export default function reducer(state = initialState, action) {
       });
     }
     case 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED': {
-      return state.set(state, 'fetchingTsEvent', true);
+      return state.merge(state, {fetchingTsEvent: true, fetchedTsEvent: false});
     }
     case 'FETCH_SPECIFIED_TS_EVENTS_REJECTED': {
       return state.merge(state, { fetchingTsEvent: false, error: action.payload });
@@ -141,7 +141,7 @@ export default function reducer(state = initialState, action) {
       });
     }
     case 'FETCH_TS_EVENT_REJECTED': {
-      return state.merge(state, { fetchingTsEvent: false, fetchedTsEvent: false, error: action.payload });
+      return state.merge(state, { fetchingTsEvent: false, error: action.payload });
     }
 
     case 'FETCH_TS_EVENT_MORE_INFO_REQUESTED': {
@@ -155,7 +155,7 @@ export default function reducer(state = initialState, action) {
       });
     }
     case 'FETCH_TS_EVENT_MORE_INFO_REJECTED': {
-      return state.merge(state, { fetchingTsEvent: false, fetchedTsEvent: false, error: action.payload });
+      return state.merge(state, { fetchingTsEvent: false, error: action.payload });
     }
     case 'FETCH_TS_RUNUP_REQUESTED': {
       return state.merge(state, { fetchingRunup: true, fetchedRunup: false });
@@ -169,7 +169,7 @@ export default function reducer(state = initialState, action) {
       });
     }
     case 'FETCH_TS_RUNUP_REJECTED': {
-      return state.merge(state, { fetchingRunup: false, error: action.payload, fetchedRunup: false });
+      return state.merge(state, { fetchingRunup: false, error: action.payload });
     }
     case 'FETCH_TS_RUNUP_MORE_INFO_REQUESTED': {
       return state.merge(state, { fetchingRunup: true, fetchedRunup: false });
@@ -183,7 +183,7 @@ export default function reducer(state = initialState, action) {
       });
     }
     case 'FETCH_TS_RUNUP_MORE_INFO_REJECTED': {
-      return state.merge(state, { fetchingRunup: false, error: action.payload, fetchedRunup: false });
+      return state.merge(state, { fetchingRunup: false, error: action.payload });
     }
     case 'TOGGLE_RUNUPPLACE_FORM': {
       return state.merge(state, { showRunupPlaceForm: !state.get('showRunupPlaceForm') });
@@ -204,7 +204,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { showRunupParams: !state.get('showRunupParams') });
     }
     case 'FETCH_SPECIFIED_RUNUP_REQUESTED': {
-      return state.merge({ fetchingRunup: true });
+      return state.merge({ fetchingRunup: true, fetchedRunup: false });
     }
     case 'FETCH_SPECIFIED_RUNUP_REJECTED': {
       return state.merge({ fetchingRunup: false, error: action.payload });
@@ -218,7 +218,7 @@ export default function reducer(state = initialState, action) {
       });
     }
     case 'FETCH_ALL_RUNUP_REQUESTED': {
-      return state.merge({ fetchingRunup: true });
+      return state.merge({ fetchingRunup: true, fetchedRunup: false });
     }
     case 'FETCH_ALL_RUNUP_REJECTED': {
       return state.merge({ fetchingRunup: false, error: action.payload });
@@ -238,7 +238,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { deleteRunupId: action.payload });
     }
     case 'DELETE_RUNUP_REQUESTED': {
-      return state.merge(state, { deletingRunup: true });
+      return state.merge(state, { deletingRunup: true, deletedRunup: false });
     }
     case 'DELETE_RUNUP_FULFILLED': {
       return state.merge(state, { deletingRunup: false, deletedRunup: true });
@@ -253,7 +253,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { showDeleteEventConfirmation: !state.get('showDeleteEventConfirmation') });
     }
     case 'DELETE_EVENT_REQUESTED': {
-      return state.merge(state, { deletingEvent: true });
+      return state.merge(state, { deletingEvent: true, deletedEvent: false });
     }
     case 'DELETE_EVENT_FULFILLED': {
       return state.merge(state, { deletingEvent: false, deletedEvent: true });
@@ -340,7 +340,6 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, {patchingTsEvent: false, patchedTsEvent: true})
     }
     case "UPDATE_TS_RUNUP_REQUESTED": {
-      console.log("you are inside the UPDATE_RUNUP REDUCER CASE");
       return state.merge(state, {patchingRunup: true, patchedRunup: false, patchRunupFail: false})
     }
     case "UPDATE_TS_RUNUP_FULFILLED": {
@@ -368,4 +367,3 @@ export default function reducer(state = initialState, action) {
       return state;
     }
 }
-

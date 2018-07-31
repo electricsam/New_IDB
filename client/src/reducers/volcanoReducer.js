@@ -82,7 +82,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { fetchingVolcanoEvents: false, error: action.payload });
     }
     case 'DELETE_VOLCANO_EVENT_REQUESTED': {
-      return state.merge(state, { deletingVolcanoEvent: true });
+      return state.merge(state, { deletingVolcanoEvent: true, deletedVolcanoEvent: false });
     }
     case 'DELETE_VOLCANO_EVENT_FULFILLED': {
       return state.merge(state, { deletingVolcanoEvent: false, deletedVolcanoEvent: true });
@@ -120,7 +120,7 @@ export default function reducer(state = initialState, action) {
       });
     }
     case 'DELETE_VOLCANO_LOC_REQUESTED': {
-      return state.merge(state, { deletingVolcanoLoc: true });
+      return state.merge(state, { deletingVolcanoLoc: true, deletedVolcanoLoc: false });
     }
     case 'DELETE_VOLCANO_LOC_FULFILLED': {
       return state.merge(state, { deletingVolcanoLoc: false, deletedVolcanoLoc: true });
