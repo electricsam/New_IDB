@@ -38,7 +38,11 @@ export const DefinitionModal = props => {
 
           <div className={Styles.modal} role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDesc">
             <div className={Styles.modalContent}>
-              <button autoFocus={true} className={Styles.close} onClick={props.handleCloseModal}>
+              <button  aria-label="Close Button"
+                       autoFocus={true}
+                       className={Styles.close}
+                       onClick={props.handleCloseModal}
+              >
                 <i className="material-icons">close</i>
               </button>
 
