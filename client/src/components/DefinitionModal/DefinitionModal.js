@@ -34,9 +34,13 @@ const modalStyle = {
 export const DefinitionModal = props => {
   if(props.isOpen){
     return(
-        <Modal isOpen={props.isOpen} onRequestClose={props.handleCloseModal} style={modalStyle}>
+        <Modal isOpen={props.isOpen}
+               onRequestClose={props.handleCloseModal}
+               style={modalStyle}
+               aria={{labelledby: "modalTitle", describedby: "modalDesc"}}
+        >
 
-          <div className={Styles.modal} role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+          <div className={Styles.modal}>
             <div className={Styles.modalContent}>
               <button  aria-label="Close Button"
                        autoFocus={true}
