@@ -31,10 +31,6 @@ class VolcanoContainer extends React.Component {
     action({type: "SET_VOLCANO_EVENT_TABLE_SELECTION_ID", payload: null});
     action({type: "SET_VOLCANO_EVENT_TABLE_SELECITON_LOCID", payload: null});
     let { search } = this.props.location;
-
-    /*Here you can */
-
-
     if(search.length){
       search = search.split('?')[1];
       let decoded = JSON.parse(decodeQueryString(search));

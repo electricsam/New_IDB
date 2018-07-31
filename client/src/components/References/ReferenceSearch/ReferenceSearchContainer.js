@@ -25,17 +25,12 @@ class ReferenceSearchContainer extends React.Component{
         let search = JSON.parse(decodeQueryString(this.props.location.search.split("?")[1]));
         Object.assign(val.search, search);
         let encoded = encodeQueryString(JSON.stringify(val.search));
-        let queryString = createApiQueryString(val.search);
-        action({type: 'FETCH_SPECIFIED_REFERENCES_REQUESTED', payload: queryString});
         this.props.history.push(`/reference/relate?${encoded}`);
       }else{
         let encoded = encodeQueryString(JSON.stringify(val.search));
-        let queryString = createApiQueryString(val.search);
-        action({type: 'FETCH_SPECIFIED_REFERENCES_REQUESTED', payload: queryString});
         this.props.history.push(`/reference/data?${encoded}`);
       }
     }else{
-      action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED"});
       this.props.history.push(`/reference/data`)
     }
   }

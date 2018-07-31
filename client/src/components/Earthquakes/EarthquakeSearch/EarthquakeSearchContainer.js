@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { EarthquakeParameters,
   EarthquakeEffects,
   TotalEarthquakeAndSecondaryEffects
-} from "./EarthquakeSearchConstants"
+} from "./EarthquakeSearchConstants";
 
 import { encodeQueryString, createApiQueryString, decodeQueryString } from '../../../helperFunctions/helperFunctions'
 import store from '../../../store'
@@ -36,12 +36,9 @@ class EarthquakeSearchContainer extends React.Component{
         this.props.history.push( `/earthquake/relate?${encoded}`);
       }else{
         let encoded = encodeQueryString(JSON.stringify(val.search));
-        let queryString = createApiQueryString(val.search);
-        action({type: "FETCH_SPECIFIED_EARTHQUAKES_REQUESTED", payload: queryString});
         this.props.history.push( `/earthquake/event/data?${encoded}`);
       }
     }else{
-      action({type: "FETCH_ALL_EARTHQUAKES_REQUESTED"});
       this.props.history.push('/earthquake/event/data');
     }
   }

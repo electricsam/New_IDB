@@ -13,7 +13,6 @@ import {
   TotalTsunamiAndSourceEffects
 } from "./EventSearchConstants";
 
-
 const action = obj => store.dispatch(obj);
 
 class TsunamiSearchContainer extends React.Component{
@@ -25,11 +24,6 @@ class TsunamiSearchContainer extends React.Component{
     }
   }
 
-  componentDidMount(){
-    //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
-    // - specifically for radio button toggle to location search
-  }
-
   handleSubmit(val){
     val = val.tsunami.asMutable().toJS();
     if(val.search){
@@ -37,18 +31,13 @@ class TsunamiSearchContainer extends React.Component{
         let search = JSON.parse(decodeQueryString(this.props.location.search.split('?')[1]));
         Object.assign(val.search, search);
         let encoded = encodeQueryString(JSON.stringify((val.search)));
-        let queryString = createApiQueryString(val.search);
-        action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});
         this.props.history.push(`/tsunami/relate?${encoded}`);
       }else{
         let encoded = encodeQueryString(JSON.stringify(val.search));
         let queryString = createApiQueryString(val.search);
-        action({type: 'FETCH_SPECIFIED_TS_EVENTS_REQUESTED', payload: queryString});
-        //TODO: wrap the call to api and the push to a new frontend endpoint into a saga and call it here
         this.props.history.push(`/tsunami/event/data?${encoded}`);
       }
     }else{
-      action({type: "FETCH_ALL_TS_EVENTS_REQUESTED"});
       this.props.history.push(`/tsunami/event/data`)
     }
   }

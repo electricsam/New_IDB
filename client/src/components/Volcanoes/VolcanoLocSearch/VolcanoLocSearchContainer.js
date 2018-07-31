@@ -16,23 +16,12 @@ class VolcanoLocSearchContainer extends React.Component{
     this.state= {}
   }
 
-
-  componentDidMount(){
-    console.log("this component mounted")
-  }
-
   handleSubmit(val){
     val = val.volcano.asMutable().toJS();
     if(val.locSearch){
-      console.log("you are inside the locSearch")
-      console.log(val.locSearch)
       let encoded = encodeQueryString(JSON.stringify(val.locSearch));
-      let queryString = createApiQueryString(val.locSearch);
-      action({type: "FETCH_SPECIFIED_VOLCANO_LOCS_REQUESTED", payload: queryString});
       this.props.history.push( `/volcano/loc/data?${encoded}`);
     }else{
-      console.log("alskdjfldsakjflaksjlskjlksjsjj")
-      action({type: "FETCH_SPECIFIED_VOLCANO_LOCS_REQUESTED"});
       this.props.history.push('/volcano/loc/data');
     }
   }

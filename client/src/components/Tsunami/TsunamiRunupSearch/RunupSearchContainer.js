@@ -20,19 +20,12 @@ class RunupSearchContainer extends React.Component{
     }
   }
 
-  componentDidMount(){
-    //TODO: clear form upon load of component - otherwise your old values will stick and you do not want that
-    // - specifically for radio button toggle to location search
-  }
-
   handleSubmit(val){
     val = val.tsunami.asMutable().toJS();
     if(val.rnpsearch){
       let encoded = encodeQueryString(JSON.stringify(val.rnpsearch));
-      let queryString = createApiQueryString(val.rnpsearch);
       this.props.history.push(`/tsunami/runup/data?${encoded}`);
     }else{
-      action({type: "FETCH_ALL_RUNUPS_REQUESTED"});
       this.props.history.push(`/tsunami/runup/data`)
     }
   }
