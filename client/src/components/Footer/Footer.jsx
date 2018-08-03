@@ -3,10 +3,25 @@ import React from 'react'
 import noaaLogo from '../../assets/noaa_blue_white.png'
 import Styles from './FooterStyle.css'
 
+import {library} from '@fortawesome/fontawesome-svg-core';
+
+import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';
+
+import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
+import { faFacebook } from '@fortawesome/free-brands-svg-icons/faFacebook';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube';
+import Icon from "./Icon/Icon";
+library.add(faTwitter);
+library.add(faFacebook);
+library.add(faInstagram);
+library.add(faYoutube);
+
+
 const inlineStyles = {
   color: 'rgb(102,102,102)',
   textAlign: 'center',
-}
+};
 
 const Footer = () => (
   <div className={Styles.container}>
@@ -15,53 +30,38 @@ const Footer = () => (
       <p className={Styles.about}>About Us</p>
     </div>
 
+
     <div className={Styles.workContainer}>
       <p className={Styles.work}>Our Work</p>
     </div>
 
-
     <p className={Styles.stayConnected}>Stay Connected</p>
 
     <div className={Styles.social}>
-      <div className = {Styles.twitter}>
-        <a href="https://twitter.com/NOAA"
-           target="_blank"
-           aria-label="Opens in new window"
-           title="NOAA Twitter"
-        >
-          <i className="fab fa-twitter" style={inlineStyles}></i>
-        </a>
-      </div>
+      <Icon
+          icon={faTwitter}
+          color='rgb(102,102,102'
+          href='https://twitter.com/NOAA'
+          title='NOAA Twitter'/>
 
-      <div className={Styles.facebook}>
-        <a href="https://www.facebook.com/NOAA"
-           target="_blank"
-           aria-label="Opens in new window"
-           title="NOAA Facebook"
-        >
-          <i className="fab fa-facebook-f" style={inlineStyles}></i>
-        </a>
-      </div>
+      <Icon
+          icon={faFacebook}
+          color='rgb(102,102,102'
+          href='https://www.facebook.com/NOAA'
+          title='NOAA Facebook'/>
 
-      <div className={Styles.instagram}>
-        <a href="https://www.instagram.com/noaa/"
-           target="_blank"
-           aria-label="Opens in new window"
-           title="NOAA Instagram"
-        >
-          <i className="fab fa-instagram" style={inlineStyles}></i>
-        </a>
-      </div>
+      <Icon
+        icon={faInstagram}
+        color='rgb(102,102,102'
+        href='https://www.instagram.com/noaa/'
+        title='NOAA Instagram'/>
 
-      <div className={Styles.youtube}>
-        <a href="https://www.youtube.com/usnoaagov"
-           target="_blank"
-           aria-label="Opens in new window"
-           title="NOAA YouTube"
-        >
-          <i className="fab fa-youtube" style={inlineStyles}></i>
-        </a>
-      </div>
+      <Icon
+          icon={faYoutube}
+          color='rgb(102,102,102'
+          href='https://www.youtube.com/usnoaagov'
+          title='NOAA YouTube'/>
+
     </div>
 
     <div className={Styles.addLinkContainer}>

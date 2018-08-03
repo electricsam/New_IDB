@@ -67,11 +67,11 @@ module.exports = {
       // },
       {
         test: /\.css$/,
+        // include: [
+        //   resolve(__dirname, './node_modules/font-awesome/css/font-awesome.min.css')
+        // ],
         exclude: /node_modules/,
         use: [
-          {
-            loader: 'style-loader',
-          },
           {
             loader: 'css-loader',
             options: {
@@ -79,6 +79,9 @@ module.exports = {
               modules: true,
               localIdentName: '[name]__[local]'
             }
+          },
+          {
+            loader: 'style-loader',
           },
           {
             loader: 'postcss-loader',
