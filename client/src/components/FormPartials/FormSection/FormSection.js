@@ -12,6 +12,9 @@ import Styles from './FormSectionStyles.css';
 import DropDownList from "../DropDownList/DropDownList";
 import Text from "../Text/Text";
 import {Textarea} from "../Textarea/Textarea";
+import expandMore from '../../../assets/expand_more.svg'
+import expandLess from '../../../assets/expand_less.svg'
+import SvgIcon from "../../../assets/SvgIcon";
 
 const FormSection = props => (
   <section className={Styles.formOuterSection}>
@@ -20,8 +23,8 @@ const FormSection = props => (
       <div className={Styles.expandCollapse}>
         {
           props.showSection ?
-            <i className="material-icons" onClick={props.toggleSection}>&#xE5CE;</i> :
-            <i className="material-icons" onClick={props.toggleSection}>&#xE5CF;</i>
+              <SvgIcon color='#6c6d6d' icon={expandLess} handleClick={props.toggleSection}/>:
+              <SvgIcon color='#6c6d6d' icon={expandMore} handleClick={props.toggleSection}/>
         }
       </div>
     </div>
