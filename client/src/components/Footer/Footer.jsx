@@ -30,7 +30,6 @@ const Footer = () => (
       <p className={Styles.about}>About Us</p>
     </div>
 
-
     <div className={Styles.workContainer}>
       <p className={Styles.work}>Our Work</p>
     </div>
@@ -61,7 +60,6 @@ const Footer = () => (
           color='rgb(102,102,102'
           href='https://www.youtube.com/usnoaagov'
           title='NOAA YouTube'/>
-
     </div>
 
     <div className={Styles.addLinkContainer}>

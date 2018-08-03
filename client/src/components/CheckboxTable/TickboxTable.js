@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import selectTableHOC from "react-table/lib/hoc/selectTable/index";
+import '!style-loader!css-loader!react-table/react-table.css';
 
 import Styles from './TickboxTableStyles.css';
 import Buttons from "../Buttons/Buttons";

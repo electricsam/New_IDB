@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTable from 'react-table';
 import PropTypes from 'prop-types';
+import '!style-loader!css-loader!react-table/react-table.css';
 
 import Styles from './SmallTableStyles.css';
 
