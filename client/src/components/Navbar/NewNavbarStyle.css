@@ -66,7 +66,6 @@ $menuTextColor: rgb(102,102,102);
 .mainMenuListItem a{
     text-decoration: none;
     color: $menuTextColor;
-    transition: color .2s ease-out;
     margin: 0;
 }
 
@@ -87,7 +86,6 @@ $menuTextColor: rgb(102,102,102);
 .mainMenuListItemDropper a{
     text-decoration: none;
     color: $menuTextColor;
-    transition: color 500ms ease-out;
     margin: 0;
 }
 

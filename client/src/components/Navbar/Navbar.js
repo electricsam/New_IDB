@@ -6,6 +6,9 @@ import noaa_logo from '../../assets/noaa_logo.png'
 import Menu from "../Menu/Menu";
 import MenuItem from '../MenuItem/MenuItem'
 import SubMenu from "../SubMenu/SubMenu";
+import expandMore from '../../assets/expand_more.svg';
+import expandLess from '../../assets/expand_less.svg';
+import SvgIcon from '../../assets/SvgIcon';
 
 class Navbar extends React.Component {
   constructor(props){
@@ -17,7 +20,8 @@ class Navbar extends React.Component {
       volSubMenuDisplay: 'none',
       hazDisplay: 'none',
       haz: {
-        expand: 'expand_more'
+        expand: expandMore,
+        color: '#6c6d6d'
       }
     }
   }
@@ -26,14 +30,16 @@ class Navbar extends React.Component {
     let prevState = this.state;
     //TODO change this to copy of this.state
     prevState.hazDisplay = 'block';
-    prevState.haz.expand = 'expand_less';
+    prevState.haz.expand = expandLess;
+    prevState.haz.color = '#00FFFF'
     this.setState(prevState);
   };
 
   handleHazMouseLeave = () => {
     let prevState = this.state;
     prevState.hazDisplay = 'none'
-    prevState.haz.expand = 'expand_more'
+    prevState.haz.expand = expandMore
+    prevState.haz.color = '#6c6d6d'
     this.setState(prevState);
   };
 
@@ -85,8 +91,6 @@ class Navbar extends React.Component {
     this.setState(prevState);
   };
 
-
-
   render() {
     return (
         <div className={Styles.container}>
@@ -114,7 +118,10 @@ class Navbar extends React.Component {
                   onMouseLeave={()=>this.handleHazMouseLeave()}
                   className={Styles.mainMenuListItemDropper}>
                 <Link to="/hazards/landing" className={Styles.hazLink}>
-                  HAZARD PAGES<i className="material-icons">{this.state.haz.expand}</i>
+                  <div style={{display: 'flex', alignItems: 'center'}}>
+                    <p>HAZARD PAGES</p>
+                    <SvgIcon color={this.state.haz.color} icon={this.state.haz.expand}/>
+                  </div>
                 </Link>
                 <Menu display={this.state.hazDisplay}>
                   <MenuItem linkText="EARTHQUAKES"
