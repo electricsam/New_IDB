@@ -7,12 +7,14 @@ import com.vividsolutions.jts.io.WKTWriter;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.HashSet;
@@ -27,11 +29,14 @@ public class SignifTsqp implements Serializable {
   @Id
   private Integer id;
 
+  @Size(max = 1)
   private String flagDuplicate;
+
   private Integer year;
 
   @Range(min = 1, max = 12)
   private Integer month;
+
   @Range(min = 1, max = 31)
   private Integer day;
 
@@ -63,12 +68,15 @@ public class SignifTsqp implements Serializable {
   @DecimalMin(value = "0")
   @DecimalMax(value = "9.9")
   private Double eqMagUnk;
+
   @DecimalMin(value = "0")
   @DecimalMax(value = "9.9")
   private Double eqMagMb;
+
   @DecimalMin(value = "0")
   @DecimalMax(value = "9.9")
   private Double eqMagMs;
+
   @DecimalMin(value = "0")
   @DecimalMax(value = "9.9")
   private Double eqMagMw;
@@ -91,18 +99,22 @@ public class SignifTsqp implements Serializable {
   @Range(min = 0, max = 4)
   private Integer injuriesAmountOrder;
 
+  @Size(max= 1)
   private String flagTsunami;
 
   @Getter(value = AccessLevel.PRIVATE)
   private java.sql.Date ngdcDate;
 
   @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String temporalAccuracy;
 
   @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private BigInteger objectid;
 
   @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Geometry shape;
 
   private String comments;
@@ -115,6 +127,7 @@ public class SignifTsqp implements Serializable {
   private Integer tsuId;
 
   @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private java.sql.Date lastUpdate;
 
   private Integer deathsTotal;
@@ -154,19 +167,30 @@ public class SignifTsqp implements Serializable {
   @DecimalMax(value = "9.9")
   private Double eqMagMfa;
 
+  @Size(max = 1)
   private String flagEpicenterChk;
+  @Size(max = 1)
   private String flagMagnitudeChk;
+  @Size(max = 1)
   private String flagEffectsChk;
+
   private Integer regionCode;
+
   private Integer housesDamaged;
   private Integer housesDamagedTotal;
 
   @Range(min = 0, max = 4)
   private Integer housesDamagedAmountOrder;
+
   @Range(min = 0, max = 4)
   private Integer housesDamAmountOrderTotal;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String publish;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String previousState;
 
   @OneToMany(mappedBy = "signifTsqp", fetch = FetchType.LAZY)
