@@ -36,7 +36,20 @@ module.exports = {
     }
   },
   plugins: [
-    new CopyWebpackPlugin([{from: './src/assets/favicon.png', to: 'images'}]),
+    new CopyWebpackPlugin([
+      {from: './src/assets/favicon.png', to: 'images'},
+      {from:'./src/assets/fonts/raleway200.eot', to: 'fonts'},
+      {from:'./src/assets/fonts/raleway200.svg', to: 'fonts'},
+      {from:'./src/assets/fonts/raleway200.ttf', to: 'fonts'},
+      {from:'./src/assets/fonts/raleway200.woff', to: 'fonts'},
+      {from:'./src/assets/fonts/raleway200.woff2', to: 'fonts'},
+      {from:'./src/assets/fonts/ralewayRegular.eot', to: 'fonts'},
+      {from:'./src/assets/fonts/ralewayRegular.svg', to: 'fonts'},
+      {from:'./src/assets/fonts/ralewayRegular.ttf', to: 'fonts'},
+      {from:'./src/assets/fonts/ralewayRegular.woff', to: 'fonts'},
+      {from:'./src/assets/fonts/ralewayRegular.woff2', to: 'fonts'},
+      {from:'./src/index.css', to: 'style'}
+    ]),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new UglifyJSPlugin({
@@ -73,15 +86,15 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
+            loader: 'style-loader',
+          },
+          {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
               modules: true,
               localIdentName: '[name]__[local]'
             }
-          },
-          {
-            loader: 'style-loader',
           },
           {
             loader: 'postcss-loader',
@@ -94,7 +107,7 @@ module.exports = {
         ]
       },
       {
-        test:/\.(jpe?g|png|gif|svg)$/i,
+        test:/\.(jpe?g|png|gif|svg|woff|woff2|eot|ttf)$/i,
         exclude: /node_modules/,
         use:[
           {
