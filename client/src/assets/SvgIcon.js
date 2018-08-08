@@ -9,5 +9,4 @@ const SvgIcon = props => (
     </div>
 );
 
-
 export default SvgIcon;
