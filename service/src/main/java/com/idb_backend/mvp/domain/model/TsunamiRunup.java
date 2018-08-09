@@ -9,6 +9,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -79,37 +80,8 @@ public class TsunamiRunup implements Serializable{
 
   private String locationName;
 
-//  @InString(strs = {"ACEH", "AICHI", "AK", "AKITA", "AL", "AOMORI", "AR", "AS", "AZ", "BALI", "BANGKA-BELITUNG", "BANTEN",
-//      "BC", "BENGKULU", "BONIN IS, TOKYO", "CA", "CENTRAL JAVA", "CENTRAL SULAWESI", "CHIBA", "CO", "CT", "DC", "DE",
-//      "EAST JAVA", "EAST NUSA TENGGARA", "EHIME", "FL", "FM", "FUKUI", "FUKUOKA", "FUKUSHIMA", "GA", "GIFU",
-//      "GORONTALO", "GU", "GUMMA", "HI", "HIROSHIMA", "HOKKAIDO", "HYOGO", "IA", "IBARAKI", "ID", "IL", "IN", "ISHIKAWA",
-//      "IWATE", "IZU-OSHIMA, TOKYO", "JAKARTA", "KAGAWA", "KAGOSHIMA", "KANAGAWA", "KOCHI", "KS", "KUMAMOTO", "KY",
-//      "KYOTO", "LA", "LAMPUNG", "MA", "MALUKU", "MD", "ME", "MH", "MI", "MIE", "MIYAGI", "MIYAZAKI", "MN", "MO", "MP",
-//      "MS", "MT", "NAGANO", "NAGASAKI", "NARA", "NC", "ND", "NE", "NH", "NIIGATA", "NJ", "NL", "NM", "NORTH MALUKU",
-//      "NORTH SULAWESI", "NORTH SUMATRA", "NS", "NV", "NY", "OH", "OITA", "OK", "OKAYAMA", "OKINAWA",
-//      "OKUSHIRI IS, HOKKAIDO", "OR", "OSAKA", "PA", "PAPUA", "PR", "PW", "RI", "RIAU", "SAGA", "SAITAMA", "SC", "SD",
-//      "SHIGA", "SHIMANE", "SHIZUOKA", "SOUTH EAST SULAWESI", "SOUTH KALIMANTAN", "SOUTH SULAWESI", "SUNDA STRAIT", "TN",
-//      "TOKUSHIMA", "TOKUSIMA", "TOKYO", "TOTTORI", "TOYAMA", "TSHIBA", "TX", "UT", "VA", "VI", "VT", "WA", "WAKAYAMA",
-//      "WEST JAVA", "WEST KALIMANTAN", "WEST NUSA TENGGARA", "WEST PAPUA", "WEST SULAWESI", "WEST SUMATRA", "WESTJAVA",
-//      "WI", "WV", "WY", "YAMAGATA", "YAMAGUCHI", "YOGYAKARTA"})
   private String area;
 
-//  @InString(strs = {
-//      "ALBANIA", "ALGERIA", "ANTARCTICA", "ANTIGUA AND BARBUDA", "ATLANTIC OCEAN", "AUSTRALIA","BALTIC SEA","BANGLADESH"
-//      ,"BULGARIA","CANADA","CHILE","CHINA","COLOMBIA","CONGO","COOK ISLANDS", "COSTA RICA","CROATIA","CUBA","CYPRUS",
-//      "CYPRUS ISLAND","DEAD SEA","DENMARK","DOMINICAN REPUBLIC","EAST CHINA SEA", "ECUADOR","EGYPT","EL SALVADOR",
-//      "ERITREA","FIJI","FRANCE","FRENCH POLYNESIA","GEORGIA","GERMANY","GHANA","GREECE","GREENLAND",
-//      "GUADELOUPE (FRENCH TERRITORY)","GUATEMALA","HAITI","HOLLAND","HONDURAS", "ICELAND","INDIA","INDONESIA","IRAN",
-//      "IRELAND","IRISH SEA","ISRAEL","ITALY","JAMAICA","JAPAN","JORDAN","KENYA","KERMADEC ISLANDS","KOREA","LEBANON",
-//      "MARSHALL ISLANDS, REP. OF","MARTINIQUE (FRENCH TERRITORY)","MEXICO","MICRONESIA, FED. STATES OF","MONTSERRAT",
-//      "MOROCCO","MYANMAR (BURMA)","NAURU","NEPAL","NETHERLANDS","NEW CALEDONIA","NEW ZEALAND","NICARAGUA","NORTH KOREA",
-//      "NORTH SEA","NORTHWEST PACIFIC OCEAN","NORWAY","PACIFIC OCEAN","PAKISTAN","PANAMA","PAPUA NEW GUINEA","PERU",
-//      "PHILIPPINES", "PORTUGAL", "RUSSIA", "SAINT VINCENT AND THE GRENADINES", "SAMOA", "SCOTLAND",
-//      "SERBIA AND MONTENEGRO", "SOLOMON ISLANDS", "SOUTH AFRICA", "SOUTH KOREA", "SPAIN", "SRI LANKA", "SUDAN",
-//      "SWEDEN", "SWITZERLAND", "SYRIA", "TAIWAN", "TOGO", "TONGA", "TRINIDAD AND TOBAGO", "TUNISIA", "TURKEY",
-//      "TURKMENISTAN", "UK", "UK TERRITORY", "UKRAINE", "URUGUAY", "USA", "USA TERRITORY", "VANUATU", "VENEZUELA",
-//      "WALLIS AND FUTUNA (FRENCH TERRITORY)"
-//  })
   private String country;
 
   @In(nums = {30, 40, 50, 60, 70, 71, 72, 73, 74, 75, 76, 77, 78, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89})
@@ -155,17 +127,26 @@ public class TsunamiRunup implements Serializable{
   @Max(value = Constants.descripMax)
   private Integer injuriesAmountOrder;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Date ngdcDate;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Integer temporalAccuracy;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Long objectid;
 
-  @Getter(AccessLevel.PRIVATE)
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Geometry shape;
 
   private String comments;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Date lastUpdate;
 
   @Min(value = 0)
@@ -223,8 +204,12 @@ public class TsunamiRunup implements Serializable{
   @Max(value = Constants.descripMax)
   private Integer housesDamagedAmountOrder;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String publish;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String previousState;
 
   @OneToMany(mappedBy = "tsunamiRunup", fetch = FetchType.LAZY)

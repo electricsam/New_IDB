@@ -83,12 +83,17 @@ public class RunupController {
     try {
       if(errors.hasErrors()){
         List<ValidationError> validationErrors = runupService.generateValiationErrorMessages(errors);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
+        return ResponseEntity.  status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
+        tsunamiRunup = runupService.sanitizeObject(tsunamiRunup);
+
         Integer runupId = tsunamiRunup.getId();
+
         Optional<TsunamiEvent> tsunamiEvent = tsunamiEventRepository.findById(eventId);
         tsunamiRunup.setTsunamiEvent(tsunamiEvent.get());
+
         runupRepository.save(tsunamiRunup);
+
         Optional<TsunamiRunup> runup = runupRepository.findById(runupId);
 
         return ResponseEntity.status(HttpStatus.OK).body(runup);
@@ -107,6 +112,8 @@ public class RunupController {
         List<ValidationError> validationErrors = runupService.generateValiationErrorMessages(errors);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
+        tsunamiRunup = runupService.sanitizeObject(tsunamiRunup);
+
         TsunamiEvent assocEvent = entityManager.getReference(TsunamiEvent.class, eventId);
         tsunamiRunup.setTsunamiEvent(assocEvent);
 
@@ -115,6 +122,7 @@ public class RunupController {
         Iterable<TsunamiRunup> result = runupRepository.findAll(predicate, orderSpecifier);
         Integer id = result.iterator().next().getId() + 1;
         tsunamiRunup.setId(id);
+
         runupRepository.save(tsunamiRunup);
 
         Optional<TsunamiRunup> postedRunup = runupRepository.findById(id);

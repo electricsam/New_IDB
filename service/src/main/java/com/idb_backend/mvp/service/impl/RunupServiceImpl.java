@@ -1,14 +1,14 @@
 package com.idb_backend.mvp.service.impl;
 
-import com.idb_backend.mvp.domain.model.*;
+import com.idb_backend.mvp.domain.model.QTsunamiEventView;
+import com.idb_backend.mvp.domain.model.RunupProjection;
+import com.idb_backend.mvp.domain.model.SignifTsqp;
+import com.idb_backend.mvp.domain.model.TsunamiRunup;
 import com.idb_backend.mvp.domain.repository.RunupViewRepository;
 import com.idb_backend.mvp.service.BaseService;
 import com.idb_backend.mvp.service.RunupService;
-import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.NumberPath;
-import com.querydsl.core.types.dsl.StringPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -70,16 +70,37 @@ public class RunupServiceImpl extends BaseService implements RunupService {
 
 
   @Override
-  public SignifTsqp sanitizeObject(SignifTsqp eq){
+  public TsunamiRunup sanitizeObject(TsunamiRunup rnp){
 
-//    impl here
+    String locationName = rnp.getLocationName();
+    locationName = NO_HTML_POLICY_DEFINITION.sanitize(locationName);
+    rnp.setLocationName(locationName);
 
+    String area = rnp.getArea();
+    area = NO_HTML_POLICY_DEFINITION.sanitize(area);
+    rnp.setArea(area);
 
+    String country = rnp.getCountry();
+    country = NO_HTML_POLICY_DEFINITION.sanitize(country);
+    rnp.setCountry(country);
 
+    String comments = rnp.getComments();
+    comments = POLICY_DEFINITION.sanitize(comments);
+    rnp.setComments(comments);
 
+    String doubtful = rnp.getDoubtful();
+    doubtful = NO_HTML_POLICY_DEFINITION.sanitize(doubtful);
+    rnp.setDoubtful(doubtful);
 
+    String tideNetwork = rnp.getTideNetwork();
+    tideNetwork = NO_HTML_POLICY_DEFINITION.sanitize(tideNetwork);
+    rnp.setTideNetwork(tideNetwork);
 
-    return eq;
+    String flagEditNatwc = rnp.getFlagEditNatwc();
+    flagEditNatwc = NO_HTML_POLICY_DEFINITION.sanitize(flagEditNatwc);
+    rnp.setFlagEditNatwc(flagEditNatwc);
+
+    return rnp;
   }
 
 }
