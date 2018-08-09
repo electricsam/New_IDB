@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -84,6 +85,9 @@ public class TsunamiEventController {
         List<ValidationError> validationErrors = tsunamiEventService.generateValiationErrorMessages(errors);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }
+
+      tsunamiEvent = tsunamiEventService.sanitize(tsunamiEvent);
+
       Predicate predicate = QTsunamiEvent.tsunamiEvent.id.gt(5000);
       OrderSpecifier orderSpecifier = QTsunamiEvent.tsunamiEvent.id.desc();
 
@@ -115,9 +119,12 @@ public class TsunamiEventController {
         List<ValidationError> validationErrors = tsunamiEventService.generateValiationErrorMessages(errors);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }
+      tsunamiEvent = tsunamiEventService.sanitize(tsunamiEvent);
+
       tsunamiEvent.setId(id);
       tsunamiEventRepository.save(tsunamiEvent);
       Optional<TsunamiEvent> result = tsunamiEventRepository.findById(id);
+      
       return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }catch (EntityNotFoundException e){

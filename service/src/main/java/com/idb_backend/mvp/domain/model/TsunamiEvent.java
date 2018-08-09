@@ -10,11 +10,13 @@ import com.vividsolutions.jts.io.WKTWriter;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
@@ -139,14 +141,21 @@ public class TsunamiEvent implements Serializable {
 
   private String comments;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Date ngdcDate;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Integer temporalAccuracy;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Long objectid;
 
   @JsonIgnore
-  @Getter(AccessLevel.PRIVATE)
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Geometry shape;
 
   private BigDecimal damageMillionsDollarsTotal;
@@ -173,6 +182,8 @@ public class TsunamiEvent implements Serializable {
   @Max(value = Constants.descripMax)
   private Integer injuriesAmountOrderTotal;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Date lastUpdate;
 
   private Integer missing;
@@ -201,6 +212,7 @@ public class TsunamiEvent implements Serializable {
 
   private Character flagMaxRunupChk;
 
+  @Size(max = 1)
   private String flagEditNatwc;
 
   private Integer housesDamaged;
@@ -215,8 +227,12 @@ public class TsunamiEvent implements Serializable {
   @Max(value = Constants.descripMax)
   private Integer housesDamAmountOrderTotal;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String publish;
 
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String previousState;
 
   @OneToMany( mappedBy = "tsunamiEvent", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
@@ -238,7 +254,6 @@ public class TsunamiEvent implements Serializable {
   @JsonIgnore
 //  @Getter(AccessLevel.PRIVATE)
   private Set<TseventAndVolEvent> tseventAndVolEvents = new HashSet<>();
-
 
   @Override
   public String toString(){

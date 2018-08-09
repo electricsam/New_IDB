@@ -1,6 +1,7 @@
 package com.idb_backend.mvp.service.impl;
 
 import com.idb_backend.mvp.domain.model.QTsunamiRunupView;
+import com.idb_backend.mvp.domain.model.TsunamiEvent;
 import com.idb_backend.mvp.domain.model.TsunamiEventView;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.domain.repository.TsunamiEventViewRepository;
@@ -88,5 +89,30 @@ public class TsunamiEventServiceImpl extends BaseService implements TsunamiEvent
     } else{
       return tsunamiEventViewRepository.findEventsByQuery(combineBools(predicate, generateCriteria(params)));
     }
+  }
+
+  @Override
+  public TsunamiEvent sanitize(TsunamiEvent te){
+    String locationName = te.getLocationName();
+    locationName = NO_HTML_POLICY_DEFINITION.sanitize(locationName);
+    te.setLocationName(locationName);
+
+    String area = te.getArea();
+    area = NO_HTML_POLICY_DEFINITION.sanitize(area);
+    te.setArea(area);
+
+    String country = te.getCountry();
+    country = NO_HTML_POLICY_DEFINITION.sanitize(country);
+    te.setCountry(country);
+
+    String comments = te.getComments();
+    comments = POLICY_DEFINITION.sanitize(comments);
+    te.setComments(comments);
+
+    String flagEditNatwc = te.getFlagEditNatwc();
+    flagEditNatwc = NO_HTML_POLICY_DEFINITION.sanitize(flagEditNatwc);
+    te.setFlagEditNatwc(flagEditNatwc);
+
+    return te;
   }
 }
