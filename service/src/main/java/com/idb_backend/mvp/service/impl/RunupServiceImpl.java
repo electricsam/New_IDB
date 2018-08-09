@@ -68,7 +68,6 @@ public class RunupServiceImpl extends BaseService implements RunupService {
     }
   }
 
-
   @Override
   public TsunamiRunup sanitizeObject(TsunamiRunup rnp){
 
@@ -102,5 +101,4 @@ public class RunupServiceImpl extends BaseService implements RunupService {
 
     return rnp;
   }
-
 }

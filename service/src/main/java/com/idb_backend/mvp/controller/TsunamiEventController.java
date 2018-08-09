@@ -7,6 +7,8 @@ import com.idb_backend.mvp.domain.model.TsunamiEventView;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.domain.repository.TsunamiEventViewRepository;
 import com.idb_backend.mvp.service.TsunamiEventService;
+import com.idb_backend.mvp.service.ValidationError;
+import com.idb_backend.mvp.service.impl.TsunamiEventServiceImpl;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,7 @@ public class TsunamiEventController {
   TsunamiEventViewRepository tsunamiEventViewRepository;
   
   @Autowired
-  TsunamiEventService tsunamiEventService;
+  TsunamiEventServiceImpl tsunamiEventService = new TsunamiEventServiceImpl();
 
   @RequestMapping(value = "/tsunamievents/{id}", method= RequestMethod.GET)
   @ResponseBody
@@ -79,7 +81,8 @@ public class TsunamiEventController {
   public ResponseEntity postTsunamiEvent(@Valid @RequestBody TsunamiEvent tsunamiEvent, Errors errors){
     try{
       if(errors.hasErrors()){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        List<ValidationError> validationErrors = tsunamiEventService.generateValiationErrorMessages(errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }
       Predicate predicate = QTsunamiEvent.tsunamiEvent.id.gt(5000);
       OrderSpecifier orderSpecifier = QTsunamiEvent.tsunamiEvent.id.desc();
@@ -109,8 +112,8 @@ public class TsunamiEventController {
                                     @Valid @RequestBody TsunamiEvent tsunamiEvent, Errors errors){
     try{
       if(errors.hasErrors()){
-
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        List<ValidationError> validationErrors = tsunamiEventService.generateValiationErrorMessages(errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }
       tsunamiEvent.setId(id);
       tsunamiEventRepository.save(tsunamiEvent);
