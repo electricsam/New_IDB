@@ -5,6 +5,8 @@ import com.idb_backend.mvp.domain.repository.RunupRepository;
 import com.idb_backend.mvp.domain.repository.RunupViewRepository;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.service.RunupService;
+import com.idb_backend.mvp.service.ValidationError;
+import com.idb_backend.mvp.service.impl.RunupServiceImpl;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class RunupController {
   TsunamiEventRepository tsunamiEventRepository;
 
   @Autowired
-  RunupService runupService;
+  RunupServiceImpl runupService = new RunupServiceImpl();
 
   @Autowired
   RunupRepository runupRepository;
@@ -78,10 +80,10 @@ public class RunupController {
   @ResponseBody
   public ResponseEntity patchRunup(@PathVariable("eventId") Integer eventId,
                                    @Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
-
     try {
       if(errors.hasErrors()){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        List<ValidationError> validationErrors = runupService.generateValiationErrorMessages(errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
         Integer runupId = tsunamiRunup.getId();
         Optional<TsunamiEvent> tsunamiEvent = tsunamiEventRepository.findById(eventId);
@@ -102,7 +104,8 @@ public class RunupController {
                                   @Valid @RequestBody TsunamiRunup tsunamiRunup, Errors errors){
     try{
       if(errors.hasErrors()){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        List<ValidationError> validationErrors = runupService.generateValiationErrorMessages(errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
         TsunamiEvent assocEvent = entityManager.getReference(TsunamiEvent.class, eventId);
         tsunamiRunup.setTsunamiEvent(assocEvent);
