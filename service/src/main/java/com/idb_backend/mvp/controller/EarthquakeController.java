@@ -78,9 +78,13 @@ public class EarthquakeController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
         //TODO: you will need to send through a copy of the whole object or call each method to update each field
+
+        signifTsqp = earthquakeService.sanatizeObject(signifTsqp);
+
         signifTsqp.setId(id);
         earthquakeRepository.save(signifTsqp);
         Optional<SignifTsqp> result = earthquakeRepository.findById(id);
+        
         return ResponseEntity.status(HttpStatus.OK).body(result);
       }
     }catch (Exception e){
