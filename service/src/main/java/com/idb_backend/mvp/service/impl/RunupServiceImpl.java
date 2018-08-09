@@ -68,4 +68,18 @@ public class RunupServiceImpl extends BaseService implements RunupService {
     }
   }
 
+
+  @Override
+  public SignifTsqp sanitizeObject(SignifTsqp eq){
+
+//    impl here
+
+
+
+
+
+
+    return eq;
+  }
+
 }

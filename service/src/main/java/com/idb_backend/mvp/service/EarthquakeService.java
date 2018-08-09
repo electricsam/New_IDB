@@ -10,5 +10,5 @@ import java.util.Map;
 public interface EarthquakeService {
   Iterable getAllEarthquakes(Map<String, String> params, Predicate predicate);
 
-  SignifTsqp sanatizeObject(SignifTsqp eq);
+  SignifTsqp sanitizeObject(SignifTsqp eq);
 }

@@ -46,7 +46,7 @@ public class EarthquakeServiceImpl extends BaseService implements EarthquakeServ
 
 
   @Override
-  public SignifTsqp sanatizeObject(SignifTsqp eq){
+  public SignifTsqp sanitizeObject(SignifTsqp eq){
       String flagDuplicate = eq.getFlagDuplicate();
       flagDuplicate = NO_HTML_POLICY_DEFINITION.sanitize(flagDuplicate);
       eq.setFlagDuplicate(flagDuplicate);
