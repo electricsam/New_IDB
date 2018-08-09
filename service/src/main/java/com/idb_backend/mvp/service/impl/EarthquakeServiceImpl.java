@@ -1,26 +1,31 @@
 package com.idb_backend.mvp.service.impl;
 
-import com.google.common.base.Function;
 import com.idb_backend.mvp.domain.model.SignifTsqp;
-import com.idb_backend.mvp.domain.model.SignifVsqp;
 import com.idb_backend.mvp.domain.repository.EarthquakeRepository;
 import com.idb_backend.mvp.domain.repository.EarthquakeViewRepository;
+import com.idb_backend.mvp.service.BaseService;
 import com.idb_backend.mvp.service.EarthquakeService;
 import com.querydsl.core.types.Predicate;
-import org.owasp.html.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 @Service
-public class EarthquakeServiceImpl implements EarthquakeService{
+public class EarthquakeServiceImpl extends BaseService implements EarthquakeService{
 
   @Autowired
   EarthquakeRepository earthquakeRepository;
 
   @Autowired
   EarthquakeViewRepository earthquakeViewRepository;
+
+  @Autowired
+  BaseService baseService;
+
+  public EarthquakeServiceImpl(){
+    super();
+  }
 
   @Override
   public Iterable getAllEarthquakes(Map<String, String> params, Predicate predicate) {
@@ -38,13 +43,7 @@ public class EarthquakeServiceImpl implements EarthquakeService{
     }
   }
 
-  public static final PolicyFactory POLICY_DEFINITION = Sanitizers.BLOCKS
-      .and(Sanitizers.FORMATTING)
-      .and(Sanitizers.TABLES);
 
-  public static final PolicyFactory NO_HTML_POLICY_DEFINITION = new HtmlPolicyBuilder()
-      .allowElements()
-      .toFactory();
 
   @Override
   public SignifTsqp sanatizeObject(SignifTsqp eq){

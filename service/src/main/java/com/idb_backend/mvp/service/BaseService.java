@@ -1,15 +1,31 @@
 package com.idb_backend.mvp.service;
 
-import com.idb_backend.mvp.domain.model.TsunamiEventView;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.core.types.dsl.StringPath;
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.PolicyFactory;
+import org.owasp.html.Sanitizers;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-public class BaseService {
+@Service
+public class BaseService{
+
+  public static final PolicyFactory POLICY_DEFINITION = Sanitizers.BLOCKS
+      .and(Sanitizers.FORMATTING)
+      .and(Sanitizers.TABLES);
+
+  public static final PolicyFactory NO_HTML_POLICY_DEFINITION = new HtmlPolicyBuilder()
+      .allowElements()
+      .toFactory();
 
   public BooleanExpression combineBools(Predicate predicate, BooleanExpression runupBool){
     BooleanExpression result = runupBool.and(predicate);
@@ -120,6 +136,16 @@ public class BaseService {
     }
   }
 
-
-
+  public List<ValidationError> generateValiationErrorMessages(Errors errors){
+    List<ObjectError> errorList = errors.getAllErrors();
+    String errStr = "";
+    FieldError fieldError;
+    List<ValidationError> validationErrors = new ArrayList();
+    for(ObjectError error : errorList){
+      fieldError = (FieldError) error;
+      errStr += fieldError.getField() + " " + fieldError.getDefaultMessage() ;
+      validationErrors.add(new ValidationError(errStr));
+    }
+    return validationErrors;
+  }
 }

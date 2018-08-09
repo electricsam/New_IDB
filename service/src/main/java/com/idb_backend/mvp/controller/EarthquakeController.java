@@ -1,14 +1,13 @@
 package com.idb_backend.mvp.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.idb_backend.mvp.domain.model.EarthquakeMoreInfoProjection;
 import com.idb_backend.mvp.domain.model.QSignifTsqp;
 import com.idb_backend.mvp.domain.model.SignifTsqp;
 import com.idb_backend.mvp.domain.model.SignifVsqp;
 import com.idb_backend.mvp.domain.repository.EarthquakeRepository;
 import com.idb_backend.mvp.domain.repository.EarthquakeViewRepository;
-import com.idb_backend.mvp.service.EarthquakeService;
 import com.idb_backend.mvp.service.ValidationError;
+import com.idb_backend.mvp.service.impl.EarthquakeServiceImpl;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +15,9 @@ import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -36,7 +32,7 @@ public class EarthquakeController {
   EarthquakeRepository earthquakeRepository;
 
   @Autowired
-  EarthquakeService earthquakeService;
+  EarthquakeServiceImpl earthquakeService = new EarthquakeServiceImpl();
 
   @RequestMapping(value = "/earthquakes", method= RequestMethod.GET)
   @ResponseBody
@@ -96,15 +92,7 @@ public class EarthquakeController {
   public ResponseEntity postEarthquake(@Valid @RequestBody SignifTsqp signifTsqp, Errors errors){
       try{
         if(errors.hasErrors()){
-          List<ObjectError> errorList= errors.getAllErrors();
-          String errStr = "";
-          FieldError fieldError;
-          List<ValidationError> validationErrors = new ArrayList();
-          for(ObjectError error : errorList){
-            fieldError = (FieldError) error;
-            errStr += fieldError.getField() + " " + fieldError.getDefaultMessage() ;
-            validationErrors.add(new ValidationError(errStr));
-          }
+          List<ValidationError> validationErrors = earthquakeService.generateValiationErrorMessages(errors);
           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
         }else{
 
