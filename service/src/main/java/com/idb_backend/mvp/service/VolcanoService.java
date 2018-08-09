@@ -12,4 +12,6 @@ import java.util.Map;
 
 public interface VolcanoService {
   List<VolcanoEventProjection> getVolcanoes(Map<String, String> params, Predicate predicate);
+
+  VolcanoEvent sanitizeObject(VolcanoEvent ve);
 }

@@ -9,6 +9,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.core.types.dsl.StringPath;
+import org.omg.PortableInterceptor.PolicyFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,5 +68,19 @@ public class VolcanoServiceImpl extends BaseService implements VolcanoService{
 
     return master;
 
+  }
+
+  @Override
+  public VolcanoEvent sanitizeObject(VolcanoEvent ve){
+
+    String comments = ve.getComments();
+    comments = POLICY_DEFINITION.sanitize(comments);
+    ve.setComments(comments);
+
+    String reference = ve.getReference();
+    reference = NO_HTML_POLICY_DEFINITION.sanitize(reference);
+    ve.setReference(reference);
+
+    return ve;
   }
 }

@@ -124,7 +124,7 @@ public class TsunamiEventController {
       tsunamiEvent.setId(id);
       tsunamiEventRepository.save(tsunamiEvent);
       Optional<TsunamiEvent> result = tsunamiEventRepository.findById(id);
-      
+
       return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }catch (EntityNotFoundException e){

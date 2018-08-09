@@ -6,9 +6,11 @@ import com.querydsl.core.annotations.QueryEntity;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TimeZone;
@@ -59,8 +61,14 @@ public class VolcanoEvent {
   private Integer maxVei;
 
   private Integer fatalities;
+
+  @Size(max = 1)
   private String agent;
+
+  @Size(max = 1)
   private String assocEq;
+
+  @Size(max = 1)
   private String assocTsu;
 
   private String comments;
@@ -188,7 +196,13 @@ public class VolcanoEvent {
   private Integer housesAmountOrderTotal;
   private Integer validity;
   private Integer signif;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String publish;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String previousState;
 
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

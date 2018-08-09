@@ -3,7 +3,9 @@ package com.idb_backend.mvp.controller;
 import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.VolLocTsqpRepository;
 import com.idb_backend.mvp.domain.repository.VolcanoEventRepository;
+import com.idb_backend.mvp.service.ValidationError;
 import com.idb_backend.mvp.service.VolcanoService;
+import com.idb_backend.mvp.service.impl.VolcanoServiceImpl;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -23,7 +25,7 @@ import java.util.Optional;
 public class VolcanoEventController {
 
   @Autowired
-  VolcanoService volcanoService;
+  VolcanoServiceImpl volcanoService = new VolcanoServiceImpl();
 
   @Autowired
   VolcanoEventRepository volcanoEventRepository;
@@ -76,11 +78,17 @@ public class VolcanoEventController {
                                      @Valid @RequestBody VolcanoEvent volcanoEvent, Errors errors){
     try{
       if(errors.hasErrors()){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        List<ValidationError> validationErrors = volcanoService.generateValiationErrorMessages(errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
+
+        volcanoEvent = volcanoService.sanitizeObject(volcanoEvent);
+
         Integer volcanoEventId = volcanoEvent.getHazEventId();
         volcanoEvent.setVolLocTsqp(volLocTsqpRepository.findById(volId).get());
+
         volcanoEventRepository.save(volcanoEvent);
+
         Optional<VolcanoEvent> patched = volcanoEventRepository.findById(volcanoEventId);
 
         return ResponseEntity.status(HttpStatus.OK).body(patched);
@@ -96,8 +104,12 @@ public class VolcanoEventController {
                                     @Valid @RequestBody VolcanoEvent volcanoEvent, Errors errors){
     try{
       if(errors.hasErrors()){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        List<ValidationError> validationErrors = volcanoService.generateValiationErrorMessages(errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
+
+        volcanoEvent = volcanoService.sanitizeObject(volcanoEvent);
+
 //        Must test these next two lines building an association
         Optional<VolLocTsqp> assocVol = volLocTsqpRepository.findById(volId);
         volcanoEvent.setVolLocTsqp(assocVol.get());
@@ -106,6 +118,7 @@ public class VolcanoEventController {
         Iterable<VolcanoEvent> events = volcanoEventRepository.findAll(orderSpecifier);
         Integer id = events.iterator().next().getHazEventId() + 1;
         volcanoEvent.setHazEventId(id);
+
         volcanoEventRepository.save(volcanoEvent);
 
         BooleanExpression booleanExpression = QVolcanoEvent.volcanoEvent.hazEventId.eq(id);
