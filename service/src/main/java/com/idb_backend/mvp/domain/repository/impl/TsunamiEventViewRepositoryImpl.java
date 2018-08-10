@@ -49,6 +49,41 @@ public class TsunamiEventViewRepositoryImpl extends QuerydslRepositorySupport im
         .fetch();
   }
 
+  public Iterable<TsunamiEventMoreInfoRunupProjection> findMoreInfoRunup(Integer eventId){
+    JPAQuery<TsunamiEventView> query = new JPAQuery<>(entityManager);
+    QTsunamiEventView e = QTsunamiEventView.tsunamiEventView;
+
+    Iterable<TsunamiEventMoreInfoRunupProjection> result = query
+        .select(Projections.bean(TsunamiEventMoreInfoRunupProjection.class,
+            e.id,
+            e.year,
+            e.month,
+            e.day,
+            e.hour,
+            e.minute,
+            e.second,
+            e.eventValidity,
+            e.causeCode,
+            e.country,
+            e.locationName,
+            e.latitude,
+            e.longitude,
+            e.maxEventRunup,
+            e.numRunup,
+            e.tsMtAbe,
+            e.tsMtIi,
+            e.tsIntensity
+        ))
+        .distinct()
+        .from(e)
+        .where(e.id.eq(eventId))
+        .fetch();
+
+    return result;
+  }
+
+
+
   public Iterable<TsunamiEventMoreInfoProjection> findMoreInfo(Integer eventId){
     JPAQuery<TsunamiEventView> query = new JPAQuery<>(entityManager);
     QTsunamiEventView e = QTsunamiEventView.tsunamiEventView;

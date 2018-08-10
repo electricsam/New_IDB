@@ -1,9 +1,6 @@
 package com.idb_backend.mvp.controller;
 
-import com.idb_backend.mvp.domain.model.QTsunamiEvent;
-import com.idb_backend.mvp.domain.model.TsunamiEvent;
-import com.idb_backend.mvp.domain.model.TsunamiEventMoreInfoProjection;
-import com.idb_backend.mvp.domain.model.TsunamiEventView;
+import com.idb_backend.mvp.domain.model.*;
 import com.idb_backend.mvp.domain.repository.TsunamiEventRepository;
 import com.idb_backend.mvp.domain.repository.TsunamiEventViewRepository;
 import com.idb_backend.mvp.service.TsunamiEventService;
@@ -62,6 +59,20 @@ public class TsunamiEventController {
       return ResponseEntity.status(HttpStatus.OK).body(result);
     }catch (Exception e){
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+  }
+
+  @RequestMapping(value = "/tsunamievents/morerunupinfo/{id}", method = RequestMethod.GET)
+  @ResponseBody
+  public ResponseEntity getMoreInfoForRunup(@PathVariable("id") Integer id){
+    try{
+
+      Iterable<TsunamiEventMoreInfoRunupProjection> result = tsunamiEventViewRepository.findMoreInfoRunup(id);
+      
+      return ResponseEntity.status(HttpStatus.OK).body(result);
+
+    }catch(Exception e){
+      return ResponseEntity.status(HttpStatus.OK).body(null);
     }
   }
 
