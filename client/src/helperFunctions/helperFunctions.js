@@ -591,7 +591,7 @@ const mapToVolcanoTable = arr => {
       Cell: props => (
           <Link
           to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({volcanoid: props.original.hazEventId + ''}))}`}>
-        Vol
+        Eq
       </Link>)
     });
     result.splice(7, 0, {
