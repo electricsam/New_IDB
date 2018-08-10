@@ -92,7 +92,7 @@ class App extends React.Component {
             <Route exact path="/tsunami/updaterunup/:runupId/:eventId" component={UpdateRunupContainer} />
             <Route exact path="/tsunami/landing" component={TsunamiLanding} />
             <Route exact path="/tsunami/event/moreinfo/:eventId" component={MoreTsunamiEventInfoContainer}/>
-            <Route exact path="/tsunami/runup/moreinfo/:runupId" component={MoreRunupInfoContainer}/>
+            <Route exact path="/tsunami/runup/moreinfo/:runupId/:eventId" component={MoreRunupInfoContainer}/>
             <Route exact path="/earthquake/eventsearch" component={EarthquakeSearchContainer} />
             <Route exact path="/earthquake/event/data" component={EarthquakeContainer} />
             <Route exact path="/earthquake/insert" component={EarthquakeInsertContainer} />

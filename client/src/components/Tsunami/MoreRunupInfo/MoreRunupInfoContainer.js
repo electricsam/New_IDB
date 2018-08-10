@@ -16,9 +16,11 @@ class MoreRunupInfoContainer extends React.Component{
   }
 
   componentDidMount(){
-    let { runupId } = this.props.match.params;
-    console.log("this.props.match.params ", this.props.match.params);
+    let { runupId, eventId } = this.props.match.params;
+    console.log("******************************* ", eventId );
+    console.log("******************************",this.props.match.params);
     let queryString = `runupid=${runupId}`;
+    action({type: "FETCH_TS_EVENT_MORE_INFO_RUNUP_REQUESTED", payload: eventId});
     action({type: "FETCH_TS_RUNUP_MORE_INFO_REQUESTED", payload: runupId});
     action({type: "FETCH_SPECIFIED_REFERENCES_REQUESTED", payload: queryString});
   }
@@ -28,6 +30,14 @@ class MoreRunupInfoContainer extends React.Component{
     if(tsunami.get('fetchedRunup') && reference.get('fetchedReference')){
       return (
           <div>
+
+            <SmallTable data={tsunami.asMutable().getIn(['tsEvent']).toJS()}
+                        columns={tsunami.getIn(['tsHeadersAndAccessors']).toJS()}
+                        title="Tsunami Event Info"
+                        titleColor="blue"
+                        loading={tsunami.get('fetchingTsEvent')}
+                        defaultPageSize={1}
+            />
 
             <SmallTable data={tsunami.asMutable().getIn(['runupData']).toJS()}
                         columns={tsunami.getIn(['headersAndAccessors']).toJS()}

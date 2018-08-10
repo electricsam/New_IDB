@@ -233,6 +233,58 @@ const mapToTsunamiEventMoreInfo = arr => {
   return result;
 };
 
+const mapToTsunamiEventMoreInfoRunup = arr => {
+  const result = [];
+  if(arr.length) {
+    const accessors = Object.keys(arr[0]);
+    accessors.map(e => {
+      if (e === 'id') {
+        result.push({
+          Header: camelToPascal(e),
+          accessor: e,
+          show: false
+        })
+      } else if (e === "latitude" || e === "longitude") {
+        result.push({
+          Header: () => (
+              <TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(tseColDefs[e])}/>
+          ),
+          accessor: e,
+          Cell: props => <div>
+            {parseFloat(props.value).toFixed(2)}
+          </div>
+        })
+      } else if (e === 'numRunup') {
+        result.push({
+          Header: () => (
+              <TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(tseColDefs[e])}/>
+          ),
+          accessor: e,
+          Cell: props => <Link
+              to={`/tsunami/runup/data?${encodeQueryString(JSON.stringify({eventid: props.original.id + ""}))}`}>
+            {props.value}
+          </Link>
+        })
+      } else if (tsTranslateValue[e]) {
+        result.push({
+          Header: () => (
+              <TableHeader title={tsTranslateValue[e]} accessor={e} handleClick={() => openModal(tseColDefs[e])}/>
+          ),
+          accessor: e
+        });
+      } else {
+        result.push({
+          Header: () => (
+              <TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(tseColDefs[e])}/>
+          ),
+          accessor: e
+        });
+      }
+    });
+  }
+  return result;
+};
+
 const runupTranslateVal = {
   locationName: 'Name',
   causeCode: 'Code',
@@ -322,7 +374,7 @@ const mapToRunupTable = arr => {
     result.splice(13,0,{
       Header: () => (<TableHeader accessor='moreRunupInfo' title='Tsu Runup' handleClick={() => openModal(rnpColDefs['moreRunupInfo'])}/>),
       accessor: 'moreRunupInfo',
-      Cell: props => <InfoLink to={`/tsunami/runup/moreinfo/${props.original.id}`}/>
+      Cell: props => <InfoLink to={`/tsunami/runup/moreinfo/${props.original.id}/${props.original.eventId}`}/>
     });
   }
   return result;
@@ -697,5 +749,6 @@ module.exports = {
   mapToEqMoreInfoTable,
   mapToTsunamiEventMoreInfo,
   mapToRunupMoreInfoTable,
-  mapToVolcanoLocsTable
+  mapToVolcanoLocsTable,
+  mapToTsunamiEventMoreInfoRunup,
 };

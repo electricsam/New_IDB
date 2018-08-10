@@ -68,7 +68,7 @@ public class TsunamiEventController {
     try{
 
       Iterable<TsunamiEventMoreInfoRunupProjection> result = tsunamiEventViewRepository.findMoreInfoRunup(id);
-      
+
       return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }catch(Exception e){

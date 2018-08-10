@@ -16,6 +16,7 @@ export const initialState = fromJS({
   tsEvents: [{ country: '', comments: ''}],
   tsEvent: [{country: '', comments: ''}],
   headersAndAccessors: [],
+  tsHeadersAndAccessors: [],
   showSourceForm: true,
   showRunupPlaceForm: false,
   showTsunamiEffectsForm: false,
@@ -155,6 +156,19 @@ export default function reducer(state = initialState, action) {
       });
     }
     case 'FETCH_TS_EVENT_MORE_INFO_REJECTED': {
+      return state.merge(state, { fetchingTsEvent: false, error: action.payload });
+    }
+    case 'FETCH_TS_EVENT_MORE_INFO_RUNUP_REQUESTED': {
+      return state.merge(state, { fetchingTsEvent: true, fetchedTsEvent: false });
+    }
+    case 'FETCH_TS_EVENT_MORE_INFO_RUNUP_FULFILLED': {
+      return state.merge(state, { fetchingTsEvent: false,
+        fetchedTsEvent: true,
+        tsEvent: action.payload.data,
+        tsHeadersAndAccessors: action.payload.formattedData
+      });
+    }
+    case 'FETCH_TS_EVENT_MORE_INFO_RUNUP_REJECTED': {
       return state.merge(state, { fetchingTsEvent: false, error: action.payload });
     }
     case 'FETCH_TS_RUNUP_REQUESTED': {

@@ -6,7 +6,8 @@ import {
   mapToTsunamiEventTable,
   mapToRunupTable,
   mapToTsunamiEventMoreInfo,
-  mapToRunupMoreInfoTable
+  mapToRunupMoreInfoTable,
+  mapToTsunamiEventMoreInfoRunup
 } from '../helperFunctions/helperFunctions';
 
 const port = 'http://localhost:10088';
@@ -68,6 +69,24 @@ export function* fetchTsEventMoreInfo(action) {
 
 export function* watchFetchTsEventMoreInfo() {
   yield takeEvery('FETCH_TS_EVENT_MORE_INFO_REQUESTED', fetchTsEventMoreInfo);
+}
+
+export function* fetchTsEventMoreInfoRunup(action) {
+  const eventId = action.payload;
+  console.log("This is event id: ")
+  try {
+    const response = yield call(axios.get, `${TSUNAMI_EVENTS_BASEPATH}/morerunupinfo/${eventId}`);
+    yield put({
+      type: 'FETCH_TS_EVENT_MORE_INFO_RUNUP_FULFILLED',
+      payload: {data: response.data, formattedData: mapToTsunamiEventMoreInfoRunup(response.data)},
+    });
+  } catch (error) {
+    yield put({ type: 'FETCH_TS_EVENT_MORE_INFO_RUNUP_REJECTED', payload: error });
+  }
+}
+
+export function* watchFetchTsEventMoreInfoRunup() {
+  yield takeEvery('FETCH_TS_EVENT_MORE_INFO_RUNUP_REQUESTED', fetchTsEventMoreInfoRunup);
 }
 
 export function* fetchSpecifiedTSEvents(action) {
