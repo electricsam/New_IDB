@@ -21,7 +21,8 @@ public class BaseService{
 
   public static final PolicyFactory POLICY_DEFINITION = Sanitizers.BLOCKS
       .and(Sanitizers.FORMATTING)
-      .and(Sanitizers.TABLES);
+      .and(Sanitizers.TABLES)
+      .and(Sanitizers.LINKS);
 
   public static final PolicyFactory NO_HTML_POLICY_DEFINITION = new HtmlPolicyBuilder()
       .allowElements()

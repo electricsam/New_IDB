@@ -16,7 +16,6 @@ public class ReferenceServiceImpl extends BaseService implements ReferenceServic
   @Autowired
   ReferenceRepository referenceRepository;
 
-
   @Override
   public Iterable<Reference> getReferences(Map<String, String> params, Predicate predicate){
     if(params.get("tsunamiid") != null && !params.get("tsunamiid").equals("")){
@@ -30,5 +29,35 @@ public class ReferenceServiceImpl extends BaseService implements ReferenceServic
     }else{
       return referenceRepository.findAll(predicate);
     }
+  }
+
+  @Override
+  public Reference sanitizeObject(Reference ref){
+
+    String refNo = ref.getRefNo();
+    refNo = NO_HTML_POLICY_DEFINITION.sanitize(refNo);
+    ref.setRefNo(refNo);
+
+    String author = ref.getAuthor();
+    author = NO_HTML_POLICY_DEFINITION.sanitize(author);
+    ref.setAuthor(author);
+
+    String year = ref.getYear();
+    year = NO_HTML_POLICY_DEFINITION.sanitize(year);
+    ref.setYear(year);
+
+    String citation = ref.getCitation();
+    citation = POLICY_DEFINITION.sanitize(citation);
+    ref.setCitation(citation);
+
+    String ok = ref.getOk();
+    ok = NO_HTML_POLICY_DEFINITION.sanitize(ok);
+    ref.setOk(ok);
+
+    String comments = ref.getComments();
+    comments = POLICY_DEFINITION.sanitize(comments);
+    ref.setComments(comments);
+
+    return ref;
   }
 }

@@ -5,8 +5,10 @@ import com.querydsl.core.annotations.QueryEntity;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.rmi.AccessException;
 import java.util.*;
 
 @Data
@@ -19,10 +21,9 @@ public class Reference {
   @Column(name = "ID")
   private Integer id;
 
-
-
   @JsonIgnore
   private String refNo;
+
   @JsonIgnore
   private Integer oldId;
 
@@ -44,9 +45,7 @@ public class Reference {
 
   private String author;
 
-
   private String year;
-
 
   @Transient
   @Getter(AccessLevel.PRIVATE)
@@ -72,11 +71,17 @@ public class Reference {
   private Integer have;
 
   @JsonIgnore
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String publish;
 
   @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String previousState;
+
+
   @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Date lastUpdate;
 
   @Transient
@@ -94,7 +99,6 @@ public class Reference {
   @Transient
   @Getter(AccessLevel.PRIVATE)
   private String commentsNot;
-
 
   private String comments;
 

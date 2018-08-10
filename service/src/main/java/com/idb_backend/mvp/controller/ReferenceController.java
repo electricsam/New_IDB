@@ -62,6 +62,8 @@ public class ReferenceController {
         List<ValidationError> validationErrors = referenceService.generateValiationErrorMessages(errors);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
+        reference = referenceService.sanitizeObject(reference);
+
         reference.setId(id);
         referenceRepository.save(reference);
 
@@ -81,6 +83,8 @@ public class ReferenceController {
         List<ValidationError> validationErrors = referenceService.generateValiationErrorMessages(errors);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
+
+        reference = referenceService.sanitizeObject(reference);
 
         OrderSpecifier orderSpecifier = QReference.reference.id.desc();
         Iterable<Reference> result = referenceRepository.findAll(orderSpecifier);
