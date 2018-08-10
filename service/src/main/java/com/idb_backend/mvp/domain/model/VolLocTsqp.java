@@ -1,12 +1,11 @@
 package com.idb_backend.mvp.domain.model;
 
-
 import com.querydsl.core.annotations.QueryEntity;
 import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.WKTWriter;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -91,14 +90,23 @@ public class VolLocTsqp {
   private Integer elevation;
   private String morphology;
   private String status;
+
   private String timeErupt;
+
   private BigInteger objectid;
 
-  @Getter(AccessLevel.PRIVATE)
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private Geometry shape;
 
   private String country;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String publish;
+
+  @Getter(value = AccessLevel.PRIVATE)
+  @Setter(value = AccessLevel.PRIVATE)
   private String previousState;
 
   @OneToMany(mappedBy = "volLocTsqp", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

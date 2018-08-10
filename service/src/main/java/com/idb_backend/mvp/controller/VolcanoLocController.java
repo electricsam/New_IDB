@@ -4,7 +4,9 @@ import com.idb_backend.mvp.domain.model.QVolLocTsqp;
 import com.idb_backend.mvp.domain.model.VolLocTsqp;
 import com.idb_backend.mvp.domain.model.VolLocTsqpProjection;
 import com.idb_backend.mvp.domain.repository.VolLocTsqpRepository;
+import com.idb_backend.mvp.service.ValidationError;
 import com.idb_backend.mvp.service.VolLocService;
+import com.idb_backend.mvp.service.impl.VolLocServiceImpl;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.Expressions;
@@ -16,6 +18,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -26,7 +29,7 @@ public class VolcanoLocController {
   VolLocTsqpRepository volcanoLocRepository;
 
   @Autowired
-  VolLocService volLocService;
+  VolLocServiceImpl volLocService = new VolLocServiceImpl();
 
   @RequestMapping(value = "/volcanolocs", method = RequestMethod.GET)
   @ResponseBody
@@ -56,8 +59,12 @@ public class VolcanoLocController {
   public ResponseEntity patchVolcanoLoc(@Valid @RequestBody VolLocTsqp volLocTsqp, Errors errors){
     try{
       if(errors.hasErrors()){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        List<ValidationError> validationErrors = volLocService.generateValiationErrorMessages(errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
+
+        volLocTsqp = volLocService.sanitizeObject(volLocTsqp);
+
         Integer id = volLocTsqp.getId();
         volcanoLocRepository.save(volLocTsqp);
         Optional<VolLocTsqp> patched = volcanoLocRepository.findById(id);
@@ -73,8 +80,12 @@ public class VolcanoLocController {
   public ResponseEntity postVolcanoLoc(@Valid @RequestBody VolLocTsqp volLocTsqp, Errors errors){
     try{
       if(errors.hasErrors()){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        List<ValidationError> validationErrors = volLocService.generateValiationErrorMessages(errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
+
+        volLocTsqp = volLocService.sanitizeObject(volLocTsqp);
+
         OrderSpecifier orderSpecifier = QVolLocTsqp.volLocTsqp.id.desc();
         Iterable<VolLocTsqp> ordered = volcanoLocRepository.findAll(orderSpecifier);
         Integer id = ordered.iterator().next().getId() + 1;
