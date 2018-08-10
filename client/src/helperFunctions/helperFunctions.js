@@ -594,12 +594,14 @@ const mapToVolcanoTable = arr => {
         Eq
       </Link>)
     });
-    // result.splice(7, 0, {
-    //   Header: () => <TableHeader title='Vol Loc' accessor={'volLoc'} handleClick={() => openModal(veColDefs['volLoc'])}/>,
-    //   accessor: 'volLoc',
-    //   Cell: props => (<InfoLink to={`/volcano/event/moreinfo/${props.original.hazEventId}`}/>)
-    // });
     result.splice(7, 0, {
+      Header: () => <TableHeader title='Vol Loc' accessor={'volLoc'} handleClick={() => openModal(veColDefs['volLoc'])}/>,
+      accessor: 'volLoc',
+      Cell: props => (<Link to={`/volcano/loc/data?${encodeQueryString(JSON.stringify({eventid: props.original.hazEventId + ""}))}`}>
+        Vol
+      </Link>)
+    });
+    result.splice(8, 0, {
       Header: () => <TableHeader title='More Info' accessor={'moreInfo'} handleClick={() => openModal(veColDefs['moreInfo'])}/>,
       accessor: 'moreInfo',
       Cell: props => (<InfoLink to={`/volcano/event/moreinfo/${props.original.hazEventId}`}/>)

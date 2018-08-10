@@ -7,7 +7,6 @@ import Loading from "../../loadbar/Loading";
 import store from "../../../store";
 import {createApiQueryString, decodeQueryString} from "../../../helperFunctions/helperFunctions";
 import TickboxTable from "../../CheckboxTable/TickboxTable";
-import {DefinitionModal} from "../../DefinitionModal/DefinitionModal";
 
 const tableStyle = {
   textAlign: "center"
