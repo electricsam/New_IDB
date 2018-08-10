@@ -2,6 +2,7 @@ package com.idb_backend.mvp.service.impl;
 
 import com.idb_backend.mvp.domain.model.Reference;
 import com.idb_backend.mvp.domain.repository.ReferenceRepository;
+import com.idb_backend.mvp.service.BaseService;
 import com.idb_backend.mvp.service.ReferenceService;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public class ReferenceServiceImpl implements ReferenceService{
+public class ReferenceServiceImpl extends BaseService implements ReferenceService{
 
   @Autowired
   ReferenceRepository referenceRepository;

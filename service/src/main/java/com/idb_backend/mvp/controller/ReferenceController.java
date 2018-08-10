@@ -4,6 +4,8 @@ import com.idb_backend.mvp.domain.model.QReference;
 import com.idb_backend.mvp.domain.model.Reference;
 import com.idb_backend.mvp.domain.repository.ReferenceRepository;
 import com.idb_backend.mvp.service.ReferenceService;
+import com.idb_backend.mvp.service.ValidationError;
+import com.idb_backend.mvp.service.impl.ReferenceServiceImpl;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -21,7 +24,7 @@ import java.util.Optional;
 public class ReferenceController {
 
   @Autowired
-  ReferenceService referenceService;
+  ReferenceServiceImpl referenceService = new ReferenceServiceImpl();
 
   @Autowired
   ReferenceRepository referenceRepository;
@@ -56,7 +59,8 @@ public class ReferenceController {
                                        @Valid @RequestBody Reference reference, Errors errors){
     try{
       if(errors.hasErrors()){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        List<ValidationError> validationErrors = referenceService.generateValiationErrorMessages(errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
         reference.setId(id);
         referenceRepository.save(reference);
@@ -74,7 +78,8 @@ public class ReferenceController {
   public ResponseEntity postReference(@Valid @RequestBody Reference reference, Errors errors){
     try{
       if(errors.hasErrors()){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        List<ValidationError> validationErrors = referenceService.generateValiationErrorMessages(errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(validationErrors);
       }else{
 
         OrderSpecifier orderSpecifier = QReference.reference.id.desc();
