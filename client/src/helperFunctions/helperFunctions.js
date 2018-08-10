@@ -579,7 +579,7 @@ const mapToVolcanoTable = arr => {
       Header: () => <TableHeader title='Tsu' accessor={'tsu'} handleClick={() => openModal(veColDefs['tsu'])}/>,
       accessor: 'tsu',
       Cell: props =>(
-          <Link style={{color: "inherit", textDecoration: "none"}}
+          <Link 
                 to={`/tsunami/event/data?${encodeQueryString(JSON.stringify({volcanoid: props.original.hazEventId + ""}))}`}>
             Tsu
           </Link>
@@ -591,7 +591,7 @@ const mapToVolcanoTable = arr => {
       Cell: props => (
           <Link
           to={`/earthquake/event/data?${encodeQueryString(JSON.stringify({volcanoid: props.original.hazEventId + ''}))}`}>
-        Vol
+        Eq
       </Link>)
     });
     result.splice(7, 0, {
