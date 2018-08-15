@@ -22,6 +22,15 @@ public class RunupServiceImpl extends BaseService implements RunupService {
   @Autowired
   RunupViewRepository runupViewRepository;
 
+  /**
+   * Returns a BooleanExpression, generated based on the existance of additional search terms not captured by the entity
+   * or the @QuerydslPredicate Predicate generation on ingest at the controller level.  These are additional search
+   * terms that may be associted with a related dataset or simply not captured elsewhere. Each of these terms will be
+   * chained together via AND logic.
+   *
+   * @param map
+   * @return BooleanExpression composed of chained BooleanExpressions, linked via AND logic || null
+   */
   public BooleanExpression generateCriteria(Map<String,String> map){
     QTsunamiEventView event = QTsunamiEventView.tsunamiEventView;
     List<BooleanExpression> boolList = new ArrayList<>();
@@ -51,6 +60,8 @@ public class RunupServiceImpl extends BaseService implements RunupService {
     return master;
 
   }
+
+
 
   @Override
   public List<RunupProjection> getRunups(Map<String, String> params, Predicate predicate){

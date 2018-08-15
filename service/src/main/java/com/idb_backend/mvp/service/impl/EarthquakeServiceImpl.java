@@ -20,13 +20,18 @@ public class EarthquakeServiceImpl extends BaseService implements EarthquakeServ
   @Autowired
   EarthquakeViewRepository earthquakeViewRepository;
 
-  @Autowired
-  BaseService baseService;
-
   public EarthquakeServiceImpl(){
     super();
   }
 
+  /**
+   * Returns Iterable object that is created via Repository's query to the database.  The query used is determined by
+   * the params that are present in the queryString passed in the controller.
+   *
+   * @param params
+   * @param predicate
+   * @return Iterable object of all Earthquakes resulting from query
+   */
   @Override
   public Iterable getAllEarthquakes(Map<String, String> params, Predicate predicate) {
     if(params.get("tsunamiid") != null && !params.get("tsunamiid").equals("")){
@@ -43,8 +48,12 @@ public class EarthquakeServiceImpl extends BaseService implements EarthquakeServ
     }
   }
 
-
-
+  /**
+   * Returns SignifTsqp object sanatized of all unacceptable HTML
+   *
+   * @param eq
+   * @return SignifTsqP without unacceptable HTML
+   */
   @Override
   public SignifTsqp sanitizeObject(SignifTsqp eq){
       String flagDuplicate = eq.getFlagDuplicate();
@@ -89,5 +98,4 @@ public class EarthquakeServiceImpl extends BaseService implements EarthquakeServ
 
       return eq;
   }
-
 }
