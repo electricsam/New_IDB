@@ -4,6 +4,11 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * Class describing errors that occur in validation processes
+ *
+ * @author speichs
+ */
 @Data
 public class ValidationError implements Serializable {
 
