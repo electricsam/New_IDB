@@ -61,8 +61,14 @@ public class RunupServiceImpl extends BaseService implements RunupService {
 
   }
 
-
-
+  /**
+   * Returns List of RunupProjection objects by calling to a query set in the repository.  The specific query called is
+   * determined by the existance of certian params in a Map object.
+   *
+   * @param params
+   * @param predicate
+   * @return List of RunupProjection Objects
+   */
   @Override
   public List<RunupProjection> getRunups(Map<String, String> params, Predicate predicate){
 
@@ -79,6 +85,13 @@ public class RunupServiceImpl extends BaseService implements RunupService {
     }
   }
 
+
+  /**
+   * Returns Tsunami runup that has been sanatized of unacceptable HTML
+   *
+   * @param rnp
+   * @return TsunamiRunup
+   */
   @Override
   public TsunamiRunup sanitizeObject(TsunamiRunup rnp){
 
