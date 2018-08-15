@@ -23,6 +23,15 @@ public class VolcanoServiceImpl extends BaseService implements VolcanoService{
   @Autowired
   VolcanoEventRepository volcanoEventRepository;
 
+  /**
+   * Returns a BooleanExpression, generated based on the existance of additional search terms not captured by the entity
+   * or the @QuerydslPredicate Predicate generation on ingest at the controller level.  These are additional search
+   * terms that may be associted with a related dataset or simply not captured elsewhere. Each of these terms will be
+   * chained together via AND logic.
+   *
+   * @param params
+   * @return BooleanExpression composed of chained BooleanExpressions, linked via AND logic || null
+   */
   @Override
   public List<VolcanoEventProjection> getVolcanoes (Map<String, String> params, Predicate predicate ){
 
@@ -41,6 +50,15 @@ public class VolcanoServiceImpl extends BaseService implements VolcanoService{
     }
   }
 
+  /**
+   * Returns a BooleanExpression, generated based on the existance of additional search terms not captured by the entity
+   * or the @QuerydslPredicate Predicate generation on ingest at the controller level.  These are additional search
+   * terms that may be associted with a related dataset or simply not captured elsewhere. Each of these terms will be
+   * chained together via AND logic.
+   *
+   * @param map
+   * @return BooleanExpression composed of chained BooleanExpressions, linked via AND logic || null
+   */
   public BooleanExpression generateCriteria (Map<String, String> map){
     QVolLocTsqp root = QVolLocTsqp.volLocTsqp;
     List<BooleanExpression> boolList = new ArrayList<>();
@@ -70,6 +88,12 @@ public class VolcanoServiceImpl extends BaseService implements VolcanoService{
 
   }
 
+  /**
+   * Returns VolcanoEvent that has been sanatized of unacceptable HTML
+   *
+   * @param ve
+   * @return VolcanoEvent
+   */
   @Override
   public VolcanoEvent sanitizeObject(VolcanoEvent ve){
 

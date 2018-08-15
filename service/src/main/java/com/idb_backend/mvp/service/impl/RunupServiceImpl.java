@@ -86,7 +86,7 @@ public class RunupServiceImpl extends BaseService implements RunupService {
   }
 
   /**
-   * Returns Tsunami runup that has been sanatized of unacceptable HTML
+   * Returns TsunamiRunup that has been sanatized of unacceptable HTML
    *
    * @param rnp
    * @return TsunamiRunup

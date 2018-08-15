@@ -41,7 +41,7 @@ public class BaseService{
    *
    * @param predicate
    * @param runupBool
-   * @return the combined BooleanExpression
+   * @return BooleanExpression
    */
   public BooleanExpression combineBools(Predicate predicate, BooleanExpression runupBool){
     BooleanExpression result = runupBool.and(predicate);
@@ -255,7 +255,7 @@ public class BaseService{
    * instantiate a new ValidationError object with.
    *
    * @param errors
-   * @return
+   * @return List<ValidationError>
    */
   public List<ValidationError> generateValiationErrorMessages(Errors errors){
     List<ObjectError> errorList = errors.getAllErrors();
