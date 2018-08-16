@@ -17,5 +17,4 @@ public interface EarthquakeCustomRepository {
 
   List<EarthquakeMoreInfoProjection> findMoreInfo(Integer id);
 
-
 }
