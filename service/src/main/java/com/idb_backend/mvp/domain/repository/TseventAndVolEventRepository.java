@@ -12,7 +12,5 @@ public interface TseventAndVolEventRepository extends JpaRepository<TseventAndVo
     QuerydslPredicateExecutor<TseventAndVolEvent>, QuerydslBinderCustomizer<QTseventAndVolEvent>{
 
   @Override
-  default void customize(QuerydslBindings bindings, QTseventAndVolEvent root){
-
-  }
+  default void customize(QuerydslBindings bindings, QTseventAndVolEvent root){ }
 }

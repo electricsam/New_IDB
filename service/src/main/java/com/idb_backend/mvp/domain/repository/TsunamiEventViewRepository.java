@@ -9,6 +9,13 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 
+/**
+ * Interface designed to generate Querydsl Predicates for TsunamiEventView objects that are passed in at the controller
+ * level.Each binding is performed through a lambda expression that declares a specific part of the overall Predicate in
+ * a pre-defined way.  Each of the arguments passed in to bindings.bind() is a ref to a field in the TsunamiEventView
+ * table.
+ *
+ */
 public interface TsunamiEventViewRepository extends
     JpaRepository<TsunamiEventView, Integer>, QuerydslPredicateExecutor<TsunamiEventView>,
     QuerydslBinderCustomizer<QTsunamiEventView>, TsunamiEventViewCustomRepository{
@@ -119,5 +126,7 @@ public interface TsunamiEventViewRepository extends
     bindings.bind(root.commentsMatch).first((path, value) -> root.comments.equalsIgnoreCase(value));
 
     bindings.bind(root.commentsNot).first((path, value) -> root.comments.notEqualsIgnoreCase(value));
+
+    bindings.bind(String.class).first((StringPath path, String value) -> path.equalsIgnoreCase(value));
   }
 }

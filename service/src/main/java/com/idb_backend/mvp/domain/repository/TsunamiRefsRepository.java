@@ -12,7 +12,5 @@ public interface TsunamiRefsRepository extends JpaRepository<TsunamiRefs, TsEven
     QuerydslPredicateExecutor<TsunamiRefs>, QuerydslBinderCustomizer<QTsunamiRefs>{
 
   @Override
-  default void customize(QuerydslBindings bindings, QTsunamiRefs root){
-
-  }
+  default void customize(QuerydslBindings bindings, QTsunamiRefs root){ }
 }

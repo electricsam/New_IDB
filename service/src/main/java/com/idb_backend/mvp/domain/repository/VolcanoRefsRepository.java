@@ -12,7 +12,5 @@ public interface VolcanoRefsRepository extends JpaRepository<VolcanoRefs, VolRef
     QuerydslPredicateExecutor<VolcanoRefs>, QuerydslBinderCustomizer<QVolcanoRefs>{
 
   @Override
-  default void customize(QuerydslBindings bindings, QVolcanoRefs root){
-
-  }
+  default void customize(QuerydslBindings bindings, QVolcanoRefs root){ }
 }

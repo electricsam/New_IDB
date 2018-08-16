@@ -12,7 +12,5 @@ public interface SignifRefsRepository extends JpaRepository<SignifRefs, SignifRe
     QuerydslPredicateExecutor<SignifRefs>, QuerydslBinderCustomizer<QSignifRefs>{
 
   @Override
-  default void customize(QuerydslBindings bindings, QSignifRefs root){
-
-  }
+  default void customize(QuerydslBindings bindings, QSignifRefs root){ }
 }

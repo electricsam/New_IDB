@@ -10,7 +10,5 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 public interface SignifToTsEventRepository extends JpaRepository<SignifToTsEvent, Integer>, QuerydslPredicateExecutor<QSignifToTsEvent>,
     QuerydslBinderCustomizer<QSignifToTsEvent> {
   @Override
-  default public void customize(QuerydslBindings bindings, QSignifToTsEvent root){
-
-  }
+  default void customize(QuerydslBindings bindings, QSignifToTsEvent root){ }
 }

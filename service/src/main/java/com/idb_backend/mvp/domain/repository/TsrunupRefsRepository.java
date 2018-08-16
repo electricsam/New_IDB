@@ -12,7 +12,5 @@ public interface TsrunupRefsRepository extends JpaRepository<TsrunupRefs, RunupR
     QuerydslPredicateExecutor<TsrunupRefs>, QuerydslBinderCustomizer<QTsrunupRefs>{
 
   @Override
-  default void customize(QuerydslBindings bindings, QTsrunupRefs root){
-
-  }
+  default void customize(QuerydslBindings bindings, QTsrunupRefs root){ }
 }

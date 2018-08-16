@@ -3,11 +3,19 @@ package com.idb_backend.mvp.domain.repository;
 import com.idb_backend.mvp.domain.model.QTsunamiRunupView;
 import com.idb_backend.mvp.domain.model.TsunamiRunupView;
 import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.core.types.dsl.StringPath;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 
+/**
+ * Interface designed to generate Querydsl Predicates for TsunamiRunupView objects that are passed in at the controller
+ * level.Each binding is performed through a lambda expression that declares a specific part of the overall Predicate in
+ * a pre-defined way.  Each of the arguments passed in to bindings.bind() is a ref to a field in the TsunamiRunupView
+ * table.
+ *
+ */
 public interface RunupViewRepository extends JpaRepository<TsunamiRunupView, Integer>,
     QuerydslPredicateExecutor<TsunamiRunupView>, QuerydslBinderCustomizer<QTsunamiRunupView>, RunupViewCustomRepository{
 
@@ -97,5 +105,7 @@ public interface RunupViewRepository extends JpaRepository<TsunamiRunupView, Int
     bindings.bind(root.minDamageAmountOrder).first((path, value) -> root.damageAmountOrder.goe(value));
 
     bindings.bind(root.maxDamageAmountOrder).first((path, value) -> root.damageAmountOrder.loe(value));
+
+    bindings.bind(String.class).first((StringPath path, String value) -> path.equalsIgnoreCase(value));
   }
 }

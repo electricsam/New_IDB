@@ -3,6 +3,7 @@ package com.idb_backend.mvp.domain.repository;
 import com.idb_backend.mvp.domain.model.QVolcanoEvent;
 import com.idb_backend.mvp.domain.model.VolcanoEvent;
 import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.core.types.dsl.StringPath;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -10,6 +11,15 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 
 import java.util.Optional;
 
+
+
+/**
+ * Interface designed to generate Querydsl Predicates for VolcanoEvent objects that are passed in at the controller
+ * level.Each binding is performed through a lambda expression that declares a specific part of the overall Predicate in
+ * a pre-defined way.  Each of the arguments passed in to bindings.bind() is a ref to a field in the VolcanoEvent
+ * table.
+ *
+ */
 public interface VolcanoEventRepository extends JpaRepository<VolcanoEvent, Integer>,
     QuerydslPredicateExecutor<VolcanoEvent>, QuerydslBinderCustomizer<QVolcanoEvent>, VolcanoEventCustomRepository{
 
@@ -47,6 +57,8 @@ public interface VolcanoEventRepository extends JpaRepository<VolcanoEvent, Inte
     bindings.bind(root.commentsNot).first((path, value) -> root.comments.notEqualsIgnoreCase(value));
 
     bindings.bind(root.commentsEnd).first((path, value) -> root.comments.endsWithIgnoreCase(value));
+
+    bindings.bind(String.class).first((StringPath path, String value) -> path.equalsIgnoreCase(value));
   }
 
 }

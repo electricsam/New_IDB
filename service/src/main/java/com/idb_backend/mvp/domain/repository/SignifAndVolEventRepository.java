@@ -12,7 +12,5 @@ public interface SignifAndVolEventRepository extends JpaRepository<SignifAndVolE
     QuerydslPredicateExecutor<SignifAndVolEvent>, QuerydslBinderCustomizer<QSignifAndVolEvent> {
 
   @Override
-  default void customize(QuerydslBindings bindings, QSignifAndVolEvent root) {
-
-  }
+  default void customize(QuerydslBindings bindings, QSignifAndVolEvent root) { }
 }

@@ -15,5 +15,4 @@ public interface TsunamiEventCustomRepository {
 
   Iterable<TsunamiEventView> findRelatedTsunamiFromRunup(Integer runupId);
 
-
 }

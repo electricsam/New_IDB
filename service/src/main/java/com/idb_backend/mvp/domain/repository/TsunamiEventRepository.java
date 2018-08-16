@@ -12,6 +12,8 @@ public interface TsunamiEventRepository extends JpaRepository<TsunamiEvent, Inte
     QuerydslPredicateExecutor<TsunamiEvent>, QuerydslBinderCustomizer<QTsunamiEvent>, TsunamiEventCustomRepository {
   @Override
   default void customize(QuerydslBindings bindings, QTsunamiEvent root){
+
+    //ensures that all predicates on string fields are set to query for equality without regard for case
     bindings.bind(String.class).first((StringPath path, String value) -> path.equalsIgnoreCase(value));
   }
 }
