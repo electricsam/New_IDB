@@ -87,7 +87,7 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
    * is passed given predicate
    *
    * @param predicate
-   * @return
+   * @return List<VolcanoEventProjection>
    */
   @Override
   public List<VolcanoEventProjection> findByQuery(Predicate predicate){
@@ -136,7 +136,7 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
    * related to a given Earthquake id, if it exists.
    *
    * @param earthquakeid
-   * @return
+   * @return List<VolcanoEventProjection>
    */
   @Override
   public List<VolcanoEventProjection> findRelatedVolcanoesFromEarthquake(Integer earthquakeid){
@@ -164,7 +164,7 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
    * related to a given Reference id, if it exists.
    *
    * @param refId
-   * @return
+   * @return List<VolcanoEventProjection>
    */
   @Override
   public List<VolcanoEventProjection> findRelatedVolcanoesFromRef(Integer refId){
@@ -193,7 +193,7 @@ public class VolcanoEventRepositoryImpl extends QuerydslRepositorySupport implem
    * related to a given Tsunami id, if it exists.
    *
    * @param tsunamiId
-   * @return
+   * @return List<VolcanoEventProjection>
    */
   @Override
   public List<VolcanoEventProjection> findRelatedVolcanoesFromTsunami(Integer tsunamiId){
