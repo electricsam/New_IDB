@@ -1,25 +1,5 @@
 import { expect } from 'chai';
-import { oddEven, camelToPascal, encodeQueryString, decodeQueryString } from './helperFunctions';
-
-describe('oddEven() helper function', () => {
-  it('should return a string', () => {
-    const num = 2;
-    expect(typeof oddEven(num) === 'string').to.be.true;
-  });
-
-  it("should return 'even' when passed an even integer", () => {
-    expect(oddEven(10)).to.deep.equal('even');
-  });
-
-  it("should return 'odd' when passed an odd integer", () => {
-    expect(oddEven(5)).to.deep.equal('odd');
-  });
-
-  it('should throw a new error when invalid input is given', () => {
-    expect(oddEven('string')).to.deep.equal('whoops');
-    expect(oddEven(4.5)).to.deep.equal('whoops');
-  });
-});
+import { camelToPascal, encodeQueryString, decodeQueryString } from './helperFunctions';
 
 describe('camelToPascal()', () => {
   it('should, when given a camel cased string, return the same string in Pascal Case', () => {

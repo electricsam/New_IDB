@@ -16,15 +16,13 @@ const action = obj => store.dispatch(obj);
 
 const hashPass = 'lockunlock';
 
-const oddEven = (num) => {
-  // TODO: need to properly throw error and update test file accordingly
-  if (typeof num !== Number && !Number.isInteger(num)) {
-    return 'whoops';
-  }
-  if (num % 2 === 0) return 'even';
-  return 'odd';
-};
 
+/**
+ * converts a string from camelCase to pascal case AKA upper CamelCase
+ *
+ * @param string
+ * @returns {string}
+ */
 const camelToPascal = (string) => {
   if (typeof string !== 'string') return 'error in camelToPascal';
   return string.split(/(?=[A-Z])/).map((e, i, a) => (
@@ -32,6 +30,12 @@ const camelToPascal = (string) => {
   )).join(' ');
 };
 
+/**
+ * dispatches an action OPEN_MODAL to open the DefinitionModal component that holds all definitions of columns. Its
+ * payload contains all all necessary info for modal, scraped from the passed object (node)
+ *
+ * @param node
+ */
 const openModal = (node) => {
   if(node){
     console.log(node);
@@ -48,15 +52,8 @@ const openModal = (node) => {
   }
 };
 
-const headerStyle = {
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'nowrap',
-  justifyContent: "center",
-  alignItems: 'center'
-};
-
+//Object for mapping incoming tsunami data column names to new names for display purposes. Key is old name, Value is new
+// name.
 const tsTranslateValue = {
   locationName: 'Name',
   causeCode: 'Code',
@@ -85,6 +82,18 @@ const tsTranslateValue = {
   damageAmountOrderTotal: "Total Damage Description",
 };
 
+/**
+ * Function for mapping incoming Tsunami Event data to the Header Accessor structure
+ * {@link https://react-table.js.org/#/story/readme ReactTable} demands. Important to note that the arr param given is
+ * data provided by the api call and is an array of JavaScript Objects where keys are column names and values are
+ * associated data (if anny exists).  Keys are the exact same for every object in the array. An array of Objects is
+ * returned containing Headers and accessors for the data, based on a schema devised by {@link https://react-table.js.org/#/story/readme ReactTable}.
+ * The first object's keys are iterated over to produce the result that dictates how {@link https://react-table.js.org/#/story/readme ReactTable} will display the data.
+ * Additional Headers and accessors are added for new columns that are generated outside of the api (ex. "More Info").
+ *
+ * @param {Array} arr
+ * @returns {Array}
+ */
 const mapToTsunamiEventTable = arr => {
   const result = [];
   if(arr.length) {
@@ -112,7 +121,7 @@ const mapToTsunamiEventTable = arr => {
           ),
           accessor: e,
           Cell: props => <div>
-            {parseFloat(props.value).toFixed(2)}
+            {parseAndShortenFloat(props.value)}
           </div>
         })
       }else if(e === 'numRunup'){
@@ -158,7 +167,7 @@ const mapToTsunamiEventTable = arr => {
     result.splice(10, 0, {
       Header: () => (
           <TableHeader
-              title="RelatedVolcano"
+              title="Related Volcano"
               accessor="relatedVolcano"
               handleClick={() => openModal(tseColDefs['relatedVolcano'])}
           />),
@@ -172,6 +181,18 @@ const mapToTsunamiEventTable = arr => {
   return result;
 };
 
+/**
+ * Function for mapping incoming Tsunami Event data to the Header Accessor structure {@link https://react-table.js.org/#/story/readme ReactTable} demands. Important to
+ * note that the arr param given is data provided by the api call and is an array of JavaScript Objects where keys are
+ * column names and values are associated data (if anny exists).  Keys are the exact same for every object in the array.
+ * An array of Objects is returned containing Headers and accessors for the data, based on a schema devised by
+ * {@link https://react-table.js.org/#/story/readme ReactTable}. The first object's keys are iterated over to produce the result that dictates how {@link https://react-table.js.org/#/story/readme ReactTable} will display
+ * the data.  Additional Headers and accessors are added for new columns that are generated outside of the api
+ * (ex. "More Info").
+ *
+ * @param {Array} arr
+ * @returns {Array}
+ */
 const mapToTsunamiEventMoreInfo = arr => {
   const result = [];
   if(arr.length) {
@@ -199,7 +220,7 @@ const mapToTsunamiEventMoreInfo = arr => {
           ),
           accessor: e,
           Cell: props => <div>
-            {parseFloat(props.value).toFixed(2)}
+            {parseAndShortenFloat(props.value)}
           </div>
         })
       } else if (e === 'numRunup') {
@@ -233,6 +254,18 @@ const mapToTsunamiEventMoreInfo = arr => {
   return result;
 };
 
+/**
+ * Function for mapping incoming Tsunami Event data to the Header Accessor structure {@link https://react-table.js.org/#/story/readme ReactTable} demands. Important to
+ * note that the arr param given is data provided by the api call and is an array of JavaScript Objects where keys are
+ * column names and values are associated data (if anny exists).  Keys are the exact same for every object in the array.
+ * An array of Objects is returned containing Headers and accessors for the data, based on a schema devised by
+ * {@link https://react-table.js.org/#/story/readme ReactTable}. The first object's keys are iterated over to produce the result that dictates how {@link https://react-table.js.org/#/story/readme ReactTable} will display
+ * the data.  Additional Headers and accessors are added for new columns that are generated outside of the api
+ * (ex. "More Info").
+ *
+ * @param {Array} arr
+ * @returns {Array}
+ */
 const mapToTsunamiEventMoreInfoRunup = arr => {
   const result = [];
   if(arr.length) {
@@ -251,7 +284,7 @@ const mapToTsunamiEventMoreInfoRunup = arr => {
           ),
           accessor: e,
           Cell: props => <div>
-            {parseFloat(props.value).toFixed(2)}
+            {parseAndShortenFloat(props.value)}
           </div>
         })
       } else if (e === 'numRunup') {
@@ -285,6 +318,8 @@ const mapToTsunamiEventMoreInfoRunup = arr => {
   return result;
 };
 
+//Object for mapping incoming runup data column names to new names for display purposes. Key is old name, Value is new
+// name.
 const runupTranslateVal = {
   locationName: 'Name',
   causeCode: 'Code',
@@ -303,6 +338,8 @@ const runupTranslateVal = {
   typeMeasurementId: 'Type of Measurement',
 };
 
+//Object for mapping incoming runup more info data column names to new names for display purposes. Key is old name,
+// Value is new name.
 const runupMoreInfoTranslate = {
   locationName: 'Name',
   distFromSource: 'Distance From Source',
@@ -324,6 +361,18 @@ const runupMoreInfoTranslate = {
   housesDamagedAmountOrder: 'Description of Houses Damaged'
 };
 
+/**
+ * Function for mapping incoming Tsunami Runup data to the Header Accessor structure {@link https://react-table.js.org/#/story/readme ReactTable} demands. Important to
+ * note that the arr param given is data provided by the api call and is an array of JavaScript Objects where keys are
+ * column names and values are associated data (if anny exists).  Keys are the exact same for every object in the array.
+ * An array of Objects is returned containing Headers and accessors for the data, based on a schema devised by
+ * {@link https://react-table.js.org/#/story/readme ReactTable}. The first object's keys are iterated over to produce the result that dictates how {@link https://react-table.js.org/#/story/readme ReactTable} will display
+ * the data.  Additional Headers and accessors are added for new columns that are generated outside of the api
+ * (ex. "More Info").
+ *
+ * @param {Array} arr
+ * @returns {Array}
+ */
 const mapToRunupTable = arr => {
   const result = [];
   if(arr.length) {
@@ -343,7 +392,7 @@ const mapToRunupTable = arr => {
           Header:() => (<TableHeader handleClick={() => openModal(rnpColDefs[e])} title={camelToPascal(e)} accessor={e}/>),
           accessor: e,
           Cell: props => <div>
-            {parseFloat(props.value).toFixed(2)}
+            {parseAndShortenFloat(props.value)}
           </div>
         })
       }else if(e === 'eventId' || e === 'id'){
@@ -380,6 +429,18 @@ const mapToRunupTable = arr => {
   return result;
 };
 
+/**
+ * Function for mapping incoming Tsunami Runup data to the Header Accessor structure {@link https://react-table.js.org/#/story/readme ReactTable} demands. Important to
+ * note that the arr param given is data provided by the api call and is an array of JavaScript Objects where keys are
+ * column names and values are associated data (if anny exists).  Keys are the exact same for every object in the array.
+ * An array of Objects is returned containing Headers and accessors for the data, based on a schema devised by
+ * {@link https://react-table.js.org/#/story/readme ReactTable}. The first object's keys are iterated over to produce the result that dictates how {@link https://react-table.js.org/#/story/readme ReactTable} will display
+ * the data.  Additional Headers and accessors are added for new columns that are generated outside of the api
+ * (ex. "More Info").
+ *
+ * @param {Array} arr
+ * @returns {Array}
+ */
 const mapToRunupMoreInfoTable = arr => {
   const result = [];
   if(arr.length) {
@@ -392,7 +453,7 @@ const mapToRunupMoreInfoTable = arr => {
           ),
           accessor: e,
           Cell: props => <div>
-            {parseFloat(props.value).toFixed(2)}
+            {parseAndShortenFloat(props.value)}
           </div>
         })
       } else if (e === 'eventId' || e === 'id' || e === 'comments') {
@@ -421,6 +482,8 @@ const mapToRunupMoreInfoTable = arr => {
   return result;
 };
 
+//Object for mapping incoming earthquake data column names to new names for display purposes. Key is old name, Value is
+// new name.
 const eqTranslateValue = {
   locationName: 'Name',
   second: 'Sec',
@@ -438,6 +501,18 @@ const eqTranslateValue = {
   housesDamagedAmountOrder: 'Houses Damaged Description'
 };
 
+/**
+ * Function for mapping incoming Earthquake data to the Header Accessor structure {@link https://react-table.js.org/#/story/readme ReactTable} demands. Important to
+ * note that the arr param given is data provided by the api call and is an array of JavaScript Objects where keys are
+ * column names and values are associated data (if anny exists).  Keys are the exact same for every object in the array.
+ * An array of Objects is returned containing Headers and accessors for the data, based on a schema devised by
+ * {@link https://react-table.js.org/#/story/readme ReactTable}. The first object's keys are iterated over to produce the result that dictates how {@link https://react-table.js.org/#/story/readme ReactTable} will display
+ * the data.  Additional Headers and accessors are added for new columns that are generated outside of the api
+ * (ex. "More Info").
+ *
+ * @param {Array} arr
+ * @returns {Array}
+ */
 const mapToEarthquakeTable = arr => {
   const result = [];
   if(arr.length) {
@@ -448,7 +523,7 @@ const mapToEarthquakeTable = arr => {
           Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(eqColDefs[e])}/>),
           accessor: e,
           Cell: props => <div>
-            {parseFloat(props.value).toFixed(2)}
+            {parseAndShortenFloat(props.value)}
           </div>
         })
       }else if(e === 'id'){
@@ -502,6 +577,18 @@ const mapToEarthquakeTable = arr => {
   return result;
 };
 
+/**
+ * Function for mapping incoming Earthquake data to the Header Accessor structure {@link https://react-table.js.org/#/story/readme ReactTable} demands. Important to
+ * note that the arr param given is data provided by the api call and is an array of JavaScript Objects where keys are
+ * column names and values are associated data (if anny exists).  Keys are the exact same for every object in the array.
+ * An array of Objects is returned containing Headers and accessors for the data, based on a schema devised by
+ * {@link https://react-table.js.org/#/story/readme ReactTable}. The first object's keys are iterated over to produce the result that dictates how {@link https://react-table.js.org/#/story/readme ReactTable} will display
+ * the data.  Additional Headers and accessors are added for new columns that are generated outside of the api
+ * (ex. "More Info").
+ *
+ * @param {Array} arr
+ * @returns {Array}
+ */
 const mapToEqMoreInfoTable = arr => {
   const result = [];
   if(arr.length) {
@@ -512,7 +599,7 @@ const mapToEqMoreInfoTable = arr => {
           Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(eqColDefs[e])}/>),
           accessor: e,
           Cell: props => <div>
-            {parseFloat(props.value).toFixed(2)}
+            {parseAndShortenFloat(props.value)}
           </div>
         })
       }else if(e === 'id' || e === 'comments'){
@@ -535,6 +622,8 @@ const mapToEqMoreInfoTable = arr => {
   return result;
 };
 
+//Object for mapping incoming volcano event data column names to new names for display purposes. Key is old name, Value
+// is new name.
 const volTranslateValue = {
   vei: 'VEI',
   morphology: 'Type',
@@ -547,6 +636,8 @@ const volTranslateValue = {
   num: 'ID'
 };
 
+//Object for mapping incoming volcano location data column names to new names for display purposes. Key is old name,
+// Value is new name.
 const volLocTranslate = {
   num: "Number",
   name: "Volcano Name",
@@ -555,6 +646,18 @@ const volLocTranslate = {
   elevation: "Elev",
 };
 
+/**
+ * Function for mapping incoming Volcano Location data to the Header Accessor structure {@link https://react-table.js.org/#/story/readme ReactTable} demands. Important to
+ * note that the arr param given is data provided by the api call and is an array of JavaScript Objects where keys are
+ * column names and values are associated data (if anny exists).  Keys are the exact same for every object in the array.
+ * An array of Objects is returned containing Headers and accessors for the data, based on a schema devised by
+ * {@link https://react-table.js.org/#/story/readme ReactTable}. The first object's keys are iterated over to produce the result that dictates how {@link https://react-table.js.org/#/story/readme ReactTable} will display
+ * the data.  Additional Headers and accessors are added for new columns that are generated outside of the api
+ * (ex. "More Info").
+ *
+ * @param {Array} arr
+ * @returns {Array}
+ */
 const mapToVolcanoLocsTable = arr => {
   const result = [];
   if(arr.length) {
@@ -565,7 +668,7 @@ const mapToVolcanoLocsTable = arr => {
           Header: camelToPascal(e),
           accessor: e,
           Cell: props => <div>
-            {parseFloat(props.value).toFixed(2)}
+            {parseAndShortenFloat(props.value)}
           </div>
         })
       }else if(e === 'id'){
@@ -596,6 +699,18 @@ const mapToVolcanoLocsTable = arr => {
   return result;
 };
 
+/**
+ * Function for mapping incoming Volcano Event data to the Header Accessor structure {@link https://react-table.js.org/#/story/readme ReactTable} demands. Important to
+ * note that the arr param given is data provided by the api call and is an array of JavaScript Objects where keys are
+ * column names and values are associated data (if anny exists).  Keys are the exact same for every object in the array.
+ * An array of Objects is returned containing Headers and accessors for the data, based on a schema devised by
+ * {@link https://react-table.js.org/#/story/readme ReactTable}. The first object's keys are iterated over to produce the result that dictates how {@link https://react-table.js.org/#/story/readme ReactTable} will display
+ * the data.  Additional Headers and accessors are added for new columns that are generated outside of the api
+ * (ex. "More Info").
+ *
+ * @param {Array} arr
+ * @returns {Array}
+ */
 const mapToVolcanoTable = arr => {
   const result = [];
   if(arr.length) {
@@ -606,7 +721,7 @@ const mapToVolcanoTable = arr => {
           Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(veColDefs[e])}/>),
           accessor: e,
           Cell: props => <div>
-            {parseFloat(props.value).toFixed(2)}
+            {parseAndShortenFloat(props.value)}
           </div>
         })
       }else if(e === 'hazEventId' || e === 'volId'){
@@ -662,6 +777,18 @@ const mapToVolcanoTable = arr => {
   return result;
 };
 
+/**
+ * Function for mapping incoming Volcano Event data to the Header Accessor structure {@link https://react-table.js.org/#/story/readme ReactTable} demands. Important to
+ * note that the arr param given is data provided by the api call and is an array of JavaScript Objects where keys are
+ * column names and values are associated data (if anny exists).  Keys are the exact same for every object in the array.
+ * An array of Objects is returned containing Headers and accessors for the data, based on a schema devised by
+ * {@link https://react-table.js.org/#/story/readme ReactTable}. The first object's keys are iterated over to produce the result that dictates how {@link https://react-table.js.org/#/story/readme ReactTable} will display
+ * the data.  Additional Headers and accessors are added for new columns that are generated outside of the api
+ * (ex. "More Info").
+ *
+ * @param {Array} arr
+ * @returns {Array}
+ */
 const mapToVolcanoMoreInfoTable = arr => {
   const result = [];
   console.log("This is arr: ", arr);
@@ -673,7 +800,7 @@ const mapToVolcanoMoreInfoTable = arr => {
           Header:() => (<TableHeader title={camelToPascal(e)} accessor={e} handleClick={() => openModal(veColDefs[e])}/>),
           accessor: e,
           Cell: props => <div>
-            {parseFloat(props.value).toFixed(2)}
+            {parseAndShortenFloat(props.value)}
           </div>
         })
       }else if(e === 'hazEventId' || e === 'id'){
@@ -698,6 +825,18 @@ const mapToVolcanoMoreInfoTable = arr => {
   return result;
 };
 
+/**
+ * Function for mapping incoming data to the Header Accessor structure {@link https://react-table.js.org/#/story/readme ReactTable} demands. Important to
+ * note that the arr param given is data provided by the api call and is an array of JavaScript Objects where keys are
+ * column names and values are associated data (if anny exists).  Keys are the exact same for every object in the array.
+ * An array of Objects is returned containing Headers and accessors for the data, based on a schema devised by
+ * {@link https://react-table.js.org/#/story/readme ReactTable}. The first object's keys are iterated over to produce the result that dictates how {@link https://react-table.js.org/#/story/readme ReactTable} will display
+ * the data.  Additional Headers and accessors are added for new columns that are generated outside of the api
+ * (ex. "More Info").
+ *
+ * @param {Array} arr
+ * @returns {Array}
+ */
 const mapToTable = (arr) => {
   const result = [];
   if (arr.length) {
@@ -708,7 +847,7 @@ const mapToTable = (arr) => {
           Header: camelToPascal(e),
           accessor: e,
           Cell: props => <div>
-            {parseFloat(props.value).toFixed(2)}
+            {parseAndShortenFloat(props.value)}
           </div>
         })
       }else{
@@ -719,10 +858,29 @@ const mapToTable = (arr) => {
   return result;
 };
 
+/**
+ * Returns a encrypted string
+ *
+ * @param query
+ * @returns {string}
+ */
 const encodeQueryString = query => CryptoJS.AES.encrypt(query, hashPass).toString();
 
+/**
+ * Returns a decrypted string
+ *
+ * @param query
+ * @returns {string}
+ */
 const decodeQueryString = query => CryptoJS.AES.decrypt(query, hashPass).toString(CryptoJS.enc.Utf8);
 
+/**
+ * Generates a query string from a given JavaScript object. Ex. given {minYear:2015, maxYear:2017, country:USA} return
+ * would be minYear=2015&maxYear=2017&country=USA
+ *
+ * @param obj
+ * @returns {string}
+ */
 const createApiQueryString = (obj) => {
   // TODO: insert a trim on strings to account for possiblility of spaces entred into boxes with no value
   let result = '';
@@ -734,8 +892,25 @@ const createApiQueryString = (obj) => {
   return result;
 };
 
+/**
+ * Given a string it will attempt to parse it to a float value and fix the significant digits to 2.
+ *
+ * @param {string} numStr
+ * @returns {any}
+ */
+const parseAndShortenFloat = numStr => {
+  try{
+    return numStr? parseFloat(numStr).toFixed(2): null
+  }catch(e){
+    return null;
+  }
+};
+
+/**
+ * exports all functions in helperFunctions.js file
+ * @type {{camelToPascal: function(*=), mapToTable: function(Array), decodeQueryString: function(*=): string, encodeQueryString: function(*=): string, createApiQueryString: function(*), mapToTsunamiEventTable: function(Array), mapToRunupTable: function(Array), mapToEarthquakeTable: function(Array), mapToVolcanoTable: function(Array), mapToVolcanoMoreInfoTable: function(Array), mapToEqMoreInfoTable: function(Array), mapToTsunamiEventMoreInfo: function(Array), mapToRunupMoreInfoTable: function(Array), mapToVolcanoLocsTable: function(Array), mapToTsunamiEventMoreInfoRunup: function(Array)}}
+ */
 module.exports = {
-  oddEven,
   camelToPascal,
   mapToTable,
   decodeQueryString,
