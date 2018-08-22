@@ -57,7 +57,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { showDeleteEarthquakeConfirmation: !state.get('showDeleteEarthquakeConfirmation') });
     }
     case 'DELETE_EARTHQUAKE_REQUESTED': {
-      return state.merge(state, { deletingEarthquake: true, deletedEarthquake: false });
+      return state.merge(state, { deletingEarthquake: true, deletedEarthquake: false, error: null });
     }
     case 'DELETE_EARTHQUAKE_FULFILLED': {
       return state.merge(state, { deletingEarthquake: false, deletedEarthquake: true });
@@ -66,7 +66,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { deletingEarthquake: false, deletedEarthquake: false, error: action.payload });
     }
     case 'FETCH_SPECIFIED_EARTHQUAKES_REQUESTED': {
-      return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false });
+      return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false, error: null });
     }
     case 'FETCH_SPECIFIED_EARTHQUAKES_FULFILLED': {
       return state.merge(state, {
@@ -92,7 +92,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { showEqInsertTotalEffects: !state.get('showEqInsertTotalEffects') });
     }
     case 'POST_EARTHQUAKE_REQUESTED': {
-      return state.merge(state, { postingEarthquake: true, postedEarthquake: false, postFail: false });
+      return state.merge(state, { postingEarthquake: true, postedEarthquake: false, postFail: false, error: null });
     }
     case 'POST_EARTHQUAKE_FULFILLED': {
       return state.merge(state, { postingEarthquake: false, postedEarthquake: true, earthquakes: [action.payload] });
@@ -101,7 +101,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, { postingEarthquake: false, error: action.payload, postFail: true });
     }
     case 'FETCH_EARTHQUAKE_REQUESTED': {
-      return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false });
+      return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false, error: null });
     }
     case 'FETCH_EARTHQUAKE_FULFILLED': {
       return state.merge(state, {
@@ -116,7 +116,7 @@ export default function reducer(state = initialState, action) {
     }
 
     case 'FETCH_MORE_INFO_EARTHQUAKE_REQUESTED': {
-      return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false });
+      return state.merge(state, { fetchingEarthquake: true, fetchedEarthquake: false, error: null });
     }
     case 'FETCH_MORE_INFO_EARTHQUAKE_FULFILLED': {
       return state.merge(state, {
@@ -163,7 +163,7 @@ export default function reducer(state = initialState, action) {
       return state.merge(state, {relating: false, error: action.payload});
     }
     case 'PATCH_EARTHQUAKE_REQUESTED': {
-      return state.merge(state, { patchingEarthquake: true, patchedEarthquake: false, patchFail: false });
+      return state.merge(state, { patchingEarthquake: true, patchedEarthquake: false, patchFail: false, error: null });
     }
     case 'PATCH_EARTHQUAKE_FULFILLED': {
       return state.merge(state, {
