@@ -30,8 +30,6 @@ public class SigAndVolEventController {
   public ResponseEntity postSigVolRelation(@PathVariable("sigid") Integer sigId, @PathVariable("volid") Integer volId){
 
     try{
-
-
       Optional<VolcanoEvent> optionalVol = volcanoEventRepository.findById(volId);
       VolcanoEvent volcanoEvent = optionalVol.get();
 
@@ -42,9 +40,6 @@ public class SigAndVolEventController {
       signifAndVolEvent.setSignifTsqp(signifTsqp);
       signifAndVolEvent.setVolcanoEvent(volcanoEvent);
       signifAndVolEvent.setId(sigId, volId);
-
-
-      System.out.println("this is the junction " + signifAndVolEvent);
 
       signifAndVolEventRepository.save(signifAndVolEvent);
 

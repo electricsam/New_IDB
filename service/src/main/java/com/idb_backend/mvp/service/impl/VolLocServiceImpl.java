@@ -2,6 +2,7 @@ package com.idb_backend.mvp.service.impl;
 
 import com.idb_backend.mvp.domain.model.VolLocTsqpProjection;
 import com.idb_backend.mvp.domain.repository.VolLocTsqpRepository;
+import com.idb_backend.mvp.service.BaseService;
 import com.idb_backend.mvp.service.VolLocService;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
-public class VolLocServiceImpl implements VolLocService{
+public class VolLocServiceImpl extends BaseService implements VolLocService{
 
   @Autowired
   VolLocTsqpRepository volcanoLocRepository;
