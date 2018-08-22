@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Class: EarthquakeInsertContainer</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Class: EarthquakeInsertContainer</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>EarthquakeInsertContainer<span class="signature">(props)</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">Container for insert of new Earthquake Event</div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    
+    <h4 class="name" id="EarthquakeInsertContainer"><span class="type-signature"></span>new EarthquakeInsertContainer<span class="signature">(props)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Constructor
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>props</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="checkDropDownDisabled"><span class="type-signature"></span>checkDropDownDisabled<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    checks store for value of insert.country and compares equality to passed val.  This is intended assess whether
+users should be able to access a dropDown for a subcategory based on the existence of a parent category.  Ex. if
+country selected is not USA then users should not be able to select a state from the state dropdown.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line91">line 91</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="toggleDateAndLocation"><span class="type-signature"></span>toggleDateAndLocation<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    dispatches action to toggle the dipslay of the Date and Location section of the insert form
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line50">line 50</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="toggleEffects"><span class="type-signature"></span>toggleEffects<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    dispatches action to toggle the display of the effects section of the insert form
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line64">line 64</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="toggleMeasure"><span class="type-signature"></span>toggleMeasure<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    dispatches action to toggle the display of the measurement section of the insert form
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line57">line 57</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="toggleTotalEffects"><span class="type-signature"></span>toggleTotalEffects<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    dispatches action to toggle the display of the total effects section of the insert form
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line71">line 71</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="validateMinMax"><span class="type-signature"></span>validateMinMax<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Performs client side validation of the given val, to ensure that it is between the max and min params.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line81">line 81</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="handleSubmit"><span class="type-signature"></span>handleSubmit<span class="signature">(val)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    dispatches the action POST_EARTHQUAKE_REQUESTED with payload of the user defined form values.  This will call a
+POST to the API
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>val</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line37">line 37</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AboutPage.html">AboutPage</a></li><li><a href="module-Buttons.html">Buttons</a></li><li><a href="module-DefinitionModal.html">DefinitionModal</a></li><li><a href="module-EqIntensity.html">EqIntensity</a></li><li><a href="module-LinkingParagraph.html">LinkingParagraph</a></li><li><a href="module-TickboxTable.html">TickboxTable</a></li><li><a href="module-TimeEruption.html">TimeEruption</a></li><li><a href="module-ValidValues.html">ValidValues</a></li><li><a href="module-VolcanoAgent.html">VolcanoAgent</a></li><li><a href="module-VolcanoExplosivity.html">VolcanoExplosivity</a></li><li><a href="module-VolcanoStatus.html">VolcanoStatus</a></li><li><a href="module-WaterHeight.html">WaterHeight</a></li></ul><h3>Classes</h3><ul><li><a href="EarthquakeContainer.html">EarthquakeContainer</a></li><li><a href="EarthquakeInsertContainer.html">EarthquakeInsertContainer</a></li><li><a href="EarthquakeSearchContainer.html">EarthquakeSearchContainer</a></li><li><a href="SecondaryData.html">SecondaryData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#camelToPascal">camelToPascal</a></li><li><a href="global.html#createApiQueryString">createApiQueryString</a></li><li><a href="global.html#decodeQueryString">decodeQueryString</a></li><li><a href="global.html#encodeQueryString">encodeQueryString</a></li><li><a href="global.html#mapToEarthquakeTable">mapToEarthquakeTable</a></li><li><a href="global.html#mapToEqMoreInfoTable">mapToEqMoreInfoTable</a></li><li><a href="global.html#mapToRunupMoreInfoTable">mapToRunupMoreInfoTable</a></li><li><a href="global.html#mapToRunupTable">mapToRunupTable</a></li><li><a href="global.html#mapToTable">mapToTable</a></li><li><a href="global.html#mapToTsunamiEventMoreInfo">mapToTsunamiEventMoreInfo</a></li><li><a href="global.html#mapToTsunamiEventMoreInfoRunup">mapToTsunamiEventMoreInfoRunup</a></li><li><a href="global.html#mapToTsunamiEventTable">mapToTsunamiEventTable</a></li><li><a href="global.html#mapToVolcanoLocsTable">mapToVolcanoLocsTable</a></li><li><a href="global.html#mapToVolcanoMoreInfoTable">mapToVolcanoMoreInfoTable</a></li><li><a href="global.html#mapToVolcanoTable">mapToVolcanoTable</a></li><li><a href="global.html#openModal">openModal</a></li><li><a href="global.html#parseAndShortenFloat">parseAndShortenFloat</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Aug 22 2018 10:41:02 GMT-0600 (MDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/DefinitionComponents/VolcanoExplosivity.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/DefinitionComponents/VolcanoExplosivity.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import Styles from './VolcanoExplosivity.css'
+
+/**
+ * For display of Volcano Expolsivity Column Definition.
+ *
+ * @module VolcanoExplosivity
+ * @param props
+ */
+const VolcanoExplosivity = props => (
+    &lt;div>
+      &lt;table className={Styles.table}>
+        &lt;thead className={Styles.tableHead}>
+          &lt;th>&lt;b>VEI&lt;/b>&lt;/th>
+          &lt;th>&lt;b>General Description&lt;/b>&lt;/th>
+          &lt;th>&lt;b>Cloud Column Height (km)&lt;/b>&lt;/th>
+          &lt;th>&lt;b>Volume (m&lt;sup>3&lt;/sup>)&lt;/b>&lt;/th>
+          &lt;th>&lt;b>Qualititative Description&lt;/b>&lt;/th>
+          &lt;th>&lt;b>Classification&lt;/b>&lt;/th>
+          &lt;th>&lt;b>How often&lt;/b>&lt;/th>
+          &lt;th>&lt;b>Example&lt;/b>&lt;/th>
+        &lt;/thead>
+
+        &lt;tbody className={Styles.tableBody}>
+          &lt;tr>
+            &lt;td>0&lt;/td>
+            &lt;td>non-explosive&lt;/td>
+            &lt;td>&amp;lt;0.1&lt;/td>
+            &lt;td>1x10&lt;sup>4&lt;/sup>&lt;/td>
+            &lt;td>Gentle&lt;/td>
+            &lt;td>Hawaiian&lt;/td>
+            &lt;td>daily&lt;/td>
+            &lt;td>Kilauea&lt;/td>&lt;/tr>&lt;tr>
+          &lt;/tr>
+          &lt;tr>
+            &lt;td>1&lt;/td>
+            &lt;td>Small&lt;/td>
+            &lt;td>0.1-1&lt;/td>
+            &lt;td>1x10&lt;sup>6&lt;/sup>&lt;/td>
+            &lt;td>Effusive&lt;/td>
+            &lt;td>Haw/Strombolian&lt;/td>
+            &lt;td>daily&lt;/td>
+            &lt;td>Stromboli&lt;/td>
+          &lt;/tr>
+          &lt;tr>
+            &lt;td>2&lt;/td>
+            &lt;td>Moderate&lt;/td>
+            &lt;td>1-5&lt;/td>
+            &lt;td>1x10&lt;sup>7&lt;/sup>&lt;/td>
+            &lt;td>Explosive&lt;/td>
+            &lt;td>Strom/Vulcanian&lt;/td>
+            &lt;td>weekly&lt;/td>
+            &lt;td>Galeras, 1992&lt;/td>
+          &lt;/tr>
+          &lt;tr>
+            &lt;td>3&lt;/td>
+            &lt;td>Moderate-Large&lt;/td>
+            &lt;td>3-15&lt;/td>
+            &lt;td>1x10&lt;sup>8&lt;/sup>&lt;/td>
+            &lt;td>Explosive&lt;/td>
+            &lt;td>Vulcanian&lt;/td>
+            &lt;td>yearly&lt;/td>
+            &lt;td>Ruiz, 1985&lt;/td>
+          &lt;/tr>
+          &lt;tr>
+            &lt;td>4&lt;/td>
+            &lt;td>Large&lt;/td>
+            &lt;td>10-25&lt;/td>
+            &lt;td>1x10&lt;sup>9&lt;/sup>&lt;/td>
+            &lt;td>Explosive&lt;/td>
+            &lt;td>Vulc/Plinian&lt;/td>
+            &lt;td>10's of years&lt;/td>
+            &lt;td>Galunggung, 1982&lt;/td>
+          &lt;/tr>
+          &lt;tr>
+            &lt;td>5&lt;/td>
+            &lt;td>Very Large&lt;/td>
+            &lt;td>&amp;gt;25&lt;/td>
+            &lt;td>1x10&lt;sup>10&lt;/sup>&lt;/td>
+            &lt;td>Cataclysmic&lt;/td>
+            &lt;td>Plinian&lt;/td>
+            &lt;td>100's of years&lt;/td>
+            &lt;td>St. Helens, 1981&lt;/td>
+          &lt;/tr>
+          &lt;tr>
+            &lt;td>6&lt;/td>
+            &lt;td>&lt;/td>
+            &lt;td>&amp;gt;25 km&lt;/td>
+            &lt;td>1x10&lt;sup>11&lt;/sup>&lt;/td>
+            &lt;td>paroxysmal&lt;/td>
+            &lt;td>Plin/Ultra-Plinian&lt;/td>
+            &lt;td>100's of years&lt;/td>
+            &lt;td>Krakatau, 1883&lt;/td>
+          &lt;/tr>
+          &lt;tr>
+            &lt;td>7&lt;/td>
+            &lt;td>&lt;/td>
+            &lt;td>&amp;gt;25 km &lt;/td>
+            &lt;td>1x10&lt;sup>12&lt;/sup>&lt;/td>
+            &lt;td>colossal&lt;/td>
+            &lt;td>Ultra-Plinian&lt;/td>
+            &lt;td>1000's of years&lt;/td>
+            &lt;td>Tambora, 1815&lt;/td>
+          &lt;/tr>
+          &lt;tr>
+            &lt;td>8&lt;/td>
+            &lt;td>&lt;/td>
+            &lt;td>&amp;gt;25 km
+            &lt;/td>&lt;td>&amp;gt;1x10&lt;sup>12&lt;/sup>&lt;/td>
+            &lt;td>colossal&lt;/td>
+            &lt;td>Ultra-Plinian&lt;/td>
+            &lt;td>10,000's of years&lt;/td>
+            &lt;td>Yellowstone, 2 Ma&lt;/td>
+          &lt;/tr>
+        &lt;/tbody>
+      &lt;/table>
+
+      &lt;p>
+        Newhall, C.G. and Self, S (1982). The volcanic explosivity index (VEI): an estimate of explosive magnitude for historical volcanism. &lt;i>Jour Geophys Res (Oceans &amp; Atmospheres), 87:1231-1238.&lt;/i>
+      &lt;/p>
+    &lt;/div>
+);
+
+export default VolcanoExplosivity;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AboutPage.html">AboutPage</a></li><li><a href="module-Buttons.html">Buttons</a></li><li><a href="module-DefinitionModal.html">DefinitionModal</a></li><li><a href="module-EqIntensity.html">EqIntensity</a></li><li><a href="module-LinkingParagraph.html">LinkingParagraph</a></li><li><a href="module-TickboxTable.html">TickboxTable</a></li><li><a href="module-TimeEruption.html">TimeEruption</a></li><li><a href="module-ValidValues.html">ValidValues</a></li><li><a href="module-VolcanoAgent.html">VolcanoAgent</a></li><li><a href="module-VolcanoExplosivity.html">VolcanoExplosivity</a></li><li><a href="module-VolcanoStatus.html">VolcanoStatus</a></li><li><a href="module-WaterHeight.html">WaterHeight</a></li></ul><h3>Classes</h3><ul><li><a href="EarthquakeContainer.html">EarthquakeContainer</a></li><li><a href="EarthquakeInsertContainer.html">EarthquakeInsertContainer</a></li><li><a href="EarthquakeSearchContainer.html">EarthquakeSearchContainer</a></li><li><a href="SecondaryData.html">SecondaryData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#camelToPascal">camelToPascal</a></li><li><a href="global.html#createApiQueryString">createApiQueryString</a></li><li><a href="global.html#decodeQueryString">decodeQueryString</a></li><li><a href="global.html#encodeQueryString">encodeQueryString</a></li><li><a href="global.html#mapToEarthquakeTable">mapToEarthquakeTable</a></li><li><a href="global.html#mapToEqMoreInfoTable">mapToEqMoreInfoTable</a></li><li><a href="global.html#mapToRunupMoreInfoTable">mapToRunupMoreInfoTable</a></li><li><a href="global.html#mapToRunupTable">mapToRunupTable</a></li><li><a href="global.html#mapToTable">mapToTable</a></li><li><a href="global.html#mapToTsunamiEventMoreInfo">mapToTsunamiEventMoreInfo</a></li><li><a href="global.html#mapToTsunamiEventMoreInfoRunup">mapToTsunamiEventMoreInfoRunup</a></li><li><a href="global.html#mapToTsunamiEventTable">mapToTsunamiEventTable</a></li><li><a href="global.html#mapToVolcanoLocsTable">mapToVolcanoLocsTable</a></li><li><a href="global.html#mapToVolcanoMoreInfoTable">mapToVolcanoMoreInfoTable</a></li><li><a href="global.html#mapToVolcanoTable">mapToVolcanoTable</a></li><li><a href="global.html#openModal">openModal</a></li><li><a href="global.html#parseAndShortenFloat">parseAndShortenFloat</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Aug 22 2018 10:41:02 GMT-0600 (MDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
