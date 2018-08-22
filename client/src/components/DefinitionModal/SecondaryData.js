@@ -7,7 +7,17 @@ const h5Style = {
   margin: '.5% 0 .5% 0'
 };
 
+/**
+ * Component for the display of extra data, typically used as a child inside of the {@link DefinitionModal}
+ *
+ * @class
+ */
 class SecondaryData extends React.Component{
+  /**
+   * Set isOpen to false on instantiation
+   *
+   * @param props
+   */
   constructor(props){
     super(props);
     this.state={
@@ -15,6 +25,9 @@ class SecondaryData extends React.Component{
     }
   }
 
+  /**
+   * No argument function used to toggle the boolean value of this.state.isOpen
+   */
   toggleOpen = () => {this.setState({isOpen: !this.state.isOpen})}
 
   render(){

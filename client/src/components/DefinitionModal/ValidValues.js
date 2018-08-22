@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * Conditionally displays props.value based upon its value
+ *
+ * @module ValidValues
+ * @param props
+ */
 const ValidValues = props => {
   if(props.value){
     return (

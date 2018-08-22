@@ -31,6 +31,13 @@ const modalStyle = {
   }
 }
 
+/**
+ * Utilizes react modal as parent component and passes children components and elements to generate data that the modal
+ * will display.
+ *
+ * @module DefinitionModal
+ * @param props
+ */
 export const DefinitionModal = props => {
   if(props.isOpen){
     return(

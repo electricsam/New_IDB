@@ -1,6 +1,12 @@
 import React from 'react';
 import Styles from './VolcanoStatusStyles.css';
 
+/**
+ * For display of Volcano Status column definition
+ *
+ * @module VolcanoStatus
+ * @param props
+ */
 const VolcanoStatus = props => (
     <div>
       <table className={Styles.table}>

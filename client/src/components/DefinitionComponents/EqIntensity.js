@@ -15,7 +15,12 @@ const tableData = [
   ['XII.', 'Damage total. Waves seen on ground surfaces. Lines of sight and level distorted. Objects thrown upward into the air.'],
 ];
 
-
+/**
+ * Component for the display of Earthquake Intensity column description using passed data.
+ *
+ * @module EqIntensity
+ * @param props
+ */
 const EqIntensity = props => (
     <div>
       <h4>Table 1. -- Modified Mercalli Intensity Scale of 1931</h4>
@@ -26,6 +31,3 @@ const EqIntensity = props => (
 );
 
 export default EqIntensity;
-
-
-

@@ -22,12 +22,28 @@ const buttons = [
 
 ];
 
+/**
+ * Container for Earthquake Landing page.  Dedicated to the direction of users to the subsections of the earthquake
+ * data set, like search, insert, etc.
+ *
+ * @class
+ */
 class EarthquakeLanding extends React.Component {
+  /**
+   * Constructor
+   *
+   * @param props
+   */
   constructor(props) {
     super(props);
     this.state = {};
   }
 
+  /**
+   * dispatches action to push to a new route
+   *
+   * @param value
+   */
   handleClick(value) {
     store.dispatch(push(value));
   }

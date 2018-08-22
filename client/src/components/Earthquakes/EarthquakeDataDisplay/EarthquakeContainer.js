@@ -25,6 +25,11 @@ const hiddenStyle = {
 
 const action = obj => store.dispatch(obj);
 
+/**
+ * Container for display of Earthquake data based upon GET request to API
+ *
+ * @class
+ */
 class EarthquakeContainer extends React.Component {
   /**
    * @constructor

@@ -15,7 +15,12 @@ const tableData = [
   {code: "?", definition: "Uncertain Holocene eruption"}
 ];
 
-
+/**
+ * For display of Time Eruption column definition
+ *
+ * @module TimeEruption
+ * @param props
+ */
 const TimeEruption = props => (
     <div>
       <table className={Styles.table}>

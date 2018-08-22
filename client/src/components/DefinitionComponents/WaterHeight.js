@@ -14,6 +14,12 @@ const TableData = [
   ['Type 7:', 'Seiche - A standing wave oscillating in a partially or fully enclosed body of water. It may be initiated by long period seismic waves (an earthquake), wind and water waves, or a tsunami. The water height definition for a seiche depends on whether it was measured by a tide gauge (2), eyewitness (1), or field survey (4,5).'],
 ];
 
+/**
+ * For display of Water Height column definition
+ *
+ * @module WaterHeight
+ * @param props
+ */
 const WaterHeight = props => (
     <div>
       <table>

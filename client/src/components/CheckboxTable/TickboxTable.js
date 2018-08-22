@@ -9,6 +9,12 @@ import Buttons from "../Buttons/Buttons";
 
 const CheckboxTable = selectTableHOC(ReactTable);
 
+/**
+ * Returns wrapped HOC (CheckboxTable) for styling purposes see {@links https://react-table.js.org/#/story/hoc-readme selectTableHOC}docs
+ *
+ * @module TickboxTable
+ * @param props
+ */
 const TickboxTable = props => (
     <div className={Styles.container}>
       <h1 className={Styles.title}>{props.title}</h1>

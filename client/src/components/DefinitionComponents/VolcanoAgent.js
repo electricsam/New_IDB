@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * For display of Volcano Agent column description
+ *
+ * @module VolcanoAgent
+ * @param props
+ */
 const VolcanoAgent = props => (
     <div>
       <table>

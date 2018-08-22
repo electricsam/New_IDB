@@ -1,6 +1,12 @@
 import React from 'react';
 import Styles from './VolcanoExplosivity.css'
 
+/**
+ * For display of Volcano Expolsivity Column Definition.
+ *
+ * @module VolcanoExplosivity
+ * @param props
+ */
 const VolcanoExplosivity = props => (
     <div>
       <table className={Styles.table}>

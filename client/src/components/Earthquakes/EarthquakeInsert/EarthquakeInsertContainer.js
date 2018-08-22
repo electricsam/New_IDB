@@ -12,16 +12,28 @@ import {Toast} from "../../Toast/Toast";
 
 const action = obj => store.dispatch(obj)
 
+/**
+ * Container for insert of new Earthquake Event
+ *
+ * @class
+ */
 class EarthquakeInsertContainer extends React.Component{
+  /**
+   * Constructor
+   *
+   * @param props
+   */
   constructor(props){
     super(props);
     this.state = {};
   }
 
-  toastId = null;
-
-  componentDidMount(){}
-
+  /**
+   * dispatches the action POST_EARTHQUAKE_REQUESTED with payload of the user defined form values.  This will call a
+   * POST to the API
+   *
+   * @param val
+   */
   handleSubmit(val){
     val = val.earthquake.asMutable().toJS();
     if(val.insert){
@@ -30,19 +42,53 @@ class EarthquakeInsertContainer extends React.Component{
     }
   }
 
+  /**
+   * dispatches action to toggle the dipslay of the Date and Location section of the insert form
+   *
+   * @return {*}
+   */
   toggleDateAndLocation = () => action({type: "TOGGLE_EARTHQUAKE_INSERT_DATE_AND_LOCATION"});
 
+  /**
+   * dispatches action to toggle the display of the measurement section of the insert form
+   *
+   * @return {*}
+   */
   toggleMeasure = () => action({type: "TOGGLE_EARTHQUAKE_INSERT_MEASURE"});
 
+  /**
+   * dispatches action to toggle the display of the effects section of the insert form
+   *
+   * @return {*}
+   */
   toggleEffects = () => action({type: "TOGGLE_EARTHQUAKE_INSERT_EFFECTS"});
 
+  /**
+   * dispatches action to toggle the display of the total effects section of the insert form
+   *
+   * @return {*}
+   */
   toggleTotalEffects = () => action({type: "TOGGLE_EARTHQUAKE_INSERT_TOTAL_EFFECTS"});
 
+  /**
+   * Performs client side validation of the given val, to ensure that it is between the max and min params.
+   *
+   * @param val
+   * @param min
+   * @param max
+   * @return {boolean}
+   */
   validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
 
+  /**
+   * checks store for value of insert.country and compares equality to passed val.  This is intended assess whether
+   * users should be able to access a dropDown for a subcategory based on the existence of a parent category.  Ex. if
+   * country selected is not USA then users should not be able to select a state from the state dropdown.
+   *
+   * @param val
+   * @return {boolean}
+   */
   checkDropDownDisabled = (val) => this.props.earthquake.asMutable().toJS().insert.country === val? false: true;
-
-  validLength = (val, max) => (val.length > max? false: true);
 
   render() {
     const { earthquake } = this.props;
