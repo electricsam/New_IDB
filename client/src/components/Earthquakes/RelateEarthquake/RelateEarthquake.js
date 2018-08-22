@@ -43,6 +43,13 @@ class RelateEarthquake extends React.Component {
     }
   }
 
+  /**
+   * Toggles the selection of checkboxes in the table by updating the store via action dispatches. If the key passed is
+   * the same as the key currently held by the store it will set the store value to null in order to deselect the
+   * checkbox.  However, if a differing key is passed then the store will be updated with the new key as the value.
+   *
+   * @param key
+   */
   toggleSelection = key => {
     let selection = this.props.earthquake.get('tableSelection');
     if(selection === key){
@@ -52,16 +59,36 @@ class RelateEarthquake extends React.Component {
     }
   };
 
+  /**
+   * Empty method defined in order to satisfy HOC from ReactTable
+   */
   selectAll = () => {
     // do nothing
   };
 
+  /**
+   * Toggles the selection to null via action dispatch
+   */
   toggleAll = () => {
     action({type: "SET_TABLE_SELECTION", payload: null});
   };
 
+  /**
+   * Checks store to see if a particular given key is "selected"
+   *
+   * @param key
+   * @return {boolean}
+   */
   isSelected = key => this.props.earthquake.get('tableSelection') === key ? true : false;
 
+  /**
+   * Handles the logic behind relating two rows of data from two different data sets. Ex. Earthquake and Tsunami.
+   * First it reads the table selection to get an id of the currently selected earthquake and then it reads the url for
+   * the id of the data a user wishes to relate.  There is further logic to find which data set the id in the url is
+   * from and then the two are related via action dispatch.
+   *
+   * @return {{}}
+   */
   handleRelateClick = () => {
     let selected = this.props.earthquake.get('tableSelection');
     let { search } = this.props.location;

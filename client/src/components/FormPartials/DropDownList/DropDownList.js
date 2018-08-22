@@ -4,8 +4,13 @@ import PropTypes from 'prop-types';
 
 import Styles from './DropDownListStyles.css'
 
-
-
+/**
+ * Component that generates a number of dropdown menus based upon passed props
+ *
+ * @module DropDownList
+ * @param props
+ * @return {*}
+ */
 const DropDownList = props => {
   return (
     <div className={Styles.container}>
@@ -21,10 +26,7 @@ const DropDownList = props => {
       }
     </div>
   );
-
-
 };
-
 
 export default DropDownList;
 

@@ -16,6 +16,14 @@ import expandMore from '../../../assets/expand_more.svg'
 import expandLess from '../../../assets/expand_less.svg'
 import SvgIcon from "../../../assets/SvgIcon";
 
+/**
+ * A Component that generates a section of a form based on passed props.  It iterates over the formData prop and
+ * generates the specified form inputs to go into that section, like text, radio, or texareas.
+ *
+ * @module FormSection
+ * @param props
+ * @return {*}
+ */
 const FormSection = props => (
   <section className={Styles.formOuterSection}>
     <div className={Styles.header}>
@@ -182,7 +190,6 @@ const FormSection = props => (
     }
   </section>
 );
-
 
 export default FormSection;
 

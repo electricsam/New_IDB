@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/formConstants/constants.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/formConstants/constants.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Module to define common constants among data sets.
+ *
+ * @module Constants
+ * @type {Array}
+ */
+
+/**
+ * constant for countries dropdowns
+ *
+ * @type {Array}
+ */
+const countries = [
+  { name: 'Select a Country', value: '' },
+  { name: 'ALBANIA', value: 'ALBANIA' },
+  { name: 'ALGERIA', value: 'ALGERIA' },
+  { name: 'ANTARCTICA', value: 'ANTARCTICA' },
+  { name: 'ANTIGUA AND BARBUDA', value: 'ANTIGUA AND BARBUDA' },
+  { name: 'ATLANTIC OCEAN', value: 'ATLANTIC OCEAN' },
+  { name: 'AUSTRALIA', value: 'AUSTRALIA' },
+  { name: 'BALTIC SEA', value: 'BALTIC SEA' },
+  { name: 'BANGLADESH', value: 'BANGLADESH' },
+  { name: 'BULGARIA', value: 'BULGARIA' },
+  { name: 'CANADA', value: 'CANADA' },
+  { name: 'CHILE', value: 'CHILE' },
+  { name: 'CHINA', value: 'CHINA' },
+  { name: 'COLOMBIA', value: 'COLOMBIA' },
+  { name: 'CONGO', value: 'CONGO' },
+  { name: 'COOK ISLANDS', value: 'COOK ISLANDS' },
+  { name: 'COSTA RICA', value: 'COSTA RICA' },
+  { name: 'CROATIA', value: 'CROATIA' },
+  { name: 'CUBA', value: 'CUBA' },
+  { name: 'CYPRUS', value: 'CYPRUS' },
+  { name: 'CYPRUS ISLAND', value: 'CYPRUS ISLAND' },
+  { name: 'DEAD SEA', value: 'DEAD SEA' },
+  { name: 'DENMARK', value: 'DENMARK' },
+  { name: 'DOMINICAN REPUBLIC', value: 'DOMINICAN REPUBLIC' },
+  { name: 'EAST CHINA SEA', value: 'EAST CHINA SEA' },
+  { name: 'ECUADOR', value: 'ECUADOR' },
+  { name: 'EGYPT', value: 'EGYPT' },
+  { name: 'EL SALVADOR', value: 'EL SALVADOR' },
+  { name: 'ERITREA', value: 'ERITREA' },
+  { name: 'FIJI', value: 'FIJI' },
+  { name: 'FRANCE', value: 'FRANCE' },
+  { name: 'FRENCH POLYNESIA', value: 'FRENCH POLYNESIA' },
+  { name: 'GEORGIA', value: 'GEORGIA' },
+  { name: 'GERMANY', value: 'GERMANY' },
+  { name: 'GHANA', value: 'GHANA' },
+  { name: 'GREECE', value: 'GREECE' },
+  { name: 'GREENLAND', value: 'GREENLAND' },
+  { name: 'GUADELOUPE (FRENCH TERRITORY)', value: 'GUADELOUPE (FRENCH TERRITORY)' },
+  { name: 'GUATEMALA', value: 'GUATEMALA' },
+  { name: 'HAITI', value: 'HAITI' },
+  { name: 'HOLLAND', value: 'HOLLAND' },
+  { name: 'HONDURAS', value: 'HONDURAS' },
+  { name: 'ICELAND', value: 'ICELAND' },
+  { name: 'INDIA', value: 'INDIA' },
+  { name: 'INDONESIA', value: 'INDONESIA' },
+  { name: 'IRAN', value: 'IRAN' },
+  { name: 'IRELAND', value: 'IRELAND' },
+  { name: 'IRISH SEA', value: 'IRISH SEA' },
+  { name: 'ISRAEL', value: 'ISRAEL' },
+  { name: 'ITALY', value: 'ITALY' },
+  { name: 'JAMAICA', value: 'JAMAICA' },
+  { name: 'JAPAN', value: 'JAPAN' },
+  { name: 'JORDAN', value: 'JORDAN' },
+  { name: 'KENYA', value: 'KENYA' },
+  { name: 'KERMADEC ISLANDS', value: 'KERMADEC ISLANDS' },
+  { name: 'KOREA', value: 'KOREA' },
+  { name: 'LEBANON', value: 'LEBANON' },
+  { name: 'MARSHALL ISLANDS, REP. OF', value: 'MARSHALL ISLANDS, REP. OF' },
+  { name: 'MARTINIQUE (FRENCH TERRITORY)', value: 'MARTINIQUE (FRENCH TERRITORY)' },
+  { name: 'MEXICO', value: 'MEXICO' },
+  { name: 'MICRONESIA, FED. STATES OF', value: 'MICRONESIA, FED. STATES OF' },
+  { name: 'MONTSERRAT', value: 'MONTSERRAT' },
+  { name: 'MOROCCO', value: 'MOROCCO' },
+  { name: 'MYANMAR (BURMA)', value: 'MYANMAR (BURMA)' },
+  { name: 'NAURU', value: 'NAURU' },
+  { name: 'NEPAL', value: 'NEPAL' },
+  { name: 'NETHERLANDS', value: 'NETHERLANDS' },
+  { name: 'NEW CALEDONIA', value: 'NEW CALEDONIA' },
+  { name: 'NEW ZEALAND', value: 'NEW ZEALAND' },
+  { name: 'NICARAGUA', value: 'NICARAGUA' },
+  { name: 'NORTH KOREA', value: 'NORTH KOREA' },
+  { name: 'NORTH SEA', value: 'NORTH SEA' },
+  { name: 'NORTHWEST PACIFIC OCEAN', value: 'NORTHWEST PACIFIC OCEAN' },
+  { name: 'NORWAY', value: 'NORWAY' },
+  { name: 'PACIFIC OCEAN', value: 'PACIFIC OCEAN' },
+  { name: 'PAKISTAN', value: 'PAKISTAN' },
+  { name: 'PANAMA', value: 'PANAMA' },
+  { name: 'PAPUA NEW GUINEA', value: 'PAPUA NEW GUINEA' },
+  { name: 'PERU', value: 'PERU' },
+  { name: 'PHILIPPINES', value: 'PHILIPPINES' },
+  { name: 'PORTUGAL', value: 'PORTUGAL' },
+  { name: 'RUSSIA', value: 'RUSSIA' },
+  { name: 'SAINT VINCENT AND THE GRENADINES', value: 'SAINT VINCENT AND THE GRENADINES' },
+  { name: 'SAMOA', value: 'SAMOA' },
+  { name: 'SCOTLAND', value: 'SCOTLAND' },
+  { name: 'SERBIA AND MONTENEGRO', value: 'SERBIA AND MONTENEGRO' },
+  { name: 'SOLOMON ISLANDS', value: 'SOLOMON ISLANDS' },
+  { name: 'SOUTH AFRICA', value: 'SOUTH AFRICA' },
+  { name: 'SOUTH KOREA', value: 'SOUTH KOREA' },
+  { name: 'SPAIN', value: 'SPAIN' },
+  { name: 'SRI LANKA', value: 'SRI LANKA' },
+  { name: 'SUDAN', value: 'SUDAN' },
+  { name: 'SWEDEN', value: 'SWEDEN' },
+  { name: 'SWITZERLAND', value: 'SWITZERLAND' },
+  { name: 'SYRIA', value: 'SYRIA' },
+  { name: 'TAIWAN', value: 'TAIWAN' },
+  { name: 'TOGO', value: 'TOGO' },
+  { name: 'TONGA', value: 'TONGA' },
+  { name: 'TRINIDAD AND TOBAGO', value: 'TRINIDAD AND TOBAGO' },
+  { name: 'TUNISIA', value: 'TUNISIA' },
+  { name: 'TURKEY', value: 'TURKEY' },
+  { name: 'TURKMENISTAN', value: 'TURKMENISTAN' },
+  { name: 'UK', value: 'UK' },
+  { name: 'UK TERRITORY', value: 'UK TERRITORY' },
+  { name: 'UKRAINE', value: 'UKRAINE' },
+  { name: 'URUGUAY', value: 'URUGUAY' },
+  { name: 'USA', value: 'USA' },
+  { name: 'USA TERRITORY', value: 'USA TERRITORY' },
+  { name: 'VANUATU', value: 'VANUATU' },
+  { name: 'VENEZUELA', value: 'VENEZUELA' },
+  { name: 'WALLIS AND FUTUNA (FRENCH TERRITORY)', value: 'WALLIS AND FUTUNA (FRENCH TERRITORY)' },
+];
+
+/**
+ * constants for states dropdowns
+ *
+ * @type {Array}
+ */
+const states = [
+  {
+    name: 'Select a State',
+    value: '',
+  },
+  {
+    name: 'Alabama',
+    value: 'AL',
+  },
+  {
+    name: 'Alaska',
+    value: 'AK',
+  },
+  {
+    name: 'American Samoa',
+    value: 'AS',
+  },
+  {
+    name: 'Arizona',
+    value: 'AZ',
+  },
+  {
+    name: 'Arkansas',
+    value: 'AR',
+  },
+  {
+    name: 'California',
+    value: 'CA',
+  },
+  {
+    name: 'Colorado',
+    value: 'CO',
+  },
+  {
+    name: 'Connecticut',
+    value: 'CT',
+  },
+  {
+    name: 'Delaware',
+    value: 'DE',
+  },
+  {
+    name: 'District Of Columbia',
+    value: 'DC',
+  },
+  {
+    name: 'Federated States Of Micronesia',
+    value: 'FM',
+  },
+  {
+    name: 'Florida',
+    value: 'FL',
+  },
+  {
+    name: 'Georgia',
+    value: 'GA',
+  },
+  {
+    name: 'Guam',
+    value: 'GU',
+  },
+  {
+    name: 'Hawaii',
+    value: 'HI',
+  },
+  {
+    name: 'Idaho',
+    value: 'ID',
+  },
+  {
+    name: 'Illinois',
+    value: 'IL',
+  },
+  {
+    name: 'Indiana',
+    value: 'IN',
+  },
+  {
+    name: 'Iowa',
+    value: 'IA',
+  },
+  {
+    name: 'Kansas',
+    value: 'KS',
+  },
+  {
+    name: 'Kentucky',
+    value: 'KY',
+  },
+  {
+    name: 'Louisiana',
+    value: 'LA',
+  },
+  {
+    name: 'Maine',
+    value: 'ME',
+  },
+  {
+    name: 'Marshall Islands',
+    value: 'MH',
+  },
+  {
+    name: 'Maryland',
+    value: 'MD',
+  },
+  {
+    name: 'Massachusetts',
+    value: 'MA',
+  },
+  {
+    name: 'Michigan',
+    value: 'MI',
+  },
+  {
+    name: 'Minnesota',
+    value: 'MN',
+  },
+  {
+    name: 'Mississippi',
+    value: 'MS',
+  },
+  {
+    name: 'Missouri',
+    value: 'MO',
+  },
+  {
+    name: 'Montana',
+    value: 'MT',
+  },
+  {
+    name: 'Nebraska',
+    value: 'NE',
+  },
+  {
+    name: 'Nevada',
+    value: 'NV',
+  },
+  {
+    name: 'New Hampshire',
+    value: 'NH',
+  },
+  {
+    name: 'New Jersey',
+    value: 'NJ',
+  },
+  {
+    name: 'New Mexico',
+    value: 'NM',
+  },
+  {
+    name: 'New York',
+    value: 'NY',
+  },
+  {
+    name: 'North Carolina',
+    value: 'NC',
+  },
+  {
+    name: 'North Dakota',
+    value: 'ND',
+  },
+  {
+    name: 'Northern Mariana Islands',
+    value: 'MP',
+  },
+  {
+    name: 'Ohio',
+    value: 'OH',
+  },
+  {
+    name: 'Oklahoma',
+    value: 'OK',
+  },
+  {
+    name: 'Oregon',
+    value: 'OR',
+  },
+  {
+    name: 'Palau',
+    value: 'PW',
+  },
+  {
+    name: 'Pennsylvania',
+    value: 'PA',
+  },
+  {
+    name: 'Puerto Rico',
+    value: 'PR',
+  },
+  {
+    name: 'Rhode Island',
+    value: 'RI',
+  },
+  {
+    name: 'South Carolina',
+    value: 'SC',
+  },
+  {
+    name: 'South Dakota',
+    value: 'SD',
+  },
+  {
+    name: 'Tennessee',
+    value: 'TN',
+  },
+  {
+    name: 'Texas',
+    value: 'TX',
+  },
+  {
+    name: 'Utah',
+    value: 'UT',
+  },
+  {
+    name: 'Vermont',
+    value: 'VT',
+  },
+  {
+    name: 'Virgin Islands',
+    value: 'VI',
+  },
+  {
+    name: 'Virginia',
+    value: 'VA',
+  },
+  {
+    name: 'Washington',
+    value: 'WA',
+  },
+  {
+    name: 'West Virginia',
+    value: 'WV',
+  },
+  {
+    name: 'Wisconsin',
+    value: 'WI',
+  },
+  {
+    name: 'Wyoming',
+    value: 'WY',
+  },
+];
+
+/**
+ * constants for canadian province dropdowns
+ *
+ * @type {Array}
+ */
+const canadianProvince = [
+  {
+    name: 'Select a Province',
+    value: '',
+  },
+  {
+    name: 'British Columbia',
+    value: 'BC',
+  },
+  {
+    name: 'Newfoundland',
+    value: 'NL',
+  },
+  {
+    name: 'Nova Scotia',
+    value: 'NS',
+  },
+];
+
+/**
+ * constants for japanese prefecture dropdowns
+ *
+ * @type {Array}
+ */
+const japanesePrefecture = [
+  { name: 'Select a Prefecture', value: '' },
+  { name: 'AICHI', value: 'AICHI' },
+  { name: 'AKITA', value: 'AKITA' },
+  { name: 'AOMORI', value: 'AOMORI' },
+  { name: 'BONIN IS, TOKYO', value: 'BONIN IS, TOKYO' },
+  { name: 'CHIBA', value: 'CHIBA' },
+  { name: 'EHIME', value: 'EHIME' },
+  { name: 'FUKUI', value: 'FUKUI' },
+  { name: 'FUKUOKA', value: 'FUKUOKA' },
+  { name: 'FUKUSHIMA', value: 'FUKUSHIMA' },
+  { name: 'GIFU', value: 'GIFU' },
+  { name: 'GUMMA', value: 'GUMMA' },
+  { name: 'HIROSHIMA', value: 'HIROSHIMA' },
+  { name: 'HOKKAIDO', value: 'HOKKAIDO' },
+  { name: 'HYOGO', value: 'HYOGO' },
+  { name: 'IBARAKI', value: 'IBARAKI' },
+  { name: 'ISHIKAWA', value: 'ISHIKAWA' },
+  { name: 'IWATE', value: 'IWATE' },
+  { name: 'IZU-OSHIMA, TOKYO', value: 'IZU-OSHIMA, TOKYO' },
+  { name: 'KAGAWA', value: 'KAGAWA' },
+  { name: 'KAGOSHIMA', value: 'KAGOSHIMA' },
+  { name: 'KANAGAWA', value: 'KANAGAWA' },
+  { name: 'KOCHI', value: 'KOCHI' },
+  { name: 'KUMAMOTO', value: 'KUMAMOTO' },
+  { name: 'KYOTO', value: 'KYOTO' },
+  { name: 'MIE', value: 'MIE' },
+  { name: 'MIYAGI', value: 'MIYAGI' },
+  { name: 'MIYAZAKI', value: 'MIYAZAKI' },
+  { name: 'NAGANO', value: 'NAGANO' },
+  { name: 'NAGASAKI', value: 'NAGASAKI' },
+  { name: 'NARA', value: 'NARA' },
+  { name: 'NIIGATA', value: 'NIIGATA' },
+  { name: 'OITA', value: 'OITA' },
+  { name: 'OKAYAMA', value: 'OKAYAMA' },
+  { name: 'OKINAWA', value: 'OKINAWA' },
+  { name: 'OKUSHIRI IS, HOKKAIDO', value: 'OKUSHIRI IS, HOKKAIDO' },
+  { name: 'OSAKA', value: 'OSAKA' },
+  { name: 'SAGA', value: 'SAGA' },
+  { name: 'SAITAMA', value: 'SAITAMA' },
+  { name: 'SHIGA', value: 'SHIGA' },
+  { name: 'SHIMANE', value: 'SHIMANE' },
+  { name: 'SHIZUOKA', value: 'SHIZUOKA' },
+  { name: 'TOKUSHIMA', value: 'TOKUSHIMA' },
+  { name: 'TOKUSIMA', value: 'TOKUSIMA' },
+  { name: 'TOKYO', value: 'TOKYO' },
+  { name: 'TOTTORI', value: 'TOTTORI' },
+  { name: 'TOYAMA', value: 'TOYAMA' },
+  { name: 'TSHIBA', value: 'TSHIBA' },
+  { name: 'WAKAYAMA', value: 'WAKAYAMA' },
+  { name: 'YAMAGATA', value: 'YAMAGATA' },
+  { name: 'YAMAGUCHI', value: 'YAMAGUCHI' },
+];
+
+/**
+ * constants for indonesian province dropdowns
+ *
+ * @type {Array}
+ */
+const indonesianProvince = [
+  { name: 'Select a Province', value: '' },
+  { name: 'ACEH', value: 'ACEH' },
+  { name: 'BALI', value: 'BALI' },
+  { name: 'BANGKA-BELITUNG', value: 'BANGKA-BELITUNG' },
+  { name: 'BANTEN', value: 'BANTEN' },
+  { name: 'BENGKULU', value: 'BENGKULU' },
+  { name: 'CENTRAL JAVA', value: 'CENTRAL JAVA' },
+  { name: 'CENTRAL SULAWESI', value: 'CENTRAL SULAWESI' },
+  { name: 'EAST JAVA', value: 'EAST JAVA' },
+  { name: 'EAST NUSA TENGGARA', value: 'EAST NUSA TENGGARA' },
+  { name: 'GORONTALO', value: 'GORONTALO' },
+  { name: 'JAKARTA', value: 'JAKARTA' },
+  { name: 'LAMPUNG', value: 'LAMPUNG' },
+  { name: 'MALUKU', value: 'MALUKU' },
+  { name: 'NORTH MALUKU', value: 'NORTH MALUKU' },
+  { name: 'NORTH SULAWESI', value: 'NORTH SULAWESI' },
+  { name: 'NORTH SUMATRA', value: 'NORTH SUMATRA' },
+  { name: 'PAPUA', value: 'PAPUA' },
+  { name: 'RIAU', value: 'RIAU' },
+  { name: 'SOUTH EAST SULAWESI', value: 'SOUTH EAST SULAWESI' },
+  { name: 'SOUTH KALIMANTAN', value: 'SOUTH KALIMANTAN' },
+  { name: 'SOUTH SULAWESI', value: 'SOUTH SULAWESI' },
+  { name: 'SUNDA STRAIT', value: 'SUNDA STRAIT' },
+  { name: 'WEST JAVA', value: 'WEST JAVA' },
+  { name: 'WEST KALIMANTAN', value: 'WEST KALIMANTAN' },
+  { name: 'WEST NUSA TENGGARA', value: 'WEST NUSA TENGGARA' },
+  { name: 'WEST PAPUA', value: 'WEST PAPUA' },
+  { name: 'WEST SULAWESI', value: 'WEST SULAWESI' },
+  { name: 'WEST SUMATRA', value: 'WEST SUMATRA' },
+  { name: 'WESTJAVA', value: 'WESTJAVA' },
+  { name: 'YOGYAKARTA', value: 'YOGYAKARTA' },
+];
+
+/**
+ * constants for chilean province dropdowns
+ *
+ * @type {Array}
+ */
+const chileanProvince = [
+  {name: 'Select a Province', value: ''},
+  {name: 'ANTARCTICA CHILENA', value: 'ANTARCTICA CHILENA'},
+  { name: 'ANTOFAGASTA', vaule: 'ANTOFAGASTA'},
+  { name: 'ARAUCO', vaule: 'ARAUCO'},
+  { name: 'ARICA', vaule: 'ARICA'},
+  { name: 'AYSEN', vaule: 'AYSEN'},
+  { name: 'CAPITAN PRAT', vaule: 'CAPITAN PRAT'},
+  { name: 'CARDENAL CARO', vaule: 'CARDENAL CARO'},
+  { name: 'CAUQUENES', vaule: 'CAUQUENES'},
+  { name: 'CAUTIN', vaule: 'CAUTIN'},
+  { name: 'CHANARAL', vaule: 'CHANARAL'},
+  { name: 'CHILOE', vaule: 'CHILOE'},
+  { name: 'CHOAPA', vaule: 'CHOAPA'},
+  { name: 'CONCEPCION', vaule: 'CONCEPCION'},
+  { name: 'COPIAPO', vaule: 'COPIAPO'},
+  { name: 'CURICO', vaule: 'CURICO'},
+  { name: 'ELQUI', vaule: 'ELQUI'},
+  { name: 'HUASCO', vaule: 'HUASCO'},
+  { name: 'IQUIQUE', vaule: 'IQUIQUE'},
+  { name: 'ISLA DE PASCUA', vaule: 'ISLA DE PASCUA'},
+  { name: 'JUAN FERNANDEZ IS.', vaule: 'JUAN FERNANDEZ IS.'},
+  { name: 'LIMARI', vaule: 'LIMARI'},
+  { name: 'LLANQUIHUE', vaule: 'LLANQUIHUE'},
+  { name: 'MAGALLANES', vaule: 'MAGALLANES'},
+  { name: 'NUBLE', vaule: 'NUBLE'},
+  { name: 'OSORNO', vaule: 'OSORNO'},
+  { name: 'PETORCA', vaule: 'PETORCA'},
+  { name: 'SAN ANTONIO', vaule: 'SAN ANTONIO'},
+  { name: 'SAN FELIPE DE ACONCAGUA', vaule: 'SAN FELIPE DE ACONCAGUA'},
+  { name: 'TALCA', vaule: 'TALCA'},
+  { name: 'TAMARUGAL', vaule: 'TAMARUGAL'},
+  { name: 'TOCOPILLA', vaule: 'TOCOPILLA'},
+  { name: 'VALDIVIA', vaule: 'VALDIVIA'},
+  { name: 'VALPARAISO', vaule: 'VALPARAISO'},
+];
+
+/**
+ * constants for common regions dropdowns
+ *
+ * @type {Array}
+ */
+const regions = [
+  {
+    name: 'Select a Region',
+    value: '',
+  },
+  {
+    name: 'West coast of Africa',
+    value: 77,
+  },
+  {
+    name: 'Central Africa',
+    value: 78,
+  },
+  {
+    name: 'Northeast Atlantic Ocean',
+    value: 73,
+  },
+  {
+    name: 'Northwest Atlantic Ocean',
+    value: 72,
+  },
+  {
+    name: 'Southeast Atlantic Ocean',
+    value: 70,
+  },
+  {
+    name: 'Southwest Atlantic Ocean',
+    value: 71,
+  },
+  {
+    name: 'East Coast of United States and Canada',
+    value: 75,
+  },
+  {
+    name: 'Gulf of Mexico',
+    value: 76,
+  },
+  {
+    name: 'Caribbean Sea',
+    value: 74,
+  },
+  {
+    name: 'Black Sea and Caspian Sea',
+    value: 40,
+  },
+  {
+    name: 'Mediterranean Sea',
+    value: 50,
+  },
+  {
+    name: 'Red Sea and Persian Gulf',
+    value: 30,
+  },
+  {
+    name: 'Indian Ocean (including W. Australia and W. Indonesia)',
+    value: 60,
+  },
+  {
+    name: 'Alaska (including Aleutian Islands)',
+    value: 87,
+  },
+  {
+    name: 'China, North and South Korea, Philippines, Taiwan',
+    value: 84,
+  },
+  {
+    name: 'E. Australia, New Zealand, South Pacific Is.',
+    value: 81,
+  },
+  {
+    name: 'Hawaii, Johnston Atoll, Midway I',
+    value: 80,
+  },
+  {
+    name: 'E. Indonesia and Malaysia',
+    value: 83,
+  },
+  {
+    name: 'New Caledonia, New Guinea, Solomon Is., Vanuatu',
+    value: 82,
+  },
+  {
+    name: 'Japan',
+    value: 85,
+  },
+  {
+    name: 'Kamchatka and Kuril Islands',
+    value: 86,
+  },
+  {
+    name: 'West Coast of North and Central America',
+    value: 88,
+  },
+  {
+    name: 'West Coast of South America ',
+    value: 89,
+  },
+
+];
+
+/**
+ * Constants for common effects descriptions dropdowns
+ *
+ * @type {Array}
+ */
+const effectDescriptions = [
+  { name: 'None Selected', value: 0 },
+  { name: 'Few (1 to 50)', value: 1 },
+  { name: 'Some (51 to 100)', value: 2 },
+  { name: 'Many (101 to 1000)', value: 3 },
+  { name: 'Very Many (> 1000)', value: 4 },
+];
+
+/**
+ * constants for common damageinMillionsDollars dropdowns
+ *
+ * @type {Array}
+ */
+const damageMillions = [
+  { name: 'None Selected', value: 0 },
+  { name: 'Limited (&lt; $1 Million)', value: 1 },
+  { name: 'Moderate ($1 to $5 Million)', value: 2 },
+  { name: 'Severe (> $5 to $24 Million)', value: 3 },
+  { name: 'Extreme (> $24 Million)', value: 4 },
+];
+
+/**
+ * constant for firstMotion dropdowns
+ * @type {Array}
+ */
+const firstMotion = [
+  { name: 'None Selected', value: '' },
+  { name: 'Rise', value: 'R' },
+  { name: 'Fall', value: 'F' },
+];
+
+/**
+ * constant for runup measure type dropdowns
+ *
+ * @type {Array}
+ */
+const rnpMeasureType = [
+  { name: 'Select a Measurement Type', value: '' },
+  { name: 'Eyewitness measurement', value: 1 },
+  { name: 'Tide-gauge measurement', value: 2 },
+  { name: 'Deep ocean gauge', value: 3 },
+  { name: 'Water Height, Post-TsunamiLandingPage survey measurement', value: 4 },
+  { name: 'TsunamiRunupDataDisplay Height, Post-TsunamiLandingPage survey measurement', value: 5 },
+  { name: 'Atmospheric Pressure Wave', value: 6 },
+  { name: 'Seiche', value: 7 },
+  { name: 'Water Height in harbor, Post-TsunamiLandingPage survey measurement', value: 8 },
+  { name: 'Splash mark, Post-TsunamiLandingPage survey measurement', value: 9 },
+  { name: 'Flow Depth, Post-TsunamiLandingPage survey measurement', value: 10 },
+];
+
+/**
+ * constant for reference have dropdowns
+ *
+ * @type {Array}
+ */
+const referenceHave = [
+  { name: 'Select DB Status', value: '' },
+  { name: "Don't have", value: null },
+  { name: 'Not Available', value: -1 },
+  { name: 'Have', value: 1 },
+  { name: 'Requested', value: 2 },
+  { name: 'Have, data needs to be added to Tsunami DB', value: 3 },
+  { name: 'Requested, data needs to be added to Tsunami DB' },
+  { name: "Have, all data added and QC'd", value: 5 },
+  { name: 'Have, needs to be added to Deposits DB', value: 6 },
+  { name: 'Have, checked and no data to enter', value: 7 },
+  { name: 'Have the document in analog but not in digital format', value: 8 },
+  { name: 'Have, data needs to be added to the Significant Earthquake DB', value: 9 },
+];
+
+/**
+ * constant for volcano morphology dropdowns
+ *
+ * @type {Array}
+ */
+const volcanoTypes = [
+  { name: 'Select Volcano Type', value: '' },
+  { name: 'Caldera', value: 'Caldera' },
+  { name: 'Cinder cone', value: 'Cinder cone' },
+  { name: 'Complex volcano', value: 'Complex volcano' },
+  { name: 'Compound volcano', value: 'Compound volcano' },
+  { name: 'Crater rows', value: 'Crater rows' },
+  { name: 'Fissure vent', value: 'Fissure vent' },
+  { name: 'Lava cone', value: 'Lava cone' },
+  { name: 'Lava dome', value: 'Lava dome' },
+  { name: 'Maar', value: 'Maar' },
+  { name: 'Mud volcano', value: 'Mud volcano' },
+  { name: 'Pumice cone', value: 'Pumice cone' },
+  { name: 'Pyroclastic cone', value: 'Pyroclastic cone' },
+  { name: 'Pyroclastic shield', value: 'Pyroclastic shield' },
+  { name: 'Shield volcano', value: 'Shield volcano' },
+  { name: 'Stratovolcano', value: 'Stratovolcano' },
+  { name: 'Subglacial volcano', value: 'Subglacial volcano' },
+  { name: 'Submarine volcano', value: 'Submarine volcano' },
+  { name: 'Tuff cone', value: 'Tuff cone' },
+  { name: 'Volcanic field', value: 'Volcanic field' },
+];
+
+/**
+ * constant for volcano status dropdowns
+ *
+ * @type {Array}
+ */
+const volcanoStatus = [
+  { name: 'Select Status', value: '' },
+  { name: 'Anthropology', value: 'Anthropology' },
+  { name: 'Ar/Ar', value: 'Ar/Ar' },
+  { name: 'Dendrochronology', value: 'Dendrochronology' },
+  { name: 'Fumarolic', value: 'Fumarolic' },
+  { name: 'Historical', value: 'Historical' },
+  { name: 'Holocene', value: 'Holocene' },
+  { name: 'Holocene?', value: 'Holocene?' },
+  { name: 'Hot Springs', value: 'Hot Springs' },
+  { name: 'Hydration Rind', value: 'Hydration Rind' },
+  { name: 'Hydrophonic', value: 'Hydrophonic' },
+  { name: 'Ice Core', value: 'Ice Core' },
+  { name: 'K-Ar', value: 'K-Ar' },
+  { name: 'Lichenometry', value: 'Lichenometry' },
+  { name: 'Magnetism', value: 'Magnetism' },
+  { name: 'Pleistocene', value: 'Pleistocene' },
+  { name: 'Pleistocene-Fumarol', value: 'Pleistocene-Fumarol' },
+  { name: 'Radiocarbon', value: 'Radiocarbon' },
+  { name: 'Seismicity', value: 'Seismicity' },
+  { name: 'Tephrochronology', value: 'Tephrochronology' },
+  { name: 'Uncertain', value: 'Uncertain' },
+  { name: 'Uranium-series', value: 'Uranium-series' },
+  { name: 'Varve Count', value: 'Varve Count' },
+];
+
+/**
+ * constant to assist in front-end validation of user inputs of numbers with defined min and max thresholds
+ *
+ * @type {{cause: {min: number, max: number}, year: {min: number, max: number}, month: {min: number, max: number}, day: {min: number, max: number}, hour: {min: number, max: number}, minute: {min: number, max: number}, second: {min: number, max: number}, validity: {min: number, max: number}, latitude: {min: number, max: number}, longitude: {min: number, max: number}, eqMag: {min: number, max: number}, runupDistance: {min: number, max: number}, travelTime: {min: number, max: number}, numberOfRunups: {min: number, max: number}, waterHeight: {min: number, max: number}, horizInnundation: {min: number, max: number}, numberOfDeaths: {min: number, max: number}, deathDescription: {min: number, max: number}, numberOfInjuries: {min: number, max: number}, injuryDescription: {min: number, max: number}, damageInMillions: {min: number, max: number}, damageDescription: {min: number, max: number}, numberOfHousesDestroyed: {min: number, max: number}, housesDestroyedDescription: {min: number, max: number}, eqDepth: {min: number, max: number}, tsMag: {min: number, max: number}, warningStatus: {min: number, max: number}, period: {min: number, max: number}, distanceRnpLoc: {min: number, max: number}, runupHt: {min: number, max: number}, eqIntensity: {min: number, max: number}, vei: {min: number, max: number}}}
+ */
+const validationConstants = {
+  cause: { min: 0, max: 11 },
+  year: { min: -2000, max: (new Date()).getFullYear() },
+  month: { min: 1, max: 12 },
+  day: { min: 1, max: 31 },
+  hour: { min: 0, max: 23 },
+  minute: { min: 0, max: 59 },
+  second: { min: 0, max: 59 },
+  validity: { min: -1, max: 4 },
+  latitude: { min: -90, max: 90 },
+  longitude: { min: -180, max: 180 },
+  eqMag: { min: 0.0, max: 9.5 },
+  runupDistance: { min: 0, max: 2000 },
+  travelTime: { min: 0, max: 60 },
+  numberOfRunups: { min: 0, max: 6200 },
+  waterHeight: { min: 0, max: 525 },
+  horizInnundation: { min: 0, max: 10000 },
+  numberOfDeaths: { min: 0, max: 300000 },
+  deathDescription: { min: 0, max: 4 },
+  numberOfInjuries: { min: 0, max: 20000 },
+  injuryDescription: { min: 0, max: 4 },
+  damageInMillions: { min: 0, max: 10000 },
+  damageDescription: { min: 0, max: 4 },
+  numberOfHousesDestroyed: { min: 0, max: 32000 },
+  housesDestroyedDescription: { min: 0, max: 4 },
+  eqDepth: { min: 0, max: 800 },
+  tsMag: { min: -20, max: -20 },
+  warningStatus: { min: -1, max: 4 },
+  period: { min: 0, max: 180 },
+  distanceRnpLoc: { min: 0, max: 20000 },
+  runupHt: { min: 0, max: 800 },
+  eqIntensity: { min: 0, max: 12 },
+  vei: { min: 0, max: 8 },
+};
+
+/**
+ * constant for volcano agent dropdowns
+ *
+ * @type {Array}
+ */
+const volcanoAgent = [
+  { name: 'Select Agent', value: '' },
+  { name: 'Avalance (Debris and landslides', value: 'A' },
+  { name: 'Electrical (lightning)', value: 'E' },
+  { name: 'Floods (&amp; Jokulhlaups)', value: 'F' },
+  { name: 'Gas (emission from eruptive craters as well as fumarolic/solfataric activity)', value: 'G' },
+  { name: 'Indirect deaths (disease, starvation, exposure, desolation)', value: 'I' },
+  { name: 'Lava Flows', value: 'L' },
+  { name: 'Mudflows/Lahars', value: 'M' },
+  { name: 'Secondary (post-eruption) mudflows', value: 'm' },
+  { name: 'Pyroclastic flows, surges, &amp; direct blasts', value: 'P' },
+  { name: 'Seismic, or volcanic earthquake (tectonic earthquake deaths excluded)', value: 'S' },
+  { name: 'Tephra (ash, bombs, lapilli, steam blasts.', value: 'T' },
+  { name: 'Waves or tsunami', value: 'W' },
+];
+
+/**
+ * constant for time of eruption dropdowns
+ *
+ * @type {Array}
+ */
+const timeOfEruption = [
+  { name: 'Select Time of Eruption', value: '' },
+  { name: '?', value: '?' },
+  { name: 'D', value: 'D' },
+  { name: 'D1', value: 'D1' },
+  { name: 'D2', value: 'D2' },
+  { name: 'D3', value: 'D3' },
+  { name: 'D4', value: 'D4' },
+  { name: 'D5', value: 'D5' },
+  { name: 'D6', value: 'D6' },
+  { name: 'D7', value: 'D7' },
+  { name: 'P', value: 'P' },
+  { name: 'Q', value: 'Q' },
+  { name: 'U', value: 'U' },
+  { name: 'U1', value: 'U1' },
+  { name: 'U7', value: 'U7' },
+  { name: 'Unknown', value: 'Unknown' },
+];
+
+export {
+  countries,
+  states,
+  canadianProvince,
+  chileanProvince,
+  validationConstants,
+  regions,
+  indonesianProvince,
+  japanesePrefecture,
+  rnpMeasureType,
+  firstMotion,
+  effectDescriptions,
+  damageMillions,
+  referenceHave,
+  volcanoTypes,
+  volcanoStatus,
+  timeOfEruption,
+  volcanoAgent,
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AboutPage.html">AboutPage</a></li><li><a href="module-Buttons.html">Buttons</a></li><li><a href="module-Constants.html">Constants</a></li><li><a href="module-DateTime.html">DateTime</a></li><li><a href="module-DefinitionModal.html">DefinitionModal</a></li><li><a href="module-DialogBox.html">DialogBox</a></li><li><a href="module-DropDown.html">DropDown</a></li><li><a href="module-DropDownList.html">DropDownList</a></li><li><a href="module-EarthquakeLandingPartial.html">EarthquakeLandingPartial</a></li><li><a href="module-EqIntensity.html">EqIntensity</a></li><li><a href="module-Footer.html">Footer</a></li><li><a href="module-FormSection.html">FormSection</a></li><li><a href="module-Icon.html">Icon</a></li><li><a href="module-LinkingParagraph.html">LinkingParagraph</a></li><li><a href="module-TickboxTable.html">TickboxTable</a></li><li><a href="module-TimeEruption.html">TimeEruption</a></li><li><a href="module-ValidValues.html">ValidValues</a></li><li><a href="module-VolcanoAgent.html">VolcanoAgent</a></li><li><a href="module-VolcanoExplosivity.html">VolcanoExplosivity</a></li><li><a href="module-VolcanoStatus.html">VolcanoStatus</a></li><li><a href="module-WaterHeight.html">WaterHeight</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="EarthquakeContainer.html">EarthquakeContainer</a></li><li><a href="EarthquakeInsertContainer.html">EarthquakeInsertContainer</a></li><li><a href="EarthquakeLanding.html">EarthquakeLanding</a></li><li><a href="EarthquakeSearchContainer.html">EarthquakeSearchContainer</a></li><li><a href="EarthquakeUpdateContainer.html">EarthquakeUpdateContainer</a></li><li><a href="MoreEarthquakeInfoContainer.html">MoreEarthquakeInfoContainer</a></li><li><a href="RelateEarthquake.html">RelateEarthquake</a></li><li><a href="SecondaryData.html">SecondaryData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#camelToPascal">camelToPascal</a></li><li><a href="global.html#createApiQueryString">createApiQueryString</a></li><li><a href="global.html#decodeQueryString">decodeQueryString</a></li><li><a href="global.html#encodeQueryString">encodeQueryString</a></li><li><a href="global.html#mapToEarthquakeTable">mapToEarthquakeTable</a></li><li><a href="global.html#mapToEqMoreInfoTable">mapToEqMoreInfoTable</a></li><li><a href="global.html#mapToRunupMoreInfoTable">mapToRunupMoreInfoTable</a></li><li><a href="global.html#mapToRunupTable">mapToRunupTable</a></li><li><a href="global.html#mapToTable">mapToTable</a></li><li><a href="global.html#mapToTsunamiEventMoreInfo">mapToTsunamiEventMoreInfo</a></li><li><a href="global.html#mapToTsunamiEventMoreInfoRunup">mapToTsunamiEventMoreInfoRunup</a></li><li><a href="global.html#mapToTsunamiEventTable">mapToTsunamiEventTable</a></li><li><a href="global.html#mapToVolcanoLocsTable">mapToVolcanoLocsTable</a></li><li><a href="global.html#mapToVolcanoMoreInfoTable">mapToVolcanoMoreInfoTable</a></li><li><a href="global.html#mapToVolcanoTable">mapToVolcanoTable</a></li><li><a href="global.html#openModal">openModal</a></li><li><a href="global.html#parseAndShortenFloat">parseAndShortenFloat</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Aug 22 2018 15:24:20 GMT-0600 (MDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

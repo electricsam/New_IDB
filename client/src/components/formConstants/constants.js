@@ -1,3 +1,15 @@
+/**
+ * Module to define common constants among data sets.
+ *
+ * @module Constants
+ * @type {Array}
+ */
+
+/**
+ * constant for countries dropdowns
+ *
+ * @type {Array}
+ */
 const countries = [
   { name: 'Select a Country', value: '' },
   { name: 'ALBANIA', value: 'ALBANIA' },
@@ -112,6 +124,11 @@ const countries = [
   { name: 'WALLIS AND FUTUNA (FRENCH TERRITORY)', value: 'WALLIS AND FUTUNA (FRENCH TERRITORY)' },
 ];
 
+/**
+ * constants for states dropdowns
+ *
+ * @type {Array}
+ */
 const states = [
   {
     name: 'Select a State',
@@ -355,6 +372,11 @@ const states = [
   },
 ];
 
+/**
+ * constants for canadian province dropdowns
+ *
+ * @type {Array}
+ */
 const canadianProvince = [
   {
     name: 'Select a Province',
@@ -374,7 +396,11 @@ const canadianProvince = [
   },
 ];
 
-
+/**
+ * constants for japanese prefecture dropdowns
+ *
+ * @type {Array}
+ */
 const japanesePrefecture = [
   { name: 'Select a Prefecture', value: '' },
   { name: 'AICHI', value: 'AICHI' },
@@ -429,6 +455,11 @@ const japanesePrefecture = [
   { name: 'YAMAGUCHI', value: 'YAMAGUCHI' },
 ];
 
+/**
+ * constants for indonesian province dropdowns
+ *
+ * @type {Array}
+ */
 const indonesianProvince = [
   { name: 'Select a Province', value: '' },
   { name: 'ACEH', value: 'ACEH' },
@@ -463,7 +494,11 @@ const indonesianProvince = [
   { name: 'YOGYAKARTA', value: 'YOGYAKARTA' },
 ];
 
-
+/**
+ * constants for chilean province dropdowns
+ *
+ * @type {Array}
+ */
 const chileanProvince = [
   {name: 'Select a Province', value: ''},
   {name: 'ANTARCTICA CHILENA', value: 'ANTARCTICA CHILENA'},
@@ -501,6 +536,11 @@ const chileanProvince = [
   { name: 'VALPARAISO', vaule: 'VALPARAISO'},
 ];
 
+/**
+ * constants for common regions dropdowns
+ *
+ * @type {Array}
+ */
 const regions = [
   {
     name: 'Select a Region',
@@ -601,6 +641,11 @@ const regions = [
 
 ];
 
+/**
+ * Constants for common effects descriptions dropdowns
+ *
+ * @type {Array}
+ */
 const effectDescriptions = [
   { name: 'None Selected', value: 0 },
   { name: 'Few (1 to 50)', value: 1 },
@@ -609,6 +654,11 @@ const effectDescriptions = [
   { name: 'Very Many (> 1000)', value: 4 },
 ];
 
+/**
+ * constants for common damageinMillionsDollars dropdowns
+ *
+ * @type {Array}
+ */
 const damageMillions = [
   { name: 'None Selected', value: 0 },
   { name: 'Limited (< $1 Million)', value: 1 },
@@ -617,12 +667,21 @@ const damageMillions = [
   { name: 'Extreme (> $24 Million)', value: 4 },
 ];
 
+/**
+ * constant for firstMotion dropdowns
+ * @type {Array}
+ */
 const firstMotion = [
   { name: 'None Selected', value: '' },
   { name: 'Rise', value: 'R' },
   { name: 'Fall', value: 'F' },
 ];
 
+/**
+ * constant for runup measure type dropdowns
+ *
+ * @type {Array}
+ */
 const rnpMeasureType = [
   { name: 'Select a Measurement Type', value: '' },
   { name: 'Eyewitness measurement', value: 1 },
@@ -635,9 +694,13 @@ const rnpMeasureType = [
   { name: 'Water Height in harbor, Post-TsunamiLandingPage survey measurement', value: 8 },
   { name: 'Splash mark, Post-TsunamiLandingPage survey measurement', value: 9 },
   { name: 'Flow Depth, Post-TsunamiLandingPage survey measurement', value: 10 },
-
 ];
 
+/**
+ * constant for reference have dropdowns
+ *
+ * @type {Array}
+ */
 const referenceHave = [
   { name: 'Select DB Status', value: '' },
   { name: "Don't have", value: null },
@@ -653,8 +716,12 @@ const referenceHave = [
   { name: 'Have, data needs to be added to the Significant Earthquake DB', value: 9 },
 ];
 
+/**
+ * constant for volcano morphology dropdowns
+ *
+ * @type {Array}
+ */
 const volcanoTypes = [
-
   { name: 'Select Volcano Type', value: '' },
   { name: 'Caldera', value: 'Caldera' },
   { name: 'Cinder cone', value: 'Cinder cone' },
@@ -677,6 +744,11 @@ const volcanoTypes = [
   { name: 'Volcanic field', value: 'Volcanic field' },
 ];
 
+/**
+ * constant for volcano status dropdowns
+ *
+ * @type {Array}
+ */
 const volcanoStatus = [
   { name: 'Select Status', value: '' },
   { name: 'Anthropology', value: 'Anthropology' },
@@ -703,6 +775,11 @@ const volcanoStatus = [
   { name: 'Varve Count', value: 'Varve Count' },
 ];
 
+/**
+ * constant to assist in front-end validation of user inputs of numbers with defined min and max thresholds
+ *
+ * @type {{cause: {min: number, max: number}, year: {min: number, max: number}, month: {min: number, max: number}, day: {min: number, max: number}, hour: {min: number, max: number}, minute: {min: number, max: number}, second: {min: number, max: number}, validity: {min: number, max: number}, latitude: {min: number, max: number}, longitude: {min: number, max: number}, eqMag: {min: number, max: number}, runupDistance: {min: number, max: number}, travelTime: {min: number, max: number}, numberOfRunups: {min: number, max: number}, waterHeight: {min: number, max: number}, horizInnundation: {min: number, max: number}, numberOfDeaths: {min: number, max: number}, deathDescription: {min: number, max: number}, numberOfInjuries: {min: number, max: number}, injuryDescription: {min: number, max: number}, damageInMillions: {min: number, max: number}, damageDescription: {min: number, max: number}, numberOfHousesDestroyed: {min: number, max: number}, housesDestroyedDescription: {min: number, max: number}, eqDepth: {min: number, max: number}, tsMag: {min: number, max: number}, warningStatus: {min: number, max: number}, period: {min: number, max: number}, distanceRnpLoc: {min: number, max: number}, runupHt: {min: number, max: number}, eqIntensity: {min: number, max: number}, vei: {min: number, max: number}}}
+ */
 const validationConstants = {
   cause: { min: 0, max: 11 },
   year: { min: -2000, max: (new Date()).getFullYear() },
@@ -738,6 +815,11 @@ const validationConstants = {
   vei: { min: 0, max: 8 },
 };
 
+/**
+ * constant for volcano agent dropdowns
+ *
+ * @type {Array}
+ */
 const volcanoAgent = [
   { name: 'Select Agent', value: '' },
   { name: 'Avalance (Debris and landslides', value: 'A' },
@@ -754,6 +836,11 @@ const volcanoAgent = [
   { name: 'Waves or tsunami', value: 'W' },
 ];
 
+/**
+ * constant for time of eruption dropdowns
+ *
+ * @type {Array}
+ */
 const timeOfEruption = [
   { name: 'Select Time of Eruption', value: '' },
   { name: '?', value: '?' },
@@ -772,9 +859,6 @@ const timeOfEruption = [
   { name: 'U7', value: 'U7' },
   { name: 'Unknown', value: 'Unknown' },
 ];
-
-
-
 
 export {
   countries,

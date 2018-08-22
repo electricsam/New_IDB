@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 
 import Styles from './DateTimeStyles.css';
 
+/**
+ * Component for the display of input boxes that accept Dates.
+ *
+ * @module DateTime
+ * @param props
+ * @return {*}
+ */
 const DateTime = props => (
   <div className={Styles.container}>
     <label htmlFor={props.model}>{props.title}</label>

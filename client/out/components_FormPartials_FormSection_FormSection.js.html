@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/FormPartials/FormSection/FormSection.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/FormPartials/FormSection/FormSection.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+
+import { Control, Errors } from 'react-redux-form/lib/immutable';
+import PropTypes from 'prop-types';
+
+import DropDown from '../DropDown/DropDown.jsx';
+import Radio from '../Radio/Radio';
+import MinMax from '../MinMax/MinMax';
+import SubSection from '../SubSection/SubSection';
+import DateTime from '../DateTime/DateTime';
+import Styles from './FormSectionStyles.css';
+import DropDownList from "../DropDownList/DropDownList";
+import Text from "../Text/Text";
+import {Textarea} from "../Textarea/Textarea";
+import expandMore from '../../../assets/expand_more.svg'
+import expandLess from '../../../assets/expand_less.svg'
+import SvgIcon from "../../../assets/SvgIcon";
+
+/**
+ * A Component that generates a section of a form based on passed props.  It iterates over the formData prop and
+ * generates specified form components, like dropdowns or
+ *
+ * @module FormSection
+ * @param props
+ * @return {*}
+ */
+const FormSection = props => (
+  &lt;section className={Styles.formOuterSection}>
+    &lt;div className={Styles.header}>
+      &lt;h3>{props.title}&lt;/h3>
+      &lt;div className={Styles.expandCollapse}>
+        {
+          props.showSection ?
+              &lt;SvgIcon color='#6c6d6d' icon={expandLess} handleClick={props.toggleSection}/>:
+              &lt;SvgIcon color='#6c6d6d' icon={expandMore} handleClick={props.toggleSection}/>
+        }
+      &lt;/div>
+    &lt;/div>
+    {
+      props.showSection &amp;&amp; Array.isArray(props.formData) ?
+        &lt;div className={Styles.formInnerSection}>
+          {
+            props.formData.map((e) => {
+              if (e.type === 'DROPDOWN') {
+                return (
+                    &lt;DropDown model={e.model} data={e.data} title={e.title}/>
+                );
+              } else if (e.type === 'DROPDOWNOR') {
+                return (
+                  &lt;SubSection title={e.title}>
+                    &lt;DropDownList list={e.dropDowns} checkDropDownDisabled={props.checkDropDownDisabled}/>
+                  &lt;/SubSection>
+                );
+              } else if (e.type === 'RADIO') {
+                return (
+                    &lt;SubSection title={e.title}>
+                      &lt;Radio
+                          radios={e.radios}
+                          radioSectionStyle={Styles.subSection}
+                          titleStyle={Styles.subSectionTitle}
+                          htmlFor={e.htmlFor}
+                          checkConditions={props.checkConditions}
+                          condition={e.condition}
+                          textModelPreface={e.textModelPreface}
+                          model={e.model}
+                      />
+                    &lt;/SubSection>
+
+                );
+              } else if (e.type === 'MINMAX') {
+                return (
+                  &lt;SubSection title={e.title}>
+                    &lt;MinMax
+                      model={e.min.model}
+                      title="Min"
+                      min={e.minThreshold}
+                      max={e.maxThreshold}
+                      validMinMax={props.validateMinMax}
+                      validMessage={{ valid: e.min.validMessage }}
+                    />
+                    &lt;MinMax
+                      model={e.max.model}
+                      title="Max"
+                      min={e.minThreshold}
+                      max={e.maxThreshold}
+                      validMinMax={props.validateMinMax}
+                      validMessage={{ valid: e.max.validMessage }}
+                    />
+                  &lt;/SubSection>
+                );
+              } else if (e.type === 'DATETIME') {
+                return (
+                  &lt;SubSection title={e.title}>
+                    &lt;DateTime
+                      model={e.model}
+                      title="YYYY-MM-DD"
+                      validDateTime={props.validateDateTime}
+                      validMessage={{ valid: e.validMessage }}
+                    />
+                  &lt;/SubSection>
+                );
+              } else if (e.type === 'MULTIMINMAX') {
+                return (
+                  &lt;SubSection title={e.title}>
+                    {
+                      e.data.map(x => (
+                        &lt;MinMax
+                          model={x.model}
+                          title={x.title}
+                          min={x.minThreshold}
+                          max={x.maxThreshold}
+                          validMinMax={props.validateMinMax}
+                          validMessage={{ valid: x.validMessage }}
+                        />
+                      ))
+                    }
+                  &lt;/SubSection>
+                );
+              } else if (e.type === 'TEXT') {
+                return (
+
+                    &lt;Text
+                      model={e.model}
+                      title={e.title}
+                      min={e.minThreshold}
+                      max={e.maxThreshold}
+                      validMinMax={props.validateMinMax}
+                      validMessage={{ valid: e.validMessage }}
+                      needsVal={true}
+                    />
+
+                );
+              } else if (e.type === 'TEXTNOVAL') {
+                return (
+                  &lt;Text
+                    model={e.model}
+                    title={e.title}
+                    needsVal={false}
+                  />
+                );
+              } else if (e.type === 'RADIONOTEXT') {
+                return (
+                  &lt;SubSection title={e.title}>
+                    {
+                      e.data.map(x => (
+                        &lt;div style={{display: 'inline-block', marginRight: '2%'}}>
+                          &lt;Control.radio
+                            model={e.model}
+                            id={e.id}
+                            value={x.value}
+                            isToggle
+                            checked={x.checked}
+                          />
+                          &lt;label htmlFor={x.htmlFor}> {x.label} &lt;/label>
+                        &lt;/div>
+                      ))
+                    }
+                  &lt;/SubSection>
+                );
+              } else if (e.type === 'TEXTAREA') {
+                return (
+                  &lt;Textarea
+                      title={e.title}
+                      model={e.model}
+                      count={props.count}
+                      validLength={props.validLength}
+                      maxLength={e.maxLength}
+                      validComments={props.validComments}
+                      needsVal={true}
+                      commentForm={props.commentForm}
+                  />
+                );
+              }else if (e.type === 'TEXTAREANOVAL') {
+                return (
+                    &lt;Textarea
+                        title={e.title}
+                        model={e.model}
+                        count={props.count}
+                        validLength={props.validLength}
+                        maxLength={e.maxLength}
+                        validComments={props.validComments}
+                        needsVal={false}
+                    />
+                );
+              }
+            })
+          }
+        &lt;/div> :
+        &lt;div />
+    }
+  &lt;/section>
+);
+
+
+export default FormSection;
+
+FormSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  showSection: PropTypes.bool.isRequired,
+  formData: PropTypes.array.isRequired,
+  checkConditions: PropTypes.func,
+  validateMinMax: PropTypes.func,
+  validateDateTime: PropTypes.func,
+  checkDropDownDisabled: PropTypes.func,
+  toggleSelection: PropTypes.func,
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AboutPage.html">AboutPage</a></li><li><a href="module-Buttons.html">Buttons</a></li><li><a href="module-Constants.html">Constants</a></li><li><a href="module-DateTime.html">DateTime</a></li><li><a href="module-DefinitionModal.html">DefinitionModal</a></li><li><a href="module-DialogBox.html">DialogBox</a></li><li><a href="module-DropDown.html">DropDown</a></li><li><a href="module-DropDownList.html">DropDownList</a></li><li><a href="module-EarthquakeLandingPartial.html">EarthquakeLandingPartial</a></li><li><a href="module-EqIntensity.html">EqIntensity</a></li><li><a href="module-Footer.html">Footer</a></li><li><a href="module-FormSection.html">FormSection</a></li><li><a href="module-Icon.html">Icon</a></li><li><a href="module-LinkingParagraph.html">LinkingParagraph</a></li><li><a href="module-TickboxTable.html">TickboxTable</a></li><li><a href="module-TimeEruption.html">TimeEruption</a></li><li><a href="module-ValidValues.html">ValidValues</a></li><li><a href="module-VolcanoAgent.html">VolcanoAgent</a></li><li><a href="module-VolcanoExplosivity.html">VolcanoExplosivity</a></li><li><a href="module-VolcanoStatus.html">VolcanoStatus</a></li><li><a href="module-WaterHeight.html">WaterHeight</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="EarthquakeContainer.html">EarthquakeContainer</a></li><li><a href="EarthquakeInsertContainer.html">EarthquakeInsertContainer</a></li><li><a href="EarthquakeLanding.html">EarthquakeLanding</a></li><li><a href="EarthquakeSearchContainer.html">EarthquakeSearchContainer</a></li><li><a href="EarthquakeUpdateContainer.html">EarthquakeUpdateContainer</a></li><li><a href="MoreEarthquakeInfoContainer.html">MoreEarthquakeInfoContainer</a></li><li><a href="RelateEarthquake.html">RelateEarthquake</a></li><li><a href="SecondaryData.html">SecondaryData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#camelToPascal">camelToPascal</a></li><li><a href="global.html#createApiQueryString">createApiQueryString</a></li><li><a href="global.html#decodeQueryString">decodeQueryString</a></li><li><a href="global.html#encodeQueryString">encodeQueryString</a></li><li><a href="global.html#mapToEarthquakeTable">mapToEarthquakeTable</a></li><li><a href="global.html#mapToEqMoreInfoTable">mapToEqMoreInfoTable</a></li><li><a href="global.html#mapToRunupMoreInfoTable">mapToRunupMoreInfoTable</a></li><li><a href="global.html#mapToRunupTable">mapToRunupTable</a></li><li><a href="global.html#mapToTable">mapToTable</a></li><li><a href="global.html#mapToTsunamiEventMoreInfo">mapToTsunamiEventMoreInfo</a></li><li><a href="global.html#mapToTsunamiEventMoreInfoRunup">mapToTsunamiEventMoreInfoRunup</a></li><li><a href="global.html#mapToTsunamiEventTable">mapToTsunamiEventTable</a></li><li><a href="global.html#mapToVolcanoLocsTable">mapToVolcanoLocsTable</a></li><li><a href="global.html#mapToVolcanoMoreInfoTable">mapToVolcanoMoreInfoTable</a></li><li><a href="global.html#mapToVolcanoTable">mapToVolcanoTable</a></li><li><a href="global.html#openModal">openModal</a></li><li><a href="global.html#parseAndShortenFloat">parseAndShortenFloat</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Aug 22 2018 15:24:20 GMT-0600 (MDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

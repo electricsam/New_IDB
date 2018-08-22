@@ -1,17 +1,14 @@
 import React from 'react'
-
-import noaaLogo from '../../assets/noaa_blue_white.png'
 import Styles from './FooterStyle.css'
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 
-import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';
-
-import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
-import { faFacebook } from '@fortawesome/free-brands-svg-icons/faFacebook';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
-import { faYoutube } from '@fortawesome/free-brands-svg-icons/faYoutube';
+import {faTwitter} from '@fortawesome/free-brands-svg-icons/faTwitter';
+import {faFacebook} from '@fortawesome/free-brands-svg-icons/faFacebook';
+import {faInstagram} from '@fortawesome/free-brands-svg-icons/faInstagram';
+import {faYoutube} from '@fortawesome/free-brands-svg-icons/faYoutube';
 import Icon from "./Icon/Icon";
+
 library.add(faTwitter);
 library.add(faFacebook);
 library.add(faInstagram);
@@ -23,6 +20,12 @@ const inlineStyles = {
   textAlign: 'center',
 };
 
+/**
+ * Component specifying display of site footer.
+ *
+ * @module Footer
+ * @return {*}
+ */
 const Footer = () => (
   <div className={Styles.container}>
 

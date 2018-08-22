@@ -4,6 +4,12 @@ import { FontAwesomeIcon }from '@fortawesome/react-fontawesome';
 
 import Styles from './IconStyle.css';
 
+/**
+ * Component to specify display of FontAwesomeIcons as links. For example usage see {@link module:Footer}
+ *
+ * @module Icon
+ * @param props
+ */
 const Icon = props => (
   <div className={Styles.container}>
     <a

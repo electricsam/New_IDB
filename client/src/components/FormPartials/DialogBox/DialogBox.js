@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 import Styles from './DialogBoxStyle.css';
 
-
+/**
+ * Component that lets the user indicate if they are sure they want to proceed with an action or not.
+ *
+ * @module DialogBox
+ * @param props
+ * @return {*}
+ */
 const DialogBox = props => (
   <div className={Styles.outerBox}>
     <div className={Styles.copy}>Are you sure?</div>
@@ -15,9 +21,7 @@ const DialogBox = props => (
 
 );
 
-
 export default DialogBox;
-
 
 DialogBox.propTypes = {
   handleYesClick: PropTypes.func.isRequired,

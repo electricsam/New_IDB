@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/App.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/App.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {PropTypes} from 'react';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import {ConnectedRouter} from 'react-router-redux';
+import { connect } from 'react-redux';
+import Modal from 'react-modal';
+
+import Navbar from './Navbar/Navbar';
+import Footer from './Footer/Footer.jsx';
+import TsunamiContainer from './Tsunami/TsunamiEventDataDisplay/TsunamiContainer';
+import AboutPage from './about/AboutPage';
+import Styles from './AppStyle.css';
+import Home from './home/Home.jsx';
+import {history} from '../store';
+import FourZeroFour from './FourZeroFour/FourZeroFour';
+import TsunamiSearchContainer from './Tsunami/TsunamiEventSearch/TsunamiSearchContainer.jsx';
+import TsunamiInsertContainer from './Tsunami/TsunamiEventInsert/TsunamiInsertContainer';
+import RunupInsertContainer from './Tsunami/TsunamiRunupInsert/RunupInsertContainer';
+import RunupSearchContainer from './Tsunami/TsunamiRunupSearch/RunupSearchContainer';
+import UpdateTsunamiContainer from './Tsunami/TsunamiEventUpdate/UpdateTsunamiContainer';
+import UpdateRunupContainer from './Tsunami/TsunamiRunupUpdate/UpdateRunupContainer';
+import RunupContainer from './Tsunami/TsunamiRunupDataDisplay/RunupContainer';
+import TsunamiLanding from './Tsunami/TsunamiLandingPage/TsunamiLanding';
+import EarthquakeSearchContainer from './Earthquakes/EarthquakeSearch/EarthquakeSearchContainer';
+import EarthquakeContainer from './Earthquakes/EarthquakeDataDisplay/EarthquakeContainer';
+import EarthquakeInsertContainer from './Earthquakes/EarthquakeInsert/EarthquakeInsertContainer';
+import EarthquakeUpdateContainer from './Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer';
+import ReferenceContainer from './References/ReferenceDataDisplay/ReferenceContainer';
+import ReferenceSearchContainer from './References/ReferenceSearch/ReferenceSearchContainer';
+import ReferenceInsertContainer from './References/ReferenceInsert/ReferenceInsertContainer';
+import ReferenceUpdateContainer from './References/ReferenceUpdate/ReferenceUpdateContainer';
+import EarthquakeLanding from './Earthquakes/EarthquakeLanding/EarthquakeLanding';
+import VolcanoContainer from './Volcanoes/VolcanoDataDisplay/VolcanoContainer';
+import VolcanoEventSearchContainer from './Volcanoes/VolcanoEventSearch/VolcanoEventSearchContainer';
+import VolcanoLocContainer from './Volcanoes/VolcanoLocDataDisplay/VolcanoLocContainer';
+import VolcanoLocSearchContainer from './Volcanoes/VolcanoLocSearch/VolcanoLocSearchContainer';
+import VolcanoEventInsertContainer from './Volcanoes/VolcanoEventInsert/VolcanoEventInsertContainer';
+import VolcanoLocInsertContainer from './Volcanoes/VolcanoLocInsert/VolcanoLocInsertContainer';
+import VolcanoEventUpdateContainer from './Volcanoes/VolcanoEventUpdate/VolcanoEventUpdateContainer';
+import VolcanoLocUpdateContainer from './Volcanoes/VolcanoLocUpdate/VolcanoLocUpdateContainer';
+import MoreTsunamiEventInfoContainer from "./Tsunami/MoreEventInfo/MoreTsunamiEventInfoContainer";
+import MoreRunupInfoContainer from "./Tsunami/MoreRunupInfo/MoreRunupInfoContainer";
+import MoreVolcanoEventInfoContainer from "./Volcanoes/MoreEventInformation/MoreVolcanoEventInfoContainer";
+import MoreEqEventInfoContainer from "./Earthquakes/MoreEventInfo/MoreEqEventInfoContainer";
+import VolcanoLanding from "./Volcanoes/VolcanoLanding/VolcanoLanding";
+import HazardsLanding from "./HazardsLanding/HazardsLanding";
+import RelateEarthquake from "./Earthquakes/RelateEarthquake/RelateEarthquake";
+import RelateTsunamiEvent from "./Tsunami/RelateTsunamiEvent/RelateTsunamiEvent";
+import RelateVolcanoEvent from "./Volcanoes/RelateVolcanoEvent/RelateVolcanoEvent";
+import RelateReference from "./References/RelateReference/RelateReference";
+import ReferenceLanding from "./References/ReferenceLanding/ReferenceLanding";
+import store from "../store";
+import {DefinitionModal} from "./DefinitionModal/DefinitionModal";
+
+Modal.setAppElement('#root');
+
+const action = obj => store.dispatch(obj);
+
+/**
+ * Container component that returns all routing logic nested inside a ConnectedRouter component
+ *
+ * @class
+ */
+class App extends React.Component {
+  /**
+   * Constructor
+   *
+   */
+  constructor(props){
+    super(props);
+  }
+
+  /**
+   * dispatches action CLOSE_MODAL.  Called in the {@link module:DefinitionModal} component.
+   */
+  closeModal = () => action({type: "CLOSE_MODAL"});
+
+  render() {
+    const {appUi} = this.props;
+    return (
+      &lt;ConnectedRouter history={history}>
+        &lt;div className={Styles.container}>
+          &lt;DefinitionModal
+              handleCloseModal={this.closeModal}
+              isOpen={appUi.get('modalIsOpen')}
+              validValues={appUi.get('modalValidValues')}
+              title={appUi.get('modalTitle')}
+              data={appUi.get('modalData')}
+              secondaryData={appUi.get('modalSecondaryData') ? appUi.get('modalSecondaryData').asMutable().toJS() : null}
+              component={appUi.get('modalComponent') ? appUi.get('modalComponent').asMutable().toJS() : null}
+          />
+          &lt;Route exact path="/" render={() => (&lt;Redirect to="/home" />)} />
+          &lt;Route path="/*" component={Navbar} />
+          &lt;Switch>
+            &lt;Route exact path="/home" component={Home} />
+            &lt;Route exact path="/about" component={AboutPage} />
+            &lt;Route exact path="/hazards/landing" component={HazardsLanding}/>
+            &lt;Route exact strict path="/tsunami/event/data" component={TsunamiContainer} />
+            &lt;Route exact path="/tsunami/runup/data" component={RunupContainer} />
+            &lt;Route exact path="/tsunami/eventsearch" component={TsunamiSearchContainer} />
+            &lt;Route exact path="/tsunami/insertevent" component={TsunamiInsertContainer} />
+            &lt;Route exact path="/tsunami/insertrunup/:eventId" component={RunupInsertContainer} />
+            &lt;Route exact path="/tsunami/runupsearch" component={RunupSearchContainer} />
+            &lt;Route exact path="/tsunami/updatetsunami/:id" component={UpdateTsunamiContainer} />
+            &lt;Route exact path="/tsunami/updaterunup/:runupId/:eventId" component={UpdateRunupContainer} />
+            &lt;Route exact path="/tsunami/landing" component={TsunamiLanding} />
+            &lt;Route exact path="/tsunami/event/moreinfo/:eventId" component={MoreTsunamiEventInfoContainer}/>
+            &lt;Route exact path="/tsunami/runup/moreinfo/:runupId/:eventId" component={MoreRunupInfoContainer}/>
+            &lt;Route exact path="/earthquake/eventsearch" component={EarthquakeSearchContainer} />
+            &lt;Route exact path="/earthquake/event/data" component={EarthquakeContainer} />
+            &lt;Route exact path="/earthquake/insert" component={EarthquakeInsertContainer} />
+            &lt;Route exact path="/earthquake/update/:id" component={EarthquakeUpdateContainer} />
+            &lt;Route exact path="/earthquake/landing" component={EarthquakeLanding} />
+            &lt;Route exact path="/earthquake/event/moreinfo/:eqId" component={MoreEqEventInfoContainer}/>
+            &lt;Route exact path="/reference/data" component={ReferenceContainer} />
+            &lt;Route exact path="/reference/search" component={ReferenceSearchContainer} />
+            &lt;Route exact path="/reference/insert" component={ReferenceInsertContainer} />
+            &lt;Route exact path="/reference/landing" component={ReferenceLanding}/>
+            &lt;Route exact path="/reference/update/:id" component={ReferenceUpdateContainer} />
+            &lt;Route exact path="/volcano/event/data" component={VolcanoContainer} />
+            &lt;Route exact path="/volcano/event/search" component={VolcanoEventSearchContainer} />
+            &lt;Route exact path="/volcano/loc/data" component={VolcanoLocContainer} />
+            &lt;Route exact path="/volcano/loc/search" component={VolcanoLocSearchContainer} />
+            &lt;Route exact path="/volcano/event/insert/:volLocId" component={VolcanoEventInsertContainer} />
+            &lt;Route exact path="/volcano/loc/insert" component={VolcanoLocInsertContainer} />
+            &lt;Route exact path="/volcano/event/update/:hazEventId/:volId" component={VolcanoEventUpdateContainer} />
+            &lt;Route exact path="/volcano/loc/update/:id" component={VolcanoLocUpdateContainer} />
+            &lt;Route exact path="/volcano/event/moreinfo/:volcanoId" component={MoreVolcanoEventInfoContainer}/>
+            &lt;Route exact path="/volcano/landing" component={VolcanoLanding}/>
+            &lt;Route exact path="/earthquake/relate" component={RelateEarthquake}/>
+            &lt;Route exact path='/tsunami/relate' component={RelateTsunamiEvent}/>
+            &lt;Route exact path='/volcano/relate' component={RelateVolcanoEvent}/>
+            &lt;Route exact path='/reference/relate' component={RelateReference}/>
+            {/* Must have 404 component listed last */}
+            &lt;Route path="*" component={FourZeroFour} />
+          &lt;/Switch>
+          &lt;Route path="/*" component={Footer} />
+        &lt;/div>
+      &lt;/ConnectedRouter>
+    );
+  }
+}
+
+const mapStateToProps = state => ({appUi: state.appUi});
+
+export default connect(mapStateToProps)(App);</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AboutPage.html">AboutPage</a></li><li><a href="module-Buttons.html">Buttons</a></li><li><a href="module-DefinitionModal.html">DefinitionModal</a></li><li><a href="module-EarthquakeLandingPartial.html">EarthquakeLandingPartial</a></li><li><a href="module-EqIntensity.html">EqIntensity</a></li><li><a href="module-Icon.html">Icon</a></li><li><a href="module-LinkingParagraph.html">LinkingParagraph</a></li><li><a href="module-TickboxTable.html">TickboxTable</a></li><li><a href="module-TimeEruption.html">TimeEruption</a></li><li><a href="module-ValidValues.html">ValidValues</a></li><li><a href="module-VolcanoAgent.html">VolcanoAgent</a></li><li><a href="module-VolcanoExplosivity.html">VolcanoExplosivity</a></li><li><a href="module-VolcanoStatus.html">VolcanoStatus</a></li><li><a href="module-WaterHeight.html">WaterHeight</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="EarthquakeContainer.html">EarthquakeContainer</a></li><li><a href="EarthquakeInsertContainer.html">EarthquakeInsertContainer</a></li><li><a href="EarthquakeLanding.html">EarthquakeLanding</a></li><li><a href="EarthquakeSearchContainer.html">EarthquakeSearchContainer</a></li><li><a href="EarthquakeUpdateContainer.html">EarthquakeUpdateContainer</a></li><li><a href="MoreEarthquakeInfoContainer.html">MoreEarthquakeInfoContainer</a></li><li><a href="RelateEarthquake.html">RelateEarthquake</a></li><li><a href="SecondaryData.html">SecondaryData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#camelToPascal">camelToPascal</a></li><li><a href="global.html#createApiQueryString">createApiQueryString</a></li><li><a href="global.html#decodeQueryString">decodeQueryString</a></li><li><a href="global.html#encodeQueryString">encodeQueryString</a></li><li><a href="global.html#mapToEarthquakeTable">mapToEarthquakeTable</a></li><li><a href="global.html#mapToEqMoreInfoTable">mapToEqMoreInfoTable</a></li><li><a href="global.html#mapToRunupMoreInfoTable">mapToRunupMoreInfoTable</a></li><li><a href="global.html#mapToRunupTable">mapToRunupTable</a></li><li><a href="global.html#mapToTable">mapToTable</a></li><li><a href="global.html#mapToTsunamiEventMoreInfo">mapToTsunamiEventMoreInfo</a></li><li><a href="global.html#mapToTsunamiEventMoreInfoRunup">mapToTsunamiEventMoreInfoRunup</a></li><li><a href="global.html#mapToTsunamiEventTable">mapToTsunamiEventTable</a></li><li><a href="global.html#mapToVolcanoLocsTable">mapToVolcanoLocsTable</a></li><li><a href="global.html#mapToVolcanoMoreInfoTable">mapToVolcanoMoreInfoTable</a></li><li><a href="global.html#mapToVolcanoTable">mapToVolcanoTable</a></li><li><a href="global.html#openModal">openModal</a></li><li><a href="global.html#parseAndShortenFloat">parseAndShortenFloat</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Aug 22 2018 14:57:29 GMT-0600 (MDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

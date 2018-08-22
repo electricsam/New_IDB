@@ -4,6 +4,14 @@ import PropTypes from 'prop-types';
 
 import Styles from "./DropDownStyles.css"
 
+/**
+ * Component that wraps a Control component from {@link https://davidkpiano.github.io/react-redux-form/docs.html React-Redux-Form}
+ * It iterates over passed props.data to generate all option elements
+ *
+ * @module DropDown
+ * @param props
+ * @return {*}
+ */
 const DropDown = props => (
   <div className={Styles.dropContainer}>
     <label className={Styles.label} htmlFor={props.model}>{props.title}</label>
