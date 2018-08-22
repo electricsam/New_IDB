@@ -5,16 +5,24 @@ import store from '../../../store';
 import SmallTable from "../../SmallTable/SmallTable";
 import Loading from '../../loadbar/Loading';
 import MoreInfoComments from "../../FormPartials/MoreInfoComments/MoreInfoComments";
-import {DefinitionModal} from "../../DefinitionModal/DefinitionModal";
 
 const action = obj => store.dispatch(obj);
 
-class MoreVolcanoEventInfoContainer extends React.Component{
+/**
+ * Container component for the control and display of More Info for Volcano Events
+ *
+ * @class
+ */
+class MoreEarthquakeInfoContainer extends React.Component{
   constructor(props){
     super(props);
     this.state = {};
   }
 
+  /**
+   * Uses React lifecycle method to dispatch actions to fetch earthquake of a given id and related reference to that
+   * earthquake of given id
+   */
   componentDidMount(){
     let { eqId } = this.props.match.params;
     let queryString = `earthquakeid=${eqId}`;
@@ -55,4 +63,4 @@ class MoreVolcanoEventInfoContainer extends React.Component{
 
 const mapStateToProps = state => ({earthquake: state.deep.earthquake, reference: state.deep.reference});
 
-export default connect(mapStateToProps)(MoreVolcanoEventInfoContainer);
+export default connect(mapStateToProps)(MoreEarthquakeInfoContainer);

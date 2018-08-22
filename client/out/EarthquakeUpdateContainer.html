@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: EarthquakeInsertContainer</title>
+    <title>JSDoc: Class: EarthquakeUpdateContainer</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: EarthquakeInsertContainer</h1>
+    <h1 class="page-title">Class: EarthquakeUpdateContainer</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>EarthquakeInsertContainer<span class="signature">(props)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>EarthquakeUpdateContainer<span class="signature">(props)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Container for insert of new Earthquake Event</div>
+            <div class="class-description">Container component for the control and display of earthquake update logic.</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     
 
     
-    <h4 class="name" id="EarthquakeInsertContainer"><span class="type-signature"></span>new EarthquakeInsertContainer<span class="signature">(props)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="EarthquakeUpdateContainer"><span class="type-signature"></span>new EarthquakeUpdateContainer<span class="signature">(props)</span><span class="type-signature"></span></h4>
     
 
     
@@ -141,7 +141,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line20">line 20</a>
+        <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html">components/Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer.js</a>, <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -195,9 +195,8 @@
 
 
 <div class="description">
-    checks store for value of insert.country and compares equality to passed val.  This is intended assess whether
-users should be able to access a dropDown for a subcategory based on the existence of a parent category.  Ex. if
-country selected is not USA then users should not be able to select a state from the state dropdown.
+    Reads country value from store to compare to passed value.  Used for setting disable value on "area" dropdowns.
+Ex. If country is not USA then you should not be able to access the state dropdown.
 </div>
 
 
@@ -235,7 +234,7 @@ country selected is not USA then users should not be able to select a state from
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line91">line 91</a>
+        <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html">components/Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer.js</a>, <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html#line86">line 86</a>
     </li></ul></dd>
     
 
@@ -259,7 +258,7 @@ country selected is not USA then users should not be able to select a state from
 
 
 <div class="description">
-    dispatches action to toggle the dipslay of the Date and Location section of the insert form
+    dispatches action to toggle the Date and Location section of the Earthquake Update form.
 </div>
 
 
@@ -297,7 +296,7 @@ country selected is not USA then users should not be able to select a state from
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line50">line 50</a>
+        <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html">components/Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer.js</a>, <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html#line58">line 58</a>
     </li></ul></dd>
     
 
@@ -321,7 +320,7 @@ country selected is not USA then users should not be able to select a state from
 
 
 <div class="description">
-    dispatches action to toggle the display of the effects section of the insert form
+    dispatches action to toggle the Effects section of the Earthquake Update form.
 </div>
 
 
@@ -359,7 +358,7 @@ country selected is not USA then users should not be able to select a state from
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line64">line 64</a>
+        <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html">components/Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer.js</a>, <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
@@ -377,13 +376,13 @@ country selected is not USA then users should not be able to select a state from
 
         
             
-<h4 class="name" id="toggleMeasure"><span class="type-signature"></span>toggleMeasure<span class="type-signature"></span></h4>
+<h4 class="name" id="toggleMeasurements"><span class="type-signature"></span>toggleMeasurements<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    dispatches action to toggle the display of the measurement section of the insert form
+    dispatches action to toggle the Measurements section of the Earthquake Update form.
 </div>
 
 
@@ -421,7 +420,7 @@ country selected is not USA then users should not be able to select a state from
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line57">line 57</a>
+        <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html">components/Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer.js</a>, <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html#line64">line 64</a>
     </li></ul></dd>
     
 
@@ -445,7 +444,7 @@ country selected is not USA then users should not be able to select a state from
 
 
 <div class="description">
-    dispatches action to toggle the display of the total effects section of the insert form
+    dispatches action to toggle the Total Effects section of the Earthquake Update form.
 </div>
 
 
@@ -483,7 +482,7 @@ country selected is not USA then users should not be able to select a state from
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line71">line 71</a>
+        <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html">components/Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer.js</a>, <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html#line76">line 76</a>
     </li></ul></dd>
     
 
@@ -507,7 +506,7 @@ country selected is not USA then users should not be able to select a state from
 
 
 <div class="description">
-    Performs client side validation of the given val, to ensure that it is between the max and min params.
+    Validates passed val to ensure that it is between the given min and max.
 </div>
 
 
@@ -545,7 +544,7 @@ country selected is not USA then users should not be able to select a state from
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line81">line 81</a>
+        <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html">components/Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer.js</a>, <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html#line96">line 96</a>
     </li></ul></dd>
     
 
@@ -573,6 +572,92 @@ country selected is not USA then users should not be able to select a state from
     
 
     
+    <h4 class="name" id="componentDidMount"><span class="type-signature"></span>componentDidMount<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Utilizes react lifecycle method to call a fetch of data for given earthquake id in the url
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html">components/Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer.js</a>, <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="handleSubmit"><span class="type-signature"></span>handleSubmit<span class="signature">(val)</span><span class="type-signature"></span></h4>
     
 
@@ -581,8 +666,7 @@ country selected is not USA then users should not be able to select a state from
 
 
 <div class="description">
-    dispatches the action POST_EARTHQUAKE_REQUESTED with payload of the user defined form values.  This will call a
-POST to the API
+    dispatches action PATCH_EARTHQUAKE_REQUESTED that sends PATCH request to API
 </div>
 
 
@@ -670,7 +754,7 @@ POST to the API
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html">components/Earthquakes/EarthquakeInsert/EarthquakeInsertContainer.js</a>, <a href="components_Earthquakes_EarthquakeInsert_EarthquakeInsertContainer.js.html#line37">line 37</a>
+        <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html">components/Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer.js</a>, <a href="components_Earthquakes_EarthquakeUpdate_EarthquakeUpdateContainer.js.html#line46">line 46</a>
     </li></ul></dd>
     
 

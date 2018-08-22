@@ -1,4 +1,32 @@
-import React from 'react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Earthquakes/EarthquakeUpdate/EarthquakeUpdateContainer.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
 import {connect} from 'react-redux';
 import "!style-loader!css-loader!react-toastify/dist/ReactToastify.css"
 
@@ -93,19 +121,19 @@ class EarthquakeUpdateContainer extends React.Component{
    * @param max
    * @return {boolean}
    */
-  validateMinMax = (val, min, max) => (val >= min && val <= max && !isNaN(val)) || !val ? true : false;
+  validateMinMax = (val, min, max) => (val >= min &amp;&amp; val &lt;= max &amp;&amp; !isNaN(val)) || !val ? true : false;
 
   render(){
     const { earthquake } = this.props;
     if(earthquake.get("fetchingEarthquake") === true){
-      return(<Loading/>)
+      return(&lt;Loading/>)
     }else{
       return (
-          <MultiPartForm title="Update Earthquake Event"
+          &lt;MultiPartForm title="Update Earthquake Event"
                          handleSubmit={this.handleSubmit.bind(this)}
                          titleColor="orange">
 
-            <Toast
+            &lt;Toast
                 actionMessage="...Updating"
                 successMessage="Update Successful"
                 failMessage="Update Failed"
@@ -114,7 +142,7 @@ class EarthquakeUpdateContainer extends React.Component{
                 fail={earthquake.asMutable().toJS().patchFail}
             />
 
-            <FormSection
+            &lt;FormSection
               title="Date and Location"
               toggleSection={this.toggleDateAndLocation}
               showSection={earthquake.get('showEqUpdateDateLoc')}
@@ -123,7 +151,7 @@ class EarthquakeUpdateContainer extends React.Component{
               checkDropDownDisabled={this.checkDropDownDisabled}
             />
 
-            <FormSection
+            &lt;FormSection
               title="Measurements"
               toggleSection={this.toggleMeasurements}
               showSection={earthquake.get('showEqUpdateMeasure')}
@@ -131,7 +159,7 @@ class EarthquakeUpdateContainer extends React.Component{
               formData={Measurements}
             />
 
-            <FormSection
+            &lt;FormSection
                 title="Effects"
                 toggleSection={this.toggleEffects}
                 showSection={earthquake.get('showEqUpdateEffects')}
@@ -139,7 +167,7 @@ class EarthquakeUpdateContainer extends React.Component{
                 formData={Effects}
             />
 
-            <FormSection
+            &lt;FormSection
                 title="Total Effecs"
                 toggleSection={this.toggleTotalEffects}
                 showSection={earthquake.get('showEqUpdateTotalEffects')}
@@ -148,7 +176,7 @@ class EarthquakeUpdateContainer extends React.Component{
                 count={earthquake.asMutable().toJS().earthquakes[0].comments}
             />
 
-          </MultiPartForm>
+          &lt;/MultiPartForm>
       )
 
     }
@@ -162,3 +190,26 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(mapStateToProps)(EarthquakeUpdateContainer);
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-AboutPage.html">AboutPage</a></li><li><a href="module-Buttons.html">Buttons</a></li><li><a href="module-DefinitionModal.html">DefinitionModal</a></li><li><a href="module-EarthquakeLandingPartial.html">EarthquakeLandingPartial</a></li><li><a href="module-EqIntensity.html">EqIntensity</a></li><li><a href="module-LinkingParagraph.html">LinkingParagraph</a></li><li><a href="module-TickboxTable.html">TickboxTable</a></li><li><a href="module-TimeEruption.html">TimeEruption</a></li><li><a href="module-ValidValues.html">ValidValues</a></li><li><a href="module-VolcanoAgent.html">VolcanoAgent</a></li><li><a href="module-VolcanoExplosivity.html">VolcanoExplosivity</a></li><li><a href="module-VolcanoStatus.html">VolcanoStatus</a></li><li><a href="module-WaterHeight.html">WaterHeight</a></li></ul><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="EarthquakeContainer.html">EarthquakeContainer</a></li><li><a href="EarthquakeInsertContainer.html">EarthquakeInsertContainer</a></li><li><a href="EarthquakeLanding.html">EarthquakeLanding</a></li><li><a href="EarthquakeSearchContainer.html">EarthquakeSearchContainer</a></li><li><a href="EarthquakeUpdateContainer.html">EarthquakeUpdateContainer</a></li><li><a href="SecondaryData.html">SecondaryData</a></li></ul><h3>Global</h3><ul><li><a href="global.html#camelToPascal">camelToPascal</a></li><li><a href="global.html#createApiQueryString">createApiQueryString</a></li><li><a href="global.html#decodeQueryString">decodeQueryString</a></li><li><a href="global.html#encodeQueryString">encodeQueryString</a></li><li><a href="global.html#mapToEarthquakeTable">mapToEarthquakeTable</a></li><li><a href="global.html#mapToEqMoreInfoTable">mapToEqMoreInfoTable</a></li><li><a href="global.html#mapToRunupMoreInfoTable">mapToRunupMoreInfoTable</a></li><li><a href="global.html#mapToRunupTable">mapToRunupTable</a></li><li><a href="global.html#mapToTable">mapToTable</a></li><li><a href="global.html#mapToTsunamiEventMoreInfo">mapToTsunamiEventMoreInfo</a></li><li><a href="global.html#mapToTsunamiEventMoreInfoRunup">mapToTsunamiEventMoreInfoRunup</a></li><li><a href="global.html#mapToTsunamiEventTable">mapToTsunamiEventTable</a></li><li><a href="global.html#mapToVolcanoLocsTable">mapToVolcanoLocsTable</a></li><li><a href="global.html#mapToVolcanoMoreInfoTable">mapToVolcanoMoreInfoTable</a></li><li><a href="global.html#mapToVolcanoTable">mapToVolcanoTable</a></li><li><a href="global.html#openModal">openModal</a></li><li><a href="global.html#parseAndShortenFloat">parseAndShortenFloat</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Aug 22 2018 14:03:05 GMT-0600 (MDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

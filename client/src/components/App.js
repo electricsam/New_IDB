@@ -55,11 +55,23 @@ Modal.setAppElement('#root');
 
 const action = obj => store.dispatch(obj);
 
+/**
+ * Container component that returns all routing logic nested inside a ConnectedRouter component
+ *
+ * @class
+ */
 class App extends React.Component {
+  /**
+   * Constructor
+   *
+   */
   constructor(props){
     super(props);
   }
 
+  /**
+   * dispatches action CLOSE_MODAL.  Called in the {@link module:DefinitionModal} component.
+   */
   closeModal = () => action({type: "CLOSE_MODAL"});
 
   render() {

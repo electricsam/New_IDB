@@ -1,19 +1,11 @@
 import React from 'react';
-import ReactTable from 'react-table';
-import selectTableHOC from 'react-table/lib/hoc/selectTable';
-import { push } from 'react-router-redux';
 import {connect} from "react-redux";
 
 import Loading from "../../loadbar/Loading";
 import TickboxTable from '../../CheckboxTable/TickboxTable';
 import store from "../../../store";
 
-import {
-  createApiQueryString,
-  decodeQueryString,
-  encodeQueryString,
-  deleteEarthquake
-} from "../../../helperFunctions/helperFunctions";
+import {createApiQueryString, decodeQueryString, deleteEarthquake} from "../../../helperFunctions/helperFunctions";
 
 const tableStyle = {
   textAlign: "center"
@@ -25,12 +17,21 @@ const hiddenStyle = {
 
 const action = obj => store.dispatch(obj);
 
+/**
+ * Container component to handle logic and displays for relating given row of another data set to an Earthquake.
+ *
+ * @class
+ */
 class RelateEarthquake extends React.Component {
   constructor(props){
     super(props);
     this.state = {}
   }
 
+  /**
+   * Uses React lifecycle component to reset the selected boxes on mount, and fetch earthquakes specified by the query
+   * string in the URL
+   */
   componentDidMount(){
     action({type: "SET_TABLE_SELECTION", payload: null});
     let { search } = this.props.location;
