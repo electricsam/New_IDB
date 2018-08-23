@@ -2,6 +2,11 @@ import React from 'react';
 
 import Styles from './FourZeroFourStyle.css';
 
+/**
+ * Component for the display of 404 errors.
+ *
+ * @module ForZeroFour
+ */
 const FourZeroFour = () => (
   <div className={Styles.container}>
     <div>

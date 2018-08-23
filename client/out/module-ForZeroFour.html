@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/DefinitionModal/DefinitionModal.js</title>
+    <title>JSDoc: Module: ForZeroFour</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,102 +17,130 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/DefinitionModal/DefinitionModal.js</h1>
+    <h1 class="page-title">Module: ForZeroFour</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import Modal from 'react-modal';
+        
+            
+        
+    
+</header>
 
-import Styles from './DefinitionModalStyles.css'
-import SecondaryData from './SecondaryData';
-import ValidValues from "./ValidValues";
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">Component for the display of 404 errors.</div>
+        
+
+        
+            
 
 
-const modalStyle = {
-  overlay: {
-    position: 'fixed',
-        top: '0',
-        left: '0',
-        right: '0',
-        bottom: '0',
-        backgroundColor: 'rgba(50, 50, 50, 0.75)'
-  },
-  content: {
-    position: 'absolute',
-        top: '10%',
-        left: '20%',
-        right: '20%',
-        bottom: '20%',
-        border: '1px solid #ccc',
-        background: '#fff',
-        overflow: 'auto',
-        WebkitOverflowScrolling: 'touch',
-        borderRadius: '4px',
-        outline: 'none',
-        padding: '20px'
-  }
-}
 
-/**
- * Utilizes react modal as parent component and passes children components and elements to generate data that the modal
- * will display.
- *
- * @module DefinitionModal
- * @param props
- */
-export const DefinitionModal = props => {
-  if(props.isOpen){
-    return(
-        &lt;Modal isOpen={props.isOpen}
-               onRequestClose={props.handleCloseModal}
-               style={modalStyle}
-               aria={{labelledby: "modalTitle", describedby: "modalDesc"}}
-        >
 
-          &lt;div className={Styles.modal}>
-            &lt;div className={Styles.modalContent}>
-              &lt;button  aria-label="Close Button"
-                       autoFocus={true}
-                       className={Styles.close}
-                       onClick={props.handleCloseModal}
-              >
-                &lt;i className="material-icons">close&lt;/i>
-              &lt;/button>
 
-              &lt;h2 id="modalTitle" className={Styles.title}>{props.title}&lt;/h2>
 
-              &lt;ValidValues value={props.validValues}/>
 
-              &lt;p id="modalDesc">{props.data}&lt;/p>
 
-              {
-                props.secondaryData?
-                    props.secondaryData.map(e => &lt;SecondaryData data={e.data} title={e.title}/>):
-                    &lt;div style={{display:'none'}}>&lt;/div>
-              }
 
-              {
-                props.component?
-                    props.component: &lt;div style={{display: 'none'}}>&lt;/div>
-              }
-            &lt;/div>
-          &lt;/div>
 
-        &lt;/Modal>
-    )
-  }else{
-    return &lt;div style={{display: 'none'}}>&lt;/div>
-  }
-};
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_FourZeroFour_FourZeroFour.js.html">components/FourZeroFour/FourZeroFour.js</a>, <a href="components_FourZeroFour_FourZeroFour.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
