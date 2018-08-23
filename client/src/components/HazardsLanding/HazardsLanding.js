@@ -34,12 +34,30 @@ const buttons = [
 
 ];
 
+/**
+ * Container for Hazards landing page.  Provides clickable divs that will navigate user to different parts of the data
+ * set
+ *
+ * @class
+ */
 class HazardsLanding extends React.Component {
+
+  /**
+   * Constructor
+   *
+   * @param props
+   * @constructor
+   */
   constructor(props) {
     super(props);
     this.state = {};
   }
 
+  /**
+   * Pushes history object to given url
+   *
+   * @param value
+   */
   handleClick(value) {
     store.dispatch(push(value));
   }

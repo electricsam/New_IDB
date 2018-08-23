@@ -5,6 +5,13 @@ import '!style-loader!css-loader!react-table/react-table.css';
 
 import Styles from './SmallTableStyles.css';
 
+/**
+ * Component for the display of a ReactTable component without pagination ad with only the number of rows that the data
+ * has (typically 1).
+ *
+ * @module SmallTable
+ * @param props
+ */
 const SmallTable = props => (
     <div className={Styles.container}>
 

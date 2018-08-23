@@ -6,8 +6,19 @@ import expandMore from '../../assets/expand_more.svg';
 import expandLess from '../../assets/expand_less.svg';
 import SvgIcon from "../../assets/SvgIcon";
 
-
+/**
+ * Container to handle mouse-over interactions with list items on the menu.
+ *
+ * @class
+ */
 class MenuItem extends React.Component{
+
+  /**
+   * initializes the color and the svg to be used in the display of the component
+   *
+   * @constructor
+   * @param props
+   */
   constructor(props){
     super(props);
     this.state = {
@@ -16,11 +27,17 @@ class MenuItem extends React.Component{
     }
   }
 
+  /**
+   * on mouseEnter the color is switched to #00FFFF and the svg is changed to expandLess
+   */
   handleMouseEnter = () => {
     this.setState({color: "#00FFFF", expand: expandLess});
     this.props.handleMouseEnter();
   };
 
+  /**
+   * on mouseLeave the color is switched to #6c6d6d and the svg is changed to expandMore
+   */
   handleMouseLeave = () => {
     this.setState({color: "#6c6d6d", expand: expandMore});
     this.props.handleMouseLeave()
@@ -50,6 +67,5 @@ class MenuItem extends React.Component{
     );
   }
 }
-
 
 export default MenuItem;

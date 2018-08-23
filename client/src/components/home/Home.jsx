@@ -1,10 +1,6 @@
 import React from 'react';
-import lavaFlow from "../../assets/lava_flow.jpg";
 import killerWhale from '../../assets/killer_whale.jpg';
 import Styles from './HomeStyle.css';
-import { Link } from 'react-router-dom';
-
-import Footer from '../Footer/Footer.jsx';
 
 const inlineStyles = {
   backgroundImage: `url(${killerWhale})`,
@@ -12,6 +8,11 @@ const inlineStyles = {
   backgroundSize: 'cover'
 }
 
+/**
+ * Component for the display of the home page
+ *
+ * @module Home
+ */
 const Home = () => {
   return (
     <div className={Styles.container} style={inlineStyles}>
@@ -21,7 +22,5 @@ const Home = () => {
     </div>
   );
 }
-
-
 
 export default Home;

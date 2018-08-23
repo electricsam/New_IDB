@@ -10,7 +10,21 @@ import expandMore from '../../assets/expand_more.svg';
 import expandLess from '../../assets/expand_less.svg';
 import SvgIcon from '../../assets/SvgIcon';
 
+
+/**
+ * Container that organizes and handles interactions with the navbar.  Likely to be replaced with NCEI or NGDC navbar.
+ *
+ * @class
+ */
 class Navbar extends React.Component {
+
+  /**
+   * Sets the initial style of displaying each submenu and the hazards drop down menu to 'none'. Sets initial color of
+   * menu when not hovered over to be #6c6d6d.
+   *
+   * @constructor
+   * @param props
+   */
   constructor(props){
     super(props);
     this.state={
@@ -26,9 +40,11 @@ class Navbar extends React.Component {
     }
   }
 
+  /**
+   *
+   */
   handleHazMouseEnter = () => {
-    let prevState = this.state;
-    //TODO change this to copy of this.state
+    let prevState = Object.assign({}, this.state);
     prevState.hazDisplay = 'block';
     prevState.haz.expand = expandLess;
     prevState.haz.color = '#00FFFF'

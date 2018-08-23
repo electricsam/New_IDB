@@ -2,15 +2,19 @@ import React from 'react';
 
 import launchIcon from '../../assets/launchIconOutline.svg';
 
+/**
+ * Component to display an svg, that when clicked will trigger the launch of a modal.  Used in the {@link module:TableHeader}
+ * component
+ *
+ * @module ModalLauncher
+ * @param props
+ */
 const ModalLauncher = props => (
   <img alt="Modal Launch Icon"
        src={launchIcon}
        onClick={props.handleClick}
        onKeyPress={(e) => {
-         console.log("you have pressed a button ")
-         console.log("key: ", e.key)
          if(e.key === 'Enter'){
-           console.log('lets look at this');
            props.handleClick();
          }
        }}
