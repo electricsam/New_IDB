@@ -4,7 +4,19 @@ import PropTypes from 'prop-types';
 
 import Styles from './TextareaStyles.css';
 
+/**
+ * Container to display and validate textarea input.
+ *
+ * @class
+ */
 export class Textarea extends React.Component{
+
+  /**
+   * Constructor sets initial values of the counter's styling an initializes the counter's count to 0
+   *
+   * @param props
+   * @constructor
+   */
   constructor(props){
     super(props);
     this.state={
@@ -19,8 +31,14 @@ export class Textarea extends React.Component{
     }
   }
 
-  componentDidMount(){}
-
+  /**
+   * Function that validates the length of the counter and updates state accordingly. If the count exceeds the given max
+   * then the color of the displayed count changes to red and invalidates the input.
+   *
+   * @param val
+   * @param max
+   * @return {boolean}
+   */
   validateLength = (val, max) => {
     if(!val){
       this.setState({counterStyle: {color: 'green', display: 'block'}});

@@ -8,6 +8,14 @@ const hiddenStyle = {
   visibility: 'hidden'
 };
 
+/**
+ * Component to display radio inputs with a conditionally displayed, text input that is related to the same data as the
+ * radio input.  Ex. Users are enabled to search by location name and the radio buttons let them toggle how they want to
+ * search that string they are entering in the text input.  They can search "includes", "matches", "starts with", etc.
+ *
+ * @module Radio
+ * @param props
+ */
 const Radio = props => (
   <div className={Styles.subSection}>
     {

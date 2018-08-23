@@ -1,5 +1,12 @@
 import {regions, states, validationConstants} from "../../formConstants/constants";
 
+/**
+ * For the sole purpose of testing the FormSection Component
+ *
+ * @module TestFormData
+ */
+
+
 const testDropDownData = [
   {name: 'nameOne', value: 'nameOne'},
   {name: 'nameTwo', value: 'nameTwo'}

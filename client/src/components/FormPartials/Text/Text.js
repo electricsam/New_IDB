@@ -4,6 +4,12 @@ import PropTypes from 'prop-types';
 
 import Styles from './TextStyles.css';
 
+/**
+ * Component for the display and validation of text input.
+ *
+ * @module Text
+ * @param props
+ */
 const Text = props => {
   if(props.needsVal){
     return(

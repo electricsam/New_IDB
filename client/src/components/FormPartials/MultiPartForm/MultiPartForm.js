@@ -4,9 +4,14 @@ import PropTypes from 'prop-types';
 import Styles from './MultiPartFormStyles.css';
 import { Form } from 'react-redux-form/lib/immutable';
 
-
-
-
+/**
+ * Component that returns a wrapped {@link https://davidkpiano.github.io/react-redux-form/docs/api/Form.html Form}
+ * component from {@link https://davidkpiano.github.io/react-redux-form/docs.html React-Redux-Form}.  The form is passed
+ * child components that could be a {@link module:FormSection} or lower level input components from React-Redux-Form.
+ *
+ * @module MultiPartForm
+ * @param props
+ */
 const MultiPartForm = props => (
   <div className={Styles.container}>
 

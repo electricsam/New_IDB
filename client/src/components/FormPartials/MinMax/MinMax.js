@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 
 import Styles from './MinMaxStyle.css';
 
+/**
+ * Component that will display a text input box and evaluate the user input to ensure if falls between the min and max
+ * values supplied in the passed props
+ *
+ * @module MinMax
+ * @param props
+ */
 const MinMax = props => (
   <div className={Styles.container}>
     <label htmlFor={props.model}>{props.title}</label>

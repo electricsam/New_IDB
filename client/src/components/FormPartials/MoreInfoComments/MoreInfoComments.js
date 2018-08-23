@@ -2,6 +2,12 @@ import React from 'react';
 
 import Styles from './MoreInfoCommentsStyles.css';
 
+/**
+ * Component for the display of comments in the more info section of each data set
+ *
+ * @module MoreInfoComments
+ * @param props
+ */
 const MoreInfoComments = props => (
     <div className={Styles.container}>
       <h1>Comments</h1>
