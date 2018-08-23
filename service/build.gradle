@@ -15,10 +15,6 @@ buildscript {
 	}
 }
 
-//plugins{
-//    id 'org.springframework.boot' version '2.0.0.RELEASE'
-//}
-
 plugins {
     id "org.owasp.dependencycheck" version "3.2.1"
 }
@@ -34,7 +30,6 @@ group = 'com.idb_backend'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
-
 repositories {
 	mavenCentral()
     maven {
@@ -47,10 +42,8 @@ configurations {
 }
 
 dependencies {
-
 	compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-actuator')
-//	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.5.9.RELEASE'
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.5'
 	compile('org.projectlombok:lombok')
@@ -59,7 +52,6 @@ dependencies {
     compile 'org.springframework.data:spring-data-rest-webmvc:3.0.5.RELEASE'
 	compile 'org.springframework.boot:spring-boot-starter-test'
 	compile group: 'com.googlecode.owasp-java-html-sanitizer', name: 'owasp-java-html-sanitizer', version: '20180219.1'
-//    compile "org.springframework.boot:spring-boot-starter-security"
     compile "org.springframework.boot:spring-boot-configuration-processor"
 	compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 //	compile "org.flywaydb:flyway-core:5.0.7"
@@ -67,14 +59,11 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-spatial', version: '5.2.13.Final'
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
 	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.12.Final'
-	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.0'
 	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.0'
     compile fileTree( dir: 'lib', include: '*.jar')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
-
-
 
 test {
     testLogging {
